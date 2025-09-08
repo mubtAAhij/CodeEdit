@@ -73,7 +73,7 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
 
             updateTaskStatus(to: .finished)
             updateTaskNotification(
-                title: "Finished Running \(task.name)",
+                title: "String(localized: "task_finished_running", comment: "Notification title when a task finishes running successfully")",
                 message: "",
                 isLoading: false
             )
@@ -84,7 +84,7 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
 
             updateTaskStatus(to: .notRunning)
             updateTaskNotification(
-                title: "\(task.name) cancelled",
+                title: "String(localized: "task_cancelled", comment: "Notification title when a task is cancelled")",
                 message: "",
                 isLoading: false
             )
@@ -97,7 +97,7 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
 
             updateTaskStatus(to: .failed)
             updateTaskNotification(
-                title: "Failed Running \(task.name)",
+                title: "String(localized: "task_failed_running", comment: "Notification title when a task fails to run")",
                 message: "",
                 isLoading: false
             )
@@ -150,8 +150,8 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         let userInfo: [String: Any] = [
             "id": taskId,
             "action": "createWithPriority",
-            "title": "Running \(self.task.name)",
-            "message": "Running your task: \(self.task.name).",
+            "title": "String(localized: "task_running_title", comment: "Notification title when a task is running")",
+            "message": "String(localized: "task_running_message", comment: "Notification message when a task is running")",
             "isLoading": true,
             "workspace": workspaceURL as Any
         ]
