@@ -25,15 +25,15 @@ extension SourceControlNavigatorRepositoryView {
 
     @ViewBuilder
     func contextMenu(for item: RepoOutlineGroupItem, branch: GitBranch) -> some View {
-        Button("Switch...") {
+        Button(String(localized: "switch_ellipsis", comment: "Context menu item to switch branches")) {
             sourceControlManager.switchToBranch = branch
         }
         .disabled(item.branch == nil || sourceControlManager.currentBranch == item.branch)
         Divider()
         Button(
             item.branch == nil && item.id != "BranchesGroup"
-            ? "New Branch..."
-            : "New Branch from \"\(branch.name)\"..."
+            ? String(localized: "new_branch_ellipsis", comment: "Context menu item to create new branch")
+            : String(localized: "new_branch_from_branch_ellipsis", comment: "Context menu item to create new branch from existing branch")
         ) {
             showNewBranch = true
             fromBranch =  item.branch
@@ -41,26 +41,26 @@ extension SourceControlNavigatorRepositoryView {
         .disabled(item.branch == nil && item.id != "BranchesGroup")
         Button(
             item.branch == nil
-            ? "Rename Branch..."
-            : "Rename \"\(branch.name)\"..."
+            ? String(localized: "rename_branch_ellipsis", comment: "Context menu item to rename branch")
+            : String(localized: "rename_specific_branch_ellipsis", comment: "Context menu item to rename specific branch")
         ) {
             showRenameBranch = true
             fromBranch = item.branch
         }
         .disabled(item.branch == nil || item.branch?.isRemote == true)
         Divider()
-        Button("Add Existing Remote...") {
+        Button(String(localized: "add_existing_remote_ellipsis", comment: "Context menu item to add existing remote")) {
             sourceControlManager.addExistingRemoteSheetIsPresented = true
         }
         .disabled(item.id != "RemotesGroup")
         Divider()
-        Button("Apply Stashed Changes...") {
+        Button(String(localized: "apply_stashed_changes_ellipsis", comment: "Context menu item to apply stashed changes")) {
             applyStashedChangesIsPresented = true
             stashEntryToApply = item.stashEntry
         }
         .disabled(item.stashEntry == nil)
         Divider()
-        Button("Delete...") {
+        Button(String(localized: "delete_ellipsis", comment: "Context menu item to delete item")) {
             handleDelete(item)
         }
         .disabled(

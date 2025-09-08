@@ -29,7 +29,7 @@ struct CETaskFormView: View {
                     Text("Docker")
                         .tag("Docker")
 
-                    Text("Docker Compose")
+                    Text(String(localized: "docker_compose", comment: "Docker Compose target option"))
                         .tag("Docker Compose")
                 }
                 .disabled(true)
@@ -37,11 +37,11 @@ struct CETaskFormView: View {
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text(String(localized: "task", comment: "Task command field label"))
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "task_command", comment: "Task command accessibility label"))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text(String(localized: "working_directory", comment: "Working directory field label"))
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text(String(localized: "no_environment_variables", comment: "Empty state message when no environment variables are configured"))
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text(String(localized: "environment_variables", comment: "Environment variables section header"))
             }
         }
         .formStyle(.grouped)

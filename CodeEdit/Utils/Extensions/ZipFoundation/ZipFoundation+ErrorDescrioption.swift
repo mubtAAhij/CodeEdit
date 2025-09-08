@@ -18,11 +18,11 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
         case .invalidEntryPath:
             "Invalid entry path."
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "invalid_compression_method", comment: "Error message for invalid compression method")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "invalid_checksum", comment: "Error message for invalid checksum")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "operation_cancelled", comment: "Error message for cancelled operation")
         case .invalidBufferSize:
             "Invalid buffer size."
         case .invalidEntrySize:

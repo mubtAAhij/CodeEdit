@@ -54,29 +54,29 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent("Account") {
+                LabeledContent("String(localized: "account", comment: "Account label")") {
                     Text(currentAccount.name)
                 }
-                TextField("Description", text: $currentAccount.description)
+                TextField("String(localized: "description", comment: "Description field label")", text: $currentAccount.description)
                 if currentAccount.provider.baseURL == nil {
-                    TextField("Server", text: $currentAccount.serverURL)
+                    TextField("String(localized: "server", comment: "Server field label")", text: $currentAccount.serverURL)
                 }
             }
 
             Section {
                 Picker(selection: $currentAccount.urlProtocol) {
-                    Text("HTTPS")
+                    Text("String(localized: "https", comment: "HTTPS protocol option")")
                         .tag(SourceControlAccount.URLProtocol.https)
-                    Text("SSH")
+                    Text("String(localized: "ssh", comment: "SSH protocol option")")
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text("Clone Using")
-                    Text("New repositories will be cloned from \(currentAccount.provider.name)"
-                         + " using \(currentAccount.urlProtocol.rawValue).")
+                    Text("String(localized: "clone_using", comment: "Clone using protocol picker label")")
+                    Text("String(localized: "new_repositories_clone_description", comment: "Description for repository cloning")"
+                         + "String(localized: "using_protocol_suffix", comment: "Suffix for protocol description")")
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker("SSH Key", selection: $currentAccount.sshKey) {
+                    Picker("String(localized: "ssh_key", comment: "SSH Key picker label")", selection: $currentAccount.sshKey) {
                         Text("None")
                             .tag("")
                         Divider()
@@ -99,9 +99,9 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text("Create New...")
+                        Text("String(localized: "create_new", comment: "Create new SSH key option")")
                             .tag("CREATE_NEW")
-                        Text("Choose...")
+                        Text("String(localized: "choose", comment: "Choose SSH key option")")
                             .tag("CHOOSE")
                     }
                     .onReceive([currentAccount.sshKey].publisher.first()) { value in
@@ -122,14 +122,14 @@ struct AccountsSettingsDetailsView: View {
                 }
             } footer: {
                 HStack {
-                    Button("Delete Account...") {
+                    Button("String(localized: "delete_account", comment: "Delete account button label")") {
                         deleteConfirmationIsPresented.toggle()
                     }
                     .alert(
                         Text("Are you sure you want to delete the account “\(account.description)”?"),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button("OK") {
+                        Button("String(localized: "ok", comment: "OK button label")") {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()

@@ -111,11 +111,11 @@ struct StatusBarCursorPositionLabel: View {
 
             // When the option key is pressed display the character offset.
             if modifierKeys.contains(.option) {
-                return "Char: \(cursorPositions[0].range.location) Len: 0"
+                return "String(localized: "cursor_position_char_len_zero", comment: "Status bar cursor position display when showing character offset with zero length selection")"
             }
 
             // When there's a single cursor, display the line and column.
-            return "Line: \(cursorPositions[0].start.line)  Col: \(cursorPositions[0].start.column)"
+            return "String(localized: "cursor_position_line_col", comment: "Status bar cursor position display showing line and column numbers")"
         }
     }
 }
