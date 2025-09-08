@@ -23,7 +23,7 @@ struct ExtensionManagerWindow: Scene {
                 case 1:
                     ExtensionDetailView(ext: selection.first!)
                 default:
-                    Text("\(selection.count) selected")
+                    Text(String(localized: "extensions_count_selected", comment: "Label showing number of selected extensions"))
                 }
             }
             .environmentObject(manager)
