@@ -16,7 +16,7 @@ extension SettingsData {
                 "Developer",
                 "Language Server Protocol",
                 "LSP Binaries",
-                "Show Internal Development Inspector"
+                String(localized: "show_internal_development_inspector", comment: "Label for toggle to show internal development inspector")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
