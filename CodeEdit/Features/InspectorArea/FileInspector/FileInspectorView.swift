@@ -47,7 +47,7 @@ struct FileInspectorView: View {
         Group {
             if file != nil {
                 Form {
-                    Section("Identity and Type") {
+                    Section(String(localized: "identity_and_type_section", comment: "Section header for file identity and type")) {
                         fileNameField
                         fileType
                     }
