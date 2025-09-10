@@ -31,25 +31,25 @@ enum PackageManagerType: String, Codable {
     var userDescription: String {
         switch self {
         case .npm:
-            "NPM"
+            String(localized: "package_manager_npm", comment: "Display name for NPM package manager")
         case .cargo:
-            "Cargo"
+            String(localized: "package_manager_cargo", comment: "Display name for Cargo package manager")
         case .golang:
-            "Go"
+            String(localized: "package_manager_go", comment: "Display name for Go package manager")
         case .pip:
-            "Pip"
+            String(localized: "package_manager_pip", comment: "Display name for Pip package manager")
         case .gem:
-            "Gem"
+            String(localized: "package_manager_gem", comment: "Display name for Gem package manager")
         case .nuget:
-            "Nuget"
+            String(localized: "package_manager_nuget", comment: "Display name for NuGet package manager")
         case .opam:
-            "Opam"
+            String(localized: "package_manager_opam", comment: "Display name for Opam package manager")
         case .composer:
-            "Composer"
+            String(localized: "package_manager_composer", comment: "Display name for Composer package manager")
         case .sourceBuild:
-            "Build From Source"
+            String(localized: "package_manager_build_from_source", comment: "Display name for building packages from source")
         case .github:
-            "Download From GitHub"
+            String(localized: "package_manager_download_from_github", comment: "Display name for downloading packages from GitHub")
         }
     }
 }
