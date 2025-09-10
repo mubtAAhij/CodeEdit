@@ -33,28 +33,28 @@ struct ThemeSettingsThemeRow: View {
                 Button {
                     themeModel.activateTheme(theme)
                 } label: {
-                    Text("Choose")
+                    Text("String(localized: "choose", comment: "Choose theme button text")")
                 }
                 .buttonStyle(.bordered)
                 .opacity(isHovering ? 1 : 0)
             }
             ThemeSettingsColorPreview(theme)
             Menu {
-                Button("Details...") {
+                Button("String(localized: "details_ellipsis", comment: "Details menu item")") {
                     themeModel.detailsTheme = theme
                     themeModel.detailsIsPresented = true
                 }
-                Button("Duplicate...") {
+                Button("String(localized: "duplicate_ellipsis", comment: "Duplicate menu item")") {
                     if let fileURL = theme.fileURL {
                         themeModel.duplicate(fileURL)
                     }
                 }
-                Button("Export...") {
+                Button("String(localized: "export_ellipsis", comment: "Export menu item")") {
                     themeModel.exportTheme(theme)
                 }
                 .disabled(theme.isBundled)
                 Divider()
-                Button("Delete...") {
+                Button("String(localized: "delete_ellipsis", comment: "Delete menu item")") {
                     deleteConfirmationIsPresented = true
                 }
                 .disabled(theme.isBundled)
@@ -72,14 +72,14 @@ struct ThemeSettingsThemeRow: View {
             Text("Are you sure you want to delete the theme “\(theme.displayName)”?"),
             isPresented: $deleteConfirmationIsPresented
         ) {
-            Button("Delete Theme") {
+            Button("String(localized: "delete_theme", comment: "Button text to delete a theme")") {
                 themeModel.delete(theme)
             }
-            Button("Cancel") {
+            Button("String(localized: "cancel", comment: "Cancel button text")") {
                 deleteConfirmationIsPresented = false
             }
         } message: {
-            Text("This action cannot be undone.")
+            Text("String(localized: "action_cannot_be_undone", comment: "Warning message that an action cannot be undone")")
         }
     }
 }
