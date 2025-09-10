@@ -27,20 +27,20 @@ public class FeedbackModel: ObservableObject {
     @Published var feedbackTypeListSelection: FeedbackType.ID = "none"
 
     @Published var feedbackTypeList = [
-        FeedbackType(name: "Choose...", id: "none"),
-        FeedbackType(name: "Incorrect/Unexpected Behaviour", id: "behaviour"),
-        FeedbackType(name: "Application Crash", id: "crash"),
-        FeedbackType(name: "Application Slow/Unresponsive", id: "unresponsive"),
-        FeedbackType(name: "Suggestion", id: "suggestions"),
+        FeedbackType(name: "String(localized: "feedback_choose_placeholder", comment: "Placeholder text for feedback type selection")", id: "none"),
+        FeedbackType(name: "String(localized: "feedback_type_incorrect_behavior", comment: "Feedback type option for incorrect/unexpected behavior")", id: "behaviour"),
+        FeedbackType(name: "String(localized: "feedback_type_application_crash", comment: "Feedback type option for application crashes")", id: "crash"),
+        FeedbackType(name: "String(localized: "feedback_type_application_slow", comment: "Feedback type option for slow/unresponsive application")", id: "unresponsive"),
+        FeedbackType(name: "String(localized: "feedback_type_suggestion", comment: "Feedback type option for suggestions")", id: "suggestions"),
         FeedbackType(name: "Other", id: "other")
     ]
 
     @Published var issueAreaList = [
-        FeedbackIssueArea(name: "Please select the problem area", id: "none"),
-        FeedbackIssueArea(name: "Project Navigator", id: "projectNavigator"),
-        FeedbackIssueArea(name: "Extensions", id: "extensions"),
-        FeedbackIssueArea(name: "Git", id: "git"),
-        FeedbackIssueArea(name: "Debugger", id: "debugger"),
+        FeedbackIssueArea(name: "String(localized: "feedback_select_problem_area", comment: "Placeholder text for problem area selection")", id: "none"),
+        FeedbackIssueArea(name: "String(localized: "feedback_area_project_navigator", comment: "Problem area option for project navigator")", id: "projectNavigator"),
+        FeedbackIssueArea(name: "String(localized: "feedback_area_extensions", comment: "Problem area option for extensions")", id: "extensions"),
+        FeedbackIssueArea(name: "String(localized: "feedback_area_git", comment: "Problem area option for Git functionality")", id: "git"),
+        FeedbackIssueArea(name: "String(localized: "feedback_area_debugger", comment: "Problem area option for debugger")", id: "debugger"),
         FeedbackIssueArea(name: "Editor", id: "editor"),
         FeedbackIssueArea(name: "Other", id: "other")
     ]
@@ -50,13 +50,13 @@ public class FeedbackModel: ObservableObject {
     private func getIssueLabel() -> String {
         switch issueAreaListSelection {
         case "projectNavigator":
-            return "Project Navigator"
+            return "String(localized: "feedback_area_project_navigator", comment: "Problem area option for project navigator")"
         case "extensions":
-            return "Extensions"
+            return "String(localized: "feedback_area_extensions", comment: "Problem area option for extensions")"
         case "git":
-            return "Git"
+            return "String(localized: "feedback_area_git", comment: "Problem area option for Git functionality")"
         case "debugger":
-            return "Debugger"
+            return "String(localized: "feedback_area_debugger", comment: "Problem area option for debugger")"
         case "editor":
             return "Editor"
         case "other":
@@ -78,7 +78,7 @@ public class FeedbackModel: ObservableObject {
         case "suggestions":
             return "✨"
         case "other":
-            return "📬"
+            return "String(localized: "feedback_emoji_other", comment: "Emoji for other feedback type")"
         default:
             return "Other"
         }
@@ -89,15 +89,15 @@ public class FeedbackModel: ObservableObject {
     private func getFeedbackTypeLabel() -> String {
         switch feedbackTypeListSelection {
         case "behaviour":
-            return "Bug"
+            return "String(localized: "feedback_label_bug", comment: "Label for bug-related feedback")"
         case "crash":
-            return "Bug"
+            return "String(localized: "feedback_label_bug", comment: "Label for bug-related feedback")"
         case "unresponsive":
-            return "Bug"
+            return "String(localized: "feedback_label_bug", comment: "Label for bug-related feedback")"
         case "suggestions":
-            return "Suggestion"
+            return "String(localized: "feedback_label_suggestion", comment: "Label for suggestion-related feedback")"
         case "other":
-            return "Feedback"
+            return "String(localized: "feedback_label_general", comment: "Label for general feedback")"
         default:
             return "Other"
         }
