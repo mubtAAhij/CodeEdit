@@ -24,8 +24,8 @@ struct SourceControlAddExistingRemoteView: View {
     var body: some View {
         VStack(spacing: 0) {
             Form {
-                Section("Add Remote") {
-                    TextField("Remote Name", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
+                Section("String(localized: "add_remote_section_title", comment: "Section title for adding a remote repository")") {
+                    TextField("String(localized: "remote_name_placeholder", comment: "Placeholder text for remote name input field")", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
                         .focused($focusedField, equals: .name)
                     TextField("Location", value: $location, formatter: TrimWhitespaceFormatter())
                         .focused($focusedField, equals: .location)
@@ -42,13 +42,13 @@ struct SourceControlAddExistingRemoteView: View {
                     name = ""
                     location = ""
                 } label: {
-                    Text("Cancel")
+                    Text("String(localized: "cancel_button", comment: "Cancel button text")")
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Add")
+                    Text("String(localized: "add_button", comment: "Add button text")")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -80,7 +80,7 @@ struct SourceControlAddExistingRemoteView: View {
                 location = ""
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to add remote", error: error)
+                await sourceControlManager.showAlertForError(title: "String(localized: "failed_to_add_remote", comment: "Error message when unable to add a remote repository")", error: error)
             }
         }
     }
