@@ -25,7 +25,7 @@ struct StatusBarCursorPositionLabel: View {
             if let currentTab = tab {
                 LineLabel(editorInstance: currentTab)
             } else {
-                Text("").accessibilityLabel("No Selection")
+                Text("").accessibilityLabel(String(localized: "no_selection", comment: "Accessibility label for no selection state"))
             }
         }
         .fixedSize()
@@ -90,32 +90,32 @@ struct StatusBarCursorPositionLabel: View {
 
             // More than one selection, display the number of selections.
             if cursorPositions.count > 1 {
-                return "\(cursorPositions.count) selected ranges"
+                return String(localized: "selected_ranges_count", comment: "Status showing number of selected ranges").replacingOccurrences(of: "%d", with: "\(cursorPositions.count)")
             }
 
             // If the selection is more than just a cursor, return the length.
             if cursorPositions[0].range.length > 0 {
                 // When the option key is pressed display the character range.
                 if modifierKeys.contains(.option) {
-                    return "Char: \(cursorPositions[0].range.location) Len: \(cursorPositions[0].range.length)"
+                    return String(localized: "char_location_length", comment: "Character position and length display").replacingOccurrences(of: "%d", with: "\(cursorPositions[0].range.location)").replacingOccurrences(of: "%d", with: "\(cursorPositions[0].range.length)")
                 }
 
                 let lineCount = getLines(cursorPositions[0].range)
 
                 if lineCount > 1 {
-                    return "\(lineCount) lines"
+                    return String(localized: "line_count", comment: "Number of lines selected").replacingOccurrences(of: "%d", with: "\(lineCount)")
                 }
 
-                return "\(cursorPositions[0].range.length) characters"
+                return String(localized: "character_count", comment: "Number of characters selected").replacingOccurrences(of: "%d", with: "\(cursorPositions[0].range.length)")
             }
 
             // When the option key is pressed display the character offset.
             if modifierKeys.contains(.option) {
-                return "Char: \(cursorPositions[0].range.location) Len: 0"
+                return "String(localized: "cursor_position_char_len", comment: "Cursor position with character and length information")"
             }
 
             // When there's a single cursor, display the line and column.
-            return "Line: \(cursorPositions[0].start.line)  Col: \(cursorPositions[0].start.column)"
+            return "String(localized: "cursor_position_line_col", comment: "Cursor position showing line and column numbers")"
         }
     }
 }
