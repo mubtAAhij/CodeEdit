@@ -38,11 +38,11 @@ enum NavigatorTab: WorkspacePanelTab {
     var title: String {
         switch self {
         case .project:
-            return "Project"
+            return String(localized: "project", comment: "Title for the project navigator tab")
         case .sourceControl:
-            return "Source Control"
+            return String(localized: "source_control", comment: "Title for the source control navigator tab")
         case .search:
-            return "Search"
+            return String(localized: "search", comment: "Title for the search navigator tab")
         case .uiExtension(_, let data):
             return data.help ?? data.sceneID
         }
