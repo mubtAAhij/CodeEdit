@@ -44,18 +44,18 @@ struct ProjectNavigatorToolbarBottom: View {
                         ? Color(nsColor: .secondaryLabelColor)
                         : Color(nsColor: .controlAccentColor)
                     )
-                    .help("Show files with matching name")
+                    .help("String(localized: "show_files_matching_name", comment: "Tooltip for filter search field")")
                 },
                 trailingAccessories: {
                     HStack(spacing: 0) {
                         Toggle(isOn: $recentsFilter) {
                             Image(systemName: "clock")
                         }
-                        .help("Show only recent files")
+                        .help("String(localized: "show_only_recent_files", comment: "Tooltip for recent files filter button")")
                         Toggle(isOn: $workspace.sourceControlFilter) {
                             Image(systemName: "plusminus.circle")
                         }
-                        .help("Show only files with source-control status")
+                        .help("String(localized: "show_only_source_control_files", comment: "Tooltip for source control filter button")")
                     }
                     .toggleStyle(.icon(font: .system(size: 14), size: CGSize(width: 18, height: 20)))
                     .padding(.trailing, 2.5)
@@ -116,7 +116,7 @@ struct ProjectNavigatorToolbarBottom: View {
                 }
             }
 
-            Button("Add Folder") {
+            Button("String(localized: "add_folder", comment: "Menu item to add a new folder")") {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
@@ -141,7 +141,7 @@ struct ProjectNavigatorToolbarBottom: View {
         .menuIndicator(.hidden)
         .frame(maxWidth: 18, alignment: .center)
         .opacity(activeState == .inactive ? 0.45 : 1)
-        .accessibilityLabel("Add Folder or File")
+        .accessibilityLabel("String(localized: "add_folder_or_file", comment: "Accessibility label for add button")")
         .accessibilityIdentifier("addButton")
     }
 
