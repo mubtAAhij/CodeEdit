@@ -19,7 +19,7 @@ struct UtilityAreaView: View {
             darkDivider: true
         )
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Utility Area")
+        .accessibilityLabel("String(localized: "utility_area", comment: "Title for the utility area section of the interface")")
         .accessibilityIdentifier("UtilityArea")
     }
 }
