@@ -40,7 +40,7 @@ struct AccountsSettingsSigninView: View {
                     content: {
                         if provider.baseURL == nil {
                             VStack(alignment: .leading, spacing: 5) {
-                                Text("Server")
+                                Text("String(localized: "server", comment: "Label for server URL input field")")
                                     .font(.caption3)
                                     .foregroundColor(.secondary)
                                 TextField("", text: $server, prompt: Text("https://git.example.com"))
@@ -48,14 +48,14 @@ struct AccountsSettingsSigninView: View {
                             }
                         }
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Username")
+                            Text("String(localized: "username", comment: "Label for username input field")")
                                 .font(.caption3)
                                 .foregroundColor(.secondary)
                             TextField("", text: $username)
                                 .labelsHidden()
                         }
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Personal Access Token")
+                            Text("String(localized: "personal_access_token", comment: "Label for personal access token input field")")
                                 .font(.caption3)
                                 .foregroundColor(.secondary)
                             SecureField("", text: $personalAccessToken)
@@ -66,7 +66,7 @@ struct AccountsSettingsSigninView: View {
                         VStack(alignment: .center, spacing: 10) {
                             FeatureIcon(image: Image(provider.iconResource), size: 52)
                                 .padding(.top, 5)
-                            Text("Sign in to \(provider.name)")
+                            Text("String(localized: "sign_in_to_provider", comment: "Sign in header text with provider name").replacingOccurrences(of: "{provider}", with: provider.name)")
                                 .multilineTextAlignment(.center)
                         }
                         .frame(maxWidth: .infinity)
@@ -74,7 +74,7 @@ struct AccountsSettingsSigninView: View {
                     footer: {
                         VStack(alignment: .leading, spacing: 5) {
                             if provider == .github {
-                                Text("\(provider.name) personal access tokens must have these scopes set:")
+                                Text("String(localized: "provider_token_scopes_required", comment: "Text explaining required token scopes").replacingOccurrences(of: "{provider}", with: provider.name)")
                                     .font(.system(size: 10.5))
                                     .foregroundColor(.secondary)
                                     .multilineTextAlignment(.leading)
@@ -102,7 +102,7 @@ struct AccountsSettingsSigninView: View {
                                         HStack(spacing: 2.5) {
                                             Image(systemName: "checkmark")
                                                 .font(.system(size: 10.5, weight: .semibold))
-                                            Text("user")
+                                            Text("String(localized: "user_scope", comment: "OAuth scope name for user access")")
                                                 .font(.system(size: 10.5))
                                         }
                                     }
@@ -114,10 +114,10 @@ struct AccountsSettingsSigninView: View {
                                 createToken(provider.authHelpURL)
                             } label: {
                                 if provider.authType == .password {
-                                    Text("Create a Password on \(provider.name)")
+                                    Text("String(localized: "create_password_on_provider", comment: "Link text to create password on provider").replacingOccurrences(of: "{provider}", with: provider.name)")
                                         .font(.system(size: 10.5))
                                 } else {
-                                    Text("Create a Token on \(provider.name)")
+                                    Text("String(localized: "create_token_on_provider", comment: "Link text to create token on provider").replacingOccurrences(of: "{provider}", with: provider.name)")
                                         .font(.system(size: 10.5))
                                 }
                             }
@@ -138,7 +138,7 @@ struct AccountsSettingsSigninView: View {
                     addAccountSheetPresented.toggle()
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("String(localized: "cancel", comment: "Cancel button in sign in dialog")")
                         .frame(maxWidth: .infinity)
                 }
                 .controlSize(.large)
@@ -147,7 +147,7 @@ struct AccountsSettingsSigninView: View {
                 Button {
                     signin()
                 } label: {
-                    Text("Sign In")
+                    Text("String(localized: "sign_in", comment: "Sign in button text")")
                         .frame(maxWidth: .infinity)
                 }
                 .disabled(username.isEmpty || personalAccessToken.isEmpty)
@@ -157,7 +157,7 @@ struct AccountsSettingsSigninView: View {
                     Text("Unable to add account “\(username)”"),
                     isPresented: $signinErrorAlertIsPresented
                 ) {
-                    Button("OK") {
+                    Button("String(localized: "ok", comment: "OK button in error dialog")") {
                         signinErrorAlertIsPresented.toggle()
                     }
                 } message: {
@@ -178,7 +178,7 @@ struct AccountsSettingsSigninView: View {
             }
         ) {
             // Show alert when adding a duplicated account
-            signinErrorDetail = "Account with the same username and provider already exists!"
+            signinErrorDetail = "String(localized: "duplicate_account_error", comment: "Error message for duplicate account")"
             signinErrorAlertIsPresented.toggle()
         } else {
             let configURL = provider.apiURL?.absoluteString ?? server
@@ -236,11 +236,11 @@ struct AccountsSettingsSigninView: View {
         case -1009:
             signinErrorDetail = error.localizedDescription
         case 401:
-            signinErrorDetail = "Authentication Failed"
+            signinErrorDetail = "String(localized: "authentication_failed", comment: "Error message for authentication failure")"
         case 403:
-            signinErrorDetail = "API Access Forbidden"
+            signinErrorDetail = "String(localized: "api_access_forbidden", comment: "Error message for API access forbidden")"
         default:
-            signinErrorDetail = "Unknown Error"
+            signinErrorDetail = "String(localized: "unknown_error", comment: "Generic error message for unknown errors")"
         }
         signinErrorAlertIsPresented.toggle()
     }
