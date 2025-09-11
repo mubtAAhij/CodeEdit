@@ -27,7 +27,7 @@ struct LoadingFileView: View {
         VStack(spacing: 10) {
             Spacer()
             ProgressView()
-            Text("Opening \(filename)...")
+            Text("String(localized: "opening_file", comment: "Loading message when opening a file").replacingOccurrences(of: "{filename}", with: filename)")
             Spacer()
         }
     }
