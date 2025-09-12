@@ -36,7 +36,7 @@ struct AcknowledgementRowView: View {
 struct AcknowledgementsRowView_Previews: PreviewProvider {
     static var previews: some View {
         AcknowledgementRowView(acknowledgement: AcknowledgementDependency(
-            name: "Test",
+            name: String(localized: "test_acknowledgement_name", comment: "Test acknowledgement name used in preview"),
             repositoryLink: "https://www.test.com/",
             version: "-"
         ))
