@@ -26,7 +26,7 @@ struct SourceControlGitView: View {
                 gitAuthorName
                 gitEmail
             } header: {
-                Text("Git Configuration")
+                Text(String(localized: "git_configuration", comment: "Section header for Git configuration settings"))
                 Text("""
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/git-config)
@@ -43,7 +43,7 @@ struct SourceControlGitView: View {
             Section {
                 IgnoredFilesListView()
             } header: {
-                Text("Ignored Files")
+                Text(String(localized: "ignored_files", comment: "Section header for Git ignored files"))
                 Text("""
                 Patterns for files and folders that Git should ignore and not track. \
                 Applied globally to all repositories on your Mac. \
@@ -99,7 +99,7 @@ private extension SourceControlGitView {
     private var defaultBranchName: some View {
         TextField(text: $defaultBranch) {
             Text("Default branch name")
-            Text("Cannot contain spaces, backslashes, or other symbols")
+            Text(String(localized: "default_branch_validation", comment: "Validation message for default branch name"))
         }
         .onChange(of: defaultBranch) { newValue in
             if hasAppeared {
@@ -114,7 +114,7 @@ private extension SourceControlGitView {
 
     private var preferToRebaseWhenPulling: some View {
         Toggle(
-            "Prefer to rebase when pulling",
+            String(localized: "prefer_rebase_when_pulling", comment: "Toggle option for Git pull behavior"),
             isOn: $preferRebaseWhenPulling
         )
         .onChange(of: preferRebaseWhenPulling) { newValue in
@@ -130,29 +130,29 @@ private extension SourceControlGitView {
 
     private var showMergeCommitsInPerFileLog: some View {
         Toggle(
-            "Show merge commits in per-file log",
+            String(localized: "show_merge_commits_per_file_log", comment: "Toggle option for showing merge commits"),
             isOn: $git.showMergeCommitsPerFileLog
         )
     }
 
     private var gitConfigEditor: some View {
         HStack {
-            Text("Git configuration is stored in \"~/.gitconfig\".")
+            Text(String(localized: "git_config_location_info", comment: "Information about Git config file location"))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitConfigFile)
+            Button(String(localized: "open_in_editor", comment: "Button text to open file in editor"), action: openGitConfigFile)
         }
         .frame(maxWidth: .infinity)
     }
 
     private var gitIgnoreEditor: some View {
         HStack {
-            Text("Ignored file patterns are stored in \"\(resolvedGitIgnorePath)\".")
+            Text(String(localized: "git_ignore_location_info", comment: "Information about Git ignore file location"))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitIgnoreFile)
+            Button(String(localized: "open_in_editor", comment: "Button text to open file in editor"), action: openGitIgnoreFile)
         }
         .frame(maxWidth: .infinity)
         .onAppear {
