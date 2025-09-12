@@ -21,8 +21,8 @@ final class KeybindingManager {
     // We need this fallback shortcut because optional shortcuts available only from 12.3, while we have target of 12.0x
     var fallbackShortcut = KeyboardShortcutWrapper(
         name: "?",
-        description: "Test",
-        context: "Fallback",
+        description: String(localized: "test", comment: "Test description for fallback shortcut"),
+        context: String(localized: "fallback", comment: "Context label for fallback shortcut"),
         keybinding: "?",
         modifier: "shift",
         id: "fallback"
