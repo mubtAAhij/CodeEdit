@@ -32,7 +32,7 @@ struct OptionMenuItemView: View {
 }
 
 #Preview {
-    OptionMenuItemView(label: "Test") {
+    OptionMenuItemView(label: String(localized: "test_button", comment: "Test button label in preview")) {
         print("test")
     }
 }

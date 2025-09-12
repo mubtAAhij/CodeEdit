@@ -25,7 +25,7 @@ struct StatusBarCursorPositionLabel: View {
             if let currentTab = tab {
                 LineLabel(editorInstance: currentTab)
             } else {
-                Text("").accessibilityLabel("No Selection")
+                Text("").accessibilityLabel("String(localized: "no_selection", comment: "Accessibility label when no text is selected")")
             }
         }
         .fixedSize()
@@ -90,32 +90,32 @@ struct StatusBarCursorPositionLabel: View {
 
             // More than one selection, display the number of selections.
             if cursorPositions.count > 1 {
-                return "\(cursorPositions.count) selected ranges"
+                return "String(localized: "selected_ranges_count", comment: "Status bar text showing number of selected ranges")"
             }
 
             // If the selection is more than just a cursor, return the length.
             if cursorPositions[0].range.length > 0 {
                 // When the option key is pressed display the character range.
                 if modifierKeys.contains(.option) {
-                    return "Char: \(cursorPositions[0].range.location) Len: \(cursorPositions[0].range.length)"
+                    return "String(localized: "cursor_char_position_with_length", comment: "Status bar text showing character position and selection length")"
                 }
 
                 let lineCount = getLines(cursorPositions[0].range)
 
                 if lineCount > 1 {
-                    return "\(lineCount) lines"
+                    return "String(localized: "lines_count", comment: "Status bar text showing number of selected lines")"
                 }
 
-                return "\(cursorPositions[0].range.length) characters"
+                return "String(localized: "characters_count", comment: "Status bar text showing number of selected characters")"
             }
 
             // When the option key is pressed display the character offset.
             if modifierKeys.contains(.option) {
-                return "Char: \(cursorPositions[0].range.location) Len: 0"
+                return "String(localized: "cursor_char_position_no_selection", comment: "Status bar text showing character position with no selection")"
             }
 
             // When there's a single cursor, display the line and column.
-            return "Line: \(cursorPositions[0].start.line)  Col: \(cursorPositions[0].start.column)"
+            return "String(localized: "cursor_line_column_position", comment: "Status bar text showing line and column position")"
         }
     }
 }

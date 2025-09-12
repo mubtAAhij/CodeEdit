@@ -40,7 +40,7 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "extensions_folder", comment: "Name of the extensions folder"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -134,8 +134,8 @@ final class ThemeModel: ObservableObject {
     }
 
     enum ThemeSettingsAppearances: String, CaseIterable {
-        case light = "Light Appearance"
-        case dark = "Dark Appearance"
+        case light = String(localized: "light_appearance", comment: "Label for light appearance theme setting")
+        case dark = String(localized: "dark_appearance", comment: "Label for dark appearance theme setting")
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +164,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "export_button", comment: "Button label for exporting a theme")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +181,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "export_button", comment: "Button label for exporting a theme")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false

@@ -29,11 +29,11 @@ struct StartTaskToolbarButton: View {
             workspace.utilityAreaModel?.selectedTab = .debugConsole
             taskManager.taskShowingOutput = taskManager.selectedTaskID
         } label: {
-            Label("Start", systemImage: "play.fill")
+            Label("String(localized: "start_task", comment: "Label for start task button")", systemImage: "play.fill")
                 .labelStyle(.iconOnly)
                 .opacity(activeState == .inactive ? 0.5 : 1.0)
                 .font(.system(size: 18, weight: .regular))
-                .help("Start selected task")
+                .help("String(localized: "start_selected_task", comment: "Help text for start task button")")
                 .frame(width: 28)
                 .offset(CGSize(width: 0, height: 2.5))
         }

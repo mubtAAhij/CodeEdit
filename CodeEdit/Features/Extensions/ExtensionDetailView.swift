@@ -20,7 +20,7 @@ struct ExtensionDetailView: View {
                 }
 
                 Form {
-                    Section("Features") {
+                    Section(String(localized: "features", comment: "Section header for extension features")) {
                         ForEach(ext.availableFeatures, id: \.self) { feature in
                             Text(feature.description)
                         }
@@ -29,11 +29,11 @@ struct ExtensionDetailView: View {
                 .formStyle(.grouped)
             }
 
-            Text("Extension Settings")
+            Text(String(localized: "extension_settings", comment: "Title for extension settings section"))
                 .font(.title3)
                 .fontWeight(.semibold)
                 .padding(.leading)
-            ExtensionSceneView(with: ext.endpoint, sceneID: "Settings")
+            ExtensionSceneView(with: ext.endpoint, sceneID: String(localized: "settings", comment: "Settings scene identifier"))
                 .padding(.top, -5)
                 .ceEnvironment(\.complexValue, ["HAllo"])
         }

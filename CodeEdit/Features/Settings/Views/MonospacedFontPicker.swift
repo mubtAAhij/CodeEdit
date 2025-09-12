@@ -58,7 +58,7 @@ struct MonospacedFontPicker: View {
                         .tag(fontFamilyName)
                     }
                 } label: {
-                    Text("Other fonts...")
+                    Text("String(localized: "other_fonts", comment: "Menu label for accessing additional font options")")
                 }
             }
         }

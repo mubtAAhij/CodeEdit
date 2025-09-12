@@ -13,10 +13,10 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Developer",
+                String(localized: "developer", comment: "Developer settings category name"),
                 "Language Server Protocol",
-                "LSP Binaries",
-                "Show Internal Development Inspector"
+                String(localized: "lsp_binaries", comment: "Search key for LSP binaries setting"),
+                String(localized: "show_internal_development_inspector", comment: "Search key for internal development inspector setting")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }

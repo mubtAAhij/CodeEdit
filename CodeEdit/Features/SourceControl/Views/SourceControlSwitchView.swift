@@ -26,7 +26,7 @@ struct SourceControlSwitchView: View {
                     Text("Do you want to switch to “\(branch.name)”?")
                         .font(.headline)
                     Text(
-                        "All files in the local repository will switch from the current branch " +
+                        "String(localized: "source_control_switch_description_part1", comment: "First part of description explaining what happens when switching branches")" +
                         "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
                     )
                     .font(.subheadline)
@@ -42,7 +42,7 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("String(localized: "cancel", comment: "Cancel button text")")
                         .frame(minWidth: 56)
                 }
                 Button {
@@ -70,7 +70,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: "String(localized: "source_control_checkout_failed", comment: "Error message when branch checkout fails")", error: error)
             }
         }
     }
