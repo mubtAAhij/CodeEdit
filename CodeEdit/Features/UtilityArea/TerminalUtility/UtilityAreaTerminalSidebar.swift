@@ -33,10 +33,10 @@ struct UtilityAreaTerminalSidebar: View {
         .listStyle(.automatic)
         .accentColor(.secondary)
         .contextMenu {
-            Button("New Terminal") {
+            Button("String(localized: "new_terminal", comment: "Button text to create a new terminal session")") {
                 utilityAreaViewModel.addTerminal(rootURL: workspace.fileURL)
             }
-            Menu("New Terminal With Profile") {
+            Menu("String(localized: "new_terminal_with_profile", comment: "Button text to create a new terminal session with a specific profile")") {
                 Button("Default") {
                     utilityAreaViewModel.addTerminal(rootURL: workspace.fileURL)
                 }
@@ -71,7 +71,7 @@ struct UtilityAreaTerminalSidebar: View {
             Spacer()
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Terminals")
+        .accessibilityLabel("String(localized: "terminals", comment: "Section header for terminal sessions list")")
         .accessibilityIdentifier("terminalsList")
     }
 }

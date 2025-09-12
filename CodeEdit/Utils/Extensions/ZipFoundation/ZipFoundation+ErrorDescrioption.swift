@@ -12,17 +12,17 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            "String(localized: "unreadable_archive", comment: "Error message for unreadable archive")"
         case .unwritableArchive:
-            "Unwritable archive."
+            "String(localized: "unwritable_archive", comment: "Error message for unwritable archive")"
         case .invalidEntryPath:
-            "Invalid entry path."
+            "String(localized: "invalid_entry_path", comment: "Error message for invalid entry path")"
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            "String(localized: "invalid_compression_method", comment: "Error message when compression method is invalid")"
         case .invalidCRC32:
-            "Invalid checksum."
+            "String(localized: "invalid_checksum", comment: "Error message when checksum validation fails")"
         case .cancelledOperation:
-            "Operation cancelled."
+            "String(localized: "operation_cancelled", comment: "Error message when operation is cancelled")"
         case .invalidBufferSize:
             "Invalid buffer size."
         case .invalidEntrySize:

@@ -22,11 +22,11 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent(String(localized: "source_control.rename_branch.from", comment: "Label for source branch name field"), value: branch.name)
+                        TextField(String(localized: "source_control.rename_branch.to", comment: "Label for new branch name field"), text: $name)
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text(String(localized: "source_control.rename_branch.title", comment: "Header text for renaming branch"))
+                        Text(String(localized: "source_control.rename_branch.description", comment: "Description about preserving changes when renaming branch"))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +38,13 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "source_control.cancel", comment: "Cancel button text"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text(String(localized: "rename", comment: "Button to rename a branch"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +67,7 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "failed_to_create_branch", comment: "Error message when branch creation fails"),
                     error: error
                 )
             }

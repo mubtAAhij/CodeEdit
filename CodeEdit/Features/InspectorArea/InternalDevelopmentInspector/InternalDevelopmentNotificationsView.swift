@@ -18,9 +18,9 @@ struct InternalDevelopmentNotificationsView: View {
     @State private var delay: Bool = false
     @State private var sticky: Bool = false
     @State private var selectedIconType: IconType = .symbol
-    @State private var actionButtonText: String = "View"
-    @State private var notificationTitle: String = "Test Notification"
-    @State private var notificationDescription: String = "This is a test notification."
+    @State private var actionButtonText: String = String(localized: "view", comment: "Default action button text for notifications")
+    @State private var notificationTitle: String = String(localized: "test_notification", comment: "Default title for test notifications")
+    @State private var notificationDescription: String = String(localized: "test_notification_description", comment: "Default description for test notifications")
 
     // Icon selection states
     @State private var selectedSymbol: String?
@@ -55,11 +55,11 @@ struct InternalDevelopmentNotificationsView: View {
     ]
 
     var body: some View {
-        Section("Notifications") {
-            Toggle("Delay 5s", isOn: $delay)
-            Toggle("Sticky", isOn: $sticky)
+        Section(String(localized: "notifications", comment: "Section header for notification settings")) {
+            Toggle(String(localized: "delay_5s", comment: "Toggle for 5 second delay on notifications"), isOn: $delay)
+            Toggle(String(localized: "sticky", comment: "Toggle for sticky notifications that don't auto-dismiss"), isOn: $sticky)
 
-            Picker("Icon Type", selection: $selectedIconType) {
+            Picker(String(localized: "icon_type", comment: "Label for selecting notification icon type"), selection: $selectedIconType) {
                 ForEach(IconType.allCases, id: \.self) { type in
                     Text(type.rawValue).tag(type)
                 }
@@ -69,7 +69,7 @@ struct InternalDevelopmentNotificationsView: View {
                 switch selectedIconType {
                 case .symbol:
                     Picker("Symbol", selection: $selectedSymbol) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "random", comment: "Option to select random symbol"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableSymbols, id: \.self) { symbol in
                             Label(symbol, systemImage: symbol).tag(symbol as String?)
@@ -77,7 +77,7 @@ struct InternalDevelopmentNotificationsView: View {
                     }
                 case .emoji:
                     Picker("Emoji", selection: $selectedEmoji) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "random", comment: "Option to select random emoji"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableEmojis, id: \.self) { emoji in
                             Text(emoji).tag(emoji as String?)
@@ -85,7 +85,7 @@ struct InternalDevelopmentNotificationsView: View {
                     }
                 case .text:
                     Picker("Text", selection: $selectedText) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "random", comment: "Option to select random text"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach("ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { String($0) }, id: \.self) { letter in
                             Text(letter).tag(letter as String?)
@@ -93,7 +93,7 @@ struct InternalDevelopmentNotificationsView: View {
                     }
                 case .image:
                     Picker("Image", selection: $selectedImage) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "random", comment: "Option to select random image"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableImages, id: \.self) { image in
                             Text(image).tag(image as String?)
@@ -102,8 +102,8 @@ struct InternalDevelopmentNotificationsView: View {
                 }
 
                 if selectedIconType == .symbol || selectedIconType == .text || selectedIconType == .emoji {
-                    Picker("Icon Color", selection: $selectedColor) {
-                        Label("Random", systemImage: "dice").tag(nil as Color?)
+                    Picker(String(localized: "icon_color", comment: "Label for selecting notification icon color"), selection: $selectedColor) {
+                        Label(String(localized: "random", comment: "Option to select random color"), systemImage: "dice").tag(nil as Color?)
                         Divider()
                         ForEach(availableColors, id: \.0) { name, color in
                             HStack {
@@ -117,12 +117,12 @@ struct InternalDevelopmentNotificationsView: View {
                 }
             }
 
-            TextField("Title", text: $notificationTitle)
-            TextField("Description", text: $notificationDescription, axis: .vertical)
+            TextField(String(localized: "title", comment: "Placeholder text for notification title field"), text: $notificationTitle)
+            TextField(String(localized: "description", comment: "Placeholder text for notification description field"), text: $notificationDescription, axis: .vertical)
                 .lineLimit(1...5)
-            TextField("Action Button", text: $actionButtonText)
+            TextField(String(localized: "action_button", comment: "Placeholder text for action button text field"), text: $actionButtonText)
 
-            Button("Add Notification") {
+            Button(String(localized: "add_notification", comment: "Button text to add a test notification")) {
                 let action = {
                     switch selectedIconType {
                     case .symbol:

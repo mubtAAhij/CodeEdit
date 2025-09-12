@@ -27,7 +27,7 @@ struct FindNavigatorToolbarBottom: View {
                         : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help("Show results with matching text")
+                    .help("String(localized: "show_results_with_matching_text", comment: "Tooltip for filter field in find navigator")")
                 },
                 clearable: true
             )

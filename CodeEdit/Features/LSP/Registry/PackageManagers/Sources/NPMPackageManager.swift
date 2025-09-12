@@ -38,7 +38,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: "String(localized: "package_requires_npm_permission", comment: "Message asking for permission to run npm commands")"
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -65,7 +65,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: "String(localized: "initialize_directory_structure", comment: "Installation step name for creating directory structure")", confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -112,10 +112,10 @@ final class NPMPackageManager: PackageManagerProtocol {
         let suffix = plural ? "these packages" : "this package"
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: "String(localized: "install_package_using_npm", comment: "Installation step name for installing npm package")",
             confirmation: .required(
-                message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                message: "String(localized: "requires_npm_packages", comment: "Message describing npm package installation requirement").replacingOccurrences(of: "%@", with: sSuffix).replacingOccurrences(of: "%@", with: packagesDescription)"
+                + "String(localized: "allow_codeedit_install_packages", comment: "Confirmation message asking user permission to install packages").replacingOccurrences(of: "%@", with: suffix)"
             )
         ) { model in
             do {
@@ -150,7 +150,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: "String(localized: "verify_installation", comment: "Installation step name for verifying successful installation")",
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path

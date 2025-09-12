@@ -14,11 +14,11 @@ extension SettingsData {
         var searchKeys: [String] {
             [
                 "Language Servers",
-                "LSP Binaries",
-                "Linters",
-                "Formatters",
-                "Debug Protocol",
-                "DAP",
+                String(localized: "lsp_binaries", comment: "Search key for LSP binaries"),
+                String(localized: "linters", comment: "Search key for linters"),
+                String(localized: "formatters", comment: "Search key for formatters"),
+                String(localized: "debug_protocol", comment: "Search key for debug protocol"),
+                String(localized: "dap", comment: "Search key for DAP (Debug Adapter Protocol)"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }

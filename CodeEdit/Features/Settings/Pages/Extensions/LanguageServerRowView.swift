@@ -64,7 +64,7 @@ struct LanguageServerRowView: View, Equatable {
                                 .font(.footnote)
                                 .cursor(.pointingHand)
                                 if let installerName = package.installMethod?.packageManagerType?.rawValue {
-                                    Text("Install using \(installerName)")
+                                    Text(String(localized: "install_using", comment: "Text showing which installer will be used").replacingOccurrences(of: "%@", with: installerName))
                                         .font(.footnote)
                                         .foregroundColor(.secondary)
                                 }
@@ -76,7 +76,7 @@ struct LanguageServerRowView: View, Equatable {
                                 Button {
                                     showMore.toggle()
                                 } label: {
-                                    Text(showMore ? "Show Less" : "Show More")
+                                    Text(showMore ? String(localized: "show_less", comment: "Button text to show less information") : String(localized: "show_more", comment: "Button text to show more information"))
                                         .font(.footnote)
                                 }
                                 .buttonStyle(.plain)
@@ -102,18 +102,18 @@ struct LanguageServerRowView: View, Equatable {
         .onHover { hovering in
             isHovering = hovering
         }
-        .alert("Remove \(package.sanitizedName)?", isPresented: $showingRemovalConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Remove", role: .destructive) {
+        .alert(String(localized: "remove_package", comment: "Alert title asking to confirm package removal").replacingOccurrences(of: "%@", with: package.sanitizedName), isPresented: $showingRemovalConfirmation) {
+            Button(String(localized: "cancel", comment: "Cancel button text"), role: .cancel) { }
+            Button(String(localized: "remove", comment: "Remove button text"), role: .destructive) {
                 removeLanguageServer()
             }
         } message: {
-            Text("Are you sure you want to remove this language server? This action cannot be undone.")
+            Text(String(localized: "remove_language_server_confirmation", comment: "Confirmation message for removing language server"))
         }
-        .alert("Removal Failed", isPresented: $showingRemovalError) {
-            Button("OK", role: .cancel) { }
+        .alert(String(localized: "removal_failed", comment: "Alert title when removal fails"), isPresented: $showingRemovalError) {
+            Button(String(localized: "ok_button", comment: "OK button text for confirmation dialogs"), role: .cancel) { }
         } message: {
-            Text(removalError?.localizedDescription ?? "An unknown error occurred")
+            Text(removalError?.localizedDescription ?? String(localized: "unknown_error_occurred", comment: "Error message when an unknown error happens"))
         }
     }
 
@@ -138,7 +138,7 @@ struct LanguageServerRowView: View, Equatable {
                 Button {
                     showingRemovalConfirmation = true
                 } label: {
-                    Text("Remove")
+                    Text(String(localized: "remove_button", comment: "Button text for removing language server"))
                 }
             }
             Toggle(
@@ -181,7 +181,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Retry")
+            Text(String(localized: "retry_button", comment: "Button text for retrying installation"))
                 .foregroundColor(.red)
         }
     }
@@ -193,7 +193,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Install")
+            Text(String(localized: "install_button", comment: "Button text for installing language server"))
         }
         .disabled(registryManager.isInstalling)
     }

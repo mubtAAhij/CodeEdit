@@ -29,55 +29,55 @@ final class ActivityViewerTasksMenuTests: XCTestCase {
     }
 
     func testTaskMenu() {
-        let viewer = window.groups["Activity Viewer"]
+        let viewer = window.groups["String(localized: "activity_viewer", comment: "Activity viewer window title")"]
         XCTAssertNotNil(viewer, "No Activity Viewer")
 
-        let taskDropdown = viewer.buttons["Active Task"]
+        let taskDropdown = viewer.buttons["String(localized: "active_task", comment: "Label for active task")"]
         XCTAssertTrue(taskDropdown.waitForExistence(timeout: 2.0), "No Task Dropdown")
-        XCTAssertEqual(taskDropdown.value as? String, "Create Tasks", "Incorrect empty tasks label")
+        XCTAssertEqual(taskDropdown.value as? String, "String(localized: "create_tasks", comment: "Button to create new tasks")", "Incorrect empty tasks label")
 
         taskDropdown.click()
         XCTAssertGreaterThan(app.popovers.count, 0, "Popover didn't show up")
     }
 
     func testNewTask() {
-        let viewer = window.groups["Activity Viewer"]
-        let taskDropdown = viewer.buttons["Active Task"]
+        let viewer = window.groups["String(localized: "activity_viewer", comment: "Activity viewer window title")"]
+        let taskDropdown = viewer.buttons["String(localized: "active_task", comment: "Label for the currently active task")"]
         taskDropdown.click()
         let popover = app.popovers.firstMatch
         XCTAssertTrue(popover.exists, "Popover did not appear on click")
 
-        let addTaskListOption = popover.buttons["Add Task..."]
+        let addTaskListOption = popover.buttons["String(localized: "add_task", comment: "Menu item to add a new task")"]
         XCTAssertTrue(addTaskListOption.exists, "No add task option in dropdown")
         addTaskListOption.click()
 
-        let workspaceSettingsWindow = window.sheets["Workspace Settings"]
+        let workspaceSettingsWindow = window.sheets["String(localized: "workspace_settings", comment: "Menu item for workspace settings")"]
         XCTAssertTrue(workspaceSettingsWindow.waitForExistence(timeout: 1.0), "Workspace settings did not appear")
 
-        let addTaskButton = workspaceSettingsWindow.buttons["Add Task..."]
+        let addTaskButton = workspaceSettingsWindow.buttons["String(localized: "add_task", comment: "Menu item to add a new task")"]
         XCTAssertTrue(addTaskButton.exists, "No add task button")
         addTaskButton.click()
 
         // Enter in task information
         let newSheet = workspaceSettingsWindow.sheets.firstMatch
         XCTAssertTrue(newSheet.waitForExistence(timeout: 1.0), "New task sheet did not appear")
-        let taskName = newSheet.textFields["Task Name"]
+        let taskName = newSheet.textFields["String(localized: "task_name", comment: "Label for task name field")"]
         XCTAssertTrue(taskName.exists)
         taskName.click()
         taskName.typeText("New Test Task")
         XCTAssertEqual(taskName.value as? String, "New Test Task", "Name did not enter in")
 
-        let taskCommand = newSheet.textFields["Task Command"]
+        let taskCommand = newSheet.textFields["String(localized: "task_command", comment: "Label for task command field")"]
         XCTAssertTrue(taskCommand.exists)
         taskCommand.click()
         taskCommand.typeText("echo \"Hello World\"")
         XCTAssertEqual(taskCommand.value as? String, "echo \"Hello World\"", "Command did not enter in")
 
-        let saveButton = newSheet.buttons["Save"]
+        let saveButton = newSheet.buttons["String(localized: "save", comment: "Button to save changes")"]
         XCTAssertTrue(saveButton.exists)
         saveButton.click()
 
-        workspaceSettingsWindow.buttons["Done"].click()
+        workspaceSettingsWindow.buttons["String(localized: "done", comment: "Button to complete action")"].click()
         XCTAssertFalse(
             workspaceSettingsWindow.waitForNonExistence(timeout: 1.0),
             "Workspace Settings should have dismissed"

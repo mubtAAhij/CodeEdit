@@ -23,9 +23,9 @@ struct WarningCharactersView: View {
                 } header: {
                     Text("Warning Characters")
                     Text(
-                        "CodeEdit can help identify invisible or ambiguous characters, such as zero-width spaces," +
-                        " directional quotes, and more. These will appear with a red block highlighting them." +
-                        " You can disable characters or add more here."
+                        "String(localized: "warning_characters_description_part1", comment: "First part of warning characters description")" +
+                        "String(localized: "warning_characters_description_part2", comment: "Second part of warning characters description")" +
+                        "String(localized: "warning_characters_description_part3", comment: "Third part of warning characters description")"
                     )
                 }
             }
@@ -36,7 +36,7 @@ struct WarningCharactersView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text("String(localized: "done", comment: "Done button text")")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)

@@ -156,17 +156,17 @@ struct CommitListItemView: View {
         .contentShape(Rectangle())
         .contextMenu {
             Group {
-                Button("Copy Commit Message") {
+                Button(String(localized: "copy_commit_message", comment: "Context menu item to copy commit message to clipboard")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.message, forType: .string)
                 }
-                Button("Copy Identifier") {
+                Button(String(localized: "copy_identifier", comment: "Context menu item to copy commit hash identifier")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.commitHash, forType: .string)
                 }
-                Button("Email \(commit.author)...") {
+                Button(String(localized: "email_author_ellipsis", comment: "Context menu item to compose email to commit author").replacingOccurrences(of: "%@", with: commit.author)) {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
                     service?.recipients = [commit.authorEmail]
                     service?.perform(withItems: [])
@@ -174,26 +174,26 @@ struct CommitListItemView: View {
                 Divider()
             }
             Group {
-                Button("Tag \(commit.hash)...") {}
+                Button(String(localized: "tag_commit_ellipsis", comment: "Context menu item to create tag from commit").replacingOccurrences(of: "%@", with: commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("New Branch from \(commit.hash)...") {}
+                Button(String(localized: "new_branch_from_commit_ellipsis", comment: "Context menu item to create new branch from commit").replacingOccurrences(of: "%@", with: commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("Cherry-Pick \(commit.hash)...") {}
+                Button(String(localized: "cherry_pick_commit_ellipsis", comment: "Context menu item to cherry-pick a commit").replacingOccurrences(of: "%@", with: commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
             }
             Group {
                 Divider()
                 if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                    Button("View on \(commit.remoteString)...") {
+                    Button(String(localized: "view_on_remote_ellipsis", comment: "Context menu item to view commit on remote service").replacingOccurrences(of: "%@", with: commit.remoteString)) {
                         let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
                         openCommit(URL(string: commitURL)!)
                     }
                     Divider()
                 }
-                Button("Check Out \(commit.hash)...") {}
+                Button(String(localized: "check_out_commit_ellipsis", comment: "Context menu item to checkout a specific commit").replacingOccurrences(of: "%@", with: commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
-                Button("History Editor Help") {}
+                Button(String(localized: "history_editor_help", comment: "Context menu item to show help for history editor")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
         }

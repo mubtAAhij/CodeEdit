@@ -52,7 +52,7 @@ final class GithubPackageManager: PackageManagerProtocol {
             PackageManagerInstallStep(
                 name: "",
                 confirmation: .required(
-                    message: "This package requires git to install. Allow CodeEdit to run git commands?"
+                    message: "String(localized: "package_requires_git_permission", comment: "Message asking for permission to run git commands")"
                 )
             ) { model in
                 let versionOutput = try await model.runCommand("git --version")
@@ -80,7 +80,7 @@ final class GithubPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: "String(localized: "initialize_directory_structure", comment: "Installation step name for creating directory structure")",
             confirmation: .none
         ) { model in
             do {
@@ -206,9 +206,9 @@ final class GithubPackageManager: PackageManagerProtocol {
         let command = ["git", "clone", repoURL]
 
         return PackageManagerInstallStep(
-            name: "Clone with Git",
+            name: "String(localized: "clone_with_git", comment: "Installation step name for cloning repository")",
             // swiftlint:disable:next line_length
-            confirmation: .required(message: "This step will run the following command to clone the package from source control:\n`\(command.joined(separator: " "))`")
+            confirmation: .required(message: "String(localized: "clone_command_description", comment: "Description of git clone command that will be executed").replacingOccurrences(of: "%@", with: command.joined(separator: " "))")
         ) { model in
             let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
             _ = try await model.executeInDirectory(in: installPath.path, command)
@@ -223,15 +223,15 @@ final class GithubPackageManager: PackageManagerProtocol {
         command: String
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Install From Source",
-            confirmation: .required(message: "This step will run the following to finish installing:\n`\(command)`")
+            name: "String(localized: "install_from_source", comment: "Installation step name for building from source code")",
+            confirmation: .required(message: "String(localized: "source_install_command_description", comment: "Description of command that will be run to finish source installation").replacingOccurrences(of: "%@", with: command)")
         ) { model in
             do {
                 let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
                 let repoPath = installPath.appending(path: source.pkgName, directoryHint: .isDirectory)
                 _ = try await model.executeInDirectory(in: repoPath.path, [command])
             } catch {
-                throw PackageManagerError.installationFailed("Source build failed.")
+                throw PackageManagerError.installationFailed("String(localized: "source_build_failed", comment: "Error message when source code compilation fails")")
             }
         }
     }

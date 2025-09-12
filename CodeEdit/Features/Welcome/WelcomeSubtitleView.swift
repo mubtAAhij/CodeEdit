@@ -56,6 +56,6 @@ struct WelcomeSubtitleView: View {
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help("Copy System Information to Clipboard")
+        .help("String(localized: "copy_system_information_to_clipboard", comment: "Button text to copy system information to clipboard")")
     }
 }
