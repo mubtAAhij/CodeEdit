@@ -20,28 +20,28 @@ extension CEWorkspaceFileManager {
         var errorDescription: String? {
             switch self {
             case .fileNotFound:
-                return "File not found"
+                return String(localized: "file_not_found", comment: "Error message when a file cannot be found")
             case .fileNotIndexed:
-                return "File not found in CodeEdit"
+                return String(localized: "file_not_found_in_codeedit", comment: "Error message when a file is not indexed in CodeEdit")
             case .originFileNotFound:
-                return "Failed to find origin file"
+                return String(localized: "failed_to_find_origin_file", comment: "Error message when the source file for an operation cannot be found")
             case .destinationFileExists:
-                return "Destination already exists"
+                return String(localized: "destination_already_exists", comment: "Error message when trying to create a file that already exists")
             case .invalidFileName:
-                return "Invalid file name"
+                return String(localized: "invalid_file_name", comment: "Error message for invalid file names")
             }
         }
 
         var recoverySuggestion: String? {
             switch self {
             case .fileNotIndexed:
-                return "Reopen the workspace to reindex the file system."
+                return String(localized: "reopen_workspace_to_reindex", comment: "Recovery suggestion to reopen workspace for reindexing")
             case .fileNotFound, .originFileNotFound:
-                return "The file may have moved during the operation, try again."
+                return String(localized: "file_may_have_moved_try_again", comment: "Recovery suggestion when file may have moved")
             case .destinationFileExists:
-                return "Use a different file name or remove the conflicting file."
+                return String(localized: "use_different_name_or_remove_conflicting", comment: "Recovery suggestion for file name conflicts")
             case .invalidFileName:
-                return "File names must not contain the : character and be less than 256 characters."
+                return String(localized: "file_name_requirements", comment: "Recovery suggestion explaining file name requirements")
             }
         }
     }
