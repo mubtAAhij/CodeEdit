@@ -37,23 +37,23 @@ extension SettingsData {
                 "Automatically Change theme based on system appearance",
                 "Always use dark terminal appearance",
                 "Use theme background",
-                "Light Appearance",
+                String(localized: "light_appearance", comment: "Label for light appearance theme setting"),
                 "GitHub Light",
                 "Xcode Light",
                 "Solarized Light",
                 "Solarized Dark",
                 "Midnight",
-                "Xcode Dark",
-                "GitHub Dark"
+                String(localized: "xcode_dark_theme", comment: "Name of the Xcode Dark theme"),
+                String(localized: "github_dark_theme", comment: "Name of the GitHub Dark theme")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
 
         /// The name of the currently selected dark theme
-        var selectedDarkTheme: String = "Default (Dark)"
+        var selectedDarkTheme: String = String(localized: "default_dark_theme", comment: "Name of the default dark theme")
 
         /// The name of the currently selected light theme
-        var selectedLightTheme: String = "Default (Light)"
+        var selectedLightTheme: String = String(localized: "default_light_theme", comment: "Name of the default light theme")
 
         /// The name of the currently selected theme
         var selectedTheme: String?
