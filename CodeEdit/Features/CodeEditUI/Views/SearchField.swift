@@ -47,5 +47,5 @@ struct SearchField: NSViewRepresentable {
 }
 
 #Preview {
-    SearchField("Search", text: .constant("Test"))
+    SearchField(String(localized: "search", comment: "Search field placeholder text"), text: .constant(String(localized: "test", comment: "Default test text for search field")))
 }
