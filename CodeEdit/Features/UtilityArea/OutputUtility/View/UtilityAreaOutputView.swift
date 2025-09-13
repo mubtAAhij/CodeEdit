@@ -17,11 +17,11 @@ struct UtilityAreaOutputView: View {
         var title: String {
             switch self {
             case .extensions(let source):
-                "Extension - \(source.extensionInfo.name)"
+                String(localized: "extension_name", comment: "Extension output source format").replacingOccurrences(of: "%@", with: source.extensionInfo.name)
             case .languageServer(let source):
-                "Language Server - \(source.id)"
+                String(localized: "language_server_id", comment: "Language server output source format").replacingOccurrences(of: "%@", with: source.id)
             case .devOutput:
-                "Internal Development Output"
+                String(localized: "internal_development_output", comment: "Internal development output source")
             }
         }
 
@@ -79,7 +79,7 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text("No output")
+                    Text(String(localized: "no_output", comment: "Message when there is no output"))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)
