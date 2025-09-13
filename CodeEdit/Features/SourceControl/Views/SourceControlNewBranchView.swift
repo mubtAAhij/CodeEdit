@@ -22,17 +22,17 @@ struct SourceControlNewBranchView: View {
                 Form {
                     Section {
                         LabeledContent(
-                            "From",
+                            String(localized: "from", comment: "From branch label"),
                             value: branch.isRemote
                                 ? branch.longName.replacingOccurrences(of: "refs/remotes/", with: "")
                                 : branch.name
                         )
-                        TextField("To", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
+                        TextField(String(localized: "to", comment: "Label for destination branch field"), value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
                     } header: {
-                        Text("Create a new branch")
+                        Text(String(localized: "create_new_branch", comment: "Header text for creating a new branch"))
                         Text(
-                            "Create a branch from the current branch and switch to it. " +
-                            "All uncommited changes will be preserved on the new branch. "
+                            String(localized: "create_branch_description", comment: "Description for creating a new branch") +
+                            String(localized: "uncommitted_changes_preserved", comment: "Information about preserving uncommitted changes")
                         )
                     }
                 }
@@ -45,13 +45,13 @@ struct SourceControlNewBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "cancel", comment: "Cancel button text"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Create")
+                        Text(String(localized: "create", comment: "Create button text"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -75,7 +75,7 @@ struct SourceControlNewBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "failed_to_create_branch", comment: "Error message for branch creation failure"),
                     error: error
                 )
             }
