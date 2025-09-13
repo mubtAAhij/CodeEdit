@@ -34,25 +34,25 @@ struct GitCloneView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Clone a repository")
+                    Text(String(localized: "clone_repository", comment: "Title for repository cloning dialog"))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
+                    Text(String(localized: "enter_git_repository_url", comment: "Instruction to enter git repository URL"))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                             context[.trailing]
                         }
-                    TextField("Git Repository URL", text: $viewModel.repoUrlStr)
+                    TextField(String(localized: "git_repository_url", comment: "Placeholder text for git repository URL input field"), text: $viewModel.repoUrlStr)
                         .lineLimit(1)
                         .padding(.bottom, 15)
                         .frame(width: 300)
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(localized: "cancel", comment: "Cancel button text")) {
                             dismiss()
                         }
-                        Button("Clone") {
+                        Button(String(localized: "clone", comment: "Clone button text")) {
                             cloneRepository()
                         }
                         .keyboardShortcut(.defaultAction)
@@ -82,7 +82,7 @@ struct GitCloneView: View {
                 }
                 .toolbar {
                     ToolbarItem {
-                        Button("Cancel Cloning") {
+                        Button(String(localized: "cancel_cloning", comment: "Cancel cloning button text")) {
                             viewModel.cloningTask?.cancel()
                             viewModel.cloningTask = nil
                             viewModel.isCloning = false
