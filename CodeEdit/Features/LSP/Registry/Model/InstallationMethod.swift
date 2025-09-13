@@ -77,7 +77,7 @@ enum InstallationMethod: Equatable {
         case .npm, .cargo, .golang, .pip, .sourceBuild, .github:
             return packageManagerType.userDescription
         case .nuget, .opam, .gem, .composer:
-            return "(Unsupported) \(packageManagerType.userDescription)"
+            return String(localized: "unsupported_package_manager", comment: "Label for unsupported package managers")
         }
     }
 
