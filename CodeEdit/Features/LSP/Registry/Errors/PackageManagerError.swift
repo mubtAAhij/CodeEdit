@@ -17,7 +17,7 @@ enum PackageManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unknown:
-            "Unknown error occurred"
+            String(localized: "unknown_error_occurred", comment: "Generic error message for unknown package manager errors")
         case .packageManagerNotInstalled:
             "The required package manager is not installed."
         case .initializationFailed:
