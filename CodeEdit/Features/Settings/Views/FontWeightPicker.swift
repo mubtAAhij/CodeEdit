@@ -28,9 +28,9 @@ struct FontWeightPicker: View {
         .thin: "Thin",
         .light: "Light",
         .regular: "Regular",
-        .medium: "Medium",
+        .medium: String(localized: "medium", comment: "Font weight option"),
         .semibold: "Semi Bold",
-        .bold: "Bold",
+        .bold: String(localized: "bold", comment: "Font weight option"),
         .heavy: "Heavy",
         .black: "Black"
     ]
