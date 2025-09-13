@@ -18,12 +18,12 @@ struct WindowCommands: Commands {
             }
             .keyboardShortcut("1", modifiers: [.shift, .command])
 
-            Button("About CodeEdit") {
+            Button(String(localized: "about_codeedit", comment: "About CodeEdit menu item")) {
                 openWindow(sceneID: .about)
             }
             .keyboardShortcut("2", modifiers: [.shift, .command])
 
-            Button("Manage Extensions") {
+            Button(String(localized: "manage_extensions", comment: "Manage Extensions menu item")) {
                 openWindow(sceneID: .extensions)
             }
             .keyboardShortcut("3", modifiers: [.shift, .command])
