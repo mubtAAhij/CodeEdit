@@ -29,14 +29,14 @@ extension SettingsData {
                 "Bracket Pair Emphasis",
                 "Bracket Pair Highlight",
                 "Show Gutter",
-                "Show Minimap",
+                String(localized: "show_minimap", comment: "Show minimap setting label"),
                 "Reformat at Column",
                 "Show Reformatting Guide",
                 "Invisibles",
                 "Warning Characters"
             ]
             if #available(macOS 14.0, *) {
-                keys.append("System Cursor")
+                keys.append(String(localized: "system_cursor", comment: "System cursor setting label"))
             }
             return keys.map { NSLocalizedString($0, comment: "") }
         }
@@ -169,8 +169,8 @@ extension SettingsData {
             let mgr = CommandManager.shared
 
             mgr.addCommand(
-                name: "Toggle Type-Over Completion",
-                title: "Toggle Type-Over Completion",
+                name: String(localized: "toggle_type_over_completion", comment: "Toggle type-over completion command"),
+                title: String(localized: "toggle_type_over_completion", comment: "Command name for toggling type-over completion feature"),
                 id: "prefs.text_editing.type_over_completion",
                 command: {
                     Settings[\.textEditing].enableTypeOverCompletion.toggle()
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "toggle_autocomplete_braces", comment: "Command name for toggling autocomplete braces feature"),
+                title: String(localized: "toggle_autocomplete_braces", comment: "Command title for toggling autocomplete braces feature"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,25 +187,25 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "toggle_word_wrap", comment: "Command name for toggling word wrap feature"),
+                title: String(localized: "toggle_word_wrap", comment: "Command title for toggling word wrap feature"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
                 }
             )
 
-            mgr.addCommand(name: "Toggle Minimap", title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
+            mgr.addCommand(name: String(localized: "toggle_minimap", comment: "Command name and title for toggling minimap feature"), title: String(localized: "toggle_minimap", comment: "Command name and title for toggling minimap feature"), id: "prefs.text_editing.toggle_minimap") {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 
-            mgr.addCommand(name: "Toggle Gutter", title: "Toggle Gutter", id: "prefs.text_editing.toggle_gutter") {
+            mgr.addCommand(name: String(localized: "toggle_gutter", comment: "Command name and title for toggling gutter feature"), title: String(localized: "toggle_gutter", comment: "Command name and title for toggling gutter feature"), id: "prefs.text_editing.toggle_gutter") {
                 Settings[\.textEditing].showGutter.toggle()
             }
 
             mgr.addCommand(
-                name: "Toggle Folding Ribbon",
-                title: "Toggle Folding Ribbon",
+                name: String(localized: "toggle_folding_ribbon", comment: "Command name for toggling folding ribbon feature"),
+                title: String(localized: "toggle_folding_ribbon", comment: "Command title for toggling folding ribbon feature"),
                 id: "prefs.text_editing.toggle_folding_ribbon"
             ) {
                 Settings[\.textEditing].showFoldingRibbon.toggle()
