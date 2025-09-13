@@ -126,7 +126,7 @@ final class PackageManagerInstallOperation: ObservableObject, Identifiable {
         progress.addChild(model.progress, withPendingUnitCount: 1)
 
         try Task.checkCancellation()
-        accumulatedOutput.append(OutputItem(isStepDivider: true, contents: "Step \(currentStepIdx + 1): \(task.name)"))
+        accumulatedOutput.append(OutputItem(isStepDivider: true, contents: String(localized: "step_number_name", comment: "Installation step progress indicator")))
 
         await withTaskGroup(of: Void.self) { group in
             group.addTask {
