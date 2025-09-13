@@ -24,11 +24,11 @@ extension SettingsData {
                 "Comparison view",
                 "Source control navigator",
                 "Default branch name",
-                "Git",
+                String(localized: "git", comment: "Git version control system name"),
                 "Author Name",
                 "Author Email",
-                "Prefer to rebase when pulling",
-                "Show merge commits in per-file log"
+                String(localized: "prefer_rebase_when_pulling", comment: "Git setting option to prefer rebasing when pulling"),
+                String(localized: "show_merge_commits_per_file_log", comment: "Git setting option to show merge commits in per-file log")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
