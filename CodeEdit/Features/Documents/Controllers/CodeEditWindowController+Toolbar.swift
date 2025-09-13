@@ -63,7 +63,7 @@ extension CodeEditWindowController {
     func updateToolbarVisibility() {
         if toolbarCollapsed {
             window?.titleVisibility = .visible
-            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "empty", comment: "Default title for empty workspace")
             window?.toolbar = nil
         } else {
             window?.titleVisibility = .hidden
@@ -88,9 +88,9 @@ extension CodeEditWindowController {
             )
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
-            toolbarItem.label = "Navigator Sidebar"
-            toolbarItem.paletteLabel = " Navigator Sidebar"
-            toolbarItem.toolTip = "Hide or show the Navigator"
+            toolbarItem.label = String(localized: "navigator_sidebar", comment: "Toolbar label for navigator sidebar toggle")
+            toolbarItem.paletteLabel = String(localized: "navigator_sidebar", comment: "Toolbar palette label for navigator sidebar toggle")
+            toolbarItem.toolTip = String(localized: "hide_show_navigator", comment: "Tooltip for navigator sidebar toggle")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleFirstPanel)
@@ -102,9 +102,9 @@ extension CodeEditWindowController {
             return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
-            toolbarItem.label = "Inspector Sidebar"
-            toolbarItem.paletteLabel = "Inspector Sidebar"
-            toolbarItem.toolTip = "Hide or show the Inspectors"
+            toolbarItem.label = String(localized: "inspector_sidebar", comment: "Toolbar label for inspector sidebar toggle")
+            toolbarItem.paletteLabel = String(localized: "inspector_sidebar", comment: "Toolbar palette label for inspector sidebar toggle")
+            toolbarItem.toolTip = String(localized: "hide_show_inspectors", comment: "Tooltip for inspector sidebar toggle")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleLastPanel)
