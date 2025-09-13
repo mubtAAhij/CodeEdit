@@ -42,7 +42,7 @@ enum InspectorTab: WorkspacePanelTab {
         case .gitHistory:
             return "History Inspector"
         case .internalDevelopment:
-            return "Internal Development"
+            return String(localized: "internal_development", comment: "Inspector tab title for internal development tools")
         case .uiExtension(_, let data):
             return data.help ?? data.sceneID
         }
