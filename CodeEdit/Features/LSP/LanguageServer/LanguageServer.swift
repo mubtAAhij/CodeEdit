@@ -131,7 +131,7 @@ class LanguageServer<DocumentType: LanguageServerDocument> {
                 terminationHandler: { [weak logContainer] in
                     logger.debug("Terminated data channel for \(languageId.rawValue)")
                     logContainer?.appendLog(
-                        LogMessageParams(type: .error, message: "Data Channel Terminated Unexpectedly")
+                        LogMessageParams(type: .error, message: String(localized: "data_channel_terminated_unexpectedly", comment: "Error message when language server data channel terminates unexpectedly"))
                     )
                 }
             )

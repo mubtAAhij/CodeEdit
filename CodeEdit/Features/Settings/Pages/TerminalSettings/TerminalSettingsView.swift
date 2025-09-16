@@ -39,24 +39,24 @@ struct TerminalSettingsView: View {
 
 private extension TerminalSettingsView {
     @ViewBuilder private var shellSelector: some View {
-        Picker("Shell", selection: $settings.shell) {
+        Picker(String(localized: "shell", comment: "Shell picker label"), selection: $settings.shell) {
             Text("System Default")
                 .tag(SettingsData.TerminalShell.system)
             Divider()
-            Text("Zsh")
+            Text(String(localized: "zsh", comment: "Zsh shell option"))
                 .tag(SettingsData.TerminalShell.zsh)
-            Text("Bash")
+            Text(String(localized: "bash", comment: "Bash shell option"))
                 .tag(SettingsData.TerminalShell.bash)
         }
     }
 
     private var cursorStyle: some View {
-        Picker("Terminal Cursor Style", selection: $settings.cursorStyle) {
-            Text("Block")
+        Picker(String(localized: "terminal_cursor_style", comment: "Terminal cursor style picker label"), selection: $settings.cursorStyle) {
+            Text(String(localized: "cursor_style_block", comment: "Block cursor style option"))
                 .tag(SettingsData.TerminalCursorStyle.block)
-            Text("Underline")
+            Text(String(localized: "cursor_style_underline", comment: "Underline cursor style option"))
                 .tag(SettingsData.TerminalCursorStyle.underline)
-            Text("Bar")
+            Text(String(localized: "cursor_style_bar", comment: "Bar cursor style option"))
                 .tag(SettingsData.TerminalCursorStyle.bar)
         }
     }
@@ -93,14 +93,14 @@ private extension TerminalSettingsView {
 
     @ViewBuilder private var injectionOptions: some View {
         VStack {
-            Toggle("Shell Integration", isOn: $settings.useShellIntegration)
+            Toggle(String(localized: "shell_integration", comment: "Shell integration toggle label"), isOn: $settings.useShellIntegration)
             // swiftlint:disable:next line_length
-                .help("CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection.")
+                .help(String(localized: "shell_integration_help", comment: "Help text for shell integration"))
             if !settings.useShellIntegration {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(Color(NSColor.systemYellow))
-                    Text("Warning: Disabling integration disables features such as terminal title detection.")
+                    Text(String(localized: "shell_integration_warning", comment: "Warning about disabling shell integration"))
                     Spacer()
                 }
             }
@@ -109,9 +109,9 @@ private extension TerminalSettingsView {
 
     @ViewBuilder private var useLoginShell: some View {
         if settings.useShellIntegration {
-            Toggle("Use Login Shell", isOn: $settings.useLoginShell)
+            Toggle(String(localized: "use_login_shell", comment: "Use login shell toggle label"), isOn: $settings.useLoginShell)
             // swiftlint:disable:next line_length
-                .help("Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app.")
+                .help(String(localized: "use_login_shell_help", comment: "Help text for login shell option"))
         } else {
             EmptyView()
         }

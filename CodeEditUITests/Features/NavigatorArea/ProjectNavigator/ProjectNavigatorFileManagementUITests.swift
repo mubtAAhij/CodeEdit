@@ -59,14 +59,14 @@ final class ProjectNavigatorFileManagementUITests: XCTestCase {
         }
 
         guard Query.Navigator.getProjectNavigatorRow(
-            fileTitle: "New Folder",
+            fileTitle: String(localized: "new_folder", comment: "New folder menu item"),
             navigator
         ).waitForExistence(timeout: 2.0) else {
             XCTFail("New Folder did not appear")
             return
         }
 
-        let folderRow = Query.Navigator.getProjectNavigatorRow(fileTitle: "New Folder", navigator)
+        let folderRow = Query.Navigator.getProjectNavigatorRow(fileTitle: String(localized: "new_folder", comment: "New folder menu item"), navigator)
         folderRow.disclosureTriangles.element.click()
 
         guard Query.Navigator.getProjectNavigatorRow(

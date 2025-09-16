@@ -29,7 +29,7 @@ struct OpenQuicklyView: View {
 
     var body: some View {
         SearchPanelView(
-            title: "Open Quickly",
+            title: String(localized: "open_quickly", comment: "Title for open quickly dialog"),
             image: Image(systemName: "magnifyingglass"),
             options: $openQuicklyViewModel.searchResults,
             text: $openQuicklyViewModel.query,

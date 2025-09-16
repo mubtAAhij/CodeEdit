@@ -43,16 +43,16 @@ struct SemanticTokenStorageTests {
     func setData() async throws {
         storage.setData(
             SemanticTokens(
-                resultId: "1234",
+                resultId: String(localized: "test_number_1234", comment: "Test number value"),
                 tokens: semanticTokens
             )
         )
 
         let state = try #require(storage.state)
         #expect(state.tokens == semanticTokens)
-        #expect(state.resultId == "1234")
+        #expect(state.resultId == String(localized: "test_number_1234", comment: "Test number value"))
 
-        #expect(storage.lastResultId == "1234")
+        #expect(storage.lastResultId == String(localized: "test_number_1234", comment: "Test number value"))
         #expect(storage.hasReceivedData == true)
     }
 

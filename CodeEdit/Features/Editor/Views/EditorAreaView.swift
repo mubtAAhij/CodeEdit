@@ -78,7 +78,7 @@ struct EditorAreaView: View {
                         }
                 }
             } else {
-                CEContentUnavailableView("No Editor")
+                CEContentUnavailableView(String(localized: "no_editor", comment: "Text shown when no editor is available"))
                     .padding(.top, editorInsetAmount)
                     .onTapGesture {
                         editorManager.activeEditor = editor

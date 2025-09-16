@@ -15,7 +15,7 @@ struct SourceControlGeneralView: View {
 
     var body: some View {
         Group {
-            Section("Source Control") {
+            Section(String(localized: "source_control", comment: "Source control settings section header")) {
                 refreshLocalStatusAuto
                 fetchRefreshStatusAuto
                 addRemoveFilesAuto
@@ -57,21 +57,21 @@ private extension SourceControlGeneralView {
 
     private var selectFilesToCommitAuto: some View {
         Toggle(
-            "Select files to commit automatically",
+            String(localized: "select_files_commit_automatically", comment: "Source control setting to automatically select files for commit"),
             isOn: $settings.selectFilesToCommit
         )
     }
 
     private var showSourceControlChanges: some View {
         Toggle(
-            "Show source control changes",
+            String(localized: "show_source_control_changes", comment: "Source control setting to show changes"),
             isOn: $settings.showSourceControlChanges
         )
     }
 
     private var includeUpstreamChanges: some View {
         Toggle(
-            "Include upstream changes",
+            String(localized: "include_upstream_changes", comment: "Source control setting to include upstream changes"),
             isOn: $settings.includeUpstreamChanges
         )
         .disabled(!settings.showSourceControlChanges)
@@ -79,12 +79,12 @@ private extension SourceControlGeneralView {
 
     private var comparisonView: some View {
         Picker(
-            "Comparison view",
+            String(localized: "comparison_view", comment: "Source control comparison view setting label"),
             selection: $settings.revisionComparisonLayout
         ) {
-            Text("Local Revision on Left Side")
+            Text(String(localized: "local_revision_left_side", comment: "Comparison view option for local revision on left side"))
                 .tag(SettingsData.RevisionComparisonLayout.localLeft)
-            Text("Local Revision on Right Side")
+            Text(String(localized: "local_revision_on_right_side", comment: "Option for placing local revision on right side in comparison view"))
                 .tag(SettingsData.RevisionComparisonLayout.localRight)
         }
     }
@@ -94,9 +94,9 @@ private extension SourceControlGeneralView {
             "Source control navigator",
             selection: $settings.controlNavigatorOrder
         ) {
-            Text("Sort by Name")
+            Text(String(localized: "sort_by_name", comment: "Option to sort source control navigator by name"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByName)
-            Text("Sort by Date")
+            Text(String(localized: "sort_by_date", comment: "Option to sort source control navigator by date"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByDate)
         }
     }

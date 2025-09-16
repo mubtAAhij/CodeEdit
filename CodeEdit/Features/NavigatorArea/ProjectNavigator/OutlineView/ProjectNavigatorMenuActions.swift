@@ -164,11 +164,11 @@ extension ProjectNavigatorMenu {
         guard let parent = selectedItems.first?.parent else { return }
 
         /// Get 'New Folder' name.
-        var newFolderURL = parent.url.appendingPathComponent("New Folder With Items", conformingTo: .folder)
+        var newFolderURL = parent.url.appendingPathComponent(String(localized: "new_folder_with_items", comment: "Default name for new folder created from selection"), conformingTo: .folder)
         var folderNumber = 0
         while workspaceFileManager.fileManager.fileExists(atPath: newFolderURL.path) {
             folderNumber += 1
-            newFolderURL = parent.url.appending(path: "New Folder With Items \(folderNumber)")
+            newFolderURL = parent.url.appending(path: String(localized: "new_folder_with_items_numbered", comment: "Numbered name for new folder created from selection").replacingOccurrences(of: "{number}", with: "\(folderNumber)"))
         }
 
         do {

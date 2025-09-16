@@ -24,7 +24,7 @@ struct LocationsSettingsView: View {
 private extension LocationsSettingsView {
     @ViewBuilder private var applicationSupportLocation: some View {
         ExternalLink(destination: Settings.shared.baseURL) {
-            Text("Application Support")
+            Text(String(localized: "application_support", comment: "Locations settings label for Application Support directory"))
             Text(Settings.shared.baseURL.path)
                 .font(.footnote)
                 .foregroundColor(.secondary)
@@ -33,7 +33,7 @@ private extension LocationsSettingsView {
 
     private var settingsLocation: some View {
         ExternalLink(destination: ThemeModel.shared.settingsURL) {
-            Text("Settings")
+            Text(String(localized: "settings", comment: "Locations settings label for Settings directory"))
             Text(ThemeModel.shared.settingsURL.path)
                 .font(.footnote)
                 .foregroundColor(.secondary)
@@ -51,7 +51,7 @@ private extension LocationsSettingsView {
 
     private var extensionsLocation: some View {
         ExternalLink(destination: ThemeModel.shared.extensionsURL) {
-            Text("Extensions")
+            Text(String(localized: "extensions", comment: "Locations settings label for Extensions directory"))
             Text(ThemeModel.shared.extensionsURL.path())
                 .font(.footnote)
                 .foregroundColor(.secondary)

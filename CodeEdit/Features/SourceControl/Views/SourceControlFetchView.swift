@@ -15,7 +15,7 @@ struct SourceControlFetchView: View {
     @EnvironmentObject var workspace: WorkspaceDocument
 
     var projectName: String {
-        workspace.workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+        workspace.workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "empty", comment: "Empty project name placeholder")
     }
 
     var body: some View {
@@ -27,7 +27,7 @@ struct SourceControlFetchView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Fetching changes for “\(projectName)”...")
                         .font(.headline)
-                    Text("CodeEdit is fetching changes and updating the status of files in the local repository.")
+                    Text(String(localized: "fetching_changes_description", comment: "Description of fetching changes process"))
                         .font(.subheadline)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -40,14 +40,14 @@ struct SourceControlFetchView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .controlSize(.small)
-                    Text("Fetching changes...")
+                    Text(String(localized: "fetching_changes", comment: "Fetching changes status text"))
                         .font(.subheadline)
                 }
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", comment: "Cancel button text"))
                         .frame(minWidth: 48)
                 }
             }
@@ -60,7 +60,7 @@ struct SourceControlFetchView: View {
                 try await sourceControlManager.fetch()
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to fetch changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "failed_to_fetch_changes", comment: "Error message when failing to fetch changes"), error: error)
             }
         }
     }

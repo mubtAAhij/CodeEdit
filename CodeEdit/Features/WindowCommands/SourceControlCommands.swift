@@ -17,29 +17,29 @@ struct SourceControlCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Source Control") {
+        CommandMenu(String(localized: "source_control", comment: "Source Control menu title")) {
             Group {
-                Button("Commit...") {
+                Button(String(localized: "commit", comment: "Menu item for commit action")) {
                     // TODO: Open Source Control Navigator to Changes tab
                 }
                 .disabled(true)
 
-                Button("Push...") {
+                Button(String(localized: "push", comment: "Menu item for push action")) {
                     sourceControlManager?.pushSheetIsPresented = true
                 }
 
-                Button("Pull...") {
+                Button(String(localized: "pull", comment: "Menu item for pull action")) {
                     sourceControlManager?.pullSheetIsPresented = true
                 }
                 .keyboardShortcut("x", modifiers: [.command, .option])
 
-                Button("Fetch Changes") {
+                Button(String(localized: "fetch_changes", comment: "Menu item for fetch changes action")) {
                     sourceControlManager?.fetchSheetIsPresented = true
                 }
 
                 Divider()
 
-                Button("Stage All Changes") {
+                Button(String(localized: "stage_all_changes", comment: "Source control command to stage all changes")) {
                     guard let sourceControlManager else { return }
                     if sourceControlManager.changedFiles.isEmpty {
                         sourceControlManager.noChangesToStageAlertIsPresented = true
@@ -49,7 +49,7 @@ struct SourceControlCommands: Commands {
                                 try await sourceControlManager.add(sourceControlManager.changedFiles.map { $0.fileURL })
                             } catch {
                                 await sourceControlManager.showAlertForError(
-                                    title: "Failed To Stage Changes",
+                                    title: String(localized: "failed_to_stage_changes", comment: "Error message when staging changes fails"),
                                     error: error
                                 )
                             }
@@ -57,7 +57,7 @@ struct SourceControlCommands: Commands {
                     }
                 }
 
-                Button("Unstage All Changes") {
+                Button(String(localized: "unstage_all_changes", comment: "Source control command to unstage all changes")) {
                     guard let sourceControlManager else { return }
                     if sourceControlManager.changedFiles.isEmpty {
                         sourceControlManager.noChangesToUnstageAlertIsPresented = true
@@ -69,7 +69,7 @@ struct SourceControlCommands: Commands {
                                 )
                             } catch {
                                 await sourceControlManager.showAlertForError(
-                                    title: "Failed To Unstage Changes",
+                                    title: String(localized: "failed_to_unstage_changes", comment: "Error message when unstaging changes fails"),
                                     error: error
                                 )
                             }
@@ -79,12 +79,12 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Cherry-Pick...") {
+                Button(String(localized: "cherry_pick", comment: "Source control command to cherry-pick commits")) {
                     // TODO: Implementation Needed
                 }
                 .disabled(true)
 
-                Button("Stash Changes...") {
+                Button(String(localized: "stash_changes", comment: "Source control command to stash changes")) {
                     if sourceControlManager?.changedFiles.isEmpty ?? false {
                         sourceControlManager?.noChangesToStashAlertIsPresented = true
                     } else {
@@ -94,7 +94,7 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Discard All Changes...") {
+                Button(String(localized: "discard_all_changes", comment: "Source control command to discard all changes")) {
                     if sourceControlManager?.changedFiles.isEmpty ?? false {
                         sourceControlManager?.noChangesToDiscardAlertIsPresented = true
                     } else {
@@ -104,7 +104,7 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Add Exisiting Remote...") {
+                Button(String(localized: "add_existing_remote", comment: "Source control command to add existing remote")) {
                     sourceControlManager?.addExistingRemoteSheetIsPresented = true
                 }
             }

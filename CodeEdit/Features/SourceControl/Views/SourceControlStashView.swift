@@ -19,21 +19,21 @@ struct SourceControlStashView: View {
         VStack(spacing: 0) {
             Form {
                 Section {
-                    TextField("", text: $message, prompt: Text("Message (optional)"), axis: .vertical)
+                    TextField("", text: $message, prompt: Text(String(localized: "message_optional", comment: "Placeholder text for optional message field")), axis: .vertical)
                         .labelsHidden()
                         .lineLimit(3...3)
                         .contentShape(Rectangle())
                         .frame(height: 48)
                 } header: {
-                    Text("Stash Changes")
+                    Text(String(localized: "stash_changes", comment: "Title for stash changes dialog"))
                     Group {
                         if sourceControlManager.pullSheetIsPresented
                             || sourceControlManager.switchToBranch != nil {
-                            Text("Your local repository has uncommitted changes that need to be stashed " +
-                                 "before you can continue. Enter a description for your changes.")
+                            Text(String(localized: "repository_has_uncommitted_changes", comment: "Message about uncommitted changes needing to be stashed") +
+                                 String(localized: "enter_description_for_changes", comment: "Instruction to enter description for changes"))
                         } else {
-                            Text("Enter a description for your stashed changes so you can reference them later. " +
-                                 "Stashes will appear in the Source Control navigator for your repository.")
+                            Text(String(localized: "enter_description_for_stashed_changes", comment: "Instruction to enter description for stashed changes") +
+                                 String(localized: "stashes_appear_in_navigator", comment: "Information about where stashes appear"))
                         }
                     }
                     .multilineTextAlignment(.leading)
@@ -42,7 +42,7 @@ struct SourceControlStashView: View {
                 if sourceControlManager.pullSheetIsPresented
                     || sourceControlManager.switchToBranch != nil {
                     Section {
-                        Toggle("Apply stash after operation", isOn: $applyStashAfterOperation)
+                        Toggle(String(localized: "apply_stash_after_operation", comment: "Toggle option to apply stash after operation"), isOn: $applyStashAfterOperation)
                     }
                 }
             }
@@ -56,7 +56,7 @@ struct SourceControlStashView: View {
                     message = ""
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", comment: "Cancel button text"))
                         .frame(minWidth: 56)
                 }
                 Button {
@@ -64,10 +64,10 @@ struct SourceControlStashView: View {
                 } label: {
                         Text(
                             sourceControlManager.pullSheetIsPresented
-                            ? "Stash and Pull"
+                            ? String(localized: "stash_and_pull", comment: "Button text for stashing and pulling")
                             : sourceControlManager.switchToBranch != nil
-                            ? "Stash and Switch"
-                            : "Stash"
+                            ? String(localized: "stash_and_switch", comment: "Button text for stashing and switching")
+                            : String(localized: "stash", comment: "Button text for stashing")
                         )
                         .frame(minWidth: 56)
                     }
@@ -104,7 +104,7 @@ struct SourceControlStashView: View {
                             throw NSError(
                                 domain: "SourceControl",
                                 code: 1,
-                                userInfo: [NSLocalizedDescriptionKey: "Could not find last stash"]
+                                userInfo: [NSLocalizedDescriptionKey: String(localized: "could_not_find_last_stash", comment: "Error message when last stash cannot be found")]
                             )
                         }
                         try await sourceControlManager.applyStashEntry(stashEntry: lastStashEntry)
@@ -118,7 +118,7 @@ struct SourceControlStashView: View {
 
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to stash changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "failed_to_stash_changes", comment: "Error message for stash failure"), error: error)
             }
         }
     }
