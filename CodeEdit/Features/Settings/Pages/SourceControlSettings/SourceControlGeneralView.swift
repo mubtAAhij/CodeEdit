@@ -15,13 +15,13 @@ struct SourceControlGeneralView: View {
 
     var body: some View {
         Group {
-            Section("Source Control") {
+            Section(String(localized: "source_control", comment: "Source control settings section title")) {
                 refreshLocalStatusAuto
                 fetchRefreshStatusAuto
                 addRemoveFilesAuto
                 selectFilesToCommitAuto
             }
-            Section("Text Editing") {
+            Section(String(localized: "text_editing", comment: "Text editing settings section title")) {
                 showSourceControlChanges
                 includeUpstreamChanges
             }
@@ -79,12 +79,12 @@ private extension SourceControlGeneralView {
 
     private var comparisonView: some View {
         Picker(
-            "Comparison view",
+            String(localized: "comparison_view", comment: "Comparison view picker label"),
             selection: $settings.revisionComparisonLayout
         ) {
-            Text("Local Revision on Left Side")
+            Text(String(localized: "local_revision_left", comment: "Option for local revision on left side"))
                 .tag(SettingsData.RevisionComparisonLayout.localLeft)
-            Text("Local Revision on Right Side")
+            Text(String(localized: "local_revision_right", comment: "Option for local revision on right side"))
                 .tag(SettingsData.RevisionComparisonLayout.localRight)
         }
     }
@@ -94,9 +94,9 @@ private extension SourceControlGeneralView {
             "Source control navigator",
             selection: $settings.controlNavigatorOrder
         ) {
-            Text("Sort by Name")
+            Text(String(localized: "sort_by_name", comment: "Option to sort by name"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByName)
-            Text("Sort by Date")
+            Text(String(localized: "sort_by_date", comment: "Option to sort by date"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByDate)
         }
     }
