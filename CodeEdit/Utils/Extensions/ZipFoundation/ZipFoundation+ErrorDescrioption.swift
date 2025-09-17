@@ -12,19 +12,19 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "unreadable_archive", comment: "Error message for unreadable archive")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "unwritable_archive", comment: "Error message for unwritable archive")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "invalid_entry_path", comment: "Error message for invalid entry path")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "invalid_compression_method", comment: "Error message for invalid compression method")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "invalid_checksum", comment: "Error message for invalid checksum")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "operation_cancelled", comment: "Error message for cancelled operation")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "invalid_buffer_size", comment: "Error message for invalid buffer size")
         case .invalidEntrySize:
             "Invalid entry size."
         case .invalidLocalHeaderDataOffset,
