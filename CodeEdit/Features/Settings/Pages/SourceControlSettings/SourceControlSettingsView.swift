@@ -20,8 +20,8 @@ struct SourceControlSettingsView: View {
             } footer: {
                 if settings.sourceControlIsEnabled {
                     Picker("", selection: $selectedTab) {
-                        Text("General").tag("general")
-                        Text("Git").tag("git")
+                        String(localized: "general", comment: "General tab label").tag("general")
+                        Text(String(localized: "git", comment: "Git tab label")).tag("git")
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
@@ -46,7 +46,7 @@ struct SourceControlSettingsView: View {
             isOn: $settings.sourceControlIsEnabled
         ) {
             Label {
-                Text("Source Control")
+                Text(String(localized: "source_control", comment: "Source Control settings title"))
                 Text("""
                  Back up your files, collaborate with others, and tag your releases. \
                  [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)
