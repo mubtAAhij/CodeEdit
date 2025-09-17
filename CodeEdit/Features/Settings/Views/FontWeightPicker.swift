@@ -24,13 +24,13 @@ struct FontWeightPicker: View {
     ]
 
     var weightNames: [NSFont.Weight: String] = [
-        .ultraLight: "Ultra Light",
+        .ultraLight: String(localized: "ultra_light", comment: "Ultra Light font weight"),
         .thin: "Thin",
-        .light: "Light",
+        .light: String(localized: "light", comment: "Light font weight"),
         .regular: "Regular",
-        .medium: "Medium",
+        .medium: String(localized: "medium", comment: "Medium font weight"),
         .semibold: "Semi Bold",
-        .bold: "Bold",
+        .bold: String(localized: "bold", comment: "Bold font weight"),
         .heavy: "Heavy",
         .black: "Black"
     ]
@@ -38,7 +38,7 @@ struct FontWeightPicker: View {
     var body: some View {
         Picker(label ?? "Font Weight", selection: $selection) {
             ForEach(fontWeights, id: \.self) { weight in
-                Text(weightNames[weight] ?? "Unknown")
+                Text(weightNames[weight] ?? String(localized: "unknown", comment: "Unknown font weight fallback"))
                     .tag(weight)
             }
         }
