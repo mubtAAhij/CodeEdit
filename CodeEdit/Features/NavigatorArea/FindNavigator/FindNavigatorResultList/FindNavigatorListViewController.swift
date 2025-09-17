@@ -35,8 +35,8 @@ final class FindNavigatorListViewController: NSViewController {
         self.outlineView.headerView = nil
         self.outlineView.lineBreakMode = .byTruncatingTail
 
-        let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
-        column.title = "Cell"
+        let column = NSTableColumn(identifier: .init(rawValue: String(localized: "cell", comment: "Table column identifier")))
+        column.title = String(localized: "cell_title", comment: "Table column title")
         outlineView.addTableColumn(column)
 
         self.scrollView.documentView = outlineView
