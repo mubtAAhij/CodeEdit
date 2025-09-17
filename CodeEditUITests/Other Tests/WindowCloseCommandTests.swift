@@ -105,7 +105,7 @@ final class WindowCloseCommandTests: XCTestCase {
         application = App.launch()
         let window = Query.getAboutWindow(application)
         application.typeKey("2", modifierFlags: [.shift, .command])
-        XCTAssertTrue(window.waitForExistence(timeout: 5.0), "About didn't open")
+        XCTAssertTrue(window.waitForExistence(timeout: 5.0), String(localized: "about_didnt_open", comment: "Error message when about window fails to open"))
 
         let expectation = expectation(for: notExistsPredicate, evaluatedWith: window)
         application.typeKey("w", modifierFlags: .command)
