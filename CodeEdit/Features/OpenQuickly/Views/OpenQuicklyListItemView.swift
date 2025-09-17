@@ -34,7 +34,7 @@ struct OpenQuicklyListItemView: View {
                     labelName: searchResult.fileURL.lastPathComponent,
                     charactersToHighlight: searchResult.matchedCharacters
                 )
-                Text(relativePathComponents.joined(separator: " ▸ "))
+                Text(relativePathComponents.joined(separator: String(localized: "path_separator", comment: "Path separator in file listings")))
                     .font(.system(size: 10.5))
                     .foregroundColor(.secondary)
                     .lineLimit(1)
