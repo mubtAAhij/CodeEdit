@@ -88,10 +88,10 @@ final class ProjectNavigatorViewController: NSViewController {
         self.outlineView.allowsMultipleSelection = true
 
         self.outlineView.setAccessibilityIdentifier("ProjectNavigator")
-        self.outlineView.setAccessibilityLabel("Project Navigator")
+        self.outlineView.setAccessibilityLabel(String(localized: "project_navigator", comment: "Accessibility label for project navigator"))
 
-        let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
-        column.title = "Cell"
+        let column = NSTableColumn(identifier: .init(rawValue: String(localized: "cell", comment: "Table column title")))
+        column.title = String(localized: "cell", comment: "Table column identifier")
         outlineView.addTableColumn(column)
 
         outlineView.setDraggingSourceOperationMask(.move, forLocal: false)
@@ -117,7 +117,7 @@ final class ProjectNavigatorViewController: NSViewController {
         }
 
         /// "No Filter Results" label.
-        noResultsLabel = NSTextField(labelWithString: "No Filter Results")
+        noResultsLabel = NSTextField(labelWithString: String(localized: "no_filter_results", comment: "Message shown when filter returns no results"))
         noResultsLabel.isHidden = true
         noResultsLabel.font = NSFont.systemFont(ofSize: 16)
         noResultsLabel.textColor = NSColor.secondaryLabelColor
