@@ -27,7 +27,7 @@ struct SourceControlNavigatorChangesCommitView: View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
                 PaneTextField(
-                    "Commit message (required)",
+                    String(localized: "commit_message_required", comment: "Placeholder for commit message field"),
                     text: $message,
                     axis: .vertical
                 )
@@ -36,7 +36,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                     if showDetails {
                         VStack {
                             TextField(
-                                "Detailed description",
+                                String(localized: "detailed_description", comment: "Placeholder for detailed commit description"),
                                 text: $details,
                                 axis: .vertical
                             )
@@ -58,7 +58,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                 VStack(spacing: 0) {
                     if showDetails {
                         Toggle(isOn: $ammend) {
-                            Text("Amend")
+                            Text(String(localized: "amend", comment: "Toggle label for amend commit option"))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .toggleStyle(.switch)
@@ -79,11 +79,11 @@ struct SourceControlNavigatorChangesCommitView: View {
                             }
                         }
                     } label: {
-                        Text(allFilesStaged ? "Unstage All" : "Stage All")
+                        Text(allFilesStaged ? String(localized: "unstage_all", comment: "Button text to unstage all files") : String(localized: "stage_all", comment: "Button text to stage all files"))
                             .frame(maxWidth: .infinity)
                     }
-                    Menu(isCommiting ? "Committing..." : "Commit") {
-                        Button("Commit and Push...") {
+                    Menu(isCommiting ? String(localized: "committing", comment: "Status text shown while committing changes") : String(localized: "commit", comment: "Commit button text")) {
+                        Button(String(localized: "commit_and_push", comment: "Menu item text for commit and push action")) {
                             Task {
                                 self.isCommiting = true
                                 do {
@@ -92,14 +92,14 @@ struct SourceControlNavigatorChangesCommitView: View {
                                     self.details = ""
                                 } catch {
                                     await sourceControlManager.showAlertForError(
-                                        title: "Failed to commit",
+                                        title: String(localized: "failed_to_commit", comment: "Error message when commit fails"),
                                         error: error
                                     )
                                 }
                                 do {
                                     try await sourceControlManager.push()
                                 } catch {
-                                    await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                                    await sourceControlManager.showAlertForError(title: String(localized: "failed_to_push", comment: "Error message when push fails"), error: error)
                                 }
                                 self.isCommiting = false
                             }
@@ -112,7 +112,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                                 self.message = ""
                                 self.details = ""
                             } catch {
-                                await sourceControlManager.showAlertForError(title: "Failed to commit", error: error)
+                                await sourceControlManager.showAlertForError(title: String(localized: "failed_to_commit", comment: "Error message when commit fails"), error: error)
                             }
                             self.isCommiting = false
                         }

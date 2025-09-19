@@ -52,7 +52,7 @@ final class GithubPackageManager: PackageManagerProtocol {
             PackageManagerInstallStep(
                 name: "",
                 confirmation: .required(
-                    message: "This package requires git to install. Allow CodeEdit to run git commands?"
+                    message: String(localized: "git_required_permission", comment: "Message asking for permission to run git commands")
                 )
             ) { model in
                 let versionOutput = try await model.runCommand("git --version")
@@ -80,7 +80,7 @@ final class GithubPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "initialize_directory_structure", comment: "Step name for directory initialization"),
             confirmation: .none
         ) { model in
             do {
@@ -99,7 +99,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Download Binary Executable",
+            name: String(localized: "download_binary_executable", comment: "Step name for binary download"),
             confirmation: .none
         ) { model in
             do {
@@ -153,7 +153,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Decompress Binary Executable",
+            name: String(localized: "decompress_binary_executable", comment: "Step name for binary decompression"),
             confirmation: .none,
         ) { model in
             let fileName = url.lastPathComponent
@@ -161,14 +161,14 @@ final class GithubPackageManager: PackageManagerProtocol {
             let packagePath = downloadPath.appending(path: fileName)
 
             if packagePath.pathExtension == "tar" || packagePath.pathExtension == ".zip" {
-                await model.status("Decompressing \(fileName)")
+                await model.status(String(localized: "decompressing_file", arguments: [fileName], comment: "Status message for file decompression"))
                 try await FileManager.default.unzipItem(at: packagePath, to: downloadPath, progress: model.progress)
                 if FileManager.default.fileExists(atPath: packagePath.path(percentEncoded: false)) {
                     try FileManager.default.removeItem(at: packagePath)
                 }
-                await model.status("Decompressed to '\(downloadPath.path(percentEncoded: false))'")
+                await model.status(String(localized: "decompressed_to_path", arguments: [downloadPath.path(percentEncoded: false)], comment: "Status message showing decompression destination"))
             } else if packagePath.lastPathComponent.hasSuffix(".tar.gz") {
-                await model.status("Decompressing \(fileName) using `tar`")
+                await model.status(String(localized: "decompressing_file_with_tar", arguments: [fileName], comment: "Status message for tar decompression"))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
@@ -178,7 +178,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                     ]
                 )
             } else if packagePath.pathExtension == "gz" {
-                await model.status("Decompressing \(fileName) using `gunzip`")
+                await model.status(String(localized: "decompressing_file_with_gunzip", arguments: [fileName], comment: "Status message for gunzip decompression"))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
@@ -206,9 +206,9 @@ final class GithubPackageManager: PackageManagerProtocol {
         let command = ["git", "clone", repoURL]
 
         return PackageManagerInstallStep(
-            name: "Clone with Git",
+            name: String(localized: "clone_with_git", comment: "Step name for git cloning"),
             // swiftlint:disable:next line_length
-            confirmation: .required(message: "This step will run the following command to clone the package from source control:\n`\(command.joined(separator: " "))`")
+            confirmation: .required(message: String(localized: "git_clone_command_confirmation", arguments: [command.joined(separator: " ")], comment: "Message asking for confirmation to run git clone command"))
         ) { model in
             let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
             _ = try await model.executeInDirectory(in: installPath.path, command)
@@ -223,15 +223,15 @@ final class GithubPackageManager: PackageManagerProtocol {
         command: String
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Install From Source",
-            confirmation: .required(message: "This step will run the following to finish installing:\n`\(command)`")
+            name: String(localized: "install_from_source", comment: "Package manager install step name"),
+            confirmation: .required(message: String(localized: "install_from_source_confirmation", arguments: [command], comment: "Confirmation message for source installation"))
         ) { model in
             do {
                 let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
                 let repoPath = installPath.appending(path: source.pkgName, directoryHint: .isDirectory)
                 _ = try await model.executeInDirectory(in: repoPath.path, [command])
             } catch {
-                throw PackageManagerError.installationFailed("Source build failed.")
+                throw PackageManagerError.installationFailed(String(localized: "source_build_failed", comment: "Error message when source build fails"))
             }
         }
     }

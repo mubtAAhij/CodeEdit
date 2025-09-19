@@ -170,11 +170,11 @@ extension CEWorkspaceFileManager {
 
         let deleteConfirmation = NSAlert()
         deleteConfirmation.messageText = "Do you want to delete “\(fileName)”?"
-        deleteConfirmation.informativeText = "This item will be deleted immediately. You can't undo this action."
+        deleteConfirmation.informativeText = String(localized: "delete_warning_single", comment: "Warning text for single file deletion")
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "delete", comment: "Delete button text"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "cancel", comment: "Cancel button text"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
             if fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -188,9 +188,9 @@ extension CEWorkspaceFileManager {
     ///   - confirmDelete: True to present an alert to confirm the delete.
     public func batchDelete(files: Set<CEWorkspaceFile>, confirmDelete: Bool = true) throws {
         let deleteConfirmation = NSAlert()
-        deleteConfirmation.messageText = "Are you sure you want to delete the \(files.count) selected items?"
+        deleteConfirmation.messageText = String(localized: "confirm_delete_multiple_files", arguments: [files.count], comment: "Confirmation dialog for deleting multiple files")
         // swiftlint:disable:next line_length
-        deleteConfirmation.informativeText = "\(files.count) items will be deleted immediately. You cannot undo this action."
+        deleteConfirmation.informativeText = String(localized: "delete_warning_multiple", arguments: [files.count], comment: "Warning text for multiple files deletion")
         deleteConfirmation.alertStyle = .critical
         deleteConfirmation.addButton(withTitle: "Delete")
         deleteConfirmation.buttons.last?.hasDestructiveAction = true

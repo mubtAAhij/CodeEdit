@@ -38,7 +38,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: String(localized: "npm_permission_request", comment: "Permission request for running npm commands")
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -65,7 +65,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "initialize_directory_structure", comment: "Package manager initialization step name"), confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -112,10 +112,10 @@ final class NPMPackageManager: PackageManagerProtocol {
         let suffix = plural ? "these packages" : "this package"
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: String(localized: "install_package_using_npm", comment: "NPM package installation step name"),
             confirmation: .required(
-                message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                message: String(localized: "npm_package_install_confirmation", arguments: [sSuffix, packagesDescription], comment: "Confirmation message for npm package installation")
+                + String(localized: "allow_npm_package_install", arguments: [suffix], comment: "Permission request to install npm packages")
             )
         ) { model in
             do {
@@ -150,7 +150,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "verify_installation", comment: "Package manager verification step name"),
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path
@@ -161,7 +161,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                   let packageDict = packageJson as? [String: Any],
                   let dependencies = packageDict["dependencies"] as? [String: String],
                   let installedVersion = dependencies[package] else {
-                throw PackageManagerError.installationFailed("Package not found in package.json")
+                throw PackageManagerError.installationFailed(String(localized: "package_not_found_in_json", comment: "Error message when package is not found in package.json"))
             }
 
             // Verify installed version matches requested version

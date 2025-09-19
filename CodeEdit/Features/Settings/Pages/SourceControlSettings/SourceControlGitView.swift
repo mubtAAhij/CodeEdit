@@ -26,7 +26,7 @@ struct SourceControlGitView: View {
                 gitAuthorName
                 gitEmail
             } header: {
-                Text("Git Configuration")
+                Text(String(localized: "git_configuration", comment: "Git configuration section title"))
                 Text("""
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/git-config)
@@ -43,7 +43,7 @@ struct SourceControlGitView: View {
             Section {
                 IgnoredFilesListView()
             } header: {
-                Text("Ignored Files")
+                Text(String(localized: "ignored_files", comment: "Ignored files section title"))
                 Text("""
                 Patterns for files and folders that Git should ignore and not track. \
                 Applied globally to all repositories on your Mac. \
@@ -99,7 +99,7 @@ private extension SourceControlGitView {
     private var defaultBranchName: some View {
         TextField(text: $defaultBranch) {
             Text("Default branch name")
-            Text("Cannot contain spaces, backslashes, or other symbols")
+            Text(String(localized: "branch_name_restrictions", comment: "Help text for branch name restrictions"))
         }
         .onChange(of: defaultBranch) { newValue in
             if hasAppeared {
@@ -137,22 +137,22 @@ private extension SourceControlGitView {
 
     private var gitConfigEditor: some View {
         HStack {
-            Text("Git configuration is stored in \"~/.gitconfig\".")
+            Text("String(localized: "git_config_storage_location", comment: "Information about where git config is stored")")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitConfigFile)
+            Button(String(localized: "open_in_editor", comment: "Button to open file in editor"), action: openGitConfigFile)
         }
         .frame(maxWidth: .infinity)
     }
 
     private var gitIgnoreEditor: some View {
         HStack {
-            Text("Ignored file patterns are stored in \"\(resolvedGitIgnorePath)\".")
+            Text("String(localized: "ignored_files_storage_location", arguments: [resolvedGitIgnorePath], comment: "Information about where ignored files patterns are stored")")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitIgnoreFile)
+            Button(String(localized: "open_in_editor", comment: "Button to open file in editor"), action: openGitIgnoreFile)
         }
         .frame(maxWidth: .infinity)
         .onAppear {

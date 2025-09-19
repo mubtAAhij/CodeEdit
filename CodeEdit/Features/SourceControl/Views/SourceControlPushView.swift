@@ -26,11 +26,11 @@ struct SourceControlPushView: View {
                         canCreateBranch: true
                     )
                 } header: {
-                    Text("Push local changes to")
+                    Text(String(localized: "push_local_changes_to", comment: "Section header for push operation"))
                 }
                 Section {
-                    Toggle("Force", isOn: $sourceControlManager.operationForce)
-                    Toggle("Include Tags", isOn: $sourceControlManager.operationIncludeTags)
+                    Toggle(String(localized: "force", comment: "Force push toggle option"), isOn: $sourceControlManager.operationForce)
+                    Toggle(String(localized: "include_tags", comment: "Include tags toggle option"), isOn: $sourceControlManager.operationIncludeTags)
                 }
             }
             .formStyle(.grouped)
@@ -42,7 +42,7 @@ struct SourceControlPushView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text("Pushing changes...")
+                        Text(String(localized: "pushing_changes", comment: "Progress message when pushing changes to remote"))
                             .font(.subheadline)
                     }
                 }
@@ -50,12 +50,12 @@ struct SourceControlPushView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", comment: "Cancel button text"))
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text("Push")
+                    Text(String(localized: "push", comment: "Push button text"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -83,7 +83,7 @@ struct SourceControlPushView: View {
                 dismiss()
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "failed_to_push", comment: "Error alert title when push operation fails"), error: error)
             }
         }
     }

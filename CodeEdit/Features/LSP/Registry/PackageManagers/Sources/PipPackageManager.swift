@@ -72,7 +72,7 @@ final class PipPackageManager: PackageManagerProtocol {
     // MARK: - Initialize
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "initialize_directory_structure", comment: "Package manager initialization step name"), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
             try await model.executeInDirectory(in: packagePath.path(percentEncoded: false), ["python -m venv venv"])
 
@@ -88,10 +88,10 @@ final class PipPackageManager: PackageManagerProtocol {
     func runPipInstall(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Install Package Using pip",
+            name: String(localized: "install_package_using_pip", comment: "Pip package installation step name"),
             confirmation: .required(
-                message: "This requires the pip package \(source.pkgName)."
-                + "\nAllow CodeEdit to install this package?"
+                message: String(localized: "pip_package_install_confirmation", arguments: [source.pkgName], comment: "Confirmation message for pip package installation")
+                + String(localized: "allow_package_install", comment: "Permission request to install package")
             )
         ) { model in
             var installArgs = [pipCommand, "install"]
@@ -119,7 +119,7 @@ final class PipPackageManager: PackageManagerProtocol {
     private func updateRequirements(in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Update requirements.txt",
+            name: String(localized: "update_requirements_txt", comment: "Pip requirements update step name"),
             confirmation: .none
         ) { model in
             let requirementsPath = packagePath.appending(path: "requirements.txt")
@@ -140,7 +140,7 @@ final class PipPackageManager: PackageManagerProtocol {
     private func verifyInstallation(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "verify_installation", comment: "Package manager verification step"),
             confirmation: .none
         ) { model in
             let output = try await model.executeInDirectory(

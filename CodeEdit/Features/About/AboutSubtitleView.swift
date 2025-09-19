@@ -12,12 +12,12 @@ struct AboutSubtitleView: View {
     @State private var didCopyVersion = false
     @State private var isHoveringVersion = false
 
-    private var appVersion: String { Bundle.versionString ?? "No Version" }
-    private var appBuild: String { Bundle.buildString ?? "No Build" }
+    private var appVersion: String { Bundle.versionString ?? String(localized: "no_version", comment: "Fallback text when app version is unavailable") }
+    private var appBuild: String { Bundle.buildString ?? String(localized: "no_build", comment: "Fallback text when app build number is unavailable") }
     private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
 
     var body: some View {
-        Text("Version \(appVersion)\(appVersionPostfix) (\(appBuild))")
+        Text(String(localized: "version_build_format", arguments: [appVersion, appVersionPostfix, appBuild], comment: "Version format string with app version, postfix, and build number"))
             .textSelection(.disabled)
             .onTapGesture {
                 // Create a string suitable for pasting into a bug report

@@ -24,11 +24,11 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case behavior = "Behaviors"
         case navigation = "Navigation"
         case theme = "Themes"
-        case textEditing = "Text Editing"
-        case terminal = "Terminal"
-        case search = "Search"
-        case keybindings = "Key Bindings"
-        case sourceControl = "Source Control"
+        case textEditing = String(localized: "text_editing", comment: "Text editing settings page title")
+        case terminal = String(localized: "terminal", comment: "Terminal settings page title")
+        case search = String(localized: "search", comment: "Search settings page title")
+        case keybindings = String(localized: "key_bindings", comment: "Key bindings settings page title")
+        case sourceControl = String(localized: "source_control", comment: "Source control settings page title")
         case components = "Components"
         case location = "Locations"
         case advanced = "Advanced"

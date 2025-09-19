@@ -15,14 +15,14 @@ struct SourceControlNavigatorNoRemotesView: View {
             HStack {
                 Label(
                     title: {
-                        Text("No remotes")
+                        Text(String(localized: "no_remotes", comment: "Label shown when no remotes are configured"))
                     }, icon: {
                         Image(systemName: "network")
                             .foregroundColor(.secondary)
                     }
                 )
                 Spacer()
-                Button("Add") {
+                Button(String(localized: "add", comment: "Button text to add a remote")) {
                     sourceControlManager.addExistingRemoteSheetIsPresented = true
                 }
             }

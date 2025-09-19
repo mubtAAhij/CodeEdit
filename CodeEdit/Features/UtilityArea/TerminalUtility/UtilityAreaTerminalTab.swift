@@ -36,11 +36,11 @@ struct UtilityAreaTerminalTab: View {
         Label {
             if #available(macOS 14, *) {
                 // Fix the icon misplacement issue introduced since macOS 14
-                TextField("Name", text: terminalTitle)
+                TextField(String(localized: "name", comment: "Terminal name text field placeholder"), text: terminalTitle)
                     .focused($isFocused)
             } else {
                 // A padding is needed for macOS 13
-                TextField("Name", text: terminalTitle)
+                TextField(String(localized: "name", comment: "Terminal name text field placeholder"), text: terminalTitle)
                     .focused($isFocused)
                     .padding(.leading, -8)
             }
@@ -48,16 +48,16 @@ struct UtilityAreaTerminalTab: View {
             Image(systemName: "terminal")
         }
         .contextMenu {
-            Button("Rename...") {
+            Button(String(localized: "rename", comment: "Context menu option to rename terminal")) {
                 isFocused = true
             }
 
             if selectedIDs.contains(terminal.id) && selectedIDs.count > 1 {
-                Button("Kill Terminals") {
+                Button(String(localized: "kill_terminals", comment: "Context menu option to kill multiple terminals")) {
                     removeTerminals(selectedIDs)
                 }
             } else {
-                Button("Kill Terminal") {
+                Button(String(localized: "kill_terminal", comment: "Context menu option to kill single terminal")) {
                     removeTerminals([terminal.id])
                 }
             }

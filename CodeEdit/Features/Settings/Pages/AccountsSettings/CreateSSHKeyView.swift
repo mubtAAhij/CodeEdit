@@ -25,25 +25,25 @@ struct CreateSSHKeyView: View {
     var body: some View {
         VStack {
             Form {
-                Section("Create SSH key") {
-                    Picker("Key Type", selection: $selectedKeyType) {
+                Section(String(localized: "create_ssh_key", comment: "SSH key creation section title")) {
+                    Picker(String(localized: "key_type", comment: "SSH key type picker label"), selection: $selectedKeyType) {
                         Text(KeyType.ed25519.rawValue)
                             .tag(KeyType.ed25519)
                         Text(KeyType.ecdsa.rawValue)
                             .tag(KeyType.ecdsa)
                         Divider()
                         Group {
-                            Text(KeyType.rsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.rsa.rawValue) + Text(String(localized: "less_secure", comment: "Label indicating less secure option")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.rsa)
                         Group {
-                            Text(KeyType.dsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.dsa.rawValue) + Text(String(localized: "less_secure", comment: "Label indicating less secure option")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.dsa)
                     }
-                    SecureField("Passphrase", text: $passphrase)
+                    SecureField(String(localized: "passphrase", comment: "SSH key passphrase field"), text: $passphrase)
                     if !passphrase.isEmpty {
-                        SecureField("Confirm Passphrase", text: $confirmPassphrase)
+                        SecureField(String(localized: "confirm_passphrase", comment: "SSH key passphrase confirmation field"), text: $confirmPassphrase)
                     }
                 }
             }
@@ -52,10 +52,10 @@ struct CreateSSHKeyView: View {
             .scrollDisabled(true)
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "cancel", comment: "Cancel button")) {
                     dismiss()
                 }
-                Button("Create") {
+                Button(String(localized: "create", comment: "Create button")) {
                     // create the ssh key
                     dismiss()
                 }

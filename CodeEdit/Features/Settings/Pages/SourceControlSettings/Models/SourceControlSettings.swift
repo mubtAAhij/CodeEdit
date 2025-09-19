@@ -13,7 +13,7 @@ extension SettingsData {
 
         var searchKeys: [String] {
             [
-                "General",
+                String(localized: "general", comment: "General settings section"),
                 "Enable source control",
                 "Refresh local status automatically",
                 "Fetch and refresh server status automatically",
@@ -24,7 +24,7 @@ extension SettingsData {
                 "Comparison view",
                 "Source control navigator",
                 "Default branch name",
-                "Git",
+                String(localized: "git", comment: "Git settings section"),
                 "Author Name",
                 "Author Email",
                 "Prefer to rebase when pulling",
