@@ -80,7 +80,7 @@ final class GithubPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "package_manager.step.initialize_directory", comment: "Step name for initializing directory structure"),
             confirmation: .none
         ) { model in
             do {
@@ -99,7 +99,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Download Binary Executable",
+            name: String(localized: "package_manager.github.download_step", comment: "Step name for downloading binary executable"),
             confirmation: .none
         ) { model in
             do {
@@ -153,7 +153,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Decompress Binary Executable",
+            name: String(localized: "package_manager.github.decompress_step", comment: "Step name for decompressing binary executable"),
             confirmation: .none,
         ) { model in
             let fileName = url.lastPathComponent
@@ -206,7 +206,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         let command = ["git", "clone", repoURL]
 
         return PackageManagerInstallStep(
-            name: "Clone with Git",
+            name: String(localized: "package_manager.git.clone_step", comment: "Step name for git clone operation"),
             // swiftlint:disable:next line_length
             confirmation: .required(message: "This step will run the following command to clone the package from source control:\n`\(command.joined(separator: " "))`")
         ) { model in
@@ -223,7 +223,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         command: String
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Install From Source",
+            name: String(localized: "package_manager.source.install_step", comment: "Step name for installing from source"),
             confirmation: .required(message: "This step will run the following to finish installing:\n`\(command)`")
         ) { model in
             do {
@@ -231,7 +231,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                 let repoPath = installPath.appending(path: source.pkgName, directoryHint: .isDirectory)
                 _ = try await model.executeInDirectory(in: repoPath.path, [command])
             } catch {
-                throw PackageManagerError.installationFailed("Source build failed.")
+                throw PackageManagerError.installationFailed(String(localized: "package_manager.source.build_failed", comment: "Error message when source build fails"))
             }
         }
     }
