@@ -29,7 +29,7 @@ struct AccountsSettingsView: View {
             } footer: {
                 HStack {
                     Spacer()
-                    Button("Add Account...") { addAccountSheetPresented.toggle() }
+                    Button(String(localized: "accounts.add_account", comment: "Button to add a new account")) { addAccountSheetPresented.toggle() }
                     .sheet(isPresented: $addAccountSheetPresented, content: {
                         AccountSelectionView(selectedProvider: $selectedProvider)
                     })
@@ -49,9 +49,9 @@ struct AccountsSettingsView: View {
 
     private var implementationNeeded: some View {
         VStack(spacing: 20) {
-            Text("This git client is currently not supported.")
+            Text(String(localized: "accounts.git_client_not_supported", comment: "Error message for unsupported git client"))
             HStack {
-                Button("Close") {
+                Button(String(localized: "common.close", comment: "Close button")) {
                     addAccountSheetPresented.toggle()
                     selectedProvider = nil
                 }
