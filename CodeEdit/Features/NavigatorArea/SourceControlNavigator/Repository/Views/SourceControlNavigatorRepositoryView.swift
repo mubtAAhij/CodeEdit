@@ -110,21 +110,21 @@ struct SourceControlNavigatorRepositoryView: View {
             }
         } message: {
             sourceControlManager.changedFiles.isEmpty
-            ? Text("Applying the stashed changes will restore modifications to files in your local repository.")
-            : Text("Try committing or discarding the changes.")
+            ? Text(String(localized: "source_control.stash.apply_message", comment: "Message explaining what happens when applying stashed changes"))
+            : Text(String(localized: "source_control.uncommitted_changes.message", comment: "Message suggesting to commit or discard uncommitted changes"))
         }
         .confirmationDialog(
             "Do you want to delete the branch “\(branchToDelete?.name ?? "")”?",
             isPresented: $isPresentingConfirmDeleteBranch
         ) {
-            Button("Delete") {
+            Button(String(localized: "general.delete", comment: "Delete button")) {
                 if let branch = branchToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteBranch(branch: branch)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Failed to delete",
+                                title: String(localized: "source_control.delete_error.title", comment: "Error title when deletion fails"),
                                 error: error
                             )
                         }
@@ -139,14 +139,14 @@ struct SourceControlNavigatorRepositoryView: View {
             "Do you want to delete the stash “\(stashEntryToDelete?.message ?? "")”?",
             isPresented: $isPresentingConfirmDeleteStashEntry
         ) {
-            Button("Delete") {
+            Button(String(localized: "general.delete", comment: "Delete button")) {
                 if let stashEntry = stashEntryToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteStashEntry(stashEntry: stashEntry)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Failed to delete",
+                                title: String(localized: "source_control.delete_error.title", comment: "Error title when deletion fails"),
                                 error: error
                             )
                         }
@@ -161,14 +161,14 @@ struct SourceControlNavigatorRepositoryView: View {
             "Do you want to delete the remote “\(remoteToDelete?.name ?? "")”?",
             isPresented: $isPresentingConfirmDeleteRemote
         ) {
-            Button("Delete") {
+            Button(String(localized: "general.delete", comment: "Delete button")) {
                 if let remote = remoteToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteRemote(remote: remote)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Failed to delete",
+                                title: String(localized: "source_control.delete_error.title", comment: "Error title when deletion fails"),
                                 error: error
                             )
                         }
