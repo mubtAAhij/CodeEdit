@@ -34,7 +34,7 @@ struct RemoteBranchPicker: View {
                     .tag(remote as GitRemote?)
                 }
                 Divider()
-                Text("Add Existing Remote...")
+                Text(String(localized: "source_control.remote.add_existing", comment: "Menu item to add existing remote"))
                     .tag(GitRemote?(nil))
             } label: {
                 Text("Remote")
@@ -59,7 +59,7 @@ struct RemoteBranchPicker: View {
                     }
                 }
             } label: {
-                Text("Branch")
+                Text(String(localized: "source_control.picker.branch", comment: "Label for branch picker"))
             }
         }
         .onAppear {
