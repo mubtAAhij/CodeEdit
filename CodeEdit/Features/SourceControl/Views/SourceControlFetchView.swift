@@ -27,7 +27,7 @@ struct SourceControlFetchView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Fetching changes for “\(projectName)”...")
                         .font(.headline)
-                    Text("CodeEdit is fetching changes and updating the status of files in the local repository.")
+                    Text(String(localized: "source_control.fetch.fetching_description", comment: "Description of what happens during fetch operation"))
                         .font(.subheadline)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -40,14 +40,14 @@ struct SourceControlFetchView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .controlSize(.small)
-                    Text("Fetching changes...")
+                    Text(String(localized: "source_control.fetch.fetching_changes", comment: "Status message while fetching changes"))
                         .font(.subheadline)
                 }
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "general.cancel", comment: "Cancel button"))
                         .frame(minWidth: 48)
                 }
             }
@@ -60,7 +60,7 @@ struct SourceControlFetchView: View {
                 try await sourceControlManager.fetch()
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to fetch changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.fetch.failed_error", comment: "Error message when fetch operation fails"), error: error)
             }
         }
     }
