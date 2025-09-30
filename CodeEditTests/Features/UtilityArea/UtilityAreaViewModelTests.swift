@@ -15,11 +15,11 @@ final class UtilityAreaViewModelTests: XCTestCase {
     override func setUp() {
         model = UtilityAreaViewModel()
         model.terminals = [
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 1", shell: .bash),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 2", shell: .zsh),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 3", shell: nil),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 4", shell: .bash),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 5", shell: .zsh)
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "terminal_tab_1", comment: "Terminal tab 1 title"), shell: .bash),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "terminal_tab_2", comment: "Terminal tab 2 title"), shell: .zsh),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "terminal_tab_3", comment: "Terminal tab 3 title"), shell: nil),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "terminal_tab_4", comment: "Terminal tab 4 title"), shell: .bash),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "terminal_tab_5", comment: "Terminal tab 5 title"), shell: .zsh)
         ]
     }
 
