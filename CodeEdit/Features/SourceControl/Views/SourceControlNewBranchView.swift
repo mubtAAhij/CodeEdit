@@ -22,7 +22,7 @@ struct SourceControlNewBranchView: View {
                 Form {
                     Section {
                         LabeledContent(
-                            "From",
+                            String(localized: "source_control.new_branch.from_label", comment: "Label for source branch when creating new branch"),
                             value: branch.isRemote
                                 ? branch.longName.replacingOccurrences(of: "refs/remotes/", with: "")
                                 : branch.name
@@ -31,8 +31,7 @@ struct SourceControlNewBranchView: View {
                     } header: {
                         Text("Create a new branch")
                         Text(
-                            "Create a branch from the current branch and switch to it. " +
-                            "All uncommited changes will be preserved on the new branch. "
+                            String(localized: "source_control.new_branch.description", comment: "Description explaining new branch creation behavior")
                         )
                     }
                 }
@@ -45,13 +44,13 @@ struct SourceControlNewBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "general.cancel", comment: "Cancel button"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Create")
+                        Text(String(localized: "source_control.new_branch.create", comment: "Create branch button"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -75,7 +74,7 @@ struct SourceControlNewBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "source_control.error.failed_to_create_branch", comment: "Error title when branch creation fails"),
                     error: error
                 )
             }
