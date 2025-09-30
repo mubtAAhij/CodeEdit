@@ -183,7 +183,7 @@ private extension GeneralSettingsView {
 
     var afterWindowsCloseBehaviour: some View {
         Picker(
-            "After the last window is closed",
+            String(localized: "settings.after_last_window_closed", comment: "Settings picker label"),
             selection: $settings.reopenWindowAfterClose
         ) {
             Text("Do nothing")
@@ -208,7 +208,7 @@ private extension GeneralSettingsView {
     }
 
     var findNavigatorDetail: some View {
-        Picker("Find Navigator Detail", selection: $settings.findNavigatorDetail) {
+        Picker(String(localized: "general_settings.find_navigator_detail", comment: "Label for find navigator detail setting"), selection: $settings.findNavigatorDetail) {
             ForEach(SettingsData.NavigatorDetail.allCases, id: \.self) { tag in
                 Text(tag.label).tag(tag)
             }
@@ -217,7 +217,7 @@ private extension GeneralSettingsView {
 
     // TODO: Implement reflecting Issue Navigator Detail preference and remove disabled modifier
     var issueNavigatorDetail: some View {
-        Picker("Issue Navigator Detail", selection: $settings.issueNavigatorDetail) {
+        Picker(String(localized: "general_settings.issue_navigator_detail", comment: "Label for issue navigator detail setting"), selection: $settings.issueNavigatorDetail) {
             ForEach(SettingsData.NavigatorDetail.allCases, id: \.self) { tag in
                 Text(tag.label).tag(tag)
             }
@@ -227,7 +227,7 @@ private extension GeneralSettingsView {
 
     // TODO: Implement reset for Don't Ask Me warnings Button and remove disabled modifier
     var dialogWarnings: some View {
-        LabeledContent("Dialog Warnings") {
+        LabeledContent(String(localized: "general_settings.dialog_warnings", comment: "Label for dialog warnings section")) {
             Button(action: {
             }, label: {
                 Text("Reset \"Don't Ask Me\" Warnings")
@@ -238,9 +238,9 @@ private extension GeneralSettingsView {
     }
 
     var shellCommand: some View {
-        LabeledContent("'codeedit' Shell Command") {
+        LabeledContent(String(localized: "general_settings.codeedit_shell_command", comment: "Label for codeedit shell command section")) {
             Button(action: installShellCommand, label: {
-                Text("Install")
+                Text(String(localized: "general_settings.install", comment: "Install button text"))
             })
             .disabled(true)
             .buttonStyle(.bordered)
@@ -283,11 +283,11 @@ private extension GeneralSettingsView {
     var updateChecker: some View {
         Section {
             LabeledContent {
-                Button("Check Now") {
+                Button(String(localized: "general_settings.check_now", comment: "Button to check for updates now")) {
                     updater.checkForUpdates()
                 }
             } label: {
-                Text("Check for updates")
+                Text(String(localized: "general_settings.check_for_updates", comment: "Label for check for updates section"))
                 Text("Last checked: \(lastUpdatedString)")
 
             }
@@ -295,15 +295,15 @@ private extension GeneralSettingsView {
     }
 
     var autoUpdateToggle: some View {
-        Toggle("Automatically check for app updates", isOn: $updater.automaticallyChecksForUpdates)
+        Toggle(String(localized: "general_settings.auto_check_updates", comment: "Toggle for automatic update checking"), isOn: $updater.automaticallyChecksForUpdates)
     }
 
     var prereleaseToggle: some View {
-        Toggle("Include pre-release versions", isOn: $updater.includePrereleaseVersions)
+        Toggle(String(localized: "general_settings.include_prerelease", comment: "Toggle for including pre-release versions"), isOn: $updater.includePrereleaseVersions)
     }
 
     var autoSave: some View {
-        Toggle("Automatically save changes to disk", isOn: $settings.isAutoSaveOn)
+        Toggle(String(localized: "general_settings.auto_save", comment: "Toggle for automatic saving"), isOn: $settings.isAutoSaveOn)
     }
 
     // MARK: - Preference Views
@@ -312,7 +312,7 @@ private extension GeneralSettingsView {
         if let lastUpdatedDate = updater.lastUpdateCheckDate {
             return Self.formatter.string(from: lastUpdatedDate)
         } else {
-            return "Never"
+            return String(localized: "general_settings.never", comment: "Never option")
         }
     }
 
@@ -363,7 +363,7 @@ private extension GeneralSettingsView {
     }
 
     var revealFileOnFocusChangeToggle: some View {
-        Toggle("Automatically reveal in project navigator", isOn: $settings.revealFileOnFocusChange)
+        Toggle(String(localized: "general_settings.auto_reveal_in_navigator", comment: "Toggle for automatic reveal in project navigator"), isOn: $settings.revealFileOnFocusChange)
     }
 
     private static let formatter = configure(DateFormatter()) {

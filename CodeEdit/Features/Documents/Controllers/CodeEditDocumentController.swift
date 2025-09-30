@@ -161,8 +161,8 @@ extension NSDocumentController {
                     guard let document else {
                         let alert = NSAlert()
                         alert.messageText = NSLocalizedString(
-                            "Failed to get document",
-                            comment: "Failed to get document"
+                            String(localized: "document_controller.error.failed_to_get_document", comment: "Error message when unable to retrieve document"),
+                            comment: String(localized: "document_controller.error.failed_to_get_document", comment: "Error message when unable to retrieve document")
                         )
                         alert.runModal()
                         return

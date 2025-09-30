@@ -21,7 +21,7 @@ struct UtilityAreaOutputView: View {
             case .languageServer(let source):
                 "Language Server - \(source.id)"
             case .devOutput:
-                "Internal Development Output"
+                String(localized: "utility_area.output.internal_dev_output", comment: "Title for internal development output source")
             }
         }
 

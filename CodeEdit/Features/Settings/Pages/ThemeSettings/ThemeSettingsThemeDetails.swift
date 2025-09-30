@@ -39,11 +39,11 @@ struct ThemeSettingsThemeDetails: View {
                 Group {
                     Section {
                         TextField("Name", text: $theme.displayName)
-                        TextField("Author", text: $theme.author)
-                        Picker("Type", selection: $theme.appearance) {
-                            Text("Light")
+                        TextField(String(localized: "theme_settings.author", comment: "Label for theme author field"), text: $theme.author)
+                        Picker(String(localized: "theme_settings.type", comment: "Label for theme type picker"), selection: $theme.appearance) {
+                            Text(String(localized: "theme_settings.appearance.light", comment: "Light theme appearance option"))
                                 .tag(Theme.ThemeType.light)
-                            Text("Dark")
+                            Text(String(localized: "theme_settings.appearance.dark", comment: "Dark theme appearance option"))
                                 .tag(Theme.ThemeType.dark)
                         }
                     }
@@ -53,7 +53,7 @@ struct ThemeSettingsThemeDetails: View {
                             color: $theme.editor.text.swiftColor
                         )
                         SettingsColorPicker(
-                            "Cursor",
+                            String(localized: "theme_settings.text.cursor", comment: "Label for cursor color setting"),
                             color: $theme.editor.insertionPoint.swiftColor
                         )
                         SettingsColorPicker(
@@ -61,87 +61,87 @@ struct ThemeSettingsThemeDetails: View {
                             color: $theme.editor.invisibles.swiftColor
                         )
                     }
-                    Section("Background") {
+                    Section(String(localized: "theme_settings.background.section", comment: "Background section header")) {
                         SettingsColorPicker(
-                            "Background",
+                            String(localized: "theme_settings.background.color", comment: "Label for background color setting"),
                             color: $theme.editor.background.swiftColor
                         )
                         SettingsColorPicker(
-                            "Current Line",
+                            String(localized: "theme_settings.background.current_line", comment: "Label for current line color setting"),
                             color: $theme.editor.lineHighlight.swiftColor
                         )
                         SettingsColorPicker(
-                            "Selection",
+                            String(localized: "theme_settings.background.selection", comment: "Label for selection color setting"),
                             color: $theme.editor.selection.swiftColor
                         )
                     }
-                    Section("Tokens") {
+                    Section(String(localized: "theme_settings.tokens.section", comment: "Tokens section header")) {
                         VStack(spacing: 0) {
                             ThemeSettingsThemeToken(
-                                "Keywords",
+                                String(localized: "theme_settings.tokens.keywords", comment: "Label for keywords token setting"),
                                 color: $theme.editor.keywords.swiftColor,
                                 bold: $theme.editor.keywords.bold,
                                 italic: $theme.editor.keywords.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Commands",
+                                String(localized: "theme_settings.tokens.commands", comment: "Label for commands token setting"),
                                 color: $theme.editor.commands.swiftColor,
                                 bold: $theme.editor.commands.bold,
                                 italic: $theme.editor.commands.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Types",
+                                String(localized: "theme_settings.tokens.types", comment: "Label for types token setting"),
                                 color: $theme.editor.types.swiftColor,
                                 bold: $theme.editor.types.bold,
                                 italic: $theme.editor.types.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Attributes",
+                                String(localized: "theme_settings.tokens.attributes", comment: "Label for attributes token setting"),
                                 color: $theme.editor.attributes.swiftColor,
                                 bold: $theme.editor.attributes.bold,
                                 italic: $theme.editor.attributes.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Variables",
+                                String(localized: "theme_settings.tokens.variables", comment: "Label for variables token setting"),
                                 color: $theme.editor.variables.swiftColor,
                                 bold: $theme.editor.variables.bold,
                                 italic: $theme.editor.variables.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Values",
+                                String(localized: "theme_settings.tokens.values", comment: "Label for values token setting"),
                                 color: $theme.editor.values.swiftColor,
                                 bold: $theme.editor.values.bold,
                                 italic: $theme.editor.values.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Numbers",
+                                String(localized: "theme_settings.tokens.numbers", comment: "Label for numbers token setting"),
                                 color: $theme.editor.numbers.swiftColor,
                                 bold: $theme.editor.numbers.bold,
                                 italic: $theme.editor.numbers.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Strings",
+                                String(localized: "theme_settings.tokens.strings", comment: "Label for strings token setting"),
                                 color: $theme.editor.strings.swiftColor,
                                 bold: $theme.editor.strings.bold,
                                 italic: $theme.editor.strings.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Characters",
+                                String(localized: "theme_settings.tokens.characters", comment: "Label for characters token setting"),
                                 color: $theme.editor.characters.swiftColor,
                                 bold: $theme.editor.characters.bold,
                                 italic: $theme.editor.characters.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Comments",
+                                String(localized: "theme_settings.tokens.comments", comment: "Label for comments token setting"),
                                 color: $theme.editor.comments.swiftColor,
                                 bold: $theme.editor.comments.bold,
                                 italic: $theme.editor.comments.italic

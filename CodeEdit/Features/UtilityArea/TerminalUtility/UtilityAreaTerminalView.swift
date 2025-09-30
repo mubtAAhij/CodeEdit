@@ -150,7 +150,7 @@ struct UtilityAreaTerminalView: View {
                     } label: {
                         Image(systemName: "square.split.2x1")
                     }
-                    .help("Implementation Needed")
+                    .help(String(localized: "terminal.feature_not_implemented", comment: "Tooltip for unimplemented terminal feature"))
                     .disabled(true)
                 }
             }

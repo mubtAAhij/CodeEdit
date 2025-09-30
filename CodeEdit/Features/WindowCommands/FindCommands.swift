@@ -18,34 +18,34 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Find") {
+        CommandMenu(String(localized: "find_commands.find", comment: "Find menu title")) {
             Group {
-                Button("Find...") {
+                Button(String(localized: "find_commands.find_ellipsis", comment: "Menu item to show find panel")) {
                     send(.showFindPanel)
                 }
                 .keyboardShortcut("f")
 
-                Button("Find and Replace...") {
+                Button(String(localized: "find_commands.find_and_replace", comment: "Menu item to show find and replace panel")) {
                     send(.init(rawValue: 12)!)
                 }
                 .keyboardShortcut("f", modifiers: [.option, .command])
 
-                Button("Find Next") {
+                Button(String(localized: "find_commands.find_next", comment: "Menu item to find next occurrence")) {
                     send(.next)
                 }
                 .keyboardShortcut("g")
 
-                Button("Find Previous") {
+                Button(String(localized: "find_commands.find_previous", comment: "Menu item to find previous occurrence")) {
                     send(.previous)
                 }
                 .keyboardShortcut("g", modifiers: [.shift, .command])
 
-                Button("Use Selection for Find") {
+                Button(String(localized: "find_commands.use_selection_for_find", comment: "Menu item to use current selection as find term")) {
                     send(.setFindString)
                 }
                 .keyboardShortcut("e")
 
-                Button("Jump to Selection") {
+                Button(String(localized: "find_commands.jump_to_selection", comment: "Menu item to jump to current selection")) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j")

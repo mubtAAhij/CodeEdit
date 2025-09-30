@@ -164,7 +164,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "theme.export", comment: "Export theme button text")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in

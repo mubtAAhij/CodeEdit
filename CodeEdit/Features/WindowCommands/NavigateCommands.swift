@@ -43,13 +43,13 @@ struct NavigateCommands: Commands {
 
             }
             Group {
-                Button("Show Previous Tab") {
+                Button(String(localized: "navigate.show_previous_tab", comment: "Menu item to show previous tab")) {
                     editor?.selectPreviousTab()
                 }
                 .keyboardShortcut("{", modifiers: [.command])
                 .disabled(editor?.tabs.count ?? 0 <= 1)  // Disable if there's one or no tabs
 
-                Button("Show Next Tab") {
+                Button(String(localized: "navigate.show_next_tab", comment: "Menu item to show next tab")) {
                     editor?.selectNextTab()
                 }
                 .keyboardShortcut("}", modifiers: [.command])
@@ -58,12 +58,12 @@ struct NavigateCommands: Commands {
             Group {
                 Divider()
 
-                Button("Go Forward") {
+                Button(String(localized: "navigate.go_forward", comment: "Menu item to go forward in history")) {
                     editor?.goForwardInHistory()
                 }
                 .disabled(!(editor?.canGoForwardInHistory ?? false))
 
-                Button("Go Back") {
+                Button(String(localized: "navigate.go_back", comment: "Menu item to go back in history")) {
                     editor?.goBackInHistory()
                 }
                 .disabled(!(editor?.canGoBackInHistory ?? false))

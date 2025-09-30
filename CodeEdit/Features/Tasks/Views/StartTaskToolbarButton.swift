@@ -29,7 +29,7 @@ struct StartTaskToolbarButton: View {
             workspace.utilityAreaModel?.selectedTab = .debugConsole
             taskManager.taskShowingOutput = taskManager.selectedTaskID
         } label: {
-            Label("Start", systemImage: "play.fill")
+            Label(String(localized: "task.start", comment: "Start task button label"), systemImage: "play.fill")
                 .labelStyle(.iconOnly)
                 .opacity(activeState == .inactive ? 0.5 : 1.0)
                 .font(.system(size: 18, weight: .regular))

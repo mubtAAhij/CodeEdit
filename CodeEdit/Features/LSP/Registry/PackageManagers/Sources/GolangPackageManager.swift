@@ -69,7 +69,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "package_manager.step.initialize_directory", comment: "Step name for initializing directory structure"),
             confirmation: .none
         ) { model in
             try await model.createDirectoryStructure(for: packagePath)
@@ -90,7 +90,7 @@ final class GolangPackageManager: PackageManagerProtocol {
     func runGoInstall(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         let installCommand = getGoInstallCommand(source)
         return PackageManagerInstallStep(
-            name: "Install Package Using go",
+            name: String(localized: "golang_package_manager.install.title", comment: "Title for Go package installation step"),
             confirmation: .required(
                 message: "This requires installing the go package \(installCommand)."
                 + "\nAllow CodeEdit to install this package?"
@@ -108,7 +108,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func buildBinary(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Build From Source",
+            name: String(localized: "golang_package_manager.build.title", comment: "Title for building Go package from source"),
             confirmation: .none
         ) { model in
             // If there's a subpath, build the binary
