@@ -23,7 +23,7 @@ final class ProjectNavigatorMenu: NSMenu {
 
     init(_ sender: ProjectNavigatorViewController) {
         self.sender = sender
-        super.init(title: "Options")
+        super.init(title: String(localized: "project_navigator.menu.options", comment: "Project navigator context menu title"))
     }
 
     @available(*, unavailable)
@@ -48,49 +48,49 @@ final class ProjectNavigatorMenu: NSMenu {
     /// - Menu items get added depending on the amount of selected items.
     private func setupMenu() { // swiftlint:disable:this function_body_length
         guard let item else { return }
-        let showInFinder = menuItem("Show in Finder", action: #selector(showInFinder))
+        let showInFinder = menuItem(String(localized: "project_navigator.menu.show_in_finder", comment: "Menu item to reveal file in Finder"), action: #selector(showInFinder))
 
-        let openInTab = menuItem("Open in Tab", action: #selector(openInTab))
-        let openInNewWindow = menuItem("Open in New Window", action: nil)
-        let openExternalEditor = menuItem("Open with External Editor", action: #selector(openWithExternalEditor))
-        let openAs = menuItem("Open As", action: nil)
+        let openInTab = menuItem(String(localized: "project_navigator.menu.open_in_tab", comment: "Menu item to open file in new tab"), action: #selector(openInTab))
+        let openInNewWindow = menuItem(String(localized: "project_navigator.menu.open_in_new_window", comment: "Menu item to open file in new window"), action: nil)
+        let openExternalEditor = menuItem(String(localized: "project_navigator.menu.open_with_external_editor", comment: "Menu item to open file with external editor"), action: #selector(openWithExternalEditor))
+        let openAs = menuItem(String(localized: "project_navigator.menu.open_as", comment: "Menu item to open file as different type"), action: nil)
 
-        let copyPath = menuItem("Copy Path", action: #selector(copyPath))
-        let copyRelativePath = menuItem("Copy Relative Path", action: #selector(copyRelativePath))
+        let copyPath = menuItem(String(localized: "project_navigator.menu.copy_path", comment: "Menu item to copy file path"), action: #selector(copyPath))
+        let copyRelativePath = menuItem(String(localized: "project_navigator.menu.copy_relative_path", comment: "Menu item to copy relative file path"), action: #selector(copyRelativePath))
 
-        let showFileInspector = menuItem("Show File Inspector", action: nil)
+        let showFileInspector = menuItem(String(localized: "project_navigator.menu.show_file_inspector", comment: "Menu item to show file inspector"), action: nil)
 
-        let newFile = menuItem("New File...", action: #selector(newFile))
+        let newFile = menuItem(String(localized: "project_navigator.menu.new_file", comment: "Menu item to create new file"), action: #selector(newFile))
         let newFileFromClipboard = menuItem(
-            "New File from Clipboard",
+            String(localized: "project_navigator.menu.new_file_from_clipboard", comment: "Menu item to create new file from clipboard"),
             action: #selector(newFileFromClipboard),
             key: "v"
         )
         newFileFromClipboard.keyEquivalentModifierMask = [.command]
-        let newFolder = menuItem("New Folder", action: #selector(newFolder))
+        let newFolder = menuItem(String(localized: "project_navigator.menu.new_folder", comment: "Menu item to create new folder"), action: #selector(newFolder))
 
-        let rename = menuItem("Rename", action: #selector(renameFile))
+        let rename = menuItem(String(localized: "rename", comment: "Rename menu item"), action: #selector(renameFile))
 
-        let trash = menuItem("Move to Trash", action:
+        let trash = menuItem(String(localized: "move_to_trash", comment: "Move to Trash menu item"), action:
                                 item.url != workspace?.workspaceFileManager?.folderUrl
                               ? #selector(trash) : nil)
 
         // trash has to be the previous menu item for delete.isAlternate to work correctly
-        let delete = menuItem("Delete Immediately...", action:
+        let delete = menuItem(String(localized: "delete_immediately", comment: "Delete Immediately menu item"), action:
                                 item.url != workspace?.workspaceFileManager?.folderUrl
                               ? #selector(delete) : nil)
         delete.keyEquivalentModifierMask = .option
         delete.isAlternate = true
 
-        let duplicate = menuItem("Duplicate \(item.isFolder ? "Folder" : "File")", action: #selector(duplicate))
+        let duplicate = menuItem(String(localized: "duplicate_item", comment: "Duplicate item menu").replacingOccurrences(of: "{type}", with: item.isFolder ? String(localized: "folder", comment: "Folder type") : String(localized: "file", comment: "File type"))), action: #selector(duplicate))
 
-        let sortByName = menuItem("Sort by Name", action: nil)
+        let sortByName = menuItem(String(localized: "sort_by_name", comment: "Sort by Name menu item"), action: nil)
         sortByName.isEnabled = item.isFolder
 
-        let sortByType = menuItem("Sort by Type", action: nil)
+        let sortByType = menuItem(String(localized: "sort_by_type", comment: "Sort by Type menu item"), action: nil)
         sortByType.isEnabled = item.isFolder
 
-        let sourceControl = menuItem("Source Control", action: nil)
+        let sourceControl = menuItem(String(localized: "source_control", comment: "Source Control menu item"), action: nil)
 
         items = [
             showInFinder,
@@ -111,7 +111,7 @@ final class ProjectNavigatorMenu: NSMenu {
         ]
 
         if canCreateFolderFromSelection() {
-            items.append(menuItem("New Folder from Selection", action: #selector(newFolderFromSelection)))
+            items.append(menuItem(String(localized: "new_folder_from_selection", comment: "New Folder from Selection menu item"), action: #selector(newFolderFromSelection)))
         }
         items.append(NSMenuItem.separator())
         if selectedItems().count == 1 {
@@ -137,7 +137,7 @@ final class ProjectNavigatorMenu: NSMenu {
 
     /// Submenu for **Open As** menu item.
     private func openAsMenu(item: CEWorkspaceFile) -> NSMenu {
-        let openAsMenu = NSMenu(title: "Open As")
+        let openAsMenu = NSMenu(title: String(localized: "open_as", comment: "Open As menu title"))
         func getMenusItems() -> ([NSMenuItem], [NSMenuItem]) {
             // Use UTType to distinguish between bundle file and user-browsable directory
             // The isDirectory property is not accurate on this.
@@ -153,13 +153,13 @@ final class ProjectNavigatorMenu: NSMenu {
                 primaryItems.append(.propertyList())
             }
             if type.conforms(to: UTType(filenameExtension: "xcassets")!) {
-                primaryItems.append(NSMenuItem(title: "Asset Catalog Document", action: nil, keyEquivalent: ""))
+                primaryItems.append(NSMenuItem(title: String(localized: "asset_catalog_document", comment: "Asset Catalog Document menu item"), action: nil, keyEquivalent: ""))
             }
             if type.conforms(to: UTType(filenameExtension: "xib")!) {
-                primaryItems.append(NSMenuItem(title: "Interface Builder XIB Document", action: nil, keyEquivalent: ""))
+                primaryItems.append(NSMenuItem(title: String(localized: "interface_builder_xib_document", comment: "Interface Builder XIB Document menu item"), action: nil, keyEquivalent: ""))
             }
             if type.conforms(to: UTType(filenameExtension: "xcodeproj")!) {
-                primaryItems.append(NSMenuItem(title: "Xcode Project", action: nil, keyEquivalent: ""))
+                primaryItems.append(NSMenuItem(title: String(localized: "xcode_project", comment: "Xcode Project menu item"), action: nil, keyEquivalent: ""))
             }
             var secondaryItems = [NSMenuItem]()
             if type.conforms(to: .text) {
@@ -189,17 +189,17 @@ final class ProjectNavigatorMenu: NSMenu {
 
     /// Submenu for **Source Control** menu item.
     private func sourceControlMenu(item: CEWorkspaceFile) -> NSMenu {
-        let sourceControlMenu = NSMenu(title: "Source Control")
+        let sourceControlMenu = NSMenu(title: String(localized: "source_control", comment: "Source Control menu title"))
         sourceControlMenu.addItem(
-            withTitle: "Commit \"\(String(describing: item.fileName()))\"...",
+            withTitle: String(localized: "commit_file", comment: "Commit file menu item").replacingOccurrences(of: "{filename}", with: String(describing: item.fileName())),
             action: nil,
             keyEquivalent: ""
         )
         sourceControlMenu.addItem(.separator())
-        sourceControlMenu.addItem(withTitle: "Discard Changes...", action: nil, keyEquivalent: "")
+        sourceControlMenu.addItem(withTitle: String(localized: "discard_changes", comment: "Discard Changes menu item"), action: nil, keyEquivalent: "")
         sourceControlMenu.addItem(.separator())
-        sourceControlMenu.addItem(withTitle: "Add Selected Files", action: nil, keyEquivalent: "")
-        sourceControlMenu.addItem(withTitle: "Mark Selected Files as Resolved", action: nil, keyEquivalent: "")
+        sourceControlMenu.addItem(withTitle: String(localized: "add_selected_files", comment: "Add Selected Files menu item"), action: nil, keyEquivalent: "")
+        sourceControlMenu.addItem(withTitle: String(localized: "mark_selected_files_as_resolved", comment: "Mark Selected Files as Resolved menu item"), action: nil, keyEquivalent: "")
 
         return sourceControlMenu
     }
@@ -213,28 +213,28 @@ final class ProjectNavigatorMenu: NSMenu {
 
 extension NSMenuItem {
     fileprivate static func none() -> NSMenuItem {
-        let item = NSMenuItem(title: "<None>", action: nil, keyEquivalent: "")
+        let item = NSMenuItem(title: String(localized: "none", comment: "None option"), action: nil, keyEquivalent: "")
         item.isEnabled = false
         return item
     }
 
     fileprivate static func sourceCode() -> NSMenuItem {
-        NSMenuItem(title: "Source Code", action: nil, keyEquivalent: "")
+        NSMenuItem(title: String(localized: "menu.openAs.sourceCode", comment: "Open as source code menu item"), action: nil, keyEquivalent: "")
     }
 
     fileprivate static func propertyList() -> NSMenuItem {
-        NSMenuItem(title: "Property List", action: nil, keyEquivalent: "")
+        NSMenuItem(title: String(localized: "menu.openAs.propertyList", comment: "Open as property list menu item"), action: nil, keyEquivalent: "")
     }
 
     fileprivate static func asciiPropertyList() -> NSMenuItem {
-        NSMenuItem(title: "ASCII Property List", action: nil, keyEquivalent: "")
+        NSMenuItem(title: String(localized: "menu.openAs.asciiPropertyList", comment: "Open as ASCII property list menu item"), action: nil, keyEquivalent: "")
     }
 
     fileprivate static func hex() -> NSMenuItem {
-        NSMenuItem(title: "Hex", action: nil, keyEquivalent: "")
+        NSMenuItem(title: String(localized: "menu.openAs.hex", comment: "Open as hex editor menu item"), action: nil, keyEquivalent: "")
     }
 
     fileprivate static func quickLook() -> NSMenuItem {
-        NSMenuItem(title: "Quick Look", action: nil, keyEquivalent: "")
+        NSMenuItem(title: String(localized: "menu.openAs.quickLook", comment: "Open with Quick Look menu item"), action: nil, keyEquivalent: "")
     }
 }
