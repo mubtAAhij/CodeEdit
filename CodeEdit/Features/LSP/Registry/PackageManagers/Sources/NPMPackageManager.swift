@@ -65,7 +65,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "npm_package_manager.initialize.title", comment: "Title for npm directory initialization step"), confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -109,10 +109,10 @@ final class NPMPackageManager: PackageManagerProtocol {
         let packagesDescription = packageList.joined(separator: ", ")
 
         let sSuffix = packageList.count > 1 ? "s" : ""
-        let suffix = plural ? "these packages" : "this package"
+        let suffix = plural ? String(localized: "npm_package_manager.install.plural_packages", comment: "Plural form for multiple packages") : String(localized: "npm_package_manager.install.singular_package", comment: "Singular form for one package")
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: String(localized: "npm_package_manager.install.title", comment: "Title for npm package installation step"),
             confirmation: .required(
                 message: "This requires the npm package\(sSuffix) \(packagesDescription)."
                 + "\nAllow CodeEdit to install \(suffix)?"
@@ -150,7 +150,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "npm_package_manager.verify.title", comment: "Title for npm installation verification step"),
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path
