@@ -40,7 +40,7 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme.extensions_folder", comment: "Name of the extensions folder"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -164,7 +164,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "theme.export_button", comment: "Button label for exporting themes")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in

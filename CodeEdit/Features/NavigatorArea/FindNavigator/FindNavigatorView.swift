@@ -65,8 +65,8 @@ struct FindNavigatorView: View {
             case .found:
                 if self.searchResultCount == 0 {
                     CEContentUnavailableView(
-                        "No Results",
-                        description: "No Results for \"\(state.searchQuery)\" in Project",
+                        String(localized: "find_navigator_no_results", comment: "Title shown when no search results are found"),
+                        description: String(localized: "find_navigator_no_results_for_query", defaultValue: "No Results for \"\(state.searchQuery)\" in Project", comment: "Description shown when no search results are found for a specific query"),
                         systemImage: "exclamationmark.magnifyingglass"
                     )
                 } else {
@@ -74,13 +74,13 @@ struct FindNavigatorView: View {
                 }
             case .replaced(let updatedFiles):
                 CEContentUnavailableView(
-                    "Replaced",
-                    description: "Successfully replaced terms across \(updatedFiles) files",
+                    String(localized: "find_navigator_replaced", comment: "Title shown when replacement operation is complete"),
+                    description: String(localized: "find_navigator_replacement_success", defaultValue: "Successfully replaced terms across \(updatedFiles) files", comment: "Description shown when replacement operation completes successfully"),
                     systemImage: "checkmark.circle.fill"
                 )
             case .failed(let errorMessage):
                 CEContentUnavailableView(
-                    "An Error Occurred",
+                    String(localized: "find_navigator_error_occurred", comment: "Title shown when an error occurs during search or replace"),
                     description: "\(errorMessage)",
                     systemImage: "xmark.octagon.fill"
                 )

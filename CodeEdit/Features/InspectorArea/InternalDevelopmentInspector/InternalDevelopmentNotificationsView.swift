@@ -48,18 +48,18 @@ struct InternalDevelopmentNotificationsView: View {
     ]
 
     private let availableColors: [(String, Color)] = [
-        ("Red", .red), ("Orange", .orange), ("Yellow", .yellow),
-        ("Green", .green), ("Mint", .mint), ("Cyan", .cyan),
-        ("Teal", .teal), ("Blue", .blue), ("Indigo", .indigo),
-        ("Purple", .purple), ("Pink", .pink), ("Gray", .gray)
+        (String(localized: "internal_development.notifications.color.red", comment: "Red color option"), .red), (String(localized: "internal_development.notifications.color.orange", comment: "Orange color option"), .orange), (String(localized: "internal_development.notifications.color.yellow", comment: "Yellow color option"), .yellow),
+        (String(localized: "internal_development.notifications.color.green", comment: "Green color option"), .green), (String(localized: "internal_development.notifications.color.mint", comment: "Mint color option"), .mint), (String(localized: "internal_development.notifications.color.cyan", comment: "Cyan color option"), .cyan),
+        (String(localized: "internal_development.notifications.color.teal", comment: "Teal color option"), .teal), (String(localized: "internal_development.notifications.color.blue", comment: "Blue color option"), .blue), (String(localized: "internal_development.notifications.color.indigo", comment: "Indigo color option"), .indigo),
+        (String(localized: "internal_development.notifications.color.purple", comment: "Purple color option"), .purple), (String(localized: "internal_development.notifications.color.pink", comment: "Pink color option"), .pink), (String(localized: "internal_development.notifications.color.gray", comment: "Gray color option"), .gray)
     ]
 
     var body: some View {
-        Section("Notifications") {
-            Toggle("Delay 5s", isOn: $delay)
-            Toggle("Sticky", isOn: $sticky)
+        Section(String(localized: "internal_development.notifications.section_title", comment: "Notifications section title")) {
+            Toggle(String(localized: "internal_development.notifications.delay_5s", comment: "Delay notification by 5 seconds"), isOn: $delay)
+            Toggle(String(localized: "internal_development.notifications.sticky", comment: "Make notification sticky"), isOn: $sticky)
 
-            Picker("Icon Type", selection: $selectedIconType) {
+            Picker(String(localized: "internal_development.notifications.icon_type", comment: "Icon type picker"), selection: $selectedIconType) {
                 ForEach(IconType.allCases, id: \.self) { type in
                     Text(type.rawValue).tag(type)
                 }
@@ -69,7 +69,7 @@ struct InternalDevelopmentNotificationsView: View {
                 switch selectedIconType {
                 case .symbol:
                     Picker("Symbol", selection: $selectedSymbol) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "internal_development.notifications.random", comment: "Random selection option"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableSymbols, id: \.self) { symbol in
                             Label(symbol, systemImage: symbol).tag(symbol as String?)
@@ -77,7 +77,7 @@ struct InternalDevelopmentNotificationsView: View {
                     }
                 case .emoji:
                     Picker("Emoji", selection: $selectedEmoji) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "internal_development.notifications.random", comment: "Random selection option"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableEmojis, id: \.self) { emoji in
                             Text(emoji).tag(emoji as String?)
@@ -85,7 +85,7 @@ struct InternalDevelopmentNotificationsView: View {
                     }
                 case .text:
                     Picker("Text", selection: $selectedText) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "internal_development.notifications.random", comment: "Random selection option"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach("ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { String($0) }, id: \.self) { letter in
                             Text(letter).tag(letter as String?)
@@ -93,7 +93,7 @@ struct InternalDevelopmentNotificationsView: View {
                     }
                 case .image:
                     Picker("Image", selection: $selectedImage) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                        Label(String(localized: "internal_development.notifications.random", comment: "Random selection option"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableImages, id: \.self) { image in
                             Text(image).tag(image as String?)
@@ -102,8 +102,8 @@ struct InternalDevelopmentNotificationsView: View {
                 }
 
                 if selectedIconType == .symbol || selectedIconType == .text || selectedIconType == .emoji {
-                    Picker("Icon Color", selection: $selectedColor) {
-                        Label("Random", systemImage: "dice").tag(nil as Color?)
+                    Picker(String(localized: "internal_development.notifications.icon_color", comment: "Icon color picker"), selection: $selectedColor) {
+                        Label(String(localized: "internal_development.notifications.random", comment: "Random selection option"), systemImage: "dice").tag(nil as Color?)
                         Divider()
                         ForEach(availableColors, id: \.0) { name, color in
                             HStack {
@@ -117,12 +117,12 @@ struct InternalDevelopmentNotificationsView: View {
                 }
             }
 
-            TextField("Title", text: $notificationTitle)
-            TextField("Description", text: $notificationDescription, axis: .vertical)
+            TextField(String(localized: "internal_development.notifications.title_placeholder", comment: "Title text field placeholder"), text: $notificationTitle)
+            TextField(String(localized: "internal_development.notifications.description_placeholder", comment: "Description text field placeholder"), text: $notificationDescription, axis: .vertical)
                 .lineLimit(1...5)
-            TextField("Action Button", text: $actionButtonText)
+            TextField(String(localized: "internal_development.notifications.action_button_placeholder", comment: "Action button text field placeholder"), text: $actionButtonText)
 
-            Button("Add Notification") {
+            Button(String(localized: "internal_development.notifications.add_notification", comment: "Add notification button")) {
                 let action = {
                     switch selectedIconType {
                     case .symbol:

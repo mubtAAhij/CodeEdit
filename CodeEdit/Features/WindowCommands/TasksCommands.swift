@@ -20,21 +20,21 @@ struct TasksCommands: Commands {
     @State private var statusListener: AnyCancellable?
 
     var body: some Commands {
-        CommandMenu("Tasks") {
+        CommandMenu(String(localized: "tasks", comment: "Tasks menu title")) {
             let selectedTaskName: String = if let selectedTask = taskManager?.selectedTask {
                 "\"" + selectedTask.name + "\""
             } else {
-                "(No Selected Task)"
+                String(localized: "no_selected_task", comment: "Text shown when no task is selected")
             }
 
-            Button("Run \(selectedTaskName)", systemImage: "play.fill") {
+            Button(String(localized: "run_task", comment: "Menu item to run a specific task", arguments: [selectedTaskName]), systemImage: "play.fill") {
                 taskManager?.executeActiveTask()
                 showOutput()
             }
             .keyboardShortcut("R")
             .disabled(taskManager?.selectedTaskID == nil)
 
-            Button("Stop \(selectedTaskName)", systemImage: "stop.fill") {
+            Button(String(localized: "tasks.stop_task", defaultValue: "Stop \(selectedTaskName)", comment: "Menu item to stop a specific task"), systemImage: "stop.fill") {
                 taskManager?.terminateActiveTask()
             }
             .keyboardShortcut(".")
@@ -45,7 +45,7 @@ struct TasksCommands: Commands {
             }
             .disabled(activeTaskStatus != .running)
 
-            Button("Show \(selectedTaskName) Output") {
+            Button(String(localized: "tasks.show_task_output", defaultValue: "Show \(selectedTaskName) Output", comment: "Menu item to show output for a specific task")) {
                 showOutput()
             }
             // Disable when there's no output yet
@@ -63,16 +63,16 @@ struct TasksCommands: Commands {
                 }
 
                 if taskManager?.availableTasks.isEmpty ?? true {
-                    Button("Create Tasks") {
+                    Button(String(localized: "tasks.create_tasks", defaultValue: "Create Tasks", comment: "Menu item to create new tasks")) {
                         openSettings()
                     }
                 }
             } label: {
-                Text("Choose Task...")
+                Text(String(localized: "tasks.choose_task", defaultValue: "Choose Task...", comment: "Menu item to choose a task"))
             }
             .disabled(taskManager?.availableTasks.isEmpty == true)
 
-            Button("Manage Tasks...") {
+            Button(String(localized: "tasks.manage_tasks", defaultValue: "Manage Tasks...", comment: "Menu item to manage tasks")) {
                 openSettings()
             }
             .disabled(windowController == nil)
