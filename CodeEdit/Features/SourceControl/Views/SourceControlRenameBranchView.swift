@@ -22,11 +22,11 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent(String(localized: "from", comment: "From branch label"), value: branch.name)
+                        TextField(String(localized: "to", comment: "To branch label"), text: $name)
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text(String(localized: "rename_branch", comment: "Rename branch title"))
+                        Text(String(localized: "uncommited_changes_preserved_message", comment: "Message about preserving uncommitted changes"))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +38,13 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "cancel", comment: "Cancel button"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text(String(localized: "rename", comment: "Rename button"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +67,7 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "failed_to_create_branch", comment: "Error message when branch creation fails"),
                     error: error
                 )
             }
