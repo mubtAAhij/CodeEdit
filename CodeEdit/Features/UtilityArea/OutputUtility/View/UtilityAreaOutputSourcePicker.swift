@@ -24,9 +24,9 @@ struct UtilityAreaOutputSourcePicker: View {
     @State private var languageServerClients: [LSPService.LanguageServerType] = []
 
     var body: some View {
-        Picker("Output Source", selection: $selectedSource) {
+        Picker(String(localized: "output.source_picker.title", comment: "Output source picker title"), selection: $selectedSource) {
             if selectedSource == nil {
-                Text("No Selected Output Source")
+                Text(String(localized: "output.source_picker.no_selection", comment: "Message when no output source is selected"))
                     .italic()
                     .tag(Sources?.none)
                 Divider()
