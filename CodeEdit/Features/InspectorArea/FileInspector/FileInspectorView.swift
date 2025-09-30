@@ -47,14 +47,14 @@ struct FileInspectorView: View {
         Group {
             if file != nil {
                 Form {
-                    Section("Identity and Type") {
+                    Section(String(localized: "inspector.file.identity_and_type", comment: "File inspector section for identity and type")) {
                         fileNameField
                         fileType
                     }
                     Section {
                         location
                     }
-                    Section("Text Settings") {
+                    Section(String(localized: "inspector.file.text_settings", comment: "File inspector section for text settings")) {
                         indentUsing
                         widthOptions
                         wrapLinesToggle
@@ -83,7 +83,7 @@ struct FileInspectorView: View {
 
     @ViewBuilder private var fileNameField: some View {
         if let file {
-            TextField("Name", text: $fileName)
+            TextField(String(localized: "inspector.file.name", comment: "File name field"), text: $fileName)
                 .background(
                     fileName != file.fileName() && !file.validateFileName(for: fileName) ? Color(errorRed) : Color.clear
                 )
@@ -117,10 +117,10 @@ struct FileInspectorView: View {
 
     @ViewBuilder private var fileType: some View {
         Picker(
-            "Type",
+            String(localized: "inspector.file.type", comment: "File type picker"),
             selection: $language
         ) {
-            Text("Default - Detected").tag(nil as CodeLanguage?)
+            Text(String(localized: "inspector.file.default_detected", comment: "Default detected file type option")).tag(nil as CodeLanguage?)
             Divider()
             ForEach(CodeLanguage.allLanguages, id: \.id) { language in
                 Text(language.id.rawValue.capitalized).tag(language as CodeLanguage?)
@@ -134,8 +134,8 @@ struct FileInspectorView: View {
     private var location: some View {
         Group {
             if let file {
-                LabeledContent("Location") {
-                    Button("Choose...") {
+                LabeledContent(String(localized: "inspector.file.location", comment: "File location label")) {
+                    Button(String(localized: "inspector.file.choose", comment: "Choose file location button")) {
                         guard let newURL = chooseNewFileLocation() else {
                             return
                         }
@@ -167,9 +167,9 @@ struct FileInspectorView: View {
     }
 
     private var indentUsing: some View {
-        Picker("Indent using", selection: $indentOption.indentType) {
-            Text("Spaces").tag(SettingsData.TextEditingSettings.IndentOption.IndentType.spaces)
-            Text("Tabs").tag(SettingsData.TextEditingSettings.IndentOption.IndentType.tab)
+        Picker(String(localized: "inspector.file.indent_using", comment: "Indent using picker label"), selection: $indentOption.indentType) {
+            Text(String(localized: "inspector.file.spaces", comment: "Spaces indent option")).tag(SettingsData.TextEditingSettings.IndentOption.IndentType.spaces)
+            Text(String(localized: "inspector.file.tabs", comment: "Tabs indent option")).tag(SettingsData.TextEditingSettings.IndentOption.IndentType.tab)
         }
         .onChange(of: indentOption) { newValue in
             file?.fileDocument?.indentOption = newValue == textEditing.indentOption ? nil : newValue
@@ -177,7 +177,7 @@ struct FileInspectorView: View {
     }
 
     private var widthOptions: some View {
-        LabeledContent("Widths") {
+        LabeledContent(String(localized: "inspector.file.widths", comment: "Width settings label")) {
             HStack(spacing: 5) {
                 VStack(alignment: .center, spacing: 0) {
                     Stepper(
@@ -191,11 +191,11 @@ struct FileInspectorView: View {
                         format: .number
                     )
                     .labelsHidden()
-                    Text("Tab")
+                    Text(String(localized: "inspector.file.tab", comment: "Tab width label"))
                         .foregroundColor(.primary)
                         .font(.footnote)
                 }
-                .help("The visual width of tab characters")
+                .help(String(localized: "inspector.file.tab_width_help", comment: "Help text for tab width setting"))
                 VStack(alignment: .center, spacing: 0) {
                     Stepper(
                         "",
@@ -208,11 +208,11 @@ struct FileInspectorView: View {
                         format: .number
                     )
                     .labelsHidden()
-                    Text("Indent")
+                    Text(String(localized: "inspector.file.indent", comment: "Indent width label"))
                         .foregroundColor(.primary)
                         .font(.footnote)
                 }
-                .help("The number of spaces to insert when the tab key is pressed.")
+                .help(String(localized: "inspector.file.indent_spaces_help", comment: "Help text for indent spaces setting"))
             }
         }
         .onChange(of: defaultTabWidth) { newValue in
@@ -221,7 +221,7 @@ struct FileInspectorView: View {
     }
 
     private var wrapLinesToggle: some View {
-        Toggle("Wrap lines", isOn: $wrapLines)
+        Toggle(String(localized: "file_inspector.wrap_lines", comment: "Toggle to wrap lines in file inspector"), isOn: $wrapLines)
             .onChange(of: wrapLines) { newValue in
                 file?.fileDocument?.wrapLines = newValue == textEditing.wrapLinesToEditorWidth ? nil : newValue
             }
@@ -230,7 +230,7 @@ struct FileInspectorView: View {
     private func chooseNewFileLocation() -> URL? {
         guard let file else { return nil }
         let dialogue = NSSavePanel()
-        dialogue.title = "Save File"
+        dialogue.title = String(localized: "file_inspector.save_file", comment: "Save file dialog title")
         dialogue.directoryURL = file.url.deletingLastPathComponent()
         dialogue.nameFieldStringValue = file.name
         if dialogue.runModal() == .OK {
