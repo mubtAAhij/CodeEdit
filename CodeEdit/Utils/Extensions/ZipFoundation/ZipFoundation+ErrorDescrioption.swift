@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "error.unreadable_archive", comment: "Error message for unreadable archive")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "error.unwritable_archive", comment: "Error message for unwritable archive")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "error.invalid_entry_path", comment: "Error message for invalid entry path")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "error.invalid_compression_method", comment: "Error message for invalid compression method")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "error.invalid_checksum", comment: "Error message for invalid checksum")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "zip_foundation.error.operation_cancelled", comment: "Zip operation was cancelled by user")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "zip_foundation.error.invalid_buffer_size", comment: "Zip buffer size is invalid")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "zip_foundation.error.invalid_entry_size", comment: "Zip entry size is invalid")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "zip_foundation.error.invalid_file_detected", comment: "Invalid file found in zip archive")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }
