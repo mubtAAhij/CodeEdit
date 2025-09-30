@@ -153,7 +153,7 @@ struct ThemeSettingsView: View {
 
 private extension ThemeSettingsView {
     private var useThemeBackground: some View {
-        Toggle("Use theme background ", isOn: $settings.useThemeBackground)
+        Toggle(String(localized: "theme_settings.use_theme_background", comment: "Toggle to use theme background"), isOn: $settings.useThemeBackground)
     }
 
     private var alwaysUseDarkTerminalAppearance: some View {
@@ -162,7 +162,7 @@ private extension ThemeSettingsView {
 
     private var changeThemeOnSystemAppearance: some View {
         Toggle(
-            "Automatically change theme based on system appearance",
+            String(localized: "theme_settings.auto_change_theme", comment: "Toggle to automatically change theme based on system appearance"),
             isOn: $settings.matchAppearance
         )
         .onChange(of: settings.matchAppearance) { value in
