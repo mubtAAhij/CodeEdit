@@ -64,7 +64,7 @@ struct LanguageServerRowView: View, Equatable {
                                 .font(.footnote)
                                 .cursor(.pointingHand)
                                 if let installerName = package.installMethod?.packageManagerType?.rawValue {
-                                    Text("Install using \(installerName)")
+                                    Text(String(localized: "language_server.row.install_using", arguments: [installerName], comment: "Installation method description"))
                                         .font(.footnote)
                                         .foregroundColor(.secondary)
                                 }
@@ -76,7 +76,7 @@ struct LanguageServerRowView: View, Equatable {
                                 Button {
                                     showMore.toggle()
                                 } label: {
-                                    Text(showMore ? "Show Less" : "Show More")
+                                    Text(String(localized: showMore ? "language_server.row.show_less" : "language_server.row.show_more", comment: "Toggle button for showing more/less information"))
                                         .font(.footnote)
                                 }
                                 .buttonStyle(.plain)
@@ -102,18 +102,18 @@ struct LanguageServerRowView: View, Equatable {
         .onHover { hovering in
             isHovering = hovering
         }
-        .alert("Remove \(package.sanitizedName)?", isPresented: $showingRemovalConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Remove", role: .destructive) {
+        .alert(String(localized: "language_server.row.remove_confirmation_title", arguments: [package.sanitizedName], comment: "Confirmation dialog title for removing language server"), isPresented: $showingRemovalConfirmation) {
+            Button(String(localized: "language_server.row.cancel", comment: "Cancel button"), role: .cancel) { }
+            Button(String(localized: "language_server.row.remove", comment: "Remove button"), role: .destructive) {
                 removeLanguageServer()
             }
         } message: {
-            Text("Are you sure you want to remove this language server? This action cannot be undone.")
+            Text(String(localized: "language_server.row.remove_confirmation_message", comment: "Confirmation message for removing language server"))
         }
-        .alert("Removal Failed", isPresented: $showingRemovalError) {
-            Button("OK", role: .cancel) { }
+        .alert(String(localized: "language_server.row.removal_failed", comment: "Error dialog title when removal fails"), isPresented: $showingRemovalError) {
+            Button(String(localized: "language_server.row.ok", comment: "OK button"), role: .cancel) { }
         } message: {
-            Text(removalError?.localizedDescription ?? "An unknown error occurred")
+            Text(removalError?.localizedDescription ?? String(localized: "language_server.row.unknown_error", comment: "Fallback error message"))
         }
     }
 
@@ -138,7 +138,7 @@ struct LanguageServerRowView: View, Equatable {
                 Button {
                     showingRemovalConfirmation = true
                 } label: {
-                    Text("Remove")
+                    Text(String(localized: "language_server.row.remove", comment: "Remove button"))
                 }
             }
             Toggle(
@@ -181,7 +181,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Retry")
+            Text(String(localized: "language_server.row.retry", comment: "Retry button for failed installation"))
                 .foregroundColor(.red)
         }
     }
@@ -193,7 +193,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Install")
+            Text(String(localized: "language_server.install", comment: "Button to install language server"))
         }
         .disabled(registryManager.isInstalling)
     }
