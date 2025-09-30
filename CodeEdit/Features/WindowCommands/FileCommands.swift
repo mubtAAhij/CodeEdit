@@ -84,14 +84,14 @@ struct FileCommands: Commands {
 
             Divider()
 
-            Button("Workspace Settings") {
+            Button(String(localized: "file_commands.workspace_settings", comment: "Menu item to open workspace settings")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
             }
             .disabled(windowController?.workspace == nil)
 
             Divider()
 
-            Button("Save") {
+            Button(String(localized: "file_commands.save", comment: "Menu item to save file")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.saveDocument(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("s")
