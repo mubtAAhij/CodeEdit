@@ -14,7 +14,7 @@ extension SettingsData {
         var searchKeys: [String] {
             [
                 "Language Servers",
-                "LSP Binaries",
+                String(localized: "lsp_binaries", comment: "Search key for LSP binaries settings"),
                 "Linters",
                 "Formatters",
                 "Debug Protocol",
