@@ -151,9 +151,9 @@ class GitCloneViewModel: ObservableObject {
         } catch {
             await MainActor.run {
                 if let error = error as? GitClient.GitClientError {
-                    showAlert(alertMsg: "Failed to clone", infoText: error.description)
+                    showAlert(alertMsg: String(localized: "source_control.clone.error.failed", comment: "Error message when repository cloning fails"), infoText: error.description)
                 } else {
-                    showAlert(alertMsg: "Failed to clone", infoText: error.localizedDescription)
+                    showAlert(alertMsg: String(localized: "source_control.clone.error.failed", comment: "Error message when repository cloning fails"), infoText: error.localizedDescription)
                 }
                 deleteTemporaryFolder(localPath: localPath)
             }
@@ -166,7 +166,7 @@ class GitCloneViewModel: ObservableObject {
         do {
             try FileManager.default.removeItem(atPath: localPath.relativePath)
         } catch {
-            showAlert(alertMsg: "Failed to delete folder", infoText: "\(error)")
+            showAlert(alertMsg: String(localized: "source_control.clone.error.delete_folder_failed", comment: "Error message when temporary folder deletion fails"), infoText: "\(error)")
             return
         }
     }
@@ -181,9 +181,9 @@ class GitCloneViewModel: ObservableObject {
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.showsTagField = false
-        dialog.prompt = "Clone"
+        dialog.prompt = String(localized: "source_control.clone.button.clone", comment: "Clone button text")
         dialog.nameFieldStringValue = saveName
-        dialog.nameFieldLabel = "Clone as"
+        dialog.nameFieldLabel = String(localized: "source_control.clone.dialog.clone_as", comment: "Label for clone destination field")
         dialog.title = "Clone"
 
         guard dialog.runModal() == NSApplication.ModalResponse.OK,
@@ -198,7 +198,7 @@ class GitCloneViewModel: ObservableObject {
         let alert = NSAlert()
         alert.messageText = alertMsg
         alert.informativeText = infoText
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: String(localized: "general.button.ok", comment: "OK button text"))
         alert.alertStyle = .warning
         alert.runModal()
     }
