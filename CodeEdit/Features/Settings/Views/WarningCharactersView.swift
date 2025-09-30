@@ -36,7 +36,7 @@ struct WarningCharactersView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "common.done", comment: "Done button label"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
