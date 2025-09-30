@@ -54,7 +54,7 @@ struct TaskDropDownView: View {
         .accessibilityIdentifier("TaskDropdown")
         .accessibilityValue(taskManager.selectedTask?.name ?? "Create Tasks")
         .accessibilityLabel("Active Task")
-        .accessibilityHint("Open the active task menu")
+        .accessibilityHint(String(localized: "task.dropdown.open_menu", comment: "Accessibility label for task dropdown menu"))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
@@ -92,10 +92,10 @@ struct TaskDropDownView: View {
                 Divider()
                     .padding(.vertical, 5)
             }
-            OptionMenuItemView(label: "Add Task...") {
+            OptionMenuItemView(label: String(localized: "task.dropdown.add_task", comment: "Menu item to add a new task")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
             }
-            OptionMenuItemView(label: "Manage Tasks...") {
+            OptionMenuItemView(label: String(localized: "task.dropdown.manage_tasks", comment: "Menu item to manage tasks")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
             }
         }
