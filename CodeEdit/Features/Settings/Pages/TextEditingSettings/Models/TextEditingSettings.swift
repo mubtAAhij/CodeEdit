@@ -19,8 +19,8 @@ extension SettingsData {
                 "Tab Width",
                 "Wrap lines to editor width",
                 "Editor Overscroll",
-                "Font",
-                "Font Size",
+                String(localized: "font", comment: "Font setting label"),
+                String(localized: "font_size", comment: "Font size setting label"),
                 "Font Weight",
                 "Line Height",
                 "Letter Spacing",
@@ -29,7 +29,7 @@ extension SettingsData {
                 "Bracket Pair Emphasis",
                 "Bracket Pair Highlight",
                 "Show Gutter",
-                "Show Minimap",
+                String(localized: "show_minimap", comment: "Show minimap setting label"),
                 "Reformat at Column",
                 "Show Reformatting Guide",
                 "Invisibles",
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "toggle_autocomplete_braces", comment: "Command name for toggling autocomplete braces"),
+                title: String(localized: "toggle_autocomplete_braces", comment: "Command title for toggling autocomplete braces"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,25 +187,25 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "toggle_word_wrap", comment: "Command name for toggling word wrap"),
+                title: String(localized: "toggle_word_wrap", comment: "Command title for toggling word wrap"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
                 }
             )
 
-            mgr.addCommand(name: "Toggle Minimap", title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
+            mgr.addCommand(name: String(localized: "toggle_minimap", comment: "Command name for toggling minimap"), title: String(localized: "toggle_minimap", comment: "Command title for toggling minimap"), id: "prefs.text_editing.toggle_minimap") {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 
-            mgr.addCommand(name: "Toggle Gutter", title: "Toggle Gutter", id: "prefs.text_editing.toggle_gutter") {
+            mgr.addCommand(name: String(localized: "toggle_gutter", comment: "Command name for toggling gutter"), title: String(localized: "toggle_gutter", comment: "Command title for toggling gutter"), id: "prefs.text_editing.toggle_gutter") {
                 Settings[\.textEditing].showGutter.toggle()
             }
 
             mgr.addCommand(
-                name: "Toggle Folding Ribbon",
-                title: "Toggle Folding Ribbon",
+                name: String(localized: "toggle_folding_ribbon", comment: "Command name for toggling folding ribbon"),
+                title: String(localized: "toggle_folding_ribbon", comment: "Command title for toggling folding ribbon"),
                 id: "prefs.text_editing.toggle_folding_ribbon"
             ) {
                 Settings[\.textEditing].showFoldingRibbon.toggle()
