@@ -59,21 +59,19 @@ extension WorkspaceDocument.SearchState {
         // Display the replacing results to the user
         if updatedFilesCount == 0 && errorCount == 0 {
             // No results where found
-            await setStatus(.failed(errorMessage: "No files in the workspace matched: \(query)"))
+            await setStatus(.failed(errorMessage: String(localized: "find_replace.error.no_files_matched", arguments: [query], comment: "Error message when no files match search query")))
         } else if updatedFilesCount == 0 && errorCount > 0 {
             // All files failed to updated
             await setStatus(
                 .failed(
-                    errorMessage: "All files failed to update. (\(errorCount)) " +
-                    "errors occurred. Check logs for more information"
+                    errorMessage: String(localized: "find_replace.error.all_files_failed", arguments: [errorCount], comment: "Error message when all files fail to update during find and replace")
                 )
             )
         } else if updatedFilesCount > 0 && errorCount > 0 {
             // Some files updated successfully, some failed
             await setStatus(
                 .failed(
-                    errorMessage: "\(updatedFilesCount) successfully updated, " +
-                    "\(errorCount) errors occurred. Please check logs for more information."
+                    errorMessage: String(localized: "find_replace.error.partial_success", arguments: [updatedFilesCount, errorCount], comment: "Message when some files updated successfully but some failed")
                 )
             )
         } else {
@@ -128,10 +126,10 @@ extension WorkspaceDocument.SearchState {
     ) {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
-            alert.messageText = "Error"
-            alert.informativeText = "An error occurred while reading file contents of: \(file)"
+            alert.messageText = String(localized: "general.error", comment: "Generic error title")
+            alert.informativeText = String(localized: "find_replace.error.reading_file_contents", arguments: [file.absoluteString], comment: "Error message when unable to read file contents")
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "dialog.ok", comment: "OK button label"))
             alert.runModal()
 
             return
@@ -156,10 +154,10 @@ extension WorkspaceDocument.SearchState {
             try updatedContent.write(to: file, atomically: true, encoding: .utf8)
         } catch {
             let alert = NSAlert()
-            alert.messageText = "Error"
+            alert.messageText = String(localized: "dialog.error", comment: "Error dialog title")
             alert.informativeText = "An error occurred while writing to: \(error.localizedDescription)"
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "dialog.ok", comment: "OK button label"))
             alert.runModal()
         }
     }
