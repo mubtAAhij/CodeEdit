@@ -52,7 +52,7 @@ struct LanguageServersView: View {
                     }
                 } header: {
                     Label(
-                        "Warning: Language server installation is experimental. Use at your own risk.",
+                        String(localized: "language_server.warning.experimental", comment: "Warning about experimental language server installation"),
                         systemImage: "exclamationmark.triangle.fill"
                     )
                 }
@@ -65,11 +65,7 @@ struct LanguageServersView: View {
     }
 
     private func getInfoString() -> AttributedString {
-        let string = "CodeEdit makes use of the Mason Registry for language server installation. To install a package, "
-        + "CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of "
-        + "the language server in Application Support.\n\n"
-        + "Language server installation is still experimental, there may be bugs and expect this flow "
-        + "to change over time."
+        let string = String(localized: "language_server.info.experimental_description", comment: "Detailed description of experimental language server installation process")
 
         var attrString = AttributedString(string)
 
