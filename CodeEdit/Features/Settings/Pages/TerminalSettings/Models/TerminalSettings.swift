@@ -16,11 +16,11 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Shell",
-                "Use \"Option\" key as \"Meta\"",
-                "Use text editor font",
-                "Font",
-                "Font Size",
+                String(localized: "terminal_settings.shell", comment: "Terminal shell setting"),
+                String(localized: "terminal_settings.option_as_meta", comment: "Option key as Meta key setting"),
+                String(localized: "terminal_settings.use_text_editor_font", comment: "Use text editor font setting"),
+                String(localized: "terminal_settings.font", comment: "Terminal font setting"),
+                String(localized: "terminal_settings.font_size", comment: "Terminal font size setting"),
                 "Terminal Cursor Style",
                 "Blink Cursor"
             ]
