@@ -47,7 +47,7 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Searching")
+                    Text(String(localized: "find_navigator.searching", comment: "Searching status text"))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -57,7 +57,7 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Replacing")
+                    Text(String(localized: "find_navigator.replacing", comment: "Replacing status text"))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -65,8 +65,8 @@ struct FindNavigatorView: View {
             case .found:
                 if self.searchResultCount == 0 {
                     CEContentUnavailableView(
-                        "No Results",
-                        description: "No Results for \"\(state.searchQuery)\" in Project",
+                        String(localized: "find_navigator.no_results", comment: "Message shown when no search results are found"),
+                        description: String(localized: "find_navigator.no_results_for_query", arguments: [state.searchQuery], comment: "Message shown when no results found for specific search query"),
                         systemImage: "exclamationmark.magnifyingglass"
                     )
                 } else {
@@ -74,13 +74,13 @@ struct FindNavigatorView: View {
                 }
             case .replaced(let updatedFiles):
                 CEContentUnavailableView(
-                    "Replaced",
-                    description: "Successfully replaced terms across \(updatedFiles) files",
+                    String(localized: "find_navigator.replaced", comment: "Title shown after successful replacement operation"),
+                    description: String(localized: "find_navigator.replace_success", arguments: [updatedFiles], comment: "Message showing successful replacement across multiple files"),
                     systemImage: "checkmark.circle.fill"
                 )
             case .failed(let errorMessage):
                 CEContentUnavailableView(
-                    "An Error Occurred",
+                    String(localized: "find_navigator.error_occurred", comment: "Generic error message for find/replace operations"),
                     description: "\(errorMessage)",
                     systemImage: "xmark.octagon.fill"
                 )
