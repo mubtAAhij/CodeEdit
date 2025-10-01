@@ -129,17 +129,17 @@ struct AccountsSettingsDetailsView: View {
                         Text("Are you sure you want to delete the account “\(account.description)”?"),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button("OK") {
+                        Button(String(localized: "accounts.delete.confirmation.ok", comment: "OK button in delete account confirmation dialog")) {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()
                         }
-                        Button("Cancel") {
+                        Button(String(localized: "accounts.delete.confirmation.cancel", comment: "Cancel button in delete account confirmation dialog")) {
                             // Handle the cancel, dismiss the alert
                             deleteConfirmationIsPresented.toggle()
                         }
                     } message: {
-                        Text("Deleting this account will remove it from CodeEdit.")
+                        Text(String(localized: "accounts.delete.confirmation.message", comment: "Message explaining what happens when deleting an account"))
                     }
 
                     Spacer()
