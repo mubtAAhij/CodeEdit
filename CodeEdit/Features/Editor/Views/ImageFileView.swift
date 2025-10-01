@@ -17,7 +17,7 @@ import SwiftUI
 /// This implementation allows for proper image scaling, especially when the image dimensions are smaller than
 /// the size of the image view area.
 ///
-/// If the preview image cannot be created, it shows a  *"Cannot preview image"* text.
+/// If the preview image cannot be created, it shows a  *String(localized: "editor.image_view.cannot_preview", comment: "Error message when image cannot be previewed")* text.
 struct ImageFileView: View {
 
     /// URL of the image you want to preview.
@@ -46,7 +46,7 @@ struct ImageFileView: View {
                 .frame(width: proxy.size.width, height: proxy.size.height)
             }
         } else {
-            Text("Cannot preview image")
+            Text(String(localized: "editor.image_view.cannot_preview", comment: "Error message when image cannot be previewed"))
         }
     }
 
