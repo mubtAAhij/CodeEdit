@@ -19,8 +19,8 @@ extension SettingsData {
                 "Tab Width",
                 "Wrap lines to editor width",
                 "Editor Overscroll",
-                "Font",
-                "Font Size",
+                String(localized: "settings.text_editing.font", comment: "Font setting label"),
+                String(localized: "settings.text_editing.font_size", comment: "Font size setting label"),
                 "Font Weight",
                 "Line Height",
                 "Letter Spacing",
@@ -29,7 +29,7 @@ extension SettingsData {
                 "Bracket Pair Emphasis",
                 "Bracket Pair Highlight",
                 "Show Gutter",
-                "Show Minimap",
+                String(localized: "settings.text_editing.show_minimap", comment: "Show minimap setting label"),
                 "Reformat at Column",
                 "Show Reformatting Guide",
                 "Invisibles",
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "commands.toggle_autocomplete_braces", comment: "Command to toggle autocomplete braces"),
+                title: String(localized: "commands.toggle_autocomplete_braces", comment: "Command to toggle autocomplete braces"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,8 +187,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "commands.toggle_word_wrap", comment: "Command to toggle word wrap"),
+                title: String(localized: "commands.toggle_word_wrap", comment: "Command to toggle word wrap"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
@@ -204,8 +204,8 @@ extension SettingsData {
             }
 
             mgr.addCommand(
-                name: "Toggle Folding Ribbon",
-                title: "Toggle Folding Ribbon",
+                name: String(localized: "commands.toggle_folding_ribbon", comment: "Command to toggle folding ribbon"),
+                title: String(localized: "commands.toggle_folding_ribbon", comment: "Command to toggle folding ribbon"),
                 id: "prefs.text_editing.toggle_folding_ribbon"
             ) {
                 Settings[\.textEditing].showFoldingRibbon.toggle()
