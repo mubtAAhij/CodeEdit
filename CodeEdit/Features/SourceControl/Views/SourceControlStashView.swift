@@ -64,10 +64,10 @@ struct SourceControlStashView: View {
                 } label: {
                         Text(
                             sourceControlManager.pullSheetIsPresented
-                            ? "Stash and Pull"
+                            ? String(localized: "source_control.stash_and_pull", comment: "Button to stash changes and pull")
                             : sourceControlManager.switchToBranch != nil
-                            ? "Stash and Switch"
-                            : "Stash"
+                            ? String(localized: "source_control.stash_and_switch", comment: "Button to stash changes and switch branch")
+                            : String(localized: "source_control.stash", comment: "Button to stash changes")
                         )
                         .frame(minWidth: 56)
                     }
@@ -104,7 +104,7 @@ struct SourceControlStashView: View {
                             throw NSError(
                                 domain: "SourceControl",
                                 code: 1,
-                                userInfo: [NSLocalizedDescriptionKey: "Could not find last stash"]
+                                userInfo: [NSLocalizedDescriptionKey: String(localized: "source_control.error.last_stash_not_found", comment: "Error when last stash cannot be found")]
                             )
                         }
                         try await sourceControlManager.applyStashEntry(stashEntry: lastStashEntry)
@@ -118,7 +118,7 @@ struct SourceControlStashView: View {
 
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to stash changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.error.stash_failed", comment: "Error when stashing changes fails"), error: error)
             }
         }
     }
