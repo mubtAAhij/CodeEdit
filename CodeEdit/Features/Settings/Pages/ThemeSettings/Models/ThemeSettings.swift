@@ -37,7 +37,7 @@ extension SettingsData {
                 "Automatically Change theme based on system appearance",
                 "Always use dark terminal appearance",
                 "Use theme background",
-                "Light Appearance",
+                String(localized: "theme.appearance.light", comment: "Light appearance option"),
                 "GitHub Light",
                 "Xcode Light",
                 "Solarized Light",
