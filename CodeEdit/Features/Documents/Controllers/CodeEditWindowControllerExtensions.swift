@@ -12,22 +12,22 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: "Quick Open",
-            title: "Quick Open",
+            name: String(localized: "window.menu.quick_open", comment: "Menu item for quick open functionality"),
+            title: String(localized: "window.menu.quick_open", comment: "Menu item for quick open functionality"),
             id: "quick_open",
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Navigator",
-            title: "Toggle Navigator",
+            name: String(localized: "window.menu.toggle_navigator", comment: "Menu item to toggle navigator panel"),
+            title: String(localized: "window.menu.toggle_navigator", comment: "Menu item to toggle navigator panel"),
             id: "toggle_left_sidebar",
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Inspector",
-            title: "Toggle Inspector",
+            name: String(localized: "window.menu.toggle_inspector", comment: "Menu item to toggle inspector panel"),
+            title: String(localized: "window.menu.toggle_inspector", comment: "Menu item to toggle inspector panel"),
             id: "toggle_right_sidebar",
             command: { [weak self] in self?.toggleLastPanel() }
         )
@@ -105,7 +105,7 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle("Workspace Settings")
+            settingsWindow.setAccessibilityTitle(String(localized: "window.menu.workspace_settings", comment: "Menu item for workspace settings"))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }

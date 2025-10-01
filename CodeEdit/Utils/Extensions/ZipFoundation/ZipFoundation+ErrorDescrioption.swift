@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "zipfoundation.error.unreadable_archive", comment: "Error message for unreadable archive")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "zipfoundation.error.unwritable_archive", comment: "Error message for unwritable archive")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "zipfoundation.error.invalid_entry_path", comment: "Error message for invalid entry path")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "zipfoundation.error.invalid_compression_method", comment: "Error message for invalid compression method in ZIP files")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "zipfoundation.error.invalid_checksum", comment: "Error message for invalid checksum in ZIP files")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "zip.error.operation_cancelled", comment: "Error message when zip operation is cancelled")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "zip.error.invalid_buffer_size", comment: "Error message for invalid buffer size in zip operations")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "zip.error.invalid_entry_size", comment: "Error message for invalid entry size in zip operations")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "zip.error.invalid_file_detected", comment: "Error message when invalid file is detected in zip operations")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }

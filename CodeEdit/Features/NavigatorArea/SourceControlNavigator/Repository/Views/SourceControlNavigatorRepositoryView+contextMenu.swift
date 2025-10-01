@@ -25,14 +25,14 @@ extension SourceControlNavigatorRepositoryView {
 
     @ViewBuilder
     func contextMenu(for item: RepoOutlineGroupItem, branch: GitBranch) -> some View {
-        Button("Switch...") {
+        Button(String(localized: "source_control.branch.switch", comment: "Menu item to switch branches")) {
             sourceControlManager.switchToBranch = branch
         }
         .disabled(item.branch == nil || sourceControlManager.currentBranch == item.branch)
         Divider()
         Button(
             item.branch == nil && item.id != "BranchesGroup"
-            ? "New Branch..."
+            ? String(localized: "source_control.branch.new", comment: "Menu item to create new branch")
             : "New Branch from \"\(branch.name)\"..."
         ) {
             showNewBranch = true
@@ -41,7 +41,7 @@ extension SourceControlNavigatorRepositoryView {
         .disabled(item.branch == nil && item.id != "BranchesGroup")
         Button(
             item.branch == nil
-            ? "Rename Branch..."
+            ? String(localized: "source_control.branch.rename", comment: "Menu item to rename branch")
             : "Rename \"\(branch.name)\"..."
         ) {
             showRenameBranch = true
@@ -49,18 +49,18 @@ extension SourceControlNavigatorRepositoryView {
         }
         .disabled(item.branch == nil || item.branch?.isRemote == true)
         Divider()
-        Button("Add Existing Remote...") {
+        Button(String(localized: "source_control.remote.add_existing", comment: "Menu item to add existing remote")) {
             sourceControlManager.addExistingRemoteSheetIsPresented = true
         }
         .disabled(item.id != "RemotesGroup")
         Divider()
-        Button("Apply Stashed Changes...") {
+        Button(String(localized: "source_control.stash.apply", comment: "Menu item to apply stashed changes")) {
             applyStashedChangesIsPresented = true
             stashEntryToApply = item.stashEntry
         }
         .disabled(item.stashEntry == nil)
         Divider()
-        Button("Delete...") {
+        Button(String(localized: "source_control.delete", comment: "Menu item to delete")) {
             handleDelete(item)
         }
         .disabled(

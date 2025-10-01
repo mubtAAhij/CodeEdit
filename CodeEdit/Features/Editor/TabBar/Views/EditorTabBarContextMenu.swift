@@ -88,7 +88,7 @@ struct EditorTabBarContextMenu: ViewModifier {
                     copyPath(item: item)
                 }
 
-                Button("Copy Relative Path") {
+                Button(String(localized: "editor.context_menu.copy_relative_path", comment: "Context menu item to copy relative path")) {
                     copyRelativePath(item: item)
                 }
             }
@@ -96,15 +96,15 @@ struct EditorTabBarContextMenu: ViewModifier {
             Divider()
 
             Group {
-                Button("Show in Finder") {
+                Button(String(localized: "editor.context_menu.show_in_finder", comment: "Context menu item to show file in Finder")) {
                     item.showInFinder()
                 }
 
-                Button("Reveal in Project Navigator") {
+                Button(String(localized: "editor.context_menu.reveal_in_navigator", comment: "Context menu item to reveal in project navigator")) {
                     workspace.listenerModel.highlightedFileItem = item
                 }
 
-                Button("Open in New Window") {
+                Button(String(localized: "editor.context_menu.open_in_new_window", comment: "Context menu item to open file in new window")) {
 
                 }
                 .disabled(true)
@@ -112,16 +112,16 @@ struct EditorTabBarContextMenu: ViewModifier {
 
             Divider()
 
-            Button("Split Up") {
+            Button(String(localized: "editor.context_menu.split_up", comment: "Context menu item to split editor upward")) {
                 moveToNewSplit(.top)
             }
-            Button("Split Down") {
+            Button(String(localized: "editor.context_menu.split_down", comment: "Context menu item to split editor downward")) {
                 moveToNewSplit(.bottom)
             }
-            Button("Split Left") {
+            Button(String(localized: "editor.context_menu.split_left", comment: "Context menu item to split editor to the left")) {
                 moveToNewSplit(.leading)
             }
-            Button("Split Right") {
+            Button(String(localized: "editor.context_menu.split_right", comment: "Context menu item to split editor to the right")) {
                 moveToNewSplit(.trailing)
             }
         })

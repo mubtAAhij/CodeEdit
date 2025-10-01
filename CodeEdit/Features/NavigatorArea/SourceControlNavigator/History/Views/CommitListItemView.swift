@@ -156,12 +156,12 @@ struct CommitListItemView: View {
         .contentShape(Rectangle())
         .contextMenu {
             Group {
-                Button("Copy Commit Message") {
+                Button(String(localized: "source_control.context_menu.copy_message", comment: "Context menu item to copy commit message")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.message, forType: .string)
                 }
-                Button("Copy Identifier") {
+                Button(String(localized: "source_control.context_menu.copy_identifier", comment: "Context menu item to copy commit identifier")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.commitHash, forType: .string)
@@ -193,7 +193,7 @@ struct CommitListItemView: View {
                 Button("Check Out \(commit.hash)...") {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
-                Button("History Editor Help") {}
+                Button(String(localized: "source_control.context_menu.history_help", comment: "Context menu item for history editor help")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
         }

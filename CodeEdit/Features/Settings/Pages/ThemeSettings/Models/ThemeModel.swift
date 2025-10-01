@@ -40,7 +40,7 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme.extensions_folder", comment: "Extensions folder name")), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -134,8 +134,8 @@ final class ThemeModel: ObservableObject {
     }
 
     enum ThemeSettingsAppearances: String, CaseIterable {
-        case light = "Light Appearance"
-        case dark = "Dark Appearance"
+        case light = "theme.appearance.light"
+        case dark = "theme.appearance.dark"
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +164,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "theme.export_button", comment: "Button label for exporting themes")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in

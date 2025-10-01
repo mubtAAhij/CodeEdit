@@ -53,33 +53,33 @@ struct WorkspaceSheets: View {
             }
             .alert(isPresented: $sourceControlManager.discardAllAlertIsPresented) {
                 Alert(
-                    title: Text("Do you want to discard all uncommitted, local changes?"),
-                    message: Text("This action cannot be undone."),
-                    primaryButton: .destructive(Text("Discard")) {
+                    title: Text(String(localized: "workspace.discard_changes.confirmation", comment: "Confirmation dialog asking if user wants to discard uncommitted changes")),
+                    message: Text(String(localized: "workspace.discard_changes.warning", comment: "Warning that the discard action cannot be undone")),
+                    primaryButton: .destructive(Text(String(localized: "workspace.discard_changes.action", comment: "Button text to discard changes"))) {
                         sourceControlManager.discardAllChanges()
                     },
                     secondaryButton: .cancel()
                 )
             }
-            .alert("Cannot Stage Changes", isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspace.stage_changes.error_title", comment: "Error dialog title when staging changes fails"), isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
+                Button(String(localized: "common.ok", comment: "OK button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspace.no_uncommitted_changes", comment: "Message when there are no uncommitted changes in the repository"))
             }
-            .alert("Cannot Unstage Changes", isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspace.unstage_changes.error_title", comment: "Error dialog title when unstaging changes fails"), isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
+                Button(String(localized: "common.ok", comment: "OK button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspace.no_uncommitted_changes", comment: "Message when there are no uncommitted changes in the repository"))
             }
-            .alert("Cannot Stash Changes", isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspace.stash_changes.error_title", comment: "Error dialog title when stashing changes fails"), isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
+                Button(String(localized: "common.ok", comment: "OK button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspace.no_uncommitted_changes", comment: "Message when there are no uncommitted changes in the repository"))
             }
-            .alert("Cannot Discard Changes", isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspace.discard_changes.error_title", comment: "Error dialog title when discarding changes fails"), isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
+                Button(String(localized: "common.ok", comment: "OK button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspace.no_uncommitted_changes", comment: "Message when there are no uncommitted changes in the repository"))
             }
     }
 }

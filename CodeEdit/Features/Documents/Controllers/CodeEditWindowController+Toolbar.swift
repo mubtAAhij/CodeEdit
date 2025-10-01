@@ -88,9 +88,9 @@ extension CodeEditWindowController {
             )
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
-            toolbarItem.label = "Navigator Sidebar"
-            toolbarItem.paletteLabel = " Navigator Sidebar"
-            toolbarItem.toolTip = "Hide or show the Navigator"
+            toolbarItem.label = String(localized: "toolbar.navigator_sidebar", comment: "Toolbar button for navigator sidebar")
+            toolbarItem.paletteLabel = String(localized: "toolbar.navigator_sidebar_space", comment: "Navigator sidebar with leading space")
+            toolbarItem.toolTip = String(localized: "toolbar.navigator_tooltip", comment: "Tooltip for navigator toggle button")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleFirstPanel)
@@ -102,9 +102,9 @@ extension CodeEditWindowController {
             return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
-            toolbarItem.label = "Inspector Sidebar"
-            toolbarItem.paletteLabel = "Inspector Sidebar"
-            toolbarItem.toolTip = "Hide or show the Inspectors"
+            toolbarItem.label = String(localized: "toolbar.inspector_sidebar", comment: "Toolbar button for inspector sidebar")
+            toolbarItem.paletteLabel = String(localized: "toolbar.inspector_sidebar", comment: "Toolbar button for inspector sidebar")
+            toolbarItem.toolTip = String(localized: "toolbar.inspector_tooltip", comment: "Tooltip for inspector toggle button")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleLastPanel)

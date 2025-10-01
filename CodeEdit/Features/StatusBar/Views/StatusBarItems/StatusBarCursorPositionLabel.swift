@@ -25,7 +25,7 @@ struct StatusBarCursorPositionLabel: View {
             if let currentTab = tab {
                 LineLabel(editorInstance: currentTab)
             } else {
-                Text("").accessibilityLabel("No Selection")
+                Text("").accessibilityLabel(String(localized: "status_bar.no_selection", comment: "Status bar text when nothing is selected"))
             }
         }
         .fixedSize()

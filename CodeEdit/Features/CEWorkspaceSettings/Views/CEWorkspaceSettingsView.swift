@@ -21,12 +21,12 @@ struct CEWorkspaceSettingsView: View {
             Form {
                 Section {
                     TextField(
-                        "Name",
+                        String(localized: "workspace_settings.field.name", comment: "Name field placeholder"),
                         text: $workspaceSettingsManager.settings.project.projectName
                     )
-                    .accessibilityLabel("Workspace Name")
+                    .accessibilityLabel(String(localized: "workspace_settings.accessibility.workspace_name", comment: "Accessibility label for workspace name field"))
                 } header: {
-                    Text("Workspace")
+                    Text(String(localized: "workspace_settings.section.workspace", comment: "Workspace section header"))
                         .accessibilityHidden(true)
                 }
 
@@ -37,7 +37,7 @@ struct CEWorkspaceSettingsView: View {
                         showAddTaskSheet: $showAddTaskSheet
                     )
                 } header: {
-                    Text("Tasks")
+                    Text(String(localized: "workspace_settings.section.tasks", comment: "Tasks section header"))
                 } footer: {
                     HStack {
                         Spacer()
@@ -45,7 +45,7 @@ struct CEWorkspaceSettingsView: View {
                             selectedTaskID = nil
                             showAddTaskSheet = true
                         } label: {
-                            Text("Add Task...")
+                            Text(String(localized: "workspace_settings.button.add_task", comment: "Add task button"))
                         }
                     }
                 }
@@ -59,7 +59,7 @@ struct CEWorkspaceSettingsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "workspace_settings.done", comment: "Done button in workspace settings"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)

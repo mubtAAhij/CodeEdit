@@ -19,8 +19,8 @@ extension WorkspaceDocument.SearchState {
         let createInfo: [String: Any] = [
             "id": uuidString,
             "action": "create",
-            "title": "Indexing | Processing files",
-            "message": "Creating an index to enable fast and accurate searches within your codebase.",
+            "title": String(localized: "indexing.title.processing", comment: "Title for indexing process"),
+            "message": String(localized: "indexing.message.description", comment: "Description for indexing process"),
             "isLoading": true
         ]
         NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: createInfo)
@@ -57,7 +57,7 @@ extension WorkspaceDocument.SearchState {
             let updateInfo: [String: Any] = [
                 "id": uuidString,
                 "action": "update",
-                "title": "Finished indexing",
+                "title": String(localized: "indexing.title.finished", comment: "Title when indexing is complete"),
                 "isLoading": false
             ]
             NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: updateInfo)

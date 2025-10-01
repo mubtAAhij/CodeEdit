@@ -48,7 +48,7 @@ struct SourceControlAddExistingRemoteView: View {
                 Button {
                     submit()
                 } label: {
-                    Text("Add")
+                    Text(String(localized: "source_control.add_remote.add", comment: "Button to add a remote repository"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -80,7 +80,7 @@ struct SourceControlAddExistingRemoteView: View {
                 location = ""
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to add remote", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.add_remote.error.failed", comment: "Error message when adding remote fails"), error: error)
             }
         }
     }

@@ -215,25 +215,25 @@ private extension TextEditingSettingsView {
 
     @ViewBuilder private var showGutter: some View {
         Toggle("Show Gutter", isOn: $textEditing.showGutter)
-            .help("The gutter displays line numbers and code folding regions.")
+            .help(String(localized: "text_editing.gutter.help", comment: "Help text explaining what the gutter displays"))
     }
 
     @ViewBuilder private var showMinimap: some View {
-        Toggle("Show Minimap", isOn: $textEditing.showMinimap)
+        Toggle(String(localized: "text_editing.show_minimap", comment: "Toggle to show or hide the minimap"), isOn: $textEditing.showMinimap)
             // swiftlint:disable:next line_length
-            .help("The minimap gives you a high-level summary of your source code, with controls to quickly navigate your document.")
+            .help(String(localized: "text_editing.minimap.help", comment: "Help text explaining what the minimap does"))
     }
 
     @ViewBuilder private var showFoldingRibbon: some View {
-        Toggle("Show Code Folding Ribbon", isOn: $textEditing.showFoldingRibbon)
+        Toggle(String(localized: "text_editing.show_code_folding_ribbon", comment: "Toggle to show or hide the code folding ribbon"), isOn: $textEditing.showFoldingRibbon)
             .disabled(!textEditing.showGutter) // Disabled when the gutter is disabled
             // swiftlint:disable:next line_length
-            .help("The code folding ribbon lets you fold regions of code. When the gutter is disabled, the folding ribbon is disabled.")
+            .help(String(localized: "text_editing.code_folding_ribbon.help", comment: "Help text explaining the code folding ribbon functionality"))
     }
 
     @ViewBuilder private var reformatSettings: some View {
         Toggle("Show Reformatting Guide", isOn: $textEditing.showReformattingGuide)
-            .help("Shows a vertical guide at the reformat column.")
+            .help(String(localized: "text_editing.reformatting_guide.help", comment: "Help text explaining the reformatting guide"))
 
         Stepper(
             "Reformat at Column",
@@ -245,18 +245,18 @@ private extension TextEditingSettingsView {
             step: 1,
             format: .number
         )
-        .help("The column at which text should be reformatted.")
+        .help(String(localized: "text_editing.reformat_column.help", comment: "Help text explaining the reformat column setting"))
     }
 
     @ViewBuilder private var invisibles: some View {
         HStack {
-            Text("Show Invisible Characters")
+            Text(String(localized: "text_editing.show_invisible_characters", comment: "Label for showing invisible characters option"))
             Spacer()
             Toggle(isOn: $textEditing.invisibleCharacters.enabled, label: { EmptyView() })
             Button {
                 isShowingInvisibleCharacterSettings = true
             } label: {
-                Text("Configure...")
+                Text(String(localized: "text_editing.configure", comment: "Button text to configure settings"))
             }
             .disabled(textEditing.invisibleCharacters.enabled == false)
         }
@@ -273,13 +273,13 @@ private extension TextEditingSettingsView {
 
     @ViewBuilder private var warningCharacters: some View {
         HStack {
-            Text("Show Warning Characters")
+            Text(String(localized: "text_editing.show_warning_characters", comment: "Label for showing warning characters option"))
             Spacer()
             Toggle(isOn: $textEditing.warningCharacters.enabled, label: { EmptyView() })
             Button {
                 isShowingWarningCharactersSettings = true
             } label: {
-                Text("Configure...")
+                Text(String(localized: "text_editing.configure", comment: "Button text to configure settings"))
             }
             .disabled(textEditing.warningCharacters.enabled == false)
         }

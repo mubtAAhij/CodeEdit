@@ -40,7 +40,7 @@ struct SourceControlNavigatorSyncView: View {
                     Button {
                         sourceControlManager.pullSheetIsPresented = true
                     } label: {
-                        Text("Pull...")
+                        Text(String(localized: "source_control.action.pull", comment: "Button to pull changes from remote repository"))
                     }
                     .disabled(isLoading)
                 } else if sourceControlManager.numberOfUnsyncedCommits.ahead > 0
@@ -48,7 +48,7 @@ struct SourceControlNavigatorSyncView: View {
                     Button {
                         sourceControlManager.pushSheetIsPresented = true
                     } label: {
-                        Text("Push...")
+                        Text(String(localized: "source_control.action.push", comment: "Button to push changes to remote repository"))
                     }
                     .disabled(isLoading)
                 }
@@ -62,7 +62,7 @@ struct SourceControlNavigatorSyncView: View {
             do {
                 try await sourceControlManager.pull()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to pull", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.error.pull_failed", comment: "Error message when pull operation fails"), error: error)
             }
             self.isLoading = false
         }
@@ -74,7 +74,7 @@ struct SourceControlNavigatorSyncView: View {
             do {
                 try await sourceControlManager.push()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.error.push_failed", comment: "Error message when push operation fails"), error: error)
             }
             self.isLoading = false
         }

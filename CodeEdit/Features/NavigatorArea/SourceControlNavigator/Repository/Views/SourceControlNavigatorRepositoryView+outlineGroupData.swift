@@ -12,14 +12,14 @@ extension SourceControlNavigatorRepositoryView {
         [
             .init(
                 id: "BranchesGroup",
-                label: "Branches",
+                label: String(localized: "source_control.branches", comment: "Section header for branches"),
                 image: .system(name: "externaldrive.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.orderedLocalBranches.map { branch in
                         .init(
                             id: "Branch\(branch.name)",
                             label: branch.name,
-                            description: branch == sourceControlManager.currentBranch ? "(current)" : nil,
+                            description: branch == sourceControlManager.currentBranch ? String(localized: "source_control.branch.current", comment: "Label indicating current branch") : nil,
                             image: .symbol(name: "branch"),
                             imageColor: .blue,
                             branch: branch
@@ -28,7 +28,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "StashedChangesGroup",
-                label: "Stashed Changes",
+                label: String(localized: "source_control.stashed_changes", comment: "Section header for stashed changes"),
                 image: .system(name: "tray.2.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.stashEntries.map { stashEntry in
@@ -51,7 +51,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "RemotesGroup",
-                label: "Remotes",
+                label: String(localized: "source_control.remotes", comment: "Section header for remote repositories"),
                 image: .system(name: "network"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.remotes.map { remote in

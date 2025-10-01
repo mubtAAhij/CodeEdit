@@ -98,7 +98,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                     .padding(0)
                 HStack(spacing: 0) {
                     if options.isEmpty {
-                        Text("No matching options")
+                        Text(String(localized: "search.no_matching_options", comment: "Message when no search results found"))
                             .font(.system(size: 17))
                             .foregroundColor(.secondary)
                             .frame(maxWidth: hasPreview ? 272 : .infinity, maxHeight: .infinity)

@@ -347,7 +347,7 @@ extension LSPService {
             iconColor: .clear,
             title: notificationTitle,
             description: "Install the \(lspLanguageTitle) language server to enable code intelligence features.",
-            actionButtonTitle: "Install"
+            actionButtonTitle: String(localized: "lsp_service.install.button", comment: "Install button text")
         ) { [weak self] in
             // TODO: Warning:
             // Accessing Environment<OpenWindowAction>'s value outside of being installed on a View.

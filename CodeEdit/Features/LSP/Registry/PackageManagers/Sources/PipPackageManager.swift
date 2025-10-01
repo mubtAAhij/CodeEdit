@@ -72,7 +72,7 @@ final class PipPackageManager: PackageManagerProtocol {
     // MARK: - Initialize
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "pip_package_manager.initialize_directory_structure", comment: "Step name for initializing directory structure"), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
             try await model.executeInDirectory(in: packagePath.path(percentEncoded: false), ["python -m venv venv"])
 
@@ -88,7 +88,7 @@ final class PipPackageManager: PackageManagerProtocol {
     func runPipInstall(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Install Package Using pip",
+            name: String(localized: "pip_package_manager.install_package_using_pip", comment: "Step name for pip package installation"),
             confirmation: .required(
                 message: "This requires the pip package \(source.pkgName)."
                 + "\nAllow CodeEdit to install this package?"
@@ -140,7 +140,7 @@ final class PipPackageManager: PackageManagerProtocol {
     private func verifyInstallation(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "pip_package_manager.verify_installation", comment: "Step name for verifying package installation"),
             confirmation: .none
         ) { model in
             let output = try await model.executeInDirectory(
