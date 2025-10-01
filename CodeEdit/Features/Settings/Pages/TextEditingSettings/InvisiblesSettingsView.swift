@@ -20,11 +20,11 @@ struct InvisiblesSettingsView: View {
             Form {
                 Section {
                     VStack {
-                        Toggle(isOn: $invisibleCharacters.showSpaces) { Text("Show Spaces") }
+                        Toggle(isOn: $invisibleCharacters.showSpaces) { Text(String(localized: "invisibles_settings.show_spaces", comment: "Toggle to show space characters")) }
                         if invisibleCharacters.showSpaces {
                             TextField(
                                 text: $invisibleCharacters.spaceReplacement,
-                                prompt: Text("Default: \(Config.default.spaceReplacement)")
+                                prompt: Text(String(localized: "invisibles_settings.default_space_replacement", arguments: [Config.default.spaceReplacement], comment: "Default space replacement character prompt"))
                             ) {
                                 Text("Character used to render spaces")
                                     .foregroundStyle(.secondary)
