@@ -18,7 +18,7 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
+            String(localized: "registry_manager.error.package_already_installing", comment: "Error message when trying to install a package that is already being installed")
         case .invalidResponse(let statusCode):
             "Invalid response received: \(statusCode)"
         case .downloadFailed(let url, _):
