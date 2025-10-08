@@ -27,7 +27,7 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? "No Project found")
+        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "scheme_dropdown.no_project", comment: "No project found message in scheme dropdown"))
         : workspaceName
     }
 
@@ -71,8 +71,8 @@ struct SchemeDropDownView: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("SchemeDropdown")
         .accessibilityValue(workspaceDisplayName)
-        .accessibilityLabel("Active Scheme")
-        .accessibilityHint("Open the active scheme menu")
+        .accessibilityLabel(String(localized: "scheme_dropdown.active_scheme_label", comment: "Active Scheme accessibility label"))
+        .accessibilityHint(String(localized: "scheme_dropdown.active_scheme_hint", comment: "Active Scheme accessibility hint"))
         .accessibilityAction {
             isSchemePopOverPresented.toggle()
         }
@@ -103,12 +103,12 @@ struct SchemeDropDownView: View {
             Divider()
                 .padding(.vertical, 5)
             Group {
-                OptionMenuItemView(label: "Add Folder...") {
+                OptionMenuItemView(label: String(localized: "scheme_dropdown.add_folder", comment: "Add Folder menu item")) {
                     // TODO: Implment Add Folder
                     print("NOT IMPLEMENTED")
                 }
                 .disabled(true)
-                OptionMenuItemView(label: "Workspace Settings...") {
+                OptionMenuItemView(label: String(localized: "scheme_dropdown.workspace_settings", comment: "Workspace Settings menu item")) {
                     NSApp.sendAction(
                         #selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil
                     )
