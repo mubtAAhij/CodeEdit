@@ -14,11 +14,11 @@ struct StatusBarIndentSelector: View {
     var body: some View {
         Menu {
             Button {} label: {
-                Text("Use Tabs")
+                Text(String(localized: "status_bar.indent.use_tabs", comment: "Use tabs option in indent selector"))
             }.disabled(true)
 
             Button {} label: {
-                Text("Use Spaces")
+                Text(String(localized: "status_bar.indent.use_spaces", comment: "Use spaces option in indent selector"))
             }.disabled(true)
 
             Divider()

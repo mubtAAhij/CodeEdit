@@ -184,8 +184,8 @@ final class RegistryManager: ObservableObject {
                 iconSymbol: "xmark.circle",
                 iconColor: .clear,
                 title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                description: String(localized: "registry_manager.install_failed_message", comment: "Generic error message for installation problems"),
+                actionButtonTitle: String(localized: "registry_manager.done", comment: "Button text indicating completion"),
                 action: {},
             )
         } else {

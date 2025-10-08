@@ -128,10 +128,10 @@ extension WorkspaceDocument.SearchState {
     ) {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
-            alert.messageText = "Error"
+            alert.messageText = String(localized: "error.title", comment: "Error dialog title")
             alert.informativeText = "An error occurred while reading file contents of: \(file)"
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "button.ok", comment: "OK button text"))
             alert.runModal()
 
             return

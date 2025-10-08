@@ -141,10 +141,10 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         alert.messageText = """
         A file or folder with the name \(fileName) already exists in the destination folder. Do you want to replace it?
         """
-        alert.informativeText = "This action is irreversible!"
+        alert.informativeText = String(localized: "project_navigator.irreversible_warning", comment: "Warning that action cannot be undone")
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "Replace")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: String(localized: "project_navigator.replace_button", comment: "Replace button in confirmation dialog"))
+        alert.addButton(withTitle: String(localized: "project_navigator.cancel_button", comment: "Cancel button in confirmation dialog"))
         return alert.runModal() == .alertFirstButtonReturn
     }
 }

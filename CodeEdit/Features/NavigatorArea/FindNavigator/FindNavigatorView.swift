@@ -47,7 +47,7 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Searching")
+                    Text(String(localized: "find_navigator.searching", comment: "Status message while searching"))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -57,7 +57,7 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Replacing")
+                    Text(String(localized: "find_navigator.replacing", comment: "Status message while replacing"))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -65,7 +65,7 @@ struct FindNavigatorView: View {
             case .found:
                 if self.searchResultCount == 0 {
                     CEContentUnavailableView(
-                        "No Results",
+                        String(localized: "find_navigator.no_results", comment: "No search results found"),
                         description: "No Results for \"\(state.searchQuery)\" in Project",
                         systemImage: "exclamationmark.magnifyingglass"
                     )
@@ -74,13 +74,13 @@ struct FindNavigatorView: View {
                 }
             case .replaced(let updatedFiles):
                 CEContentUnavailableView(
-                    "Replaced",
+                    String(localized: "find_navigator.replaced", comment: "Replace operation completed"),
                     description: "Successfully replaced terms across \(updatedFiles) files",
                     systemImage: "checkmark.circle.fill"
                 )
             case .failed(let errorMessage):
                 CEContentUnavailableView(
-                    "An Error Occurred",
+                    String(localized: "find_navigator.error_occurred", comment: "Generic error message"),
                     description: "\(errorMessage)",
                     systemImage: "xmark.octagon.fill"
                 )

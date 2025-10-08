@@ -26,7 +26,7 @@ struct TaskOutputActionsView: View {
                     .foregroundStyle(.green)
             }
             .buttonStyle(.icon)
-            .help("Run Task")
+            .help(String(localized: "task.action.run", comment: "Button label to run a task"))
 
             Button {
                 taskManager.terminateTask(taskID: activeTask.task.id)
@@ -38,7 +38,7 @@ struct TaskOutputActionsView: View {
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
-            .help("Stop Task")
+            .help(String(localized: "task.action.stop", comment: "Button label to stop a task"))
 
             Button {
                 if activeTask.status == .stopped {
@@ -56,7 +56,7 @@ struct TaskOutputActionsView: View {
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
             .opacity(activeTask.status == .running || activeTask.status == .stopped ? 1 : 0.5)
-            .help(activeTask.status == .stopped ? "Resume Task" : "Suspend Task")
+            .help(activeTask.status == .stopped ? String(localized: "task.action.resume", comment: "Button label to resume a task") : String(localized: "task.action.suspend", comment: "Button label to suspend a task"))
 
             Divider()
 
@@ -68,7 +68,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "text.append")
             }
             .buttonStyle(.icon)
-            .help("Scroll down to the bottom")
+            .help(String(localized: "task.action.scroll_to_bottom", comment: "Button tooltip to scroll to bottom"))
 
             Button {
                 activeTask.clearOutput()
@@ -76,7 +76,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "trash")
             }
             .buttonStyle(.icon)
-            .help("Clear Output")
+            .help(String(localized: "task.action.clear_output", comment: "Button label to clear task output"))
         }
     }
 }
