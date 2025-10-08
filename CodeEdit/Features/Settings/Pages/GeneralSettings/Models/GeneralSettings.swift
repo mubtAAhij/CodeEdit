@@ -24,29 +24,29 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
+                String(localized: "general_settings.appearance", comment: "Label for appearance settings section"),
+                String(localized: "general_settings.file_icon_style", comment: "Label for file icon style setting"),
                 "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
+                String(localized: "general_settings.show_jump_bar", comment: "Label for show jump bar setting"),
+                String(localized: "general_settings.dim_editors_without_focus", comment: "Label for dim editors without focus setting"),
+                String(localized: "general_settings.navigator_tab_bar_position", comment: "Label for navigator tab bar position setting"),
+                String(localized: "general_settings.inspector_tab_bar_position", comment: "Label for inspector tab bar position setting"),
+                String(localized: "general_settings.show_issues", comment: "Label for show issues setting"),
+                String(localized: "general_settings.show_live_issues", comment: "Label for show live issues setting"),
                 "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
+                String(localized: "general_settings.auto_reveal_in_project_navigator", comment: "Label for automatically reveal in project navigator setting"),
+                String(localized: "general_settings.reopen_behavior", comment: "Label for reopen behavior setting"),
+                String(localized: "general_settings.after_last_window_closed", comment: "Label for after last window is closed setting"),
+                String(localized: "general_settings.file_extensions", comment: "Label for file extensions setting"),
+                String(localized: "general_settings.project_navigator_size", comment: "Label for project navigator size setting"),
+                String(localized: "general_settings.find_navigator_detail", comment: "Label for find navigator detail setting"),
+                String(localized: "general_settings.issue_navigator_detail", comment: "Label for issue navigator detail setting"),
                 "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "general_settings.codeedit_shell_command", comment: "Label for codeedit shell command setting"),
+                String(localized: "general_settings.dialog_warnings", comment: "Label for dialog warnings setting"),
+                String(localized: "general_settings.check_for_updates", comment: "Label for check for updates setting"),
+                String(localized: "general_settings.auto_check_for_updates", comment: "Label for automatically check for app updates setting"),
+                String(localized: "general_settings.include_prerelease", comment: "Option to include pre-release versions in updates")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -309,7 +309,7 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "navigator_detail.one_line", comment: "Label for single line display option")
             default:
                 return "Up to \(self.rawValue) lines"
             }
