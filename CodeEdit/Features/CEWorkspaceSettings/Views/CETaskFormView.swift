@@ -16,10 +16,10 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text(String(localized: "task_form.name_label", comment: "Label for task name field"))
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
+                .accessibilityLabel(String(localized: "task_form.name_placeholder", comment: "Placeholder text for task name field"))
+                Picker(String(localized: "task_form.target_label", comment: "Label for task target field"), selection: $task.target) {
                     Text("My Mac")
                         .tag("My Mac")
 
@@ -29,7 +29,7 @@ struct CETaskFormView: View {
                     Text("Docker")
                         .tag("Docker")
 
-                    Text("Docker Compose")
+                    Text(String(localized: "task_form.docker_compose_option", comment: "Docker Compose option in task form"))
                         .tag("Docker Compose")
                 }
                 .disabled(true)
@@ -37,11 +37,11 @@ struct CETaskFormView: View {
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text(String(localized: "task_form.task_label", comment: "Label for task field"))
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "task_form.command_placeholder", comment: "Placeholder text for task command field"))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text(String(localized: "task_form.working_directory_label", comment: "Label for working directory field"))
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text(String(localized: "task_form.no_env_vars", comment: "Message when there are no environment variables"))
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text(String(localized: "task_form.env_vars_label", comment: "Label for environment variables section"))
             }
         }
         .formStyle(.grouped)
