@@ -39,8 +39,8 @@ struct TerminalSettingsView: View {
 
 private extension TerminalSettingsView {
     @ViewBuilder private var shellSelector: some View {
-        Picker("Shell", selection: $settings.shell) {
-            Text("System Default")
+        Picker(String(localized: "terminal.settings.shell", comment: "Terminal shell setting label"), selection: $settings.shell) {
+            Text(String(localized: "terminal.settings.system_default", comment: "System default shell option"))
                 .tag(SettingsData.TerminalShell.system)
             Divider()
             Text("Zsh")
@@ -51,18 +51,18 @@ private extension TerminalSettingsView {
     }
 
     private var cursorStyle: some View {
-        Picker("Terminal Cursor Style", selection: $settings.cursorStyle) {
-            Text("Block")
+        Picker(String(localized: "terminal.settings.cursor_style", comment: "Terminal cursor style setting label"), selection: $settings.cursorStyle) {
+            Text(String(localized: "terminal.settings.cursor.block", comment: "Block cursor style option"))
                 .tag(SettingsData.TerminalCursorStyle.block)
-            Text("Underline")
+            Text(String(localized: "terminal.settings.cursor.underline", comment: "Underline cursor style option"))
                 .tag(SettingsData.TerminalCursorStyle.underline)
-            Text("Bar")
+            Text(String(localized: "terminal.settings.cursor.bar", comment: "Bar cursor style option"))
                 .tag(SettingsData.TerminalCursorStyle.bar)
         }
     }
 
     private var cursorBlink: some View {
-        Toggle("Blink Cursor", isOn: $settings.cursorBlink)
+        Toggle(String(localized: "terminal.settings.blink_cursor", comment: "Blink cursor setting label"), isOn: $settings.cursorBlink)
     }
 
     private var optionAsMetaToggle: some View {
@@ -70,16 +70,16 @@ private extension TerminalSettingsView {
     }
 
     private var useTextEditorFontToggle: some View {
-        Toggle("Use text editor font", isOn: $settings.useTextEditorFont)
+        Toggle(String(localized: "terminal.settings.use_editor_font", comment: "Use text editor font setting label"), isOn: $settings.useTextEditorFont)
     }
 
     @ViewBuilder private var fontSelector: some View {
-        MonospacedFontPicker(title: "Font", selectedFontName: $settings.font.name)
+        MonospacedFontPicker(title: String(localized: "terminal.settings.font", comment: "Terminal font setting label"), selectedFontName: $settings.font.name)
     }
 
     private var fontSizeSelector: some View {
         Stepper(
-            "Font Size",
+            String(localized: "terminal.settings.font_size", comment: "Terminal font size setting label"),
             value: $settings.font.size,
             in: 1...288,
             step: 1,
@@ -93,14 +93,14 @@ private extension TerminalSettingsView {
 
     @ViewBuilder private var injectionOptions: some View {
         VStack {
-            Toggle("Shell Integration", isOn: $settings.useShellIntegration)
+            Toggle(String(localized: "terminal.settings.shell_integration", comment: "Shell integration setting label"), isOn: $settings.useShellIntegration)
             // swiftlint:disable:next line_length
-                .help("CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection.")
+                .help(String(localized: "terminal.settings.shell_integration.description", comment: "Shell integration feature description"))
             if !settings.useShellIntegration {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundStyle(Color(NSColor.systemYellow))
-                    Text("Warning: Disabling integration disables features such as terminal title detection.")
+                    Text(String(localized: "terminal.settings.shell_integration.warning", comment: "Warning about disabling shell integration"))
                     Spacer()
                 }
             }
@@ -109,9 +109,9 @@ private extension TerminalSettingsView {
 
     @ViewBuilder private var useLoginShell: some View {
         if settings.useShellIntegration {
-            Toggle("Use Login Shell", isOn: $settings.useLoginShell)
+            Toggle(String(localized: "terminal.settings.use_login_shell", comment: "Use login shell setting label"), isOn: $settings.useLoginShell)
             // swiftlint:disable:next line_length
-                .help("Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app.")
+                .help(String(localized: "terminal.settings.use_login_shell.description", comment: "Login shell setting description"))
         } else {
             EmptyView()
         }
