@@ -12,7 +12,7 @@ extension SourceControlNavigatorRepositoryView {
         [
             .init(
                 id: "BranchesGroup",
-                label: "Branches",
+                label: String(localized: "source_control.branches", comment: "Label for the branches section in source control navigator"),
                 image: .system(name: "externaldrive.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.orderedLocalBranches.map { branch in
@@ -28,7 +28,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "StashedChangesGroup",
-                label: "Stashed Changes",
+                label: String(localized: "source_control.stashed_changes", comment: "Label for the stashed changes section in source control navigator"),
                 image: .system(name: "tray.2.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.stashEntries.map { stashEntry in
@@ -51,7 +51,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "RemotesGroup",
-                label: "Remotes",
+                label: String(localized: "source_control.remotes", comment: "Label for the remotes section in source control navigator"),
                 image: .system(name: "network"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.remotes.map { remote in
