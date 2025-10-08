@@ -34,7 +34,7 @@ struct EditCETaskView: View {
                         NSAlert(error: error).runModal()
                     }
                 } label: {
-                    Text("Delete")
+                    Text(String(localized: "edit_task.delete", comment: "Button to delete the task being edited"))
                         .foregroundStyle(.red)
                         .frame(minWidth: 56)
                 }
@@ -49,7 +49,7 @@ struct EditCETaskView: View {
                         NSAlert(error: error).runModal()
                     }
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "edit_task.done", comment: "Button to finish editing task"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
