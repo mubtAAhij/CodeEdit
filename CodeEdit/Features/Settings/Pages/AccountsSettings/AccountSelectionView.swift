@@ -39,7 +39,7 @@ struct AccountSelectionView: View {
                         Button {
                             dismiss()
                         } label: {
-                            Text("Cancel")
+                            Text(String(localized: "account_selection.cancel", comment: "Cancel button text"))
                                 .padding(.horizontal)
                         }
                         .buttonStyle(.borderedProminent)
