@@ -16,13 +16,13 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Shell",
+                String(localized: "terminal.shell", comment: "Terminal shell setting label"),
                 "Use \"Option\" key as \"Meta\"",
-                "Use text editor font",
-                "Font",
-                "Font Size",
-                "Terminal Cursor Style",
-                "Blink Cursor"
+                String(localized: "terminal.use_text_editor_font", comment: "Terminal option to use text editor font"),
+                String(localized: "terminal.font", comment: "Terminal font setting label"),
+                String(localized: "terminal.font_size", comment: "Terminal font size setting label"),
+                String(localized: "terminal.cursor_style", comment: "Terminal cursor style setting label"),
+                String(localized: "terminal.blink_cursor", comment: "Terminal blink cursor setting label")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
