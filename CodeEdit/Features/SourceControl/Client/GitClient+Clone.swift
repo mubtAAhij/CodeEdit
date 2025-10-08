@@ -23,11 +23,11 @@ extension GitClient {
 
         var label: String {
             switch self {
-            case .initialState: "Cloning"
-            case .counting: "Counting"
-            case .compressing: "Compressing"
-            case .receiving: "Receiving"
-            case .resolving: "Resolving"
+            case .initialState: String(localized: "git.status.cloning", comment: "Git clone operation status")
+            case .counting: String(localized: "git.status.counting", comment: "Git counting operation status")
+            case .compressing: String(localized: "git.status.compressing", comment: "Git compressing operation status")
+            case .receiving: String(localized: "git.status.receiving", comment: "Git receiving operation status")
+            case .resolving: String(localized: "git.status.resolving", comment: "Git resolving operation status")
             }
         }
     }
