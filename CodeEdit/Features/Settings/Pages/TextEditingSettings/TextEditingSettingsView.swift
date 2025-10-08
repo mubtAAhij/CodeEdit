@@ -54,12 +54,12 @@ struct TextEditingSettingsView: View {
 
 private extension TextEditingSettingsView {
     @ViewBuilder private var fontSelector: some View {
-        MonospacedFontPicker(title: "Font", selectedFontName: $textEditing.font.name)
+        MonospacedFontPicker(title: String(localized: "text_editing.font", comment: "Label for font selection setting"), selectedFontName: $textEditing.font.name)
     }
 
     @ViewBuilder private var fontSizeSelector: some View {
         Stepper(
-            "Font Size",
+            String(localized: "text_editing.font_size", comment: "Label for font size setting"),
             value: $textEditing.font.size,
             in: 1...288,
             step: 1,
@@ -88,7 +88,7 @@ private extension TextEditingSettingsView {
 
     @ViewBuilder private var useSystemCursor: some View {
         if #available(macOS 14, *) {
-            Toggle("Use System Cursor", isOn: $textEditing.useSystemCursor)
+            Toggle(String(localized: "text_editing.use_system_cursor", comment: "Setting to use system cursor"), isOn: $textEditing.useSystemCursor)
         } else {
             EmptyView()
         }
@@ -100,18 +100,18 @@ private extension TextEditingSettingsView {
                 "Editor Overscroll",
                 selection: $textEditing.overscroll
             ) {
-                Text("None")
+                Text(String(localized: "text_editing.none", comment: "None option for cursor blink setting"))
                     .tag(SettingsData.TextEditingSettings.OverscrollOption.none)
                 Divider()
-                Text("Small")
+                Text(String(localized: "text_editing.small", comment: "Small option for cursor blink setting"))
                     .tag(
                         SettingsData.TextEditingSettings.OverscrollOption.small
                     )
-                Text("Medium")
+                Text(String(localized: "text_editing.medium", comment: "Medium option for cursor blink setting"))
                     .tag(
                         SettingsData.TextEditingSettings.OverscrollOption.medium
                     )
-                Text("Large")
+                Text(String(localized: "text_editing.large", comment: "Large option for cursor blink setting"))
                     .tag(
                         SettingsData.TextEditingSettings.OverscrollOption.large
                     )
@@ -132,15 +132,15 @@ private extension TextEditingSettingsView {
     @ViewBuilder private var indentOption: some View {
         Group {
             Picker("Prefer Indent Using", selection: $textEditing.indentOption.indentType) {
-                Text("Tabs")
+                Text(String(localized: "text_editing.tabs", comment: "Tabs option for indentation"))
                     .tag(SettingsData.TextEditingSettings.IndentOption.IndentType.tab)
-                Text("Spaces")
+                Text(String(localized: "text_editing.spaces", comment: "Spaces option for indentation"))
                     .tag(SettingsData.TextEditingSettings.IndentOption.IndentType.spaces)
             }
             if textEditing.indentOption.indentType == .spaces {
                 HStack {
                     Stepper(
-                        "Indent Width",
+                        String(localized: "text_editing.indent_width", comment: "Label for indent width setting"),
                         value: Binding<Double>(
                             get: { Double(textEditing.indentOption.spaceCount) },
                             set: { textEditing.indentOption.spaceCount = Int($0) }
@@ -149,10 +149,10 @@ private extension TextEditingSettingsView {
                         step: 1,
                         format: .number
                     )
-                    Text("spaces")
+                    Text(String(localized: "text_editing.spaces_unit", comment: "Unit label for spaces measurement"))
                         .foregroundColor(.secondary)
                 }
-                .help("The number of spaces to insert when the tab key is pressed.")
+                .help(String(localized: "text_editing.indent_width_description", comment: "Description for indent width setting"))
             }
         }
     }
@@ -172,7 +172,7 @@ private extension TextEditingSettingsView {
             Text("spaces")
                 .foregroundColor(.secondary)
         }
-        .help("The visual width of tabs.")
+        .help(String(localized: "text_editing.tab_width_description", comment: "Description for tab width setting"))
     }
 
     @ViewBuilder private var letterSpacing: some View {
@@ -191,16 +191,16 @@ private extension TextEditingSettingsView {
                 "Bracket Pair Highlight",
                 selection: $textEditing.bracketEmphasis.highlightType
             ) {
-                Text("Disabled").tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.disabled)
+                Text(String(localized: "text_editing.disabled", comment: "Disabled option for bracket highlighting")).tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.disabled)
                 Divider()
-                Text("Bordered").tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.bordered)
-                Text("Flash").tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.flash)
-                Text("Underline").tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.underline)
+                Text(String(localized: "text_editing.bordered", comment: "Bordered option for bracket highlighting")).tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.bordered)
+                Text(String(localized: "text_editing.flash", comment: "Flash option for bracket highlighting")).tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.flash)
+                Text(String(localized: "text_editing.underline", comment: "Underline option for bracket highlighting")).tag(SettingsData.TextEditingSettings.BracketPairEmphasis.HighlightType.underline)
             }
             if [.bordered, .underline].contains(textEditing.bracketEmphasis.highlightType) {
-                Toggle("Use Custom Color", isOn: $textEditing.bracketEmphasis.useCustomColor)
+                Toggle(String(localized: "text_editing.use_custom_color", comment: "Setting to use custom color for bracket highlighting"), isOn: $textEditing.bracketEmphasis.useCustomColor)
                 SettingsColorPicker(
-                    "Bracket Pair Highlight Color",
+                    String(localized: "text_editing.bracket_pair_highlight_color", comment: "Label for bracket pair highlight color setting"),
                     color: $textEditing.bracketEmphasis.color.swiftColor
                 )
                 .foregroundColor(
@@ -215,25 +215,25 @@ private extension TextEditingSettingsView {
 
     @ViewBuilder private var showGutter: some View {
         Toggle("Show Gutter", isOn: $textEditing.showGutter)
-            .help("The gutter displays line numbers and code folding regions.")
+            .help(String(localized: "text_editing.gutter_description", comment: "Description of what the gutter displays"))
     }
 
     @ViewBuilder private var showMinimap: some View {
-        Toggle("Show Minimap", isOn: $textEditing.showMinimap)
+        Toggle(String(localized: "text_editing.show_minimap", comment: "Label for show minimap setting"), isOn: $textEditing.showMinimap)
             // swiftlint:disable:next line_length
-            .help("The minimap gives you a high-level summary of your source code, with controls to quickly navigate your document.")
+            .help(String(localized: "text_editing.minimap_description", comment: "Description of minimap functionality"))
     }
 
     @ViewBuilder private var showFoldingRibbon: some View {
-        Toggle("Show Code Folding Ribbon", isOn: $textEditing.showFoldingRibbon)
+        Toggle(String(localized: "text_editing.show_code_folding_ribbon", comment: "Label for show code folding ribbon setting"), isOn: $textEditing.showFoldingRibbon)
             .disabled(!textEditing.showGutter) // Disabled when the gutter is disabled
             // swiftlint:disable:next line_length
-            .help("The code folding ribbon lets you fold regions of code. When the gutter is disabled, the folding ribbon is disabled.")
+            .help(String(localized: "text_editing.code_folding_ribbon_description", comment: "Description of code folding ribbon functionality"))
     }
 
     @ViewBuilder private var reformatSettings: some View {
         Toggle("Show Reformatting Guide", isOn: $textEditing.showReformattingGuide)
-            .help("Shows a vertical guide at the reformat column.")
+            .help(String(localized: "text_editing.vertical_guide_description", comment: "Description of vertical guide functionality"))
 
         Stepper(
             "Reformat at Column",
@@ -245,18 +245,18 @@ private extension TextEditingSettingsView {
             step: 1,
             format: .number
         )
-        .help("The column at which text should be reformatted.")
+        .help(String(localized: "text_editing.reformat_column_description", comment: "Description of reformat column setting"))
     }
 
     @ViewBuilder private var invisibles: some View {
         HStack {
-            Text("Show Invisible Characters")
+            Text(String(localized: "text_editing.show_invisible_characters", comment: "Label for show invisible characters setting"))
             Spacer()
             Toggle(isOn: $textEditing.invisibleCharacters.enabled, label: { EmptyView() })
             Button {
                 isShowingInvisibleCharacterSettings = true
             } label: {
-                Text("Configure...")
+                Text(String(localized: "text_editing.configure", comment: "Button label for configure action"))
             }
             .disabled(textEditing.invisibleCharacters.enabled == false)
         }
@@ -273,7 +273,7 @@ private extension TextEditingSettingsView {
 
     @ViewBuilder private var warningCharacters: some View {
         HStack {
-            Text("Show Warning Characters")
+            Text(String(localized: "text_editing.show_warning_characters", comment: "Label for show warning characters setting"))
             Spacer()
             Toggle(isOn: $textEditing.warningCharacters.enabled, label: { EmptyView() })
             Button {
