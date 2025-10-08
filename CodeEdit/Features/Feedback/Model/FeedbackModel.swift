@@ -28,21 +28,21 @@ public class FeedbackModel: ObservableObject {
 
     @Published var feedbackTypeList = [
         FeedbackType(name: "Choose...", id: "none"),
-        FeedbackType(name: "Incorrect/Unexpected Behaviour", id: "behaviour"),
-        FeedbackType(name: "Application Crash", id: "crash"),
-        FeedbackType(name: "Application Slow/Unresponsive", id: "unresponsive"),
-        FeedbackType(name: "Suggestion", id: "suggestions"),
-        FeedbackType(name: "Other", id: "other")
+        FeedbackType(name: String(localized: "feedback.type.incorrect_behavior", comment: "Feedback type for incorrect or unexpected behavior"), id: "behaviour"),
+        FeedbackType(name: String(localized: "feedback.type.crash", comment: "Feedback type for application crashes"), id: "crash"),
+        FeedbackType(name: String(localized: "feedback.type.performance", comment: "Feedback type for slow or unresponsive application"), id: "unresponsive"),
+        FeedbackType(name: String(localized: "feedback.type.suggestion", comment: "Feedback type for suggestions"), id: "suggestions"),
+        FeedbackType(name: String(localized: "feedback.type.other", comment: "Other feedback type option"), id: "other")
     ]
 
     @Published var issueAreaList = [
-        FeedbackIssueArea(name: "Please select the problem area", id: "none"),
-        FeedbackIssueArea(name: "Project Navigator", id: "projectNavigator"),
-        FeedbackIssueArea(name: "Extensions", id: "extensions"),
-        FeedbackIssueArea(name: "Git", id: "git"),
-        FeedbackIssueArea(name: "Debugger", id: "debugger"),
+        FeedbackIssueArea(name: String(localized: "feedback.area.select_prompt", comment: "Prompt to select the problem area for feedback"), id: "none"),
+        FeedbackIssueArea(name: String(localized: "feedback.area.project_navigator", comment: "Problem area: Project Navigator"), id: "projectNavigator"),
+        FeedbackIssueArea(name: String(localized: "feedback.area.extensions", comment: "Problem area: Extensions"), id: "extensions"),
+        FeedbackIssueArea(name: String(localized: "feedback.area.git", comment: "Problem area: Git"), id: "git"),
+        FeedbackIssueArea(name: String(localized: "feedback.area.debugger", comment: "Problem area: Debugger"), id: "debugger"),
         FeedbackIssueArea(name: "Editor", id: "editor"),
-        FeedbackIssueArea(name: "Other", id: "other")
+        FeedbackIssueArea(name: String(localized: "feedback.type.other", comment: "Other feedback type label"), id: "other")
     ]
 
     /// Gets the ID of the selected issue type and then
@@ -50,19 +50,19 @@ public class FeedbackModel: ObservableObject {
     private func getIssueLabel() -> String {
         switch issueAreaListSelection {
         case "projectNavigator":
-            return "Project Navigator"
+            return String(localized: "feedback.area.project_navigator", comment: "Problem area: Project Navigator")
         case "extensions":
-            return "Extensions"
+            return String(localized: "feedback.area.extensions", comment: "Problem area: Extensions")
         case "git":
-            return "Git"
+            return String(localized: "feedback.area.git", comment: "Problem area: Git")
         case "debugger":
-            return "Debugger"
+            return String(localized: "feedback.area.debugger", comment: "Problem area: Debugger")
         case "editor":
             return "Editor"
         case "other":
-            return "Other"
+            return String(localized: "feedback.area.other", comment: "Problem area: Other")
         default:
-            return "Other"
+            return String(localized: "feedback.area.other", comment: "Problem area: Other")
         }
     }
 
@@ -70,17 +70,17 @@ public class FeedbackModel: ObservableObject {
     private func getFeedbackTypeTitle() -> String {
         switch feedbackTypeListSelection {
         case "behaviour":
-            return "🐞"
+            return String(localized: "feedback.emoji.bug", comment: "Bug emoji for feedback type")
         case "crash":
-            return "🐞"
+            return String(localized: "feedback.type.bug_emoji", comment: "Bug emoji for feedback type")
         case "unresponsive":
-            return "🐞"
+            return String(localized: "feedback.emoji.bug", comment: "Bug emoji for feedback type")
         case "suggestions":
             return "✨"
         case "other":
             return "📬"
         default:
-            return "Other"
+            return String(localized: "feedback.area.other", comment: "Problem area: Other")
         }
     }
 
@@ -89,15 +89,15 @@ public class FeedbackModel: ObservableObject {
     private func getFeedbackTypeLabel() -> String {
         switch feedbackTypeListSelection {
         case "behaviour":
-            return "Bug"
+            return String(localized: "feedback.type.bug", comment: "Bug feedback type label")
         case "crash":
             return "Bug"
         case "unresponsive":
-            return "Bug"
+            return String(localized: "feedback.type.bug", comment: "Bug feedback type label")
         case "suggestions":
-            return "Suggestion"
+            return String(localized: "feedback.type.suggestion", comment: "Suggestion feedback type label")
         case "other":
-            return "Feedback"
+            return String(localized: "feedback.type.feedback", comment: "Feedback type label")
         default:
             return "Other"
         }
@@ -119,7 +119,7 @@ public class FeedbackModel: ObservableObject {
 
         **Steps to Reproduce**
 
-        \(steps ?? "N/A")
+        \(steps ?? String(localized: "feedback.na", comment: "N/A placeholder for feedback"))
 
         **What did you expect to happen?**
 
@@ -127,7 +127,7 @@ public class FeedbackModel: ObservableObject {
 
         **What actually happened?**
 
-        \(actuallyHappened ?? "N/A")
+        \(actuallyHappened ?? String(localized: "feedback.na", comment: "N/A placeholder for feedback"))
         """
     }
 
