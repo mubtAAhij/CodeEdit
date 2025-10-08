@@ -28,18 +28,18 @@ struct ViewCommands: Commands {
 
     var body: some Commands {
         CommandGroup(after: .toolbar) {
-            Button("Show Command Palette") {
+            Button(String(localized: "view_commands.show_command_palette", comment: "Menu item to show the command palette")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openCommandPalette(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("p", modifiers: [.shift, .command])
 
-            Button("Open Search Navigator") {
+            Button(String(localized: "view_commands.open_search_navigator", comment: "Menu item to open the search navigator")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openSearchNavigator(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("f", modifiers: [.shift, .command])
 
-            Menu("Font Size") {
-                Button("Increase") {
+            Menu(String(localized: "view_commands.font_size", comment: "Menu item for font size options")) {
+                Button(String(localized: "view_commands.increase", comment: "Menu item to increase font size")) {
                     if editorFontSize < 288 {
                         editorFontSize += 1
                     }
@@ -49,7 +49,7 @@ struct ViewCommands: Commands {
                 }
                 .keyboardShortcut("+")
 
-                Button("Decrease") {
+                Button(String(localized: "view_commands.decrease", comment: "Menu item to decrease font size")) {
                     if editorFontSize > 1 {
                         editorFontSize -= 1
                     }
@@ -61,7 +61,7 @@ struct ViewCommands: Commands {
 
                 Divider()
 
-                Button("Reset") {
+                Button(String(localized: "view_commands.reset", comment: "Menu item to reset font size")) {
                     editorFontSize = 12
                     terminalFontSize = 12
                 }
@@ -69,7 +69,7 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button("Customize Toolbar...") {
+            Button(String(localized: "view_commands.customize_toolbar", comment: "Menu item to customize the toolbar")) {
 
             }
             .disabled(true)
@@ -84,7 +84,7 @@ struct ViewCommands: Commands {
                 showEditorJumpBar.toggle()
             }
 
-            Toggle("Dim editors without focus", isOn: $dimEditorsWithoutFocus)
+            Toggle(String(localized: "view_commands.dim_editors_without_focus", comment: "Menu item to dim unfocused editors"), isOn: $dimEditorsWithoutFocus)
 
             Divider()
 
@@ -159,7 +159,7 @@ extension ViewCommands {
         @ObservedObject var model: NavigatorAreaViewModel
 
         var body: some View {
-            Menu("Navigators", content: {
+            Menu(String(localized: "view.navigators.menu", comment: "Navigators menu title"), content: {
                 ForEach(Array(model.tabItems.prefix(9).enumerated()), id: \.element) { index, tab in
                     Button(tab.title) {
                         model.setNavigatorTab(tab: tab)
