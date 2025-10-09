@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "archive.error.unreadable", comment: "Error message for unreadable archive")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "archive.error.unwritable", comment: "Error message for unwritable archive")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "archive.error.invalid_entry_path", comment: "Error message for invalid entry path")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "archive.error.invalid_compression_method", comment: "Error message for invalid compression method")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "archive.error.invalid_checksum", comment: "Error message for invalid checksum")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "archive.error.operation_cancelled", comment: "Error message for cancelled operation")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "archive.error.invalid_buffer_size", comment: "Error message for invalid buffer size")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "archive.error.invalid_entry_size", comment: "Error message for invalid entry size")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "archive.error.invalid_file", comment: "Error message for invalid file detected")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }
