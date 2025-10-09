@@ -9,6 +9,6 @@ import SwiftUI
 
 struct NoSelectionInspectorView: View {
     var body: some View {
-        CEContentUnavailableView("No Selection")
+        CEContentUnavailableView(String(localized: "inspector.no_selection", comment: "Message shown when no file is selected in inspector"))
     }
 }
