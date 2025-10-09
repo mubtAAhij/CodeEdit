@@ -28,24 +28,24 @@ struct SourceControlNavigatorChangesList: View {
                 if selectedFiles.count == 1,
                    let file = selectedFiles.first {
                     Group {
-                        Button("View in Finder") {
+                        Button(String(localized: "source_control.context_menu.view_in_finder", comment: "Context menu option to view file in Finder")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button("Reveal in Project Navigator") {}
+                        Button(String(localized: "source_control.context_menu.reveal_in_navigator", comment: "Context menu option to reveal file in project navigator")) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button("Open in New Tab") {
+                        Button(String(localized: "source_control.context_menu.open_new_tab", comment: "Context menu option to open file in new tab")) {
                             openGitFile(file)
                         }
-                        Button("Open in New Window") {}
+                        Button(String(localized: "source_control.context_menu.open_new_window", comment: "Context menu option to open file in new window")) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
                         Group {
                             Divider()
-                            Button("Discard Changes in \(file.fileURL.lastPathComponent)...") {
+                            Button(String(localized: "source_control.context_menu.discard_changes", comment: "Context menu option to discard file changes")) {
                                 sourceControlManager.discardChanges(for: file.fileURL)
                             }
                             Divider()
