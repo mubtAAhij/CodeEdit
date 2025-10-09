@@ -19,13 +19,13 @@ struct SourceControlStashView: View {
         VStack(spacing: 0) {
             Form {
                 Section {
-                    TextField("", text: $message, prompt: Text("Message (optional)"), axis: .vertical)
+                    TextField("", text: $message, prompt: Text(String(localized: "source_control.stash.message_placeholder", comment: "Placeholder text for stash message field")), axis: .vertical)
                         .labelsHidden()
                         .lineLimit(3...3)
                         .contentShape(Rectangle())
                         .frame(height: 48)
                 } header: {
-                    Text("Stash Changes")
+                    Text(String(localized: "source_control.stash.title", comment: "Title for stash changes dialog"))
                     Group {
                         if sourceControlManager.pullSheetIsPresented
                             || sourceControlManager.switchToBranch != nil {
@@ -42,7 +42,7 @@ struct SourceControlStashView: View {
                 if sourceControlManager.pullSheetIsPresented
                     || sourceControlManager.switchToBranch != nil {
                     Section {
-                        Toggle("Apply stash after operation", isOn: $applyStashAfterOperation)
+                        Toggle(String(localized: "source_control.stash.apply_after_operation", comment: "Toggle text to apply stash after operation completes"), isOn: $applyStashAfterOperation)
                     }
                 }
             }
@@ -56,7 +56,7 @@ struct SourceControlStashView: View {
                     message = ""
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "common.cancel", comment: "Cancel button text"))
                         .frame(minWidth: 56)
                 }
                 Button {
@@ -64,10 +64,10 @@ struct SourceControlStashView: View {
                 } label: {
                         Text(
                             sourceControlManager.pullSheetIsPresented
-                            ? "Stash and Pull"
+                            ? String(localized: "source_control.stash.stash_and_pull", comment: "Button text to stash changes and then pull")
                             : sourceControlManager.switchToBranch != nil
-                            ? "Stash and Switch"
-                            : "Stash"
+                            ? String(localized: "source_control.stash.stash_and_switch", comment: "Button text to stash changes and then switch branches")
+                            : String(localized: "source_control.stash.stash_button", comment: "Button text to stash changes")
                         )
                         .frame(minWidth: 56)
                     }
@@ -104,7 +104,7 @@ struct SourceControlStashView: View {
                             throw NSError(
                                 domain: "SourceControl",
                                 code: 1,
-                                userInfo: [NSLocalizedDescriptionKey: "Could not find last stash"]
+                                userInfo: [NSLocalizedDescriptionKey: String(localized: "source_control.error.could_not_find_last_stash", comment: "Error message when last stash cannot be found")]
                             )
                         }
                         try await sourceControlManager.applyStashEntry(stashEntry: lastStashEntry)
@@ -118,7 +118,7 @@ struct SourceControlStashView: View {
 
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to stash changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.error.failed_to_stash_changes", comment: "Error message when stashing changes fails"), error: error)
             }
         }
     }
