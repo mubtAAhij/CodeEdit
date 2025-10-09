@@ -62,7 +62,7 @@ struct FindNavigatorForm: View {
                     Spacer()
                 }
                 Spacer()
-                Text("Scoped")
+                Text(String(localized: "find_navigator.scoped", comment: "Label for scoped search option"))
                     .controlSize(.small)
                     .foregroundStyle(Color(nsColor: scoped ? .controlAccentColor : .controlTextColor))
                     .onTapGesture {
@@ -91,7 +91,7 @@ struct FindNavigatorForm: View {
                             .foregroundStyle(caseSensitive ? Color(.controlAccentColor) : Color(.secondaryLabelColor))
                         }
                     )
-                    .help("Match Case")
+                    .help(String(localized: "find_navigator.match_case", comment: "Tooltip for case-sensitive search toggle"))
                     .onChange(of: caseSensitive) { newValue in
                         state.caseSensitive = newValue
                     }
@@ -116,7 +116,7 @@ struct FindNavigatorForm: View {
             }
             if selectedMode[0] == SearchModeModel.Replace {
                 PaneTextField(
-                    "With",
+                    String(localized: "find_navigator.replace_with", comment: "Placeholder text for replace field"),
                     text: $state.replaceText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -138,7 +138,7 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Preserve Case")
+                        .help(String(localized: "find_navigator.preserve_case", comment: "Tooltip for preserve case toggle"))
                     },
                     clearable: true,
                     hasValue: preserveCase
@@ -146,7 +146,7 @@ struct FindNavigatorForm: View {
             }
             if scoped {
                 PaneTextField(
-                    "Only in folders",
+                    String(localized: "find_navigator.only_in_folders", comment: "Placeholder text for folder filtering field"),
                     text: $includesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -167,13 +167,13 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Search only in Open Editors")
+                        .help(String(localized: "find_navigator.search_open_editors", comment: "Tooltip for open editors search toggle"))
                     },
                     clearable: true,
                     hasValue: scopedToOpenEditors
                 )
                 PaneTextField(
-                    "Excluding folders",
+                    String(localized: "find_navigator.excluding_folders", comment: "Placeholder text for folder exclusion field"),
                     text: $excludesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -194,7 +194,7 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Use Exclude Settings and Ignore Files")
+                        .help(String(localized: "find_navigator.use_exclude_settings", comment: "Tooltip for exclude settings toggle"))
                     },
                     clearable: true,
                     hasValue: excludeSettings
@@ -208,7 +208,7 @@ struct FindNavigatorForm: View {
                         print(Date().timeIntervalSince(startTime))
                     }
                 } label: {
-                    Text("Replace All")
+                    Text(String(localized: "find_navigator.replace_all", comment: "Button text for replace all action"))
                         .frame(maxWidth: .infinity)
                 }
             }
