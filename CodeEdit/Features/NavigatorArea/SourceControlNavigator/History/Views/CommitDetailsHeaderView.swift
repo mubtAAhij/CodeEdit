@@ -1,5 +1,5 @@
 //
-//  CommitDetailsHeaderView.swift
+//undefined CommitDetailsHeaderView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 12/27/23.
