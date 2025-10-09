@@ -24,29 +24,29 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
+                String(localized: "general_settings.appearance", comment: "Appearance settings section label"),
+                String(localized: "general_settings.file_icon_style", comment: "File icon style setting label"),
                 "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
+                String(localized: "general_settings.show_jump_bar", comment: "Show jump bar setting label"),
+                String(localized: "general_settings.dim_editors_without_focus", comment: "Dim editors without focus setting label"),
+                String(localized: "general_settings.navigator_tab_bar_position", comment: "Navigator tab bar position setting label"),
+                String(localized: "general_settings.inspector_tab_bar_position", comment: "Inspector tab bar position setting label"),
+                String(localized: "general_settings.show_issues", comment: "Show issues setting label"),
+                String(localized: "general_settings.show_live_issues", comment: "Show live issues setting label"),
                 "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
+                String(localized: "general_settings.auto_reveal_in_navigator", comment: "Automatically reveal in project navigator setting label"),
+                String(localized: "general_settings.reopen_behavior", comment: "Reopen behavior setting label"),
+                String(localized: "general_settings.after_last_window_closed", comment: "After the last window is closed setting label"),
+                String(localized: "general_settings.file_extensions", comment: "File extensions setting label"),
+                String(localized: "general_settings.project_navigator_size", comment: "Project navigator size setting label"),
+                String(localized: "general_settings.find_navigator_detail", comment: "Find navigator detail setting label"),
+                String(localized: "general_settings.issue_navigator_detail", comment: "Issue navigator detail setting label"),
                 "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "general_settings.codeedit_shell_command", comment: "'codeedit' shell command setting label"),
+                String(localized: "general_settings.dialog_warnings", comment: "Dialog warnings setting label"),
+                String(localized: "general_settings.check_for_updates", comment: "Check for updates setting label"),
+                String(localized: "general_settings.auto_check_for_updates", comment: "Automatically check for app updates setting label"),
+                String(localized: "general_settings.include_prerelease_versions", comment: "Option to include pre-release versions in updates")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -309,7 +309,7 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "general_settings.one_line", comment: "Option for displaying one line")
             default:
                 return "Up to \(self.rawValue) lines"
             }
