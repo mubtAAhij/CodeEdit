@@ -76,7 +76,7 @@ struct LanguageServerRowView: View, Equatable {
                                 Button {
                                     showMore.toggle()
                                 } label: {
-                                    Text(showMore ? "Show Less" : "Show More")
+                                    Text(showMore ? String(localized: "language_server.show_less", comment: "Button to collapse expanded language server description") : String(localized: "language_server.show_more", comment: "Button to expand language server description"))
                                         .font(.footnote)
                                 }
                                 .buttonStyle(.plain)
@@ -103,17 +103,17 @@ struct LanguageServerRowView: View, Equatable {
             isHovering = hovering
         }
         .alert("Remove \(package.sanitizedName)?", isPresented: $showingRemovalConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Remove", role: .destructive) {
+            Button(String(localized: "general.cancel", comment: "Cancel button text"), role: .cancel) { }
+            Button(String(localized: "general.remove", comment: "Remove button text"), role: .destructive) {
                 removeLanguageServer()
             }
         } message: {
-            Text("Are you sure you want to remove this language server? This action cannot be undone.")
+            Text(String(localized: "language_server.remove_confirmation_message", comment: "Message for language server removal confirmation dialog"))
         }
-        .alert("Removal Failed", isPresented: $showingRemovalError) {
-            Button("OK", role: .cancel) { }
+        .alert(String(localized: "language_server.removal_failed", comment: "Title for language server removal failure alert"), isPresented: $showingRemovalError) {
+            Button(String(localized: "general.ok", comment: "OK button text"), role: .cancel) { }
         } message: {
-            Text(removalError?.localizedDescription ?? "An unknown error occurred")
+            Text(removalError?.localizedDescription ?? String(localized: "general.unknown_error", comment: "Generic error message when no specific error is available"))
         }
     }
 
@@ -181,7 +181,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Retry")
+            Text(String(localized: "general.retry", comment: "Retry button text"))
                 .foregroundColor(.red)
         }
     }
@@ -193,7 +193,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Install")
+            Text(String(localized: "general.install", comment: "Install button text"))
         }
         .disabled(registryManager.isInstalling)
     }
