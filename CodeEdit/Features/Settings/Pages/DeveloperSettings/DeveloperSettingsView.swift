@@ -19,28 +19,28 @@ struct DeveloperSettingsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                Toggle("Show Internal Development Inspector", isOn: $showInternalDevelopmentInspector)
+                Toggle(String(localized: "developer_settings.show_internal_inspector", comment: "Toggle label for showing internal development inspector"), isOn: $showInternalDevelopmentInspector)
             }
 
             Section {
                 KeyValueTable(
                     items: $lspBinaries,
                     validKeys: LanguageIdentifier.allCases.map { $0.rawValue },
-                    keyColumnName: "Language",
-                    valueColumnName: "Language Server Path",
-                    newItemInstruction: "Add a language server"
+                    keyColumnName: String(localized: "developer_settings.language", comment: "Column header for language in LSP binaries table"),
+                    valueColumnName: String(localized: "developer_settings.language_server_path", comment: "Column header for language server path in LSP binaries table"),
+                    newItemInstruction: String(localized: "developer_settings.add_language_server", comment: "Instruction text for adding a new language server")
                 ) {
                     Text("Add a language server")
                     Text(
-                        "Specify the absolute path to your LSP binary and its associated language."
+                        String(localized: "developer_settings.lsp_binary_instruction", comment: "Instruction text for specifying LSP binary path and language")
                     )
                 } actionBarTrailing: {
                     EmptyView()
                 }
                 .frame(minHeight: 96)
             } header: {
-                Text("LSP Binaries")
-                Text("Specify the language and the absolute path to the language server binary.")
+                Text(String(localized: "developer_settings.lsp_binaries", comment: "Section header for LSP binaries settings"))
+                Text(String(localized: "developer_settings.lsp_binaries_description", comment: "Description text for LSP binaries section"))
             }
         }
     }
