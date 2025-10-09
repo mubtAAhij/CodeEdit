@@ -23,11 +23,11 @@ struct ProjectNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             addNewFileButton
             PaneTextField(
-                "Filter",
+                String(localized: "navigator.project.filter", comment: "Placeholder text for project navigator filter field"),
                 text: $workspace.navigatorFilter,
                 leadingAccessories: {
                     FilterDropDownIconButton(menu: {
-                        ForEach([(true, "Folders on top"), (false, "Alphabetically")], id: \.0) { value, title in
+                        ForEach([(true, String(localized: "navigator.project.sort.folders_on_top", comment: "Menu option to sort folders on top")), (false, String(localized: "navigator.project.sort.alphabetically", comment: "Menu option to sort alphabetically"))], id: \.0) { value, title in
                             Toggle(title, isOn: Binding(get: {
                                 workspace.sortFoldersOnTop == value
                             }, set: { _ in
@@ -44,18 +44,18 @@ struct ProjectNavigatorToolbarBottom: View {
                         ? Color(nsColor: .secondaryLabelColor)
                         : Color(nsColor: .controlAccentColor)
                     )
-                    .help("Show files with matching name")
+                    .help(String(localized: "navigator.project.filter.help", comment: "Help text for filter functionality"))
                 },
                 trailingAccessories: {
                     HStack(spacing: 0) {
                         Toggle(isOn: $recentsFilter) {
                             Image(systemName: "clock")
                         }
-                        .help("Show only recent files")
+                        .help(String(localized: "navigator.project.filter.recent_files", comment: "Help text for recent files filter"))
                         Toggle(isOn: $workspace.sourceControlFilter) {
                             Image(systemName: "plusminus.circle")
                         }
-                        .help("Show only files with source-control status")
+                        .help(String(localized: "navigator.project.filter.source_control", comment: "Help text for source control filter"))
                     }
                     .toggleStyle(.icon(font: .system(size: 14), size: CGSize(width: 18, height: 20)))
                     .padding(.trailing, 2.5)
@@ -98,7 +98,7 @@ struct ProjectNavigatorToolbarBottom: View {
 
     private var addNewFileButton: some View {
         Menu {
-            Button("Add File") {
+            Button(String(localized: "navigator.project.add_file", comment: "Menu option to add a new file")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
@@ -116,7 +116,7 @@ struct ProjectNavigatorToolbarBottom: View {
                 }
             }
 
-            Button("Add Folder") {
+            Button(String(localized: "navigator.project.add_folder", comment: "Menu option to add a new folder")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
@@ -141,7 +141,7 @@ struct ProjectNavigatorToolbarBottom: View {
         .menuIndicator(.hidden)
         .frame(maxWidth: 18, alignment: .center)
         .opacity(activeState == .inactive ? 0.45 : 1)
-        .accessibilityLabel("Add Folder or File")
+        .accessibilityLabel(String(localized: "navigator.project.add_folder_or_file", comment: "Accessibility label for add button"))
         .accessibilityIdentifier("addButton")
     }
 

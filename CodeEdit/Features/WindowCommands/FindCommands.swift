@@ -18,34 +18,34 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Find") {
+        CommandMenu(String(localized: "find_menu.title", comment: "Title for Find menu")) {
             Group {
-                Button("Find...") {
+                Button(String(localized: "find_menu.find", comment: "Find menu item")) {
                     send(.showFindPanel)
                 }
                 .keyboardShortcut("f")
 
-                Button("Find and Replace...") {
+                Button(String(localized: "find_menu.find_and_replace", comment: "Find and Replace menu item")) {
                     send(.init(rawValue: 12)!)
                 }
                 .keyboardShortcut("f", modifiers: [.option, .command])
 
-                Button("Find Next") {
+                Button(String(localized: "find_menu.find_next", comment: "Find Next menu item")) {
                     send(.next)
                 }
                 .keyboardShortcut("g")
 
-                Button("Find Previous") {
+                Button(String(localized: "find_menu.find_previous", comment: "Find Previous menu item")) {
                     send(.previous)
                 }
                 .keyboardShortcut("g", modifiers: [.shift, .command])
 
-                Button("Use Selection for Find") {
+                Button(String(localized: "find_menu.use_selection_for_find", comment: "Use Selection for Find menu item")) {
                     send(.setFindString)
                 }
                 .keyboardShortcut("e")
 
-                Button("Jump to Selection") {
+                Button(String(localized: "find_menu.jump_to_selection", comment: "Jump to Selection menu item")) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j")

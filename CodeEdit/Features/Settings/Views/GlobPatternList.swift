@@ -44,14 +44,14 @@ struct GlobPatternList: View {
         .frame(minHeight: 96)
         .contextMenu(forSelectionType: UUID.self, menu: { selection in
             if let patternID = selection.first, let pattern = patterns.first(where: { $0.id == patternID }) {
-                Button("Edit") {
+                Button(String(localized: "action.edit", comment: "Context menu action to edit an item")) {
                     focusedField = pattern.id.uuidString
                 }
-                Button("Add") {
+                Button(String(localized: "action.add", comment: "Context menu action to add an item")) {
                     addPattern()
                 }
                 Divider()
-                Button("Remove") {
+                Button(String(localized: "action.remove", comment: "Context menu action to remove an item")) {
                     removePatterns(selection)
                 }
             }

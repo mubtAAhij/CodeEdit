@@ -24,10 +24,10 @@ struct SourceControlAddExistingRemoteView: View {
     var body: some View {
         VStack(spacing: 0) {
             Form {
-                Section("Add Remote") {
-                    TextField("Remote Name", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
+                Section(String(localized: "source_control.remote.add_title", comment: "Title for add remote form section")) {
+                    TextField(String(localized: "source_control.remote.name_field", comment: "Remote name text field placeholder"), value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
                         .focused($focusedField, equals: .name)
-                    TextField("Location", value: $location, formatter: TrimWhitespaceFormatter())
+                    TextField(String(localized: "source_control.remote.location_field", comment: "Remote location text field placeholder"), value: $location, formatter: TrimWhitespaceFormatter())
                         .focused($focusedField, equals: .location)
                 }
             }
@@ -42,13 +42,13 @@ struct SourceControlAddExistingRemoteView: View {
                     name = ""
                     location = ""
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "common.cancel", comment: "Cancel button text"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Add")
+                    Text(String(localized: "common.add", comment: "Add button text"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -80,7 +80,7 @@ struct SourceControlAddExistingRemoteView: View {
                 location = ""
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to add remote", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.error.failed_add_remote", comment: "Error title when failing to add remote"), error: error)
             }
         }
     }

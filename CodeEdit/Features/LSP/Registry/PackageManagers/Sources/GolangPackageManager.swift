@@ -41,7 +41,7 @@ final class GolangPackageManager: PackageManagerProtocol {
     func isInstalled(method installationMethod: InstallationMethod) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: "",
-            confirmation: .required(message: "This package requires go to install. Allow CodeEdit to run go commands?")
+            confirmation: .required(message: String(localized: "golang_package_manager.go_permission_request", comment: "Request permission to run go commands for package installation"))
         ) { model in
             let versionOutput = try await model.runCommand("go version")
             let versionPattern = #"go version go\d+\.\d+"#
@@ -69,7 +69,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "package_manager.initialize_directory_structure", comment: "Step name for initializing directory structure"),
             confirmation: .none
         ) { model in
             try await model.createDirectoryStructure(for: packagePath)
@@ -90,7 +90,7 @@ final class GolangPackageManager: PackageManagerProtocol {
     func runGoInstall(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         let installCommand = getGoInstallCommand(source)
         return PackageManagerInstallStep(
-            name: "Install Package Using go",
+            name: String(localized: "golang_package_manager.install_package", comment: "Step name for installing package using go"),
             confirmation: .required(
                 message: "This requires installing the go package \(installCommand)."
                 + "\nAllow CodeEdit to install this package?"
@@ -108,7 +108,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func buildBinary(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Build From Source",
+            name: String(localized: "golang_package_manager.build_from_source", comment: "Step name for building from source"),
             confirmation: .none
         ) { model in
             // If there's a subpath, build the binary

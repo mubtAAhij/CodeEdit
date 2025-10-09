@@ -170,12 +170,12 @@ extension CEWorkspaceFileManager {
 
         let deleteConfirmation = NSAlert()
         deleteConfirmation.messageText = "Do you want to delete “\(fileName)”?"
-        deleteConfirmation.informativeText = "This item will be deleted immediately. You can't undo this action."
+        deleteConfirmation.informativeText = String(localized: "file_manager.delete_warning_single", comment: "Warning that single file deletion is immediate and cannot be undone")
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "file_manager.delete_button", comment: "Button to confirm deletion"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
-        if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
+        deleteConfirmation.addButton(withTitle: String(localized: "common.cancel", comment: "Button to cancel an action"))
+        if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn { // String(localized: "file_manager.delete_button", comment: "Button to confirm deletion") button
             if fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
             }
@@ -194,7 +194,7 @@ extension CEWorkspaceFileManager {
         deleteConfirmation.alertStyle = .critical
         deleteConfirmation.addButton(withTitle: "Delete")
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "common.cancel", comment: "Button to cancel an action"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn {
             for file in files where fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)

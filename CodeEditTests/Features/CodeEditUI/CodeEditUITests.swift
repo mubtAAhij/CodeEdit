@@ -34,7 +34,7 @@ final class CodeEditUIUnitTests: XCTestCase {
     // MARK: Segmented Control
 
     func testSegmentedControlLight() throws {
-        let view = SegmentedControl(.constant(0), options: ["Opt1", "Opt2"])
+        let view = SegmentedControl(.constant(0), options: [String(localized: "test.segmented_control.option1", comment: "First option for segmented control in tests"), String(localized: "test.segmented_control.option2", comment: "Second option for segmented control in tests")])
         let hosting = NSHostingView(rootView: view)
         hosting.appearance = .init(named: .aqua)
         hosting.frame = CGRect(origin: .zero, size: .init(width: 100, height: 30))
@@ -50,7 +50,7 @@ final class CodeEditUIUnitTests: XCTestCase {
     }
 
     func testSegmentedControlProminentLight() throws {
-        let view = SegmentedControl(.constant(0), options: ["Opt1", "Opt2"], prominent: true)
+        let view = SegmentedControl(.constant(0), options: [String(localized: "test.segmented_control.option1", comment: "First option for segmented control in tests"), String(localized: "test.segmented_control.option2", comment: "Second option for segmented control in tests")], prominent: true)
         let hosting = NSHostingView(rootView: view)
         hosting.appearance = .init(named: .aqua)
         hosting.frame = CGRect(origin: .zero, size: .init(width: 100, height: 30))
