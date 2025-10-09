@@ -52,7 +52,7 @@ struct LanguageServersView: View {
                     }
                 } header: {
                     Label(
-                        "Warning: Language server installation is experimental. Use at your own risk.",
+                        String(localized: "language_server.experimental_warning", comment: "Warning message about experimental language server installation"),
                         systemImage: "exclamationmark.triangle.fill"
                     )
                 }
