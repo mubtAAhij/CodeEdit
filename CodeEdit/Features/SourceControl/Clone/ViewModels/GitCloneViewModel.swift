@@ -61,15 +61,15 @@ class GitCloneViewModel: ObservableObject {
     func cloneRepository(completionHandler: @escaping (URL) -> Void) {
         if !isGitInstalled() {
             showAlert(
-                alertMsg: "Git installation not found.",
-                infoText: "Ensure Git is installed on your system and try again."
+                alertMsg: String(localized: "git_clone.error.no_git_installation", comment: "Error message when Git is not installed"),
+                infoText: String(localized: "git_clone.error.install_git_instruction", comment: "Instruction to install Git")
             )
             return
         }
         if repoUrlStr == "" {
             showAlert(
-                alertMsg: "Url cannot be empty",
-                infoText: "You must specify a repository to clone"
+                alertMsg: String(localized: "git_clone.error.empty_url", comment: "Error when URL field is empty"),
+                infoText: String(localized: "git_clone.error.specify_repository", comment: "Error message to specify repository")
             )
             return
         }
@@ -93,7 +93,7 @@ class GitCloneViewModel: ObservableObject {
 
         var isDir: ObjCBool = true
         if FileManager.default.fileExists(atPath: localPath.relativePath, isDirectory: &isDir) {
-            showAlert(alertMsg: "Error", infoText: "Directory already exists")
+            showAlert(alertMsg: String(localized: "common.error", comment: "Generic error title"), infoText: String(localized: "git_clone.error.directory_exists", comment: "Error when target directory already exists"))
             return
         }
 
@@ -104,7 +104,7 @@ class GitCloneViewModel: ObservableObject {
                 attributes: nil
             )
         } catch {
-            showAlert(alertMsg: "Failed to create folder", infoText: "\(error)")
+            showAlert(alertMsg: String(localized: "git_clone.error.create_folder_failed", comment: "Error when folder creation fails"), infoText: "\(error)")
             return
         }
 
@@ -151,7 +151,7 @@ class GitCloneViewModel: ObservableObject {
         } catch {
             await MainActor.run {
                 if let error = error as? GitClient.GitClientError {
-                    showAlert(alertMsg: "Failed to clone", infoText: error.description)
+                    showAlert(alertMsg: String(localized: "git_clone.error.clone_failed", comment: "Error when cloning fails"), infoText: error.description)
                 } else {
                     showAlert(alertMsg: "Failed to clone", infoText: error.localizedDescription)
                 }
@@ -166,7 +166,7 @@ class GitCloneViewModel: ObservableObject {
         do {
             try FileManager.default.removeItem(atPath: localPath.relativePath)
         } catch {
-            showAlert(alertMsg: "Failed to delete folder", infoText: "\(error)")
+            showAlert(alertMsg: String(localized: "git_clone.error.delete_folder_failed", comment: "Error when folder deletion fails"), infoText: "\(error)")
             return
         }
     }
@@ -181,9 +181,9 @@ class GitCloneViewModel: ObservableObject {
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.showsTagField = false
-        dialog.prompt = "Clone"
+        dialog.prompt = String(localized: "git_clone.save_panel.prompt", comment: "Save panel prompt for clone")
         dialog.nameFieldStringValue = saveName
-        dialog.nameFieldLabel = "Clone as"
+        dialog.nameFieldLabel = String(localized: "git_clone.save_panel.name_field_label", comment: "Save panel name field label")
         dialog.title = "Clone"
 
         guard dialog.runModal() == NSApplication.ModalResponse.OK,
@@ -198,7 +198,7 @@ class GitCloneViewModel: ObservableObject {
         let alert = NSAlert()
         alert.messageText = alertMsg
         alert.informativeText = infoText
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: String(localized: "common.ok", comment: "OK button"))
         alert.alertStyle = .warning
         alert.runModal()
     }
