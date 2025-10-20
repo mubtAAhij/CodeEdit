@@ -23,11 +23,10 @@ struct SourceControlSwitchView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Do you want to switch to “\(branch.name)”?")
+                    Text(String(localized: "sourceControl.switchToBranch", comment: "Dialog title", arguments: branch.name))
                         .font(.headline)
                     Text(
-                        "All files in the local repository will switch from the current branch " +
-                        "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
+                        String(localized: "sourceControl.switchDescription", comment: "Dialog description", arguments: sourceControlManager.currentBranch?.name ?? "", branch.name)
                     )
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
@@ -42,13 +41,13 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "sourceControl.cancel", comment: "Button text"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Switch")
+                    Text(String(localized: "sourceControl.switch", comment: "Button text"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -70,7 +69,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "sourceControl.failedToCheckout", comment: "Error message"), error: error)
             }
         }
     }
