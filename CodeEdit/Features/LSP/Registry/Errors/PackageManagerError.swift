@@ -17,15 +17,15 @@ enum PackageManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unknown:
-            "Unknown error occurred"
+            String(localized: "packageManagerError.unknown", comment: "Error message")
         case .packageManagerNotInstalled:
-            "The required package manager is not installed."
+            String(localized: "packageManagerError.notInstalled", comment: "Error message")
         case .initializationFailed:
-            "Installation directory initialization failed."
+            String(localized: "packageManagerError.initializationFailed", comment: "Error message")
         case .installationFailed:
-            "Package installation failed."
+            String(localized: "packageManagerError.installationFailed", comment: "Error message")
         case .invalidConfiguration:
-            "The package registry contained an invalid installation configuration."
+            String(localized: "packageManagerError.invalidConfiguration", comment: "Error message")
         }
     }
 
