@@ -16,10 +16,10 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text("taskForm.name", comment: "Label text")
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
+                .accessibilityLabel(String(localized: "taskForm.taskName", comment: "Accessibility label"))
+                Picker(String(localized: "taskForm.target", comment: "Label text"), selection: $task.target) {
                     Text("My Mac")
                         .tag("My Mac")
 
@@ -29,7 +29,7 @@ struct CETaskFormView: View {
                     Text("Docker")
                         .tag("Docker")
 
-                    Text("Docker Compose")
+                    Text("taskForm.dockerCompose", comment: "Target option")
                         .tag("Docker Compose")
                 }
                 .disabled(true)
@@ -37,11 +37,11 @@ struct CETaskFormView: View {
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text("taskForm.task", comment: "Label text")
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "taskForm.taskCommand", comment: "Accessibility label"))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text("taskForm.workingDirectory", comment: "Label text")
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text("taskForm.noEnvironmentVariables", comment: "Empty state message")
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text("taskForm.environmentVariables", comment: "Section title")
             }
         }
         .formStyle(.grouped)
