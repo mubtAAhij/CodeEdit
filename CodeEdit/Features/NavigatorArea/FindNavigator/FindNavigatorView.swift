@@ -32,7 +32,7 @@ struct FindNavigatorView: View {
 
             if findNavigatorStatus == .found {
                 HStack(alignment: .center) {
-                    Text("\(self.searchResultCount) results in \(self.foundFilesCount) files")
+                    Text(String(localized: "findNavigator.resultsCount", comment: "Search results summary", arguments: [self.searchResultCount, self.foundFilesCount]))
                         .font(.system(size: 10))
                 }
 
@@ -47,7 +47,7 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Searching")
+                    Text(String(localized: "findNavigator.searching", comment: "Progress message"))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -57,7 +57,7 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Replacing")
+                    Text(String(localized: "findNavigator.replacing", comment: "Progress message"))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -65,8 +65,8 @@ struct FindNavigatorView: View {
             case .found:
                 if self.searchResultCount == 0 {
                     CEContentUnavailableView(
-                        "No Results",
-                        description: "No Results for \"\(state.searchQuery)\" in Project",
+                        String(localized: "findNavigator.noResults", comment: "Empty state message"),
+                        description: String(localized: "findNavigator.noResultsDescription", comment: "Empty state description", arguments: [state.searchQuery]),
                         systemImage: "exclamationmark.magnifyingglass"
                     )
                 } else {
@@ -74,13 +74,13 @@ struct FindNavigatorView: View {
                 }
             case .replaced(let updatedFiles):
                 CEContentUnavailableView(
-                    "Replaced",
-                    description: "Successfully replaced terms across \(updatedFiles) files",
+                    String(localized: "findNavigator.replaced", comment: "Success message"),
+                    description: String(localized: "findNavigator.replacedDescription", comment: "Success description", arguments: [updatedFiles]),
                     systemImage: "checkmark.circle.fill"
                 )
             case .failed(let errorMessage):
                 CEContentUnavailableView(
-                    "An Error Occurred",
+                    String(localized: "findNavigator.errorOccurred", comment: "Error message"),
                     description: "\(errorMessage)",
                     systemImage: "xmark.octagon.fill"
                 )
