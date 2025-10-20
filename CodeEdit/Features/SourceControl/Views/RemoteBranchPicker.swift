@@ -34,7 +34,7 @@ struct RemoteBranchPicker: View {
                     .tag(remote as GitRemote?)
                 }
                 Divider()
-                Text("Add Existing Remote...")
+                Text(String(localized: "sourceControl.addExistingRemote", comment: "Menu item"))
                     .tag(GitRemote?(nil))
             } label: {
                 Text("Remote")
@@ -42,7 +42,7 @@ struct RemoteBranchPicker: View {
             Picker(selection: $branch) {
                 if shouldCreateBranch {
                     Label {
-                        Text("\(sourceControlManager.currentBranch?.name ?? "") (Create)")
+                        Text(String(localized: "sourceControl.branchCreate", comment: "Branch label", arguments: sourceControlManager.currentBranch?.name ?? ""))
                     } icon: {
                         Image(symbol: "branch")
                     }
@@ -59,7 +59,7 @@ struct RemoteBranchPicker: View {
                     }
                 }
             } label: {
-                Text("Branch")
+                Text(String(localized: "sourceControl.branch", comment: "Label text"))
             }
         }
         .onAppear {
