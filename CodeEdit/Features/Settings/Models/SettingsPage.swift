@@ -26,14 +26,14 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case theme = "Themes"
         case textEditing = "Text Editing"
         case terminal = "Terminal"
-        case search = "Search"
+        case search
         case keybindings = "Key Bindings"
-        case sourceControl = "Source Control"
-        case components = "Components"
-        case location = "Locations"
-        case advanced = "Advanced"
+        case sourceControl
+        case components
+        case location
+        case advanced
         case languageServers = "Language Servers"
-        case developer = "Developer"
+        case developer
     }
 
     let id: UUID = UUID()
@@ -43,7 +43,22 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
     let isSetting: Bool
     let settingName: String
     var nameString: LocalizedStringKey {
-        LocalizedStringKey(name.rawValue)
+        switch name {
+        case .search:
+            return LocalizedStringKey(String(localized: "settingsPage.search", comment: "Tab title"))
+        case .sourceControl:
+            return LocalizedStringKey(String(localized: "settingsPage.sourceControl", comment: "Tab title"))
+        case .components:
+            return LocalizedStringKey(String(localized: "settingsPage.components", comment: "Tab title"))
+        case .location:
+            return LocalizedStringKey(String(localized: "settingsPage.locations", comment: "Tab title"))
+        case .advanced:
+            return LocalizedStringKey(String(localized: "settingsPage.advanced", comment: "Tab title"))
+        case .developer:
+            return LocalizedStringKey(String(localized: "settingsPage.developer", comment: "Tab title"))
+        default:
+            return LocalizedStringKey(name.rawValue)
+        }
     }
     let icon: IconResource?
 
