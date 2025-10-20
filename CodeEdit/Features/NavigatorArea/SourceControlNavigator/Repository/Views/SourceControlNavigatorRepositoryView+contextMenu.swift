@@ -25,15 +25,15 @@ extension SourceControlNavigatorRepositoryView {
 
     @ViewBuilder
     func contextMenu(for item: RepoOutlineGroupItem, branch: GitBranch) -> some View {
-        Button("Switch...") {
+        Button(String(localized: "branch.switch", comment: "Context menu item")) {
             sourceControlManager.switchToBranch = branch
         }
         .disabled(item.branch == nil || sourceControlManager.currentBranch == item.branch)
         Divider()
         Button(
             item.branch == nil && item.id != "BranchesGroup"
-            ? "New Branch..."
-            : "New Branch from \"\(branch.name)\"..."
+            ? String(localized: "branch.newBranch", comment: "Context menu item")
+            : String(localized: "branch.newBranchFrom", comment: "Context menu item", arguments: branch.name)
         ) {
             showNewBranch = true
             fromBranch =  item.branch
@@ -41,26 +41,26 @@ extension SourceControlNavigatorRepositoryView {
         .disabled(item.branch == nil && item.id != "BranchesGroup")
         Button(
             item.branch == nil
-            ? "Rename Branch..."
-            : "Rename \"\(branch.name)\"..."
+            ? String(localized: "branch.renameBranch", comment: "Context menu item")
+            : String(localized: "branch.renameBranchNamed", comment: "Context menu item", arguments: branch.name)
         ) {
             showRenameBranch = true
             fromBranch = item.branch
         }
         .disabled(item.branch == nil || item.branch?.isRemote == true)
         Divider()
-        Button("Add Existing Remote...") {
+        Button(String(localized: "branch.addExistingRemote", comment: "Context menu item")) {
             sourceControlManager.addExistingRemoteSheetIsPresented = true
         }
         .disabled(item.id != "RemotesGroup")
         Divider()
-        Button("Apply Stashed Changes...") {
+        Button(String(localized: "branch.applyStashedChanges", comment: "Context menu item")) {
             applyStashedChangesIsPresented = true
             stashEntryToApply = item.stashEntry
         }
         .disabled(item.stashEntry == nil)
         Divider()
-        Button("Delete...") {
+        Button(String(localized: "branch.delete", comment: "Context menu item")) {
             handleDelete(item)
         }
         .disabled(
