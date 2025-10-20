@@ -22,33 +22,33 @@ extension SettingsData {
         var showLiveIssues: Bool = true
 
         /// The search keys
+        /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
-                "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
-                "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "generalSettings.appearance", comment: "Settings search key"),
+                String(localized: "generalSettings.fileIconStyle", comment: "Settings search key"),
+                String(localized: "generalSettings.tabBarStyle", comment: "Settings search key"),
+                String(localized: "generalSettings.showJumpBar", comment: "Settings search key"),
+                String(localized: "generalSettings.dimEditorsWithoutFocus", comment: "Settings search key"),
+                String(localized: "generalSettings.navigatorTabBarPosition", comment: "Settings search key"),
+                String(localized: "generalSettings.inspectorTabBarPosition", comment: "Settings search key"),
+                String(localized: "generalSettings.showIssues", comment: "Settings search key"),
+                String(localized: "generalSettings.showLiveIssues", comment: "Settings search key"),
+                String(localized: "generalSettings.autoSaveChanges", comment: "Settings search key"),
+                String(localized: "generalSettings.autoRevealInNavigator", comment: "Settings search key"),
+                String(localized: "generalSettings.reopenBehavior", comment: "Settings search key"),
+                String(localized: "generalSettings.afterLastWindowClosed", comment: "Settings search key"),
+                String(localized: "generalSettings.fileExtensions", comment: "Settings search key"),
+                String(localized: "generalSettings.projectNavigatorSize", comment: "Settings search key"),
+                String(localized: "generalSettings.findNavigatorDetail", comment: "Settings search key"),
+                String(localized: "generalSettings.issueNavigatorDetail", comment: "Settings search key"),
+                String(localized: "generalSettings.showOpenWithCodeEdit", comment: "Settings search key"),
+                String(localized: "generalSettings.codeeditShellCommand", comment: "Settings search key"),
+                String(localized: "generalSettings.dialogWarnings", comment: "Settings search key"),
+                String(localized: "generalSettings.checkForUpdates", comment: "Settings search key"),
+                String(localized: "generalSettings.autoCheckUpdates", comment: "Settings search key"),
+                String(localized: "generalSettings.includePrereleaseVersions", comment: "Settings search key")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -309,9 +309,9 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "generalSettings.oneLine", comment: "Navigator detail option")
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(localized: "generalSettings.upToLines", comment: "Navigator detail option", arguments: self.rawValue)
             }
         }
     }
