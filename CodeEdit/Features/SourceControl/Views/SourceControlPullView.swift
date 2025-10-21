@@ -30,10 +30,10 @@ struct SourceControlPullView: View {
                         canCreateBranch: false
                     )
                 } header: {
-                    Text("Pull remote changes from")
+                    Text(String(localized: "sourceControl.pullRemoteChangesFrom", comment: "Section header"))
                 }
                 Section {
-                    Toggle("Rebase local changes onto upstream changes", isOn: $sourceControlManager.operationRebase)
+                    Toggle(String(localized: "sourceControl.rebaseLocalChanges", comment: "Toggle label"), isOn: $sourceControlManager.operationRebase)
                 }
             }
             .formStyle(.grouped)
@@ -53,7 +53,7 @@ struct SourceControlPullView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text("Pulling changes...")
+                        Text(String(localized: "sourceControl.pullingChanges", comment: "Progress message"))
                             .font(.subheadline)
                     }
                 }
@@ -61,12 +61,12 @@ struct SourceControlPullView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "sourceControl.cancel", comment: "Button text"))
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text("Pull")
+                    Text(String(localized: "sourceControl.pull", comment: "Button text"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -96,7 +96,7 @@ struct SourceControlPullView: View {
                 }
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: "Failed to pull", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "sourceControl.failedToPull", comment: "Error message"), error: error)
             }
         }
     }

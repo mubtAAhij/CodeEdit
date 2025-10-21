@@ -24,10 +24,10 @@ struct SourceControlAddExistingRemoteView: View {
     var body: some View {
         VStack(spacing: 0) {
             Form {
-                Section("Add Remote") {
-                    TextField("Remote Name", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
+                Section(String(localized: "addRemote.title", comment: "Section title")) {
+                    TextField(String(localized: "addRemote.remoteName", comment: "Text field placeholder"), value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
                         .focused($focusedField, equals: .name)
-                    TextField("Location", value: $location, formatter: TrimWhitespaceFormatter())
+                    TextField(String(localized: "addRemote.location", comment: "Text field placeholder"), value: $location, formatter: TrimWhitespaceFormatter())
                         .focused($focusedField, equals: .location)
                 }
             }
@@ -42,13 +42,13 @@ struct SourceControlAddExistingRemoteView: View {
                     name = ""
                     location = ""
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "addRemote.cancel", comment: "Button text"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Add")
+                    Text(String(localized: "addRemote.add", comment: "Button text"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -80,7 +80,7 @@ struct SourceControlAddExistingRemoteView: View {
                 location = ""
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to add remote", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "addRemote.failedToAddRemote", comment: "Error message"), error: error)
             }
         }
     }

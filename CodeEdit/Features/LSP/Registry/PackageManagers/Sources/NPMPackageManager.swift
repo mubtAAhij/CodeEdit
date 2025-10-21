@@ -38,7 +38,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: String(localized: "npm.requiresInstall", comment: "Confirmation message")
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -65,7 +65,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "npm.initializeDirectory", comment: "Installation step title"), confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -109,13 +109,12 @@ final class NPMPackageManager: PackageManagerProtocol {
         let packagesDescription = packageList.joined(separator: ", ")
 
         let sSuffix = packageList.count > 1 ? "s" : ""
-        let suffix = plural ? "these packages" : "this package"
+        let suffix = plural ? String(localized: "npm.thesePackages", comment: "Plural package reference") : String(localized: "npm.thisPackage", comment: "Singular package reference")
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: String(localized: "npm.installPackage", comment: "Installation step title"),
             confirmation: .required(
-                message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                message: String(localized: "npm.installConfirmation", comment: "Confirmation message", arguments: sSuffix, packagesDescription, suffix)
             )
         ) { model in
             do {
@@ -150,7 +149,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "npm.verifyInstallation", comment: "Installation step title"),
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path

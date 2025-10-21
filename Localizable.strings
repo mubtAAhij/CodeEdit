@@ -1,0 +1,3472 @@
+/* Localized strings */
+
+/* Context menu item */
+"finder.openInCodeEdit" = "Open in CodeEdit";
+
+/* Menu item title */
+"menu.openRecent" = "Open Recent";
+
+/* Tooltip text */
+"welcome.copySystemInfo" = "Copy System Information to Clipboard";
+
+/* Button text */
+"welcome.openFileOrFolder" = "Open File or Folder...";
+
+/* Button text */
+"welcome.createNewFile" = "Create New File...";
+
+/* Button text */
+"welcome.cloneGitRepository" = "Clone Git Repository...";
+
+/* Accessibility label */
+"utilityArea.label" = "Utility Area";
+
+/* Filter field title */
+"utilityArea.filter" = "Filter";
+
+/* Accessibility label */
+"terminal.label" = "Terminal Emulator";
+
+/* Error message */
+"terminal.failedToStart" = "Failed to start a terminal session: %@";
+
+/* Encoding label */
+"statusBar.utf8" = "UTF 8";
+
+/* Button text */
+"alert.ok" = "OK";
+
+/* Error message */
+"alert.error" = "Error";
+
+/* Error message */
+"git.notRepository" = "Not a git repository";
+
+/* API endpoint path */
+"router.user" = "user";
+
+/* Settings search key */
+"settings.lightAppearance" = "Light Appearance";
+
+/* Settings search key */
+"settings.git" = "Git";
+
+/* Label text */
+"createBranch.from" = "From";
+
+/* Text field placeholder */
+"createBranch.to" = "To";
+
+/* Section title */
+"createBranch.title" = "Create a new branch";
+
+/* Description text */
+"createBranch.description" = "Create a branch from the current branch and switch to it. All uncommited changes will be preserved on the new branch.";
+
+/* Button text */
+"createBranch.cancel" = "Cancel";
+
+/* Button text */
+"createBranch.create" = "Create";
+
+/* Error message */
+"createBranch.failedToCreate" = "Failed to create branch";
+
+/* Settings search key */
+"terminalSettings.shell" = "Shell";
+
+/* Settings search key */
+"terminalSettings.optionAsMeta" = "Use \"Option\" key as \"Meta\"";
+
+/* Settings search key */
+"terminalSettings.useTextEditorFont" = "Use text editor font";
+
+/* Settings search key */
+"terminalSettings.font" = "Font";
+
+/* Settings search key */
+"terminalSettings.fontSize" = "Font Size";
+
+/* Settings search key */
+"terminalSettings.cursorStyle" = "Terminal Cursor Style";
+
+/* Settings search key */
+"terminalSettings.blinkCursor" = "Blink Cursor";
+
+/* Label text */
+"terminalSettings.shellLabel" = "Shell";
+
+/* Shell option */
+"terminalSettings.systemDefault" = "System Default";
+
+/* Label text */
+"terminalSettings.cursorStyleLabel" = "Terminal Cursor Style";
+
+/* Cursor style option */
+"terminalSettings.cursorBlock" = "Block";
+
+/* Cursor style option */
+"terminalSettings.cursorUnderline" = "Underline";
+
+/* Cursor style option */
+"terminalSettings.cursorBar" = "Bar";
+
+/* Toggle label */
+"terminalSettings.blinkCursorToggle" = "Blink Cursor";
+
+/* Toggle label */
+"terminalSettings.optionAsMetaToggle" = "Use \"Option\" key as \"Meta\"";
+
+/* Toggle label */
+"terminalSettings.useTextEditorFontToggle" = "Use text editor font";
+
+/* Label text */
+"terminalSettings.fontLabel" = "Font";
+
+/* Label text */
+"terminalSettings.fontSizeLabel" = "Font Size";
+
+/* Toggle label */
+"terminalSettings.shellIntegration" = "Shell Integration";
+
+/* Help text */
+"terminalSettings.shellIntegrationHelp" = "CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection.";
+
+/* Warning message */
+"terminalSettings.shellIntegrationWarning" = "Warning: Disabling integration disables features such as terminal title detection.";
+
+/* Toggle label */
+"terminalSettings.useLoginShell" = "Use Login Shell";
+
+/* Help text */
+"terminalSettings.useLoginShellHelp" = "Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app.";
+
+/* Empty state message */
+"sourceControl.noIgnoredFiles" = "No ignored files";
+
+/* Folder name */
+"searchSettings.extensions" = "Extensions";
+
+/* Settings search key */
+"languageServer.lspBinaries" = "LSP Binaries";
+
+/* Tab title */
+"sourceControlNavigator.changes" = "Changes";
+
+/* Tab title */
+"sourceControlNavigator.history" = "History";
+
+/* Tab title */
+"sourceControlNavigator.repository" = "Repository";
+
+/* Empty state message */
+"sourceControlNavigator.noRepository" = "No Repository";
+
+/* Description text */
+"sourceControlNavigator.notGitRepository" = "This project is not a git repository.";
+
+/* Button text */
+"sourceControlNavigator.initialize" = "Initialize";
+
+/* Progress message */
+"registry.removing" = "Removing %@";
+
+/* Progress message */
+"registry.installing" = "Installing %@";
+
+/* Error message */
+"registry.couldNotInstall" = "Could not install %@";
+
+/* Error message */
+"registry.problemDuringInstallation" = "There was a problem during installation.";
+
+/* Button text */
+"registry.done" = "Done";
+
+/* Success message */
+"registry.successfullyInstalled" = "Successfully installed %@";
+
+/* Toolbar item label */
+"toolbar.navigatorSidebar" = "Navigator Sidebar";
+
+/* Toolbar item palette label */
+"toolbar.navigatorSidebarPalette" = " Navigator Sidebar";
+
+/* Tooltip text */
+"toolbar.navigatorTooltip" = "Hide or show the Navigator";
+
+/* Toolbar item label */
+"toolbar.inspectorSidebar" = "Inspector Sidebar";
+
+/* Toolbar item palette label */
+"toolbar.inspectorSidebarPalette" = "Inspector Sidebar";
+
+/* Tooltip text */
+"toolbar.inspectorTooltip" = "Hide or show the Inspectors";
+
+/* Button text */
+"accountSelection.cancel" = "Cancel";
+
+/* Panel title */
+"openQuickly.title" = "Open Quickly";
+
+/* Action button title */
+"notification.action" = "Action";
+
+/* Accessibility label */
+"navigatorArea.label" = "navigator";
+
+/* Co-author detail */
+"commit.coAuthoredBy" = "Co-authored by: %@\n<%@>";
+
+/* Empty state message */
+"sourceControl.noChanges" = "No Changes";
+
+/* Error message */
+"registry.invalidResponse" = "Invalid response received: %@";
+
+/* Empty state message */
+"inspector.noSelection" = "No Selection";
+
+/* Accessibility label */
+"inspectorArea.label" = "inspector";
+
+/* Empty state message */
+"inspector.noHistory" = "No History";
+
+/* Window title */
+"feedback.title" = "Feedback for CodeEdit";
+
+/* Error message */
+"editor.cannotRetrieveURL" = "Cannot retrieve URL to the file you opened.";
+
+/* Loading message */
+"editor.openingFile" = "Opening %@...";
+
+/* Error message */
+"editor.cannotPreviewImage" = "Cannot preview image";
+
+/* Empty state message */
+"editor.noEditor" = "No Editor";
+
+/* Accessibility label */
+"editor.tabBar" = "Tab Bar";
+
+/* Accessibility label */
+"editor.tabCloseButton" = "Close";
+
+/* Placeholder text */
+"editor.jumpBar.noSelection" = "No Selection";
+
+/* Panel title */
+"commands.title" = "Commands";
+
+/* Empty state message */
+"workspacePanel.noSelection" = "No Selection";
+
+/* Search field placeholder */
+"searchField.placeholder" = "Search";
+
+/* Accessibility label */
+"circularProgress.working" = "working";
+
+/* Feedback type placeholder */
+"feedback.choose" = "Choose...";
+
+/* Feedback type option */
+"feedback.incorrectBehaviour" = "Incorrect/Unexpected Behaviour";
+
+/* Feedback type option */
+"feedback.crash" = "Application Crash";
+
+/* Feedback type option */
+"feedback.slowUnresponsive" = "Application Slow/Unresponsive";
+
+/* Feedback type option */
+"feedback.suggestion" = "Suggestion";
+
+/* Feedback type option */
+"feedback.otherType" = "Other";
+
+/* Problem area placeholder */
+"feedback.selectProblemArea" = "Please select the problem area";
+
+/* Problem area option */
+"feedback.projectNavigator" = "Project Navigator";
+
+/* Problem area option */
+"feedback.extensions" = "Extensions";
+
+/* Problem area option */
+"feedback.git" = "Git";
+
+/* Problem area option */
+"feedback.debugger" = "Debugger";
+
+/* Problem area option */
+"feedback.editor" = "Editor";
+
+/* Problem area option */
+"feedback.otherArea" = "Other";
+
+/* GitHub issue label */
+"feedback.label.projectNavigator" = "Project Navigator";
+
+/* GitHub issue label */
+"feedback.label.extensions" = "Extensions";
+
+/* GitHub issue label */
+"feedback.label.git" = "Git";
+
+/* GitHub issue label */
+"feedback.label.debugger" = "Debugger";
+
+/* GitHub issue label */
+"feedback.label.other" = "Other";
+
+/* GitHub issue label */
+"feedback.label.otherDefault" = "Other";
+
+/* Bug emoji */
+"feedback.emoji.bug" = "🐞";
+
+/* Bug emoji */
+"feedback.emoji.bugCrash" = "🐞";
+
+/* Bug emoji */
+"feedback.emoji.bugUnresponsive" = "🐞";
+
+/* Suggestion emoji */
+"feedback.emoji.suggestions" = "✨";
+
+/* Other emoji */
+"feedback.emoji.other" = "📬";
+
+/* Default feedback type */
+"feedback.default" = "Other";
+
+/* Bug label */
+"feedback.type.bug" = "Bug";
+
+/* Bug label */
+"feedback.type.bugCrash" = "Bug";
+
+/* Bug label */
+"feedback.type.bugUnresponsive" = "Bug";
+
+/* Suggestion label */
+"feedback.type.suggestion" = "Suggestion";
+
+/* Feedback label */
+"feedback.type.feedback" = "Feedback";
+
+/* Other label */
+"feedback.type.other" = "Other";
+
+/* Section label */
+"feedback.body.description" = "Description";
+
+/* Section label */
+"feedback.body.stepsToReproduce" = "Steps to Reproduce";
+
+/* Section label */
+"feedback.body.expectedBehavior" = "What did you expect to happen?";
+
+/* Section label */
+"feedback.body.actualBehavior" = "What actually happened?";
+
+/* Not applicable text */
+"feedback.body.notApplicable" = "N/A";
+
+/* Accessibility label */
+"activityViewer.label" = "Activity Viewer";
+
+/* Accessibility label */
+"taskDropDown.activeTask" = "Active Task";
+
+/* Button text */
+"taskDropDown.createTasks" = "Create Tasks";
+
+/* Menu item */
+"taskDropDown.addTask" = "Add Task...";
+
+/* Accessibility label */
+"workspaceSettings.title" = "Workspace Settings";
+
+/* Page title */
+"about.contributors" = "Contributors";
+
+/* Page title */
+"about.acknowledgements" = "Acknowledgements";
+
+/* Version information */
+"about.version" = "Version %@ (%@)";
+
+/* Link text */
+"about.mitLicense" = "MIT License";
+
+/* Error message */
+"workspace.gitRefreshError" = "Error refreshing Git data";
+
+/* Accessibility label */
+"workspace.label" = "workspace area";
+
+/* Search mode option */
+"searchMode.containing" = "Containing";
+
+/* Search mode option */
+"searchMode.matchingWord" = "Matching Word";
+
+/* Search mode option */
+"searchMode.startingWith" = "Starting With";
+
+/* Search mode option */
+"searchMode.endingWith" = "Ending With";
+
+/* Search mode option */
+"searchMode.references" = "References";
+
+/* Search mode option */
+"searchMode.definitions" = "Definitions";
+
+/* Search mode option */
+"searchMode.regularExpression" = "Regular Expression";
+
+/* Search mode option */
+"searchMode.callHierarchy" = "Call Hierarchy";
+
+/* Search mode option */
+"searchMode.find" = "Find";
+
+/* Search mode option */
+"searchMode.replace" = "Replace";
+
+/* Label text */
+"taskForm.name" = "Name";
+
+/* Accessibility label */
+"taskForm.taskName" = "Task Name";
+
+/* Label text */
+"taskForm.target" = "Target";
+
+/* Target option */
+"taskForm.dockerCompose" = "Docker Compose";
+
+/* Label text */
+"taskForm.task" = "Task";
+
+/* Accessibility label */
+"taskForm.taskCommand" = "Task Command";
+
+/* Label text */
+"taskForm.workingDirectory" = "Working Directory";
+
+/* Empty state message */
+"taskForm.noEnvironmentVariables" = "No environment variables";
+
+/* Section title */
+"taskForm.environmentVariables" = "Environment Variables";
+
+/* Menu title */
+"extensions.menu" = "Extensions";
+
+/* Menu item title */
+"extensions.openWindow" = "Open Extensions Window";
+
+/* Picker label */
+"terminal.picker.label" = "Terminal Tab";
+
+/* Empty state message */
+"terminal.picker.empty" = "No Open Terminals";
+
+/* Tab title */
+"utilityArea.debugConsole" = "Debug Console";
+
+/* Tab title */
+"utilityArea.output" = "Output";
+
+/* Terminal exit message */
+"terminal.exitCode" = "Exit code: %@\n\r\n";
+
+/* Terminal new session message */
+"terminal.newSession" = "To open a new session, create a new terminal tab.";
+
+/* Error message */
+"shellIntegration.bashNotFound" = "Failed to find bash injection file.";
+
+/* Error message */
+"shellIntegration.zshNotFound" = "Failed to find zsh injection file.";
+
+/* Button text */
+"tasks.stop" = "Stop";
+
+/* Tooltip text */
+"tasks.stopHelp" = "Stop selected task";
+
+/* Button text */
+"tasks.start" = "Start";
+
+/* Tooltip text */
+"tasks.startHelp" = "Start selected task";
+
+/* Error message */
+"sourceControl.discardFailed" = "Failed to discard changes";
+
+/* Settings description */
+"settings.warningCharactersDescription" = "CodeEdit can help identify invisible or ambiguous characters, such as zero-width spaces, directional quotes, and more. These will appear with a red block highlighting them. You can disable characters or add more here.";
+
+/* Button text */
+"settings.done" = "Done";
+
+/* Font picker option */
+"settings.systemFont" = "System Font";
+
+/* Font picker option */
+"settings.otherFonts" = "Other fonts...";
+
+/* Tooltip text */
+"theme.bold" = "Bold";
+
+/* Tooltip text */
+"theme.italic" = "Italic";
+
+/* Button text */
+"theme.import" = "Import";
+
+/* Error message */
+"theme.urlNotFound" = "Theme file URL not found";
+
+/* Navigation option */
+"navigation.openInTabs" = "Open in Tabs";
+
+/* Navigation option */
+"navigation.openInPlace" = "Open in Place";
+
+/* Settings location label */
+"locationsSettings.applicationSupport" = "Application Support";
+
+/* Settings location label */
+"locationsSettings.extensions" = "Extensions";
+
+/* Warning message */
+"languageServers.experimentalWarning" = "Warning: Language server installation is experimental. Use at your own risk.";
+
+/* Installation description */
+"languageServers.installationDescription" = "CodeEdit makes use of the Mason Registry for language server installation. To install a package, CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of the language server in Application Support.\n\nLanguage server installation is still experimental, there may be bugs and expect this flow to change over time.";
+
+/* Menu item */
+"accountsSettings.deleteAccount" = "Delete Account...";
+
+/* Menu item */
+"accountsSettings.addAccount" = "Add Account...";
+
+/* Panel title */
+"commitDetails.title" = "Commit Details";
+
+/* Empty state message */
+"commitDetails.noChanges" = "No Changes";
+
+/* Empty state message */
+"sourceControl.noRemotes" = "No remotes";
+
+/* Button text */
+"sourceControl.add" = "Add";
+
+/* Accessibility label */
+"projectNavigator.title" = "Project Navigator";
+
+/* Empty state message */
+"projectNavigator.noFilterResults" = "No Filter Results";
+
+/* Filter field placeholder */
+"findNavigator.filter" = "Filter";
+
+/* Tooltip text */
+"findNavigator.showMatchingResults" = "Show results with matching text";
+
+/* Progress message */
+"findNavigator.indexingProgress" = "Indexing %@%";
+
+/* Tooltip text */
+"findNavigator.indexingDescription" = "Indexing current workspace files for search. Searches performed while indexing may return incomplete results.";
+
+/* Section title */
+"extensionDetail.features" = "Features";
+
+/* Section title */
+"extensionDetail.settings" = "Extension Settings";
+
+/* Tooltip text */
+"editor.navigateBack" = "Navigate back";
+
+/* Tooltip text */
+"editor.navigateForward" = "Navigate forward";
+
+/* Button text */
+"editTask.delete" = "Delete";
+
+/* Button text */
+"editTask.done" = "Done";
+
+/* Button text */
+"addTask.cancel" = "Cancel";
+
+/* Button text */
+"addTask.save" = "Save";
+
+/* Button text */
+"about.contributorsButton" = "Contributors";
+
+/* Button text */
+"about.acknowledgementsButton" = "Acknowledgements";
+
+/* Accessibility label */
+"terminalTests.terminalEmulator" = "Terminal Emulator";
+
+/* Folder name */
+"projectNavigatorTests.newFolder" = "New Folder";
+
+/* Menu item */
+"projectNavigatorTests.addFile" = "Add File";
+
+/* Menu item */
+"windowCommands.welcomeToCodeEdit" = "Welcome to CodeEdit";
+
+/* Menu item */
+"windowCommands.aboutCodeEdit" = "About CodeEdit";
+
+/* Menu item */
+"windowCommands.manageExtensions" = "Manage Extensions";
+
+/* Menu item */
+"mainCommands.aboutCodeEdit" = "About CodeEdit";
+
+/* Menu item */
+"mainCommands.checkForUpdates" = "Check for updates...";
+
+/* Menu item */
+"mainCommands.settings" = "Settings...";
+
+/* Menu item title */
+"help.whatsNew" = "What's New in CodeEdit";
+
+/* Menu item title */
+"help.releaseNotes" = "Release Notes";
+
+/* Menu item title */
+"help.reportIssue" = "Report an Issue";
+
+/* Menu item title */
+"editor.structure" = "Structure";
+
+/* Action title */
+"editor.moveLineUp" = "Move line up";
+
+/* Action title */
+"editor.moveLineDown" = "Move line down";
+
+/* Empty state message */
+"terminal.noSelection" = "No Selection";
+
+/* Tooltip text */
+"terminal.reset" = "Reset the terminal";
+
+/* Tooltip text */
+"terminal.implementationNeeded" = "Implementation Needed";
+
+/* Empty state message */
+"debug.noTaskSelected" = "No Task Selected";
+
+/* Empty state message */
+"debug.noTasksRunning" = "No Tasks are Running";
+
+/* Button text */
+"debug.delete" = "Delete";
+
+/* Menu item */
+"sourceControl.addExistingRemote" = "Add Existing Remote...";
+
+/* Branch label */
+"sourceControl.branchCreate" = "%@ (Create)";
+
+/* Label text */
+"sourceControl.branch" = "Branch";
+
+/* Git service name */
+"git.github" = "GitHub";
+
+/* Git service name */
+"git.bitbucket" = "BitBucket";
+
+/* Git service name */
+"git.gitlab" = "GitLab";
+
+/* Context menu item */
+"globPatternList.edit" = "Edit";
+
+/* Context menu item */
+"globPatternList.add" = "Add";
+
+/* Context menu item */
+"globPatternList.remove" = "Remove";
+
+/* Section title */
+"sshKey.createTitle" = "Create SSH key";
+
+/* Label text */
+"sshKey.keyType" = "Key Type";
+
+/* Label suffix */
+"sshKey.lessSecure" = " (less secure)";
+
+/* Text field placeholder */
+"sshKey.passphrase" = "Passphrase";
+
+/* Text field placeholder */
+"sshKey.confirmPassphrase" = "Confirm Passphrase";
+
+/* Button text */
+"sshKey.cancel" = "Cancel";
+
+/* Button text */
+"sshKey.create" = "Create";
+
+/* Context menu item */
+"branch.switch" = "Switch...";
+
+/* Context menu item */
+"branch.newBranch" = "New Branch...";
+
+/* Context menu item */
+"branch.newBranchFrom" = "New Branch from \"%@\"...";
+
+/* Context menu item */
+"branch.renameBranch" = "Rename Branch...";
+
+/* Context menu item */
+"branch.renameBranchNamed" = "Rename \"%@\"...";
+
+/* Context menu item */
+"branch.addExistingRemote" = "Add Existing Remote...";
+
+/* Context menu item */
+"branch.applyStashedChanges" = "Apply Stashed Changes...";
+
+/* Context menu item */
+"branch.delete" = "Delete...";
+
+/* Search field placeholder */
+"settings.search" = "Search";
+
+/* Placeholder text */
+"settings.implementationNeeded" = "Implementation Needed";
+
+/* Tab title */
+"sourceControl.git" = "Git";
+
+/* Settings section title */
+"sourceControl.title" = "Source Control";
+
+/* Settings description */
+"sourceControl.description" = "Back up your files, collaborate with others, and tag your releases. [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)";
+
+/* Settings section title */
+"searchSettings.exclude" = "Exclude";
+
+/* Settings description */
+"searchSettings.excludeDescription" = "Add glob patterns to exclude matching files and folders from searches and open quickly. This will inherit glob patterns from the Exclude from Project setting.";
+
+/* Empty state message */
+"searchSettings.noExcludedPatterns" = "No excluded glob patterns";
+
+/* Tab title */
+"navigatorTab.project" = "Project";
+
+/* Tab title */
+"navigatorTab.sourceControl" = "Source Control";
+
+/* Tab title */
+"navigatorTab.search" = "Search";
+
+/* Notification title */
+"lsp.installLanguageServer" = "Install %@ Language Server";
+
+/* Notification description */
+"lsp.installDescription" = "Install the %@ language server to enable code intelligence features.";
+
+/* Button text */
+"lsp.install" = "Install";
+
+/* Installation step title */
+"cargo.initializeDirectory" = "Initialize Directory Structure";
+
+/* Installation step title */
+"cargo.installPackage" = "Install Package Using cargo";
+
+/* Confirmation message */
+"cargo.installConfirmation" = "This requires the cargo package %@.\nAllow CodeEdit to install this package?";
+
+/* Error message */
+"registry.installationRunning" = "A package is already being installed.";
+
+/* Error message */
+"registry.downloadFailed" = "Download for %@ error.";
+
+/* Tab title */
+"inspector.file" = "File Inspector";
+
+/* Tab title */
+"inspector.history" = "History Inspector";
+
+/* Tab title */
+"inspector.internalDevelopment" = "Internal Development";
+
+/* Action button */
+"history.showCommit" = "Show Commit";
+
+/* Action button */
+"history.openCodeReview" = "Open in Code Review";
+
+/* Action button */
+"history.emailAuthor" = "Email %@";
+
+/* Window title */
+"extensions.title" = "Extensions";
+
+/* Empty state message */
+"extensions.selectExtension" = "Select an extension";
+
+/* Selection count */
+"extensions.countSelected" = "%@ selected";
+
+/* Tooltip text */
+"editor.closeEditor" = "Close this Editor";
+
+/* Tooltip text */
+"editor.unfocusEditor" = "Unfocus this Editor";
+
+/* Tooltip text */
+"editor.focusEditor" = "Focus this Editor";
+
+/* Indexing progress title */
+"workspace.indexingTitle" = "Indexing | Processing files";
+
+/* Indexing progress message */
+"workspace.indexingMessage" = "Creating an index to enable fast and accurate searches within your codebase.";
+
+/* Indexing completion message */
+"workspace.finishedIndexing" = "Finished indexing";
+
+/* Error message */
+"workspace.noIndexFound" = "No index found. Try rebuilding the index.";
+
+/* Error message */
+"workspace.failedToDecodeFile" = "Failed to decode file content.";
+
+/* Error message */
+"workspace.invalidRegex" = "Invalid regular expression.";
+
+/* Dialog title */
+"documentController.openWorkspaceOrFile" = "Open Workspace or File";
+
+/* Error message */
+"documentController.failedToGetDocument" = "Failed to get document";
+
+/* Section header */
+"branchPicker.currentBranch" = "Current Branch";
+
+/* Section header */
+"branchPicker.branches" = "Branches";
+
+/* Error message */
+"branchPicker.failedToCheckout" = "Failed to checkout";
+
+/* Empty state message */
+"workspaceSettings.noTasks" = "No tasks";
+
+/* Context menu item */
+"workspaceSettings.edit" = "Edit";
+
+/* Context menu item */
+"workspaceSettings.delete" = "Delete";
+
+/* Context menu item */
+"terminal.newTerminal" = "New Terminal";
+
+/* Context menu item */
+"terminal.newTerminalWithProfile" = "New Terminal With Profile";
+
+/* Menu item */
+"terminal.default" = "Default";
+
+/* Accessibility label */
+"terminal.terminals" = "Terminals";
+
+/* Picker label */
+"utilityArea.outputSource" = "Output Source";
+
+/* Empty state message */
+"utilityArea.noSelectedOutputSource" = "No Selected Output Source";
+
+/* Empty state message */
+"utilityArea.noLanguageServers" = "No Language Servers";
+
+/* Empty state message */
+"utilityArea.noExtensions" = "No Extensions";
+
+/* Menu item */
+"statusBar.useTabs" = "Use Tabs";
+
+/* Menu item */
+"statusBar.useSpaces" = "Use Spaces";
+
+/* Menu item */
+"statusBar.indexSpaces" = "%@ Spaces";
+
+/* Label text */
+"statusBar.defaultWidthSpaces" = "%@ Spaces";
+
+/* Dialog title */
+"git.checkoutBranch" = "Checkout branch";
+
+/* Description text */
+"git.selectBranchToCheckout" = "Select a branch to checkout";
+
+/* Button text */
+"git.cancel" = "Cancel";
+
+/* Button text */
+"git.checkout" = "Checkout";
+
+/* Settings search key */
+"developerSettings.developer" = "Developer";
+
+/* Settings search key */
+"developerSettings.languageServerProtocol" = "Language Server Protocol";
+
+/* Settings search key */
+"developerSettings.lspBinaries" = "LSP Binaries";
+
+/* Settings search key */
+"developerSettings.showInternalDevelopmentInspector" = "Show Internal Development Inspector";
+
+/* Empty state message */
+"accountsSettings.noAccounts" = "No accounts";
+
+/* Button text */
+"accountsSettings.addAccount" = "Add Account...";
+
+/* Error message */
+"accountsSettings.gitClientNotSupported" = "This git client is currently not supported.";
+
+/* Button text */
+"accountsSettings.close" = "Close";
+
+/* Settings error placeholder */
+"settings.error" = "Error";
+
+/* Filter field title */
+"sourceControlNavigator.filter" = "Filter";
+
+/* Tooltip text */
+"sourceControlNavigator.filterChangesHelp" = "Filter Changes Navigator";
+
+/* Button text */
+"sourceControlNavigator.discardAllChanges" = "Discard All Changes...";
+
+/* Button text */
+"sourceControlNavigator.stashChanges" = "Stash Changes...";
+
+/* Section title */
+"sourceControlNavigator.branches" = "Branches";
+
+/* Branch label */
+"sourceControlNavigator.current" = "(current)";
+
+/* Section title */
+"sourceControlNavigator.stashedChanges" = "Stashed Changes";
+
+/* Section title */
+"sourceControlNavigator.remotes" = "Remotes";
+
+/* Progress message */
+"sourceControlNavigator.loadingHistory" = "Loading History";
+
+/* Empty state message */
+"sourceControlNavigator.noHistory" = "No History";
+
+/* Error message */
+"sourceControlNavigator.errorLoadingHistory" = "Error Loading History";
+
+/* Button text */
+"sourceControlNavigator.retry" = "Retry";
+
+/* Dialog message */
+"projectNavigator.replaceFileMessage" = "A file or folder with the name %@ already exists in the destination folder. Do you want to replace it?";
+
+/* Warning message */
+"projectNavigator.actionIrreversible" = "This action is irreversible!";
+
+/* Button text */
+"projectNavigator.replace" = "Replace";
+
+/* Button text */
+"projectNavigator.cancel" = "Cancel";
+
+/* Installation step title */
+"pip.initializeDirectory" = "Initialize Directory Structure";
+
+/* Installation step title */
+"pip.installPackage" = "Install Package Using pip";
+
+/* Confirmation message */
+"pip.installConfirmation" = "This requires the pip package %@.\nAllow CodeEdit to install this package?";
+
+/* Installation step title */
+"pip.verifyInstallation" = "Verify Installation";
+
+/* Tooltip text */
+"editor.showMinimap" = "Show Minimap";
+
+/* Tooltip text */
+"editor.wrapLines" = "Wrap Lines";
+
+/* Tooltip text */
+"editor.splitVertically" = "Split Vertically";
+
+/* Tooltip text */
+"editor.splitHorizontally" = "Split Horizontally";
+
+/* Progress message */
+"appDelegate.stoppingLanguageServers" = "Stopping Language Servers";
+
+/* Progress message */
+"appDelegate.stoppingLanguageServersMessage" = "Stopping running language server processes...";
+
+/* Progress message */
+"appDelegate.terminatingTasks" = "Terminating Tasks";
+
+/* Progress message */
+"appDelegate.terminatingTasksMessage" = "Interrupting all running tasks before quitting...";
+
+/* Test terminal title */
+"test.terminal1" = "Terminal 1";
+
+/* Test terminal title */
+"test.terminal2" = "Terminal 2";
+
+/* Test terminal title */
+"test.terminal3" = "Terminal 3";
+
+/* Test terminal title */
+"test.terminal4" = "Terminal 4";
+
+/* Test terminal title */
+"test.terminal5" = "Terminal 5";
+
+/* Tab bar position option */
+"generalSettings.side" = "Side";
+
+/* Label text */
+"generalSettings.inspectorTabBarPosition" = "Inspector Tab Bar Position";
+
+/* Label text */
+"generalSettings.reopenBehavior" = "Reopen Behavior";
+
+/* Reopen behavior option */
+"generalSettings.welcomeScreen" = "Welcome Screen";
+
+/* Reopen behavior option */
+"generalSettings.openPanel" = "Open Panel";
+
+/* Reopen behavior option */
+"generalSettings.newDocument" = "New Document";
+
+/* Label text */
+"generalSettings.afterLastWindowClosed" = "After the last window is closed";
+
+/* Window close behavior option */
+"generalSettings.doNothing" = "Do nothing";
+
+/* Window close behavior option */
+"generalSettings.showWelcomeWindow" = "Show Welcome Window";
+
+/* Window close behavior option */
+"generalSettings.quit" = "Quit";
+
+/* Label text */
+"generalSettings.projectNavigatorSize" = "Project Navigator Size";
+
+/* Size option */
+"generalSettings.small" = "Small";
+
+/* Size option */
+"generalSettings.medium" = "Medium";
+
+/* Size option */
+"generalSettings.large" = "Large";
+
+/* Label text */
+"generalSettings.findNavigatorDetail" = "Find Navigator Detail";
+
+/* Label text */
+"generalSettings.issueNavigatorDetail" = "Issue Navigator Detail";
+
+/* Label text */
+"generalSettings.dialogWarnings" = "Dialog Warnings";
+
+/* Button text */
+"generalSettings.resetDontAskWarnings" = "Reset \"Don't Ask Me\" Warnings";
+
+/* Text field placeholder */
+"terminal.name" = "Name";
+
+/* Menu item */
+"terminal.rename" = "Rename...";
+
+/* Menu item */
+"terminal.killTerminals" = "Kill Terminals";
+
+/* Menu item */
+"terminal.killTerminal" = "Kill Terminal";
+
+/* Source title */
+"output.extension" = "Extension - %@";
+
+/* Source title */
+"output.languageServer" = "Language Server - %@";
+
+/* Source title */
+"output.internalDevelopment" = "Internal Development Output";
+
+/* Empty state message */
+"output.noOutput" = "No output";
+
+/* Filter field title */
+"output.filter" = "Filter";
+
+/* Dialog title */
+"sourceControl.switchToBranch" = "Do you want to switch to "%@"?";
+
+/* Dialog description */
+"sourceControl.switchDescription" = "All files in the local repository will switch from the current branch ("%@") to "%@".";
+
+/* Button text */
+"sourceControl.cancel" = "Cancel";
+
+/* Button text */
+"sourceControl.switch" = "Switch";
+
+/* Error message */
+"sourceControl.failedToCheckout" = "Failed to checkout";
+
+/* Dialog title */
+"sourceControl.fetchingChangesFor" = "Fetching changes for "%@"...";
+
+/* Dialog description */
+"sourceControl.fetchingDescription" = "CodeEdit is fetching changes and updating the status of files in the local repository.";
+
+/* Progress message */
+"sourceControl.fetchingChanges" = "Fetching changes...";
+
+/* Error message */
+"sourceControl.failedToFetch" = "Failed to fetch changes";
+
+/* Progress state */
+"git.clone.cloning" = "Cloning";
+
+/* Progress state */
+"git.clone.counting" = "Counting";
+
+/* Progress state */
+"git.clone.compressing" = "Compressing";
+
+/* Progress state */
+"git.clone.receiving" = "Receiving";
+
+/* Progress state */
+"git.clone.resolving" = "Resolving";
+
+/* Column name */
+"settings.warningCharacters.keyColumn" = "Unicode Character Code";
+
+/* Column name */
+"settings.warningCharacters.valueColumn" = "Notes";
+
+/* Instructions */
+"settings.warningCharacters.addInstruction" = "Add A Character As A Hexidecimal Unicode Value";
+
+/* Button text */
+"settings.warningCharacters.restoreDefaults" = "Restore Defaults";
+
+/* Empty state message */
+"settings.warningCharacters.empty" = "No warning characters";
+
+/* Folder name */
+"theme.extensions" = "Extensions";
+
+/* Theme appearance option */
+"theme.lightAppearance" = "Light Appearance";
+
+/* Theme appearance option */
+"theme.darkAppearance" = "Dark Appearance";
+
+/* Button text */
+"theme.exportPrompt" = "Export";
+
+/* Button text */
+"theme.exportAllPrompt" = "Export";
+
+/* Settings section title */
+"sourceControl.section" = "Source Control";
+
+/* Option text */
+"sourceControl.localRevisionLeft" = "Local Revision on Left Side";
+
+/* Option text */
+"sourceControl.localRevisionRight" = "Local Revision on Right Side";
+
+/* Option text */
+"sourceControl.sortByName" = "Sort by Name";
+
+/* Option text */
+"sourceControl.sortByDate" = "Sort by Date";
+
+/* Context menu item */
+"sourceControlNavigator.viewInFinder" = "View in Finder";
+
+/* Context menu item */
+"sourceControlNavigator.revealInProjectNavigator" = "Reveal in Project Navigator";
+
+/* Context menu item */
+"sourceControlNavigator.openInNewTab" = "Open in New Tab";
+
+/* Context menu item */
+"sourceControlNavigator.openInNewWindow" = "Open in New Window";
+
+/* Context menu item */
+"sourceControlNavigator.discardChangesIn" = "Discard Changes in %@...";
+
+/* Confirmation message */
+"golang.requiresGoInstall" = "This package requires go to install. Allow CodeEdit to run go commands?";
+
+/* Installation step title */
+"golang.initializeDirectory" = "Initialize Directory Structure";
+
+/* Installation step title */
+"golang.installPackage" = "Install Package Using go";
+
+/* Confirmation message */
+"golang.installConfirmation" = "This requires installing the go package %@.\nAllow CodeEdit to install this package?";
+
+/* Installation step title */
+"golang.buildFromSource" = "Build From Source";
+
+/* Error message */
+"packageManagerError.unknown" = "Unknown error occurred";
+
+/* Error message */
+"packageManagerError.notInstalled" = "The required package manager is not installed.";
+
+/* Error message */
+"packageManagerError.initializationFailed" = "Installation directory initialization failed.";
+
+/* Error message */
+"packageManagerError.installationFailed" = "Package installation failed.";
+
+/* Error message */
+"packageManagerError.invalidConfiguration" = "The package registry contained an invalid installation configuration.";
+
+/* Section title */
+"internalDevelopment.outputUtility" = "Output Utility";
+
+/* Button text */
+"internalDevelopment.errorLog" = "Error Log";
+
+/* Button text */
+"internalDevelopment.warningLog" = "Warning Log";
+
+/* Button text */
+"internalDevelopment.infoLog" = "Info Log";
+
+/* Button text */
+"internalDevelopment.debugLog" = "Debug Log";
+
+/* Empty state message */
+"searchPanel.noMatchingOptions" = "No matching options";
+
+/* Placeholder text */
+"searchPanel.selectOptionToPreview" = "Select an option to preview";
+
+/* Accessibility label */
+"searchPanel.closeOverlay" = "Close Overlay";
+
+/* Accessibility label */
+"searchPanel.selectUp" = "Select Up";
+
+/* Accessibility label */
+"searchPanel.selectDown" = "Select Down";
+
+/* Picker option */
+"keyValueTable.noSelection" = "No Selection";
+
+/* Button text */
+"keyValueTable.cancel" = "Cancel";
+
+/* Button text */
+"keyValueTable.add" = "Add";
+
+/* Context menu item */
+"keyValueTable.edit" = "Edit";
+
+/* Context menu item */
+"keyValueTable.remove" = "Remove";
+
+/* Empty state message */
+"schemeDropDown.noProjectFound" = "No Project found";
+
+/* Accessibility label */
+"schemeDropDown.activeScheme" = "Active Scheme";
+
+/* Accessibility hint */
+"schemeDropDown.openActiveSchemeMenu" = "Open the active scheme menu";
+
+/* Menu item */
+"schemeDropDown.addFolder" = "Add Folder...";
+
+/* Menu item */
+"schemeDropDown.workspaceSettings" = "Workspace Settings...";
+
+/* Tooltip text */
+"taskOutput.runTask" = "Run Task";
+
+/* Tooltip text */
+"taskOutput.stopTask" = "Stop Task";
+
+/* Tooltip text */
+"taskOutput.suspendTask" = "Suspend Task";
+
+/* Tooltip text */
+"taskOutput.resumeTask" = "Resume Task";
+
+/* Tooltip text */
+"taskOutput.scrollToBottom" = "Scroll down to the bottom";
+
+/* Tooltip text */
+"taskOutput.clearOutput" = "Clear Output";
+
+/* Tooltip text */
+"statusBar.showUtilityArea" = "Show the Utility area";
+
+/* Tooltip text */
+"statusBar.hideUtilityArea" = "Hide the Utility area";
+
+/* Command name */
+"statusBar.toggleUtilityArea" = "Toggle Utility Area";
+
+/* Section header */
+"sourceControl.pullRemoteChangesFrom" = "Pull remote changes from";
+
+/* Toggle label */
+"sourceControl.rebaseLocalChanges" = "Rebase local changes onto upstream changes";
+
+/* Progress message */
+"sourceControl.pullingChanges" = "Pulling changes...";
+
+/* Button text */
+"sourceControl.pull" = "Pull";
+
+/* Section title */
+"addRemote.title" = "Add Remote";
+
+/* Text field placeholder */
+"addRemote.remoteName" = "Remote Name";
+
+/* Text field placeholder */
+"addRemote.location" = "Location";
+
+/* Button text */
+"addRemote.cancel" = "Cancel";
+
+/* Button text */
+"addRemote.add" = "Add";
+
+/* Error message */
+"addRemote.failedToAddRemote" = "Failed to add remote";
+
+/* Panel title */
+"gitClone.title" = "Clone a repository";
+
+/* Description text */
+"gitClone.enterURL" = "Enter a git repository URL:";
+
+/* Text field placeholder */
+"gitClone.urlPlaceholder" = "Git Repository URL";
+
+/* Button text */
+"gitClone.cancel" = "Cancel";
+
+/* Button text */
+"gitClone.clone" = "Clone";
+
+/* Button text */
+"gitClone.cancelCloning" = "Cancel Cloning";
+
+/* Tab title */
+"settingsPage.search" = "Search";
+
+/* Tab title */
+"settingsPage.sourceControl" = "Source Control";
+
+/* Tab title */
+"settingsPage.components" = "Components";
+
+/* Tab title */
+"settingsPage.locations" = "Locations";
+
+/* Tab title */
+"settingsPage.advanced" = "Advanced";
+
+/* Tab title */
+"settingsPage.developer" = "Developer";
+
+/* Text field placeholder */
+"workspaceSettings.name" = "Name";
+
+/* Accessibility label */
+"workspaceSettings.workspaceName" = "Workspace Name";
+
+/* Section header */
+"workspaceSettings.workspace" = "Workspace";
+
+/* Section header */
+"workspaceSettings.tasks" = "Tasks";
+
+/* Button text */
+"workspaceSettings.addTask" = "Add Task...";
+
+/* Button text */
+"workspaceSettings.done" = "Done";
+
+/* Button text */
+"taskDropDown.createTasks" = "Create Tasks";
+
+/* Accessibility label */
+"taskDropDown.activeTask" = "Active Task";
+
+/* Accessibility hint */
+"taskDropDown.activeTaskHint" = "Open the active task menu";
+
+/* Menu item */
+"taskDropDown.addTask" = "Add Task...";
+
+/* Menu item */
+"taskDropDown.manageTasks" = "Manage Tasks...";
+
+/* Test panel name */
+"hideInterfaceTests.utilityArea" = "Utility Area";
+
+/* Menu title */
+"hideInterfaceTests.view" = "View";
+
+/* Menu title */
+"find.menu" = "Find";
+
+/* Menu item title */
+"find.find" = "Find...";
+
+/* Menu item title */
+"find.findAndReplace" = "Find and Replace...";
+
+/* Menu item title */
+"find.findNext" = "Find Next";
+
+/* Menu item title */
+"find.findPrevious" = "Find Previous";
+
+/* Menu item title */
+"find.useSelectionForFind" = "Use Selection for Find";
+
+/* Menu item title */
+"find.jumpToSelection" = "Jump to Selection";
+
+/* Context menu item */
+"editorTab.closeTab" = "Close Tab";
+
+/* Context menu item */
+"editorTab.closeOtherTabs" = "Close Other Tabs";
+
+/* Context menu item */
+"editorTab.closeTabsToRight" = "Close Tabs to the Right";
+
+/* Context menu item */
+"editorTab.closeAll" = "Close All";
+
+/* Context menu item */
+"editorTab.keepOpen" = "Keep Open";
+
+/* Context menu item */
+"editorTab.copyPath" = "Copy Path";
+
+/* Context menu item */
+"editorTab.copyRelativePath" = "Copy Relative Path";
+
+/* Context menu item */
+"editorTab.showInFinder" = "Show in Finder";
+
+/* Context menu item */
+"editorTab.revealInProjectNavigator" = "Reveal in Project Navigator";
+
+/* Context menu item */
+"editorTab.openInNewWindow" = "Open in New Window";
+
+/* Context menu item */
+"editorTab.splitUp" = "Split Up";
+
+/* Context menu item */
+"editorTab.splitDown" = "Split Down";
+
+/* Context menu item */
+"editorTab.splitLeft" = "Split Left";
+
+/* Context menu item */
+"editorTab.splitRight" = "Split Right";
+
+/* Accessibility label */
+"cursorPosition.noSelection" = "No Selection";
+
+/* Status bar text */
+"cursorPosition.selectedRanges" = "%@ selected ranges";
+
+/* Status bar text */
+"cursorPosition.charLen" = "Char: %@ Len: %@";
+
+/* Status bar text */
+"cursorPosition.lines" = "%@ lines";
+
+/* Status bar text */
+"cursorPosition.characters" = "%@ characters";
+
+/* Status bar text */
+"cursorPosition.charLenZero" = "Char: %@ Len: 0";
+
+/* Status bar text */
+"cursorPosition.lineCol" = "Line: %@  Col: %@";
+
+/* Label text */
+"renameBranch.from" = "From";
+
+/* Text field placeholder */
+"renameBranch.to" = "To";
+
+/* Section title */
+"renameBranch.title" = "Rename branch";
+
+/* Description text */
+"renameBranch.description" = "All uncommited changes will be preserved on the renamed branch.";
+
+/* Button text */
+"renameBranch.cancel" = "Cancel";
+
+/* Button text */
+"renameBranch.rename" = "Rename";
+
+/* Error message */
+"renameBranch.failedToCreate" = "Failed to create branch";
+
+/* Section header */
+"push.pushLocalChangesTo" = "Push local changes to";
+
+/* Toggle label */
+"push.force" = "Force";
+
+/* Toggle label */
+"push.includeTags" = "Include Tags";
+
+/* Progress message */
+"push.pushingChanges" = "Pushing changes...";
+
+/* Button text */
+"push.cancel" = "Cancel";
+
+/* Button text */
+"push.push" = "Push";
+
+/* Error message */
+"push.failedToPush" = "Failed to push";
+
+/* Protocol name */
+"sourceControlAccount.https" = "HTTPS";
+
+/* Provider name */
+"sourceControlAccount.bitbucketCloud" = "BitBucket Cloud";
+
+/* Provider name */
+"sourceControlAccount.bitbucketServer" = "BitBucket Server";
+
+/* Provider name */
+"sourceControlAccount.github" = "GitHub";
+
+/* Provider name */
+"sourceControlAccount.githubEnterprise" = "GitHub Enterprise";
+
+/* Provider name */
+"sourceControlAccount.gitlab" = "GitLab";
+
+/* Provider name */
+"sourceControlAccount.gitlabSelfHosted" = "GitLab Self-hosted";
+
+/* Status message */
+"sourceControlNavigator.noTrackedBranch" = "No tracked branch for '%@'";
+
+/* Button text */
+"sourceControlNavigator.pull" = "Pull...";
+
+/* Button text */
+"sourceControlNavigator.push" = "Push...";
+
+/* Error message */
+"sourceControlNavigator.failedToPull" = "Failed to pull";
+
+/* Error message */
+"sourceControlNavigator.failedToPush" = "Failed to push";
+
+/* Status label */
+"sourceControlNavigator.ahead" = "%@ ahead";
+
+/* Status label */
+"sourceControlNavigator.behind" = "%@ behind";
+
+/* Confirmation message */
+"npm.requiresInstall" = "This package requires npm to install. Allow CodeEdit to run npm commands?";
+
+/* Installation step title */
+"npm.initializeDirectory" = "Initialize Directory Structure";
+
+/* Plural package reference */
+"npm.thesePackages" = "these packages";
+
+/* Singular package reference */
+"npm.thisPackage" = "this package";
+
+/* Installation step title */
+"npm.installPackage" = "Install Package Using npm";
+
+/* Confirmation message */
+"npm.installConfirmation" = "This requires the npm package%@ %@.\nAllow CodeEdit to install %@?";
+
+/* Installation step title */
+"npm.verifyInstallation" = "Verify Installation";
+
+/* Command name */
+"commands.quickOpen" = "Quick Open";
+
+/* Command title */
+"commands.toggleNavigator" = "Toggle Navigator";
+
+/* Command title */
+"commands.toggleInspector" = "Toggle Inspector";
+
+/* Accessibility label */
+"workspaceSettings.title" = "Workspace Settings";
+
+/* Test option */
+"test.opt1" = "Opt1";
+
+/* Test option */
+"test.opt2" = "Opt2";
+
+/* Menu title */
+"tasksCommands.tasks" = "Tasks";
+
+/* Menu item text */
+"tasksCommands.noSelectedTask" = "(No Selected Task)";
+
+/* Button text */
+"tasksCommands.run" = "Run %@";
+
+/* Button text */
+"tasksCommands.stop" = "Stop %@";
+
+/* Button text */
+"tasksCommands.showOutput" = "Show %@ Output";
+
+/* Button text */
+"tasksCommands.createTasks" = "Create Tasks";
+
+/* Menu item text */
+"tasksCommands.chooseTask" = "Choose Task...";
+
+/* Button text */
+"tasksCommands.manageTasks" = "Manage Tasks...";
+
+/* Task completion message */
+"tasks.finishedRunning" = "Finished running %@.";
+
+/* Task completion notification title */
+"tasks.finishedRunningTitle" = "Finished Running %@";
+
+/* Task cancellation message */
+"tasks.cancelled" = "%@ cancelled.";
+
+/* Task cancellation notification title */
+"tasks.cancelledTitle" = "%@ cancelled";
+
+/* Task failure message */
+"tasks.failedToRun" = "Failed to run %@";
+
+/* Task failure notification title */
+"tasks.failedRunning" = "Failed Running %@";
+
+/* Task running notification title */
+"tasks.running" = "Running %@";
+
+/* Task running notification message */
+"tasks.runningMessage" = "Running your task: %@.";
+
+/* Font weight option */
+"fontWeight.ultraLight" = "Ultra Light";
+
+/* Font weight option */
+"fontWeight.thin" = "Thin";
+
+/* Font weight option */
+"fontWeight.light" = "Light";
+
+/* Font weight option */
+"fontWeight.regular" = "Regular";
+
+/* Font weight option */
+"fontWeight.medium" = "Medium";
+
+/* Font weight option */
+"fontWeight.semiBold" = "Semi Bold";
+
+/* Font weight option */
+"fontWeight.bold" = "Bold";
+
+/* Font weight option */
+"fontWeight.heavy" = "Heavy";
+
+/* Search field placeholder */
+"themeSettings.search" = "Search";
+
+/* Tooltip text */
+"themeSettings.createNewTheme" = "Create a new Theme";
+
+/* Menu item text */
+"themeSettings.importTheme" = "Import Theme...";
+
+/* Menu item text */
+"themeSettings.exportAllCustomThemes" = "Export All Custom Themes...";
+
+/* Tooltip text */
+"themeSettings.importOrExport" = "Import or Export Custom Themes";
+
+/* Button text */
+"themeSettings.import" = "Import...";
+
+/* Toggle label */
+"themeSettings.useThemeBackground" = "Use theme background";
+
+/* Toggle label */
+"themeSettings.matchSystemAppearance" = "Automatically change theme based on system appearance";
+
+/* Toggle label */
+"developerSettings.showInternalDevelopmentInspector" = "Show Internal Development Inspector";
+
+/* Column name */
+"developerSettings.language" = "Language";
+
+/* Column name */
+"developerSettings.languageServerPath" = "Language Server Path";
+
+/* Placeholder text */
+"developerSettings.addLanguageServer" = "Add a language server";
+
+/* Title text */
+"developerSettings.addLanguageServerTitle" = "Add a language server";
+
+/* Description text */
+"developerSettings.addLanguageServerDescription" = "Specify the absolute path to your LSP binary and its associated language.";
+
+/* Section header */
+"developerSettings.lspBinariesHeader" = "LSP Binaries";
+
+/* Description text */
+"developerSettings.lspBinariesDescription" = "Specify the language and the absolute path to the language server binary.";
+
+/* Search results summary */
+"findNavigator.resultsCount" = "%@ results in %@ files";
+
+/* Progress message */
+"findNavigator.searching" = "Searching";
+
+/* Progress message */
+"findNavigator.replacing" = "Replacing";
+
+/* Empty state message */
+"findNavigator.noResults" = "No Results";
+
+/* Empty state description */
+"findNavigator.noResultsDescription" = "No Results for \"%@\" in Project";
+
+/* Success message */
+"findNavigator.replaced" = "Replaced";
+
+/* Success description */
+"findNavigator.replacedDescription" = "Successfully replaced terms across %@ files";
+
+/* Error message */
+"findNavigator.errorOccurred" = "An Error Occurred";
+
+/* Package manager name */
+"packageManager.go" = "Go";
+
+/* Package manager name */
+"packageManager.pip" = "Pip";
+
+/* Package manager name */
+"packageManager.gem" = "Gem";
+
+/* Package manager name */
+"packageManager.nuget" = "Nuget";
+
+/* Package manager name */
+"packageManager.opam" = "Opam";
+
+/* Package manager name */
+"packageManager.composer" = "Composer";
+
+/* Package manager name */
+"packageManager.buildFromSource" = "Build From Source";
+
+/* Package manager name */
+"packageManager.downloadFromGithub" = "Download From GitHub";
+
+/* Delete file confirmation message */
+"delete.file.message" = "Do you want to delete "%@"?";
+
+/* Delete file description */
+"delete.file.description" = "This item will be deleted immediately. You can't undo this action.";
+
+/* Button text */
+"delete.file.delete" = "Delete";
+
+/* Button text */
+"delete.file.cancel" = "Cancel";
+
+/* Delete multiple files confirmation message */
+"delete.multipleFiles.message" = "Are you sure you want to delete the %@ selected items?";
+
+/* Delete multiple files description */
+"delete.multipleFiles.description" = "%@ items will be deleted immediately. You cannot undo this action.";
+
+/* Button text */
+"delete.multipleFiles.delete" = "Delete";
+
+/* Button text */
+"delete.multipleFiles.cancel" = "Cancel";
+
+/* Error message */
+"zip.error.unreadableArchive" = "Unreadable archive.";
+
+/* Error message */
+"zip.error.unwritableArchive" = "Unwritable archive.";
+
+/* Error message */
+"zip.error.invalidEntryPath" = "Invalid entry path.";
+
+/* Error message */
+"zip.error.invalidCompressionMethod" = "Invalid compression method.";
+
+/* Error message */
+"zip.error.invalidChecksum" = "Invalid checksum.";
+
+/* Error message */
+"zip.error.operationCancelled" = "Operation cancelled.";
+
+/* Error message */
+"zip.error.invalidBufferSize" = "Invalid buffer size.";
+
+/* Error message */
+"zip.error.invalidEntrySize" = "Invalid entry size.";
+
+/* Error message */
+"zip.error.invalidFile" = "Invalid file detected.";
+
+/* Menu title */
+"navigate.menu" = "Navigate";
+
+/* Menu item title */
+"navigate.revealInProjectNavigator" = "Reveal in Project Navigator";
+
+/* Menu item title */
+"navigate.revealChangesInNavigator" = "Reveal Changes in Navigator";
+
+/* Menu item title */
+"navigate.openInNextEditor" = "Open in Next Editor";
+
+/* Menu item title */
+"navigate.openIn" = "Open in...";
+
+/* Menu item title */
+"navigate.showPreviousTab" = "Show Previous Tab";
+
+/* Menu item title */
+"navigate.showNextTab" = "Show Next Tab";
+
+/* Menu item title */
+"navigate.goForward" = "Go Forward";
+
+/* Menu item title */
+"navigate.goBack" = "Go Back";
+
+/* Button text */
+"themeRow.choose" = "Choose";
+
+/* Menu item text */
+"themeRow.details" = "Details...";
+
+/* Menu item text */
+"themeRow.duplicate" = "Duplicate...";
+
+/* Menu item text */
+"themeRow.export" = "Export...";
+
+/* Menu item text */
+"themeRow.delete" = "Delete...";
+
+/* Confirmation message */
+"themeRow.deleteConfirmation" = "Are you sure you want to delete the theme "%@"?";
+
+/* Button text */
+"themeRow.deleteTheme" = "Delete Theme";
+
+/* Button text */
+"themeRow.cancel" = "Cancel";
+
+/* Warning message */
+"themeRow.cannotBeUndone" = "This action cannot be undone.";
+
+/* Section title */
+"sourceControl.gitConfiguration" = "Git Configuration";
+
+/* Description text */
+"sourceControl.gitConfigurationDescription" = "Applied globally to all repositories on your Mac. [Learn more...](https://git-scm.com/docs/git-config)";
+
+/* Section title */
+"sourceControl.ignoredFiles" = "Ignored Files";
+
+/* Description text */
+"sourceControl.ignoredFilesDescription" = "Patterns for files and folders that Git should ignore and not track. Applied globally to all repositories on your Mac. [Learn more...](https://git-scm.com/docs/gitignore)";
+
+/* Text field placeholder */
+"sourceControl.defaultBranchNameConstraints" = "Cannot contain spaces, backslashes, or other symbols";
+
+/* Description text */
+"sourceControl.gitConfigLocation" = "Git configuration is stored in \"~/.gitconfig\".";
+
+/* Button text */
+"sourceControl.openInEditor" = "Open in Editor...";
+
+/* Description text */
+"sourceControl.gitIgnoreLocation" = "Ignored file patterns are stored in \"%@\".";
+
+/* Context menu item */
+"commit.copyMessage" = "Copy Commit Message";
+
+/* Context menu item */
+"commit.copyIdentifier" = "Copy Identifier";
+
+/* Context menu item */
+"commit.emailAuthor" = "Email %@...";
+
+/* Context menu item */
+"commit.tagCommit" = "Tag %@...";
+
+/* Context menu item */
+"commit.newBranchFrom" = "New Branch from %@...";
+
+/* Context menu item */
+"commit.cherryPick" = "Cherry-Pick %@...";
+
+/* Context menu item */
+"commit.viewOnRemote" = "View on %@...";
+
+/* Context menu item */
+"commit.checkOut" = "Check Out %@...";
+
+/* Context menu item */
+"commit.historyEditorHelp" = "History Editor Help";
+
+/* Filter field placeholder */
+"projectNavigator.filterField" = "Filter";
+
+/* Sort option */
+"projectNavigator.foldersOnTop" = "Folders on top";
+
+/* Sort option */
+"projectNavigator.alphabetically" = "Alphabetically";
+
+/* Tooltip text */
+"projectNavigator.showMatchingFiles" = "Show files with matching name";
+
+/* Tooltip text */
+"projectNavigator.showRecentFiles" = "Show only recent files";
+
+/* Tooltip text */
+"projectNavigator.showSourceControlFiles" = "Show only files with source-control status";
+
+/* Button text */
+"projectNavigator.addFile" = "Add File";
+
+/* Button text */
+"projectNavigator.addFolder" = "Add Folder";
+
+/* Accessibility label */
+"projectNavigator.addFolderOrFile" = "Add Folder or File";
+
+/* Toggle text */
+"findNavigator.scoped" = "Scoped";
+
+/* Tooltip text */
+"findNavigator.matchCase" = "Match Case";
+
+/* Text field placeholder */
+"findNavigator.with" = "With";
+
+/* Tooltip text */
+"findNavigator.preserveCase" = "Preserve Case";
+
+/* Text field placeholder */
+"findNavigator.onlyInFolders" = "Only in folders";
+
+/* Tooltip text */
+"findNavigator.searchOpenEditors" = "Search only in Open Editors";
+
+/* Text field placeholder */
+"findNavigator.excludingFolders" = "Excluding folders";
+
+/* Tooltip text */
+"findNavigator.useExcludeSettings" = "Use Exclude Settings and Ignore Files";
+
+/* Button text */
+"findNavigator.replaceAll" = "Replace All";
+
+/* Error message */
+"findAndReplace.noFilesMatched" = "No files in the workspace matched: %@";
+
+/* Error message */
+"findAndReplace.allFilesFailed" = "All files failed to update. (%@) errors occurred. Check logs for more information";
+
+/* Error message */
+"findAndReplace.partialSuccess" = "%@ successfully updated, %@ errors occurred. Please check logs for more information.";
+
+/* Error message */
+"findAndReplace.readError" = "An error occurred while reading file contents of: %@";
+
+/* Error message */
+"findAndReplace.writeError" = "An error occurred while writing to: %@";
+
+/* Error message */
+"fileManager.fileNotFound" = "File not found";
+
+/* Error message */
+"fileManager.fileNotIndexed" = "File not found in CodeEdit";
+
+/* Error message */
+"fileManager.originFileNotFound" = "Failed to find origin file";
+
+/* Error message */
+"fileManager.destinationExists" = "Destination already exists";
+
+/* Error message */
+"fileManager.invalidFileName" = "Invalid file name";
+
+/* Recovery suggestion */
+"fileManager.reopenWorkspace" = "Reopen the workspace to reindex the file system.";
+
+/* Recovery suggestion */
+"fileManager.fileMayHaveMoved" = "The file may have moved during the operation, try again.";
+
+/* Recovery suggestion */
+"fileManager.useDifferentName" = "Use a different file name or remove the conflicting file.";
+
+/* Recovery suggestion */
+"fileManager.invalidFileNameRules" = "File names must not contain the : character and be less than 256 characters.";
+
+/* Menu item title */
+"fileCommands.new" = "New";
+
+/* Menu item title */
+"fileCommands.open" = "Open...";
+
+/* Menu title */
+"fileCommands.openRecent" = "Open Recent";
+
+/* Menu item title */
+"fileCommands.openQuickly" = "Open Quickly";
+
+/* Menu item title */
+"fileCommands.closeTab" = "Close Tab";
+
+/* Menu item title */
+"fileCommands.closeEditor" = "Close Editor";
+
+/* Menu item title */
+"fileCommands.closeWindow" = "Close Window";
+
+/* Menu item title */
+"fileCommands.closeWorkspace" = "Close Workspace";
+
+/* Menu item title */
+"fileCommands.closeTerminal" = "Close Terminal";
+
+/* Menu item title */
+"fileCommands.workspaceSettings" = "Workspace Settings";
+
+/* Menu item title */
+"fileCommands.save" = "Save";
+
+/* Text field placeholder */
+"stashView.messageOptional" = "Message (optional)";
+
+/* Section title */
+"stashView.title" = "Stash Changes";
+
+/* Text field placeholder */
+"commit.messageRequired" = "Commit message (required)";
+
+/* Text field placeholder */
+"commit.detailedDescription" = "Detailed description";
+
+/* Toggle label */
+"commit.amend" = "Amend";
+
+/* Button text */
+"commit.unstageAll" = "Unstage All";
+
+/* Button text */
+"commit.stageAll" = "Stage All";
+
+/* Button text */
+"commit.commit" = "Commit";
+
+/* Button text */
+"commit.committing" = "Committing...";
+
+/* Button text */
+"commit.commitAndPush" = "Commit and Push...";
+
+/* Error message */
+"commit.failedToCommit" = "Failed to commit";
+
+/* Error message */
+"commit.failedToPush" = "Failed to push";
+
+/* Description text */
+"stashView.uncommittedChanges" = "Your local repository has uncommitted changes that need to be stashed before you can continue. Enter a description for your changes.";
+
+/* Description text */
+"stashView.enterDescription" = "Enter a description for your stashed changes so you can reference them later. Stashes will appear in the Source Control navigator for your repository.";
+
+/* Toggle label */
+"stashView.applyAfterOperation" = "Apply stash after operation";
+
+/* Button text */
+"stashView.cancel" = "Cancel";
+
+/* Button text */
+"stashView.stashAndPull" = "Stash and Pull";
+
+/* Button text */
+"stashView.stashAndSwitch" = "Stash and Switch";
+
+/* Button text */
+"stashView.stash" = "Stash";
+
+/* Error message */
+"stashView.couldNotFindLastStash" = "Could not find last stash";
+
+/* Error message */
+"stashView.failedToStash" = "Failed to stash changes";
+
+/* Menu title */
+"sourceControlCommands.menu" = "Source Control";
+
+/* Menu item */
+"sourceControlCommands.commit" = "Commit...";
+
+/* Menu item */
+"sourceControlCommands.push" = "Push...";
+
+/* Menu item */
+"sourceControlCommands.pull" = "Pull...";
+
+/* Menu item */
+"sourceControlCommands.fetchChanges" = "Fetch Changes";
+
+/* Menu item */
+"sourceControlCommands.stageAllChanges" = "Stage All Changes";
+
+/* Error message */
+"sourceControlCommands.failedToStageChanges" = "Failed To Stage Changes";
+
+/* Menu item */
+"sourceControlCommands.unstageAllChanges" = "Unstage All Changes";
+
+/* Error message */
+"sourceControlCommands.failedToUnstageChanges" = "Failed To Unstage Changes";
+
+/* Menu item */
+"sourceControlCommands.cherryPick" = "Cherry-Pick...";
+
+/* Menu item */
+"sourceControlCommands.stashChanges" = "Stash Changes...";
+
+/* Menu item */
+"sourceControlCommands.discardAllChanges" = "Discard All Changes...";
+
+/* Menu item */
+"sourceControlCommands.addExistingRemote" = "Add Exisiting Remote...";
+
+/* Settings search key */
+"textEditingSettings.font" = "Font";
+
+/* Settings search key */
+"textEditingSettings.fontSize" = "Font Size";
+
+/* Settings search key */
+"textEditingSettings.showMinimap" = "Show Minimap";
+
+/* Command name */
+"textEditingSettings.toggleAutocompleteBraces" = "Toggle Autocomplete Braces";
+
+/* Command name */
+"textEditingSettings.toggleWordWrap" = "Toggle Word Wrap";
+
+/* Command name */
+"textEditingSettings.toggleMinimap" = "Toggle Minimap";
+
+/* Command name */
+"textEditingSettings.toggleGutter" = "Toggle Gutter";
+
+/* Command name */
+"textEditingSettings.toggleFoldingRibbon" = "Toggle Folding Ribbon";
+
+/* Label text */
+"languageServerRow.installUsing" = "Install using %@";
+
+/* Button text */
+"languageServerRow.showMore" = "Show More";
+
+/* Button text */
+"languageServerRow.showLess" = "Show Less";
+
+/* Alert title */
+"languageServerRow.removeConfirm" = "Remove %@?";
+
+/* Button text */
+"languageServerRow.cancel" = "Cancel";
+
+/* Button text */
+"languageServerRow.remove" = "Remove";
+
+/* Warning message */
+"languageServerRow.removeWarning" = "Are you sure you want to remove this language server? This action cannot be undone.";
+
+/* Error message */
+"languageServerRow.removalFailed" = "Removal Failed";
+
+/* Button text */
+"languageServerRow.ok" = "OK";
+
+/* Error message */
+"languageServerRow.unknownError" = "An unknown error occurred";
+
+/* Button text */
+"languageServerRow.removeButton" = "Remove";
+
+/* Button text */
+"languageServerRow.retry" = "Retry";
+
+/* Button text */
+"languageServerRow.install" = "Install";
+
+/* Confirmation message */
+"github.requiresGitInstall" = "This package requires git to install. Allow CodeEdit to run git commands?";
+
+/* Installation step title */
+"github.initializeDirectory" = "Initialize Directory Structure";
+
+/* Installation step title */
+"github.downloadBinary" = "Download Binary Executable";
+
+/* Progress message */
+"github.downloading" = "Downloading %@";
+
+/* Installation step title */
+"github.decompressBinary" = "Decompress Binary Executable";
+
+/* Progress message */
+"github.decompressing" = "Decompressing %@";
+
+/* Progress message */
+"github.decompressedTo" = "Decompressed to '%@'";
+
+/* Progress message */
+"github.decompressingTar" = "Decompressing %@ using `tar`";
+
+/* Progress message */
+"github.decompressingGunzip" = "Decompressing %@ using `gunzip`";
+
+/* Installation step title */
+"github.cloneWithGit" = "Clone with Git";
+
+/* Confirmation message */
+"github.cloneConfirmation" = "This step will run the following command to clone the package from source control:\n`%@`";
+
+/* Installation step title */
+"github.installFromSource" = "Install From Source";
+
+/* Confirmation message */
+"github.installConfirmation" = "This step will run the following to finish installing:\n`%@`";
+
+/* Error message */
+"github.sourceBuildFailed" = "Source build failed.";
+
+/* Error message */
+"gitClone.gitNotFound" = "Git installation not found.";
+
+/* Error message */
+"gitClone.ensureGitInstalled" = "Ensure Git is installed on your system and try again.";
+
+/* Error message */
+"gitClone.urlCannotBeEmpty" = "Url cannot be empty";
+
+/* Error message */
+"gitClone.mustSpecifyRepository" = "You must specify a repository to clone";
+
+/* Error message */
+"gitClone.directoryAlreadyExists" = "Directory already exists";
+
+/* Error message */
+"gitClone.failedToCreateFolder" = "Failed to create folder";
+
+/* Error message */
+"gitClone.failedToClone" = "Failed to clone";
+
+/* Error message */
+"gitClone.failedToDeleteFolder" = "Failed to delete folder";
+
+/* Button text */
+"gitClone.clone" = "Clone";
+
+/* Label text */
+"gitClone.cloneAs" = "Clone as";
+
+/* Dialog title */
+"gitClone.clone" = "Clone";
+
+/* Alert title */
+"workspaceSheets.discardAllChanges" = "Do you want to discard all uncommitted, local changes?";
+
+/* Alert message */
+"workspaceSheets.cannotBeUndone" = "This action cannot be undone.";
+
+/* Button text */
+"workspaceSheets.discard" = "Discard";
+
+/* Alert title */
+"workspaceSheets.cannotStageChanges" = "Cannot Stage Changes";
+
+/* Button text */
+"workspaceSheets.ok" = "OK";
+
+/* Alert message */
+"workspaceSheets.noUncommittedChanges" = "There are no uncommitted changes in the local repository for this project.";
+
+/* Alert title */
+"workspaceSheets.cannotUnstageChanges" = "Cannot Unstage Changes";
+
+/* Alert title */
+"workspaceSheets.cannotStashChanges" = "Cannot Stash Changes";
+
+/* Alert title */
+"workspaceSheets.cannotDiscardChanges" = "Cannot Discard Changes";
+
+/* Label text */
+"accountsSettingsDetails.account" = "Account";
+
+/* Text field placeholder */
+"accountsSettingsDetails.description" = "Description";
+
+/* Text field placeholder */
+"accountsSettingsDetails.server" = "Server";
+
+/* Protocol option */
+"accountsSettingsDetails.https" = "HTTPS";
+
+/* Label text */
+"accountsSettingsDetails.cloneUsing" = "Clone Using";
+
+/* Description text */
+"accountsSettingsDetails.cloneDescription" = "New repositories will be cloned from %@ using %@.";
+
+/* Label text */
+"accountsSettingsDetails.sshKey" = "SSH Key";
+
+/* Picker option */
+"accountsSettingsDetails.none" = "None";
+
+/* Button text */
+"accountsSettingsDetails.createNew" = "Create New...";
+
+/* Button text */
+"accountsSettingsDetails.choose" = "Choose...";
+
+/* Button text */
+"accountsSettingsDetails.deleteAccount" = "Delete Account...";
+
+/* Confirmation message */
+"accountsSettingsDetails.deleteConfirmation" = "Are you sure you want to delete the account "%@"?";
+
+/* Button text */
+"accountsSettingsDetails.ok" = "OK";
+
+/* Button text */
+"accountsSettingsDetails.cancel" = "Cancel";
+
+/* Warning message */
+"accountsSettingsDetails.deleteMessage" = "Deleting this account will remove it from CodeEdit.";
+
+/* Alert title */
+"languageServerInstall.confirmStep" = "Confirm Step";
+
+/* Button text */
+"languageServerInstall.cancel" = "Cancel";
+
+/* Button text */
+"languageServerInstall.continue" = "Continue";
+
+/* Button text */
+"languageServerInstall.cancelButton" = "Cancel";
+
+/* Button text */
+"languageServerInstall.install" = "Install";
+
+/* Button text */
+"languageServerInstall.cancelRunning" = "Cancel";
+
+/* Button text */
+"languageServerInstall.continueComplete" = "Continue";
+
+/* Label text */
+"languageServerInstall.installingPackage" = "Installing Package";
+
+/* Label text */
+"languageServerInstall.homepage" = "Homepage";
+
+/* Label text */
+"languageServerInstall.description" = "Description";
+
+/* Error message */
+"languageServerInstall.errorOccurred" = "Error Occurred";
+
+/* Label text */
+"languageServerInstall.step" = "Step";
+
+/* Success message */
+"languageServerInstall.successfullyInstalled" = "Successfully Installed";
+
+/* Error message */
+"languageServerInstall.errorOccurredProgress" = "Error Occurred";
+
+/* Label text */
+"languageServerInstall.installMethod" = "Install Method";
+
+/* Label text */
+"languageServerInstall.installer" = "Installer";
+
+/* Label text */
+"accountsSignin.server" = "Server";
+
+/* Label text */
+"accountsSignin.username" = "Username";
+
+/* Label text */
+"accountsSignin.personalAccessToken" = "Personal Access Token";
+
+/* Header text */
+"accountsSignin.signInTo" = "Sign in to %@";
+
+/* Description text */
+"accountsSignin.scopesRequired" = "%@ personal access tokens must have these scopes set:";
+
+/* Scope name */
+"accountsSignin.scopeUser" = "user";
+
+/* Button text */
+"accountsSignin.createPassword" = "Create a Password on %@";
+
+/* Button text */
+"accountsSignin.createToken" = "Create a Token on %@";
+
+/* Button text */
+"accountsSignin.cancel" = "Cancel";
+
+/* Button text */
+"accountsSignin.signIn" = "Sign In";
+
+/* Error message */
+"accountsSignin.unableToAddAccount" = "Unable to add account "%@"";
+
+/* Button text */
+"accountsSignin.ok" = "OK";
+
+/* Error message */
+"accountsSignin.accountAlreadyExists" = "Account with the same username and provider already exists!";
+
+/* Error message */
+"accountsSignin.authenticationFailed" = "Authentication Failed";
+
+/* Error message */
+"accountsSignin.apiAccessForbidden" = "API Access Forbidden";
+
+/* Error message */
+"accountsSignin.unknownError" = "Unknown Error";
+
+/* Section title */
+"fileInspector.identityAndType" = "Identity and Type";
+
+/* Section title */
+"fileInspector.textSettings" = "Text Settings";
+
+/* Label text */
+"fileInspector.name" = "Name";
+
+/* Label text */
+"fileInspector.type" = "Type";
+
+/* Default option */
+"fileInspector.defaultDetected" = "Default - Detected";
+
+/* Label text */
+"fileInspector.location" = "Location";
+
+/* Button text */
+"fileInspector.choose" = "Choose...";
+
+/* Label text */
+"fileInspector.indentUsing" = "Indent using";
+
+/* Indent option */
+"fileInspector.spaces" = "Spaces";
+
+/* Indent option */
+"fileInspector.tabs" = "Tabs";
+
+/* Label text */
+"fileInspector.widths" = "Widths";
+
+/* Label text */
+"fileInspector.tab" = "Tab";
+
+/* Tooltip text */
+"fileInspector.tabWidthHelp" = "The visual width of tab characters";
+
+/* Label text */
+"fileInspector.indent" = "Indent";
+
+/* Tooltip text */
+"fileInspector.indentHelp" = "The number of spaces to insert when the tab key is pressed.";
+
+/* Toggle label */
+"fileInspector.wrapLines" = "Wrap lines";
+
+/* Dialog title */
+"fileInspector.saveFile" = "Save File";
+
+/* Toggle label */
+"invisibles.showSpaces" = "Show Spaces";
+
+/* Placeholder text */
+"invisibles.spaceDefault" = "Default: %@";
+
+/* Label text */
+"invisibles.spaceCharacter" = "Character used to render spaces";
+
+/* Toggle label */
+"invisibles.showTabs" = "Show Tabs";
+
+/* Placeholder text */
+"invisibles.tabDefault" = "Default: %@";
+
+/* Label text */
+"invisibles.tabCharacter" = "Character used to render tabs";
+
+/* Toggle label */
+"invisibles.showLineEndings" = "Show Line Endings";
+
+/* Placeholder text */
+"invisibles.lineFeedDefault" = "Default: %@";
+
+/* Label text */
+"invisibles.lineFeedCharacter" = "Character used to render line feeds (\\n)";
+
+/* Placeholder text */
+"invisibles.carriageReturnDefault" = "Default: %@";
+
+/* Label text */
+"invisibles.carriageReturnCharacter" = "Character used to render carriage returns (Microsoft-style line endings)";
+
+/* Placeholder text */
+"invisibles.paragraphSeparatorDefault" = "Default: %@";
+
+/* Label text */
+"invisibles.paragraphSeparatorCharacter" = "Character used to render paragraph separators";
+
+/* Placeholder text */
+"invisibles.lineSeparatorDefault" = "Default: %@";
+
+/* Label text */
+"invisibles.lineSeparatorCharacter" = "Character used to render line separators";
+
+/* Section title */
+"invisibles.title" = "Invisible Characters";
+
+/* Description text */
+"invisibles.description" = "Toggle whitespace symbols CodeEdit will render with replacement characters.";
+
+/* Button text */
+"invisibles.done" = "Done";
+
+/* Dialog message */
+"stashView.applyChanges" = "Do you want to apply stashed changes?";
+
+/* Dialog message */
+"stashView.uncommittedChanges" = "The local repository has uncommitted changes.";
+
+/* Button text */
+"stashView.apply" = "Apply";
+
+/* Button text */
+"stashView.applyAndDelete" = "Apply and Delete";
+
+/* Button text */
+"stashView.cancelButton" = "Cancel";
+
+/* Button text */
+"stashView.okay" = "Okay";
+
+/* Description text */
+"stashView.applyDescription" = "Applying the stashed changes will restore modifications to files in your local repository.";
+
+/* Description text */
+"stashView.tryCommitting" = "Try committing or discarding the changes.";
+
+/* Dialog message */
+"branch.deleteConfirmation" = "Do you want to delete the branch "%@"?";
+
+/* Button text */
+"branch.deleteButton" = "Delete";
+
+/* Error message */
+"branch.failedToDelete" = "Failed to delete";
+
+/* Warning message */
+"branch.deleteWarning" = "The branch will be removed from the repository. You can't undo this action.";
+
+/* Dialog message */
+"stashEntry.deleteConfirmation" = "Do you want to delete the stash "%@"?";
+
+/* Button text */
+"stashEntry.deleteButton" = "Delete";
+
+/* Error message */
+"stashEntry.failedToDelete" = "Failed to delete";
+
+/* Warning message */
+"stashEntry.deleteWarning" = "The stash will be removed from the repository. You can't undo this action.";
+
+/* Dialog message */
+"remote.deleteConfirmation" = "Do you want to delete the remote "%@"?";
+
+/* Button text */
+"remote.deleteButton" = "Delete";
+
+/* Error message */
+"remote.failedToDelete" = "Failed to delete";
+
+/* Warning message */
+"remote.deleteWarning" = "The remote will be removed from the repository. You can't undo this action.";
+
+/* Label text */
+"generalSettings.appearance" = "Appearance";
+
+/* Appearance option */
+"generalSettings.system" = "System";
+
+/* Appearance option */
+"generalSettings.light" = "Light";
+
+/* Appearance option */
+"generalSettings.dark" = "Dark";
+
+/* Label text */
+"generalSettings.showIssues" = "Show Issues";
+
+/* Issues display option */
+"generalSettings.showInline" = "Show Inline";
+
+/* Issues display option */
+"generalSettings.showMinimized" = "Show Minimized";
+
+/* Toggle label */
+"generalSettings.showLiveIssues" = "Show Live Issues";
+
+/* Toggle label */
+"generalSettings.showJumpBar" = "Show Jump Bar";
+
+/* Toggle label */
+"generalSettings.dimEditorsWithoutFocus" = "Dim editors without focus";
+
+/* Label text */
+"generalSettings.fileExtensions" = "File Extensions";
+
+/* File extensions option */
+"generalSettings.hideAll" = "Hide all";
+
+/* File extensions option */
+"generalSettings.showAll" = "Show all";
+
+/* File extensions option */
+"generalSettings.showOnly" = "Show only";
+
+/* File extensions option */
+"generalSettings.hideOnly" = "Hide only";
+
+/* Label text */
+"generalSettings.fileIconStyle" = "File Icon Style";
+
+/* Icon style option */
+"generalSettings.color" = "Color";
+
+/* Icon style option */
+"generalSettings.monochrome" = "Monochrome";
+
+/* Label text */
+"generalSettings.navigatorTabBarPosition" = "Navigator Tab Bar Position";
+
+/* Tab bar position option */
+"generalSettings.top" = "Top";
+
+/* Label text */
+"generalSettings.shellCommand" = "'codeedit' Shell Command";
+
+/* Button text */
+"generalSettings.install" = "Install";
+
+/* Button text */
+"generalSettings.checkNow" = "Check Now";
+
+/* Label text */
+"generalSettings.checkForUpdates" = "Check for updates";
+
+/* Status message */
+"generalSettings.lastChecked" = "Last checked: %@";
+
+/* Toggle label */
+"generalSettings.autoCheckUpdates" = "Automatically check for app updates";
+
+/* Toggle label */
+"generalSettings.includePrereleaseVersions" = "Include pre-release versions";
+
+/* Toggle label */
+"generalSettings.autoSaveChanges" = "Automatically save changes to disk";
+
+/* Status text */
+"generalSettings.never" = "Never";
+
+/* Toggle label */
+"generalSettings.showOpenWithCodeEdit" = "Show "Open With CodeEdit" option in Finder";
+
+/* Toggle label */
+"generalSettings.autoRevealInNavigator" = "Automatically reveal in project navigator";
+
+/* Context menu title */
+"projectNavigatorMenu.options" = "Options";
+
+/* Context menu item */
+"projectNavigatorMenu.showInFinder" = "Show in Finder";
+
+/* Context menu item */
+"projectNavigatorMenu.openInTab" = "Open in Tab";
+
+/* Context menu item */
+"projectNavigatorMenu.openInNewWindow" = "Open in New Window";
+
+/* Context menu item */
+"projectNavigatorMenu.openWithExternalEditor" = "Open with External Editor";
+
+/* Context menu item */
+"projectNavigatorMenu.openAs" = "Open As";
+
+/* Context menu item */
+"projectNavigatorMenu.copyPath" = "Copy Path";
+
+/* Context menu item */
+"projectNavigatorMenu.copyRelativePath" = "Copy Relative Path";
+
+/* Context menu item */
+"projectNavigatorMenu.showFileInspector" = "Show File Inspector";
+
+/* Context menu item */
+"projectNavigatorMenu.newFile" = "New File...";
+
+/* Context menu item */
+"projectNavigatorMenu.newFileFromClipboard" = "New File from Clipboard";
+
+/* Context menu item */
+"projectNavigatorMenu.newFolder" = "New Folder";
+
+/* Context menu item */
+"projectNavigatorMenu.rename" = "Rename";
+
+/* Context menu item */
+"projectNavigatorMenu.moveToTrash" = "Move to Trash";
+
+/* Context menu item */
+"projectNavigatorMenu.deleteImmediately" = "Delete Immediately...";
+
+/* Context menu item */
+"projectNavigatorMenu.duplicate" = "Duplicate %@";
+
+/* Item type */
+"projectNavigatorMenu.folder" = "Folder";
+
+/* Item type */
+"projectNavigatorMenu.file" = "File";
+
+/* Context menu item */
+"projectNavigatorMenu.sortByName" = "Sort by Name";
+
+/* Context menu item */
+"projectNavigatorMenu.sortByType" = "Sort by Type";
+
+/* Context menu item */
+"projectNavigatorMenu.sourceControl" = "Source Control";
+
+/* Context menu item */
+"projectNavigatorMenu.newFolderFromSelection" = "New Folder from Selection";
+
+/* Context menu item */
+"projectNavigatorMenu.assetCatalogDocument" = "Asset Catalog Document";
+
+/* Context menu item */
+"projectNavigatorMenu.interfaceBuilderXIB" = "Interface Builder XIB Document";
+
+/* Context menu item */
+"projectNavigatorMenu.xcodeProject" = "Xcode Project";
+
+/* Context menu item */
+"projectNavigatorMenu.commitFile" = "Commit \"%@\"...";
+
+/* Context menu item */
+"projectNavigatorMenu.discardChanges" = "Discard Changes...";
+
+/* Context menu item */
+"projectNavigatorMenu.addSelectedFiles" = "Add Selected Files";
+
+/* Context menu item */
+"projectNavigatorMenu.markSelectedFilesResolved" = "Mark Selected Files as Resolved";
+
+/* Context menu item */
+"projectNavigatorMenu.none" = "<None>";
+
+/* Context menu item */
+"projectNavigatorMenu.sourceCode" = "Source Code";
+
+/* Label text */
+"textEditingSettings.fontLabel" = "Font";
+
+/* Label text */
+"textEditingSettings.fontSizeLabel" = "Font Size";
+
+/* Help text */
+"textEditingSettings.autoInsertBraces" = "Automatically insert closing braces (\"}\")";
+
+/* Toggle label */
+"textEditingSettings.useSystemCursor" = "Use System Cursor";
+
+/* Cursor size option */
+"textEditingSettings.cursorSizeNone" = "None";
+
+/* Cursor size option */
+"textEditingSettings.cursorSizeSmall" = "Small";
+
+/* Cursor size option */
+"textEditingSettings.cursorSizeMedium" = "Medium";
+
+/* Cursor size option */
+"textEditingSettings.cursorSizeLarge" = "Large";
+
+/* Indent option */
+"textEditingSettings.indentTabs" = "Tabs";
+
+/* Indent option */
+"textEditingSettings.indentSpaces" = "Spaces";
+
+/* Label text */
+"textEditingSettings.indentWidth" = "Indent Width";
+
+/* Unit label */
+"textEditingSettings.spacesUnit" = "spaces";
+
+/* Help text */
+"textEditingSettings.indentWidthHelp" = "The number of spaces to insert when the tab key is pressed.";
+
+/* Help text */
+"textEditingSettings.tabWidthHelp" = "The visual width of tabs.";
+
+/* Bracket highlight option */
+"textEditingSettings.bracketHighlightDisabled" = "Disabled";
+
+/* Bracket highlight option */
+"textEditingSettings.bracketHighlightBordered" = "Bordered";
+
+/* Bracket highlight option */
+"textEditingSettings.bracketHighlightFlash" = "Flash";
+
+/* Bracket highlight option */
+"textEditingSettings.bracketHighlightUnderline" = "Underline";
+
+/* Toggle label */
+"textEditingSettings.useCustomColor" = "Use Custom Color";
+
+/* Label text */
+"textEditingSettings.bracketPairHighlightColor" = "Bracket Pair Highlight Color";
+
+/* Help text */
+"textEditingSettings.gutterHelp" = "The gutter displays line numbers and code folding regions.";
+
+/* Toggle label */
+"textEditingSettings.showMinimap" = "Show Minimap";
+
+/* Help text */
+"textEditingSettings.minimapHelp" = "The minimap gives you a high-level summary of your source code, with controls to quickly navigate your document.";
+
+/* Toggle label */
+"textEditingSettings.showCodeFoldingRibbon" = "Show Code Folding Ribbon";
+
+/* Help text */
+"textEditingSettings.foldingRibbonHelp" = "The code folding ribbon lets you fold regions of code. When the gutter is disabled, the folding ribbon is disabled.";
+
+/* Help text */
+"textEditingSettings.reformattingGuideHelp" = "Shows a vertical guide at the reformat column.";
+
+/* Help text */
+"textEditingSettings.reformatColumnHelp" = "The column at which text should be reformatted.";
+
+/* Toggle label */
+"textEditingSettings.showInvisibleCharacters" = "Show Invisible Characters";
+
+/* Button text */
+"textEditingSettings.configure" = "Configure...";
+
+/* Toggle label */
+"textEditingSettings.showWarningCharacters" = "Show Warning Characters";
+
+/* Button text */
+"internalDevelopment.view" = "View";
+
+/* Notification title */
+"internalDevelopment.testNotification" = "Test Notification";
+
+/* Notification message */
+"internalDevelopment.testNotificationDescription" = "This is a test notification.";
+
+/* Color name */
+"color.red" = "Red";
+
+/* Color name */
+"color.orange" = "Orange";
+
+/* Color name */
+"color.yellow" = "Yellow";
+
+/* Color name */
+"color.green" = "Green";
+
+/* Color name */
+"color.mint" = "Mint";
+
+/* Color name */
+"color.cyan" = "Cyan";
+
+/* Color name */
+"color.teal" = "Teal";
+
+/* Color name */
+"color.blue" = "Blue";
+
+/* Color name */
+"color.indigo" = "Indigo";
+
+/* Color name */
+"color.purple" = "Purple";
+
+/* Color name */
+"color.pink" = "Pink";
+
+/* Color name */
+"color.gray" = "Gray";
+
+/* Section title */
+"internalDevelopment.notifications" = "Notifications";
+
+/* Toggle label */
+"internalDevelopment.delay5s" = "Delay 5s";
+
+/* Toggle label */
+"internalDevelopment.sticky" = "Sticky";
+
+/* Label text */
+"internalDevelopment.iconType" = "Icon Type";
+
+/* Button text */
+"internalDevelopment.random" = "Random";
+
+/* Picker label */
+"internalDevelopment.symbol" = "Symbol";
+
+/* Picker label */
+"internalDevelopment.emoji" = "Emoji";
+
+/* Picker label */
+"internalDevelopment.text" = "Text";
+
+/* Picker label */
+"internalDevelopment.image" = "Image";
+
+/* Label text */
+"internalDevelopment.iconColor" = "Icon Color";
+
+/* Text field placeholder */
+"internalDevelopment.title" = "Title";
+
+/* Text field placeholder */
+"internalDevelopment.description" = "Description";
+
+/* Text field placeholder */
+"internalDevelopment.actionButton" = "Action Button";
+
+/* Button text */
+"internalDevelopment.addNotification" = "Add Notification";
+
+/* Context menu item */
+"projectNavigatorMenu.propertyList" = "Property List";
+
+/* Context menu item */
+"projectNavigatorMenu.asciiPropertyList" = "ASCII Property List";
+
+/* Context menu item */
+"projectNavigatorMenu.hex" = "Hex";
+
+/* Context menu item */
+"projectNavigatorMenu.quickLook" = "Quick Look";
+
+/* Label text */
+"themeDetails.name" = "Name";
+
+/* Label text */
+"themeDetails.author" = "Author";
+
+/* Label text */
+"themeDetails.type" = "Type";
+
+/* Theme appearance option */
+"themeDetails.light" = "Light";
+
+/* Theme appearance option */
+"themeDetails.dark" = "Dark";
+
+/* Label text */
+"themeDetails.cursor" = "Cursor";
+
+/* Label text */
+"themeDetails.background" = "Background";
+
+/* Label text */
+"themeDetails.currentLine" = "Current Line";
+
+/* Label text */
+"themeDetails.selection" = "Selection";
+
+/* Label text */
+"themeDetails.keywords" = "Keywords";
+
+/* Label text */
+"themeDetails.commands" = "Commands";
+
+/* Label text */
+"themeDetails.types" = "Types";
+
+/* Label text */
+"themeDetails.attributes" = "Attributes";
+
+/* Label text */
+"themeDetails.variables" = "Variables";
+
+/* Label text */
+"themeDetails.values" = "Values";
+
+/* Label text */
+"themeDetails.numbers" = "Numbers";
+
+/* Label text */
+"themeDetails.strings" = "Strings";
+
+/* Label text */
+"themeDetails.characters" = "Characters";
+
+/* Label text */
+"themeDetails.comments" = "Comments";
+
+/* Description text */
+"themeDetails.duplicateToMakeChanges" = "Duplicate this theme to make changes.";
+
+/* Help text */
+"themeDetails.bundledThemesDuplicate" = "Bundled themes must be duplicated to make changes.";
+
+/* Accessibility label */
+"themeDetails.warningDuplicate" = "Warning: Duplicate this theme to make changes.";
+
+/* Button text */
+"themeDetails.deleteEllipsis" = "Delete...";
+
+/* Button text */
+"themeDetails.duplicateEllipsis" = "Duplicate...";
+
+/* Button text */
+"themeDetails.duplicate" = "Duplicate";
+
+/* Button text */
+"themeDetails.cancel" = "Cancel";
+
+/* Button text */
+"themeDetails.done" = "Done";
+
+/* Confirmation message */
+"themeDetails.deleteConfirmation" = "Are you sure you want to delete the theme "%@"?";
+
+/* Button text */
+"themeDetails.deleteTheme" = "Delete Theme";
+
+/* Button text */
+"themeDetails.cancelButton" = "Cancel";
+
+/* Warning message */
+"themeDetails.cannotBeUndone" = "This action cannot be undone.";
+
+/* Feedback type placeholder */
+"feedback.choose" = "Choose...";
+
+/* Feedback type option */
+"feedback.incorrectBehaviour" = "Incorrect/Unexpected Behaviour";
+
+/* Feedback type option */
+"feedback.crash" = "Application Crash";
+
+/* Feedback type option */
+"feedback.slowUnresponsive" = "Application Slow/Unresponsive";
+
+/* Feedback type option */
+"feedback.suggestion" = "Suggestion";
+
+/* Feedback type option */
+"feedback.other" = "Other";
+
+/* Success message */
+"feedback.submitted" = "Feedback submitted";
+
+/* Error message */
+"feedback.failedToSubmit" = "Failed to submit feedback";
+
+/* Button text */
+"feedback.submit" = "Submit";
+
+/* Alert title */
+"feedback.noGitHubAccount" = "No GitHub Account";
+
+/* Alert message */
+"feedback.requiresGitHubAccount" = "A GitHub account is required to submit feedback.";
+
+/* Button text */
+"feedback.cancel" = "Cancel";
+
+/* Button text */
+"feedback.addAccount" = "Add Account";
+
+/* Section title */
+"feedback.basicInformation" = "Basic Information";
+
+/* Label text */
+"feedback.provideTitlePrompt" = "Please provide a descriptive title for your feedback:";
+
+/* Example text */
+"feedback.exampleAutocomplete" = "Example: CodeEdit crashes when using autocomplete";
+
+/* Label text */
+"feedback.whichArea" = "Which area are you seeing an issue with?";
+
+/* Label text */
+"feedback.whatType" = "What type of feedback are you reporting?";
+
+/* Section title */
+"feedback.descriptionSection" = "Description";
+
+/* Label text */
+"feedback.describeIssuePrompt" = "Please describe the issue:";
+
+/* Example text */
+"feedback.exampleAutocompletePopup" = "Example: CodeEdit crashes when the autocomplete popup appears on screen.";
+
+/* Label text */
+"feedback.stepsToReproduce" = "Please list the steps you took to reproduce the issue:";
+
+/* Problem area placeholder */
+"feedback.selectProblemArea" = "Please select the problem area";
+
+/* Problem area option */
+"feedback.projectNavigator" = "Project Navigator";
+
+/* Problem area option */
+"feedback.extensions" = "Extensions";
+
+/* Problem area option */
+"feedback.git" = "Git";
+
+/* Problem area option */
+"feedback.debugger" = "Debugger";
+
+/* Problem area option */
+"feedback.editor" = "Editor";
+
+/* Problem area option */
+"feedback.otherArea" = "Other";
+
+/* GitHub issue label */
+"feedback.label.projectNavigator" = "Project Navigator";
+
+/* GitHub issue label */
+"feedback.label.extensions" = "Extensions";
+
+/* GitHub issue label */
+"feedback.label.git" = "Git";
+
+/* GitHub issue label */
+"feedback.label.debugger" = "Debugger";
+
+/* GitHub issue label */
+"feedback.label.other" = "Other";
+
+/* GitHub issue label */
+"feedback.label.otherDefault" = "Other";
+
+/* Bug emoji */
+"feedback.emoji.bug" = "🐞";
+
+/* Bug emoji */
+"feedback.emoji.bugCrash" = "🐞";
+
+/* Example label */
+"feedback.example" = "Example:";
+
+/* Example step 1 */
+"feedback.exampleStep1" = "1. Open the attached sample project";
+
+/* Example step 2 */
+"feedback.exampleStep2" = "2. type #import and wait for autocompletion to begin";
+
+/* Label text */
+"feedback.whatDidYouExpect" = "What did you expect to happen?";
+
+/* Example text */
+"feedback.exampleExpectedBehavior" = "Example: I expected autocomplete to show me a list of headers.";
+
+/* Label text */
+"feedback.whatActuallyHappened" = "What actually happened?";
+
+/* Example text */
+"feedback.exampleActualBehavior" = "Example: The autocomplete window flickered on screen and CodeEdit crashed. See attached crashlog.";
+
+/* Menu item title */
+"viewCommands.showCommandPalette" = "Show Command Palette";
+
+/* Menu item title */
+"viewCommands.openSearchNavigator" = "Open Search Navigator";
+
+/* Menu title */
+"viewCommands.fontSize" = "Font Size";
+
+/* Menu item title */
+"viewCommands.increase" = "Increase";
+
+/* Menu item title */
+"viewCommands.decrease" = "Decrease";
+
+/* Menu item title */
+"viewCommands.reset" = "Reset";
+
+/* Menu item title */
+"viewCommands.customizeToolbar" = "Customize Toolbar...";
+
+/* Menu item title */
+"viewCommands.showJumpBar" = "Show Jump Bar";
+
+/* Menu item title */
+"viewCommands.hideJumpBar" = "Hide Jump Bar";
+
+/* Menu item title */
+"viewCommands.dimEditorsWithoutFocus" = "Dim editors without focus";
+
+/* Menu item title */
+"viewCommands.showNavigator" = "Show Navigator";
+
+/* Menu item title */
+"viewCommands.hideNavigator" = "Hide Navigator";
+
+/* Menu item title */
+"viewCommands.showInspector" = "Show Inspector";
+
+/* Menu item title */
+"viewCommands.hideInspector" = "Hide Inspector";
+
+/* Menu item title */
+"viewCommands.showUtilityArea" = "Show Utility Area";
+
+/* Menu item title */
+"viewCommands.hideUtilityArea" = "Hide Utility Area";
+
+/* Menu item title */
+"viewCommands.showToolbar" = "Show Toolbar";
+
+/* Menu item title */
+"viewCommands.hideToolbar" = "Hide Toolbar";
+
+/* Menu item title */
+"viewCommands.showInterface" = "Show Interface";
+
+/* Menu item title */
+"viewCommands.hideInterface" = "Hide Interface";
+
+/* Menu title */
+"viewCommands.navigators" = "Navigators";
+
+/* Label text */
+"generalSettings.appearance" = "Appearance";
+
+/* Appearance option */
+"generalSettings.system" = "System";
+
+/* Appearance option */
+"generalSettings.light" = "Light";
+
+/* Appearance option */
+"generalSettings.dark" = "Dark";
+
+/* Label text */
+"generalSettings.showIssues" = "Show Issues";
+
+/* Issues display option */
+"generalSettings.showInline" = "Show Inline";
+
+/* Issues display option */
+"generalSettings.showMinimized" = "Show Minimized";
+
+/* Toggle label */
+"generalSettings.showLiveIssues" = "Show Live Issues";
+
+/* Toggle label */
+"generalSettings.showJumpBar" = "Show Jump Bar";
+
+/* Toggle label */
+"generalSettings.dimEditorsWithoutFocus" = "Dim editors without focus";
+
+/* Settings search key */
+"generalSettings.appearance" = "Appearance";
+
+/* Settings search key */
+"generalSettings.fileIconStyle" = "File Icon Style";
+
+/* Settings search key */
+"generalSettings.tabBarStyle" = "Tab Bar Style";
+
+/* Settings search key */
+"generalSettings.showJumpBar" = "Show Jump Bar";
+
+/* Settings search key */
+"generalSettings.dimEditorsWithoutFocus" = "Dim editors without focus";
+
+/* Settings search key */
+"generalSettings.navigatorTabBarPosition" = "Navigator Tab Bar Position";
+
+/* Settings search key */
+"generalSettings.inspectorTabBarPosition" = "Inspector Tab Bar Position";
+
+/* Settings search key */
+"generalSettings.showIssues" = "Show Issues";
+
+/* Settings search key */
+"generalSettings.showLiveIssues" = "Show Live Issues";
+
+/* Settings search key */
+"generalSettings.autoSaveChanges" = "Automatically save changes to disk";
+
+/* Settings search key */
+"generalSettings.autoRevealInNavigator" = "Automatically reveal in project navigator";
+
+/* Settings search key */
+"generalSettings.reopenBehavior" = "Reopen Behavior";
+
+/* Settings search key */
+"generalSettings.afterLastWindowClosed" = "After the last window is closed";
+
+/* Settings search key */
+"generalSettings.fileExtensions" = "File Extensions";
+
+/* Settings search key */
+"generalSettings.projectNavigatorSize" = "Project Navigator Size";
+
+/* Settings search key */
+"generalSettings.findNavigatorDetail" = "Find Navigator Detail";
+
+/* Settings search key */
+"generalSettings.issueNavigatorDetail" = "Issue Navigator Detail";
+
+/* Settings search key */
+"generalSettings.showOpenWithCodeEdit" = "Show "Open With CodeEdit" option in Finder";
+
+/* Settings search key */
+"generalSettings.codeeditShellCommand" = "'codeedit' Shell Command";
+
+/* Settings search key */
+"generalSettings.dialogWarnings" = "Dialog Warnings";
+
+/* Settings search key */
+"generalSettings.checkForUpdates" = "Check for updates";
+
+/* Settings search key */
+"generalSettings.autoCheckUpdates" = "Automatically check for app updates";
+
+/* Settings search key */
+"generalSettings.includePrereleaseVersions" = "Include pre-release versions";
+
+/* Navigator detail option */
+"generalSettings.oneLine" = "One Line";
+
+/* Navigator detail option */
+"generalSettings.upToLines" = "Up to %@ lines";

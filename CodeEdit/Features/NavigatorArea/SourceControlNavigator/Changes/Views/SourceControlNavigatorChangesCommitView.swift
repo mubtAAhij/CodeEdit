@@ -27,7 +27,7 @@ struct SourceControlNavigatorChangesCommitView: View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
                 PaneTextField(
-                    "Commit message (required)",
+                    String(localized: "commit.messageRequired", comment: "Text field placeholder"),
                     text: $message,
                     axis: .vertical
                 )
@@ -36,7 +36,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                     if showDetails {
                         VStack {
                             TextField(
-                                "Detailed description",
+                                String(localized: "commit.detailedDescription", comment: "Text field placeholder"),
                                 text: $details,
                                 axis: .vertical
                             )
@@ -58,7 +58,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                 VStack(spacing: 0) {
                     if showDetails {
                         Toggle(isOn: $ammend) {
-                            Text("Amend")
+                            Text(String(localized: "commit.amend", comment: "Toggle label"))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .toggleStyle(.switch)
@@ -79,11 +79,11 @@ struct SourceControlNavigatorChangesCommitView: View {
                             }
                         }
                     } label: {
-                        Text(allFilesStaged ? "Unstage All" : "Stage All")
+                        Text(allFilesStaged ? String(localized: "commit.unstageAll", comment: "Button text") : String(localized: "commit.stageAll", comment: "Button text"))
                             .frame(maxWidth: .infinity)
                     }
-                    Menu(isCommiting ? "Committing..." : "Commit") {
-                        Button("Commit and Push...") {
+                    Menu(isCommiting ? String(localized: "commit.committing", comment: "Button text") : String(localized: "commit.commit", comment: "Button text")) {
+                        Button(String(localized: "commit.commitAndPush", comment: "Button text")) {
                             Task {
                                 self.isCommiting = true
                                 do {
@@ -92,14 +92,14 @@ struct SourceControlNavigatorChangesCommitView: View {
                                     self.details = ""
                                 } catch {
                                     await sourceControlManager.showAlertForError(
-                                        title: "Failed to commit",
+                                        title: String(localized: "commit.failedToCommit", comment: "Error message"),
                                         error: error
                                     )
                                 }
                                 do {
                                     try await sourceControlManager.push()
                                 } catch {
-                                    await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                                    await sourceControlManager.showAlertForError(title: String(localized: "commit.failedToPush", comment: "Error message"), error: error)
                                 }
                                 self.isCommiting = false
                             }
@@ -112,7 +112,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                                 self.message = ""
                                 self.details = ""
                             } catch {
-                                await sourceControlManager.showAlertForError(title: "Failed to commit", error: error)
+                                await sourceControlManager.showAlertForError(title: String(localized: "commit.failedToCommit", comment: "Error message"), error: error)
                             }
                             self.isCommiting = false
                         }

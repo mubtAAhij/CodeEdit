@@ -35,21 +35,21 @@ enum PackageManagerType: String, Codable {
         case .cargo:
             "Cargo"
         case .golang:
-            "Go"
+            String(localized: "packageManager.go", comment: "Package manager name")
         case .pip:
-            "Pip"
+            String(localized: "packageManager.pip", comment: "Package manager name")
         case .gem:
-            "Gem"
+            String(localized: "packageManager.gem", comment: "Package manager name")
         case .nuget:
-            "Nuget"
+            String(localized: "packageManager.nuget", comment: "Package manager name")
         case .opam:
-            "Opam"
+            String(localized: "packageManager.opam", comment: "Package manager name")
         case .composer:
-            "Composer"
+            String(localized: "packageManager.composer", comment: "Package manager name")
         case .sourceBuild:
-            "Build From Source"
+            String(localized: "packageManager.buildFromSource", comment: "Package manager name")
         case .github:
-            "Download From GitHub"
+            String(localized: "packageManager.downloadFromGithub", comment: "Package manager name")
         }
     }
 }

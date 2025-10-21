@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "zip.error.unreadableArchive", comment: "Error message")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "zip.error.unwritableArchive", comment: "Error message")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "zip.error.invalidEntryPath", comment: "Error message")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "zip.error.invalidCompressionMethod", comment: "Error message")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "zip.error.invalidChecksum", comment: "Error message")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "zip.error.operationCancelled", comment: "Error message")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "zip.error.invalidBufferSize", comment: "Error message")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "zip.error.invalidEntrySize", comment: "Error message")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "zip.error.invalidFile", comment: "Error message")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }

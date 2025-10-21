@@ -53,33 +53,33 @@ struct WorkspaceSheets: View {
             }
             .alert(isPresented: $sourceControlManager.discardAllAlertIsPresented) {
                 Alert(
-                    title: Text("Do you want to discard all uncommitted, local changes?"),
-                    message: Text("This action cannot be undone."),
-                    primaryButton: .destructive(Text("Discard")) {
+                    title: Text(String(localized: "workspaceSheets.discardAllChanges", comment: "Alert title")),
+                    message: Text(String(localized: "workspaceSheets.cannotBeUndone", comment: "Alert message")),
+                    primaryButton: .destructive(Text(String(localized: "workspaceSheets.discard", comment: "Button text"))) {
                         sourceControlManager.discardAllChanges()
                     },
                     secondaryButton: .cancel()
                 )
             }
-            .alert("Cannot Stage Changes", isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspaceSheets.cannotStageChanges", comment: "Alert title"), isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
+                Button(String(localized: "workspaceSheets.ok", comment: "Button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspaceSheets.noUncommittedChanges", comment: "Alert message"))
             }
-            .alert("Cannot Unstage Changes", isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspaceSheets.cannotUnstageChanges", comment: "Alert title"), isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
+                Button(String(localized: "workspaceSheets.ok", comment: "Button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspaceSheets.noUncommittedChanges", comment: "Alert message"))
             }
-            .alert("Cannot Stash Changes", isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspaceSheets.cannotStashChanges", comment: "Alert title"), isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
+                Button(String(localized: "workspaceSheets.ok", comment: "Button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspaceSheets.noUncommittedChanges", comment: "Alert message"))
             }
-            .alert("Cannot Discard Changes", isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "workspaceSheets.cannotDiscardChanges", comment: "Alert title"), isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
+                Button(String(localized: "workspaceSheets.ok", comment: "Button text"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "workspaceSheets.noUncommittedChanges", comment: "Alert message"))
             }
     }
 }

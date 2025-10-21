@@ -23,6 +23,15 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     enum URLProtocol: String, Codable, CaseIterable {
         case https = "HTTPS"
         case ssh = "SSH"
+        
+        var localizedName: String {
+            switch self {
+            case .https:
+                return String(localized: "sourceControlAccount.https", comment: "Protocol name")
+            case .ssh:
+                return "SSH"
+            }
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -53,17 +62,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "sourceControlAccount.bitbucketCloud", comment: "Provider name")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "sourceControlAccount.bitbucketServer", comment: "Provider name")
             case .github:
-                return "GitHub"
+                return String(localized: "sourceControlAccount.github", comment: "Provider name")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "sourceControlAccount.githubEnterprise", comment: "Provider name")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "sourceControlAccount.gitlab", comment: "Provider name")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "sourceControlAccount.gitlabSelfHosted", comment: "Provider name")
             }
         }
 

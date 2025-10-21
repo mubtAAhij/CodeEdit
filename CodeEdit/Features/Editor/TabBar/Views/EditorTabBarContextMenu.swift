@@ -37,14 +37,14 @@ struct EditorTabBarContextMenu: ViewModifier {
     func body(content: Content) -> some View {
         content.contextMenu(menuItems: {
             Group {
-                Button("Close Tab") {
+                Button(String(localized: "editorTab.closeTab", comment: "Context menu item")) {
                     withAnimation {
                         tabs.closeTab(file: item)
                     }
                 }
                 .keyboardShortcut("w", modifiers: [.command])
 
-                Button("Close Other Tabs") {
+                Button(String(localized: "editorTab.closeOtherTabs", comment: "Context menu item")) {
                     withAnimation {
                         tabs.tabs.map({ $0.file }).forEach { file in
                             if file != item {
@@ -54,7 +54,7 @@ struct EditorTabBarContextMenu: ViewModifier {
                     }
                 }
 
-                Button("Close Tabs to the Right") {
+                Button(String(localized: "editorTab.closeTabsToRight", comment: "Context menu item")) {
                     withAnimation {
                         if let index = tabs.tabs.firstIndex(where: { $0.file == item }), index + 1 < tabs.tabs.count {
                             tabs.tabs[(index + 1)...].forEach {
@@ -66,7 +66,7 @@ struct EditorTabBarContextMenu: ViewModifier {
                 // Disable this option when current tab is the last one.
                 .disabled(tabs.tabs.last?.file == item)
 
-                Button("Close All") {
+                Button(String(localized: "editorTab.closeAll", comment: "Context menu item")) {
                     withAnimation {
                         tabs.tabs.forEach {
                             tabs.closeTab(file: $0.file)
@@ -75,7 +75,7 @@ struct EditorTabBarContextMenu: ViewModifier {
                 }
 
                 if isTemporary {
-                    Button("Keep Open") {
+                    Button(String(localized: "editorTab.keepOpen", comment: "Context menu item")) {
                         tabs.temporaryTab = nil
                     }
                 }
@@ -84,11 +84,11 @@ struct EditorTabBarContextMenu: ViewModifier {
             Divider()
 
             Group {
-                Button("Copy Path") {
+                Button(String(localized: "editorTab.copyPath", comment: "Context menu item")) {
                     copyPath(item: item)
                 }
 
-                Button("Copy Relative Path") {
+                Button(String(localized: "editorTab.copyRelativePath", comment: "Context menu item")) {
                     copyRelativePath(item: item)
                 }
             }
@@ -96,15 +96,15 @@ struct EditorTabBarContextMenu: ViewModifier {
             Divider()
 
             Group {
-                Button("Show in Finder") {
+                Button(String(localized: "editorTab.showInFinder", comment: "Context menu item")) {
                     item.showInFinder()
                 }
 
-                Button("Reveal in Project Navigator") {
+                Button(String(localized: "editorTab.revealInProjectNavigator", comment: "Context menu item")) {
                     workspace.listenerModel.highlightedFileItem = item
                 }
 
-                Button("Open in New Window") {
+                Button(String(localized: "editorTab.openInNewWindow", comment: "Context menu item")) {
 
                 }
                 .disabled(true)
@@ -112,16 +112,16 @@ struct EditorTabBarContextMenu: ViewModifier {
 
             Divider()
 
-            Button("Split Up") {
+            Button(String(localized: "editorTab.splitUp", comment: "Context menu item")) {
                 moveToNewSplit(.top)
             }
-            Button("Split Down") {
+            Button(String(localized: "editorTab.splitDown", comment: "Context menu item")) {
                 moveToNewSplit(.bottom)
             }
-            Button("Split Left") {
+            Button(String(localized: "editorTab.splitLeft", comment: "Context menu item")) {
                 moveToNewSplit(.leading)
             }
-            Button("Split Right") {
+            Button(String(localized: "editorTab.splitRight", comment: "Context menu item")) {
                 moveToNewSplit(.trailing)
             }
         })

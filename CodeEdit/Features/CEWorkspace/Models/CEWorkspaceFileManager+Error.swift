@@ -20,28 +20,28 @@ extension CEWorkspaceFileManager {
         var errorDescription: String? {
             switch self {
             case .fileNotFound:
-                return "File not found"
+                return String(localized: "fileManager.fileNotFound", comment: "Error message")
             case .fileNotIndexed:
-                return "File not found in CodeEdit"
+                return String(localized: "fileManager.fileNotIndexed", comment: "Error message")
             case .originFileNotFound:
-                return "Failed to find origin file"
+                return String(localized: "fileManager.originFileNotFound", comment: "Error message")
             case .destinationFileExists:
-                return "Destination already exists"
+                return String(localized: "fileManager.destinationExists", comment: "Error message")
             case .invalidFileName:
-                return "Invalid file name"
+                return String(localized: "fileManager.invalidFileName", comment: "Error message")
             }
         }
 
         var recoverySuggestion: String? {
             switch self {
             case .fileNotIndexed:
-                return "Reopen the workspace to reindex the file system."
+                return String(localized: "fileManager.reopenWorkspace", comment: "Recovery suggestion")
             case .fileNotFound, .originFileNotFound:
-                return "The file may have moved during the operation, try again."
+                return String(localized: "fileManager.fileMayHaveMoved", comment: "Recovery suggestion")
             case .destinationFileExists:
-                return "Use a different file name or remove the conflicting file."
+                return String(localized: "fileManager.useDifferentName", comment: "Recovery suggestion")
             case .invalidFileName:
-                return "File names must not contain the : character and be less than 256 characters."
+                return String(localized: "fileManager.invalidFileNameRules", comment: "Recovery suggestion")
             }
         }
     }

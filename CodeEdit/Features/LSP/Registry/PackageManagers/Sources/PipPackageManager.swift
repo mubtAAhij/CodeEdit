@@ -90,8 +90,7 @@ final class PipPackageManager: PackageManagerProtocol {
         return PackageManagerInstallStep(
             name: "Install Package Using pip",
             confirmation: .required(
-                message: "This requires the pip package \(source.pkgName)."
-                + "\nAllow CodeEdit to install this package?"
+                message: String(localized: "pip.installConfirmation", comment: "Confirmation message", arguments: source.pkgName)
             )
         ) { model in
             var installArgs = [pipCommand, "install"]

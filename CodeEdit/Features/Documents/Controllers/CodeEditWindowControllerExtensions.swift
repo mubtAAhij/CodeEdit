@@ -12,22 +12,22 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: "Quick Open",
-            title: "Quick Open",
+            name: String(localized: "commands.quickOpen", comment: "Command name"),
+            title: String(localized: "commands.quickOpen", comment: "Command title"),
             id: "quick_open",
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Navigator",
-            title: "Toggle Navigator",
+            name: String(localized: "commands.toggleNavigator", comment: "Command name"),
+            title: String(localized: "commands.toggleNavigator", comment: "Command title"),
             id: "toggle_left_sidebar",
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Inspector",
-            title: "Toggle Inspector",
+            name: String(localized: "commands.toggleInspector", comment: "Command name"),
+            title: String(localized: "commands.toggleInspector", comment: "Command title"),
             id: "toggle_right_sidebar",
             command: { [weak self] in self?.toggleLastPanel() }
         )
@@ -105,7 +105,7 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle("Workspace Settings")
+            settingsWindow.setAccessibilityTitle(String(localized: "workspaceSettings.title", comment: "Accessibility label"))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }

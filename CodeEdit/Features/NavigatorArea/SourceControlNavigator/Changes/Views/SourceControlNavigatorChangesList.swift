@@ -28,24 +28,24 @@ struct SourceControlNavigatorChangesList: View {
                 if selectedFiles.count == 1,
                    let file = selectedFiles.first {
                     Group {
-                        Button("View in Finder") {
+                        Button(String(localized: "sourceControlNavigator.viewInFinder", comment: "Context menu item")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button("Reveal in Project Navigator") {}
+                        Button(String(localized: "sourceControlNavigator.revealInProjectNavigator", comment: "Context menu item")) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button("Open in New Tab") {
+                        Button(String(localized: "sourceControlNavigator.openInNewTab", comment: "Context menu item")) {
                             openGitFile(file)
                         }
-                        Button("Open in New Window") {}
+                        Button(String(localized: "sourceControlNavigator.openInNewWindow", comment: "Context menu item")) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
                         Group {
                             Divider()
-                            Button("Discard Changes in \(file.fileURL.lastPathComponent)...") {
+                            Button(String(localized: "sourceControlNavigator.discardChangesIn", comment: "Context menu item", arguments: file.fileURL.lastPathComponent)) {
                                 sourceControlManager.discardChanges(for: file.fileURL)
                             }
                             Divider()
