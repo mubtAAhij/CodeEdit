@@ -13,7 +13,7 @@ struct ExtensionManagerWindow: Scene {
     @State var selection = Set<ExtensionInfo>()
 
     var body: some Scene {
-        Window("Extensions", id: SceneID.extensions.rawValue) {
+        Window(String(localized: "Extensions"), id: SceneID.extensions.rawValue) {
             NavigationSplitView {
                 ExtensionsListView(selection: $selection)
             } detail: {
