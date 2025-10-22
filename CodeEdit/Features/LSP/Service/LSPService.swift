@@ -336,7 +336,7 @@ extension LSPService {
         // TODO: Re-Enable when this is more fleshed out (don't send duplicate notifications in a session)
         return
         let lspLanguageTitle = lspLanguage.rawValue.capitalized
-        let notificationTitle = "Install \(lspLanguageTitle) Language Server"
+        let notificationTitle = String(localized: "lsp.install_server \(lspLanguageTitle)")
         // Make sure the user doesn't have the same existing notification
         guard !NotificationManager.shared.notifications.contains(where: { $0.title == notificationTitle }) else {
             return
@@ -346,8 +346,8 @@ extension LSPService {
             iconSymbol: "arrow.down.circle",
             iconColor: .clear,
             title: notificationTitle,
-            description: "Install the \(lspLanguageTitle) language server to enable code intelligence features.",
-            actionButtonTitle: "Install"
+            description: String(localized: "lsp.install_description \(lspLanguageTitle)"),
+            actionButtonTitle: String(localized: "lsp.install")
         ) { [weak self] in
             // TODO: Warning:
             // Accessing Environment<OpenWindowAction>'s value outside of being installed on a View.
