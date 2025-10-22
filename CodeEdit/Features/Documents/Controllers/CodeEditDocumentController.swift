@@ -144,7 +144,7 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Open Workspace or File"
+        dialog.title = String(localized: "dialog.open_workspace_or_file", defaultValue: "Open Workspace or File", comment: "Dialog title")
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
@@ -160,10 +160,7 @@ extension NSDocumentController {
 
                     guard let document else {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString(
-                            "Failed to get document",
-                            comment: "Failed to get document"
-                        )
+                        alert.messageText = String(localized: "document.failed_to_get", defaultValue: "Failed to get document", comment: "Error message")
                         alert.runModal()
                         return
                     }
