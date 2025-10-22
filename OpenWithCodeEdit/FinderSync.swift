@@ -83,7 +83,7 @@ class CEOpenWith: FIFinderSync {
 
         let menu = NSMenu(title: "")
         let menuItem = NSMenuItem(
-            title: "Open in CodeEdit",
+            title: String(localized: "Open in CodeEdit", comment: "Menu item text"),
             action: #selector(openInCodeEditAction(_:)),
             keyEquivalent: ""
         )
