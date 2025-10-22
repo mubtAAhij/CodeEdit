@@ -25,25 +25,25 @@ struct CreateSSHKeyView: View {
     var body: some View {
         VStack {
             Form {
-                Section("Create SSH key") {
-                    Picker("Key Type", selection: $selectedKeyType) {
+                Section(String(localized: "Create SSH key", comment: "Section title")) {
+                    Picker(String(localized: "Key Type", comment: "Picker label"), selection: $selectedKeyType) {
                         Text(KeyType.ed25519.rawValue)
                             .tag(KeyType.ed25519)
                         Text(KeyType.ecdsa.rawValue)
                             .tag(KeyType.ecdsa)
                         Divider()
                         Group {
-                            Text(KeyType.rsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.rsa.rawValue) + Text(String(localized: " (less secure)", comment: "Label suffix")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.rsa)
                         Group {
-                            Text(KeyType.dsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.dsa.rawValue) + Text(String(localized: " (less secure)", comment: "Label suffix")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.dsa)
                     }
-                    SecureField("Passphrase", text: $passphrase)
+                    SecureField(String(localized: "Passphrase", comment: "Field label"), text: $passphrase)
                     if !passphrase.isEmpty {
-                        SecureField("Confirm Passphrase", text: $confirmPassphrase)
+                        SecureField(String(localized: "Confirm Passphrase", comment: "Field label"), text: $confirmPassphrase)
                     }
                 }
             }
@@ -52,10 +52,10 @@ struct CreateSSHKeyView: View {
             .scrollDisabled(true)
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "Cancel", comment: "Button text")) {
                     dismiss()
                 }
-                Button("Create") {
+                Button(String(localized: "Create", comment: "Button text")) {
                     // create the ssh key
                     dismiss()
                 }
