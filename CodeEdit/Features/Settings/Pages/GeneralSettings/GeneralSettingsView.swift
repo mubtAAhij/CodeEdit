@@ -78,12 +78,12 @@ struct GeneralSettingsView: View {
 private extension GeneralSettingsView {
     var appearance: some View {
         Picker("Appearance", selection: $settings.appAppearance) {
-            Text("System")
+            Text("System", comment: "Theme option")
                 .tag(SettingsData.Appearances.system)
             Divider()
-            Text("Light")
+            Text("Light", comment: "Theme option")
                 .tag(SettingsData.Appearances.light)
-            Text("Dark")
+            Text("Dark", comment: "Theme option")
                 .tag(SettingsData.Appearances.dark)
         }
         .onChange(of: settings.appAppearance) { tag in
@@ -94,9 +94,9 @@ private extension GeneralSettingsView {
     // TODO: Implement reflecting Show Issues preference and remove disabled modifier
     var showIssues: some View {
         Picker("Show Issues", selection: $settings.showIssues) {
-            Text("Show Inline")
+            Text("Show Inline", comment: "Issue display mode")
                 .tag(SettingsData.Issues.inline)
-            Text("Show Minimized")
+            Text("Show Minimized", comment: "Issue display mode")
                 .tag(SettingsData.Issues.minimized)
         }
     }
@@ -116,14 +116,14 @@ private extension GeneralSettingsView {
     var fileExtensions: some View {
         Group {
             Picker("File Extensions", selection: $settings.fileExtensionsVisibility) {
-                Text("Hide all")
+                Text("Hide all", comment: "File extension option")
                     .tag(SettingsData.FileExtensionsVisibility.hideAll)
-                Text("Show all")
+                Text("Show all", comment: "File extension option")
                     .tag(SettingsData.FileExtensionsVisibility.showAll)
                 Divider()
-                Text("Show only")
+                Text("Show only", comment: "File extension option")
                     .tag(SettingsData.FileExtensionsVisibility.showOnly)
-                Text("Hide only")
+                Text("Hide only", comment: "File extension option")
                     .tag(SettingsData.FileExtensionsVisibility.hideOnly)
             }
             if case .showOnly = settings.fileExtensionsVisibility {
@@ -141,9 +141,9 @@ private extension GeneralSettingsView {
 
     var fileIconStyle: some View {
         Picker("File Icon Style", selection: $settings.fileIconStyle) {
-            Text("Color")
+            Text("Color", comment: "Icon style option")
                 .tag(SettingsData.FileIconStyle.color)
-            Text("Monochrome")
+            Text("Monochrome", comment: "Icon style option")
                 .tag(SettingsData.FileIconStyle.monochrome)
         }
         .pickerStyle(.radioGroup)
@@ -151,9 +151,9 @@ private extension GeneralSettingsView {
 
     var navigatorTabBarPosition: some View {
         Picker("Navigator Tab Bar Position", selection: $settings.navigatorTabBarPosition) {
-            Text("Top")
+            Text("Top", comment: "Tab bar position")
                 .tag(SettingsData.SidebarTabBarPosition.top)
-            Text("Side")
+            Text("Side", comment: "Tab bar position")
                 .tag(SettingsData.SidebarTabBarPosition.side)
         }
         .pickerStyle(.radioGroup)
@@ -161,9 +161,9 @@ private extension GeneralSettingsView {
 
     var inspectorTabBarPosition: some View {
         Picker("Inspector Tab Bar Position", selection: $settings.inspectorTabBarPosition) {
-            Text("Top")
+            Text("Top", comment: "Tab bar position")
                 .tag(SettingsData.SidebarTabBarPosition.top)
-            Text("Side")
+            Text("Side", comment: "Tab bar position")
                 .tag(SettingsData.SidebarTabBarPosition.side)
         }
         .pickerStyle(.radioGroup)
@@ -171,12 +171,12 @@ private extension GeneralSettingsView {
 
     var reopenBehavior: some View {
         Picker("Reopen Behavior", selection: $settings.reopenBehavior) {
-            Text("Welcome Screen")
+            Text("Welcome Screen", comment: "Reopen behavior option")
                 .tag(SettingsData.ReopenBehavior.welcome)
             Divider()
-            Text("Open Panel")
+            Text("Open Panel", comment: "Reopen behavior option")
                 .tag(SettingsData.ReopenBehavior.openPanel)
-            Text("New Document")
+            Text("New Document", comment: "Reopen behavior option")
                 .tag(SettingsData.ReopenBehavior.newDocument)
         }
     }
@@ -186,29 +186,29 @@ private extension GeneralSettingsView {
             "After the last window is closed",
             selection: $settings.reopenWindowAfterClose
         ) {
-            Text("Do nothing")
+            Text("Do nothing", comment: "Window close behavior option")
                 .tag(SettingsData.ReopenWindowBehavior.doNothing)
             Divider()
-            Text("Show Welcome Window")
+            Text("Show Welcome Window", comment: "Window close behavior option")
                 .tag(SettingsData.ReopenWindowBehavior.showWelcomeWindow)
-            Text("Quit")
+            Text("Quit", comment: "Window close behavior option")
                 .tag(SettingsData.ReopenWindowBehavior.quit)
         }
     }
 
     var projectNavigatorSize: some View {
         Picker("Project Navigator Size", selection: $settings.projectNavigatorSize) {
-            Text("Small")
+            Text("Small", comment: "Navigator size option")
                 .tag(SettingsData.ProjectNavigatorSize.small)
-            Text("Medium")
+            Text("Medium", comment: "Navigator size option")
                 .tag(SettingsData.ProjectNavigatorSize.medium)
-            Text("Large")
+            Text("Large", comment: "Navigator size option")
                 .tag(SettingsData.ProjectNavigatorSize.large)
         }
     }
 
     var findNavigatorDetail: some View {
-        Picker("Find Navigator Detail", selection: $settings.findNavigatorDetail) {
+        Picker("Find Navigator Detail", comment: "Picker label", selection: $settings.findNavigatorDetail) {
             ForEach(SettingsData.NavigatorDetail.allCases, id: \.self) { tag in
                 Text(tag.label).tag(tag)
             }
@@ -217,7 +217,7 @@ private extension GeneralSettingsView {
 
     // TODO: Implement reflecting Issue Navigator Detail preference and remove disabled modifier
     var issueNavigatorDetail: some View {
-        Picker("Issue Navigator Detail", selection: $settings.issueNavigatorDetail) {
+        Picker("Issue Navigator Detail", comment: "Picker label", selection: $settings.issueNavigatorDetail) {
             ForEach(SettingsData.NavigatorDetail.allCases, id: \.self) { tag in
                 Text(tag.label).tag(tag)
             }
@@ -227,10 +227,10 @@ private extension GeneralSettingsView {
 
     // TODO: Implement reset for Don't Ask Me warnings Button and remove disabled modifier
     var dialogWarnings: some View {
-        LabeledContent("Dialog Warnings") {
+        LabeledContent("Dialog Warnings", comment: "Settings label") {
             Button(action: {
             }, label: {
-                Text("Reset \"Don't Ask Me\" Warnings")
+                Text("Reset \"Don't Ask Me\" Warnings", comment: "Button text")
             })
             .buttonStyle(.bordered)
         }
@@ -238,7 +238,7 @@ private extension GeneralSettingsView {
     }
 
     var shellCommand: some View {
-        LabeledContent("'codeedit' Shell Command") {
+        LabeledContent(String(localized: "'codeedit' Shell Command")) {
             Button(action: installShellCommand, label: {
                 Text("Install")
             })
@@ -312,7 +312,7 @@ private extension GeneralSettingsView {
         if let lastUpdatedDate = updater.lastUpdateCheckDate {
             return Self.formatter.string(from: lastUpdatedDate)
         } else {
-            return "Never"
+            return String(localized: "Never")
         }
     }
 
