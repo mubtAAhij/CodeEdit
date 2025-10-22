@@ -26,7 +26,7 @@ struct TaskOutputActionsView: View {
                     .foregroundStyle(.green)
             }
             .buttonStyle(.icon)
-            .help("Run Task")
+            .help(String(localized: "debug.task.run", defaultValue: "Run Task", comment: "Button tooltip"))
 
             Button {
                 taskManager.terminateTask(taskID: activeTask.task.id)
@@ -38,7 +38,7 @@ struct TaskOutputActionsView: View {
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
-            .help("Stop Task")
+            .help(String(localized: "debug.task.stop", defaultValue: "Stop Task", comment: "Button tooltip"))
 
             Button {
                 if activeTask.status == .stopped {
@@ -56,7 +56,7 @@ struct TaskOutputActionsView: View {
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
             .opacity(activeTask.status == .running || activeTask.status == .stopped ? 1 : 0.5)
-            .help(activeTask.status == .stopped ? "Resume Task" : "Suspend Task")
+            .help(activeTask.status == .stopped ? String(localized: "debug.task.resume", defaultValue: "Resume Task", comment: "Button tooltip") : String(localized: "debug.task.suspend", defaultValue: "Suspend Task", comment: "Button tooltip"))
 
             Divider()
 
@@ -68,7 +68,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "text.append")
             }
             .buttonStyle(.icon)
-            .help("Scroll down to the bottom")
+            .help(String(localized: "debug.task.scroll_bottom", defaultValue: "Scroll down to the bottom", comment: "Button tooltip"))
 
             Button {
                 activeTask.clearOutput()
@@ -76,7 +76,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "trash")
             }
             .buttonStyle(.icon)
-            .help("Clear Output")
+            .help(String(localized: "debug.task.clear_output", defaultValue: "Clear Output", comment: "Button tooltip"))
         }
     }
 }

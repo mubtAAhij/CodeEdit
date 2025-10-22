@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "Unreadable archive.")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "Unwritable archive.")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "Invalid entry path.")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "Invalid compression method.")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "Invalid checksum.")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "Operation cancelled.")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "Invalid buffer size.")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "Invalid entry size.")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "Invalid file detected.")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }

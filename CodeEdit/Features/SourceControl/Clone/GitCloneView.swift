@@ -34,25 +34,25 @@ struct GitCloneView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Clone a repository")
+                    Text("source_control.clone.title", comment: "View title")
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
+                    Text("source_control.clone.enter_url", comment: "Text label")
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                             context[.trailing]
                         }
-                    TextField("Git Repository URL", text: $viewModel.repoUrlStr)
+                    TextField(String(localized: "source_control.clone.url_placeholder", defaultValue: "Git Repository URL", comment: "Text field label"), text: $viewModel.repoUrlStr)
                         .lineLimit(1)
                         .padding(.bottom, 15)
                         .frame(width: 300)
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(localized: "source_control.clone.cancel", defaultValue: "Cancel", comment: "Button text")) {
                             dismiss()
                         }
-                        Button("Clone") {
+                        Button(String(localized: "source_control.clone.clone_button", defaultValue: "Clone", comment: "Button text")) {
                             cloneRepository()
                         }
                         .keyboardShortcut(.defaultAction)
@@ -82,7 +82,7 @@ struct GitCloneView: View {
                 }
                 .toolbar {
                     ToolbarItem {
-                        Button("Cancel Cloning") {
+                        Button(String(localized: "source_control.clone.cancel_cloning", defaultValue: "Cancel Cloning", comment: "Button text")) {
                             viewModel.cloningTask?.cancel()
                             viewModel.cloningTask = nil
                             viewModel.isCloning = false

@@ -59,14 +59,14 @@ final class ProjectNavigatorFileManagementUITests: XCTestCase {
         }
 
         guard Query.Navigator.getProjectNavigatorRow(
-            fileTitle: "New Folder",
+            fileTitle: String(localized: "New Folder", comment: "Folder name"),
             navigator
         ).waitForExistence(timeout: 2.0) else {
             XCTFail("New Folder did not appear")
             return
         }
 
-        let folderRow = Query.Navigator.getProjectNavigatorRow(fileTitle: "New Folder", navigator)
+        let folderRow = Query.Navigator.getProjectNavigatorRow(fileTitle: String(localized: "New Folder", comment: "Folder name"), navigator)
         folderRow.disclosureTriangles.element.click()
 
         guard Query.Navigator.getProjectNavigatorRow(
@@ -84,7 +84,7 @@ final class ProjectNavigatorFileManagementUITests: XCTestCase {
             let addButton = window.popUpButtons["addButton"]
             addButton.click()
             let addMenu = addButton.menus.firstMatch
-            addMenu.menuItems["Add File"].click()
+            addMenu.menuItems[String(localized: "Add File", comment: "Menu item")].click()
 
             let selectedRows = Query.Navigator.getSelectedRows(navigator)
             guard selectedRows.firstMatch.waitForExistence(timeout: 0.5) else {

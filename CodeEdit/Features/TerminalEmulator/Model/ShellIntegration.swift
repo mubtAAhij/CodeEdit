@@ -31,9 +31,9 @@ enum ShellIntegration {
         var localizedDescription: String {
             switch self {
             case .bashShellFileNotFound:
-                return "Failed to find bash injection file."
+                return String(localized: "shell_integration.bash_file_not_found")
             case .zshShellFileNotFound:
-                return "Failed to find zsh injection file."
+                return String(localized: "shell_integration.zsh_file_not_found")
             }
         }
     }

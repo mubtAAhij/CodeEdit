@@ -18,8 +18,8 @@ struct CETaskFormView: View {
                 TextField(text: $task.name) {
                     Text("Name")
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
+                .accessibilityLabel(String(localized: "Task Name", comment: "Accessibility label"))
+                Picker(String(localized: "Target", comment: "Picker label"), selection: $task.target) {
                     Text("My Mac")
                         .tag("My Mac")
 
@@ -30,7 +30,7 @@ struct CETaskFormView: View {
                         .tag("Docker")
 
                     Text("Docker Compose")
-                        .tag("Docker Compose")
+                        .tag(String(localized: "Docker Compose", comment: "Tag value"))
                 }
                 .disabled(true)
             }
@@ -39,7 +39,7 @@ struct CETaskFormView: View {
                 TextField(text: $task.command) {
                     Text("Task")
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "Task Command", comment: "Accessibility label"))
                 TextField(text: $task.workingDirectory) {
                     Text("Working Directory")
                 }

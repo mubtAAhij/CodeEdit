@@ -30,10 +30,10 @@ struct GitCheckoutBranchView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Checkout branch")
+                    Text("Checkout branch", comment: "Page title")
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Select a branch to checkout")
+                    Text("Select a branch to checkout", comment: "Instruction text")
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
@@ -48,10 +48,10 @@ struct GitCheckoutBranchView: View {
                     .labelsHidden()
 
                     HStack {
-                        Button("Cancel") {
+                        Button("Cancel", comment: "Button text") {
                             dismiss()
                         }
-                        Button("Checkout") {
+                        Button("Checkout", comment: "Button text") {
                             Task {
                                 await viewModel.checkoutBranch()
                                 await MainActor.run {

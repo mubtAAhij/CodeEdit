@@ -23,14 +23,14 @@ struct LanguageServerInstallView: View {
         }
         .constrainHeightToWindow()
         .alert(
-            "Confirm Step",
+            String(localized: "Confirm Step", comment: "Alert title"),
             isPresented: Binding(get: { operation.waitingForConfirmation != nil }, set: { _ in }),
             presenting: operation.waitingForConfirmation
         ) { _ in
-            Button("Cancel") {
+            Button(String(localized: "Cancel", comment: "Button text")) {
                 registryManager.cancelInstallation()
             }
-            Button("Continue") {
+            Button(String(localized: "Continue", comment: "Button text")) {
                 operation.confirmCurrentStep()
             }
         } message: { confirmationMessage in
@@ -98,8 +98,8 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var packageInfoSection: some View {
         Section {
-            LabeledContent("Installing Package", value: operation.package.sanitizedName)
-            LabeledContent("Homepage") {
+            LabeledContent(String(localized: "Installing Package", comment: "Label text"), value: operation.package.sanitizedName)
+            LabeledContent(String(localized: "Homepage", comment: "Label text")) {
                 sourceButton.cursor(.pointingHand)
             }
             VStack(alignment: .leading, spacing: 6) {
@@ -147,7 +147,7 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var progressSection: some View {
         Section {
-            LabeledContent("Step") {
+            LabeledContent(String(localized: "Step", comment: "Label text")) {
                 if registryManager.installedLanguageServers[operation.package.name] != nil {
                     HStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
@@ -215,14 +215,14 @@ struct LanguageServerInstallView: View {
     @ViewBuilder private var notInstalledSection: some View {
         Section {
             if let method = operation.package.installMethod {
-                LabeledContent("Install Method", value: method.installerDescription)
+                LabeledContent(String(localized: "Install Method", comment: "Label text"), value: method.installerDescription)
                     .textSelection(.enabled)
                 if let packageDescription = method.packageDescription {
                     LabeledContent("Package", value: packageDescription)
                         .textSelection(.enabled)
                 }
             } else {
-                LabeledContent("Installer", value: "Unknown")
+                LabeledContent(String(localized: "Installer", comment: "Label text"), value: "Unknown")
             }
         }
     }

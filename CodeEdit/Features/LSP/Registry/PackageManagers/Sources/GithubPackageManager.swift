@@ -52,7 +52,7 @@ final class GithubPackageManager: PackageManagerProtocol {
             PackageManagerInstallStep(
                 name: "",
                 confirmation: .required(
-                    message: "This package requires git to install. Allow CodeEdit to run git commands?"
+                    message: String(localized: "github.package.git.permission", defaultValue: "This package requires git to install. Allow CodeEdit to run git commands?")
                 )
             ) { model in
                 let versionOutput = try await model.runCommand("git --version")
@@ -80,7 +80,7 @@ final class GithubPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "github.package.initialize", defaultValue: "Initialize Directory Structure"),
             confirmation: .none
         ) { model in
             do {
@@ -99,11 +99,11 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Download Binary Executable",
+            name: String(localized: "github.package.download.binary", defaultValue: "Download Binary Executable"),
             confirmation: .none
         ) { model in
             do {
-                await model.status("Downloading \(url)")
+                await model.status(String(localized: "github.package.downloading.url", defaultValue: "Downloading \(url)"))
                 let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 120.0)
                 // TODO: Progress Updates
                 let (tempURL, response) = try await URLSession.shared.download(for: request)
@@ -153,7 +153,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Decompress Binary Executable",
+            name: String(localized: "github.package.decompress.binary", defaultValue: "Decompress Binary Executable"),
             confirmation: .none,
         ) { model in
             let fileName = url.lastPathComponent
@@ -161,14 +161,14 @@ final class GithubPackageManager: PackageManagerProtocol {
             let packagePath = downloadPath.appending(path: fileName)
 
             if packagePath.pathExtension == "tar" || packagePath.pathExtension == ".zip" {
-                await model.status("Decompressing \(fileName)")
+                await model.status(String(localized: "github.package.decompressing.file", defaultValue: "Decompressing \(fileName)"))
                 try await FileManager.default.unzipItem(at: packagePath, to: downloadPath, progress: model.progress)
                 if FileManager.default.fileExists(atPath: packagePath.path(percentEncoded: false)) {
                     try FileManager.default.removeItem(at: packagePath)
                 }
-                await model.status("Decompressed to '\(downloadPath.path(percentEncoded: false))'")
+                await model.status(String(localized: "github.package.decompressed.to.path", defaultValue: "Decompressed to '\(downloadPath.path(percentEncoded: false))'"))
             } else if packagePath.lastPathComponent.hasSuffix(".tar.gz") {
-                await model.status("Decompressing \(fileName) using `tar`")
+                await model.status(String(localized: "github.package.decompressing.tar", defaultValue: "Decompressing \(fileName) using `tar`"))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
@@ -178,7 +178,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                     ]
                 )
             } else if packagePath.pathExtension == "gz" {
-                await model.status("Decompressing \(fileName) using `gunzip`")
+                await model.status(String(localized: "github.package.decompressing.gunzip", defaultValue: "Decompressing \(fileName) using `gunzip`"))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
@@ -206,9 +206,9 @@ final class GithubPackageManager: PackageManagerProtocol {
         let command = ["git", "clone", repoURL]
 
         return PackageManagerInstallStep(
-            name: "Clone with Git",
+            name: String(localized: "github.package.clone.git", defaultValue: "Clone with Git"),
             // swiftlint:disable:next line_length
-            confirmation: .required(message: "This step will run the following command to clone the package from source control:\n`\(command.joined(separator: " "))`")
+            confirmation: .required(message: String(localized: "github.package.clone.confirmation", defaultValue: "This step will run the following command to clone the package from source control:\n`\(command.joined(separator: " "))`"))
         ) { model in
             let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
             _ = try await model.executeInDirectory(in: installPath.path, command)
@@ -223,15 +223,15 @@ final class GithubPackageManager: PackageManagerProtocol {
         command: String
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Install From Source",
-            confirmation: .required(message: "This step will run the following to finish installing:\n`\(command)`")
+            name: String(localized: "github.package.install.source", defaultValue: "Install From Source"),
+            confirmation: .required(message: String(localized: "github.package.install.confirmation", defaultValue: "This step will run the following to finish installing:\n`\(command)`"))
         ) { model in
             do {
                 let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
                 let repoPath = installPath.appending(path: source.pkgName, directoryHint: .isDirectory)
                 _ = try await model.executeInDirectory(in: repoPath.path, [command])
             } catch {
-                throw PackageManagerError.installationFailed("Source build failed.")
+                throw PackageManagerError.installationFailed(String(localized: "github.package.source.build.failed", defaultValue: "Source build failed."))
             }
         }
     }

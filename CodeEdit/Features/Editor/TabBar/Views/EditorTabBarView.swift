@@ -20,7 +20,7 @@ struct EditorTabBarView: View {
                 .padding(.top, hasTopInsets ? -1 : 0)
             EditorTabs()
                 .accessibilityElement(children: .contain)
-                .accessibilityLabel("Tab Bar")
+                .accessibilityLabel(String(localized: "editor.tab_bar.label", defaultValue: "Tab Bar", comment: "Accessibility label"))
                 .accessibilityIdentifier("TabBar")
             EditorTabBarTrailingAccessories(codeFile: $codeFile)
                 .padding(.top, hasTopInsets ? -1 : 0)
