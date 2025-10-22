@@ -22,18 +22,15 @@ struct SourceControlNewBranchView: View {
                 Form {
                     Section {
                         LabeledContent(
-                            "From",
+                            String(localized: "From"),
                             value: branch.isRemote
                                 ? branch.longName.replacingOccurrences(of: "refs/remotes/", with: "")
                                 : branch.name
                         )
-                        TextField("To", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
+                        TextField(String(localized: "To"), value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
                     } header: {
                         Text("Create a new branch")
-                        Text(
-                            "Create a branch from the current branch and switch to it. " +
-                            "All uncommited changes will be preserved on the new branch. "
-                        )
+                        Text("Create a branch from the current branch and switch to it. All uncommited changes will be preserved on the new branch. ")
                     }
                 }
                 .formStyle(.grouped)
@@ -75,7 +72,7 @@ struct SourceControlNewBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "Failed to create branch"),
                     error: error
                 )
             }
