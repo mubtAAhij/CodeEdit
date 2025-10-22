@@ -26,11 +26,11 @@ struct SourceControlPushView: View {
                         canCreateBranch: true
                     )
                 } header: {
-                    Text("Push local changes to")
+                    Text("sourceControl.push.header")
                 }
                 Section {
-                    Toggle("Force", isOn: $sourceControlManager.operationForce)
-                    Toggle("Include Tags", isOn: $sourceControlManager.operationIncludeTags)
+                    Toggle("sourceControl.push.force", isOn: $sourceControlManager.operationForce)
+                    Toggle("sourceControl.push.includeTags", isOn: $sourceControlManager.operationIncludeTags)
                 }
             }
             .formStyle(.grouped)
@@ -42,7 +42,7 @@ struct SourceControlPushView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text("Pushing changes...")
+                        Text("sourceControl.push.pushing")
                             .font(.subheadline)
                     }
                 }
@@ -50,12 +50,12 @@ struct SourceControlPushView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("sourceControl.cancel")
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text("Push")
+                    Text("sourceControl.push.action")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -83,7 +83,7 @@ struct SourceControlPushView: View {
                 dismiss()
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "sourceControl.error.failedToPush"), error: error)
             }
         }
     }
