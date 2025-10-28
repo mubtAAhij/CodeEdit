@@ -98,7 +98,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                     .padding(0)
                 HStack(spacing: 0) {
                     if options.isEmpty {
-                        Text("No matching options")
+                        Text("search.no_matching_options", comment: "Message when no options match search")
                             .font(.system(size: 17))
                             .foregroundColor(.secondary)
                             .frame(maxWidth: hasPreview ? 272 : .infinity, maxHeight: .infinity)
@@ -123,7 +123,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                                     .frame(maxWidth: .infinity)
                                     .transition(.move(edge: .trailing))
                             } else {
-                                Text("Select an option to preview")
+                                Text("search.select_to_preview", comment: "Message to select option for preview")
                                     .frame(maxWidth: .infinity)
                             }
                         }
@@ -149,7 +149,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.escape, modifiers: [])
-            .accessibilityLabel("Close Overlay")
+            .accessibilityLabel("accessibility.close_overlay", comment: "Accessibility label for close overlay")
         Button {
             guard selection != options.first else {
                 return
@@ -162,7 +162,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.upArrow, modifiers: [])
-            .accessibilityLabel("Select Up")
+            .accessibilityLabel("accessibility.select_up", comment: "Accessibility label for select up")
         Button {
             guard selection != options.last else {
                 return
@@ -176,7 +176,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.downArrow, modifiers: [])
-            .accessibilityLabel("Select Down")
+            .accessibilityLabel("accessibility.select_down", comment: "Accessibility label for select down")
     }
 }
 
