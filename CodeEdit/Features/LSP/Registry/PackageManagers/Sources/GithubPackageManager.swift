@@ -52,7 +52,7 @@ final class GithubPackageManager: PackageManagerProtocol {
             PackageManagerInstallStep(
                 name: "",
                 confirmation: .required(
-                    message: "This package requires git to install. Allow CodeEdit to run git commands?"
+                    message: String(localized: "lsp.git_permission", comment: "Git permission prompt")
                 )
             ) { model in
                 let versionOutput = try await model.runCommand("git --version")
@@ -80,7 +80,7 @@ final class GithubPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "lsp.initialize_directory", comment: "Step name"),
             confirmation: .none
         ) { model in
             do {
@@ -99,11 +99,11 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Download Binary Executable",
+            name: String(localized: "lsp.download_binary", comment: "Step name"),
             confirmation: .none
         ) { model in
             do {
-                await model.status("Downloading \(url)")
+                await model.status(String(localized: "lsp.downloading \(url)", comment: "Download status"))
                 let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 120.0)
                 // TODO: Progress Updates
                 let (tempURL, response) = try await URLSession.shared.download(for: request)
@@ -153,7 +153,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Decompress Binary Executable",
+            name: String(localized: "lsp.decompress_binary", comment: "Step name"),
             confirmation: .none,
         ) { model in
             let fileName = url.lastPathComponent
@@ -161,14 +161,14 @@ final class GithubPackageManager: PackageManagerProtocol {
             let packagePath = downloadPath.appending(path: fileName)
 
             if packagePath.pathExtension == "tar" || packagePath.pathExtension == ".zip" {
-                await model.status("Decompressing \(fileName)")
+                await model.status(String(localized: "lsp.decompressing \(fileName)", comment: "Decompress status"))
                 try await FileManager.default.unzipItem(at: packagePath, to: downloadPath, progress: model.progress)
                 if FileManager.default.fileExists(atPath: packagePath.path(percentEncoded: false)) {
                     try FileManager.default.removeItem(at: packagePath)
                 }
-                await model.status("Decompressed to '\(downloadPath.path(percentEncoded: false))'")
+                await model.status(String(localized: "lsp.decompressed_to \(downloadPath.path(percentEncoded: false))", comment: "Decompress completion"))
             } else if packagePath.lastPathComponent.hasSuffix(".tar.gz") {
-                await model.status("Decompressing \(fileName) using `tar`")
+                await model.status(String(localized: "lsp.decompressing_tar \(fileName)", comment: "Decompress with tar"))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
@@ -178,7 +178,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                     ]
                 )
             } else if packagePath.pathExtension == "gz" {
-                await model.status("Decompressing \(fileName) using `gunzip`")
+                await model.status(String(localized: "lsp.decompressing_gunzip \(fileName)", comment: "Decompress with gunzip"))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
@@ -206,9 +206,9 @@ final class GithubPackageManager: PackageManagerProtocol {
         let command = ["git", "clone", repoURL]
 
         return PackageManagerInstallStep(
-            name: "Clone with Git",
+            name: String(localized: "lsp.clone_git", comment: "Step name"),
             // swiftlint:disable:next line_length
-            confirmation: .required(message: "This step will run the following command to clone the package from source control:\n`\(command.joined(separator: " "))`")
+            confirmation: .required(message: String(localized: "lsp.clone_command \(command.joined(separator: " "))", comment: "Git clone confirmation"))
         ) { model in
             let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
             _ = try await model.executeInDirectory(in: installPath.path, command)
@@ -223,15 +223,15 @@ final class GithubPackageManager: PackageManagerProtocol {
         command: String
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Install From Source",
-            confirmation: .required(message: "This step will run the following to finish installing:\n`\(command)`")
+            name: String(localized: "lsp.install_source", comment: "Step name"),
+            confirmation: .required(message: String(localized: "lsp.install_command \(command)", comment: "Install confirmation"))
         ) { model in
             do {
                 let installPath = installationDirectory.appending(path: source.entryName, directoryHint: .isDirectory)
                 let repoPath = installPath.appending(path: source.pkgName, directoryHint: .isDirectory)
                 _ = try await model.executeInDirectory(in: repoPath.path, [command])
             } catch {
-                throw PackageManagerError.installationFailed("Source build failed.")
+                throw PackageManagerError.installationFailed(String(localized: "lsp.source_build_failed", comment: "Error message"))
             }
         }
     }
