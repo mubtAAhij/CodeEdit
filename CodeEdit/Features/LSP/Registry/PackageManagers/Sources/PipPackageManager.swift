@@ -72,7 +72,7 @@ final class PipPackageManager: PackageManagerProtocol {
     // MARK: - Initialize
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "lsp.pip.initialize_directory", comment: "Initialize directory structure step"), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
             try await model.executeInDirectory(in: packagePath.path(percentEncoded: false), ["python -m venv venv"])
 
@@ -88,10 +88,9 @@ final class PipPackageManager: PackageManagerProtocol {
     func runPipInstall(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Install Package Using pip",
+            name: String(localized: "lsp.pip.install_package", comment: "Install package using pip step"),
             confirmation: .required(
-                message: "This requires the pip package \(source.pkgName)."
-                + "\nAllow CodeEdit to install this package?"
+                message: String(localized: "lsp.pip.install_confirmation \(source.pkgName)", comment: "Pip package install confirmation message")
             )
         ) { model in
             var installArgs = [pipCommand, "install"]
@@ -140,7 +139,7 @@ final class PipPackageManager: PackageManagerProtocol {
     private func verifyInstallation(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "lsp.pip.verify_installation", comment: "Verify installation step"),
             confirmation: .none
         ) { model in
             let output = try await model.executeInDirectory(
