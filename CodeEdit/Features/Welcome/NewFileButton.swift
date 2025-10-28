@@ -15,7 +15,7 @@ struct NewFileButton: View {
     var body: some View {
         WelcomeButton(
             iconName: "plus.square",
-            title: "Create New File...",
+            title: String(localized: "welcome.create_new_file", comment: "Create new file button"),
             action: {
                 let documentController = CodeEditDocumentController()
                 documentController.createAndOpenNewDocument(onCompletion: { dismissWindow() })

@@ -21,12 +21,13 @@ struct CEWorkspaceSettingsView: View {
             Form {
                 Section {
                     TextField(
-                        "Name",
-                        text: $workspaceSettingsManager.settings.project.projectName
+                        "workspace.name",
+                        text: $workspaceSettingsManager.settings.project.projectName,
+                        prompt: Text("workspace.name", comment: "Workspace name field label")
                     )
-                    .accessibilityLabel("Workspace Name")
+                    .accessibilityLabel("workspace.accessibility_label", comment: "Workspace name accessibility label")
                 } header: {
-                    Text("Workspace")
+                    Text("workspace.header", comment: "Workspace section header")
                         .accessibilityHidden(true)
                 }
 
@@ -37,7 +38,7 @@ struct CEWorkspaceSettingsView: View {
                         showAddTaskSheet: $showAddTaskSheet
                     )
                 } header: {
-                    Text("Tasks")
+                    Text("tasks.header", comment: "Tasks section header")
                 } footer: {
                     HStack {
                         Spacer()
@@ -45,7 +46,7 @@ struct CEWorkspaceSettingsView: View {
                             selectedTaskID = nil
                             showAddTaskSheet = true
                         } label: {
-                            Text("Add Task...")
+                            Text("tasks.add", comment: "Add task button")
                         }
                     }
                 }
@@ -59,7 +60,7 @@ struct CEWorkspaceSettingsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text("actions.done", comment: "Done button")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)

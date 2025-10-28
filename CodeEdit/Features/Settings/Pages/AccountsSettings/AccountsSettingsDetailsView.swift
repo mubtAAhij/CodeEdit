@@ -54,30 +54,29 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent("Account") {
+                LabeledContent("accounts.account", comment: "Account label") {
                     Text(currentAccount.name)
                 }
-                TextField("Description", text: $currentAccount.description)
+                TextField("accounts.description", text: $currentAccount.description, prompt: Text("accounts.description", comment: "Description field"))
                 if currentAccount.provider.baseURL == nil {
-                    TextField("Server", text: $currentAccount.serverURL)
+                    TextField("accounts.server", text: $currentAccount.serverURL, prompt: Text("accounts.server", comment: "Server field"))
                 }
             }
 
             Section {
                 Picker(selection: $currentAccount.urlProtocol) {
-                    Text("HTTPS")
+                    Text("accounts.https", comment: "HTTPS option")
                         .tag(SourceControlAccount.URLProtocol.https)
                     Text("SSH")
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text("Clone Using")
-                    Text("New repositories will be cloned from \(currentAccount.provider.name)"
-                         + " using \(currentAccount.urlProtocol.rawValue).")
+                    Text("accounts.clone_using", comment: "Clone using label")
+                    Text("accounts.clone_description \(currentAccount.provider.name) \(currentAccount.urlProtocol.rawValue)", comment: "Clone description")
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker("SSH Key", selection: $currentAccount.sshKey) {
-                        Text("None")
+                    Picker("accounts.ssh_key", selection: $currentAccount.sshKey, content: {
+                        Text("accounts.none", comment: "None option")
                             .tag("")
                         Divider()
                         if let sshPath = FileManager.default.homeDirectoryForCurrentUser.appending(
@@ -99,11 +98,11 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text("Create New...")
+                        Text("accounts.create_new", comment: "Create new SSH key option")
                             .tag("CREATE_NEW")
-                        Text("Choose...")
+                        Text("accounts.choose", comment: "Choose SSH key option")
                             .tag("CHOOSE")
-                    }
+                    })
                     .onReceive([currentAccount.sshKey].publisher.first()) { value in
                         if value == "CREATE_NEW" {
                             print("Create a new ssh key...")
@@ -122,24 +121,24 @@ struct AccountsSettingsDetailsView: View {
                 }
             } footer: {
                 HStack {
-                    Button("Delete Account...") {
+                    Button("accounts.delete_account", comment: "Delete account button") {
                         deleteConfirmationIsPresented.toggle()
                     }
                     .alert(
-                        Text("Are you sure you want to delete the account “\(account.description)”?"),
+                        Text("accounts.delete_confirmation \(account.description)", comment: "Delete confirmation message"),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button("OK") {
+                        Button("alert.ok", comment: "OK button") {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()
                         }
-                        Button("Cancel") {
+                        Button("actions.cancel", comment: "Cancel button") {
                             // Handle the cancel, dismiss the alert
                             deleteConfirmationIsPresented.toggle()
                         }
                     } message: {
-                        Text("Deleting this account will remove it from CodeEdit.")
+                        Text("accounts.delete_message", comment: "Delete message")
                     }
 
                     Spacer()

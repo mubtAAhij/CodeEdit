@@ -15,8 +15,8 @@ struct ExtensionCommands: Commands {
     var openWindow
 
     var body: some Commands {
-        CommandMenu("Extensions") {
-            Button("Open Extensions Window") {
+        CommandMenu(String(localized: "extensions.menu", comment: "Extensions")) {
+            Button(String(localized: "extensions.open_window", comment: "Open Extensions Window")) {
                 openWindow(sceneID: .extensions)
             }
         }

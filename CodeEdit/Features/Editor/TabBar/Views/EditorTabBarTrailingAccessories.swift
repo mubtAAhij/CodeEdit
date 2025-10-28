@@ -53,11 +53,12 @@ struct EditorTabBarTrailingAccessories: View {
         Button(action: {}, label: { Image(systemName: "slider.horizontal.3") })
             .overlay {
                 Menu {
-                    Toggle("Show Minimap", isOn: $showMinimap)
+                    Toggle("editor.show_minimap", comment: "Show Minimap", isOn: $showMinimap)
                         .keyboardShortcut("M", modifiers: [.command, .shift, .control])
                     Divider()
                     Toggle(
-                        "Wrap Lines",
+                        "editor.wrap_lines",
+                        comment: "Wrap Lines",
                         isOn: Binding(
                             get: { [weak codeFile] in codeFile?.wrapLines ?? wrapLinesToEditorWidth },
                             set: { [weak codeFile] in
@@ -80,7 +81,7 @@ struct EditorTabBarTrailingAccessories: View {
                 } label: {
                     Image(symbol: "square.split.horizontal.plus")
                 }
-                .help("Split Vertically")
+                .help("editor.split_vertically", comment: "Split Vertically")
 
             case (.vertical, true), (.horizontal, false):
                 Button {
@@ -88,7 +89,7 @@ struct EditorTabBarTrailingAccessories: View {
                 } label: {
                     Image(symbol: "square.split.vertical.plus")
                 }
-                .help("Split Horizontally")
+                .help("editor.split_horizontally", comment: "Split Horizontally")
 
             default:
                 EmptyView()

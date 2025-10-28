@@ -44,7 +44,7 @@ struct QuickActionsView: View {
 
     var body: some View {
         SearchPanelView<QuickSearchResultLabel, EmptyView, Command>(
-            title: "Commands",
+            title: String(localized: "quick_actions.commands", comment: "Commands title"),
             image: Image(systemName: "magnifyingglass"),
             options: $state.filteredCommands,
             text: $state.commandQuery,

@@ -17,13 +17,13 @@ struct EditorCommands: Commands {
 
     var body: some Commands {
         CommandMenu("Editor") {
-            Menu("Structure") {
-                Button("Move line up") {
+            Menu("editor.structure", comment: "Structure menu") {
+                Button("editor.move_line_up", comment: "Move line up action") {
                     editor?.selectedTab?.rangeTranslator.moveLinesUp()
                 }
                 .keyboardShortcut("[", modifiers: [.command, .option])
 
-                Button("Move line down") {
+                Button("editor.move_line_down", comment: "Move line down action") {
                     editor?.selectedTab?.rangeTranslator.moveLinesDown()
                 }
                 .keyboardShortcut("]", modifiers: [.command, .option])
