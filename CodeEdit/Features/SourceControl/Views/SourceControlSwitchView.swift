@@ -23,11 +23,11 @@ struct SourceControlSwitchView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Do you want to switch to “\(branch.name)”?")
+                    Text("source_control.switch_confirm \(branch.name)", comment: "Confirm branch switch")
                         .font(.headline)
                     Text(
-                        "All files in the local repository will switch from the current branch " +
-                        "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
+                        "source_control.switch_description \(sourceControlManager.currentBranch?.name ?? "") \(branch.name)",
+                        comment: "Branch switch description"
                     )
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
@@ -42,13 +42,13 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("actions.cancel", comment: "Cancel button")
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Switch")
+                    Text("source_control.switch", comment: "Switch branch button")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -70,7 +70,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: "source_control.failed_checkout", error: error)
             }
         }
     }
