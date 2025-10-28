@@ -19,28 +19,29 @@ struct DeveloperSettingsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                Toggle("Show Internal Development Inspector", isOn: $showInternalDevelopmentInspector)
+                Toggle("developer.show_internal_inspector", comment: "Toggle to show internal development inspector", isOn: $showInternalDevelopmentInspector)
             }
 
             Section {
                 KeyValueTable(
                     items: $lspBinaries,
                     validKeys: LanguageIdentifier.allCases.map { $0.rawValue },
-                    keyColumnName: "Language",
-                    valueColumnName: "Language Server Path",
-                    newItemInstruction: "Add a language server"
+                    keyColumnName: String(localized: "developer.lsp.language", comment: "Column name for language"),
+                    valueColumnName: String(localized: "developer.lsp.server_path", comment: "Column name for language server path"),
+                    newItemInstruction: String(localized: "developer.lsp.add_server", comment: "Instruction to add language server")
                 ) {
-                    Text("Add a language server")
+                    Text("developer.lsp.add_server", comment: "Text to add language server")
                     Text(
-                        "Specify the absolute path to your LSP binary and its associated language."
+                        "developer.lsp.add_server_description",
+                        comment: "Description for adding language server"
                     )
                 } actionBarTrailing: {
                     EmptyView()
                 }
                 .frame(minHeight: 96)
             } header: {
-                Text("LSP Binaries")
-                Text("Specify the language and the absolute path to the language server binary.")
+                Text("developer.lsp.binaries", comment: "Section header for LSP binaries")
+                Text("developer.lsp.binaries_description", comment: "Description for LSP binaries section")
             }
         }
     }
