@@ -19,28 +19,29 @@ struct DeveloperSettingsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                Toggle("Show Internal Development Inspector", isOn: $showInternalDevelopmentInspector)
+                Toggle("developer_settings.show_internal_inspector", comment: "Toggle label", isOn: $showInternalDevelopmentInspector)
             }
 
             Section {
                 KeyValueTable(
                     items: $lspBinaries,
                     validKeys: LanguageIdentifier.allCases.map { $0.rawValue },
-                    keyColumnName: "Language",
-                    valueColumnName: "Language Server Path",
-                    newItemInstruction: "Add a language server"
+                    keyColumnName: String(localized: "developer_settings.language", comment: "Column name"),
+                    valueColumnName: String(localized: "developer_settings.language_server_path", comment: "Column name"),
+                    newItemInstruction: String(localized: "developer_settings.add_language_server", comment: "Instruction text")
                 ) {
-                    Text("Add a language server")
+                    Text("developer_settings.add_language_server_title", comment: "Title text")
                     Text(
-                        "Specify the absolute path to your LSP binary and its associated language."
+                        "developer_settings.lsp_binary_instruction",
+                        comment: "Description text"
                     )
                 } actionBarTrailing: {
                     EmptyView()
                 }
                 .frame(minHeight: 96)
             } header: {
-                Text("LSP Binaries")
-                Text("Specify the language and the absolute path to the language server binary.")
+                Text("developer_settings.lsp_binaries", comment: "Section header")
+                Text("developer_settings.lsp_binaries_description", comment: "Section description")
             }
         }
     }
