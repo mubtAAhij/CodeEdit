@@ -51,20 +51,20 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         }
 
         var name: String {
-            switch self {
-            case .bitbucketCloud:
-                return "BitBucket Cloud"
-            case .bitbucketServer:
-                return "BitBucket Server"
-            case .github:
-                return "GitHub"
-            case .githubEnterprise:
-                return "GitHub Enterprise"
-            case .gitlab:
-                return "GitLab"
-            case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
-            }
+        switch self {
+        case .bitbucketCloud:
+        return String(localized: "source_control.provider.bitbucket_cloud", comment: "Provider name")
+        case .bitbucketServer:
+        return String(localized: "source_control.provider.bitbucket_server", comment: "Provider name")
+        case .github:
+        return String(localized: "source_control.provider.github", comment: "Provider name")
+        case .githubEnterprise:
+        return String(localized: "source_control.provider.github_enterprise", comment: "Provider name")
+        case .gitlab:
+        return String(localized: "source_control.provider.gitlab", comment: "Provider name")
+        case .gitlabSelfHosted:
+        return String(localized: "source_control.provider.gitlab_selfhosted", comment: "Provider name")
+        }
         }
 
         var baseURL: URL? {
