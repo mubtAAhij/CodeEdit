@@ -23,7 +23,7 @@ class GitClient {
         var description: String {
             switch self {
             case .outputError(let string): string
-            case .notGitRepository: "Not a git repository"
+            case .notGitRepository: String(localized: "git.error.not_a_repository", comment: "Git error message")
             case .failedToDecodeURL: "Failed to decode URL"
             case .noRemoteConfigured: "No remote configured"
             case .statusParseEarlyEnd: "Invalid status, found end of string too early"
