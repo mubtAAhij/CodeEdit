@@ -53,33 +53,33 @@ struct WorkspaceSheets: View {
             }
             .alert(isPresented: $sourceControlManager.discardAllAlertIsPresented) {
                 Alert(
-                    title: Text("Do you want to discard all uncommitted, local changes?"),
-                    message: Text("This action cannot be undone."),
-                    primaryButton: .destructive(Text("Discard")) {
+                    title: Text("source_control.discard_changes.title", comment: "Alert title"),
+                    message: Text("source_control.discard_changes.message", comment: "Alert message"),
+                    primaryButton: .destructive(Text("source_control.discard_changes.action", comment: "Destructive button")) {
                         sourceControlManager.discardAllChanges()
                     },
                     secondaryButton: .cancel()
                 )
             }
-            .alert("Cannot Stage Changes", isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert("source_control.cannot_stage_changes", comment: "Alert title", isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
+                Button("actions.ok", comment: "Button text", role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text("source_control.no_uncommitted_changes", comment: "Alert message")
             }
-            .alert("Cannot Unstage Changes", isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert("source_control.cannot_unstage_changes", comment: "Alert title", isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
+                Button("actions.ok", comment: "Button text", role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text("source_control.no_uncommitted_changes", comment: "Alert message")
             }
-            .alert("Cannot Stash Changes", isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert("source_control.cannot_stash_changes", comment: "Alert title", isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
+                Button("actions.ok", comment: "Button text", role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text("source_control.no_uncommitted_changes", comment: "Alert message")
             }
-            .alert("Cannot Discard Changes", isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert("source_control.cannot_discard_changes", comment: "Alert title", isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
+                Button("actions.ok", comment: "Button text", role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text("source_control.no_uncommitted_changes", comment: "Alert message")
             }
     }
 }
