@@ -41,7 +41,7 @@ final class GolangPackageManager: PackageManagerProtocol {
     func isInstalled(method installationMethod: InstallationMethod) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: "",
-            confirmation: .required(message: "This package requires go to install. Allow CodeEdit to run go commands?")
+            confirmation: .required(message: String(localized: "lsp.golang.requires_go", comment: "Confirmation message"))
         ) { model in
             let versionOutput = try await model.runCommand("go version")
             let versionPattern = #"go version go\d+\.\d+"#
@@ -69,7 +69,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "lsp.initialize_directory", comment: "Step name"),
             confirmation: .none
         ) { model in
             try await model.createDirectoryStructure(for: packagePath)
@@ -90,10 +90,9 @@ final class GolangPackageManager: PackageManagerProtocol {
     func runGoInstall(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         let installCommand = getGoInstallCommand(source)
         return PackageManagerInstallStep(
-            name: "Install Package Using go",
+            name: String(localized: "lsp.install_package_go", comment: "Step name"),
             confirmation: .required(
-                message: "This requires installing the go package \(installCommand)."
-                + "\nAllow CodeEdit to install this package?"
+                message: String(localized: "lsp.golang.install_confirmation \(installCommand)", comment: "Confirmation message")
             )
         ) { model in
             let gobinPath = packagePath.appending(path: "bin", directoryHint: .isDirectory).path
@@ -108,7 +107,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func buildBinary(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Build From Source",
+            name: String(localized: "lsp.build_from_source", comment: "Step name"),
             confirmation: .none
         ) { model in
             // If there's a subpath, build the binary
