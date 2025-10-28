@@ -37,7 +37,7 @@ struct WorkspacePanelView<Tab: WorkspacePanelTab, ViewModel: ObservableObject>: 
             if let selection = selectedTab {
                 selection
             } else {
-                CEContentUnavailableView("No Selection")
+                CEContentUnavailableView(String(localized: "workspace_panel.no_selection", comment: "No selection"))
             }
         }
         .safeAreaInset(edge: .leading, spacing: 0) {
