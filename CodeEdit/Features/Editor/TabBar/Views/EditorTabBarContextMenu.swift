@@ -37,14 +37,14 @@ struct EditorTabBarContextMenu: ViewModifier {
     func body(content: Content) -> some View {
         content.contextMenu(menuItems: {
             Group {
-                Button("Close Tab") {
+                Button("editor.tab_menu.close_tab", comment: "Close tab menu item") {
                     withAnimation {
                         tabs.closeTab(file: item)
                     }
                 }
                 .keyboardShortcut("w", modifiers: [.command])
 
-                Button("Close Other Tabs") {
+                Button("editor.tab_menu.close_other_tabs", comment: "Close other tabs menu item") {
                     withAnimation {
                         tabs.tabs.map({ $0.file }).forEach { file in
                             if file != item {
@@ -54,7 +54,7 @@ struct EditorTabBarContextMenu: ViewModifier {
                     }
                 }
 
-                Button("Close Tabs to the Right") {
+                Button("editor.tab_menu.close_tabs_to_right", comment: "Close tabs to the right menu item") {
                     withAnimation {
                         if let index = tabs.tabs.firstIndex(where: { $0.file == item }), index + 1 < tabs.tabs.count {
                             tabs.tabs[(index + 1)...].forEach {
@@ -66,7 +66,7 @@ struct EditorTabBarContextMenu: ViewModifier {
                 // Disable this option when current tab is the last one.
                 .disabled(tabs.tabs.last?.file == item)
 
-                Button("Close All") {
+                Button("editor.tab_menu.close_all", comment: "Close all tabs menu item") {
                     withAnimation {
                         tabs.tabs.forEach {
                             tabs.closeTab(file: $0.file)
@@ -75,7 +75,7 @@ struct EditorTabBarContextMenu: ViewModifier {
                 }
 
                 if isTemporary {
-                    Button("Keep Open") {
+                    Button("editor.tab_menu.keep_open", comment: "Keep tab open menu item") {
                         tabs.temporaryTab = nil
                     }
                 }
@@ -84,11 +84,11 @@ struct EditorTabBarContextMenu: ViewModifier {
             Divider()
 
             Group {
-                Button("Copy Path") {
+                Button("editor.tab_menu.copy_path", comment: "Copy path menu item") {
                     copyPath(item: item)
                 }
 
-                Button("Copy Relative Path") {
+                Button("editor.tab_menu.copy_relative_path", comment: "Copy relative path menu item") {
                     copyRelativePath(item: item)
                 }
             }
@@ -96,15 +96,15 @@ struct EditorTabBarContextMenu: ViewModifier {
             Divider()
 
             Group {
-                Button("Show in Finder") {
+                Button("editor.tab_menu.show_in_finder", comment: "Show in Finder menu item") {
                     item.showInFinder()
                 }
 
-                Button("Reveal in Project Navigator") {
+                Button("editor.tab_menu.reveal_in_project_navigator", comment: "Reveal in Project Navigator menu item") {
                     workspace.listenerModel.highlightedFileItem = item
                 }
 
-                Button("Open in New Window") {
+                Button("editor.tab_menu.open_in_new_window", comment: "Open in new window menu item") {
 
                 }
                 .disabled(true)
@@ -112,16 +112,16 @@ struct EditorTabBarContextMenu: ViewModifier {
 
             Divider()
 
-            Button("Split Up") {
+            Button("editor.tab_menu.split_up", comment: "Split up menu item") {
                 moveToNewSplit(.top)
             }
-            Button("Split Down") {
+            Button("editor.tab_menu.split_down", comment: "Split down menu item") {
                 moveToNewSplit(.bottom)
             }
-            Button("Split Left") {
+            Button("editor.tab_menu.split_left", comment: "Split left menu item") {
                 moveToNewSplit(.leading)
             }
-            Button("Split Right") {
+            Button("editor.tab_menu.split_right", comment: "Split right menu item") {
                 moveToNewSplit(.trailing)
             }
         })
