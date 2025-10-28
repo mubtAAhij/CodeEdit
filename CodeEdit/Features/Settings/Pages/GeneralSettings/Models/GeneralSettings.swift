@@ -24,31 +24,30 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
+                String(localized: "settings.search.appearance", comment: "Search key"),
+                String(localized: "settings.search.file_icon_style", comment: "Search key"),
                 "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
+                String(localized: "settings.search.show_jump_bar", comment: "Search key"),
+                String(localized: "settings.search.dim_editors_without_focus", comment: "Search key"),
+                String(localized: "settings.search.navigator_tab_bar_position", comment: "Search key"),
+                String(localized: "settings.search.inspector_tab_bar_position", comment: "Search key"),
+                String(localized: "settings.search.show_issues", comment: "Search key"),
+                String(localized: "settings.search.show_live_issues", comment: "Search key"),
                 "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "settings.search.automatically_reveal_in_project_navigator", comment: "Search key"),
+                String(localized: "settings.search.reopen_behavior", comment: "Search key"),
+                String(localized: "settings.search.after_the_last_window_is_closed", comment: "Search key"),
+                String(localized: "settings.search.file_extensions", comment: "Search key"),
+                String(localized: "settings.search.project_navigator_size", comment: "Search key"),
+                String(localized: "settings.search.find_navigator_detail", comment: "Search key"),
+                String(localized: "settings.search.issue_navigator_detail", comment: "Search key"),
+                String(localized: "settings.search.show_open_with_codeedit_option_in_finder", comment: "Search key"),
+                String(localized: "settings.search.codeedit_shell_command", comment: "Search key"),
+                String(localized: "settings.search.dialog_warnings", comment: "Search key"),
+                String(localized: "settings.search.check_for_updates", comment: "Search key"),
+                String(localized: "settings.search.automatically_check_for_app_updates", comment: "Search key"),
+                String(localized: "settings.search.include_prerelease_versions", comment: "Search key")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -309,9 +308,9 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "navigator.detail.one_line", comment: "Navigator detail label")
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(localized: "navigator.detail.up_to_lines \(self.rawValue)", comment: "Navigator detail label")
             }
         }
     }
