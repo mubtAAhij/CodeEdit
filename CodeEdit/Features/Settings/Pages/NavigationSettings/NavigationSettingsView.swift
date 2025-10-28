@@ -23,9 +23,9 @@ struct NavigationSettingsView: View {
 private extension NavigationSettingsView {
     private var navigationStyle: some View {
         Picker("Navigation Style", selection: $settings.navigationStyle) {
-            Text("Open in Tabs")
+            Text("settings.navigation.open_in_tabs", comment: "Navigation style option")
                 .tag(SettingsData.NavigationStyle.openInTabs)
-            Text("Open in Place")
+            Text("settings.navigation.open_in_place", comment: "Navigation style option")
                 .tag(SettingsData.NavigationStyle.openInPlace)
         }
     }
