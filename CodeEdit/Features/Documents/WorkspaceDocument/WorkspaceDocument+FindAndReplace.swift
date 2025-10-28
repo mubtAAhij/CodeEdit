@@ -59,21 +59,19 @@ extension WorkspaceDocument.SearchState {
         // Display the replacing results to the user
         if updatedFilesCount == 0 && errorCount == 0 {
             // No results where found
-            await setStatus(.failed(errorMessage: "No files in the workspace matched: \(query)"))
+            await setStatus(.failed(errorMessage: String(localized: "find.no_matches \(query)", comment: "No files matched search query")))
         } else if updatedFilesCount == 0 && errorCount > 0 {
             // All files failed to updated
             await setStatus(
                 .failed(
-                    errorMessage: "All files failed to update. (\(errorCount)) " +
-                    "errors occurred. Check logs for more information"
+                    errorMessage: String(localized: "find.all_failed \(errorCount)", comment: "All files failed to update")
                 )
             )
         } else if updatedFilesCount > 0 && errorCount > 0 {
             // Some files updated successfully, some failed
             await setStatus(
                 .failed(
-                    errorMessage: "\(updatedFilesCount) successfully updated, " +
-                    "\(errorCount) errors occurred. Please check logs for more information."
+                    errorMessage: String(localized: "find.partial_success \(updatedFilesCount) \(errorCount)", comment: "Some files updated, some failed")
                 )
             )
         } else {
@@ -128,10 +126,10 @@ extension WorkspaceDocument.SearchState {
     ) {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
-            alert.messageText = "Error"
-            alert.informativeText = "An error occurred while reading file contents of: \(file)"
+            alert.messageText = String(localized: "alert.error", comment: "Error title")
+            alert.informativeText = String(localized: "find.error_reading \(file)", comment: "Error reading file")
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "alert.ok", comment: "OK button"))
             alert.runModal()
 
             return
@@ -156,10 +154,10 @@ extension WorkspaceDocument.SearchState {
             try updatedContent.write(to: file, atomically: true, encoding: .utf8)
         } catch {
             let alert = NSAlert()
-            alert.messageText = "Error"
-            alert.informativeText = "An error occurred while writing to: \(error.localizedDescription)"
+            alert.messageText = String(localized: "alert.error", comment: "Error title")
+            alert.informativeText = String(localized: "find.error_writing \(error.localizedDescription)", comment: "Error writing file")
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "alert.ok", comment: "OK button"))
             alert.runModal()
         }
     }
