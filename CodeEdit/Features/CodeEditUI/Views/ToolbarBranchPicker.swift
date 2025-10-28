@@ -111,7 +111,7 @@ struct ToolbarBranchPicker: View {
             VStack(alignment: .leading) {
                 if let currentBranch = sourceControlManager.currentBranch {
                     Section {
-                        headerLabel("Current Branch")
+                        headerLabel(String(localized: "git.current_branch", comment: "Current branch label"))
                         BranchCell(sourceControlManager: sourceControlManager, branch: currentBranch, active: true)
                     }
                 }
@@ -131,7 +131,7 @@ struct ToolbarBranchPicker: View {
 
                 if !branches.isEmpty {
                     Section {
-                        headerLabel("Branches")
+                        headerLabel(String(localized: "git.branches", comment: "Branches label"))
                         ForEach(branchesGroups.keys.sorted(), id: \.self) { branchGroupPrefix in
                             if let group = branchesGroups[branchGroupPrefix] {
                                 if !group.shouldNest {
@@ -216,7 +216,7 @@ struct ToolbarBranchPicker: View {
                     do {
                         try await sourceControlManager.checkoutBranch(branch: branch)
                     } catch {
-                        await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                        await sourceControlManager.showAlertForError(title: String(localized: "error.failed_checkout", comment: "Failed checkout error"), error: error)
                     }
                 }
             }
