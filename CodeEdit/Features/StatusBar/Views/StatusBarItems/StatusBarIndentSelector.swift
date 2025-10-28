@@ -14,23 +14,23 @@ struct StatusBarIndentSelector: View {
     var body: some View {
         Menu {
             Button {} label: {
-                Text("Use Tabs")
+                Text("editor.use_tabs", comment: "Use tabs for indentation")
             }.disabled(true)
 
             Button {} label: {
-                Text("Use Spaces")
+                Text("editor.use_spaces", comment: "Use spaces for indentation")
             }.disabled(true)
 
             Divider()
 
             Picker("Tab Width", selection: $defaultTabWidth) {
                 ForEach(2..<9) { index in
-                    Text("\(index) Spaces")
+                    Text("editor.spaces_count \(index)", comment: "Number of spaces for indentation")
                         .tag(index)
                 }
             }
         } label: {
-            Text("\(defaultTabWidth) Spaces")
+            Text("editor.default_spaces \(defaultTabWidth)", comment: "Default number of spaces")
         }
         .menuStyle(StatusBarMenuStyle())
         .onHover { isHovering($0) }
