@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "archive.error.unreadable", comment: "Unreadable archive error")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "archive.error.unwritable", comment: "Unwritable archive error")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "archive.error.invalid_path", comment: "Invalid entry path error")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "archive.error.invalid_compression", comment: "Invalid compression method error")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "archive.error.invalid_checksum", comment: "Invalid checksum error")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "archive.error.cancelled", comment: "Operation cancelled error")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "archive.error.invalid_buffer", comment: "Invalid buffer size error")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "archive.error.invalid_entry_size", comment: "Invalid entry size error")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "archive.error.invalid_file", comment: "Invalid file error")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }
