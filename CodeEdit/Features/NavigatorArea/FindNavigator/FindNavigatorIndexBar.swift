@@ -24,13 +24,15 @@ struct FindNavigatorIndexBar: View {
                         EmptyView()
                     } currentValueLabel: {
                         HStack {
-                            Text("Indexing \(Int(progress * 100))%")
+                            Text("find.indexing_progress \(Int(progress * 100))", comment: "Indexing progress percentage")
                                 .font(.system(size: 10))
                                 .animation(.none)
                         }
                     }
-                    // swiftlint:disable:next line_length
-                    .help("Indexing current workspace files for search. Searches performed while indexing may return incomplete results.")
+                    .help(String(
+                        localized: "find.indexing_help",
+                        comment: "Indexing workspace files help text"
+                    ))
                 }
                 .transition(.asymmetric(insertion: .identity, removal: .move(edge: .top).combined(with: .opacity)))
             }
