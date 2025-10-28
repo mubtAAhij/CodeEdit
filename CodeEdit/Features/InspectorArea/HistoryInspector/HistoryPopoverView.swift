@@ -23,12 +23,12 @@ struct HistoryPopoverView: View {
 
             VStack(alignment: .leading, spacing: 0) {
                 // TODO: Implementation Needed
-                ActionButton("Show Commit", systemImage: "clock") {}
+                ActionButton(String(localized: "history.show_commit", comment: "Show commit action"), systemImage: "clock") {}
                     .disabled(true)
                 // TODO: Implementation Needed
-                ActionButton("Open in Code Review", systemImage: "arrow.left.arrow.right") {}
+                ActionButton(String(localized: "history.open_code_review", comment: "Open in code review action"), systemImage: "arrow.left.arrow.right") {}
                     .disabled(true)
-                ActionButton("Email \(commit.author)", systemImage: "envelope") {
+                ActionButton(String(localized: "history.email_author \(commit.author)", comment: "Email commit author action"), systemImage: "envelope") {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
                     service?.recipients = [commit.authorEmail]
                     service?.perform(withItems: [])
