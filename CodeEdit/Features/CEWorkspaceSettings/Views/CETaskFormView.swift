@@ -16,10 +16,10 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text("tasks.name", comment: "Field label")
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
+                .accessibilityLabel("tasks.name_accessibility", comment: "Accessibility label")
+                Picker("tasks.target", comment: "Picker label", selection: $task.target) {
                     Text("My Mac")
                         .tag("My Mac")
 
@@ -29,7 +29,7 @@ struct CETaskFormView: View {
                     Text("Docker")
                         .tag("Docker")
 
-                    Text("Docker Compose")
+                    Text("tasks.docker_compose", comment: "Target option")
                         .tag("Docker Compose")
                 }
                 .disabled(true)
@@ -37,11 +37,11 @@ struct CETaskFormView: View {
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text("tasks.task", comment: "Field label")
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel("tasks.task_command", comment: "Accessibility label")
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text("tasks.working_directory", comment: "Field label")
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text("tasks.no_env_vars", comment: "Empty state message")
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text("tasks.env_vars_header", comment: "Section header")
             }
         }
         .formStyle(.grouped)
