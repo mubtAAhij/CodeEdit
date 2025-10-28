@@ -25,15 +25,15 @@ extension SourceControlNavigatorRepositoryView {
 
     @ViewBuilder
     func contextMenu(for item: RepoOutlineGroupItem, branch: GitBranch) -> some View {
-        Button("Switch...") {
+        Button("git.switch", comment: "Switch to branch") {
             sourceControlManager.switchToBranch = branch
         }
         .disabled(item.branch == nil || sourceControlManager.currentBranch == item.branch)
         Divider()
         Button(
             item.branch == nil && item.id != "BranchesGroup"
-            ? "New Branch..."
-            : "New Branch from \"\(branch.name)\"..."
+            ? String(localized: "git.new_branch", comment: "Create new branch")
+            : String(localized: "git.new_branch_from \(branch.name)", comment: "Create new branch from existing")
         ) {
             showNewBranch = true
             fromBranch =  item.branch
@@ -41,26 +41,26 @@ extension SourceControlNavigatorRepositoryView {
         .disabled(item.branch == nil && item.id != "BranchesGroup")
         Button(
             item.branch == nil
-            ? "Rename Branch..."
-            : "Rename \"\(branch.name)\"..."
+            ? String(localized: "git.rename_branch", comment: "Rename branch")
+            : String(localized: "git.rename_branch_named \(branch.name)", comment: "Rename specific branch")
         ) {
             showRenameBranch = true
             fromBranch = item.branch
         }
         .disabled(item.branch == nil || item.branch?.isRemote == true)
         Divider()
-        Button("Add Existing Remote...") {
+        Button("git.add_remote", comment: "Add existing remote") {
             sourceControlManager.addExistingRemoteSheetIsPresented = true
         }
         .disabled(item.id != "RemotesGroup")
         Divider()
-        Button("Apply Stashed Changes...") {
+        Button("git.apply_stash", comment: "Apply stashed changes") {
             applyStashedChangesIsPresented = true
             stashEntryToApply = item.stashEntry
         }
         .disabled(item.stashEntry == nil)
         Divider()
-        Button("Delete...") {
+        Button("git.delete", comment: "Delete branch/remote/stash") {
             handleDelete(item)
         }
         .disabled(
