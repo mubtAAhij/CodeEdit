@@ -89,12 +89,12 @@ struct UtilityAreaDebugView: View {
                         : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
                     )
                 } else {
-                    CEContentUnavailableView("No Task Selected")
+                    CEContentUnavailableView(String(localized: "debug.no_task_selected", comment: "No task selected message"))
                 }
             }
         } leadingSidebar: { _ in
             ZStack {
-                Text("No Tasks are Running")
+                Text("debug.no_tasks_running", comment: "No tasks running message")
                     .font(.system(size: 16))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -112,7 +112,7 @@ struct UtilityAreaDebugView: View {
                                         Button {
                                             taskManager.deleteTask(taskID: taskID)
                                         } label: {
-                                            Text("Delete")
+                                            Text("actions.delete", comment: "Delete button")
                                         }
                                     }
                                 )
