@@ -30,10 +30,10 @@ struct SourceControlPullView: View {
                         canCreateBranch: false
                     )
                 } header: {
-                    Text("Pull remote changes from")
+                    Text("source_control.pull_from", comment: "Section header for pull remote")
                 }
                 Section {
-                    Toggle("Rebase local changes onto upstream changes", isOn: $sourceControlManager.operationRebase)
+                    Toggle("source_control.rebase_changes", comment: "Toggle for rebase option", isOn: $sourceControlManager.operationRebase)
                 }
             }
             .formStyle(.grouped)
@@ -53,7 +53,7 @@ struct SourceControlPullView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text("Pulling changes...")
+                        Text("source_control.pulling_changes", comment: "Status message while pulling")
                             .font(.subheadline)
                     }
                 }
@@ -61,12 +61,12 @@ struct SourceControlPullView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("actions.cancel", comment: "Cancel button")
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text("Pull")
+                    Text("source_control.pull", comment: "Pull button")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -96,7 +96,7 @@ struct SourceControlPullView: View {
                 }
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: "Failed to pull", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.pull_failed", comment: "Error alert title"), error: error)
             }
         }
     }
