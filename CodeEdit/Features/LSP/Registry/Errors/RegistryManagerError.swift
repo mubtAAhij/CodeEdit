@@ -18,11 +18,11 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
+            String(localized: "lsp.error.installation_running", comment: "Error when package installation is already in progress")
         case .invalidResponse(let statusCode):
-            "Invalid response received: \(statusCode)"
+            String(localized: "lsp.error.invalid_response \(statusCode)", comment: "Error for invalid HTTP response")
         case .downloadFailed(let url, _):
-            "Download for \(url) error."
+            String(localized: "lsp.error.download_failed \(url)", comment: "Error when download fails")
         case .maxRetriesExceeded(let url, _):
             "Maximum retries exceeded for url: \(url)"
         case .writeFailed:
