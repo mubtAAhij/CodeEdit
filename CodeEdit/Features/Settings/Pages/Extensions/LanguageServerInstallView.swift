@@ -23,14 +23,14 @@ struct LanguageServerInstallView: View {
         }
         .constrainHeightToWindow()
         .alert(
-            "Confirm Step",
+            "extensions.install.confirm_step",
             isPresented: Binding(get: { operation.waitingForConfirmation != nil }, set: { _ in }),
             presenting: operation.waitingForConfirmation
         ) { _ in
-            Button("Cancel") {
+            Button("actions.cancel", comment: "Cancel installation") {
                 registryManager.cancelInstallation()
             }
-            Button("Continue") {
+            Button("actions.continue", comment: "Continue installation") {
                 operation.confirmCurrentStep()
             }
         } message: { confirmationMessage in
@@ -60,7 +60,7 @@ struct LanguageServerInstallView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("actions.cancel", comment: "Cancel installation")
                 }
                 .buttonStyle(.bordered)
                 Button {
@@ -71,7 +71,7 @@ struct LanguageServerInstallView: View {
                         NSAlert(error: error).runModal()
                     }
                 } label: {
-                    Text("Install")
+                    Text("extensions.install.install", comment: "Install package")
                 }
                 .buttonStyle(.borderedProminent)
             case .running:
@@ -79,7 +79,7 @@ struct LanguageServerInstallView: View {
                     registryManager.cancelInstallation()
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("actions.cancel", comment: "Cancel installation")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.bordered)
@@ -87,7 +87,7 @@ struct LanguageServerInstallView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Continue")
+                    Text("actions.continue", comment: "Continue")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -98,12 +98,12 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var packageInfoSection: some View {
         Section {
-            LabeledContent("Installing Package", value: operation.package.sanitizedName)
-            LabeledContent("Homepage") {
+            LabeledContent("extensions.install.installing_package", comment: "Installing package label", value: operation.package.sanitizedName)
+            LabeledContent("extensions.install.homepage", comment: "Package homepage label") {
                 sourceButton.cursor(.pointingHand)
             }
             VStack(alignment: .leading, spacing: 6) {
-                Text("Description")
+                Text("extensions.install.description", comment: "Package description label")
                 Text(operation.package.sanitizedDescription)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.secondary)
@@ -118,7 +118,7 @@ struct LanguageServerInstallView: View {
             Section {
                 HStack(spacing: 4) {
                     Image(systemName: "exclamationmark.octagon.fill").foregroundColor(.red)
-                    Text("Error Occurred")
+                    Text("extensions.install.error_occurred", comment: "Error message")
                 }
                 .font(.title3)
                 ErrorDescriptionLabel(error: error)
@@ -147,16 +147,16 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var progressSection: some View {
         Section {
-            LabeledContent("Step") {
+            LabeledContent("extensions.install.step", comment: "Installation step label") {
                 if registryManager.installedLanguageServers[operation.package.name] != nil {
                     HStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(.green)
-                        Text("Successfully Installed")
+                        Text("extensions.install.successfully_installed", comment: "Success message")
                             .foregroundStyle(.primary)
                     }
                 } else if operation.error != nil {
-                    Text("Error Occurred")
+                    Text("extensions.install.error_occurred", comment: "Error message")
                 } else {
                     Text(operation.currentStep?.name ?? "")
                 }
@@ -215,14 +215,14 @@ struct LanguageServerInstallView: View {
     @ViewBuilder private var notInstalledSection: some View {
         Section {
             if let method = operation.package.installMethod {
-                LabeledContent("Install Method", value: method.installerDescription)
+                LabeledContent("extensions.install.install_method", comment: "Installation method label", value: method.installerDescription)
                     .textSelection(.enabled)
                 if let packageDescription = method.packageDescription {
-                    LabeledContent("Package", value: packageDescription)
+                    LabeledContent("extensions.install.package", comment: "Package label", value: packageDescription)
                         .textSelection(.enabled)
                 }
             } else {
-                LabeledContent("Installer", value: "Unknown")
+                LabeledContent("extensions.install.installer", comment: "Installer label", value: "Unknown")
             }
         }
     }
