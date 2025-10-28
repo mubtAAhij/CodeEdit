@@ -25,25 +25,25 @@ struct CreateSSHKeyView: View {
     var body: some View {
         VStack {
             Form {
-                Section("Create SSH key") {
-                    Picker("Key Type", selection: $selectedKeyType) {
+                Section("ssh.create_key", comment: "Section title") {
+                    Picker("ssh.key_type", comment: "Picker label", selection: $selectedKeyType) {
                         Text(KeyType.ed25519.rawValue)
                             .tag(KeyType.ed25519)
                         Text(KeyType.ecdsa.rawValue)
                             .tag(KeyType.ecdsa)
                         Divider()
                         Group {
-                            Text(KeyType.rsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.rsa.rawValue) + Text("ssh.less_secure", comment: "Security warning").foregroundColor(.secondary)
                         }
                         .tag(KeyType.rsa)
                         Group {
-                            Text(KeyType.dsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.dsa.rawValue) + Text("ssh.less_secure", comment: "Security warning").foregroundColor(.secondary)
                         }
                         .tag(KeyType.dsa)
                     }
-                    SecureField("Passphrase", text: $passphrase)
+                    SecureField("ssh.passphrase", text: $passphrase, prompt: Text("ssh.passphrase", comment: "Passphrase field"))
                     if !passphrase.isEmpty {
-                        SecureField("Confirm Passphrase", text: $confirmPassphrase)
+                        SecureField("ssh.confirm_passphrase", text: $confirmPassphrase, prompt: Text("ssh.confirm_passphrase", comment: "Confirm passphrase field"))
                     }
                 }
             }
@@ -52,10 +52,10 @@ struct CreateSSHKeyView: View {
             .scrollDisabled(true)
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button("actions.cancel", comment: "Cancel button") {
                     dismiss()
                 }
-                Button("Create") {
+                Button("ssh.create", comment: "Create button") {
                     // create the ssh key
                     dismiss()
                 }
