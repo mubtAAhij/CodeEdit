@@ -34,25 +34,25 @@ struct GitCloneView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Clone a repository")
+                    Text("source_control.clone_repository", comment: "Title")
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
+                    Text("source_control.enter_git_url", comment: "Instruction text")
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                             context[.trailing]
                         }
-                    TextField("Git Repository URL", text: $viewModel.repoUrlStr)
+                    TextField("source_control.git_repository_url", text: $viewModel.repoUrlStr, prompt: Text("source_control.git_repository_url", comment: "Field label"))
                         .lineLimit(1)
                         .padding(.bottom, 15)
                         .frame(width: 300)
 
                     HStack {
-                        Button("Cancel") {
+                        Button("actions.cancel", comment: "Button text") {
                             dismiss()
                         }
-                        Button("Clone") {
+                        Button("source_control.clone", comment: "Button text") {
                             cloneRepository()
                         }
                         .keyboardShortcut(.defaultAction)
@@ -82,7 +82,7 @@ struct GitCloneView: View {
                 }
                 .toolbar {
                     ToolbarItem {
-                        Button("Cancel Cloning") {
+                        Button("source_control.cancel_cloning", comment: "Button text") {
                             viewModel.cloningTask?.cancel()
                             viewModel.cloningTask = nil
                             viewModel.isCloning = false
