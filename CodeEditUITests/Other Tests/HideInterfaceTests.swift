@@ -20,14 +20,19 @@ final class HideInterfaceUITests: XCTestCase {
 
     /// List of the  panels to test with
     private let allPanels: () -> [String] = {
-        ["Navigator", "Inspector", "Utility Area", "Toolbar"]
+        [
+            String(localized: "ui_tests.panel_navigator", comment: "Navigator panel"),
+            String(localized: "ui_tests.panel_inspector", comment: "Inspector panel"),
+            String(localized: "ui_tests.panel_utility_area", comment: "Utility Area panel"),
+            String(localized: "ui_tests.panel_toolbar", comment: "Toolbar panel")
+        ]
     }
 
     // MARK: – Tests
 
     /// Test 1: Ensure each panel can show and hide individually.
     func testPanelsShowAndHideIndividually() {
-        let viewMenu = app.menuBars.menuBarItems["View"]
+        let viewMenu = app.menuBars.menuBarItems[String(localized: "ui_tests.menu_view", comment: "View menu")]
         for panel in allPanels() {
             // Show panel
             let showItem = "Show \(panel)"
@@ -48,7 +53,7 @@ final class HideInterfaceUITests: XCTestCase {
 
     /// Test 2: Hide interface hides all panels.
     func testHideInterfaceHidesAllPanels() {
-        let viewMenu = app.menuBars.menuBarItems["View"]
+        let viewMenu = app.menuBars.menuBarItems[String(localized: "ui_tests.menu_view", comment: "View menu")]
         // Ensure all panels are shown
         for panel in allPanels() {
             let showItem = "Show \(panel)"
@@ -69,7 +74,7 @@ final class HideInterfaceUITests: XCTestCase {
 
     /// Test 3: Show interface shows all panels when none are visible.
     func testShowInterfaceShowsAllWhenNoneVisible() {
-        let viewMenu = app.menuBars.menuBarItems["View"]
+        let viewMenu = app.menuBars.menuBarItems[String(localized: "ui_tests.menu_view", comment: "View menu")]
         // Ensure all panels are hidden
         for panel in allPanels() {
             let hideItem = "Hide \(panel)"
@@ -97,7 +102,7 @@ final class HideInterfaceUITests: XCTestCase {
 
     /// Test 4: Show interface restores previous panel state.
     func testShowInterfaceRestoresPreviousState() {
-        let viewMenu = app.menuBars.menuBarItems["View"]
+        let viewMenu = app.menuBars.menuBarItems[String(localized: "ui_tests.menu_view", comment: "View menu")]
         let initialOpen = ["Navigator", "Toolbar"]
 
         // Set initial state
@@ -122,7 +127,7 @@ final class HideInterfaceUITests: XCTestCase {
 
     /// Test 5: Individual toggles after hide update the interface button.
     func testIndividualTogglesUpdateInterfaceButton() {
-        let viewMenu = app.menuBars.menuBarItems["View"]
+        let viewMenu = app.menuBars.menuBarItems[String(localized: "ui_tests.menu_view", comment: "View menu")]
         let initialOpen = ["Navigator", "Toolbar"]
 
         // Set initial visibility
@@ -151,7 +156,7 @@ final class HideInterfaceUITests: XCTestCase {
 
     /// Test 6: Partial show after hide restores correct panels.
     func testPartialShowAfterHideRestoresCorrectPanels() {
-        let viewMenu = app.menuBars.menuBarItems["View"]
+        let viewMenu = app.menuBars.menuBarItems[String(localized: "ui_tests.menu_view", comment: "View menu")]
         let initialOpen = ["Navigator", "Toolbar"]
 
         // Set initial visibility
