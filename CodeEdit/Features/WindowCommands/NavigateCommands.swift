@@ -15,26 +15,26 @@ struct NavigateCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Navigate") {
+        CommandMenu("menu.navigate", comment: "Navigate menu") {
             Group {
-                Button("Reveal in Project Navigator") {
+                Button("navigate.reveal_in_project_navigator", comment: "Reveal in Project Navigator") {
                     NSApp.sendAction(#selector(ProjectNavigatorViewController.revealFile(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j", modifiers: [.shift, .command])
 
-                Button("Reveal Changes in Navigator") {
+                Button("navigate.reveal_changes_in_navigator", comment: "Reveal Changes in Navigator") {
 
                 }
                 .keyboardShortcut("m", modifiers: [.shift, .command])
                 .disabled(true)
 
-                Button("Open in Next Editor") {
+                Button("navigate.open_in_next_editor", comment: "Open in Next Editor") {
 
                 }
                 .keyboardShortcut(",", modifiers: [.option, .command])
                 .disabled(true)
 
-                Button("Open in...") {
+                Button("navigate.open_in", comment: "Open in menu") {
 
                 }
                 .disabled(true)
@@ -43,13 +43,13 @@ struct NavigateCommands: Commands {
 
             }
             Group {
-                Button("Show Previous Tab") {
+                Button("navigate.show_previous_tab", comment: "Show Previous Tab") {
                     editor?.selectPreviousTab()
                 }
                 .keyboardShortcut("{", modifiers: [.command])
                 .disabled(editor?.tabs.count ?? 0 <= 1)  // Disable if there's one or no tabs
 
-                Button("Show Next Tab") {
+                Button("navigate.show_next_tab", comment: "Show Next Tab") {
                     editor?.selectNextTab()
                 }
                 .keyboardShortcut("}", modifiers: [.command])
@@ -58,12 +58,12 @@ struct NavigateCommands: Commands {
             Group {
                 Divider()
 
-                Button("Go Forward") {
+                Button("navigate.go_forward", comment: "Go Forward") {
                     editor?.goForwardInHistory()
                 }
                 .disabled(!(editor?.canGoForwardInHistory ?? false))
 
-                Button("Go Back") {
+                Button("navigate.go_back", comment: "Go Back") {
                     editor?.goBackInHistory()
                 }
                 .disabled(!(editor?.canGoBackInHistory ?? false))
