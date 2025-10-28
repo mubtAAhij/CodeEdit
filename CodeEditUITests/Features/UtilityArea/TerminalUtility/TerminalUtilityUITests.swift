@@ -28,7 +28,7 @@ final class TerminalUtilityUITests: XCTestCase {
     }
 
     func testTerminalsInputData() throws {
-        let terminal = utilityArea.textViews["Terminal Emulator"]
+        let terminal = utilityArea.textViews[String(localized: "accessibility.terminal_emulator", comment: "Terminal emulator accessibility label")]
         XCTAssertTrue(terminal.exists)
         terminal.click()
         terminal.typeText("echo hello world")
@@ -39,7 +39,7 @@ final class TerminalUtilityUITests: XCTestCase {
     }
 
     func testTerminalsKeepData() throws {
-        var terminal = utilityArea.textViews["Terminal Emulator"]
+        var terminal = utilityArea.textViews[String(localized: "accessibility.terminal_emulator", comment: "Terminal emulator accessibility label")]
         XCTAssertTrue(terminal.exists)
         terminal.click()
         terminal.typeText("echo hello world")
@@ -53,7 +53,7 @@ final class TerminalUtilityUITests: XCTestCase {
         XCTAssertTrue(terminalRow.exists)
         terminalRow.click()
 
-        terminal = utilityArea.textViews["Terminal Emulator"]
+        terminal = utilityArea.textViews[String(localized: "accessibility.terminal_emulator", comment: "Terminal emulator accessibility label")]
         XCTAssertTrue(terminal.exists)
 
         let finalValue = try XCTUnwrap(terminal.value as? String)
