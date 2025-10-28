@@ -22,11 +22,11 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent("source_control.rename_branch.from", value: branch.name, comment: "Label for source branch")
+                        TextField("source_control.rename_branch.to", text: $name, comment: "TextField for target branch name")
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text("source_control.rename_branch.title", comment: "Section title for rename branch")
+                        Text("source_control.rename_branch.message", comment: "Information about uncommitted changes")
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +38,13 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text("actions.cancel", comment: "Cancel button")
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text("source_control.rename_branch.action", comment: "Rename button")
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +67,7 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "source_control.rename_branch.error", comment: "Error title for failed rename"),
                     error: error
                 )
             }
