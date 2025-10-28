@@ -89,7 +89,7 @@ struct UtilityAreaOutputLogList<Source: UtilityAreaOutputSource, Toolbar: View>:
         .paneToolbar {
             toolbar()
             Spacer()
-            UtilityAreaFilterTextField(title: "Filter", text: $filterText)
+            UtilityAreaFilterTextField(title: String(localized: "utility.filter", comment: "Filter input field label"), text: $filterText)
                 .frame(maxWidth: 175)
             Button {
                 output.removeAll(keepingCapacity: true)
