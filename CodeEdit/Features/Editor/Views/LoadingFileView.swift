@@ -27,7 +27,7 @@ struct LoadingFileView: View {
         VStack(spacing: 10) {
             Spacer()
             ProgressView()
-            Text("Opening \(filename)...")
+            Text("Opening \(filename)...", comment: "Loading message when opening a file")
             Spacer()
         }
     }
