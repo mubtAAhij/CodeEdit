@@ -60,7 +60,7 @@ struct EditorJumpBarView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     if file == nil {
-                        Text("No Selection")
+                        Text("No Selection", comment: "Placeholder text when no file is selected in jump bar")
                             .font(.system(size: 11, weight: .regular))
                             .foregroundColor(
                                 activeState != .inactive
