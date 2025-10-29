@@ -121,7 +121,7 @@ struct UtilityAreaTerminalView: View {
                         }
                     }
                 } else {
-                    CEContentUnavailableView("No Selection")
+                    CEContentUnavailableView(String(localized: "No Selection", comment: "Message shown when no terminal is selected"))
                 }
             }
             .padding(.horizontal, 10)
@@ -143,14 +143,14 @@ struct UtilityAreaTerminalView: View {
                     } label: {
                         Image(systemName: "trash")
                     }
-                    .help("Reset the terminal")
+                    .help(String(localized: "Reset the terminal", comment: "Tooltip for terminal reset button"))
                     .disabled(getSelectedTerminal() == nil)
                     Button {
                         // split terminal
                     } label: {
                         Image(systemName: "square.split.2x1")
                     }
-                    .help("Implementation Needed")
+                    .help(String(localized: "Implementation Needed", comment: "Tooltip for feature not yet implemented"))
                     .disabled(true)
                 }
             }
