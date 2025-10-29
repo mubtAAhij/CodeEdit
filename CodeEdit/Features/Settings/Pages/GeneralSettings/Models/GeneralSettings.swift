@@ -24,31 +24,30 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
+                NSLocalizedString("Appearance", comment: "General settings search key"),
+                NSLocalizedString("File Icon Style", comment: "General settings search key"),
                 "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
+                NSLocalizedString("Show Jump Bar", comment: "General settings search key"),
+                NSLocalizedString("Dim editors without focus", comment: "General settings search key"),
+                NSLocalizedString("Navigator Tab Bar Position", comment: "General settings search key"),
+                NSLocalizedString("Inspector Tab Bar Position", comment: "General settings search key"),
+                NSLocalizedString("Show Issues", comment: "General settings search key"),
+                NSLocalizedString("Show Live Issues", comment: "General settings search key"),
                 "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                NSLocalizedString("Automatically reveal in project navigator", comment: "General settings search key"),
+                NSLocalizedString("Reopen Behavior", comment: "General settings search key"),
+                NSLocalizedString("After the last window is closed", comment: "General settings search key"),
+                NSLocalizedString("File Extensions", comment: "General settings search key"),
+                NSLocalizedString("Project Navigator Size", comment: "General settings search key"),
+                NSLocalizedString("Find Navigator Detail", comment: "General settings search key"),
+                NSLocalizedString("Issue Navigator Detail", comment: "General settings search key"),
+                NSLocalizedString("Show "Open With CodeEdit" option in Finder", comment: "General settings search key"),
+                NSLocalizedString("'codeedit' Shell command", comment: "General settings search key"),
+                NSLocalizedString("Dialog Warnings", comment: "General settings search key"),
+                NSLocalizedString("Check for updates", comment: "General settings search key"),
+                NSLocalizedString("Automatically check for app updates", comment: "General settings search key"),
+                NSLocalizedString("Include pre-release versions", comment: "General settings search key")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -309,9 +308,9 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "One Line", comment: "Navigator detail label for single line")
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(localized: "Up to \(self.rawValue) lines", comment: "Navigator detail label for multiple lines")
             }
         }
     }
