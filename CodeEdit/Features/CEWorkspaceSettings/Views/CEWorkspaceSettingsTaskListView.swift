@@ -18,7 +18,7 @@ struct CEWorkspaceSettingsTaskListView: View {
 
     var body: some View {
         if settings.tasks.isEmpty {
-            Text("No tasks")
+            Text("No tasks", comment: "Empty state message when no tasks are available")
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         } else {
@@ -34,14 +34,14 @@ struct CEWorkspaceSettingsTaskListView: View {
                             self.selectedTaskID = task.id
                             self.showAddTaskSheet = true
                         } label: {
-                            Text("Edit")
+                            Text("Edit", comment: "Context menu action to edit a task")
                         }
                         Button {
                             settings.tasks.removeAll { $0.id == task.id }
                             try? workspaceSettingsManager.savePreferences()
                             taskManager.deleteTask(taskID: task.id)
                         } label: {
-                            Text("Delete")
+                            Text("Delete", comment: "Context menu action to delete a task")
                         }
                     }
             }
