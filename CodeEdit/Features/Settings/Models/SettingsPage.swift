@@ -26,14 +26,55 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case theme = "Themes"
         case textEditing = "Text Editing"
         case terminal = "Terminal"
-        case search = "Search"
+        case search
         case keybindings = "Key Bindings"
-        case sourceControl = "Source Control"
-        case components = "Components"
-        case location = "Locations"
-        case advanced = "Advanced"
+        case sourceControl
+        case components
+        case location
+        case advanced
         case languageServers = "Language Servers"
-        case developer = "Developer"
+        case developer
+        
+        var rawValue: String {
+            switch self {
+            case .general: return "General"
+            case .accounts: return "Accounts"
+            case .behavior: return "Behaviors"
+            case .navigation: return "Navigation"
+            case .theme: return "Themes"
+            case .textEditing: return "Text Editing"
+            case .terminal: return "Terminal"
+            case .search: return String(localized: "Search", comment: "Settings page name")
+            case .keybindings: return "Key Bindings"
+            case .sourceControl: return String(localized: "Source Control", comment: "Settings page name")
+            case .components: return String(localized: "Components", comment: "Settings page name")
+            case .location: return String(localized: "Locations", comment: "Settings page name")
+            case .advanced: return String(localized: "Advanced", comment: "Settings page name")
+            case .languageServers: return "Language Servers"
+            case .developer: return String(localized: "Developer", comment: "Settings page name")
+            }
+        }
+        
+        init?(rawValue: String) {
+            switch rawValue {
+            case "General": self = .general
+            case "Accounts": self = .accounts
+            case "Behaviors": self = .behavior
+            case "Navigation": self = .navigation
+            case "Themes": self = .theme
+            case "Text Editing": self = .textEditing
+            case "Terminal": self = .terminal
+            case String(localized: "Search", comment: "Settings page name"): self = .search
+            case "Key Bindings": self = .keybindings
+            case String(localized: "Source Control", comment: "Settings page name"): self = .sourceControl
+            case String(localized: "Components", comment: "Settings page name"): self = .components
+            case String(localized: "Locations", comment: "Settings page name"): self = .location
+            case String(localized: "Advanced", comment: "Settings page name"): self = .advanced
+            case "Language Servers": self = .languageServers
+            case String(localized: "Developer", comment: "Settings page name"): self = .developer
+            default: return nil
+            }
+        }
     }
 
     let id: UUID = UUID()
