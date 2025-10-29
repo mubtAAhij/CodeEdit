@@ -1,0 +1,3162 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "settings.source-control.git": {
+      "comment": "Source control settings search key for Git",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Git"
+          }
+        }
+      }
+    },
+    "settings.theme.light-appearance": {
+      "comment": "Theme settings search key for light appearance",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light Appearance"
+          }
+        }
+      }
+    },
+    "git.error.not-repository": {
+      "comment": "Error message when the directory is not a git repository",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not a git repository"
+          }
+        }
+      }
+    },
+    "alert.button.ok": {
+      "comment": "OK button title in alert dialogs",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "status-bar.encoding.utf8": {
+      "comment": "Status bar encoding selector label for UTF-8",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UTF 8"
+          }
+        }
+      }
+    },
+    "terminal.error.failed-to-start": {
+      "comment": "Error message shown when terminal fails to start",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to start a terminal session: \\(error.localizedDescription)"
+          }
+        }
+      }
+    },
+    "terminal.accessibility.label": {
+      "comment": "Accessibility label for terminal emulator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Emulator"
+          }
+        }
+      }
+    },
+    "utility-area.filter.placeholder": {
+      "comment": "Placeholder text for utility area filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        }
+      }
+    },
+    "utility-area.accessibility.label": {
+      "comment": "Accessibility label for utility area",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utility Area"
+          }
+        }
+      }
+    },
+    "welcome.button.clone-repository": {
+      "comment": "Welcome screen button to clone a git repository",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clone Git Repository..."
+          }
+        }
+      }
+    },
+    "welcome.button.create-file": {
+      "comment": "Welcome screen button to create a new file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create New File..."
+          }
+        }
+      }
+    },
+    "welcome.button.open-file-or-folder": {
+      "comment": "Welcome screen button to open a file or folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open File or Folder..."
+          }
+        }
+      }
+    },
+    "welcome.version.copy-help": {
+      "comment": "Help tooltip for copying system information",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy System Information to Clipboard"
+          }
+        }
+      }
+    },
+    "menu.file.open-recent": {
+      "comment": "Open Recent menu title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        }
+      }
+    },
+    "finder-sync.open-in-codeedit": {
+      "comment": "Finder extension menu item to open in CodeEdit",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in CodeEdit"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.accessibility.label": {
+      "comment": "Accessibility label for the editor tab bar",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Bar"
+          }
+        }
+      }
+    },
+    "editor.no-editor": {
+      "comment": "Message shown when no editor is open",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Editor"
+          }
+        }
+      }
+    },
+    "editor.image.cannot-preview": {
+      "comment": "Error message when an image cannot be previewed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cannot preview image"
+          }
+        }
+      }
+    },
+    "editor.loading.opening-file": {
+      "comment": "Message shown while a file is being opened",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening \\(filename)..."
+          }
+        }
+      }
+    },
+    "editor.file.cannot-retrieve-url": {
+      "comment": "Error message when file URL cannot be retrieved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cannot retrieve URL to the file you opened."
+          }
+        }
+      }
+    },
+    "feedback.window.title": {
+      "comment": "Feedback window title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feedback for CodeEdit"
+          }
+        }
+      }
+    },
+    "inspector.history.no-history": {
+      "comment": "Message shown when there is no history to display",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No History"
+          }
+        }
+      }
+    },
+    "inspector.accessibility.label": {
+      "comment": "Accessibility label for inspector area",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inspector"
+          }
+        }
+      }
+    },
+    "inspector.no-selection": {
+      "comment": "Message shown when nothing is selected in the inspector",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        }
+      }
+    },
+    "lsp.registry.error.invalid-response": {
+      "comment": "Error message when an invalid HTTP response is received",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid response received: \\(statusCode)"
+          }
+        }
+      }
+    },
+    "navigator.source-control.no-changes": {
+      "comment": "Message shown when there are no source control changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Changes"
+          }
+        }
+      }
+    },
+    "navigator.source-control.co-authored-by": {
+      "comment": "Co-author information in commit details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co-authored by: \\(commit.committer)\\n<\\(commit.committerEmail)>"
+          }
+        }
+      }
+    },
+    "navigator.accessibility.label": {
+      "comment": "Accessibility label for navigator area",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "navigator"
+          }
+        }
+      }
+    },
+    "notification.action-button": {
+      "comment": "Default action button title for notifications",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action"
+          }
+        }
+      }
+    },
+    "open-quickly.title": {
+      "comment": "Title for Open Quickly panel",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Quickly"
+          }
+        }
+      }
+    },
+    "settings.accounts.cancel": {
+      "comment": "Cancel button in account selection view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.language-server.lsp-binaries": {
+      "comment": "Language server settings search key for LSP binaries",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LSP Binaries"
+          }
+        }
+      }
+    },
+    "settings.search.extensions-folder": {
+      "comment": "Extensions folder name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "settings.source-control.no-ignored-files": {
+      "comment": "Message shown when there are no ignored files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No ignored files"
+          }
+        }
+      }
+    },
+    "about.footer.license": {
+      "comment": "License text in about window footer",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT License"
+          }
+        }
+      }
+    },
+    "about.version": {
+      "comment": "Version information in about window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version \\(appVersion)\\(appVersionPostfix) (\\(appBuild))"
+          }
+        }
+      }
+    },
+    "about.acknowledgements.title": {
+      "comment": "Title for acknowledgements view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledgements"
+          }
+        }
+      }
+    },
+    "about.contributors.title": {
+      "comment": "Title for contributors view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contributors"
+          }
+        }
+      }
+    },
+    "activity-viewer.accessibility.label": {
+      "comment": "Accessibility label for activity viewer",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity Viewer"
+          }
+        }
+      }
+    },
+    "activity-viewer.progress.working": {
+      "comment": "Accessibility value for indeterminate progress",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "working"
+          }
+        }
+      }
+    },
+    "ui.search.placeholder": {
+      "comment": "Placeholder text for search field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search"
+          }
+        }
+      }
+    },
+    "ui.panel.no-selection": {
+      "comment": "Message shown when no panel tab is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        }
+      }
+    },
+    "commands.title": {
+      "comment": "Title for commands palette",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commands"
+          }
+        }
+      }
+    },
+    "editor.jump-bar.no-selection": {
+      "comment": "Jump bar text when no file is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        }
+      }
+    },
+    "editor.tab.close": {
+      "comment": "Accessibility label for close tab button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "utility-area.tab.debug-console": {
+      "comment": "Debug console tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debug Console"
+          }
+        }
+      }
+    },
+    "utility-area.tab.output": {
+      "comment": "Output tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Output"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.picker.label": {
+      "comment": "Label for terminal tab picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Tab"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.no-terminals": {
+      "comment": "Message shown when no terminals are open",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Open Terminals"
+          }
+        }
+      }
+    },
+    "menu.extensions": {
+      "comment": "Extensions menu title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "menu.extensions.open-window": {
+      "comment": "Open extensions window menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Extensions Window"
+          }
+        }
+      }
+    },
+    "workspace.error.git-refresh": {
+      "comment": "Error title when git data refresh fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error refreshing Git data"
+          }
+        }
+      }
+    },
+    "workspace.accessibility.label": {
+      "comment": "Accessibility label for workspace area",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "workspace area"
+          }
+        }
+      }
+    },
+    "settings.navigation.open-in-tabs": {
+      "comment": "Navigation style option to open files in tabs",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Tabs"
+          }
+        }
+      }
+    },
+    "settings.navigation.open-in-place": {
+      "comment": "Navigation style option to open files in place",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Place"
+          }
+        }
+      }
+    },
+    "settings.theme.import": {
+      "comment": "Import theme open panel button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import"
+          }
+        }
+      }
+    },
+    "settings.theme.error.file-not-found": {
+      "comment": "Error message when theme file URL is not found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theme file URL not found"
+          }
+        }
+      }
+    },
+    "settings.theme.token.bold": {
+      "comment": "Help text for bold toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
+          }
+        }
+      }
+    },
+    "settings.theme.token.italic": {
+      "comment": "Help text for italic toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
+          }
+        }
+      }
+    },
+    "settings.font.system-font": {
+      "comment": "System font option in font picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System Font"
+          }
+        }
+      }
+    },
+    "settings.font.other-fonts": {
+      "comment": "Menu label for other fonts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other fonts..."
+          }
+        }
+      }
+    },
+    "settings.text-editing.warning-characters.description": {
+      "comment": "Description of warning characters feature",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit can help identify invisible or ambiguous characters, such as zero-width spaces, directional quotes, and more. These will appear with a red block highlighting them. You can disable characters or add more here."
+          }
+        }
+      }
+    },
+    "settings.text-editing.warning-characters.done": {
+      "comment": "Done button in warning characters view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "source-control.error.discard-changes": {
+      "comment": "Error title when discarding changes fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to discard changes"
+          }
+        }
+      }
+    },
+    "tasks.start": {
+      "comment": "Start task button label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        }
+      }
+    },
+    "tasks.start.help": {
+      "comment": "Help text for start task button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start selected task"
+          }
+        }
+      }
+    },
+    "tasks.stop": {
+      "comment": "Stop task button label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
+    },
+    "tasks.stop.help": {
+      "comment": "Help text for stop task button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop selected task"
+          }
+        }
+      }
+    },
+    "terminal.shell.error.bash-file-not-found": {
+      "comment": "Error message when bash injection file is not found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to find bash injection file."
+          }
+        }
+      }
+    },
+    "terminal.shell.error.zsh-file-not-found": {
+      "comment": "Error message when zsh injection file is not found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to find zsh injection file."
+          }
+        }
+      }
+    },
+    "terminal.exit-code": {
+      "comment": "Terminal exit code message",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exit code: \\(exitCode)\\n\\r\\n"
+          }
+        }
+      }
+    },
+    "terminal.new-session-prompt": {
+      "comment": "Prompt to create a new terminal tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To open a new session, create a new terminal tab."
+          }
+        }
+      }
+    },
+    "editor.history.navigate-back": {
+      "comment": "Help text for navigate back button in editor history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate back"
+          }
+        }
+      }
+    },
+    "editor.history.navigate-forward": {
+      "comment": "Help text for navigate forward button in editor history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate forward"
+          }
+        }
+      }
+    },
+    "extensions.detail.features": {
+      "comment": "Section title for extension features",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Features"
+          }
+        }
+      }
+    },
+    "extensions.detail.settings": {
+      "comment": "Title for extension settings section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extension Settings"
+          }
+        }
+      }
+    },
+    "navigator.find.indexing-progress": {
+      "comment": "Progress text showing indexing percentage",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexing \\(Int(progress * 100))%"
+          }
+        }
+      }
+    },
+    "navigator.find.indexing-help": {
+      "comment": "Help text explaining indexing process",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexing current workspace files for search. Searches performed while indexing may return incomplete results."
+          }
+        }
+      }
+    },
+    "navigator.find.filter": {
+      "comment": "Placeholder text for filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        }
+      }
+    },
+    "navigator.find.filter-help": {
+      "comment": "Help text for filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show results with matching text"
+          }
+        }
+      }
+    },
+    "navigator.project.accessibility-label": {
+      "comment": "Accessibility label for project navigator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project Navigator"
+          }
+        }
+      }
+    },
+    "navigator.project.no-filter-results": {
+      "comment": "Message shown when filter returns no results",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Filter Results"
+          }
+        }
+      }
+    },
+    "navigator.source-control.no-remotes": {
+      "comment": "Message shown when no git remotes are configured",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No remotes"
+          }
+        }
+      }
+    },
+    "navigator.source-control.add-remote": {
+      "comment": "Button to add a git remote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
+    "navigator.source-control.commit-details": {
+      "comment": "Title for commit details view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit Details"
+          }
+        }
+      }
+    },
+    "navigator.source-control.commit.no-changes": {
+      "comment": "Message shown when a commit has no changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Changes"
+          }
+        }
+      }
+    },
+    "settings.accounts.delete-account": {
+      "comment": "Settings search key for delete account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Account..."
+          }
+        }
+      }
+    },
+    "settings.accounts.add-account": {
+      "comment": "Settings search key for add account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account..."
+          }
+        }
+      }
+    },
+    "settings.language-servers.warning": {
+      "comment": "Warning message about experimental language server installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning: Language server installation is experimental. Use at your own risk."
+          }
+        }
+      }
+    },
+    "settings.language-servers.info": {
+      "comment": "Information text about language server installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit makes use of the Mason Registry for language server installation. To install a package, CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of the language server in Application Support.\\n\\nLanguage server installation is still experimental, there may be bugs and expect this flow to change over time."
+          }
+        }
+      }
+    },
+    "settings.locations.application-support": {
+      "comment": "Label for Application Support directory location",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Application Support"
+          }
+        }
+      }
+    },
+    "settings.locations.extensions": {
+      "comment": "Label for Extensions directory location",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "about.button.contributors": {
+      "comment": "About window button to view contributors",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contributors"
+          }
+        }
+      }
+    },
+    "about.button.acknowledgements": {
+      "comment": "About window button to view acknowledgements",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledgements"
+          }
+        }
+      }
+    },
+    "workspace-settings.task.add.cancel": {
+      "comment": "Cancel button in add task view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "workspace-settings.task.add.save": {
+      "comment": "Save button in add task view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "workspace-settings.task.edit.delete": {
+      "comment": "Delete button in edit task view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "workspace-settings.task.edit.done": {
+      "comment": "Done button in edit task view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "menu.app.about": {
+      "comment": "About CodeEdit menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About CodeEdit"
+          }
+        }
+      }
+    },
+    "menu.app.check-for-updates": {
+      "comment": "Check for updates menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for updates..."
+          }
+        }
+      }
+    },
+    "menu.app.settings": {
+      "comment": "Settings menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings..."
+          }
+        }
+      }
+    },
+    "menu.window.welcome": {
+      "comment": "Welcome to CodeEdit window menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to CodeEdit"
+          }
+        }
+      }
+    },
+    "menu.window.about": {
+      "comment": "About CodeEdit window menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About CodeEdit"
+          }
+        }
+      }
+    },
+    "menu.window.manage-extensions": {
+      "comment": "Manage Extensions window menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Extensions"
+          }
+        }
+      }
+    },
+    "source-control.remote.github": {
+      "comment": "GitHub remote provider name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub"
+          }
+        }
+      }
+    },
+    "source-control.remote.bitbucket": {
+      "comment": "BitBucket remote provider name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket"
+          }
+        }
+      }
+    },
+    "source-control.remote.gitlab": {
+      "comment": "GitLab remote provider name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab"
+          }
+        }
+      }
+    },
+    "source-control.remote.add-existing": {
+      "comment": "Menu item to add existing remote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Existing Remote..."
+          }
+        }
+      }
+    },
+    "source-control.branch.create": {
+      "comment": "Branch option to create a new remote branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\\(sourceControlManager.currentBranch?.name ?? \"\") (Create)"
+          }
+        }
+      }
+    },
+    "source-control.branch.label": {
+      "comment": "Label for branch picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branch"
+          }
+        }
+      }
+    },
+    "utility-area.debug.no-task-selected": {
+      "comment": "Message shown when no task is selected in debug view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Task Selected"
+          }
+        }
+      }
+    },
+    "utility-area.debug.no-tasks-running": {
+      "comment": "Message shown when no tasks are running",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Tasks are Running"
+          }
+        }
+      }
+    },
+    "utility-area.debug.delete-task": {
+      "comment": "Context menu item to delete a task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.no-selection": {
+      "comment": "Message shown when no terminal is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.reset-help": {
+      "comment": "Help text for reset terminal button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset the terminal"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.split-help": {
+      "comment": "Help text for split terminal button (not yet implemented)",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Implementation Needed"
+          }
+        }
+      }
+    },
+    "menu.editor.structure": {
+      "comment": "Editor menu structure submenu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Structure"
+          }
+        }
+      }
+    },
+    "menu.editor.move-line-up": {
+      "comment": "Menu item to move line up",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move line up"
+          }
+        }
+      }
+    },
+    "menu.editor.move-line-down": {
+      "comment": "Menu item to move line down",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move line down"
+          }
+        }
+      }
+    },
+    "menu.help.whats-new": {
+      "comment": "Help menu item for what's new",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What's New in CodeEdit"
+          }
+        }
+      }
+    },
+    "menu.help.release-notes": {
+      "comment": "Help menu item for release notes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Release Notes"
+          }
+        }
+      }
+    },
+    "menu.help.report-issue": {
+      "comment": "Help menu item to report an issue",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report an Issue"
+          }
+        }
+      }
+    },
+    "lsp.notification.install-title": {
+      "comment": "Notification title prompting to install a language server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install \\(lspLanguageTitle) Language Server"
+          }
+        }
+      }
+    },
+    "lsp.notification.install-description": {
+      "comment": "Notification description explaining language server installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install the \\(lspLanguageTitle) language server to enable code intelligence features."
+          }
+        }
+      }
+    },
+    "lsp.notification.install-button": {
+      "comment": "Button to install language server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install"
+          }
+        }
+      }
+    },
+    "navigator.tab.project": {
+      "comment": "Project navigator tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project"
+          }
+        }
+      }
+    },
+    "navigator.tab.source-control": {
+      "comment": "Source control navigator tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Control"
+          }
+        }
+      }
+    },
+    "navigator.tab.search": {
+      "comment": "Search navigator tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search"
+          }
+        }
+      }
+    },
+    "settings.search.exclude": {
+      "comment": "Header for search exclusion section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude"
+          }
+        }
+      }
+    },
+    "settings.search.exclude-description": {
+      "comment": "Description of search exclusion feature",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add glob patterns to exclude matching files and folders from searches and open quickly. This will inherit glob patterns from the Exclude from Project setting."
+          }
+        }
+      }
+    },
+    "settings.search.no-excluded-patterns": {
+      "comment": "Message shown when no glob patterns are excluded",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No excluded glob patterns"
+          }
+        }
+      }
+    },
+    "settings.source-control.tab.git": {
+      "comment": "Git settings tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Git"
+          }
+        }
+      }
+    },
+    "settings.source-control.title": {
+      "comment": "Source control settings title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Control"
+          }
+        }
+      }
+    },
+    "settings.source-control.description": {
+      "comment": "Source control settings description with link",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back up your files, collaborate with others, and tag your releases. [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)"
+          }
+        }
+      }
+    },
+    "settings.search.prompt": {
+      "comment": "Search prompt in settings sidebar",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search"
+          }
+        }
+      }
+    },
+    "settings.implementation-needed": {
+      "comment": "Placeholder for unimplemented settings pages",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Implementation Needed"
+          }
+        }
+      }
+    },
+    "settings.glob-pattern.edit": {
+      "comment": "Context menu item to edit glob pattern",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "settings.glob-pattern.add": {
+      "comment": "Context menu item to add glob pattern",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
+    "settings.glob-pattern.remove": {
+      "comment": "Context menu item to remove glob pattern",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.close-editor": {
+      "comment": "Help text for close editor button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close this Editor"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.unfocus-editor": {
+      "comment": "Help text for unfocus editor button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unfocus this Editor"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.focus-editor": {
+      "comment": "Help text for focus editor button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus this Editor"
+          }
+        }
+      }
+    },
+    "extensions.window.title": {
+      "comment": "Extensions window title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "extensions.select-extension": {
+      "comment": "Message shown when no extension is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select an extension"
+          }
+        }
+      }
+    },
+    "extensions.count-selected": {
+      "comment": "Message showing count of selected extensions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\\(selection.count) selected"
+          }
+        }
+      }
+    },
+    "inspector.history.show-commit": {
+      "comment": "Button to show commit details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Commit"
+          }
+        }
+      }
+    },
+    "inspector.history.open-in-code-review": {
+      "comment": "Button to open in code review",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Code Review"
+          }
+        }
+      }
+    },
+    "inspector.history.email-author": {
+      "comment": "Button to email the commit author",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Email \\(commit.author)"
+          }
+        }
+      }
+    },
+    "inspector.tab.file": {
+      "comment": "File inspector tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File Inspector"
+          }
+        }
+      }
+    },
+    "inspector.tab.history": {
+      "comment": "History inspector tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History Inspector"
+          }
+        }
+      }
+    },
+    "inspector.tab.internal-development": {
+      "comment": "Internal development inspector tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Internal Development"
+          }
+        }
+      }
+    },
+    "lsp.registry.error.installation-running": {
+      "comment": "Error message when a package installation is already in progress",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A package is already being installed."
+          }
+        }
+      }
+    },
+    "lsp.registry.error.invalid-response-code": {
+      "comment": "Error message when an invalid HTTP response code is received",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid response received: \\(statusCode)"
+          }
+        }
+      }
+    },
+    "lsp.registry.error.download-failed": {
+      "comment": "Error message when download fails for a URL",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download for \\(url) error."
+          }
+        }
+      }
+    },
+    "lsp.cargo.step.initialize": {
+      "comment": "Cargo install step name for directory initialization",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize Directory Structure"
+          }
+        }
+      }
+    },
+    "lsp.cargo.step.install": {
+      "comment": "Cargo install step name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Package Using cargo"
+          }
+        }
+      }
+    },
+    "lsp.cargo.confirmation": {
+      "comment": "Confirmation message for cargo package installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This requires the cargo package \\(qualifiedPackageName).\\nAllow CodeEdit to install this package?"
+          }
+        }
+      }
+    },
+    "workspace-settings.tasks.no-tasks": {
+      "comment": "Message shown when no tasks are configured",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No tasks"
+          }
+        }
+      }
+    },
+    "workspace-settings.tasks.edit": {
+      "comment": "Context menu item to edit task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "workspace-settings.tasks.delete": {
+      "comment": "Context menu item to delete task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "toolbar.branch-picker.current-branch": {
+      "comment": "Header label for current branch section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current Branch"
+          }
+        }
+      }
+    },
+    "toolbar.branch-picker.branches": {
+      "comment": "Header label for branches section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branches"
+          }
+        }
+      }
+    },
+    "toolbar.branch-picker.error.checkout": {
+      "comment": "Error title when branch checkout fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to checkout"
+          }
+        }
+      }
+    },
+    "document.open-dialog.title": {
+      "comment": "Title for open file/workspace dialog",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Workspace or File"
+          }
+        }
+      }
+    },
+    "document.error.failed-to-get": {
+      "comment": "Error message when document cannot be retrieved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to get document"
+          }
+        }
+      }
+    },
+    "workspace.search.error.no-index": {
+      "comment": "Error message when search index is not available",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No index found. Try rebuilding the index."
+          }
+        }
+      }
+    },
+    "workspace.search.error.decode-failed": {
+      "comment": "Error message when file content cannot be decoded",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to decode file content."
+          }
+        }
+      }
+    },
+    "workspace.search.error.invalid-regex": {
+      "comment": "Error message when regex pattern is invalid",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid regular expression."
+          }
+        }
+      }
+    },
+    "workspace.index.processing-title": {
+      "comment": "Title for indexing notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexing | Processing files"
+          }
+        }
+      }
+    },
+    "workspace.index.processing-message": {
+      "comment": "Message for indexing notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creating an index to enable fast and accurate searches within your codebase."
+          }
+        }
+      }
+    },
+    "workspace.index.finished-title": {
+      "comment": "Title for finished indexing notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finished indexing"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.new-terminal": {
+      "comment": "Menu item to create new terminal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Terminal"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.new-with-profile": {
+      "comment": "Menu to create new terminal with profile",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Terminal With Profile"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.profile.default": {
+      "comment": "Default terminal profile option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.sidebar.label": {
+      "comment": "Accessibility label for terminals sidebar",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminals"
+          }
+        }
+      }
+    },
+    "settings.accounts.no-accounts": {
+      "comment": "Message shown when no accounts are configured",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No accounts"
+          }
+        }
+      }
+    },
+    "settings.accounts.add-button": {
+      "comment": "Button to add a new account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account..."
+          }
+        }
+      }
+    },
+    "settings.accounts.unsupported-client": {
+      "comment": "Message shown when git client is not supported",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This git client is currently not supported."
+          }
+        }
+      }
+    },
+    "settings.accounts.close": {
+      "comment": "Close button in unsupported client view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "settings.developer.title": {
+      "comment": "Developer settings search key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Developer"
+          }
+        }
+      }
+    },
+    "settings.developer.lsp": {
+      "comment": "Language Server Protocol settings search key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language Server Protocol"
+          }
+        }
+      }
+    },
+    "settings.developer.lsp-binaries": {
+      "comment": "LSP Binaries settings search key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LSP Binaries"
+          }
+        }
+      }
+    },
+    "settings.developer.show-internal-inspector": {
+      "comment": "Show internal inspector settings search key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Internal Development Inspector"
+          }
+        }
+      }
+    },
+    "source-control.checkout.title": {
+      "comment": "Title for checkout branch view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checkout branch"
+          }
+        }
+      }
+    },
+    "source-control.checkout.description": {
+      "comment": "Description for checkout branch view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select a branch to checkout"
+          }
+        }
+      }
+    },
+    "source-control.checkout.cancel": {
+      "comment": "Cancel button in checkout branch view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "source-control.checkout.button": {
+      "comment": "Checkout button in checkout branch view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checkout"
+          }
+        }
+      }
+    },
+    "status-bar.indent.use-tabs": {
+      "comment": "Menu item to use tabs for indentation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Tabs"
+          }
+        }
+      }
+    },
+    "status-bar.indent.use-spaces": {
+      "comment": "Menu item to use spaces for indentation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Spaces"
+          }
+        }
+      }
+    },
+    "status-bar.indent.spaces-count": {
+      "comment": "Tab width option showing number of spaces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\\(index) Spaces"
+          }
+        }
+      }
+    },
+    "status-bar.indent.current-spaces": {
+      "comment": "Current tab width label showing number of spaces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\\(defaultTabWidth) Spaces"
+          }
+        }
+      }
+    },
+    "utility-area.output.source-picker.label": {
+      "comment": "Label for output source picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Output Source"
+          }
+        }
+      }
+    },
+    "utility-area.output.no-source": {
+      "comment": "Message shown when no output source is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selected Output Source"
+          }
+        }
+      }
+    },
+    "utility-area.output.no-language-servers": {
+      "comment": "Message shown when no language servers are available",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Language Servers"
+          }
+        }
+      }
+    },
+    "utility-area.output.no-extensions": {
+      "comment": "Message shown when no extensions are available",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Extensions"
+          }
+        }
+      }
+    },
+    "navigator.project.replace-file-message": {
+      "comment": "Alert message asking to replace existing file or folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A file or folder with the name \\(fileName) already exists in the destination folder. Do you want to replace it?"
+          }
+        }
+      }
+    },
+    "navigator.project.replace-file-warning": {
+      "comment": "Warning that file replacement cannot be undone",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This action is irreversible!"
+          }
+        }
+      }
+    },
+    "navigator.project.replace-button": {
+      "comment": "Button to replace the file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace"
+          }
+        }
+      }
+    },
+    "navigator.project.replace-cancel": {
+      "comment": "Button to cancel file replacement",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "navigator.source-control.history.loading": {
+      "comment": "Message shown while loading git history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading History"
+          }
+        }
+      }
+    },
+    "navigator.source-control.history.empty": {
+      "comment": "Message shown when there is no git history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No History"
+          }
+        }
+      }
+    },
+    "navigator.source-control.history.error": {
+      "comment": "Error message when git history fails to load",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Loading History"
+          }
+        }
+      }
+    },
+    "navigator.source-control.history.retry": {
+      "comment": "Button to retry loading git history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry"
+          }
+        }
+      }
+    },
+    "navigator.source-control.repository.branches": {
+      "comment": "Section label for branches",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branches"
+          }
+        }
+      }
+    },
+    "navigator.source-control.repository.current": {
+      "comment": "Label indicating current branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(current)"
+          }
+        }
+      }
+    },
+    "navigator.source-control.repository.stashed-changes": {
+      "comment": "Section label for stashed changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stashed Changes"
+          }
+        }
+      }
+    },
+    "navigator.source-control.repository.remotes": {
+      "comment": "Section label for remotes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remotes"
+          }
+        }
+      }
+    },
+    "navigator.source-control.toolbar.filter": {
+      "comment": "Placeholder text for source control filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        }
+      }
+    },
+    "navigator.source-control.toolbar.filter-help": {
+      "comment": "Help text for source control filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter Changes Navigator"
+          }
+        }
+      }
+    },
+    "navigator.source-control.toolbar.discard-all": {
+      "comment": "Menu item to discard all changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard All Changes..."
+          }
+        }
+      }
+    },
+    "navigator.source-control.toolbar.stash-changes": {
+      "comment": "Menu item to stash changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stash Changes..."
+          }
+        }
+      }
+    },
+    "settings.error": {
+      "comment": "Error placeholder for unimplemented settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error"
+          }
+        }
+      }
+    },
+    "app.terminate.lsp.title": {
+      "comment": "Title for language server termination notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopping Language Servers"
+          }
+        }
+      }
+    },
+    "app.terminate.lsp.message": {
+      "comment": "Message for language server termination notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopping running language server processes..."
+          }
+        }
+      }
+    },
+    "app.terminate.tasks.title": {
+      "comment": "Title for task termination notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminating Tasks"
+          }
+        }
+      }
+    },
+    "app.terminate.tasks.message": {
+      "comment": "Message for task termination notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interrupting all running tasks before quitting..."
+          }
+        }
+      }
+    },
+    "editor.options.show-minimap": {
+      "comment": "Toggle to show minimap in editor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        }
+      }
+    },
+    "editor.options.wrap-lines": {
+      "comment": "Toggle to wrap lines in editor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap Lines"
+          }
+        }
+      }
+    },
+    "editor.split.vertical": {
+      "comment": "Help text for split editor vertically button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Vertically"
+          }
+        }
+      }
+    },
+    "editor.split.horizontal": {
+      "comment": "Help text for split editor horizontally button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Horizontally"
+          }
+        }
+      }
+    },
+    "lsp.pip.step.initialize": {
+      "comment": "Pip install step name for directory initialization",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize Directory Structure"
+          }
+        }
+      }
+    },
+    "lsp.pip.step.install": {
+      "comment": "Pip install step name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Package Using pip"
+          }
+        }
+      }
+    },
+    "lsp.pip.confirmation": {
+      "comment": "Confirmation message for pip package installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This requires the pip package \\(source.pkgName).\\nAllow CodeEdit to install this package?"
+          }
+        }
+      }
+    },
+    "lsp.pip.step.verify": {
+      "comment": "Pip install step name for verification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verify Installation"
+          }
+        }
+      }
+    },
+    "source-control.fetch.title": {
+      "comment": "Title for fetch changes view with project name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetching changes for \"\\(projectName)\"..."
+          }
+        }
+      }
+    },
+    "source-control.fetch.description": {
+      "comment": "Description for fetch changes process",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit is fetching changes and updating the status of files in the local repository."
+          }
+        }
+      }
+    },
+    "source-control.fetch.progress": {
+      "comment": "Progress message while fetching changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetching changes..."
+          }
+        }
+      }
+    },
+    "source-control.fetch.cancel": {
+      "comment": "Cancel button in fetch changes view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "source-control.fetch.error": {
+      "comment": "Error title when fetch fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to fetch changes"
+          }
+        }
+      }
+    },
+    "source-control.switch.title": {
+      "comment": "Title asking to confirm branch switch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to switch to \"\\(branch.name)\"?"
+          }
+        }
+      }
+    },
+    "source-control.switch.description": {
+      "comment": "Description explaining what happens when switching branches",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All files in the local repository will switch from the current branch (\"\\(sourceControlManager.currentBranch?.name ?? \"\")\") to \"\\(branch.name)\"."
+          }
+        }
+      }
+    },
+    "source-control.switch.cancel": {
+      "comment": "Cancel button in switch branch view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "source-control.switch.button": {
+      "comment": "Switch button in switch branch view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch"
+          }
+        }
+      }
+    },
+    "source-control.switch.error": {
+      "comment": "Error title when branch checkout fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to checkout"
+          }
+        }
+      }
+    },
+    "utility-area.output.extension-title": {
+      "comment": "Title for extension output source",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extension - \\(source.extensionInfo.name)"
+          }
+        }
+      }
+    },
+    "utility-area.output.lsp-title": {
+      "comment": "Title for language server output source",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language Server - \\(source.id)"
+          }
+        }
+      }
+    },
+    "utility-area.output.dev-title": {
+      "comment": "Title for internal development output source",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Internal Development Output"
+          }
+        }
+      }
+    },
+    "utility-area.output.no-output": {
+      "comment": "Message shown when no output source is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No output"
+          }
+        }
+      }
+    },
+    "utility-area.output.filter": {
+      "comment": "Filter field placeholder in output view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.tab.name": {
+      "comment": "Placeholder for terminal name field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.tab.rename": {
+      "comment": "Context menu item to rename terminal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename..."
+          }
+        }
+      }
+    },
+    "utility-area.terminal.tab.kill-multiple": {
+      "comment": "Context menu item to kill multiple terminals",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kill Terminals"
+          }
+        }
+      }
+    },
+    "utility-area.terminal.tab.kill-single": {
+      "comment": "Context menu item to kill single terminal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kill Terminal"
+          }
+        }
+      }
+    },
+    "settings.source-control.general.section": {
+      "comment": "Section header for source control general settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Control"
+          }
+        }
+      }
+    },
+    "settings.source-control.comparison.local-left": {
+      "comment": "Comparison view option for local revision on left",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local Revision on Left Side"
+          }
+        }
+      }
+    },
+    "settings.source-control.comparison.local-right": {
+      "comment": "Comparison view option for local revision on right",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local Revision on Right Side"
+          }
+        }
+      }
+    },
+    "settings.source-control.navigator.sort-by-name": {
+      "comment": "Navigator sort option by name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort by Name"
+          }
+        }
+      }
+    },
+    "settings.source-control.navigator.sort-by-date": {
+      "comment": "Navigator sort option by date",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort by Date"
+          }
+        }
+      }
+    },
+    "settings.theme.extensions-folder": {
+      "comment": "Extensions folder name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "settings.theme.appearance.light": {
+      "comment": "Light appearance enum raw value",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light Appearance"
+          }
+        }
+      }
+    },
+    "settings.theme.appearance.dark": {
+      "comment": "Dark appearance enum raw value",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark Appearance"
+          }
+        }
+      }
+    },
+    "settings.theme.export-theme": {
+      "comment": "Export theme save panel button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export"
+          }
+        }
+      }
+    },
+    "settings.theme.export-all": {
+      "comment": "Export all themes open panel button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export"
+          }
+        }
+      }
+    },
+    "settings.text-editing.warning-chars.key-column": {
+      "comment": "Column name for unicode character code",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unicode Character Code"
+          }
+        }
+      }
+    },
+    "settings.text-editing.warning-chars.value-column": {
+      "comment": "Column name for notes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notes"
+          }
+        }
+      }
+    },
+    "settings.text-editing.warning-chars.add-instruction": {
+      "comment": "Instruction for adding new warning character",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add A Character As A Hexidecimal Unicode Value"
+          }
+        }
+      }
+    },
+    "settings.text-editing.warning-chars.restore": {
+      "comment": "Button to restore default warning characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore Defaults"
+          }
+        }
+      }
+    },
+    "settings.text-editing.warning-chars.empty": {
+      "comment": "Message shown when no warning characters are configured",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No warning characters"
+          }
+        }
+      }
+    },
+    "git.clone.state.cloning": {
+      "comment": "Git clone progress state - cloning",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloning"
+          }
+        }
+      }
+    },
+    "git.clone.state.counting": {
+      "comment": "Git clone progress state - counting objects",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counting"
+          }
+        }
+      }
+    },
+    "git.clone.state.compressing": {
+      "comment": "Git clone progress state - compressing objects",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compressing"
+          }
+        }
+      }
+    },
+    "git.clone.state.receiving": {
+      "comment": "Git clone progress state - receiving objects",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Receiving"
+          }
+        }
+      }
+    },
+    "git.clone.state.resolving": {
+      "comment": "Git clone progress state - resolving deltas",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resolving"
+          }
+        }
+      }
+    }
+  }
+}
