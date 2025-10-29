@@ -19,7 +19,7 @@ struct UtilityAreaView: View {
             darkDivider: true
         )
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Utility Area")
+        .accessibilityLabel(NSLocalizedString("Utility Area", comment: "Accessibility label"))
         .accessibilityIdentifier("UtilityArea")
     }
 }
