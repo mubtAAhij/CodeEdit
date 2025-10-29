@@ -18,8 +18,8 @@ extension SettingsData {
         var searchKeys: [String] {
             [
                 "Accounts",
-                "Delete Account...",
-                "Add Account..."
+                String(localized: "Delete Account...", comment: "Delete account action"),
+                String(localized: "Add Account...", comment: "Add account action")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }

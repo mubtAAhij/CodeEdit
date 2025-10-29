@@ -12,22 +12,22 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: "Quick Open",
-            title: "Quick Open",
+            name: String(localized: "Quick Open", comment: "Command name for quick open feature"),
+            title: String(localized: "Quick Open", comment: "Command title for quick open feature"),
             id: "quick_open",
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Navigator",
-            title: "Toggle Navigator",
+            name: String(localized: "Toggle Navigator", comment: "Command name for toggling navigator panel"),
+            title: String(localized: "Toggle Navigator", comment: "Command title for toggling navigator panel"),
             id: "toggle_left_sidebar",
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Inspector",
-            title: "Toggle Inspector",
+            name: String(localized: "Toggle Inspector", comment: "Command name for toggling inspector panel"),
+            title: String(localized: "Toggle Inspector", comment: "Command title for toggling inspector panel"),
             id: "toggle_right_sidebar",
             command: { [weak self] in self?.toggleLastPanel() }
         )
@@ -105,7 +105,7 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle("Workspace Settings")
+            settingsWindow.setAccessibilityTitle(String(localized: "Workspace Settings", comment: "Accessibility title for workspace settings window"))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }

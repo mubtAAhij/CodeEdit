@@ -53,17 +53,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "BitBucket Cloud")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "BitBucket Server")
             case .github:
-                return "GitHub"
+                return String(localized: "GitHub")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "GitHub Enterprise")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "GitLab")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "GitLab Self-hosted")
             }
         }
 

@@ -10,16 +10,16 @@ import SwiftUI
 struct HelpCommands: Commands {
     var body: some Commands {
         CommandGroup(after: .help) {
-            Button("What's New in CodeEdit") {
+            Button(String(localized: "What's New in CodeEdit", comment: "Help menu item to view what's new")) {
 
             }
             .disabled(true)
 
-            Button("Release Notes") {
+            Button(String(localized: "Release Notes", comment: "Help menu item to view release notes")) {
             }
             .disabled(true)
 
-            Button("Report an Issue") {
+            Button(String(localized: "Report an Issue", comment: "Help menu item to report an issue")) {
                 NSApp.sendAction(#selector(AppDelegate.openFeedback(_:)), to: nil, from: nil)
             }
         }

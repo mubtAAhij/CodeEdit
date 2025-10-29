@@ -19,9 +19,9 @@ enum UtilityAreaTab: WorkspacePanelTab, CaseIterable {
         case .terminal:
             return "Terminal"
         case .debugConsole:
-            return "Debug Console"
+            return String(localized: "Debug Console", comment: "Title for debug console tab")
         case .output:
-            return "Output"
+            return String(localized: "Output", comment: "Title for output tab")
         }
     }
 
