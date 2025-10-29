@@ -23,12 +23,9 @@ struct SourceControlSwitchView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Do you want to switch to “\(branch.name)”?")
+                    Text(String(localized: "source-control.switch.title", defaultValue: "Do you want to switch to \"(branch.name)\"?", comment: "Title asking to confirm branch switch"))
                         .font(.headline)
-                    Text(
-                        "All files in the local repository will switch from the current branch " +
-                        "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
-                    )
+                    Text(String(localized: "source-control.switch.description", defaultValue: "All files in the local repository will switch from the current branch (\"\(sourceControlManager.currentBranch?.name ?? "")\") to \"\(branch.name)\".", comment: "Description explaining what happens when switching branches"))
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
                 }
@@ -42,13 +39,13 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "source-control.switch.cancel", defaultValue: "Cancel", comment: "Cancel button in switch branch view"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Switch")
+                    Text(String(localized: "source-control.switch.button", defaultValue: "Switch", comment: "Switch button in switch branch view"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -70,7 +67,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.switch.error", defaultValue: "Failed to checkout", comment: "Error title when branch checkout fails"), error: error)
             }
         }
     }
