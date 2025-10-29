@@ -14,23 +14,23 @@ struct StatusBarIndentSelector: View {
     var body: some View {
         Menu {
             Button {} label: {
-                Text("Use Tabs")
+                Text(String(localized: "Use Tabs"))
             }.disabled(true)
 
             Button {} label: {
-                Text("Use Spaces")
+                Text(String(localized: "Use Spaces"))
             }.disabled(true)
 
             Divider()
 
             Picker("Tab Width", selection: $defaultTabWidth) {
                 ForEach(2..<9) { index in
-                    Text("\(index) Spaces")
+                    Text(String(localized: "\(index) Spaces"))
                         .tag(index)
                 }
             }
         } label: {
-            Text("\(defaultTabWidth) Spaces")
+            Text(String(localized: "\(defaultTabWidth) Spaces"))
         }
         .menuStyle(StatusBarMenuStyle())
         .onHover { isHovering($0) }
