@@ -55,13 +55,13 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     ProgressView {
-                        Text("Loading History")
+                        Text("Loading History", comment: "Status text while history is being loaded")
                     }
                     Spacer()
                 }
             case .ready:
                 if commitHistory.isEmpty {
-                    CEContentUnavailableView("No History")
+                    CEContentUnavailableView(String(localized: "No History"))
                 } else {
                     GeometryReader { geometry in
                         ZStack {
@@ -89,7 +89,7 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     CEContentUnavailableView(
-                        "Error Loading History",
+                        String(localized: "Error Loading History"),
                         description: error.localizedDescription,
                         systemImage: "exclamationmark.triangle"
                     ) {
@@ -98,7 +98,7 @@ struct SourceControlNavigatorHistoryView: View {
                                 await updateCommitHistory()
                             }
                         } label: {
-                            Text("Retry")
+                            Text("Retry", comment: "Button to retry loading history")
                         }
                     }
                     Spacer()
