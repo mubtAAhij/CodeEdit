@@ -20,13 +20,13 @@ struct InvisiblesSettingsView: View {
             Form {
                 Section {
                     VStack {
-                        Toggle(isOn: $invisibleCharacters.showSpaces) { Text("Show Spaces") }
+                        Toggle(isOn: $invisibleCharacters.showSpaces) { Text("Show Spaces", comment: "Toggle to show space characters") }
                         if invisibleCharacters.showSpaces {
                             TextField(
                                 text: $invisibleCharacters.spaceReplacement,
-                                prompt: Text("Default: \(Config.default.spaceReplacement)")
+                                prompt: Text("Default: \(Config.default.spaceReplacement)", comment: "Placeholder showing default space character")
                             ) {
-                                Text("Character used to render spaces")
+                                Text("Character used to render spaces", comment: "Label for space character input field")
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -35,13 +35,13 @@ struct InvisiblesSettingsView: View {
                     }
 
                     VStack {
-                        Toggle(isOn: $invisibleCharacters.showTabs) { Text("Show Tabs") }
+                        Toggle(isOn: $invisibleCharacters.showTabs) { Text("Show Tabs", comment: "Toggle to show tab characters") }
                         if invisibleCharacters.showTabs {
                             TextField(
                                 text: $invisibleCharacters.tabReplacement,
-                                prompt: Text("Default: \(Config.default.tabReplacement)")
+                                prompt: Text("Default: \(Config.default.tabReplacement)", comment: "Placeholder showing default tab character")
                             ) {
-                                Text("Character used to render tabs")
+                                Text("Character used to render tabs", comment: "Label for tab character input field")
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -50,13 +50,13 @@ struct InvisiblesSettingsView: View {
                     }
 
                     VStack {
-                        Toggle(isOn: $invisibleCharacters.showLineEndings) { Text("Show Line Endings") }
+                        Toggle(isOn: $invisibleCharacters.showLineEndings) { Text("Show Line Endings", comment: "Toggle to show line ending characters") }
                         if invisibleCharacters.showLineEndings {
                             TextField(
                                 text: $invisibleCharacters.lineFeedReplacement,
-                                prompt: Text("Default: \(Config.default.lineFeedReplacement)")
+                                prompt: Text("Default: \(Config.default.lineFeedReplacement)", comment: "Placeholder showing default line feed character")
                             ) {
-                                Text("Character used to render line feeds (\\n)")
+                                Text("Character used to render line feeds (\\n)", comment: "Label for line feed character input field")
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -64,9 +64,9 @@ struct InvisiblesSettingsView: View {
 
                             TextField(
                                 text: $invisibleCharacters.carriageReturnReplacement,
-                                prompt: Text("Default: \(Config.default.carriageReturnReplacement)")
+                                prompt: Text("Default: \(Config.default.carriageReturnReplacement)", comment: "Placeholder showing default carriage return character")
                             ) {
-                                Text("Character used to render carriage returns (Microsoft-style line endings)")
+                                Text("Character used to render carriage returns (Microsoft-style line endings)", comment: "Label for carriage return character input field")
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -74,9 +74,9 @@ struct InvisiblesSettingsView: View {
 
                             TextField(
                                 text: $invisibleCharacters.paragraphSeparatorReplacement,
-                                prompt: Text("Default: \(Config.default.paragraphSeparatorReplacement)")
+                                prompt: Text("Default: \(Config.default.paragraphSeparatorReplacement)", comment: "Placeholder showing default paragraph separator character")
                             ) {
-                                Text("Character used to render paragraph separators")
+                                Text("Character used to render paragraph separators", comment: "Label for paragraph separator character input field")
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -84,9 +84,9 @@ struct InvisiblesSettingsView: View {
 
                             TextField(
                                 text: $invisibleCharacters.lineSeparatorReplacement,
-                                prompt: Text("Default: \(Config.default.lineSeparatorReplacement)")
+                                prompt: Text("Default: \(Config.default.lineSeparatorReplacement)", comment: "Placeholder showing default line separator character")
                             ) {
-                                Text("Character used to render line separators")
+                                Text("Character used to render line separators", comment: "Label for line separator character input field")
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -94,8 +94,8 @@ struct InvisiblesSettingsView: View {
                         }
                     }
                 } header: {
-                    Text("Invisible Characters")
-                    Text("Toggle whitespace symbols CodeEdit will render with replacement characters.")
+                    Text("Invisible Characters", comment: "Section header for invisible character settings")
+                    Text("Toggle whitespace symbols CodeEdit will render with replacement characters.", comment: "Description of invisible character settings")
                 }
                 .textFieldStyle(.roundedBorder)
             }
@@ -106,7 +106,7 @@ struct InvisiblesSettingsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text("Done", comment: "Button to close the invisible characters settings")
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
