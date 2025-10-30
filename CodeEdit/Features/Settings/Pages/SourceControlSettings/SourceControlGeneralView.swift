@@ -15,7 +15,7 @@ struct SourceControlGeneralView: View {
 
     var body: some View {
         Group {
-            Section("Source Control") {
+            Section(String(localized: "settings.source-control.general.section-title", defaultValue: "Source Control", comment: "Section title for source control general settings")) {
                 refreshLocalStatusAuto
                 fetchRefreshStatusAuto
                 addRemoveFilesAuto
@@ -82,9 +82,9 @@ private extension SourceControlGeneralView {
             "Comparison view",
             selection: $settings.revisionComparisonLayout
         ) {
-            Text("Local Revision on Left Side")
+            Text(String(localized: "settings.source-control.comparison-view.local-left", defaultValue: "Local Revision on Left Side", comment: "Option for local revision on left side in comparison view"))
                 .tag(SettingsData.RevisionComparisonLayout.localLeft)
-            Text("Local Revision on Right Side")
+            Text(String(localized: "settings.source-control.comparison-view.local-right", defaultValue: "Local Revision on Right Side", comment: "Option for local revision on right side in comparison view"))
                 .tag(SettingsData.RevisionComparisonLayout.localRight)
         }
     }
@@ -94,9 +94,9 @@ private extension SourceControlGeneralView {
             "Source control navigator",
             selection: $settings.controlNavigatorOrder
         ) {
-            Text("Sort by Name")
+            Text(String(localized: "settings.source-control.navigator.sort-by-name", defaultValue: "Sort by Name", comment: "Option to sort source control navigator by name"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByName)
-            Text("Sort by Date")
+            Text(String(localized: "settings.source-control.navigator.sort-by-date", defaultValue: "Sort by Date", comment: "Option to sort source control navigator by date"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByDate)
         }
     }

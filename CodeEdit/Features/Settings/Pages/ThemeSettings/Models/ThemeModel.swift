@@ -40,7 +40,7 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme.extensions-folder", defaultValue: "Extensions", comment: "Extensions folder name"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -136,6 +136,15 @@ final class ThemeModel: ObservableObject {
     enum ThemeSettingsAppearances: String, CaseIterable {
         case light = "Light Appearance"
         case dark = "Dark Appearance"
+        
+        var localizedValue: String {
+            switch self {
+            case .light:
+                return String(localized: "settings.theme.light-appearance-label", defaultValue: "Light Appearance", comment: "Light appearance label in theme settings")
+            case .dark:
+                return String(localized: "settings.theme.dark-appearance-label", defaultValue: "Dark Appearance", comment: "Dark appearance label in theme settings")
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +173,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "settings.theme.export", defaultValue: "Export", comment: "Export button prompt in theme save panel")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +190,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "settings.theme.export", defaultValue: "Export", comment: "Export button prompt in theme save panel")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false

@@ -88,9 +88,9 @@ extension CodeEditWindowController {
             )
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
-            toolbarItem.label = "Navigator Sidebar"
-            toolbarItem.paletteLabel = " Navigator Sidebar"
-            toolbarItem.toolTip = "Hide or show the Navigator"
+            toolbarItem.label = String(localized: "toolbar.navigator-sidebar.label", defaultValue: "Navigator Sidebar", comment: "Label for navigator sidebar toolbar item")
+            toolbarItem.paletteLabel = String(localized: "toolbar.navigator-sidebar.palette-label", defaultValue: " Navigator Sidebar", comment: "Palette label for navigator sidebar toolbar item")
+            toolbarItem.toolTip = String(localized: "toolbar.navigator-sidebar.tooltip", defaultValue: "Hide or show the Navigator", comment: "Tooltip for navigator sidebar toggle")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleFirstPanel)
@@ -102,9 +102,9 @@ extension CodeEditWindowController {
             return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
-            toolbarItem.label = "Inspector Sidebar"
-            toolbarItem.paletteLabel = "Inspector Sidebar"
-            toolbarItem.toolTip = "Hide or show the Inspectors"
+            toolbarItem.label = String(localized: "toolbar.inspector-sidebar.label", defaultValue: "Inspector Sidebar", comment: "Label for inspector sidebar toolbar item")
+            toolbarItem.paletteLabel = String(localized: "toolbar.inspector-sidebar.palette-label", defaultValue: "Inspector Sidebar", comment: "Palette label for inspector sidebar toolbar item")
+            toolbarItem.toolTip = String(localized: "toolbar.inspector-sidebar.tooltip", defaultValue: "Hide or show the Inspectors", comment: "Tooltip for inspector sidebar toggle")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleLastPanel)

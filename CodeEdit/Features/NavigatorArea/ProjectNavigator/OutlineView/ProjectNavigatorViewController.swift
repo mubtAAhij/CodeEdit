@@ -88,7 +88,7 @@ final class ProjectNavigatorViewController: NSViewController {
         self.outlineView.allowsMultipleSelection = true
 
         self.outlineView.setAccessibilityIdentifier("ProjectNavigator")
-        self.outlineView.setAccessibilityLabel("Project Navigator")
+        self.outlineView.setAccessibilityLabel(String(localized: "navigator.project.accessibility.label", defaultValue: "Project Navigator", comment: "Accessibility label for project navigator"))
 
         let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
         column.title = "Cell"
@@ -117,7 +117,7 @@ final class ProjectNavigatorViewController: NSViewController {
         }
 
         /// "No Filter Results" label.
-        noResultsLabel = NSTextField(labelWithString: "No Filter Results")
+        noResultsLabel = NSTextField(labelWithString: String(localized: "navigator.project.no-filter-results", defaultValue: "No Filter Results", comment: "Message shown when no files match the filter in project navigator"))
         noResultsLabel.isHidden = true
         noResultsLabel.font = NSFont.systemFont(ofSize: 16)
         noResultsLabel.textColor = NSColor.secondaryLabelColor
