@@ -30,7 +30,7 @@ struct TaskDropDownView: View {
                         .fixedSize()
                 }
             } else {
-                Text("Create Tasks")
+                Text(String(localized: "activity-viewer.tasks.create-tasks", defaultValue: "Create Tasks", comment: "Message shown when no tasks are created"))
                     .frame(minWidth: 0)
             }
         }
@@ -52,9 +52,9 @@ struct TaskDropDownView: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("TaskDropdown")
-        .accessibilityValue(taskManager.selectedTask?.name ?? "Create Tasks")
-        .accessibilityLabel("Active Task")
-        .accessibilityHint("Open the active task menu")
+        .accessibilityValue(taskManager.selectedTask?.name ?? String(localized: "activity-viewer.tasks.create-tasks", defaultValue: "Create Tasks", comment: "Message shown when no tasks are created"))
+        .accessibilityLabel(String(localized: "activity-viewer.tasks.accessibility.label", defaultValue: "Active Task", comment: "Accessibility label for active task dropdown"))
+        .accessibilityHint(String(localized: "activity-viewer.tasks.accessibility.hint", defaultValue: "Open the active task menu", comment: "Accessibility hint for active task dropdown"))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
@@ -92,10 +92,10 @@ struct TaskDropDownView: View {
                 Divider()
                     .padding(.vertical, 5)
             }
-            OptionMenuItemView(label: "Add Task...") {
+            OptionMenuItemView(label: String(localized: "activity-viewer.tasks.add-task", defaultValue: "Add Task...", comment: "Menu item to add a new task")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
             }
-            OptionMenuItemView(label: "Manage Tasks...") {
+            OptionMenuItemView(label: String(localized: "activity-viewer.tasks.manage-tasks", defaultValue: "Manage Tasks...", comment: "Menu item to manage tasks")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
             }
         }
