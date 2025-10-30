@@ -156,17 +156,17 @@ struct CommitListItemView: View {
         .contentShape(Rectangle())
         .contextMenu {
             Group {
-                Button("Copy Commit Message") {
+                Button(String(localized: "navigator.source-control.commit.copy-message", defaultValue: "Copy Commit Message", comment: "Context menu item to copy commit message")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.message, forType: .string)
                 }
-                Button("Copy Identifier") {
+                Button(String(localized: "navigator.source-control.commit.copy-identifier", defaultValue: "Copy Identifier", comment: "Context menu item to copy commit identifier")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.commitHash, forType: .string)
                 }
-                Button("Email \(commit.author)...") {
+                Button(String(localized: "navigator.source-control.commit.email-author", defaultValue: "Email \(commit.author)...", comment: "Context menu item to email commit author")) {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
                     service?.recipients = [commit.authorEmail]
                     service?.perform(withItems: [])
@@ -174,26 +174,26 @@ struct CommitListItemView: View {
                 Divider()
             }
             Group {
-                Button("Tag \(commit.hash)...") {}
+                Button(String(localized: "navigator.source-control.commit.tag", defaultValue: "Tag \(commit.hash)...", comment: "Context menu item to tag commit")) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("New Branch from \(commit.hash)...") {}
+                Button(String(localized: "navigator.source-control.commit.new-branch-from", defaultValue: "New Branch from \(commit.hash)...", comment: "Context menu item to create branch from commit")) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("Cherry-Pick \(commit.hash)...") {}
+                Button(String(localized: "navigator.source-control.commit.cherry-pick", defaultValue: "Cherry-Pick \(commit.hash)...", comment: "Context menu item to cherry-pick commit")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
             Group {
                 Divider()
                 if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                    Button("View on \(commit.remoteString)...") {
+                    Button(String(localized: "navigator.source-control.commit.view-on-remote", defaultValue: "View on \(commit.remoteString)...", comment: "Context menu item to view commit on remote")) {
                         let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
                         openCommit(URL(string: commitURL)!)
                     }
                     Divider()
                 }
-                Button("Check Out \(commit.hash)...") {}
+                Button(String(localized: "navigator.source-control.commit.checkout", defaultValue: "Check Out \(commit.hash)...", comment: "Context menu item to checkout commit")) {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
-                Button("History Editor Help") {}
+                Button(String(localized: "navigator.source-control.commit.help", defaultValue: "History Editor Help", comment: "Context menu item for history editor help")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
         }
