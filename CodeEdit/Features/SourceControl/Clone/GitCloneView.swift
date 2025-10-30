@@ -34,25 +34,25 @@ struct GitCloneView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Clone a repository")
+                    Text(String(localized: "source-control.clone.title", defaultValue: "Clone a repository", comment: "Title for clone repository dialog"))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
+                    Text(String(localized: "source-control.clone.prompt", defaultValue: "Enter a git repository URL:", comment: "Prompt for entering repository URL"))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                             context[.trailing]
                         }
-                    TextField("Git Repository URL", text: $viewModel.repoUrlStr)
+                    TextField(String(localized: "source-control.clone.url-placeholder", defaultValue: "Git Repository URL", comment: "Text field placeholder for repository URL"), text: $viewModel.repoUrlStr)
                         .lineLimit(1)
                         .padding(.bottom, 15)
                         .frame(width: 300)
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(localized: "source-control.clone.cancel", defaultValue: "Cancel", comment: "Cancel button in clone repository dialog")) {
                             dismiss()
                         }
-                        Button("Clone") {
+                        Button(String(localized: "source-control.clone.clone", defaultValue: "Clone", comment: "Clone button in clone repository dialog")) {
                             cloneRepository()
                         }
                         .keyboardShortcut(.defaultAction)
@@ -82,7 +82,7 @@ struct GitCloneView: View {
                 }
                 .toolbar {
                     ToolbarItem {
-                        Button("Cancel Cloning") {
+                        Button(String(localized: "source-control.clone.cancel-cloning", defaultValue: "Cancel Cloning", comment: "Button to cancel cloning operation")) {
                             viewModel.cloningTask?.cancel()
                             viewModel.cloningTask = nil
                             viewModel.isCloning = false
