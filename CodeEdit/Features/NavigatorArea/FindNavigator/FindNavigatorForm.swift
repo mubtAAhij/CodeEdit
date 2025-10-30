@@ -62,7 +62,7 @@ struct FindNavigatorForm: View {
                     Spacer()
                 }
                 Spacer()
-                Text("Scoped")
+                Text(String(localized: "navigator.find.scoped", defaultValue: "Scoped", comment: "Label for scoped search toggle"))
                     .controlSize(.small)
                     .foregroundStyle(Color(nsColor: scoped ? .controlAccentColor : .controlTextColor))
                     .onTapGesture {
@@ -91,7 +91,7 @@ struct FindNavigatorForm: View {
                             .foregroundStyle(caseSensitive ? Color(.controlAccentColor) : Color(.secondaryLabelColor))
                         }
                     )
-                    .help("Match Case")
+                    .help(String(localized: "navigator.find.match-case", defaultValue: "Match Case", comment: "Tooltip for match case toggle"))
                     .onChange(of: caseSensitive) { newValue in
                         state.caseSensitive = newValue
                     }
@@ -116,7 +116,7 @@ struct FindNavigatorForm: View {
             }
             if selectedMode[0] == SearchModeModel.Replace {
                 PaneTextField(
-                    "With",
+                    String(localized: "navigator.find.with", defaultValue: "With", comment: "Text field placeholder for replacement text"),
                     text: $state.replaceText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -138,7 +138,7 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Preserve Case")
+                        .help(String(localized: "navigator.find.preserve-case", defaultValue: "Preserve Case", comment: "Tooltip for preserve case toggle"))
                     },
                     clearable: true,
                     hasValue: preserveCase
@@ -146,7 +146,7 @@ struct FindNavigatorForm: View {
             }
             if scoped {
                 PaneTextField(
-                    "Only in folders",
+                    String(localized: "navigator.find.only-in-folders", defaultValue: "Only in folders", comment: "Text field placeholder for folder includes"),
                     text: $includesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -167,13 +167,13 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Search only in Open Editors")
+                        .help(String(localized: "navigator.find.open-editors-only", defaultValue: "Search only in Open Editors", comment: "Tooltip for open editors only toggle"))
                     },
                     clearable: true,
                     hasValue: scopedToOpenEditors
                 )
                 PaneTextField(
-                    "Excluding folders",
+                    String(localized: "navigator.find.excluding-folders", defaultValue: "Excluding folders", comment: "Text field placeholder for folder excludes"),
                     text: $excludesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -194,7 +194,7 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Use Exclude Settings and Ignore Files")
+                        .help(String(localized: "navigator.find.use-exclude-settings", defaultValue: "Use Exclude Settings and Ignore Files", comment: "Tooltip for exclude settings toggle"))
                     },
                     clearable: true,
                     hasValue: excludeSettings
@@ -208,7 +208,7 @@ struct FindNavigatorForm: View {
                         print(Date().timeIntervalSince(startTime))
                     }
                 } label: {
-                    Text("Replace All")
+                    Text(String(localized: "navigator.find.replace-all", defaultValue: "Replace All", comment: "Button to replace all occurrences"))
                         .frame(maxWidth: .infinity)
                 }
             }
