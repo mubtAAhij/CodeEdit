@@ -25,7 +25,7 @@ struct AddCETaskView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "workspace-settings.task.cancel", defaultValue: "Cancel", comment: "Cancel button in add task view"))
                         .frame(minWidth: 56)
                 }
                 Spacer()
@@ -34,7 +34,7 @@ struct AddCETaskView: View {
                     try? workspaceSettingsManager.savePreferences()
                     dismiss()
                 } label: {
-                    Text("Save")
+                    Text(String(localized: "workspace-settings.task.save", defaultValue: "Save", comment: "Save button in add task view"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
