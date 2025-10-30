@@ -111,7 +111,7 @@ struct ToolbarBranchPicker: View {
             VStack(alignment: .leading) {
                 if let currentBranch = sourceControlManager.currentBranch {
                     Section {
-                        headerLabel("Current Branch")
+                        headerLabel(String(localized: "toolbar.branch-picker.current-branch", defaultValue: "Current Branch", comment: "Section header for current branch in branch picker"))
                         BranchCell(sourceControlManager: sourceControlManager, branch: currentBranch, active: true)
                     }
                 }
@@ -131,7 +131,7 @@ struct ToolbarBranchPicker: View {
 
                 if !branches.isEmpty {
                     Section {
-                        headerLabel("Branches")
+                        headerLabel(String(localized: "toolbar.branch-picker.branches", defaultValue: "Branches", comment: "Section header for branches in branch picker"))
                         ForEach(branchesGroups.keys.sorted(), id: \.self) { branchGroupPrefix in
                             if let group = branchesGroups[branchGroupPrefix] {
                                 if !group.shouldNest {
@@ -216,7 +216,7 @@ struct ToolbarBranchPicker: View {
                     do {
                         try await sourceControlManager.checkoutBranch(branch: branch)
                     } catch {
-                        await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                        await sourceControlManager.showAlertForError(title: String(localized: "toolbar.branch-picker.error.checkout", defaultValue: "Failed to checkout", comment: "Error title when branch checkout fails"), error: error)
                     }
                 }
             }
