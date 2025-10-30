@@ -89,12 +89,12 @@ struct UtilityAreaDebugView: View {
                         : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
                     )
                 } else {
-                    CEContentUnavailableView("No Task Selected")
+                    CEContentUnavailableView(String(localized: "utility-area.debug.no-task-selected", defaultValue: "No Task Selected", comment: "Message shown when no task is selected in debug console"))
                 }
             }
         } leadingSidebar: { _ in
             ZStack {
-                Text("No Tasks are Running")
+                Text(String(localized: "utility-area.debug.no-tasks-running", defaultValue: "No Tasks are Running", comment: "Message shown when no tasks are running in debug console"))
                     .font(.system(size: 16))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -109,13 +109,13 @@ struct UtilityAreaDebugView: View {
                                 }
                                 .contextMenu(
                                     ContextMenu {
-                                        Button {
-                                            taskManager.deleteTask(taskID: taskID)
-                                        } label: {
-                                            Text("Delete")
-                                        }
+                                    Button {
+                                    taskManager.deleteTask(taskID: taskID)
+                                    } label: {
+                                    Text(String(localized: "utility-area.debug.delete-task", defaultValue: "Delete", comment: "Context menu item to delete a task"))
                                     }
-                                )
+                                    }
+                                    )
                         }
                     }
                 }
