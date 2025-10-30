@@ -23,6 +23,15 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     enum URLProtocol: String, Codable, CaseIterable {
         case https = "HTTPS"
         case ssh = "SSH"
+        
+        var localizedValue: String {
+            switch self {
+            case .https:
+                return String(localized: "settings.accounts.protocol.https", defaultValue: "HTTPS", comment: "HTTPS protocol option")
+            case .ssh:
+                return rawValue
+            }
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -53,17 +62,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "settings.accounts.provider.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "BitBucket Cloud provider name")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "settings.accounts.provider.bitbucket-server", defaultValue: "BitBucket Server", comment: "BitBucket Server provider name")
             case .github:
-                return "GitHub"
+                return String(localized: "settings.accounts.provider.github", defaultValue: "GitHub", comment: "GitHub provider name")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "settings.accounts.provider.github-enterprise", defaultValue: "GitHub Enterprise", comment: "GitHub Enterprise provider name")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "settings.accounts.provider.gitlab", defaultValue: "GitLab", comment: "GitLab provider name")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "settings.accounts.provider.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "GitLab Self-hosted provider name")
             }
         }
 
