@@ -60,6 +60,6 @@ struct ActivityViewer: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Activity Viewer")
+        .accessibilityLabel(String(localized: "accessibility.activity-viewer", defaultValue: "Activity Viewer", comment: "Accessibility label for activity viewer"))
     }
 }
