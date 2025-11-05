@@ -40,7 +40,7 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "path.extensions-folder", defaultValue: "Extensions", comment: "Extensions folder name"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -136,6 +136,15 @@ final class ThemeModel: ObservableObject {
     enum ThemeSettingsAppearances: String, CaseIterable {
         case light = "Light Appearance"
         case dark = "Dark Appearance"
+        
+        var localizedValue: String {
+            switch self {
+            case .light:
+                return String(localized: "theme.light-appearance", defaultValue: "Light Appearance", comment: "Light appearance option in theme settings")
+            case .dark:
+                return String(localized: "theme.dark-appearance", defaultValue: "Dark Appearance", comment: "Dark appearance option in theme settings")
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +173,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "theme.export", defaultValue: "Export", comment: "Save panel prompt for exporting theme")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +190,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "theme.export", defaultValue: "Export", comment: "Open panel prompt for exporting themes")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false
