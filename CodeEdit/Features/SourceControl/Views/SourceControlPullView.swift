@@ -30,10 +30,10 @@ struct SourceControlPullView: View {
                         canCreateBranch: false
                     )
                 } header: {
-                    Text("Pull remote changes from")
+                    Text(String(localized: "source-control.pull-remote-changes", defaultValue: "Pull remote changes from", comment: "Section header for pull remote changes"))
                 }
                 Section {
-                    Toggle("Rebase local changes onto upstream changes", isOn: $sourceControlManager.operationRebase)
+                    Toggle(String(localized: "source-control.rebase-local-changes", defaultValue: "Rebase local changes onto upstream changes", comment: "Toggle to rebase local changes when pulling"), isOn: $sourceControlManager.operationRebase)
                 }
             }
             .formStyle(.grouped)
@@ -53,7 +53,7 @@ struct SourceControlPullView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text("Pulling changes...")
+                        Text(String(localized: "source-control.pulling-changes", defaultValue: "Pulling changes...", comment: "Progress message while pulling changes"))
                             .font(.subheadline)
                     }
                 }
@@ -61,12 +61,12 @@ struct SourceControlPullView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "button.cancel", defaultValue: "Cancel", comment: "Cancel button for pull changes dialog"))
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text("Pull")
+                    Text(String(localized: "source-control.pull", defaultValue: "Pull", comment: "Pull button for pulling changes"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -96,7 +96,7 @@ struct SourceControlPullView: View {
                 }
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: "Failed to pull", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.error.pull-failed", defaultValue: "Failed to pull", comment: "Error title when pull operation fails"), error: error)
             }
         }
     }
