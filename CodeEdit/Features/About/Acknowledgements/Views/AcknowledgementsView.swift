@@ -12,7 +12,7 @@ struct AcknowledgementsView: View {
     @StateObject var model = AcknowledgementsViewModel()
 
     var body: some View {
-        AboutDetailView(title: "Acknowledgements") {
+        AboutDetailView(title: String(localized: "about.acknowledgements", defaultValue: "Acknowledgements", comment: "Title of acknowledgements screen")) {
             LazyVStack(spacing: 0) {
                 ForEach(
                     model.indexedAcknowledgements,
