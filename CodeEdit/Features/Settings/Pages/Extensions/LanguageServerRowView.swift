@@ -64,7 +64,7 @@ struct LanguageServerRowView: View, Equatable {
                                 .font(.footnote)
                                 .cursor(.pointingHand)
                                 if let installerName = package.installMethod?.packageManagerType?.rawValue {
-                                    Text("Install using \(installerName)")
+                                    Text(String(localized: "settings.extensions.install-using", defaultValue: "Install using \(installerName)", comment: "Label showing package manager used for installation"))
                                         .font(.footnote)
                                         .foregroundColor(.secondary)
                                 }
@@ -76,7 +76,7 @@ struct LanguageServerRowView: View, Equatable {
                                 Button {
                                     showMore.toggle()
                                 } label: {
-                                    Text(showMore ? "Show Less" : "Show More")
+                                    Text(showMore ? String(localized: "settings.extensions.show-less", defaultValue: "Show Less", comment: "Button to show less information") : String(localized: "settings.extensions.show-more", defaultValue: "Show More", comment: "Button to show more information"))
                                         .font(.footnote)
                                 }
                                 .buttonStyle(.plain)
@@ -102,18 +102,18 @@ struct LanguageServerRowView: View, Equatable {
         .onHover { hovering in
             isHovering = hovering
         }
-        .alert("Remove \(package.sanitizedName)?", isPresented: $showingRemovalConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Remove", role: .destructive) {
+        .alert(String(localized: "settings.extensions.remove-confirmation-title", defaultValue: "Remove \(package.sanitizedName)?", comment: "Confirmation alert title for removing language server"), isPresented: $showingRemovalConfirmation) {
+            Button(String(localized: "button.cancel", defaultValue: "Cancel", comment: "Cancel button"), role: .cancel) { }
+            Button(String(localized: "button.remove", defaultValue: "Remove", comment: "Remove button"), role: .destructive) {
                 removeLanguageServer()
             }
         } message: {
-            Text("Are you sure you want to remove this language server? This action cannot be undone.")
+            Text(String(localized: "settings.extensions.remove-confirmation-message", defaultValue: "Are you sure you want to remove this language server? This action cannot be undone.", comment: "Confirmation message for removing language server"))
         }
-        .alert("Removal Failed", isPresented: $showingRemovalError) {
-            Button("OK", role: .cancel) { }
+        .alert(String(localized: "settings.extensions.removal-failed-title", defaultValue: "Removal Failed", comment: "Alert title when removal fails"), isPresented: $showingRemovalError) {
+            Button(String(localized: "button.ok", defaultValue: "OK", comment: "OK button"), role: .cancel) { }
         } message: {
-            Text(removalError?.localizedDescription ?? "An unknown error occurred")
+            Text(removalError?.localizedDescription ?? String(localized: "error.unknown", defaultValue: "An unknown error occurred", comment: "Generic unknown error message"))
         }
     }
 
@@ -138,7 +138,7 @@ struct LanguageServerRowView: View, Equatable {
                 Button {
                     showingRemovalConfirmation = true
                 } label: {
-                    Text("Remove")
+                    Text(String(localized: "button.remove", defaultValue: "Remove", comment: "Remove button"))
                 }
             }
             Toggle(
@@ -181,7 +181,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Retry")
+            Text(String(localized: "button.retry", defaultValue: "Retry", comment: "Retry button"))
                 .foregroundColor(.red)
         }
     }
@@ -193,7 +193,7 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Install")
+            Text(String(localized: "button.install", defaultValue: "Install", comment: "Install button"))
         }
         .disabled(registryManager.isInstalling)
     }
