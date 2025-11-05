@@ -22,11 +22,11 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent(String(localized: "source-control.from", defaultValue: "From", comment: "Label for original branch name"), value: branch.name)
+                        TextField(String(localized: "source-control.to", defaultValue: "To", comment: "Placeholder for new branch name"), text: $name)
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text(String(localized: "source-control.rename-branch", defaultValue: "Rename branch", comment: "Title for rename branch dialog"))
+                        Text(String(localized: "source-control.rename-branch-description", defaultValue: "All uncommited changes will be preserved on the renamed branch.", comment: "Description of branch renaming behavior"))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +38,13 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "button.cancel", defaultValue: "Cancel", comment: "Cancel button for rename branch dialog"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text(String(localized: "source-control.rename", defaultValue: "Rename", comment: "Rename button for branch renaming"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +67,7 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "source-control.error.rename-branch-failed", defaultValue: "Failed to create branch", comment: "Error title when branch rename fails"),
                     error: error
                 )
             }
