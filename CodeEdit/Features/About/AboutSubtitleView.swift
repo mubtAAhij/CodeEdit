@@ -17,7 +17,7 @@ struct AboutSubtitleView: View {
     private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
 
     var body: some View {
-        Text("Version \(appVersion)\(appVersionPostfix) (\(appBuild))")
+        Text(String(localized: "about.version", defaultValue: "Version \(appVersion)\(appVersionPostfix) (\(appBuild))", comment: "Version information in About window"))
             .textSelection(.disabled)
             .onTapGesture {
                 // Create a string suitable for pasting into a bug report
