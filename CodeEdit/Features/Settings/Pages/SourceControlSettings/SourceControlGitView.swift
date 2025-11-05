@@ -26,11 +26,11 @@ struct SourceControlGitView: View {
                 gitAuthorName
                 gitEmail
             } header: {
-                Text("Git Configuration")
-                Text("""
+                Text(String(localized: "settings.source-control.git-config-header", defaultValue: "Git Configuration", comment: "Header for Git configuration section"))
+                Text(String(localized: "settings.source-control.git-config-description", defaultValue: """
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/git-config)
-                """)
+                """, comment: "Description for Git configuration section with link to documentation"))
             }
             Section {
                 defaultBranchName
@@ -43,12 +43,12 @@ struct SourceControlGitView: View {
             Section {
                 IgnoredFilesListView()
             } header: {
-                Text("Ignored Files")
-                Text("""
+                Text(String(localized: "settings.source-control.ignored-files-header", defaultValue: "Ignored Files", comment: "Header for ignored files section"))
+                Text(String(localized: "settings.source-control.ignored-files-description", defaultValue: """
                 Patterns for files and folders that Git should ignore and not track. \
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/gitignore)
-                """)
+                """, comment: "Description for ignored files section with link to documentation"))
             }
             Section {
                 gitIgnoreEditor
@@ -99,7 +99,7 @@ private extension SourceControlGitView {
     private var defaultBranchName: some View {
         TextField(text: $defaultBranch) {
             Text("Default branch name")
-            Text("Cannot contain spaces, backslashes, or other symbols")
+            Text(String(localized: "settings.source-control.branch-name-constraints", defaultValue: "Cannot contain spaces, backslashes, or other symbols", comment: "Help text explaining branch name constraints"))
         }
         .onChange(of: defaultBranch) { newValue in
             if hasAppeared {
@@ -137,22 +137,22 @@ private extension SourceControlGitView {
 
     private var gitConfigEditor: some View {
         HStack {
-            Text("Git configuration is stored in \"~/.gitconfig\".")
+            Text(String(localized: "settings.source-control.gitconfig-location", defaultValue: "Git configuration is stored in \"~/.gitconfig\".", comment: "Information about gitconfig file location"))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitConfigFile)
+            Button(String(localized: "settings.source-control.open-in-editor", defaultValue: "Open in Editor...", comment: "Button to open file in editor"), action: openGitConfigFile)
         }
         .frame(maxWidth: .infinity)
     }
 
     private var gitIgnoreEditor: some View {
         HStack {
-            Text("Ignored file patterns are stored in \"\(resolvedGitIgnorePath)\".")
+            Text(String(localized: "settings.source-control.gitignore-location", defaultValue: "Ignored file patterns are stored in \"\(resolvedGitIgnorePath)\".", comment: "Information about gitignore file location"))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitIgnoreFile)
+            Button(String(localized: "settings.source-control.open-in-editor", defaultValue: "Open in Editor...", comment: "Button to open file in editor"), action: openGitIgnoreFile)
         }
         .frame(maxWidth: .infinity)
         .onAppear {
