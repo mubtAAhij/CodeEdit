@@ -21,12 +21,12 @@ struct CEWorkspaceSettingsView: View {
             Form {
                 Section {
                     TextField(
-                        "Name",
+                        String(localized: "workspace-settings.name-placeholder", defaultValue: "Name", comment: "Placeholder for workspace name field"),
                         text: $workspaceSettingsManager.settings.project.projectName
                     )
-                    .accessibilityLabel("Workspace Name")
+                    .accessibilityLabel(String(localized: "accessibility.workspace-name", defaultValue: "Workspace Name", comment: "Accessibility label for workspace name field"))
                 } header: {
-                    Text("Workspace")
+                    Text(String(localized: "workspace-settings.workspace-section", defaultValue: "Workspace", comment: "Workspace section header in settings"))
                         .accessibilityHidden(true)
                 }
 
@@ -37,7 +37,7 @@ struct CEWorkspaceSettingsView: View {
                         showAddTaskSheet: $showAddTaskSheet
                     )
                 } header: {
-                    Text("Tasks")
+                    Text(String(localized: "workspace-settings.tasks-section", defaultValue: "Tasks", comment: "Tasks section header in workspace settings"))
                 } footer: {
                     HStack {
                         Spacer()
@@ -45,7 +45,7 @@ struct CEWorkspaceSettingsView: View {
                             selectedTaskID = nil
                             showAddTaskSheet = true
                         } label: {
-                            Text("Add Task...")
+                            Text(String(localized: "task.add-task", defaultValue: "Add Task...", comment: "Button to add a new task"))
                         }
                     }
                 }
@@ -59,7 +59,7 @@ struct CEWorkspaceSettingsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "button.done", defaultValue: "Done", comment: "Done button for workspace settings"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
