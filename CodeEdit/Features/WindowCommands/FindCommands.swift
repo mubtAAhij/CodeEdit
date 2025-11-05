@@ -18,34 +18,34 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Find") {
+        CommandMenu(String(localized: "menu.find", defaultValue: "Find", comment: "Find menu title")) {
             Group {
-                Button("Find...") {
+                Button(String(localized: "menu.find.find", defaultValue: "Find...", comment: "Find menu item")) {
                     send(.showFindPanel)
                 }
                 .keyboardShortcut("f")
 
-                Button("Find and Replace...") {
+                Button(String(localized: "menu.find.find-and-replace", defaultValue: "Find and Replace...", comment: "Find and replace menu item")) {
                     send(.init(rawValue: 12)!)
                 }
                 .keyboardShortcut("f", modifiers: [.option, .command])
 
-                Button("Find Next") {
+                Button(String(localized: "menu.find.find-next", defaultValue: "Find Next", comment: "Find next menu item")) {
                     send(.next)
                 }
                 .keyboardShortcut("g")
 
-                Button("Find Previous") {
+                Button(String(localized: "menu.find.find-previous", defaultValue: "Find Previous", comment: "Find previous menu item")) {
                     send(.previous)
                 }
                 .keyboardShortcut("g", modifiers: [.shift, .command])
 
-                Button("Use Selection for Find") {
+                Button(String(localized: "menu.find.use-selection", defaultValue: "Use Selection for Find", comment: "Use selection for find menu item")) {
                     send(.setFindString)
                 }
                 .keyboardShortcut("e")
 
-                Button("Jump to Selection") {
+                Button(String(localized: "menu.find.jump-to-selection", defaultValue: "Jump to Selection", comment: "Jump to selection menu item")) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j")
