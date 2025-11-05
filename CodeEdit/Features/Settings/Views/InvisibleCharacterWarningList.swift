@@ -33,9 +33,9 @@ struct InvisibleCharacterWarningList: View {
                     }
                 }
             ),
-            keyColumnName: "Unicode Character Code",
-            valueColumnName: "Notes",
-            newItemInstruction: "Add A Character As A Hexidecimal Unicode Value",
+            keyColumnName: String(localized: "settings.invisible-characters.unicode-column", defaultValue: "Unicode Character Code", comment: "Column name for unicode character codes"),
+            valueColumnName: String(localized: "settings.invisible-characters.notes-column", defaultValue: "Notes", comment: "Column name for notes about invisible characters"),
+            newItemInstruction: String(localized: "settings.invisible-characters.add-instruction", defaultValue: "Add A Character As A Hexidecimal Unicode Value", comment: "Instruction for adding a new invisible character warning"),
             actionBarTrailing: {
                 Button {
                     // Add defaults without removing user's data. We do still override notes here.
@@ -46,7 +46,7 @@ struct InvisibleCharacterWarningList: View {
                         }
                     )
                 } label: {
-                    Text("Restore Defaults")
+                    Text(String(localized: "settings.invisible-characters.restore-defaults", defaultValue: "Restore Defaults", comment: "Button to restore default invisible character warnings"))
                 }
                 .buttonStyle(PlainButtonStyle())
                 .font(.system(size: 11, weight: .medium))
@@ -58,7 +58,7 @@ struct InvisibleCharacterWarningList: View {
         .frame(minHeight: 96, maxHeight: .infinity)
         .overlay {
             if items.isEmpty {
-                Text("No warning characters")
+                Text(String(localized: "settings.invisible-characters.no-warnings", defaultValue: "No warning characters", comment: "Message shown when no invisible character warnings are configured"))
                     .foregroundStyle(Color(.secondaryLabelColor))
             }
         }

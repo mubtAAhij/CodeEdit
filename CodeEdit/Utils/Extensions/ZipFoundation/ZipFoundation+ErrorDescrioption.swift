@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "zip.error.unreadable-archive", defaultValue: "Unreadable archive.", comment: "Error message for unreadable archive")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "zip.error.unwritable-archive", defaultValue: "Unwritable archive.", comment: "Error message for unwritable archive")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "zip.error.invalid-entry-path", defaultValue: "Invalid entry path.", comment: "Error message for invalid entry path")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "zip.error.invalid-compression", defaultValue: "Invalid compression method.", comment: "Error message for invalid compression method")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "zip.error.invalid-checksum", defaultValue: "Invalid checksum.", comment: "Error message for invalid checksum")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "zip.error.cancelled", defaultValue: "Operation cancelled.", comment: "Error message for cancelled operation")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "zip.error.invalid-buffer", defaultValue: "Invalid buffer size.", comment: "Error message for invalid buffer size")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "zip.error.invalid-entry-size", defaultValue: "Invalid entry size.", comment: "Error message for invalid entry size")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "zip.error.invalid-file", defaultValue: "Invalid file detected.", comment: "Error message for invalid zip file")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }

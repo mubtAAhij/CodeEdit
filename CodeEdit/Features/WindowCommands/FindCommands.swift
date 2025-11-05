@@ -18,34 +18,34 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Find") {
+        CommandMenu(String(localized: "menu.find", defaultValue: "Find", comment: "Find menu title")) {
             Group {
-                Button("Find...") {
+                Button(String(localized: "menu.find.find", defaultValue: "Find...", comment: "Menu item to open find dialog")) {
                     send(.showFindPanel)
                 }
                 .keyboardShortcut("f")
 
-                Button("Find and Replace...") {
+                Button(String(localized: "menu.find.find-and-replace", defaultValue: "Find and Replace...", comment: "Menu item to open find and replace dialog")) {
                     send(.init(rawValue: 12)!)
                 }
                 .keyboardShortcut("f", modifiers: [.option, .command])
 
-                Button("Find Next") {
+                Button(String(localized: "menu.find.find-next", defaultValue: "Find Next", comment: "Menu item to find next occurrence")) {
                     send(.next)
                 }
                 .keyboardShortcut("g")
 
-                Button("Find Previous") {
+                Button(String(localized: "menu.find.find-previous", defaultValue: "Find Previous", comment: "Menu item to find previous occurrence")) {
                     send(.previous)
                 }
                 .keyboardShortcut("g", modifiers: [.shift, .command])
 
-                Button("Use Selection for Find") {
+                Button(String(localized: "menu.find.use-selection", defaultValue: "Use Selection for Find", comment: "Menu item to use selected text for find")) {
                     send(.setFindString)
                 }
                 .keyboardShortcut("e")
 
-                Button("Jump to Selection") {
+                Button(String(localized: "menu.find.jump-to-selection", defaultValue: "Jump to Selection", comment: "Menu item to jump to current selection")) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j")
