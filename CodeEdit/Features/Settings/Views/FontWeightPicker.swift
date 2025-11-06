@@ -24,14 +24,14 @@ struct FontWeightPicker: View {
     ]
 
     var weightNames: [NSFont.Weight: String] = [
-        .ultraLight: "Ultra Light",
-        .thin: "Thin",
-        .light: "Light",
-        .regular: "Regular",
-        .medium: "Medium",
-        .semibold: "Semi Bold",
-        .bold: "Bold",
-        .heavy: "Heavy",
+        .ultraLight: String(localized: "settings.font-weight.ultra-light", defaultValue: "Ultra Light", comment: "Ultra light font weight option"),
+        .thin: String(localized: "settings.font-weight.thin", defaultValue: "Thin", comment: "Thin font weight option"),
+        .light: String(localized: "settings.font-weight.light", defaultValue: "Light", comment: "Light font weight option"),
+        .regular: String(localized: "settings.font-weight.regular", defaultValue: "Regular", comment: "Regular font weight option"),
+        .medium: String(localized: "settings.font-weight.medium", defaultValue: "Medium", comment: "Medium font weight option"),
+        .semibold: String(localized: "settings.font-weight.semi-bold", defaultValue: "Semi Bold", comment: "Semi bold font weight option"),
+        .bold: String(localized: "settings.font-weight.bold", defaultValue: "Bold", comment: "Bold font weight option"),
+        .heavy: String(localized: "settings.font-weight.heavy", defaultValue: "Heavy", comment: "Heavy font weight option"),
         .black: "Black"
     ]
 
