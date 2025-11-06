@@ -53,7 +53,7 @@ struct CECircularProgressView: View {
             .accessibilityElement()
             .accessibilityAddTraits(.updatesFrequently)
             .accessibilityValue(
-                progress != nil ? Text(progress!, format: .percent) : Text("working")
+                progress != nil ? Text(progress!, format: .percent) : Text(String(localized: "activity.working", defaultValue: "working", comment: "Accessibility text for indeterminate progress"))
             )
     }
 }
