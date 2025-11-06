@@ -25,7 +25,7 @@ struct AddCETaskView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "common.cancel", defaultValue: "Cancel", comment: "Cancel button title"))
                         .frame(minWidth: 56)
                 }
                 Spacer()
@@ -34,7 +34,7 @@ struct AddCETaskView: View {
                     try? workspaceSettingsManager.savePreferences()
                     dismiss()
                 } label: {
-                    Text("Save")
+                    Text(String(localized: "common.save", defaultValue: "Save", comment: "Save button title"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
