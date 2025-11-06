@@ -35,8 +35,8 @@ extension TerminalEmulatorView {
                 return
             }
             if case .shell = mode {
-                source.feed(text: "Exit code: \(exitCode)\n\r\n")
-                source.feed(text: "To open a new session, create a new terminal tab.")
+                source.feed(text: String(localized: "terminal.exit-code", defaultValue: "Exit code: \(exitCode)\n\r\n", comment: "Message showing terminal exit code"))
+                source.feed(text: String(localized: "terminal.new-session-instruction", defaultValue: "To open a new session, create a new terminal tab.", comment: "Instruction for creating new terminal session"))
                 TerminalCache.shared.removeCachedView(terminalID)
             }
         }
