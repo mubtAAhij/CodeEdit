@@ -26,14 +26,14 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case theme = "Themes"
         case textEditing = "Text Editing"
         case terminal = "Terminal"
-        case search = "Search"
+        case search = String(localized: "settings.page.search", defaultValue: "Search", comment: "Search settings page name")
         case keybindings = "Key Bindings"
-        case sourceControl = "Source Control"
-        case components = "Components"
-        case location = "Locations"
-        case advanced = "Advanced"
+        case sourceControl = String(localized: "settings.page.source-control", defaultValue: "Source Control", comment: "Source control settings page name")
+        case components = String(localized: "settings.page.components", defaultValue: "Components", comment: "Components settings page name")
+        case location = String(localized: "settings.page.locations", defaultValue: "Locations", comment: "Locations settings page name")
+        case advanced = String(localized: "settings.page.advanced", defaultValue: "Advanced", comment: "Advanced settings page name")
         case languageServers = "Language Servers"
-        case developer = "Developer"
+        case developer = String(localized: "settings.page.developer", defaultValue: "Developer", comment: "Developer settings page name")
     }
 
     let id: UUID = UUID()
