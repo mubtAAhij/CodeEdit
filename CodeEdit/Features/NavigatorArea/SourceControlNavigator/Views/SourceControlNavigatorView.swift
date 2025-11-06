@@ -47,7 +47,7 @@ struct SourceControlNavigatorTabs: View {
         if sourceControlManager.isGitRepository {
             SegmentedControl(
                 $selectedSection,
-                options: ["Changes", "History", "Repository"],
+                options: [String(localized: "source-control.navigator.changes", defaultValue: "Changes", comment: "Source control changes tab"), String(localized: "source-control.navigator.history", defaultValue: "History", comment: "Source control history tab"), String(localized: "source-control.navigator.repository", defaultValue: "Repository", comment: "Source control repository tab")],
                 prominent: true
             )
             .frame(maxWidth: .infinity)
@@ -65,11 +65,11 @@ struct SourceControlNavigatorTabs: View {
             }
         } else {
             CEContentUnavailableView(
-                "No Repository",
-                 description: "This project is not a git repository.",
+                String(localized: "source-control.no-repository.title", defaultValue: "No Repository", comment: "Title shown when no git repository exists"),
+                 description: String(localized: "source-control.no-repository.description", defaultValue: "This project is not a git repository.", comment: "Description shown when no git repository exists"),
                  systemImage: "externaldrive.fill",
                  actions: {
-                    Button("Initialize") {
+                    Button(String(localized: "source-control.initialize", defaultValue: "Initialize", comment: "Button to initialize git repository")) {
                         Task {
                             try await sourceControlManager.initiate()
                         }
