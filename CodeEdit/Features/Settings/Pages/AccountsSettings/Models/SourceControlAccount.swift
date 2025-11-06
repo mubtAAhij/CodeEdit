@@ -23,6 +23,15 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     enum URLProtocol: String, Codable, CaseIterable {
         case https = "HTTPS"
         case ssh = "SSH"
+
+        var displayName: String {
+            switch self {
+            case .https:
+                return String(localized: "source-control.account.https", defaultValue: "HTTPS", comment: "HTTPS protocol option")
+            case .ssh:
+                return "SSH"
+            }
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -53,17 +62,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "source-control.account.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "BitBucket Cloud service name")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "source-control.account.bitbucket-server", defaultValue: "BitBucket Server", comment: "BitBucket Server service name")
             case .github:
-                return "GitHub"
+                return String(localized: "source-control.account.github", defaultValue: "GitHub", comment: "GitHub service name")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "source-control.account.github-enterprise", defaultValue: "GitHub Enterprise", comment: "GitHub Enterprise service name")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "source-control.account.gitlab", defaultValue: "GitLab", comment: "GitLab service name")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "source-control.account.gitlab-selfhosted", defaultValue: "GitLab Self-hosted", comment: "GitLab Self-hosted service name")
             }
         }
 

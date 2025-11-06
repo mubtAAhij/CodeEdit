@@ -26,7 +26,7 @@ struct EditorTabBarLeadingAccessories: View {
                         editorManager.closeEditor(editor)
                     }
                 )
-                .help("Close this Editor")
+                .help(String(localized: "editor.close", defaultValue: "Close this Editor", comment: "Button to close the current editor"))
                 .disabled(editorManager.isFocusingActiveEditor)
                 .opacity(editorManager.isFocusingActiveEditor ? 0.5 : 1)
 
@@ -43,8 +43,8 @@ struct EditorTabBarLeadingAccessories: View {
                 )
                 .help(
                     editorManager.isFocusingActiveEditor
-                    ? "Unfocus this Editor"
-                    : "Focus this Editor"
+                    ? String(localized: "editor.unfocus", defaultValue: "Unfocus this Editor", comment: "Button to unfocus the current editor")
+                    : String(localized: "editor.focus", defaultValue: "Focus this Editor", comment: "Button to focus the current editor")
                 )
 
                 Divider()

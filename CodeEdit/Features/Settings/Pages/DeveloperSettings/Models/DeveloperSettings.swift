@@ -13,12 +13,11 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Developer",
-                "Language Server Protocol",
-                "LSP Binaries",
-                "Show Internal Development Inspector"
+                String(localized: "settings.developer.title", defaultValue: "Developer", comment: "Developer settings section title"),
+                String(localized: "settings.developer.lsp", defaultValue: "Language Server Protocol", comment: "Language Server Protocol settings label"),
+                String(localized: "settings.developer.lsp-binaries", defaultValue: "LSP Binaries", comment: "LSP binaries settings label"),
+                String(localized: "settings.developer.show-internal-inspector", defaultValue: "Show Internal Development Inspector", comment: "Toggle to show internal development inspector")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// A dictionary that stores a file type and a path to an LSP binary

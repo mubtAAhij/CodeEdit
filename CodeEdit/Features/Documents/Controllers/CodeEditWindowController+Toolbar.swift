@@ -88,9 +88,9 @@ extension CodeEditWindowController {
             )
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
-            toolbarItem.label = "Navigator Sidebar"
-            toolbarItem.paletteLabel = " Navigator Sidebar"
-            toolbarItem.toolTip = "Hide or show the Navigator"
+            toolbarItem.label = String(localized: "toolbar.navigator-sidebar", defaultValue: "Navigator Sidebar", comment: "Navigator sidebar toolbar item label")
+            toolbarItem.paletteLabel = String(localized: "toolbar.navigator-sidebar-accessibility", defaultValue: " Navigator Sidebar", comment: "Navigator sidebar accessibility label")
+            toolbarItem.toolTip = String(localized: "toolbar.navigator-sidebar-help", defaultValue: "Hide or show the Navigator", comment: "Help text for navigator sidebar toggle")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleFirstPanel)
@@ -102,9 +102,9 @@ extension CodeEditWindowController {
             return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
-            toolbarItem.label = "Inspector Sidebar"
-            toolbarItem.paletteLabel = "Inspector Sidebar"
-            toolbarItem.toolTip = "Hide or show the Inspectors"
+            toolbarItem.label = String(localized: "toolbar.inspector-sidebar", defaultValue: "Inspector Sidebar", comment: "Inspector sidebar toolbar item label")
+            toolbarItem.paletteLabel = String(localized: "toolbar.inspector-sidebar-accessibility", defaultValue: "Inspector Sidebar", comment: "Inspector sidebar accessibility label")
+            toolbarItem.toolTip = String(localized: "toolbar.inspector-sidebar-help", defaultValue: "Hide or show the Inspectors", comment: "Help text for inspector sidebar toggle")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleLastPanel)

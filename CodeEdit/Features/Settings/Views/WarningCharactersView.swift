@@ -22,11 +22,7 @@ struct WarningCharactersView: View {
                     InvisibleCharacterWarningList(items: $warningCharacters.characters)
                 } header: {
                     Text("Warning Characters")
-                    Text(
-                        "CodeEdit can help identify invisible or ambiguous characters, such as zero-width spaces," +
-                        " directional quotes, and more. These will appear with a red block highlighting them." +
-                        " You can disable characters or add more here."
-                    )
+                    Text(String(localized: "settings.warning-characters.description", defaultValue: "CodeEdit can help identify invisible or ambiguous characters, such as zero-width spaces, directional quotes, and more. These will appear with a red block highlighting them. You can disable characters or add more here.", comment: "Description of warning characters feature"))
                 }
             }
             .formStyle(.grouped)
@@ -36,7 +32,7 @@ struct WarningCharactersView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "common.done", defaultValue: "Done", comment: "Done button title"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
