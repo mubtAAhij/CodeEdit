@@ -59,21 +59,34 @@ extension WorkspaceDocument.SearchState {
         // Display the replacing results to the user
         if updatedFilesCount == 0 && errorCount == 0 {
             // No results where found
-            await setStatus(.failed(errorMessage: "No files in the workspace matched: \(query)"))
+            await setStatus(.failed(errorMessage: String(
+                localized: "find-and-replace.no-files-matched",
+                defaultValue: "No files in the workspace matched: \(query)",
+                comment: "Error message when no files matched the search query"
+            )))
         } else if updatedFilesCount == 0 && errorCount > 0 {
             // All files failed to updated
+            let count = errorCount
             await setStatus(
                 .failed(
-                    errorMessage: "All files failed to update. (\(errorCount)) " +
-                    "errors occurred. Check logs for more information"
+                    errorMessage: String(
+                        localized: "find-and-replace.all-files-failed",
+                        defaultValue: "All files failed to update. (\(count)) errors occurred. Check logs for more information",
+                        comment: "Error message when all files failed to update"
+                    )
                 )
             )
         } else if updatedFilesCount > 0 && errorCount > 0 {
             // Some files updated successfully, some failed
+            let successCount = updatedFilesCount
+            let failCount = errorCount
             await setStatus(
                 .failed(
-                    errorMessage: "\(updatedFilesCount) successfully updated, " +
-                    "\(errorCount) errors occurred. Please check logs for more information."
+                    errorMessage: String(
+                        localized: "find-and-replace.partial-success",
+                        defaultValue: "\(successCount) successfully updated, \(failCount) errors occurred. Please check logs for more information.",
+                        comment: "Error message when some files updated and some failed"
+                    )
                 )
             )
         } else {
@@ -128,10 +141,23 @@ extension WorkspaceDocument.SearchState {
     ) {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
-            alert.messageText = "Error"
-            alert.informativeText = "An error occurred while reading file contents of: \(file)"
+            alert.messageText = String(
+                localized: "find-and-replace.error",
+                defaultValue: "Error",
+                comment: "Alert title for error"
+            )
+            let filePath = file
+            alert.informativeText = String(
+                localized: "find-and-replace.error-reading-file",
+                defaultValue: "An error occurred while reading file contents of: \(filePath)",
+                comment: "Error message when reading file fails"
+            )
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(
+                localized: "find-and-replace.ok",
+                defaultValue: "OK",
+                comment: "OK button for error alert"
+            ))
             alert.runModal()
 
             return
@@ -156,10 +182,23 @@ extension WorkspaceDocument.SearchState {
             try updatedContent.write(to: file, atomically: true, encoding: .utf8)
         } catch {
             let alert = NSAlert()
-            alert.messageText = "Error"
-            alert.informativeText = "An error occurred while writing to: \(error.localizedDescription)"
+            alert.messageText = String(
+                localized: "find-and-replace.write-error",
+                defaultValue: "Error",
+                comment: "Alert title for write error"
+            )
+            let errorDescription = error.localizedDescription
+            alert.informativeText = String(
+                localized: "find-and-replace.error-writing-file",
+                defaultValue: "An error occurred while writing to: \(errorDescription)",
+                comment: "Error message when writing to file fails"
+            )
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(
+                localized: "find-and-replace.write-error-ok",
+                defaultValue: "OK",
+                comment: "OK button for write error alert"
+            ))
             alert.runModal()
         }
     }
