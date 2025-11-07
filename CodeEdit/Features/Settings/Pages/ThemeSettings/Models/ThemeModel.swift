@@ -40,7 +40,11 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(
+            localized: "theme.extensions-folder",
+            defaultValue: "Extensions",
+            comment: "Name of Extensions folder in application support"
+        ), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -134,8 +138,25 @@ final class ThemeModel: ObservableObject {
     }
 
     enum ThemeSettingsAppearances: String, CaseIterable {
-        case light = "Light Appearance"
-        case dark = "Dark Appearance"
+        case light
+        case dark
+
+        var rawValue: String {
+            switch self {
+            case .light:
+                return String(
+                    localized: "theme.appearance.light",
+                    defaultValue: "Light Appearance",
+                    comment: "Light appearance option for theme settings"
+                )
+            case .dark:
+                return String(
+                    localized: "theme.appearance.dark",
+                    defaultValue: "Dark Appearance",
+                    comment: "Dark appearance option for theme settings"
+                )
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +185,11 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(
+            localized: "theme.export.prompt",
+            defaultValue: "Export",
+            comment: "Prompt for save panel when exporting theme"
+        )
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +206,11 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(
+                localized: "theme.export-all.prompt",
+                defaultValue: "Export",
+                comment: "Prompt for open panel when exporting all custom themes"
+            )
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false

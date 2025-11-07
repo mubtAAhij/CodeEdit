@@ -55,13 +55,21 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     ProgressView {
-                        Text("Loading History")
+                        Text(String(
+                            localized: "source-control.history.loading",
+                            defaultValue: "Loading History",
+                            comment: "Progress message while loading commit history"
+                        ))
                     }
                     Spacer()
                 }
             case .ready:
                 if commitHistory.isEmpty {
-                    CEContentUnavailableView("No History")
+                    CEContentUnavailableView(String(
+                        localized: "source-control.history.no-history",
+                        defaultValue: "No History",
+                        comment: "Message shown when there is no commit history"
+                    ))
                 } else {
                     GeometryReader { geometry in
                         ZStack {
@@ -89,7 +97,11 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     CEContentUnavailableView(
-                        "Error Loading History",
+                        String(
+                            localized: "source-control.history.error-loading",
+                            defaultValue: "Error Loading History",
+                            comment: "Error message when commit history fails to load"
+                        ),
                         description: error.localizedDescription,
                         systemImage: "exclamationmark.triangle"
                     ) {
@@ -98,7 +110,11 @@ struct SourceControlNavigatorHistoryView: View {
                                 await updateCommitHistory()
                             }
                         } label: {
-                            Text("Retry")
+                            Text(String(
+                                localized: "source-control.history.retry-button",
+                                defaultValue: "Retry",
+                                comment: "Button to retry loading commit history"
+                            ))
                         }
                     }
                     Spacer()

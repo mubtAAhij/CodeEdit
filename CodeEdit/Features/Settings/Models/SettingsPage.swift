@@ -26,14 +26,73 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case theme = "Themes"
         case textEditing = "Text Editing"
         case terminal = "Terminal"
-        case search = "Search"
+        case search
         case keybindings = "Key Bindings"
-        case sourceControl = "Source Control"
-        case components = "Components"
-        case location = "Locations"
-        case advanced = "Advanced"
+        case sourceControl
+        case components
+        case location
+        case advanced
         case languageServers = "Language Servers"
-        case developer = "Developer"
+        case developer
+
+        var rawValue: String {
+            switch self {
+            case .general:
+                return "General"
+            case .accounts:
+                return "Accounts"
+            case .behavior:
+                return "Behaviors"
+            case .navigation:
+                return "Navigation"
+            case .theme:
+                return "Themes"
+            case .textEditing:
+                return "Text Editing"
+            case .terminal:
+                return "Terminal"
+            case .search:
+                return String(
+                    localized: "settings.page.search",
+                    defaultValue: "Search",
+                    comment: "Settings page name for search settings"
+                )
+            case .keybindings:
+                return "Key Bindings"
+            case .sourceControl:
+                return String(
+                    localized: "settings.page.source-control",
+                    defaultValue: "Source Control",
+                    comment: "Settings page name for source control settings"
+                )
+            case .components:
+                return String(
+                    localized: "settings.page.components",
+                    defaultValue: "Components",
+                    comment: "Settings page name for components settings"
+                )
+            case .location:
+                return String(
+                    localized: "settings.page.locations",
+                    defaultValue: "Locations",
+                    comment: "Settings page name for locations settings"
+                )
+            case .advanced:
+                return String(
+                    localized: "settings.page.advanced",
+                    defaultValue: "Advanced",
+                    comment: "Settings page name for advanced settings"
+                )
+            case .languageServers:
+                return "Language Servers"
+            case .developer:
+                return String(
+                    localized: "settings.page.developer",
+                    defaultValue: "Developer",
+                    comment: "Settings page name for developer settings"
+                )
+            }
+        }
     }
 
     let id: UUID = UUID()

@@ -114,7 +114,8 @@ class CELocalShellTerminalView: CETerminalView, TerminalViewDelegate, LocalProce
                 currentDirectory: url?.absolutePath
             )
         } catch {
-            terminal.feed(text: "Failed to start a terminal session: \(error.localizedDescription)")
+            let errorDescription = error.localizedDescription
+            terminal.feed(text: String(localized: "terminal.error.failed-to-start", defaultValue: "Failed to start a terminal session: \(errorDescription)", comment: "Error message shown when terminal fails to start"))
         }
     }
 

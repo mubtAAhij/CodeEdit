@@ -82,13 +82,18 @@ final class RegistryManager: ObservableObject {
         }
 
         // Add to activity viewer
+        let name = packageName
         NotificationCenter.default.post(
             name: .taskNotification,
             object: nil,
             userInfo: [
                 "id": packageName,
                 "action": "create",
-                "title": "Removing \(packageName)"
+                "title": String(
+                    localized: "lsp.registry.removing-package",
+                    defaultValue: "Removing \(name)",
+                    comment: "Activity title when removing a package"
+                )
             ]
         )
 
@@ -140,9 +145,14 @@ final class RegistryManager: ObservableObject {
 
             // Add to activity viewer
             let activityTitle = "\(operation.package.name)\("@" + (method.version ?? "latest"))"
+            let title = activityTitle
             TaskNotificationHandler.postTask(
                 action: .create,
-                model: TaskNotificationModel(id: operation.package.name, title: "Installing \(activityTitle)")
+                model: TaskNotificationModel(id: operation.package.name, title: String(
+                    localized: "lsp.registry.installing-package",
+                    defaultValue: "Installing \(title)",
+                    comment: "Activity title when installing a package"
+                ))
             )
 
             guard !Task.isCancelled else { return }
@@ -180,18 +190,32 @@ final class RegistryManager: ObservableObject {
         fail failed: Bool
     ) {
         if failed {
+            let name = activityName
             NotificationManager.shared.post(
                 iconSymbol: "xmark.circle",
                 iconColor: .clear,
-                title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
+                title: String(
+                    localized: "lsp.registry.installation-failed.title",
+                    defaultValue: "Could not install \(name)",
+                    comment: "Notification title when package installation fails"
+                ),
+                description: String(
+                    localized: "lsp.registry.installation-failed.description",
+                    defaultValue: "There was a problem during installation.",
+                    comment: "Notification description when package installation fails"
+                ),
                 actionButtonTitle: "Done",
                 action: {},
             )
         } else {
+            let name = activityName
             TaskNotificationHandler.postTask(
                 action: .update,
-                model: TaskNotificationModel(id: id, title: "Successfully installed \(activityName)", isLoading: false)
+                model: TaskNotificationModel(id: id, title: String(
+                    localized: "lsp.registry.installation-success",
+                    defaultValue: "Successfully installed \(name)",
+                    comment: "Notification message when package installation succeeds"
+                ), isLoading: false)
             )
             NotificationCenter.default.post(
                 name: .taskNotification,

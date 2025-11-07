@@ -29,7 +29,7 @@ enum BitBucketUserRouter: GitRouter {
     var path: String {
         switch self {
         case .readAuthenticatedUser:
-            return "user"
+            return String(localized: "source-control.bitbucket.endpoint.user", defaultValue: "user", comment: "BitBucket API endpoint path for authenticated user")
         case .readEmails:
             return "user/emails"
         }

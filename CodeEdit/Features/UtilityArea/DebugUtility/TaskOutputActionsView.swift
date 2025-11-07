@@ -26,7 +26,11 @@ struct TaskOutputActionsView: View {
                     .foregroundStyle(.green)
             }
             .buttonStyle(.icon)
-            .help("Run Task")
+            .help(String(
+                localized: "utility.task-output.run-task",
+                defaultValue: "Run Task",
+                comment: "Help text for button to run task"
+            ))
 
             Button {
                 taskManager.terminateTask(taskID: activeTask.task.id)
@@ -38,7 +42,11 @@ struct TaskOutputActionsView: View {
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
-            .help("Stop Task")
+            .help(String(
+                localized: "utility.task-output.stop-task",
+                defaultValue: "Stop Task",
+                comment: "Help text for button to stop task"
+            ))
 
             Button {
                 if activeTask.status == .stopped {
@@ -56,7 +64,15 @@ struct TaskOutputActionsView: View {
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
             .opacity(activeTask.status == .running || activeTask.status == .stopped ? 1 : 0.5)
-            .help(activeTask.status == .stopped ? "Resume Task" : "Suspend Task")
+            .help(activeTask.status == .stopped ? String(
+                localized: "utility.task-output.resume-task",
+                defaultValue: "Resume Task",
+                comment: "Help text for button to resume task"
+            ) : String(
+                localized: "utility.task-output.suspend-task",
+                defaultValue: "Suspend Task",
+                comment: "Help text for button to suspend task"
+            ))
 
             Divider()
 
@@ -68,7 +84,11 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "text.append")
             }
             .buttonStyle(.icon)
-            .help("Scroll down to the bottom")
+            .help(String(
+                localized: "utility.task-output.scroll-to-bottom",
+                defaultValue: "Scroll down to the bottom",
+                comment: "Help text for button to scroll to bottom"
+            ))
 
             Button {
                 activeTask.clearOutput()
@@ -76,7 +96,11 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "trash")
             }
             .buttonStyle(.icon)
-            .help("Clear Output")
+            .help(String(
+                localized: "utility.task-output.clear-output",
+                defaultValue: "Clear Output",
+                comment: "Help text for button to clear output"
+            ))
         }
     }
 }

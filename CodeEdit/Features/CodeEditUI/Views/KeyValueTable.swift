@@ -60,7 +60,11 @@ private struct NewListTableItemView<HeaderView: View>: View {
                                 Text(key).tag(key)
                             }
                             Divider()
-                            Text("No Selection").tag("")
+                            Text(String(
+                                localized: "key-value-table.no-selection",
+                                defaultValue: "No Selection",
+                                comment: "Placeholder for picker when no selection is made"
+                            )).tag("")
                         }
                     }
                     TextField(valueColumnName, text: $value)
@@ -84,10 +88,18 @@ private struct NewListTableItemView<HeaderView: View>: View {
 
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(
+                    localized: "key-value-table.cancel",
+                    defaultValue: "Cancel",
+                    comment: "Button to cancel adding new key-value pair"
+                )) {
                     dismiss()
                 }
-                Button("Add") {
+                Button(String(
+                    localized: "key-value-table.add",
+                    defaultValue: "Add",
+                    comment: "Button to add new key-value pair"
+                )) {
                     if !key.isEmpty && !value.isEmpty {
                         completion(key, value)
                     }
@@ -146,10 +158,18 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         .contextMenu(
             forSelectionType: UUID.self,
             menu: { selectedItems in
-                Button("Edit") {
+                Button(String(
+                    localized: "key-value-table.edit",
+                    defaultValue: "Edit",
+                    comment: "Context menu item to edit key-value pair"
+                )) {
                     editItem(id: selectedItems.first)
                 }
-                Button("Remove") {
+                Button(String(
+                    localized: "key-value-table.remove",
+                    defaultValue: "Remove",
+                    comment: "Context menu item to remove key-value pair"
+                )) {
                     removeItem(selectedItems)
                 }
             },

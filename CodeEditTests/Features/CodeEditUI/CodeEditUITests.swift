@@ -34,7 +34,18 @@ final class CodeEditUIUnitTests: XCTestCase {
     // MARK: Segmented Control
 
     func testSegmentedControlLight() throws {
-        let view = SegmentedControl(.constant(0), options: ["Opt1", "Opt2"])
+        let view = SegmentedControl(.constant(0), options: [
+            String(
+                localized: "test.segmented-control.opt1",
+                defaultValue: "Opt1",
+                comment: "Test option 1"
+            ),
+            String(
+                localized: "test.segmented-control.opt2",
+                defaultValue: "Opt2",
+                comment: "Test option 2"
+            )
+        ])
         let hosting = NSHostingView(rootView: view)
         hosting.appearance = .init(named: .aqua)
         hosting.frame = CGRect(origin: .zero, size: .init(width: 100, height: 30))
@@ -42,7 +53,18 @@ final class CodeEditUIUnitTests: XCTestCase {
     }
 
     func testSegmentedControlDark() throws {
-        let view = SegmentedControl(.constant(0), options: ["Opt1", "Opt2"])
+        let view = SegmentedControl(.constant(0), options: [
+            String(
+                localized: "test.segmented-control.opt1",
+                defaultValue: "Opt1",
+                comment: "Test option 1"
+            ),
+            String(
+                localized: "test.segmented-control.opt2",
+                defaultValue: "Opt2",
+                comment: "Test option 2"
+            )
+        ])
         let hosting = NSHostingView(rootView: view)
         hosting.appearance = .init(named: .darkAqua)
         hosting.frame = CGRect(origin: .zero, size: .init(width: 100, height: 30))
@@ -50,7 +72,18 @@ final class CodeEditUIUnitTests: XCTestCase {
     }
 
     func testSegmentedControlProminentLight() throws {
-        let view = SegmentedControl(.constant(0), options: ["Opt1", "Opt2"], prominent: true)
+        let view = SegmentedControl(.constant(0), options: [
+            String(
+                localized: "test.segmented-control.opt1",
+                defaultValue: "Opt1",
+                comment: "Test option 1"
+            ),
+            String(
+                localized: "test.segmented-control.opt2",
+                defaultValue: "Opt2",
+                comment: "Test option 2"
+            )
+        ], prominent: true)
         let hosting = NSHostingView(rootView: view)
         hosting.appearance = .init(named: .aqua)
         hosting.frame = CGRect(origin: .zero, size: .init(width: 100, height: 30))
@@ -58,7 +91,18 @@ final class CodeEditUIUnitTests: XCTestCase {
     }
 
     func testSegmentedControlProminentDark() throws {
-        let view = SegmentedControl(.constant(0), options: ["Opt1", "Opt2"], prominent: true)
+        let view = SegmentedControl(.constant(0), options: [
+            String(
+                localized: "test.segmented-control.opt1",
+                defaultValue: "Opt1",
+                comment: "Test option 1"
+            ),
+            String(
+                localized: "test.segmented-control.opt2",
+                defaultValue: "Opt2",
+                comment: "Test option 2"
+            )
+        ], prominent: true)
         let hosting = NSHostingView(rootView: view)
         hosting.appearance = .init(named: .darkAqua)
         hosting.frame = CGRect(origin: .zero, size: .init(width: 100, height: 30))

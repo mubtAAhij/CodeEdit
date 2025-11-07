@@ -61,15 +61,31 @@ class GitCloneViewModel: ObservableObject {
     func cloneRepository(completionHandler: @escaping (URL) -> Void) {
         if !isGitInstalled() {
             showAlert(
-                alertMsg: "Git installation not found.",
-                infoText: "Ensure Git is installed on your system and try again."
+                alertMsg: String(
+                    localized: "git-clone.error.git-not-found",
+                    defaultValue: "Git installation not found.",
+                    comment: "Alert message when Git is not installed"
+                ),
+                infoText: String(
+                    localized: "git-clone.error.git-not-found-info",
+                    defaultValue: "Ensure Git is installed on your system and try again.",
+                    comment: "Alert info text with instructions to install Git"
+                )
             )
             return
         }
         if repoUrlStr == "" {
             showAlert(
-                alertMsg: "Url cannot be empty",
-                infoText: "You must specify a repository to clone"
+                alertMsg: String(
+                    localized: "git-clone.error.url-empty",
+                    defaultValue: "Url cannot be empty",
+                    comment: "Alert message when repository URL is empty"
+                ),
+                infoText: String(
+                    localized: "git-clone.error.url-empty-info",
+                    defaultValue: "You must specify a repository to clone",
+                    comment: "Alert info text explaining URL is required"
+                )
             )
             return
         }
@@ -93,7 +109,18 @@ class GitCloneViewModel: ObservableObject {
 
         var isDir: ObjCBool = true
         if FileManager.default.fileExists(atPath: localPath.relativePath, isDirectory: &isDir) {
-            showAlert(alertMsg: "Error", infoText: "Directory already exists")
+            showAlert(
+                alertMsg: String(
+                    localized: "git-clone.error.title",
+                    defaultValue: "Error",
+                    comment: "Generic error alert title"
+                ),
+                infoText: String(
+                    localized: "git-clone.error.directory-exists",
+                    defaultValue: "Directory already exists",
+                    comment: "Alert info text when directory already exists"
+                )
+            )
             return
         }
 
@@ -104,7 +131,15 @@ class GitCloneViewModel: ObservableObject {
                 attributes: nil
             )
         } catch {
-            showAlert(alertMsg: "Failed to create folder", infoText: "\(error)")
+            let errorDescription = "\(error)"
+            showAlert(
+                alertMsg: String(
+                    localized: "git-clone.error.failed-create-folder",
+                    defaultValue: "Failed to create folder",
+                    comment: "Alert message when folder creation fails"
+                ),
+                infoText: errorDescription
+            )
             return
         }
 
@@ -150,10 +185,15 @@ class GitCloneViewModel: ObservableObject {
             completionHandler(localPath)
         } catch {
             await MainActor.run {
+                let failedToCloneMessage = String(
+                    localized: "git-clone.error.failed-to-clone",
+                    defaultValue: "Failed to clone",
+                    comment: "Alert message when cloning fails"
+                )
                 if let error = error as? GitClient.GitClientError {
-                    showAlert(alertMsg: "Failed to clone", infoText: error.description)
+                    showAlert(alertMsg: failedToCloneMessage, infoText: error.description)
                 } else {
-                    showAlert(alertMsg: "Failed to clone", infoText: error.localizedDescription)
+                    showAlert(alertMsg: failedToCloneMessage, infoText: error.localizedDescription)
                 }
                 deleteTemporaryFolder(localPath: localPath)
             }
@@ -166,7 +206,15 @@ class GitCloneViewModel: ObservableObject {
         do {
             try FileManager.default.removeItem(atPath: localPath.relativePath)
         } catch {
-            showAlert(alertMsg: "Failed to delete folder", infoText: "\(error)")
+            let errorDescription = "\(error)"
+            showAlert(
+                alertMsg: String(
+                    localized: "git-clone.error.failed-delete-folder",
+                    defaultValue: "Failed to delete folder",
+                    comment: "Alert message when folder deletion fails"
+                ),
+                infoText: errorDescription
+            )
             return
         }
     }
@@ -181,10 +229,22 @@ class GitCloneViewModel: ObservableObject {
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.showsTagField = false
-        dialog.prompt = "Clone"
+        dialog.prompt = String(
+            localized: "git-clone.dialog.prompt",
+            defaultValue: "Clone",
+            comment: "Save panel prompt button text"
+        )
         dialog.nameFieldStringValue = saveName
-        dialog.nameFieldLabel = "Clone as"
-        dialog.title = "Clone"
+        dialog.nameFieldLabel = String(
+            localized: "git-clone.dialog.name-field-label",
+            defaultValue: "Clone as",
+            comment: "Save panel name field label"
+        )
+        dialog.title = String(
+            localized: "git-clone.dialog.title",
+            defaultValue: "Clone",
+            comment: "Save panel title"
+        )
 
         guard dialog.runModal() == NSApplication.ModalResponse.OK,
               let result = dialog.url else {
@@ -198,7 +258,11 @@ class GitCloneViewModel: ObservableObject {
         let alert = NSAlert()
         alert.messageText = alertMsg
         alert.informativeText = infoText
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: String(
+            localized: "git-clone.alert.ok",
+            defaultValue: "OK",
+            comment: "OK button in alert dialog"
+        ))
         alert.alertStyle = .warning
         alert.runModal()
     }

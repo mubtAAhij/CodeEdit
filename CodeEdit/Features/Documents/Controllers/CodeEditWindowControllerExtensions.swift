@@ -12,22 +12,46 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: "Quick Open",
-            title: "Quick Open",
+            name: String(
+                localized: "commands.quick-open.name",
+                defaultValue: "Quick Open",
+                comment: "Command name for quick open"
+            ),
+            title: String(
+                localized: "commands.quick-open.title",
+                defaultValue: "Quick Open",
+                comment: "Command title for quick open"
+            ),
             id: "quick_open",
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Navigator",
-            title: "Toggle Navigator",
+            name: String(
+                localized: "commands.toggle-navigator.name",
+                defaultValue: "Toggle Navigator",
+                comment: "Command name for toggle navigator"
+            ),
+            title: String(
+                localized: "commands.toggle-navigator.title",
+                defaultValue: "Toggle Navigator",
+                comment: "Command title for toggle navigator"
+            ),
             id: "toggle_left_sidebar",
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Inspector",
-            title: "Toggle Inspector",
+            name: String(
+                localized: "commands.toggle-inspector.name",
+                defaultValue: "Toggle Inspector",
+                comment: "Command name for toggle inspector"
+            ),
+            title: String(
+                localized: "commands.toggle-inspector.title",
+                defaultValue: "Toggle Inspector",
+                comment: "Command title for toggle inspector"
+            ),
             id: "toggle_right_sidebar",
             command: { [weak self] in self?.toggleLastPanel() }
         )
@@ -105,7 +129,11 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle("Workspace Settings")
+            settingsWindow.setAccessibilityTitle(String(
+                localized: "workspace-settings.window-title",
+                defaultValue: "Workspace Settings",
+                comment: "Accessibility title for workspace settings window"
+            ))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }

@@ -24,10 +24,22 @@ struct SourceControlAddExistingRemoteView: View {
     var body: some View {
         VStack(spacing: 0) {
             Form {
-                Section("Add Remote") {
-                    TextField("Remote Name", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
+                Section(String(
+                    localized: "source-control.add-remote.title",
+                    defaultValue: "Add Remote",
+                    comment: "Section title for adding remote"
+                )) {
+                    TextField(String(
+                        localized: "source-control.add-remote.name-placeholder",
+                        defaultValue: "Remote Name",
+                        comment: "Placeholder for remote name text field"
+                    ), value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
                         .focused($focusedField, equals: .name)
-                    TextField("Location", value: $location, formatter: TrimWhitespaceFormatter())
+                    TextField(String(
+                        localized: "source-control.add-remote.location-placeholder",
+                        defaultValue: "Location",
+                        comment: "Placeholder for remote location text field"
+                    ), value: $location, formatter: TrimWhitespaceFormatter())
                         .focused($focusedField, equals: .location)
                 }
             }
@@ -42,13 +54,21 @@ struct SourceControlAddExistingRemoteView: View {
                     name = ""
                     location = ""
                 } label: {
-                    Text("Cancel")
+                    Text(String(
+                        localized: "source-control.add-remote.cancel",
+                        defaultValue: "Cancel",
+                        comment: "Button to cancel adding remote"
+                    ))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Add")
+                    Text(String(
+                        localized: "source-control.add-remote.add-button",
+                        defaultValue: "Add",
+                        comment: "Button to add remote"
+                    ))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -80,7 +100,14 @@ struct SourceControlAddExistingRemoteView: View {
                 location = ""
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to add remote", error: error)
+                await sourceControlManager.showAlertForError(
+                    title: String(
+                        localized: "source-control.add-remote.error",
+                        defaultValue: "Failed to add remote",
+                        comment: "Error title when adding remote fails"
+                    ),
+                    error: error
+                )
             }
         }
     }

@@ -18,7 +18,7 @@ struct GitCloneButton: View {
     var body: some View {
         WelcomeButton(
             iconName: "square.and.arrow.down.on.square",
-            title: "Clone Git Repository...",
+            title: String(localized: "welcome.git-clone.button", defaultValue: "Clone Git Repository...", comment: "Button to clone a git repository from welcome screen"),
             action: {
                 showGitClone = true
             }

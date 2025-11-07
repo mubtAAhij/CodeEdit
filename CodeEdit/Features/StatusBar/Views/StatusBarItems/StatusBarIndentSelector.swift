@@ -14,23 +14,25 @@ struct StatusBarIndentSelector: View {
     var body: some View {
         Menu {
             Button {} label: {
-                Text("Use Tabs")
+                Text(String(localized: "status-bar.indent.use-tabs", defaultValue: "Use Tabs", comment: "Menu item to use tabs for indentation"))
             }.disabled(true)
 
             Button {} label: {
-                Text("Use Spaces")
+                Text(String(localized: "status-bar.indent.use-spaces", defaultValue: "Use Spaces", comment: "Menu item to use spaces for indentation"))
             }.disabled(true)
 
             Divider()
 
             Picker("Tab Width", selection: $defaultTabWidth) {
                 ForEach(2..<9) { index in
-                    Text("\(index) Spaces")
+                    let spaces = index
+                    Text(String(localized: "status-bar.indent.spaces-count", defaultValue: "\(spaces) Spaces", comment: "Menu item showing number of spaces for indentation"))
                         .tag(index)
                 }
             }
         } label: {
-            Text("\(defaultTabWidth) Spaces")
+            let spaces = defaultTabWidth
+            Text(String(localized: "status-bar.indent.current-spaces", defaultValue: "\(spaces) Spaces", comment: "Status bar label showing current indentation setting"))
         }
         .menuStyle(StatusBarMenuStyle())
         .onHover { isHovering($0) }
