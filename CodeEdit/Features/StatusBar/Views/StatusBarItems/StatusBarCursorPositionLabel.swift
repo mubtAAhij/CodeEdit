@@ -25,7 +25,11 @@ struct StatusBarCursorPositionLabel: View {
             if let currentTab = tab {
                 LineLabel(editorInstance: currentTab)
             } else {
-                Text("").accessibilityLabel("No Selection")
+                Text("").accessibilityLabel(String(
+                    localized: "status-bar.cursor.no-selection",
+                    defaultValue: "No Selection",
+                    comment: "Accessibility label when no text is selected"
+                ))
             }
         }
         .fixedSize()
@@ -90,32 +94,64 @@ struct StatusBarCursorPositionLabel: View {
 
             // More than one selection, display the number of selections.
             if cursorPositions.count > 1 {
-                return "\(cursorPositions.count) selected ranges"
+                let count = cursorPositions.count
+                return String(
+                    localized: "status-bar.cursor.selected-ranges",
+                    defaultValue: "\(count) selected ranges",
+                    comment: "Label showing number of selected ranges"
+                )
             }
 
             // If the selection is more than just a cursor, return the length.
             if cursorPositions[0].range.length > 0 {
                 // When the option key is pressed display the character range.
                 if modifierKeys.contains(.option) {
-                    return "Char: \(cursorPositions[0].range.location) Len: \(cursorPositions[0].range.length)"
+                    let location = cursorPositions[0].range.location
+                    let length = cursorPositions[0].range.length
+                    return String(
+                        localized: "status-bar.cursor.char-location-length",
+                        defaultValue: "Char: \(location) Len: \(length)",
+                        comment: "Label showing character location and selection length"
+                    )
                 }
 
                 let lineCount = getLines(cursorPositions[0].range)
 
                 if lineCount > 1 {
-                    return "\(lineCount) lines"
+                    let count = lineCount
+                    return String(
+                        localized: "status-bar.cursor.lines",
+                        defaultValue: "\(count) lines",
+                        comment: "Label showing number of lines selected"
+                    )
                 }
 
-                return "\(cursorPositions[0].range.length) characters"
+                let length = cursorPositions[0].range.length
+                return String(
+                    localized: "status-bar.cursor.characters",
+                    defaultValue: "\(length) characters",
+                    comment: "Label showing number of characters selected"
+                )
             }
 
             // When the option key is pressed display the character offset.
             if modifierKeys.contains(.option) {
-                return "Char: \(cursorPositions[0].range.location) Len: 0"
+                let location = cursorPositions[0].range.location
+                return String(
+                    localized: "status-bar.cursor.char-location-zero",
+                    defaultValue: "Char: \(location) Len: 0",
+                    comment: "Label showing character location with zero length selection"
+                )
             }
 
             // When there's a single cursor, display the line and column.
-            return "Line: \(cursorPositions[0].start.line)  Col: \(cursorPositions[0].start.column)"
+            let line = cursorPositions[0].start.line
+            let column = cursorPositions[0].start.column
+            return String(
+                localized: "status-bar.cursor.line-col",
+                defaultValue: "Line: \(line)  Col: \(column)",
+                comment: "Label showing cursor line and column position"
+            )
         }
     }
 }
