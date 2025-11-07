@@ -16,15 +16,42 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Shell",
-                "Use \"Option\" key as \"Meta\"",
-                "Use text editor font",
-                "Font",
-                "Font Size",
-                "Terminal Cursor Style",
-                "Blink Cursor"
+                String(
+                    localized: "terminal-settings.search.shell",
+                    defaultValue: "Shell",
+                    comment: "Search keyword for shell setting"
+                ),
+                String(
+                    localized: "terminal-settings.search.option-as-meta",
+                    defaultValue: "Use \"Option\" key as \"Meta\"",
+                    comment: "Search keyword for option key meta setting"
+                ),
+                String(
+                    localized: "terminal-settings.search.use-text-editor-font",
+                    defaultValue: "Use text editor font",
+                    comment: "Search keyword for text editor font setting"
+                ),
+                String(
+                    localized: "terminal-settings.search.font",
+                    defaultValue: "Font",
+                    comment: "Search keyword for font setting"
+                ),
+                String(
+                    localized: "terminal-settings.search.font-size",
+                    defaultValue: "Font Size",
+                    comment: "Search keyword for font size setting"
+                ),
+                String(
+                    localized: "terminal-settings.search.cursor-style",
+                    defaultValue: "Terminal Cursor Style",
+                    comment: "Search keyword for cursor style setting"
+                ),
+                String(
+                    localized: "terminal-settings.search.blink-cursor",
+                    defaultValue: "Blink Cursor",
+                    comment: "Search keyword for blink cursor setting"
+                )
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// If true terminal will use editor theme.
