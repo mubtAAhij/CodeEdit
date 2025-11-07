@@ -34,25 +34,45 @@ struct GitCloneView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Clone a repository")
+                    Text(String(
+                        localized: "git.clone.title",
+                        defaultValue: "Clone a repository",
+                        comment: "Title for git clone dialog"
+                    ))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
+                    Text(String(
+                        localized: "git.clone.description",
+                        defaultValue: "Enter a git repository URL:",
+                        comment: "Description for git clone dialog"
+                    ))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                             context[.trailing]
                         }
-                    TextField("Git Repository URL", text: $viewModel.repoUrlStr)
+                    TextField(String(
+                        localized: "git.clone.url-placeholder",
+                        defaultValue: "Git Repository URL",
+                        comment: "Placeholder for git repository URL text field"
+                    ), text: $viewModel.repoUrlStr)
                         .lineLimit(1)
                         .padding(.bottom, 15)
                         .frame(width: 300)
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(
+                            localized: "git.clone.cancel",
+                            defaultValue: "Cancel",
+                            comment: "Button to cancel git clone"
+                        )) {
                             dismiss()
                         }
-                        Button("Clone") {
+                        Button(String(
+                            localized: "git.clone.button",
+                            defaultValue: "Clone",
+                            comment: "Button to start cloning repository"
+                        )) {
                             cloneRepository()
                         }
                         .keyboardShortcut(.defaultAction)
@@ -82,7 +102,11 @@ struct GitCloneView: View {
                 }
                 .toolbar {
                     ToolbarItem {
-                        Button("Cancel Cloning") {
+                        Button(String(
+                            localized: "git.clone.cancel-cloning",
+                            defaultValue: "Cancel Cloning",
+                            comment: "Button to cancel ongoing clone operation"
+                        )) {
                             viewModel.cloningTask?.cancel()
                             viewModel.cloningTask = nil
                             viewModel.isCloning = false
