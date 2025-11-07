@@ -156,17 +156,30 @@ struct CommitListItemView: View {
         .contentShape(Rectangle())
         .contextMenu {
             Group {
-                Button("Copy Commit Message") {
+                Button(String(
+                    localized: "commit-list.copy-commit-message",
+                    defaultValue: "Copy Commit Message",
+                    comment: "Menu item to copy commit message"
+                )) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.message, forType: .string)
                 }
-                Button("Copy Identifier") {
+                Button(String(
+                    localized: "commit-list.copy-identifier",
+                    defaultValue: "Copy Identifier",
+                    comment: "Menu item to copy commit identifier"
+                )) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.commitHash, forType: .string)
                 }
-                Button("Email \(commit.author)...") {
+                let authorName = commit.author
+                Button(String(
+                    localized: "commit-list.email-author",
+                    defaultValue: "Email \(authorName)...",
+                    comment: "Menu item to email commit author"
+                )) {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
                     service?.recipients = [commit.authorEmail]
                     service?.perform(withItems: [])
@@ -174,26 +187,53 @@ struct CommitListItemView: View {
                 Divider()
             }
             Group {
-                Button("Tag \(commit.hash)...") {}
+                let commitHash = commit.hash
+                Button(String(
+                    localized: "commit-list.tag-commit",
+                    defaultValue: "Tag \(commitHash)...",
+                    comment: "Menu item to tag a commit"
+                )) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("New Branch from \(commit.hash)...") {}
+                Button(String(
+                    localized: "commit-list.new-branch-from-commit",
+                    defaultValue: "New Branch from \(commitHash)...",
+                    comment: "Menu item to create new branch from commit"
+                )) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("Cherry-Pick \(commit.hash)...") {}
+                Button(String(
+                    localized: "commit-list.cherry-pick-commit",
+                    defaultValue: "Cherry-Pick \(commitHash)...",
+                    comment: "Menu item to cherry-pick a commit"
+                )) {}
                     .disabled(true) // TODO: Implementation Needed
             }
             Group {
                 Divider()
                 if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                    Button("View on \(commit.remoteString)...") {
+                    let remoteName = commit.remoteString
+                    Button(String(
+                        localized: "commit-list.view-on-remote",
+                        defaultValue: "View on \(remoteName)...",
+                        comment: "Menu item to view commit on remote service"
+                    )) {
                         let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
                         openCommit(URL(string: commitURL)!)
                     }
                     Divider()
                 }
-                Button("Check Out \(commit.hash)...") {}
+                let commitHash = commit.hash
+                Button(String(
+                    localized: "commit-list.check-out-commit",
+                    defaultValue: "Check Out \(commitHash)...",
+                    comment: "Menu item to check out a commit"
+                )) {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
-                Button("History Editor Help") {}
+                Button(String(
+                    localized: "commit-list.history-editor-help",
+                    defaultValue: "History Editor Help",
+                    comment: "Menu item to show history editor help"
+                )) {}
                     .disabled(true) // TODO: Implementation Needed
             }
         }
