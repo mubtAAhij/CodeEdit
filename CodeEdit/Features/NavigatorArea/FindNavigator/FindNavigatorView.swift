@@ -32,7 +32,13 @@ struct FindNavigatorView: View {
 
             if findNavigatorStatus == .found {
                 HStack(alignment: .center) {
-                    Text("\(self.searchResultCount) results in \(self.foundFilesCount) files")
+                    let resultCount = self.searchResultCount
+                    let fileCount = self.foundFilesCount
+                    Text(String(
+                        localized: "find-navigator.results-summary",
+                        defaultValue: "\(resultCount) results in \(fileCount) files",
+                        comment: "Summary showing number of search results and files"
+                    ))
                         .font(.system(size: 10))
                 }
 
@@ -47,7 +53,11 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Searching")
+                    Text(String(
+                        localized: "find-navigator.searching",
+                        defaultValue: "Searching",
+                        comment: "Status message while searching"
+                    ))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -57,31 +67,58 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text("Replacing")
+                    Text(String(
+                        localized: "find-navigator.replacing",
+                        defaultValue: "Replacing",
+                        comment: "Status message while replacing"
+                    ))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
                 .frame(maxHeight: .infinity)
             case .found:
                 if self.searchResultCount == 0 {
+                    let query = state.searchQuery
                     CEContentUnavailableView(
-                        "No Results",
-                        description: "No Results for \"\(state.searchQuery)\" in Project",
+                        String(
+                            localized: "find-navigator.no-results",
+                            defaultValue: "No Results",
+                            comment: "Title when no search results found"
+                        ),
+                        description: String(
+                            localized: "find-navigator.no-results-description",
+                            defaultValue: "No Results for \"\(query)\" in Project",
+                            comment: "Description when no search results found for query"
+                        ),
                         systemImage: "exclamationmark.magnifyingglass"
                     )
                 } else {
                     FindNavigatorResultList()
                 }
             case .replaced(let updatedFiles):
+                let filesCount = updatedFiles
                 CEContentUnavailableView(
-                    "Replaced",
-                    description: "Successfully replaced terms across \(updatedFiles) files",
+                    String(
+                        localized: "find-navigator.replaced",
+                        defaultValue: "Replaced",
+                        comment: "Title when replacement is complete"
+                    ),
+                    description: String(
+                        localized: "find-navigator.replaced-description",
+                        defaultValue: "Successfully replaced terms across \(filesCount) files",
+                        comment: "Description showing successful replacement across files"
+                    ),
                     systemImage: "checkmark.circle.fill"
                 )
             case .failed(let errorMessage):
+                let error = errorMessage
                 CEContentUnavailableView(
-                    "An Error Occurred",
-                    description: "\(errorMessage)",
+                    String(
+                        localized: "find-navigator.error-occurred",
+                        defaultValue: "An Error Occurred",
+                        comment: "Title when an error occurs"
+                    ),
+                    description: "\(error)",
                     systemImage: "xmark.octagon.fill"
                 )
             }
