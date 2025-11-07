@@ -53,33 +53,93 @@ struct WorkspaceSheets: View {
             }
             .alert(isPresented: $sourceControlManager.discardAllAlertIsPresented) {
                 Alert(
-                    title: Text("Do you want to discard all uncommitted, local changes?"),
-                    message: Text("This action cannot be undone."),
-                    primaryButton: .destructive(Text("Discard")) {
+                    title: Text(String(
+                        localized: "workspace-sheets.alert.discard-all-title",
+                        defaultValue: "Do you want to discard all uncommitted, local changes?",
+                        comment: "Alert title asking to confirm discarding all changes"
+                    )),
+                    message: Text(String(
+                        localized: "workspace-sheets.alert.discard-all-message",
+                        defaultValue: "This action cannot be undone.",
+                        comment: "Alert message warning that discard action is permanent"
+                    )),
+                    primaryButton: .destructive(Text(String(
+                        localized: "workspace-sheets.alert.discard-button",
+                        defaultValue: "Discard",
+                        comment: "Destructive button to discard changes"
+                    ))) {
                         sourceControlManager.discardAllChanges()
                     },
                     secondaryButton: .cancel()
                 )
             }
-            .alert("Cannot Stage Changes", isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(
+                localized: "workspace-sheets.alert.cannot-stage-title",
+                defaultValue: "Cannot Stage Changes",
+                comment: "Alert title when there are no changes to stage"
+            ), isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
+                Button(String(
+                    localized: "workspace-sheets.alert.ok",
+                    defaultValue: "OK",
+                    comment: "OK button in alert"
+                ), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(
+                    localized: "workspace-sheets.alert.no-uncommitted-changes",
+                    defaultValue: "There are no uncommitted changes in the local repository for this project.",
+                    comment: "Alert message when there are no uncommitted changes"
+                ))
             }
-            .alert("Cannot Unstage Changes", isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(
+                localized: "workspace-sheets.alert.cannot-unstage-title",
+                defaultValue: "Cannot Unstage Changes",
+                comment: "Alert title when there are no changes to unstage"
+            ), isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
+                Button(String(
+                    localized: "workspace-sheets.alert.ok",
+                    defaultValue: "OK",
+                    comment: "OK button in alert"
+                ), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(
+                    localized: "workspace-sheets.alert.no-uncommitted-changes",
+                    defaultValue: "There are no uncommitted changes in the local repository for this project.",
+                    comment: "Alert message when there are no uncommitted changes"
+                ))
             }
-            .alert("Cannot Stash Changes", isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(
+                localized: "workspace-sheets.alert.cannot-stash-title",
+                defaultValue: "Cannot Stash Changes",
+                comment: "Alert title when there are no changes to stash"
+            ), isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
+                Button(String(
+                    localized: "workspace-sheets.alert.ok",
+                    defaultValue: "OK",
+                    comment: "OK button in alert"
+                ), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(
+                    localized: "workspace-sheets.alert.no-uncommitted-changes",
+                    defaultValue: "There are no uncommitted changes in the local repository for this project.",
+                    comment: "Alert message when there are no uncommitted changes"
+                ))
             }
-            .alert("Cannot Discard Changes", isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(
+                localized: "workspace-sheets.alert.cannot-discard-title",
+                defaultValue: "Cannot Discard Changes",
+                comment: "Alert title when there are no changes to discard"
+            ), isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
+                Button(String(
+                    localized: "workspace-sheets.alert.ok",
+                    defaultValue: "OK",
+                    comment: "OK button in alert"
+                ), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(
+                    localized: "workspace-sheets.alert.no-uncommitted-changes",
+                    defaultValue: "There are no uncommitted changes in the local repository for this project.",
+                    comment: "Alert message when there are no uncommitted changes"
+                ))
             }
     }
 }
