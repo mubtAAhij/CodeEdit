@@ -12,14 +12,14 @@ extension SourceControlNavigatorRepositoryView {
         [
             .init(
                 id: "BranchesGroup",
-                label: "Branches",
+                label: String(localized: "navigator.source-control.branches", defaultValue: "Branches", comment: "Branches group label in source control navigator"),
                 image: .system(name: "externaldrive.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.orderedLocalBranches.map { branch in
                         .init(
                             id: "Branch\(branch.name)",
                             label: branch.name,
-                            description: branch == sourceControlManager.currentBranch ? "(current)" : nil,
+                            description: branch == sourceControlManager.currentBranch ? String(localized: "navigator.source-control.current-branch-indicator", defaultValue: "(current)", comment: "Indicator showing current branch") : nil,
                             image: .symbol(name: "branch"),
                             imageColor: .blue,
                             branch: branch
@@ -28,7 +28,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "StashedChangesGroup",
-                label: "Stashed Changes",
+                label: String(localized: "navigator.source-control.stashed-changes", defaultValue: "Stashed Changes", comment: "Stashed changes group label in source control navigator"),
                 image: .system(name: "tray.2.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.stashEntries.map { stashEntry in
@@ -51,7 +51,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "RemotesGroup",
-                label: "Remotes",
+                label: String(localized: "navigator.source-control.remotes", defaultValue: "Remotes", comment: "Remotes group label in source control navigator"),
                 image: .system(name: "network"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.remotes.map { remote in
