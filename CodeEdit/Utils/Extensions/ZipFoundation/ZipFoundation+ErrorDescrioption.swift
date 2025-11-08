@@ -12,28 +12,28 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "archive.error.unreadable", defaultValue: "Unreadable archive.", comment: "Error when archive cannot be read")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "archive.error.unwritable", defaultValue: "Unwritable archive.", comment: "Error when archive cannot be written")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "archive.error.invalid-entry-path", defaultValue: "Invalid entry path.", comment: "Error for invalid entry path in archive")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "archive.error.invalid-compression", defaultValue: "Invalid compression method.", comment: "Error for invalid compression method")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "archive.error.invalid-checksum", defaultValue: "Invalid checksum.", comment: "Error for invalid checksum")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "archive.error.cancelled", defaultValue: "Operation cancelled.", comment: "Error when operation is cancelled")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "archive.error.invalid-buffer-size", defaultValue: "Invalid buffer size.", comment: "Error for invalid buffer size")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "archive.error.invalid-entry-size", defaultValue: "Invalid entry size.", comment: "Error for invalid entry size")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "archive.error.invalid-file", defaultValue: "Invalid file detected.", comment: "Error for invalid file structure")
         case .uncontainedSymlink:
             "Uncontained symlink detected."
         }

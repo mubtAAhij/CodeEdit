@@ -19,8 +19,8 @@ extension SettingsData {
                 "Tab Width",
                 "Wrap lines to editor width",
                 "Editor Overscroll",
-                "Font",
-                "Font Size",
+                String(localized: "settings.text-editing.font", defaultValue: "Font", comment: "Font search key"),
+                String(localized: "settings.text-editing.font-size", defaultValue: "Font Size", comment: "Font size search key"),
                 "Font Weight",
                 "Line Height",
                 "Letter Spacing",
@@ -29,7 +29,7 @@ extension SettingsData {
                 "Bracket Pair Emphasis",
                 "Bracket Pair Highlight",
                 "Show Gutter",
-                "Show Minimap",
+                String(localized: "settings.text-editing.show-minimap", defaultValue: "Show Minimap", comment: "Show minimap search key"),
                 "Reformat at Column",
                 "Show Reformatting Guide",
                 "Invisibles",
@@ -38,7 +38,7 @@ extension SettingsData {
             if #available(macOS 14.0, *) {
                 keys.append("System Cursor")
             }
-            return keys.map { NSLocalizedString($0, comment: "") }
+            return keys
         }
 
         /// An integer indicating how many spaces a `tab` will appear as visually.
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "command.toggle-autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command name for toggle autocomplete braces"),
+                title: String(localized: "command.toggle-autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command name for toggle autocomplete braces"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,25 +187,25 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "command.toggle-word-wrap", defaultValue: "Toggle Word Wrap", comment: "Command name for toggle word wrap"),
+                title: String(localized: "command.toggle-word-wrap", defaultValue: "Toggle Word Wrap", comment: "Command name for toggle word wrap"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
                 }
             )
 
-            mgr.addCommand(name: "Toggle Minimap", title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
+            mgr.addCommand(name: String(localized: "command.toggle-minimap", defaultValue: "Toggle Minimap", comment: "Command name for toggle minimap"), title: String(localized: "command.toggle-minimap", defaultValue: "Toggle Minimap", comment: "Command name for toggle minimap"), id: "prefs.text_editing.toggle_minimap") {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 
-            mgr.addCommand(name: "Toggle Gutter", title: "Toggle Gutter", id: "prefs.text_editing.toggle_gutter") {
+            mgr.addCommand(name: String(localized: "command.toggle-gutter", defaultValue: "Toggle Gutter", comment: "Command name for toggle gutter"), title: String(localized: "command.toggle-gutter", defaultValue: "Toggle Gutter", comment: "Command name for toggle gutter"), id: "prefs.text_editing.toggle_gutter") {
                 Settings[\.textEditing].showGutter.toggle()
             }
 
             mgr.addCommand(
-                name: "Toggle Folding Ribbon",
-                title: "Toggle Folding Ribbon",
+                name: String(localized: "command.toggle-folding-ribbon", defaultValue: "Toggle Folding Ribbon", comment: "Command name for toggle folding ribbon"),
+                title: String(localized: "command.toggle-folding-ribbon", defaultValue: "Toggle Folding Ribbon", comment: "Command name for toggle folding ribbon"),
                 id: "prefs.text_editing.toggle_folding_ribbon"
             ) {
                 Settings[\.textEditing].showFoldingRibbon.toggle()
