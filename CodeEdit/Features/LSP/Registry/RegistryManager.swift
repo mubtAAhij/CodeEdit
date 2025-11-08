@@ -88,7 +88,7 @@ final class RegistryManager: ObservableObject {
             userInfo: [
                 "id": packageName,
                 "action": "create",
-                "title": "Removing \(packageName)"
+                "title": String(format: NSLocalizedString("registry.removing-package", comment: "Status message for removing package"), packageName)
             ]
         )
 
@@ -142,7 +142,7 @@ final class RegistryManager: ObservableObject {
             let activityTitle = "\(operation.package.name)\("@" + (method.version ?? "latest"))"
             TaskNotificationHandler.postTask(
                 action: .create,
-                model: TaskNotificationModel(id: operation.package.name, title: "Installing \(activityTitle)")
+                model: TaskNotificationModel(id: operation.package.name, title: String(format: NSLocalizedString("registry.installing-package", comment: "Status message for installing package"), activityTitle))
             )
 
             guard !Task.isCancelled else { return }
@@ -183,15 +183,15 @@ final class RegistryManager: ObservableObject {
             NotificationManager.shared.post(
                 iconSymbol: "xmark.circle",
                 iconColor: .clear,
-                title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                title: String(format: NSLocalizedString("registry.install-failed", comment: "Error title when installation fails"), activityName),
+                description: String(localized: "registry.install-failed-description", defaultValue: "There was a problem during installation.", comment: "Error description when installation fails"),
+                actionButtonTitle: String(localized: "done", defaultValue: "Done", comment: "Done button"),
                 action: {},
             )
         } else {
             TaskNotificationHandler.postTask(
                 action: .update,
-                model: TaskNotificationModel(id: id, title: "Successfully installed \(activityName)", isLoading: false)
+                model: TaskNotificationModel(id: id, title: String(format: NSLocalizedString("registry.install-success", comment: "Success message for package installation"), activityName), isLoading: false)
             )
             NotificationCenter.default.post(
                 name: .taskNotification,
