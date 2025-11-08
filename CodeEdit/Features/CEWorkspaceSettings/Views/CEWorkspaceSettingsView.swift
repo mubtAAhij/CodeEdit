@@ -21,12 +21,12 @@ struct CEWorkspaceSettingsView: View {
             Form {
                 Section {
                     TextField(
-                        "Name",
+                        String(localized: "workspace-settings.name", defaultValue: "Name", comment: "Label for workspace name field"),
                         text: $workspaceSettingsManager.settings.project.projectName
                     )
-                    .accessibilityLabel("Workspace Name")
+                    .accessibilityLabel(String(localized: "workspace-settings.workspace-name", defaultValue: "Workspace Name", comment: "Accessibility label for workspace name field"))
                 } header: {
-                    Text("Workspace")
+                    Text(String(localized: "workspace-settings.workspace", defaultValue: "Workspace", comment: "Workspace section header"))
                         .accessibilityHidden(true)
                 }
 
@@ -37,7 +37,7 @@ struct CEWorkspaceSettingsView: View {
                         showAddTaskSheet: $showAddTaskSheet
                     )
                 } header: {
-                    Text("Tasks")
+                    Text(String(localized: "workspace-settings.tasks", defaultValue: "Tasks", comment: "Tasks section header"))
                 } footer: {
                     HStack {
                         Spacer()
@@ -45,7 +45,7 @@ struct CEWorkspaceSettingsView: View {
                             selectedTaskID = nil
                             showAddTaskSheet = true
                         } label: {
-                            Text("Add Task...")
+                            Text(String(localized: "task.add-task", defaultValue: "Add Task...", comment: "Menu item to add task"))
                         }
                     }
                 }
@@ -59,7 +59,7 @@ struct CEWorkspaceSettingsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "done", defaultValue: "Done", comment: "Done button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
