@@ -23,6 +23,15 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     enum URLProtocol: String, Codable, CaseIterable {
         case https = "HTTPS"
         case ssh = "SSH"
+
+        var localizedName: String {
+            switch self {
+            case .https:
+                return String(localized: "source-control.account.url-protocol.https", defaultValue: "HTTPS", comment: "HTTPS URL protocol option")
+            case .ssh:
+                return String(localized: "source-control.account.url-protocol.ssh", defaultValue: "SSH", comment: "SSH URL protocol option")
+            }
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -53,17 +62,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "source-control.account.provider.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "BitBucket Cloud provider name")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "source-control.account.provider.bitbucket-server", defaultValue: "BitBucket Server", comment: "BitBucket Server provider name")
             case .github:
-                return "GitHub"
+                return String(localized: "source-control.account.provider.github", defaultValue: "GitHub", comment: "GitHub provider name")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "source-control.account.provider.github-enterprise", defaultValue: "GitHub Enterprise", comment: "GitHub Enterprise provider name")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "source-control.account.provider.gitlab", defaultValue: "GitLab", comment: "GitLab provider name")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "source-control.account.provider.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "GitLab Self-hosted provider name")
             }
         }
 
