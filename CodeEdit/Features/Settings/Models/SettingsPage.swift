@@ -34,6 +34,26 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case advanced = "Advanced"
         case languageServers = "Language Servers"
         case developer = "Developer"
+
+        var localizedName: String {
+            switch self {
+            case .general: return "General"
+            case .accounts: return "Accounts"
+            case .behavior: return "Behaviors"
+            case .navigation: return "Navigation"
+            case .theme: return "Themes"
+            case .textEditing: return "Text Editing"
+            case .terminal: return "Terminal"
+            case .search: return String(localized: "settings.page.search", defaultValue: "Search", comment: "Settings page name for search")
+            case .keybindings: return "Key Bindings"
+            case .sourceControl: return String(localized: "settings.page.source-control", defaultValue: "Source Control", comment: "Settings page name for source control")
+            case .components: return String(localized: "settings.page.components", defaultValue: "Components", comment: "Settings page name for components")
+            case .location: return String(localized: "settings.page.locations", defaultValue: "Locations", comment: "Settings page name for locations")
+            case .advanced: return String(localized: "settings.page.advanced", defaultValue: "Advanced", comment: "Settings page name for advanced")
+            case .languageServers: return "Language Servers"
+            case .developer: return String(localized: "settings.page.developer", defaultValue: "Developer", comment: "Settings page name for developer")
+            }
+        }
     }
 
     let id: UUID = UUID()
