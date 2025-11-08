@@ -158,7 +158,7 @@ final class SourceControlManager: ObservableObject {
             let alert = NSAlert()
             alert.messageText = title
             alert.informativeText = message
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "alert.button.ok", defaultValue: "OK", comment: "Alert dialog OK button"))
             alert.alertStyle = .warning
             alert.runModal()
         }
