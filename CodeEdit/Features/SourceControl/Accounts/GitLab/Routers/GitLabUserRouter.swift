@@ -27,7 +27,7 @@ enum GitLabUserRouter: GitRouter {
     var path: String {
         switch self {
         case .readAuthenticatedUser:
-            return "user"
+            return String(localized: "gitlab.router.user", defaultValue: "user", comment: "GitLab API endpoint path for user")
         }
     }
 
