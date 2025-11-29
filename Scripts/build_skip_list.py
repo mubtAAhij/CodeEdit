@@ -4,7 +4,7 @@ import json
 import sys
 import subprocess
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 if len(sys.argv) != 2:
     print(f"Usage: {sys.argv[0]} OUTPUT_JSON", file=sys.stderr)
@@ -22,7 +22,7 @@ if not xcstrings_files:
     output = {
         "version": 1,
         "count": 0,
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "strings": []
     }
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
