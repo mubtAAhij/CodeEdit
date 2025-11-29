@@ -103,10 +103,32 @@ jobs:
         run: |
           ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
 
+      - name: Check String Catalogs before build
+        run: |
+          echo "📋 String Catalogs before build:"
+          find . -name "*.xcstrings" -type f | while read f; do
+            echo "  - $f ($(wc -c < "$f" | xargs) bytes)"
+            if command -v jq &> /dev/null; then
+              COUNT=$(jq '.strings | length' "$f" 2>/dev/null || echo "0")
+              echo "    Contains $COUNT string entries"
+            fi
+          done || echo "  (none found)"
+
       - name: Run unsigned build with compiler string extraction
         continue-on-error: true
         run: |
           ./Scripts/build_with_compiler_extraction.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
+
+      - name: Check String Catalogs after build
+        run: |
+          echo "📋 String Catalogs after build:"
+          find . -name "*.xcstrings" -type f | while read f; do
+            echo "  - $f ($(wc -c < "$f" | xargs) bytes)"
+            if command -v jq &> /dev/null; then
+              COUNT=$(jq '.strings | length' "$f" 2>/dev/null || echo "0")
+              echo "    Contains $COUNT string entries"
+            fi
+          done || echo "  (none found)"
 
       - name: Build skip list from all String Catalogs
         run: |
