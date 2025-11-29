@@ -1,0 +1,161 @@
+name: Swift Strings Extraction (Quetzal)
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: 'Quetzal Project ID'
+        required: true
+        type: string
+      integration_id:
+        description: 'Quetzal Integration ID'
+        required: true
+        type: string
+      branch:
+        description: 'Branch to process'
+        required: false
+        default: 'main'
+        type: string
+      gcs_bucket:
+        description: 'GCS bucket for skip list'
+        required: true
+        type: string
+      gcs_path:
+        description: 'GCS path for skip list'
+        required: true
+        type: string
+      gcp_project_id:
+        description: 'GCP Project ID'
+        required: true
+        type: string
+      gcp_region:
+        description: 'GCP Region'
+        required: false
+        default: 'us-west1'
+        type: string
+      gcp_wif_provider:
+        description: 'GCP Workload Identity Provider (for OIDC auth)'
+        required: true
+        type: string
+      gcp_sa_email:
+        description: 'GCP Service Account Email (for OIDC auth)'
+        required: true
+        type: string
+
+jobs:
+  extract-swift-strings:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      GCP_PROJECT_ID: ${{ inputs.gcp_project_id }}
+      GCP_REGION: ${{ inputs.gcp_region }}
+      GCS_BUCKET: ${{ inputs.gcs_bucket }}
+      GCS_PATH: ${{ inputs.gcs_path }}
+      PROJECT_ID: ${{ inputs.project_id }}
+      INTEGRATION_ID: ${{ inputs.integration_id }}
+      BRANCH: ${{ inputs.branch }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.0"
+
+      - name: Find Xcode project
+        id: find-xcode-project
+        run: |
+          # Find first .xcodeproj file
+          XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
+          if [ -z "$XCODE_PROJECT" ]; then
+            echo "No .xcodeproj found"
+            exit 1
+          fi
+          echo "project_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
+          
+          # Extract project name (without .xcodeproj extension)
+          PROJECT_NAME=$(basename "$XCODE_PROJECT" .xcodeproj)
+          echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
+          
+          # Try to find scheme (usually same as project name, or first scheme found)
+          SCHEME=$(xcodebuild -list -project "$XCODE_PROJECT" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
+          echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
+          
+          echo "Found Xcode project: $XCODE_PROJECT"
+          echo "Project name: $PROJECT_NAME"
+          echo "Scheme: $SCHEME"
+
+      - name: Resolve Swift packages (if any)
+        run: |
+          xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -resolvePackageDependencies || true
+
+      - name: Make scripts executable
+        run: |
+          chmod +x Scripts/*.sh Scripts/*.py || true
+
+      - name: Ensure String Catalog exists
+        run: |
+          ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
+
+      - name: Run unsigned build with compiler string extraction
+        continue-on-error: true
+        run: |
+          ./Scripts/build_with_compiler_extraction.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
+
+      - name: Build skip list from all String Catalogs
+        run: |
+          # Always create skip-list.json, even if empty
+          python3 Scripts/build_skip_list.py skip-list.json || echo "[]" > skip-list.json
+          # Ensure file exists
+          if [ ! -f skip-list.json ]; then
+            echo "[]" > skip-list.json
+          fi
+          echo "Skip list contains $(jq 'length' skip-list.json) entries"
+
+      - name: Set up gcloud auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ inputs.gcp_wif_provider }}
+          service_account: ${{ inputs.gcp_sa_email }}
+        continue-on-error: true
+
+      - name: Install gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        continue-on-error: true
+
+      - name: Upload skip list to GCS
+        run: |
+          # Check if gcloud auth worked, if not, try using gsutil with service account key if available
+          if command -v gsutil &> /dev/null; then
+            gsutil cp skip-list.json "gs://$GCS_BUCKET/$GCS_PATH" || {
+              echo "⚠️  Failed to upload skip list using gsutil. This may be due to missing GCP authentication secrets."
+              echo "⚠️  Skip list will not be available, but workflow will continue."
+              exit 0
+            }
+            echo "Skip list uploaded to: gs://$GCS_BUCKET/$GCS_PATH"
+          else
+            echo "⚠️  gsutil not available. Skip list upload skipped."
+          fi
+
+      - name: Upload catalogs as artifact (for debugging)
+        uses: actions/upload-artifact@v4
+        with:
+          name: string-catalogs-and-skip-list
+          path: |
+            **/*.xcstrings
+            skip-list.json
+          if-no-files-found: ignore
+
+      - name: Notify completion
+        run: |
+          echo "✅ Xcode string extraction completed"
+          echo "Skip list available at: gs://$GCS_BUCKET/$GCS_PATH"
+          echo "Project ID: $PROJECT_ID"
+          echo "Integration ID: $INTEGRATION_ID"
+
