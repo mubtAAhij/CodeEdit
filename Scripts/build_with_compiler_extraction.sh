@@ -6,8 +6,31 @@ PROJECT_PATH="${1:-YourApp.xcodeproj}"
 SCHEME="${2:-YourApp}"
 CONFIGURATION="${3:-Debug}"
 
-# Use a generic iOS Simulator destination to avoid signing.
-DESTINATION="generic/platform=iOS Simulator"
+# Detect available destinations and choose appropriate one
+echo "🔍 Detecting available build destinations..."
+AVAILABLE_DESTINATIONS=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showdestinations 2>/dev/null || echo "")
+
+# Try to find a suitable destination (prefer iOS Simulator, fall back to macOS)
+if echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS Simulator"; then
+  DESTINATION="generic/platform=iOS Simulator"
+  echo "✅ Using iOS Simulator destination"
+elif echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:macOS"; then
+  DESTINATION="generic/platform=macOS"
+  echo "✅ Using macOS destination"
+else
+  # Fallback: try to extract first available platform
+  FIRST_PLATFORM=$(echo "$AVAILABLE_DESTINATIONS" | grep -m 1 "platform:" | sed -E 's/.*platform:([^,}]+).*/\1/' | head -1 | xargs || echo "")
+  if [ -n "$FIRST_PLATFORM" ]; then
+    DESTINATION="generic/platform=$FIRST_PLATFORM"
+    echo "✅ Using detected destination: $DESTINATION"
+  else
+    # Last resort: try macOS
+    DESTINATION="generic/platform=macOS"
+    echo "⚠️  Could not detect destination, defaulting to macOS"
+  fi
+fi
+
+echo "📍 Build destination: $DESTINATION"
 
 echo "🏗  Ensuring String Catalog exists..."
 ./Scripts/ensure_string_catalog.sh "$PROJECT_PATH" "$SCHEME" || {
