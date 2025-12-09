@@ -59,7 +59,8 @@ export DISABLE_SWIFTLINT=YES
 # Run xcodebuild and capture both formatted output and raw log
 echo "🔨 Starting build (plugins disabled for string extraction only)..."
 # Use -skipPackagePluginValidation to skip SwiftLint and other plugin validation
-# This flag is available in Xcode 15.0+ and allows us to build without running plugins
+# Use -continueBuildingAfterErrors to compile as many files as possible even if some fail
+# This allows us to extract strings from files that compile successfully, even if the build has errors
 xcodebuild \
   -project "$PROJECT_PATH" \
   -scheme "$SCHEME" \
@@ -69,6 +70,7 @@ xcodebuild \
   SWIFT_EMIT_LOC_STRINGS=YES \
   LOCALIZED_STRING_SWIFTUI_SUPPORT=YES \
   -skipPackagePluginValidation \
+  -continueBuildingAfterErrors \
   build 2>&1 | tee "$BUILD_LOG" | $XCPRETTY_CMD
 
 BUILD_EXIT_CODE=${PIPESTATUS[0]}
@@ -80,8 +82,10 @@ else
   echo "📋 Showing last 50 lines of build output for debugging:"
   tail -50 "$BUILD_LOG" || true
   echo ""
-  echo "⚠️  Continuing to generate skip list (may be empty if build didn't compile Swift files)"
-  echo "💡 Tip: Check the build log above to see why the build failed"
+  echo "⚠️  Build had errors, but continuing to generate skip list..."
+  echo "💡 Note: With -continueBuildingAfterErrors, many Swift files may have compiled successfully"
+  echo "💡 String extraction should have worked for files that compiled, even if the build failed"
+  echo "💡 Check the skip list to see how many strings were extracted"
 fi
 
 # Clean up log file
