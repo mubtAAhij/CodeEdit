@@ -51,8 +51,15 @@ else
   XCPRETTY_CMD="cat"
 fi
 
+# Disable SwiftLint and other plugins - we only need string extraction, not linting
+export SWIFTLINT_DISABLE=YES
+export SWIFTLINT_SKIP_BUILD_PHASE=YES
+export DISABLE_SWIFTLINT=YES
+
 # Run xcodebuild and capture both formatted output and raw log
-echo "🔨 Starting build..."
+echo "🔨 Starting build (plugins disabled for string extraction only)..."
+# Use -skipPackagePluginValidation to skip SwiftLint and other plugin validation
+# This flag is available in Xcode 15.0+ and allows us to build without running plugins
 xcodebuild \
   -project "$PROJECT_PATH" \
   -scheme "$SCHEME" \
@@ -61,6 +68,7 @@ xcodebuild \
   CODE_SIGNING_ALLOWED=NO \
   SWIFT_EMIT_LOC_STRINGS=YES \
   LOCALIZED_STRING_SWIFTUI_SUPPORT=YES \
+  -skipPackagePluginValidation \
   build 2>&1 | tee "$BUILD_LOG" | $XCPRETTY_CMD
 
 BUILD_EXIT_CODE=${PIPESTATUS[0]}
