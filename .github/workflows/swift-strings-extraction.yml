@@ -95,6 +95,94 @@ jobs:
         run: |
           xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -resolvePackageDependencies || true
 
+      - name: Create merge script if needed
+        run: |
+          mkdir -p Scripts
+          if [ ! -f "Scripts/merge_emitted_strings.py" ]; then
+            cat > Scripts/merge_emitted_strings.py << 'MERGE_SCRIPT_EOF'
+#!/usr/bin/env python3
+"""Merge emitted .strings files from Xcode build into .xcstrings catalog."""
+import json
+import sys
+import re
+from pathlib import Path
+
+def parse_strings_file(path):
+    """Parse a .strings file and return a dict of key -> value."""
+    strings = {}
+    try:
+        content = path.read_text(encoding='utf-8')
+        pattern = r'"([^"]+)"\s*=\s*"([^"]+)";'
+        for match in re.finditer(pattern, content, re.MULTILINE):
+            key = match.group(1)
+            value = match.group(2)
+            strings[key] = value
+    except Exception as e:
+        print(f"⚠️  Failed to parse {path}: {e}", file=sys.stderr)
+    return strings
+
+def merge_strings_into_xcstrings(strings_dict, xcstrings_path):
+    """Merge strings from dict into .xcstrings catalog."""
+    try:
+        if xcstrings_path.exists():
+            catalog = json.loads(xcstrings_path.read_text(encoding='utf-8'))
+        else:
+            catalog = {"sourceLanguage": "en", "strings": {}, "version": "1.0"}
+        
+        if "strings" not in catalog:
+            catalog["strings"] = {}
+        
+        merged_count = 0
+        source_lang = catalog.get("sourceLanguage", "en")
+        
+        for key, value in strings_dict.items():
+            if key not in catalog["strings"]:
+                catalog["strings"][key] = {
+                    "extractionState": "manual",
+                    "localizations": {
+                        source_lang: {
+                            "stringUnit": {"state": "new", "value": value}
+                        }
+                    }
+                }
+                merged_count += 1
+        
+        xcstrings_path.write_text(
+            json.dumps(catalog, ensure_ascii=False, indent=2),
+            encoding='utf-8'
+        )
+        return merged_count
+    except Exception as e:
+        print(f"⚠️  Failed to merge: {e}", file=sys.stderr)
+        return 0
+
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: merge_emitted_strings.py <xcstrings_path> <strings_dir1> [dir2] ...", file=sys.stderr)
+        sys.exit(1)
+    
+    xcstrings_path = Path(sys.argv[1])
+    strings_dirs = [Path(d) for d in sys.argv[2:]]
+    
+    all_strings = {}
+    total_files = 0
+    
+    for strings_dir in strings_dirs:
+        if not strings_dir.exists():
+            continue
+        for strings_file in strings_dir.rglob("*.strings"):
+            total_files += 1
+            all_strings.update(parse_strings_file(strings_file))
+    
+    if all_strings:
+        print(f"📝 Found {len(all_strings)} unique strings from {total_files} .strings files")
+        merged_count = merge_strings_into_xcstrings(all_strings, xcstrings_path)
+        if merged_count > 0:
+            print(f"✅ Merged {merged_count} strings into {xcstrings_path}")
+MERGE_SCRIPT_EOF
+            chmod +x Scripts/merge_emitted_strings.py
+          fi
+
       - name: Make scripts executable
         run: |
           chmod +x Scripts/*.sh Scripts/*.py || true
