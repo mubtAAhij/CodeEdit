@@ -140,13 +140,55 @@ jobs:
             # Create the Ruby script if it doesn't exist
             if [ ! -f "Scripts/add_xcstrings_to_project.rb" ]; then
               mkdir -p Scripts
-              echo "IyEvdXNyL2Jpbi9lbnYgcnVieQojIGZyb3plbl9zdHJpbmdfbGl0ZXJhbDogdHJ1ZQoKIyBBZGQgLnhjc3RyaW5ncyBmaWxlIHRvIFhjb2RlIHByb2plY3QKIyBVc2FnZTogcnVieSBhZGRfeGNzdHJpbmdzX3RvX3Byb2plY3QucmIgPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0KCnJlcXVpcmUgJ3hjb2RlcHJvaicKcmVxdWlyZSAncGF0aG5hbWUnCgppZiBBUkdWLmxlbmd0aCA8IDIKICBwdXRzICJVc2FnZTogI3skMH0gPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0iCiAgZXhpdCAxCmVuZAoKcHJvamVjdF9wYXRoID0gQVJHVlswXQp4Y3N0cmluZ3NfcGF0aCA9IEFSR1ZbMV0KdGFyZ2V0X25hbWUgPSBBUkdWWzJdCgojIFZhbGlkYXRlIHBhdGhzCnVubGVzcyBGaWxlLmV4aXN0Pyhwcm9qZWN0X3BhdGgpCiAgcHV0cyAi4p2MIFByb2plY3Qgbm90IGZvdW5kOiAje3Byb2plY3RfcGF0aH0iCiAgZXhpdCAxCmVuZAoKdW5sZXNzIEZpbGUuZXhpc3Q/KHhjc3RyaW5nc19wYXRoKQogIHB1dHMgIuKdjCBTdHJpbmcgY2F0YWxvZyBub3QgZm91bmQ6ICN7eGNzdHJpbmdzX3BhdGh9IgogIGV4aXQgMQplbmQKCiMgT3BlbiBwcm9qZWN0CnByb2plY3QgPSBYY29kZXByb2o6OlByb2plY3Qub3Blbihwcm9qZWN0X3BhdGgpCgojIEZpbmQgdGFyZ2V0IChpZiBzcGVjaWZpZWQpCnRhcmdldCA9IG5pbAppZiB0YXJnZXRfbmFtZQogIHRhcmdldCA9IHByb2plY3QudGFyZ2V0cy5maW5kIHsgfHR8IHQubmFtZSA9PSB0YXJnZXRfbmFtZSB9CiAgdW5sZXNzIHRhcmdldAogICAgcHV0cyAi4pqg77iPICBUYXJnZXQgJyN7dGFyZ2V0X25hbWV9JyBub3QgZm91bmQsIHdpbGwgYWRkIHRvIGZpcnN0IHRhcmdldCIKICBlbmQKZW5kCgojIFVzZSBmaXJzdCB0YXJnZXQgaWYgbm90IGZvdW5kCnRhcmdldCB8fD0gcHJvamVjdC50YXJnZXRzLmZpcnN0CnVubGVzcyB0YXJnZXQKICBwdXRzICLinYwgTm8gdGFyZ2V0cyBmb3VuZCBpbiBwcm9qZWN0IgogIGV4aXQgMQplbmQKCnB1dHMgIvCfk6YgQWRkaW5nICN7eGNzdHJpbmdzX3BhdGh9IHRvIHRhcmdldDogI3t0YXJnZXQubmFtZX0iCgojIEdldCByZWxhdGl2ZSBwYXRoIGZyb20gcHJvamVjdCBkaXJlY3RvcnkKcHJvamVjdF9kaXIgPSBGaWxlLmRpcm5hbWUocHJvamVjdF9wYXRoKQp4Y3N0cmluZ3NfcmVsYXRpdmUgPSBQYXRobmFtZS5uZXcoeGNzdHJpbmdzX3BhdGgpLnJlbGF0aXZlX3BhdGhfZnJvbShQYXRobmFtZS5uZXcocHJvamVjdF9kaXIpKS50b19zCgojIENoZWNrIGlmIGZpbGUgaXMgYWxyZWFkeSBpbiBwcm9qZWN0CmV4aXN0aW5nX2ZpbGUgPSBwcm9qZWN0LmZpbGVzLmZpbmQgeyB8ZnwgZi5wYXRoID09IHhjc3RyaW5nc19yZWxhdGl2ZSB9CmlmIGV4aXN0aW5nX2ZpbGUKICBwdXRzICLihLnvuI8gIEZpbGUgYWxyZWFkeSBpbiBwcm9qZWN0OiAje3hjc3RyaW5nc19yZWxhdGl2ZX0iCiAgCiAgIyBFbnN1cmUgaXQncyBhZGRlZCB0byB0aGUgdGFyZ2V0CiAgIyBDaGVjayBpZiBmaWxlIGlzIGFscmVhZHkgaW4gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgaW5fYnVpbGRfcGhhc2UgPSB0YXJnZXQucmVzb3VyY2VzX2J1aWxkX3BoYXNlLmZpbGVzLmFueT8geyB8ZnwgZi5maWxlX3JlZiA9PSBleGlzdGluZ19maWxlIH0KICB1bmxlc3MgaW5fYnVpbGRfcGhhc2UKICAgIHRhcmdldC5hZGRfZmlsZV9yZWZlcmVuY2VzKFtleGlzdGluZ19maWxlXSkKICAgIHB1dHMgIuKchSBBZGRlZCBleGlzdGluZyBmaWxlIHJlZmVyZW5jZSB0byB0YXJnZXQiCiAgZWxzZQogICAgcHV0cyAi4pyFIEZpbGUgYWxyZWFkeSBpbiB0YXJnZXQiCiAgZW5kCmVsc2UKICAjIEZpbmQgb3IgY3JlYXRlIFJlc291cmNlcyBncm91cAogIHJlc291cmNlc19ncm91cCA9IHByb2plY3QubWFpbl9ncm91cFsnUmVzb3VyY2VzJ10gfHwgcHJvamVjdC5tYWluX2dyb3VwLm5ld19ncm91cCgnUmVzb3VyY2VzJykKICAKICAjIEFkZCBmaWxlIHRvIHByb2plY3QKICBmaWxlX3JlZiA9IHJlc291cmNlc19ncm91cC5uZXdfZmlsZSh4Y3N0cmluZ3NfcmVsYXRpdmUpCiAgCiAgIyBBZGQgdG8gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgdGFyZ2V0LmFkZF9maWxlX3JlZmVyZW5jZXMoW2ZpbGVfcmVmXSkKICAKICBwdXRzICLinIUgQWRkZWQgI3t4Y3N0cmluZ3NfcmVsYXRpdmV9IHRvIHByb2plY3QgYW5kIHRhcmdldCIKZW5kCgojIFNhdmUgcHJvamVjdApwcm9qZWN0LnNhdmUKcHV0cyAi4pyFIFByb2plY3Qgc2F2ZWQiCg==" | base64 -d > Scripts/add_xcstrings_to_project.rb
+              echo "IyEvdXNyL2Jpbi9lbnYgcnVieQojIGZyb3plbl9zdHJpbmdfbGl0ZXJhbDogdHJ1ZQoKIyBBZGQgLnhjc3RyaW5ncyBmaWxlIHRvIFhjb2RlIHByb2plY3QKIyBVc2FnZTogcnVieSBhZGRfeGNzdHJpbmdzX3RvX3Byb2plY3QucmIgPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0KCnJlcXVpcmUgJ3hjb2RlcHJvaicKcmVxdWlyZSAncGF0aG5hbWUnCgppZiBBUkdWLmxlbmd0aCA8IDIKICBwdXRzICJVc2FnZTogI3skMH0gPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0iCiAgZXhpdCAxCmVuZAoKcHJvamVjdF9wYXRoID0gQVJHVlswXQp4Y3N0cmluZ3NfcGF0aCA9IEFSR1ZbMV0KdGFyZ2V0X25hbWUgPSBBUkdWWzJdCgojIFZhbGlkYXRlIHBhdGhzCnVubGVzcyBGaWxlLmV4aXN0Pyhwcm9qZWN0X3BhdGgpCiAgcHV0cyAi4p2MIFByb2plY3Qgbm90IGZvdW5kOiAje3Byb2plY3RfcGF0aH0iCiAgZXhpdCAxCmVuZAoKdW5sZXNzIEZpbGUuZXhpc3Q/KHhjc3RyaW5nc19wYXRoKQogIHB1dHMgIuKdjCBTdHJpbmcgY2F0YWxvZyBub3QgZm91bmQ6ICN7eGNzdHJpbmdzX3BhdGh9IgogIGV4aXQgMQplbmQKCiMgT3BlbiBwcm9qZWN0CnByb2plY3QgPSBYY29kZXByb2o6OlByb2plY3Qub3Blbihwcm9qZWN0X3BhdGgpCgojIEZpbmQgdGFyZ2V0IChpZiBzcGVjaWZpZWQpCnRhcmdldCA9IG5pbAppZiB0YXJnZXRfbmFtZQogIHRhcmdldCA9IHByb2plY3QudGFyZ2V0cy5maW5kIHsgfHR8IHQubmFtZSA9PSB0YXJnZXRfbmFtZSB9CiAgdW5sZXNzIHRhcmdldAogICAgcHV0cyAi4pqg77iPICBUYXJnZXQgJyN7dGFyZ2V0X25hbWV9JyBub3QgZm91bmQsIHdpbGwgYWRkIHRvIGZpcnN0IHRhcmdldCIKICBlbmQKZW5kCgojIFVzZSBmaXJzdCB0YXJnZXQgaWYgbm90IGZvdW5kCnRhcmdldCB8fD0gcHJvamVjdC50YXJnZXRzLmZpcnN0CnVubGVzcyB0YXJnZXQKICBwdXRzICLinYwgTm8gdGFyZ2V0cyBmb3VuZCBpbiBwcm9qZWN0IgogIGV4aXQgMQplbmQKCnB1dHMgIvCfk6YgQWRkaW5nICN7eGNzdHJpbmdzX3BhdGh9IHRvIHRhcmdldDogI3t0YXJnZXQubmFtZX0iCgojIEdldCByZWxhdGl2ZSBwYXRoIGZyb20gcHJvamVjdCBkaXJlY3RvcnkKcHJvamVjdF9kaXIgPSBGaWxlLmRpcm5hbWUocHJvamVjdF9wYXRoKQp4Y3N0cmluZ3NfcmVsYXRpdmUgPSBQYXRobmFtZS5uZXcoeGNzdHJpbmdzX3BhdGgpLnJlbGF0aXZlX3BhdGhfZnJvbShQYXRobmFtZS5uZXcocHJvamVjdF9kaXIpKS50b19zCgojIENoZWNrIGlmIGZpbGUgaXMgYWxyZWFkeSBpbiBwcm9qZWN0CmV4aXN0aW5nX2ZpbGUgPSBwcm9qZWN0LmZpbGVzLmZpbmQgeyB8ZnwgZi5wYXRoID09IHhjc3RyaW5nc19yZWxhdGl2ZSB9CmlmIGV4aXN0aW5nX2ZpbGUKICBwdXRzICLihLnvuI8gIEZpbGUgYWxyZWFkeSBpbiBwcm9qZWN0OiAje3hjc3RyaW5nc19yZWxhdGl2ZX0iCiAgCiAgIyBFbnN1cmUgaXQncyBhZGRlZCB0byB0aGUgdGFyZ2V0CiAgIyBDaGVjayBpZiBmaWxlIGlzIGFscmVhZHkgaW4gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgaW5fYnVpbGRfcGhhc2UgPSB0YXJnZXQucmVzb3VyY2VzX2J1aWxkX3BoYXNlLmZpbGVzLmFueT8geyB8ZnwgZi5maWxlX3JlZiA9PSBleGlzdGluZ19maWxlIH0KICB1bmxlc3MgaW5fYnVpbGRfcGhhc2UKICAgIHRhcmdldC5hZGRfZmlsZV9yZWZlcmVuY2VzKFtleGlzdGluZ19maWxlXSkKICAgIHB1dHMgIuKchSBBZGRlZCBleGlzdGluZyBmaWxlIHJlZmVyZW5jZSB0byB0YXJnZXQiCiAgZWxzZQogICAgcHV0cyAi4pyFIEZpbGUgYWxyZWFkeSBpbiB0YXJnZXQiCiAgZW5kCmVsc2UKICAjIEZpbmQgb3IgY3JlYXRlIFJlc291cmNlcyBncm91cAogIHJlc291cmNlc19ncm91cCA9IHByb2plY3QubWFpbl9ncm91cFsnUmVzb3VyY2VzJ10gfHwgcHJvamVjdC5tYWluX2dyb3VwLm5ld19ncm91cCgnUmVzb3VyY2VzJykKICAKICAjIEFkZCBmaWxlIHRvIHByb2plY3QKICBmaWxlX3JlZiA9IHJlc291cmNlc19ncm91cC5uZXdfZmlsZSh4Y3N0cmluZ3NfcmVsYXRpdmUpCiAgCiAgIyBBZGQgdG8gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgdGFyZ2V0LmFkZF9maWxlX3JlZmVyZW5jZXMoW2ZpbGVfcmVmXSkKICAKICBwdXRzICLinIUgQWRkZWQgI3t4Y3N0cmluZ3NfcmVsYXRpdmV9IHRvIHByb2plY3QgYW5kIHRhcmdldCIKZW5kCgojIFJlbW92ZSBhbnkgZXhpc3RpbmcgTG9jYWxpemFibGUuc3RyaW5ncyBmaWxlcyBmcm9tIHRoZSBwcm9qZWN0CiMgKFhjb2RlIHdvbid0IGVtaXQgdG8gLnhjc3RyaW5ncyBpZiAuc3RyaW5ncyBmaWxlcyBleGlzdCkKcHJvamVjdC5maWxlcy5lYWNoIGRvIHxmaWxlfAogIGlmIGZpbGUucGF0aCAmJiBmaWxlLnBhdGguZW5kX3dpdGg/KCdMb2NhbGl6YWJsZS5zdHJpbmdzJykKICAgIHB1dHMgIuKaoO+4jyAgRm91bmQgZXhpc3RpbmcgTG9jYWxpemFibGUuc3RyaW5ncyBpbiBwcm9qZWN0OiAje2ZpbGUucGF0aH0iCiAgICBwdXRzICIgICBSZW1vdmluZyBmcm9tIHByb2plY3QgKFhjb2RlIHdvbid0IGVtaXQgdG8gLnhjc3RyaW5ncyB3aGVuIC5zdHJpbmdzIGV4aXN0cykiCiAgICBmaWxlLnJlbW92ZV9mcm9tX3Byb2plY3QKICBlbmQKZW5kCgojIFNhdmUgcHJvamVjdApwcm9qZWN0LnNhdmUKcHV0cyAi4pyFIFByb2plY3Qgc2F2ZWQiCg==" | base64 -d > Scripts/add_xcstrings_to_project.rb
               chmod +x Scripts/add_xcstrings_to_project.rb
             fi
             # Run the script
             ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
           else
             echo "⚠️  No Localizable.xcstrings file found to add to project"
+          fi
+
+      - name: Check for existing .strings files that might prevent emission
+        run: |
+          echo "🔍 Checking for existing .strings files that might prevent .xcstrings emission..."
+          STRINGS_FILES=$(find . -name "Localizable.strings" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
+          if [ -n "$STRINGS_FILES" ]; then
+            echo "⚠️  Found existing .strings files (these prevent Xcode from emitting to .xcstrings):"
+            echo "$STRINGS_FILES" | while read f; do
+              echo "  - $f"
+            done
+            echo ""
+            echo "💡 Xcode will NOT emit strings to .xcstrings when .strings files exist."
+            echo "💡 Temporarily renaming .strings files to allow emission..."
+            echo "$STRINGS_FILES" | while read f; do
+              if [ -f "$f" ]; then
+                mv "$f" "${f}.backup" && echo "  ✅ Renamed $f to ${f}.backup"
+              fi
+            done
+          else
+            echo "✅ No existing .strings files found that would prevent emission"
+          fi
+
+      - name: Check for existing .strings files that might prevent emission
+        run: |
+          echo "🔍 Checking for existing .strings files that might prevent .xcstrings emission..."
+          STRINGS_FILES=$(find . -name "Localizable.strings" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
+          if [ -n "$STRINGS_FILES" ]; then
+            echo "⚠️  Found existing .strings files (these prevent Xcode from emitting to .xcstrings):"
+            echo "$STRINGS_FILES" | while read f; do
+              echo "  - $f"
+            done
+            echo ""
+            echo "💡 Xcode will NOT emit strings to .xcstrings when .strings files exist."
+            echo "💡 Temporarily renaming .strings files to allow emission..."
+            echo "$STRINGS_FILES" | while read f; do
+              if [ -f "$f" ]; then
+                mv "$f" "${f}.backup" && echo "  ✅ Renamed $f to ${f}.backup"
+              fi
+            done
+          else
+            echo "✅ No existing .strings files found that would prevent emission"
           fi
 
       - name: Check String Catalogs before build
