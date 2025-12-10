@@ -109,7 +109,7 @@ else
     
     # Find emitted strings files in en.lproj directories (XML plist format)
     # Also look in Objects-normal directories (traditional format)
-    EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" 2>/dev/null | head -20 || echo "")
+    EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) 2>/dev/null | head -20 || echo "")
     
     if [ -n "$EMITTED_STRINGS_FILES" ]; then
       echo "📁 Found emitted strings files, merging into catalog..."
