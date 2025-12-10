@@ -90,31 +90,41 @@ fi
 # Xcode only merges strings on successful builds, so we need to do it manually
 echo "🔄 Attempting to merge emitted strings into string catalog..."
 
-# Find the xcstrings file
+# Find the xcstrings file (look in common locations)
 XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f | head -1)
 
 if [ -z "$XCSTRINGS_FILE" ]; then
   echo "⚠️  No .xcstrings file found, skipping merge"
 else
-  # Get DerivedData path from build settings
-  DERIVED_DATA_PATH=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+  echo "📋 Found string catalog: $XCSTRINGS_FILE"
   
-  if [ -n "$DERIVED_DATA_PATH" ]; then
-    # Find emitted strings directories (Objects-normal/arm64 and Objects-normal/x86_64)
-    EMITTED_STRINGS_DIRS=$(find "$DERIVED_DATA_PATH" -type d -path "*/Objects-normal/*" 2>/dev/null || echo "")
+  # Get DerivedData path from build settings
+  BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+  
+  if [ -n "$BUILD_DIR" ]; then
+    # Convert BUILD_DIR to Intermediates path
+    # BUILD_DIR is typically: .../DerivedData/Project-xxx/Build/Products
+    # Intermediates is: .../DerivedData/Project-xxx/Build/Intermediates.noindex
+    INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
     
-    if [ -n "$EMITTED_STRINGS_DIRS" ]; then
-      echo "📁 Found emitted strings directories, merging into catalog..."
+    # Find emitted strings files in en.lproj directories (XML plist format)
+    # Also look in Objects-normal directories (traditional format)
+    EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" 2>/dev/null | head -20 || echo "")
+    
+    if [ -n "$EMITTED_STRINGS_FILES" ]; then
+      echo "📁 Found emitted strings files, merging into catalog..."
       # Use Python script to merge strings
       if [ -f "./Scripts/merge_emitted_strings.py" ]; then
-        python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" $EMITTED_STRINGS_DIRS || echo "⚠️  Failed to merge strings"
+        # Pass all found strings files to the script
+        python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" $EMITTED_STRINGS_FILES || echo "⚠️  Failed to merge strings"
       else
         echo "⚠️  merge_emitted_strings.py not found, skipping merge"
         echo "💡 Strings may not be in catalog if build failed"
       fi
     else
-      echo "⚠️  Could not find emitted strings directories in DerivedData"
+      echo "⚠️  Could not find emitted strings files in DerivedData"
       echo "💡 This is normal if no files compiled successfully"
+      echo "💡 Searched in: $INTERMEDIATES_DIR"
     fi
   else
     echo "⚠️  Could not determine DerivedData path"
