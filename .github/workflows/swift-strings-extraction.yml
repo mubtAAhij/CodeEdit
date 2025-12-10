@@ -122,6 +122,100 @@ jobs:
         run: |
           ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
 
+      - name: Install xcodeproj gem
+        run: |
+          # No sudo needed in GitHub Actions - gem install works directly
+          gem install xcodeproj || {
+            echo "⚠️  Failed to install xcodeproj gem, will try to continue..."
+            exit 0
+          }
+
+      - name: Add String Catalog to Xcode project
+        continue-on-error: true
+        run: |
+          # Find the .xcstrings file that was created
+          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          if [ -n "$XCSTRINGS_FILE" ]; then
+            echo "📦 Adding $XCSTRINGS_FILE to Xcode project..."
+            # Create the Ruby script if it doesn't exist
+            if [ ! -f "Scripts/add_xcstrings_to_project.rb" ]; then
+              mkdir -p Scripts
+              cat > Scripts/add_xcstrings_to_project.rb << 'RUBY_EOF'
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'xcodeproj'
+require 'pathname'
+
+if ARGV.length < 2
+  puts "Usage: #{$0} <project_path> <xcstrings_file_path> [target_name]"
+  exit 1
+end
+
+project_path = ARGV[0]
+xcstrings_path = ARGV[1]
+target_name = ARGV[2]
+
+unless File.exist?(project_path)
+  puts "❌ Project not found: #{project_path}"
+  exit 1
+end
+
+unless File.exist?(xcstrings_path)
+  puts "❌ String catalog not found: #{xcstrings_path}"
+  exit 1
+end
+
+project = Xcodeproj::Project.open(project_path)
+
+target = nil
+if target_name
+  target = project.targets.find { |t| t.name == target_name }
+  unless target
+    puts "⚠️  Target '#{target_name}' not found, will add to first target"
+  end
+end
+
+target ||= project.targets.first
+unless target
+  puts "❌ No targets found in project"
+  exit 1
+end
+
+puts "📦 Adding #{xcstrings_path} to target: #{target.name}"
+
+project_dir = File.dirname(project_path)
+xcstrings_relative = Pathname.new(xcstrings_path).relative_path_from(Pathname.new(project_dir)).to_s
+
+existing_file = project.files.find { |f| f.path == xcstrings_relative }
+if existing_file
+  puts "ℹ️  File already in project: #{xcstrings_relative}"
+  # Check if file is already in target's resources build phase
+  in_build_phase = target.resources_build_phase.files.any? { |f| f.file_ref == existing_file }
+  unless in_build_phase
+    target.add_file_references([existing_file])
+    puts "✅ Added existing file reference to target"
+  else
+    puts "✅ File already in target"
+  end
+else
+  resources_group = project.main_group['Resources'] || project.main_group.new_group('Resources')
+  file_ref = resources_group.new_file(xcstrings_relative)
+  target.add_file_references([file_ref])
+  puts "✅ Added #{xcstrings_relative} to project and target"
+end
+
+project.save
+puts "✅ Project saved"
+RUBY_EOF
+              chmod +x Scripts/add_xcstrings_to_project.rb
+            fi
+            # Run the script
+            ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
+          else
+            echo "⚠️  No Localizable.xcstrings file found to add to project"
+          fi
+
       - name: Check String Catalogs before build
         run: |
           echo "📋 String Catalogs before build:"
