@@ -4,6 +4,7 @@ import json
 import sys
 import subprocess
 from pathlib import Path
+from datetime import datetime, timezone
 
 if len(sys.argv) != 2:
     print(f"Usage: {sys.argv[0]} OUTPUT_JSON", file=sys.stderr)
@@ -17,7 +18,14 @@ xcstrings_files = list(root.rglob("*.xcstrings"))
 
 if not xcstrings_files:
     print("No .xcstrings files found; skip list will be empty.", file=sys.stderr)
-    out_path.write_text("[]", encoding="utf-8")
+    # Write structured output with metadata even for empty lists
+    output = {
+        "version": 1,
+        "count": 0,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "strings": []
+    }
+    out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     sys.exit(0)
 
 entries = []
@@ -46,6 +54,13 @@ for path in xcstrings_files:
                 "value": value
             })
 
-out_path.write_text(json.dumps(entries, ensure_ascii=False, indent=2), encoding="utf-8")
+# Write structured output with metadata
+output = {
+    "version": 1,
+    "count": len(entries),
+    "timestamp": datetime.utcnow().isoformat() + "Z",
+    "strings": entries
+}
+out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
 print(f"✅ Wrote skip list with {len(entries)} entries to {out_path}")
 
