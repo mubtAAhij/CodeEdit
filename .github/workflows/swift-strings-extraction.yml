@@ -140,74 +140,7 @@ jobs:
             # Create the Ruby script if it doesn't exist
             if [ ! -f "Scripts/add_xcstrings_to_project.rb" ]; then
               mkdir -p Scripts
-              cat > Scripts/add_xcstrings_to_project.rb << 'RUBY_EOF'
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-
-require 'xcodeproj'
-require 'pathname'
-
-if ARGV.length < 2
-  puts "Usage: #{$0} <project_path> <xcstrings_file_path> [target_name]"
-  exit 1
-end
-
-project_path = ARGV[0]
-xcstrings_path = ARGV[1]
-target_name = ARGV[2]
-
-unless File.exist?(project_path)
-  puts "❌ Project not found: #{project_path}"
-  exit 1
-end
-
-unless File.exist?(xcstrings_path)
-  puts "❌ String catalog not found: #{xcstrings_path}"
-  exit 1
-end
-
-project = Xcodeproj::Project.open(project_path)
-
-target = nil
-if target_name
-  target = project.targets.find { |t| t.name == target_name }
-  unless target
-    puts "⚠️  Target '#{target_name}' not found, will add to first target"
-  end
-end
-
-target ||= project.targets.first
-unless target
-  puts "❌ No targets found in project"
-  exit 1
-end
-
-puts "📦 Adding #{xcstrings_path} to target: #{target.name}"
-
-project_dir = File.dirname(project_path)
-xcstrings_relative = Pathname.new(xcstrings_path).relative_path_from(Pathname.new(project_dir)).to_s
-
-existing_file = project.files.find { |f| f.path == xcstrings_relative }
-if existing_file
-  puts "ℹ️  File already in project: #{xcstrings_relative}"
-  # Check if file is already in target's resources build phase
-  in_build_phase = target.resources_build_phase.files.any? { |f| f.file_ref == existing_file }
-  unless in_build_phase
-    target.add_file_references([existing_file])
-    puts "✅ Added existing file reference to target"
-  else
-    puts "✅ File already in target"
-  end
-else
-  resources_group = project.main_group['Resources'] || project.main_group.new_group('Resources')
-  file_ref = resources_group.new_file(xcstrings_relative)
-  target.add_file_references([file_ref])
-  puts "✅ Added #{xcstrings_relative} to project and target"
-end
-
-project.save
-puts "✅ Project saved"
-RUBY_EOF
+              echo "IyEvdXNyL2Jpbi9lbnYgcnVieQojIGZyb3plbl9zdHJpbmdfbGl0ZXJhbDogdHJ1ZQoKIyBBZGQgLnhjc3RyaW5ncyBmaWxlIHRvIFhjb2RlIHByb2plY3QKIyBVc2FnZTogcnVieSBhZGRfeGNzdHJpbmdzX3RvX3Byb2plY3QucmIgPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0KCnJlcXVpcmUgJ3hjb2RlcHJvaicKcmVxdWlyZSAncGF0aG5hbWUnCgppZiBBUkdWLmxlbmd0aCA8IDIKICBwdXRzICJVc2FnZTogI3skMH0gPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0iCiAgZXhpdCAxCmVuZAoKcHJvamVjdF9wYXRoID0gQVJHVlswXQp4Y3N0cmluZ3NfcGF0aCA9IEFSR1ZbMV0KdGFyZ2V0X25hbWUgPSBBUkdWWzJdCgojIFZhbGlkYXRlIHBhdGhzCnVubGVzcyBGaWxlLmV4aXN0Pyhwcm9qZWN0X3BhdGgpCiAgcHV0cyAi4p2MIFByb2plY3Qgbm90IGZvdW5kOiAje3Byb2plY3RfcGF0aH0iCiAgZXhpdCAxCmVuZAoKdW5sZXNzIEZpbGUuZXhpc3Q/KHhjc3RyaW5nc19wYXRoKQogIHB1dHMgIuKdjCBTdHJpbmcgY2F0YWxvZyBub3QgZm91bmQ6ICN7eGNzdHJpbmdzX3BhdGh9IgogIGV4aXQgMQplbmQKCiMgT3BlbiBwcm9qZWN0CnByb2plY3QgPSBYY29kZXByb2o6OlByb2plY3Qub3Blbihwcm9qZWN0X3BhdGgpCgojIEZpbmQgdGFyZ2V0IChpZiBzcGVjaWZpZWQpCnRhcmdldCA9IG5pbAppZiB0YXJnZXRfbmFtZQogIHRhcmdldCA9IHByb2plY3QudGFyZ2V0cy5maW5kIHsgfHR8IHQubmFtZSA9PSB0YXJnZXRfbmFtZSB9CiAgdW5sZXNzIHRhcmdldAogICAgcHV0cyAi4pqg77iPICBUYXJnZXQgJyN7dGFyZ2V0X25hbWV9JyBub3QgZm91bmQsIHdpbGwgYWRkIHRvIGZpcnN0IHRhcmdldCIKICBlbmQKZW5kCgojIFVzZSBmaXJzdCB0YXJnZXQgaWYgbm90IGZvdW5kCnRhcmdldCB8fD0gcHJvamVjdC50YXJnZXRzLmZpcnN0CnVubGVzcyB0YXJnZXQKICBwdXRzICLinYwgTm8gdGFyZ2V0cyBmb3VuZCBpbiBwcm9qZWN0IgogIGV4aXQgMQplbmQKCnB1dHMgIvCfk6YgQWRkaW5nICN7eGNzdHJpbmdzX3BhdGh9IHRvIHRhcmdldDogI3t0YXJnZXQubmFtZX0iCgojIEdldCByZWxhdGl2ZSBwYXRoIGZyb20gcHJvamVjdCBkaXJlY3RvcnkKcHJvamVjdF9kaXIgPSBGaWxlLmRpcm5hbWUocHJvamVjdF9wYXRoKQp4Y3N0cmluZ3NfcmVsYXRpdmUgPSBQYXRobmFtZS5uZXcoeGNzdHJpbmdzX3BhdGgpLnJlbGF0aXZlX3BhdGhfZnJvbShQYXRobmFtZS5uZXcocHJvamVjdF9kaXIpKS50b19zCgojIENoZWNrIGlmIGZpbGUgaXMgYWxyZWFkeSBpbiBwcm9qZWN0CmV4aXN0aW5nX2ZpbGUgPSBwcm9qZWN0LmZpbGVzLmZpbmQgeyB8ZnwgZi5wYXRoID09IHhjc3RyaW5nc19yZWxhdGl2ZSB9CmlmIGV4aXN0aW5nX2ZpbGUKICBwdXRzICLihLnvuI8gIEZpbGUgYWxyZWFkeSBpbiBwcm9qZWN0OiAje3hjc3RyaW5nc19yZWxhdGl2ZX0iCiAgCiAgIyBFbnN1cmUgaXQncyBhZGRlZCB0byB0aGUgdGFyZ2V0CiAgIyBDaGVjayBpZiBmaWxlIGlzIGFscmVhZHkgaW4gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgaW5fYnVpbGRfcGhhc2UgPSB0YXJnZXQucmVzb3VyY2VzX2J1aWxkX3BoYXNlLmZpbGVzLmFueT8geyB8ZnwgZi5maWxlX3JlZiA9PSBleGlzdGluZ19maWxlIH0KICB1bmxlc3MgaW5fYnVpbGRfcGhhc2UKICAgIHRhcmdldC5hZGRfZmlsZV9yZWZlcmVuY2VzKFtleGlzdGluZ19maWxlXSkKICAgIHB1dHMgIuKchSBBZGRlZCBleGlzdGluZyBmaWxlIHJlZmVyZW5jZSB0byB0YXJnZXQiCiAgZWxzZQogICAgcHV0cyAi4pyFIEZpbGUgYWxyZWFkeSBpbiB0YXJnZXQiCiAgZW5kCmVsc2UKICAjIEZpbmQgb3IgY3JlYXRlIFJlc291cmNlcyBncm91cAogIHJlc291cmNlc19ncm91cCA9IHByb2plY3QubWFpbl9ncm91cFsnUmVzb3VyY2VzJ10gfHwgcHJvamVjdC5tYWluX2dyb3VwLm5ld19ncm91cCgnUmVzb3VyY2VzJykKICAKICAjIEFkZCBmaWxlIHRvIHByb2plY3QKICBmaWxlX3JlZiA9IHJlc291cmNlc19ncm91cC5uZXdfZmlsZSh4Y3N0cmluZ3NfcmVsYXRpdmUpCiAgCiAgIyBBZGQgdG8gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgdGFyZ2V0LmFkZF9maWxlX3JlZmVyZW5jZXMoW2ZpbGVfcmVmXSkKICAKICBwdXRzICLinIUgQWRkZWQgI3t4Y3N0cmluZ3NfcmVsYXRpdmV9IHRvIHByb2plY3QgYW5kIHRhcmdldCIKZW5kCgojIFNhdmUgcHJvamVjdApwcm9qZWN0LnNhdmUKcHV0cyAi4pyFIFByb2plY3Qgc2F2ZWQiCg==" | base64 -d > Scripts/add_xcstrings_to_project.rb
               chmod +x Scripts/add_xcstrings_to_project.rb
             fi
             # Run the script
