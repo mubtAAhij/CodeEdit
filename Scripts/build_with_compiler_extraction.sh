@@ -117,19 +117,13 @@ else
     # Intermediates is: .../DerivedData/Project-xxx/Build/Intermediates.noindex
     INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
     
-    echo "🔍 Searching for emitted strings files in: $INTERMEDIATES_DIR"
+    echo "🔍 Searching for compiler-emitted strings files in: $INTERMEDIATES_DIR"
     
-    # Comprehensive search for .strings files in various locations
-    # 1. en.lproj directories (XML plist format - most common)
-    # 2. Objects-normal directories (traditional format)
-    # 3. Any .strings files in DerivedData (broader search)
-    EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" -name "*.strings" -type f 2>/dev/null | head -50 || echo "")
-    
-    if [ -z "$EMITTED_STRINGS_FILES" ]; then
-      # Also check Products directory - sometimes strings end up there
-      PRODUCTS_DIR="$BUILD_DIR"
-      EMITTED_STRINGS_FILES=$(find "$PRODUCTS_DIR" -name "*.strings" -type f 2>/dev/null | head -50 || echo "")
-    fi
+    # Only search for compiler-emitted strings in specific locations:
+    # 1. en.lproj directories within build intermediates (XML plist format - most common for emitted strings)
+    # 2. Objects-normal directories (traditional format, less common)
+    # Exclude: Products (copied resources), SourcePackages (dependencies), frameworks
+    EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
     
     if [ -n "$EMITTED_STRINGS_FILES" ]; then
       STRING_COUNT=$(echo "$EMITTED_STRINGS_FILES" | wc -l | xargs)
@@ -146,15 +140,16 @@ else
         echo "💡 Strings may not be in catalog"
       fi
     else
-      echo "⚠️  Could not find emitted strings files in DerivedData"
+      echo "⚠️  Could not find compiler-emitted strings files in DerivedData"
       echo "💡 Searched in: $INTERMEDIATES_DIR"
-      if [ -n "$PRODUCTS_DIR" ]; then
-        echo "💡 Also searched in: $PRODUCTS_DIR"
-      fi
+      echo "💡 Search pattern: */en.lproj/*.strings or */Objects-normal/*/*.strings"
+      echo "💡 Excluded: SourcePackages, Products, frameworks"
+      echo ""
       echo "💡 This might mean:"
       echo "   1. Strings were already merged by Xcode (check catalog)"
       echo "   2. No strings were emitted (check SWIFT_EMIT_LOC_STRINGS setting)"
       echo "   3. Strings are in a different location"
+      echo "   4. Existing .strings files in project may prevent emission (we only search DerivedData, so this shouldn't affect us)"
       
       # Try to check if catalog was updated by Xcode
       if command -v jq &> /dev/null; then
