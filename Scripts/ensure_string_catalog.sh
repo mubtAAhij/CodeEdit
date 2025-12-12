@@ -58,6 +58,10 @@ fi
 mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 
 # Create minimal valid String Catalog JSON using Python to ensure proper formatting
+# Xcode's builtin-copyStrings is very strict about the format, so we ensure:
+# 1. Valid JSON
+# 2. Trailing newline
+# 3. UTF-8 encoding
 if [ ! -f "$XCSTRINGS_PATH" ]; then
     python3 -c "
 import json
@@ -69,9 +73,10 @@ catalog = {
     'strings': {}
 }
 
-# Write with proper JSON formatting
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
+# Write with proper JSON formatting and trailing newline
+with open(sys.argv[1], 'w', encoding='utf-8', newline='') as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
+    f.write('\n')  # Ensure trailing newline
     
 # Validate the JSON we just wrote
 with open(sys.argv[1], 'r', encoding='utf-8') as f:
@@ -80,8 +85,12 @@ with open(sys.argv[1], 'r', encoding='utf-8') as f:
     echo "✅ Created $XCSTRINGS_PATH"
 else
     echo "ℹ️ $XCSTRINGS_PATH already exists"
-    # Validate existing file
+    # Validate existing file and ensure it has trailing newline
     if python3 -c "import json, sys; json.load(open(sys.argv[1], 'r', encoding='utf-8'))" "$XCSTRINGS_PATH" 2>/dev/null; then
+        # Ensure trailing newline exists
+        if [ "$(tail -c 1 "$XCSTRINGS_PATH" | wc -l)" -eq 0 ]; then
+            echo "" >> "$XCSTRINGS_PATH"
+        fi
         echo "✅ Existing file is valid JSON"
     else
         echo "⚠️  Existing file is not valid JSON, recreating..."
@@ -95,8 +104,9 @@ catalog = {
     'strings': {}
 }
 
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
+with open(sys.argv[1], 'w', encoding='utf-8', newline='') as f:
     json.dump(catalog, f, indent=2, ensure_ascii=False)
+    f.write('\n')  # Ensure trailing newline
 " "$XCSTRINGS_PATH"
         echo "✅ Recreated $XCSTRINGS_PATH"
     fi
