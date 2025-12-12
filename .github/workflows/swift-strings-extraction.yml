@@ -439,12 +439,58 @@ jobs:
             
             # Diagnostic: Show file content for debugging
             echo ""
-            echo "📄 File content (first 500 chars):"
-            head -c 500 "$XCSTRINGS_FILE" | cat -A || true
+            echo "📄 File content:"
+            cat "$XCSTRINGS_FILE" || true
             echo ""
+            
+            # Try to validate with plutil to see what error it gives
+            if command -v plutil &> /dev/null; then
+              echo "🔍 Testing plutil validation (expected to fail for JSON):"
+              plutil -lint "$XCSTRINGS_FILE" 2>&1 | head -5 || true
+              echo ""
+            fi
           else
             echo "❌ Could not find or create Localizable.xcstrings"
             exit 1
+          fi
+
+      - name: Final verification - Ensure .xcstrings file is in project before build
+        run: |
+          echo "🔍 Final verification before build..."
+          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
+            ruby -e "
+            require 'xcodeproj'
+            require 'pathname'
+            
+            project_path = '${{ steps.find-xcode-project.outputs.project_path }}'
+            xcstrings_file = '$XCSTRINGS_FILE'
+            scheme = '${{ steps.find-xcode-project.outputs.scheme }}'
+            
+            project = Xcodeproj::Project.open(project_path)
+            target = project.targets.find { |t| t.name == scheme } || project.targets.first
+            xcstrings_relative = Pathname.new(xcstrings_file).relative_path_from(Pathname.new(File.dirname(project_path))).to_s
+            
+            file_ref = project.files.find { |f| f.path == xcstrings_relative }
+            if file_ref
+              in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
+              if in_resources
+                puts \"✅ File is confirmed in target '#{target.name}' resources build phase\"
+                exit 0
+              else
+                puts \"⚠️  File is NOT in resources build phase, adding...\"
+                target.add_file_references([file_ref])
+                project.save
+                puts \"✅ Added to resources build phase\"
+                exit 0
+              end
+            else
+              puts \"⚠️  File not found in project, adding...\"
+              # Use the Ruby script to add it
+              system('ruby', 'Scripts/add_xcstrings_to_project.rb', project_path, xcstrings_file, scheme)
+              exit 0
+            end
+            " || echo "⚠️  Verification failed, but continuing..."
           fi
 
       - name: Run unsigned build with compiler string extraction
