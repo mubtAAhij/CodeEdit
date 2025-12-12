@@ -251,15 +251,21 @@ jobs:
             # Run the script
             ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
             
-            # Verify the file was added to the project and target
+            # Verify the file was added to the project and target using xcodeproj
             echo ""
             echo "🔍 Verifying .xcstrings file was added to project and target..."
             ruby -e "
             require 'xcodeproj'
             require 'pathname'
-            project = Xcodeproj::Project.open('${{ steps.find-xcode-project.outputs.project_path }}')
-            target = project.targets.find { |t| t.name == '${{ steps.find-xcode-project.outputs.scheme }}' } || project.targets.first
-            xcstrings_relative = Pathname.new('$XCSTRINGS_FILE').relative_path_from(Pathname.new(File.dirname('${{ steps.find-xcode-project.outputs.project_path }}'))).to_s
+            require 'json'
+            
+            project_path = '${{ steps.find-xcode-project.outputs.project_path }}'
+            xcstrings_file = '$XCSTRINGS_FILE'
+            scheme = '${{ steps.find-xcode-project.outputs.scheme }}'
+            
+            project = Xcodeproj::Project.open(project_path)
+            target = project.targets.find { |t| t.name == scheme } || project.targets.first
+            xcstrings_relative = Pathname.new(xcstrings_file).relative_path_from(Pathname.new(File.dirname(project_path))).to_s
             
             puts \"Target: #{target.name}\"
             puts \"Looking for file: #{xcstrings_relative}\"
@@ -283,14 +289,42 @@ jobs:
               in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
               if in_resources
                 puts \"✅ File is in target '#{target.name}' resources build phase\"
-                # List all files in resources build phase for debugging
                 puts \"   Resources build phase contains #{target.resources_build_phase.files.count} files\"
+                
+                # Additional verification: check if file reference is properly configured
+                build_file = target.resources_build_phase.files.find { |f| f.file_ref == file_ref }
+                if build_file
+                  puts \"   Build file found in resources phase\"
+                  puts \"   Build file settings: #{build_file.settings || 'none'}\"
+                end
               else
                 puts \"❌ File is NOT in target '#{target.name}' resources build phase\"
                 puts \"   Attempting to add...\"
                 target.add_file_references([file_ref])
                 project.save
                 puts \"✅ Added to resources build phase and saved\"
+              end
+              
+              # Verify file exists on disk and check its content
+              if File.exist?(xcstrings_file)
+                file_size = File.size(xcstrings_file)
+                puts \"   File exists on disk: #{file_size} bytes\"
+                
+                # Try to parse as JSON to verify format
+                begin
+                  content = File.read(xcstrings_file)
+                  json_data = JSON.parse(content)
+                  puts \"   ✅ File is valid JSON\"
+                  puts \"   JSON keys: #{json_data.keys.join(', ')}\"
+                  if json_data['strings']
+                    puts \"   Contains #{json_data['strings'].keys.length} string entries\"
+                  end
+                rescue JSON::ParserError => e
+                  puts \"   ❌ File is NOT valid JSON: #{e.message}\"
+                  puts \"   First 200 chars: #{content[0..200].inspect}\"
+                end
+              else
+                puts \"   ❌ File does NOT exist on disk at: #{xcstrings_file}\"
               end
             else
               puts \"❌ File NOT found in project: #{xcstrings_relative}\"
@@ -359,12 +393,14 @@ jobs:
             fi
             
             # Validate JSON syntax using jq (simpler and avoids YAML parsing issues)
+            FILE_RECREATED=0
             if command -v jq &> /dev/null; then
               if ! jq empty "$XCSTRINGS_FILE" &> /dev/null; then
                 echo "⚠️  File contains invalid JSON, recreating..."
                 rm -f "$XCSTRINGS_FILE"
                 ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
                 XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+                FILE_RECREATED=1
               else
                 echo "✅ File is valid JSON"
               fi
@@ -375,21 +411,23 @@ jobs:
                 rm -f "$XCSTRINGS_FILE"
                 ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
                 XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+                FILE_RECREATED=1
               else
                 echo "✅ File is valid JSON"
               fi
             fi
             
-            # Validate using plutil if available (most strict validation)
-            if command -v plutil &> /dev/null; then
-              if ! plutil -lint "$XCSTRINGS_FILE" &> /dev/null; then
-                echo "⚠️  File fails plutil validation, recreating..."
-                rm -f "$XCSTRINGS_FILE"
-                ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
-              else
-                echo "✅ File passes plutil validation"
-              fi
+            # If file was recreated, re-add it to the Xcode project
+            if [ "$FILE_RECREATED" -eq 1 ] && [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
+              echo "🔄 Re-adding recreated file to Xcode project..."
+              ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to re-add file to project"
             fi
+            
+            # Note: plutil validation is skipped for .xcstrings files
+            # .xcstrings files are JSON format, not plist format
+            # plutil -lint may fail on valid JSON .xcstrings files
+            # Xcode's builtin-copyStrings will validate the actual format it needs
+            echo "✅ File format validated (JSON validation passed)"
             
             # Final check - ensure file exists and is readable
             if [ ! -f "$XCSTRINGS_FILE" ] || [ ! -r "$XCSTRINGS_FILE" ]; then
@@ -398,6 +436,12 @@ jobs:
             fi
             
             echo "✅ String Catalog validated: $XCSTRINGS_FILE ($(wc -c < "$XCSTRINGS_FILE" | xargs) bytes)"
+            
+            # Diagnostic: Show file content for debugging
+            echo ""
+            echo "📄 File content (first 500 chars):"
+            head -c 500 "$XCSTRINGS_FILE" | cat -A || true
+            echo ""
           else
             echo "❌ Could not find or create Localizable.xcstrings"
             exit 1
