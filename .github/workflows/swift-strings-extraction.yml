@@ -358,22 +358,23 @@ jobs:
               XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
             fi
             
-            # Validate JSON syntax
-            if command -v python3 &> /dev/null; then
-              if ! python3 -c "
-import json
-import sys
-try:
-    with open('$XCSTRINGS_FILE', 'r', encoding='utf-8') as f:
-        json.load(f)
-    sys.exit(0)
-except Exception as e:
-    print(f'❌ Invalid JSON: {e}', file=sys.stderr)
-    sys.exit(1)
-" 2>&1; then
+            # Validate JSON syntax using jq (simpler and avoids YAML parsing issues)
+            if command -v jq &> /dev/null; then
+              if ! jq empty "$XCSTRINGS_FILE" &> /dev/null; then
                 echo "⚠️  File contains invalid JSON, recreating..."
                 rm -f "$XCSTRINGS_FILE"
                 ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+                XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+              else
+                echo "✅ File is valid JSON"
+              fi
+            elif command -v python3 &> /dev/null; then
+              # Fallback to Python if jq is not available
+              if ! python3 -c "import json; json.load(open('$XCSTRINGS_FILE', 'r', encoding='utf-8'))" &> /dev/null; then
+                echo "⚠️  File contains invalid JSON, recreating..."
+                rm -f "$XCSTRINGS_FILE"
+                ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+                XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
               else
                 echo "✅ File is valid JSON"
               fi
