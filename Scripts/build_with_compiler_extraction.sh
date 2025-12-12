@@ -37,6 +37,13 @@ echo "🏗  Ensuring String Catalog exists..."
   echo "⚠️  Warning: Failed to ensure string catalog, continuing anyway..."
 }
 
+# If file was recreated, ensure it's added to the project
+XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+if [ -n "$XCSTRINGS_FILE" ] && [ -f "./Scripts/add_xcstrings_to_project.rb" ]; then
+  echo "🔄 Ensuring .xcstrings file is in Xcode project..."
+  ruby ./Scripts/add_xcstrings_to_project.rb "$PROJECT_PATH" "$XCSTRINGS_FILE" "$SCHEME" 2>/dev/null || echo "⚠️  Note: File may already be in project"
+fi
+
 echo "🏗  Running unsigned build with compiler-based string extraction..."
 
 # Verify build settings before building
