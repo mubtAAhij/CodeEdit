@@ -145,8 +145,8 @@ jobs:
                 '#!/usr/bin/env ruby' \
                 '# frozen_string_literal: true' \
                 '' \
-                '# Add .xcstrings file to Xcode project (but NOT to resources build phase)' \
-                '# This allows Xcode to merge strings into it without triggering builtin-copyStrings validation' \
+                '# Add .xcstrings file to Xcode project AND to resources build phase' \
+                '# Xcode requires the file to be in resources build phase to merge strings during compilation' \
                 '# Usage: ruby add_xcstrings_to_project.rb <project_path> <xcstrings_file_path> [target_name]' \
                 '' \
                 "require 'xcodeproj'" \
@@ -191,7 +191,7 @@ jobs:
                 '  exit 1' \
                 'end' \
                 '' \
-                "puts \"📦 Adding #{xcstrings_path} to project (NOT adding to resources build phase to avoid builtin-copyStrings)\"" \
+                "puts \"📦 Adding #{xcstrings_path} to project and resources build phase\"" \
                 '' \
                 '# Get relative path from project directory' \
                 'project_dir = File.dirname(project_path)' \
@@ -208,18 +208,13 @@ jobs:
                 '    puts "   Set file type to text.plist.strings"' \
                 '  end' \
                 '  ' \
-                '  # Remove from resources build phase if it'\''s there (to avoid builtin-copyStrings)' \
-                '  # Xcode can still merge strings into the file even if it'\''s not in resources build phase' \
+                '  # Ensure it'\''s in resources build phase (required for Xcode to merge strings)' \
                 '  in_build_phase = target.resources_build_phase.files.any? { |f| f.file_ref == existing_file }' \
-                '  if in_build_phase' \
-                '    build_file = target.resources_build_phase.files.find { |f| f.file_ref == existing_file }' \
-                '    if build_file' \
-                '      target.resources_build_phase.remove_file_reference(existing_file)' \
-                '      puts "⚠️  Removed from resources build phase (to avoid builtin-copyStrings validation)"' \
-                '      puts "   File remains in project - Xcode can still merge strings into it"' \
-                '    end' \
+                '  unless in_build_phase' \
+                '    target.add_file_references([existing_file])' \
+                '    puts "✅ Added existing file reference to resources build phase"' \
                 '  else' \
-                '    puts "✅ File is in project but not in resources build phase (as intended)"' \
+                '    puts "✅ File already in resources build phase"' \
                 '  end' \
                 'else' \
                 '  # Find or create Resources group' \
@@ -231,13 +226,10 @@ jobs:
                 '  # Set the correct file type for .xcstrings (important for Xcode to recognize it)' \
                 "  file_ref.explicit_file_type = 'text.plist.strings'" \
                 '  ' \
-                '  # DO NOT add to target'\''s resources build phase' \
-                '  # This avoids triggering builtin-copyStrings validation' \
-                '  # Xcode can still merge strings into the file even if it'\''s not in resources build phase' \
-                '  # target.add_file_references([file_ref])  # COMMENTED OUT - don'\''t add to resources' \
+                '  # Add to target'\''s resources build phase (required for Xcode to merge strings)' \
+                '  target.add_file_references([file_ref])' \
                 '  ' \
-                "  puts \"✅ Added #{xcstrings_relative} to project (not in resources build phase)\"" \
-                '  puts "   Xcode can still merge strings into this file during compilation"' \
+                "  puts \"✅ Added #{xcstrings_relative} to project and resources build phase\"" \
                 'end' \
                 '' \
                 '# Remove any existing Localizable.strings files from the project' \
@@ -294,20 +286,16 @@ jobs:
               end
               
               # Check if in target's resources build phase
-              # We want it NOT in resources build phase to avoid builtin-copyStrings validation
+              # File MUST be in resources build phase for Xcode to merge strings during compilation
               in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
               if in_resources
-                puts \"⚠️  File is in target '#{target.name}' resources build phase\"
-                puts \"   Removing from resources build phase to avoid builtin-copyStrings validation...\"
-                build_file = target.resources_build_phase.files.find { |f| f.file_ref == file_ref }
-                if build_file
-                  target.resources_build_phase.remove_file_reference(file_ref)
-                  project.save
-                  puts \"✅ Removed from resources build phase (Xcode can still merge strings into it)\"
-                end
+                puts \"✅ File is in target '#{target.name}' resources build phase (required for string merging)\"
               else
-                puts \"✅ File is NOT in target '#{target.name}' resources build phase (as intended)\"
-                puts \"   Xcode can still merge strings into this file during compilation\"
+                puts \"⚠️  File is NOT in target '#{target.name}' resources build phase\"
+                puts \"   Adding to resources build phase (required for Xcode to merge strings)...\"
+                target.add_file_references([file_ref])
+                project.save
+                puts \"✅ Added to resources build phase\"
               end
               
               # Verify file exists on disk and check its content
@@ -375,9 +363,9 @@ jobs:
             fi
           done || echo "  (none found)"
 
-      - name: Normalize String Catalog format for builtin-copyStrings
+      - name: Verify String Catalog format for builtin-copyStrings
         run: |
-          echo "🔍 Normalizing String Catalog format for builtin-copyStrings..."
+          echo "🔍 Verifying String Catalog format (must be parseable by plutil for builtin-copyStrings)..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
           if [ -z "$XCSTRINGS_FILE" ]; then
@@ -387,30 +375,16 @@ jobs:
           fi
           
           if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
-            echo "📋 Normalizing: $XCSTRINGS_FILE"
+            echo "📋 Verifying: $XCSTRINGS_FILE"
             
             # builtin-copyStrings requires the file to be parseable as a property list
-            # Normalize to XML plist format (which plutil validates) as that's what
-            # builtin-copyStrings appears to require
+            # Verify that plutil can read it (even if it's JSON, plutil should be able to parse it)
             if command -v plutil &> /dev/null; then
-              TEMP_PLIST=$(mktemp)
-              
-              # Try to read the file as a plist (works for both JSON and XML)
-              if plutil -convert xml1 -o "$TEMP_PLIST" "$XCSTRINGS_FILE" 2>/dev/null; then
-                # Validate XML plist format (this is what builtin-copyStrings appears to require)
-                if plutil -lint "$TEMP_PLIST" &>/dev/null; then
-                  # Copy validated XML plist back to .xcstrings file
-                  # builtin-copyStrings appears to require XML plist format, not JSON
-                  cp "$TEMP_PLIST" "$XCSTRINGS_FILE"
-                  if [ "$(tail -c 1 "$XCSTRINGS_FILE" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                    echo "" >> "$XCSTRINGS_FILE"
-                  fi
-                  echo "✅ File normalized to XML plist format (builtin-copyStrings compatible)"
-                else
-                  echo "⚠️  Could not validate XML plist format, but continuing..."
-                fi
+              # Test if plutil can read the file as a plist (works for both JSON and XML)
+              if plutil -convert xml1 -o /dev/null "$XCSTRINGS_FILE" 2>/dev/null; then
+                echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
               else
-                echo "⚠️  File cannot be read by plutil as plist, recreating..."
+                echo "⚠️  File cannot be read by plutil as plist, recreating with plutil-compatible format..."
                 rm -f "$XCSTRINGS_FILE"
                 ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
                 XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
@@ -418,7 +392,6 @@ jobs:
                   ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
                 fi
               fi
-              rm -f "$TEMP_PLIST"
             fi
             
             # Diagnostic: Show file info
@@ -428,7 +401,7 @@ jobs:
             exit 1
           fi
 
-      - name: Final verification - Ensure .xcstrings file is in project (but NOT in resources build phase)
+      - name: Final verification - Ensure .xcstrings file is in project and resources build phase
         run: |
           echo "🔍 Final verification before build..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
@@ -449,24 +422,18 @@ jobs:
             if file_ref
               in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
               if in_resources
-                # Remove from resources build phase to avoid builtin-copyStrings validation
-                build_file = target.resources_build_phase.files.find { |f| f.file_ref == file_ref }
-                if build_file
-                  target.resources_build_phase.remove_file_reference(file_ref)
-                  project.save
-                  puts \"⚠️  Removed from resources build phase (to avoid builtin-copyStrings)\"
-                  puts \"✅ File is in project but NOT in resources build phase (as intended)\"
-                else
-                  puts \"✅ File is in project but NOT in resources build phase (as intended)\"
-                end
+                puts \"✅ File is in project and resources build phase (required for string merging)\"
                 exit 0
               else
-                puts \"✅ File is in project but NOT in resources build phase (as intended)\"
+                puts \"⚠️  File is NOT in resources build phase, adding...\"
+                target.add_file_references([file_ref])
+                project.save
+                puts \"✅ Added to resources build phase\"
                 exit 0
               end
             else
               puts \"⚠️  File not found in project, adding...\"
-              # Use the Ruby script to add it (which won't add to resources build phase)
+              # Use the Ruby script to add it (which will add to resources build phase)
               system('ruby', 'Scripts/add_xcstrings_to_project.rb', project_path, xcstrings_file, scheme)
               exit 0
             end
