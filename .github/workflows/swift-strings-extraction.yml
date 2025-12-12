@@ -377,14 +377,13 @@ jobs:
           if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
             echo "📋 Verifying: $XCSTRINGS_FILE"
             
-            # builtin-copyStrings requires the file to be parseable as a property list
-            # Verify that plutil can read it (even if it's JSON, plutil should be able to parse it)
+            # builtin-copyStrings uses plutil's parser - verify plutil can read it
             if command -v plutil &> /dev/null; then
-              # Test if plutil can read the file as a plist (works for both JSON and XML)
+              # Test if plutil can parse it (works for both JSON and XML plist)
               if plutil -convert xml1 -o /dev/null "$XCSTRINGS_FILE" 2>/dev/null; then
                 echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
               else
-                echo "⚠️  File cannot be read by plutil as plist, recreating with plutil-compatible format..."
+                echo "⚠️  File is not parseable by plutil, recreating..."
                 rm -f "$XCSTRINGS_FILE"
                 ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
                 XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
