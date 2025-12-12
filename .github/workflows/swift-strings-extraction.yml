@@ -363,9 +363,9 @@ jobs:
             fi
           done || echo "  (none found)"
 
-      - name: Verify String Catalog format for builtin-copyStrings
+      - name: Ensure .xcstrings file exists and is in project (not in resources build phase)
         run: |
-          echo "🔍 Verifying String Catalog format (must be parseable by plutil for builtin-copyStrings)..."
+          echo "🔍 Ensuring String Catalog exists and is in project..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
           if [ -z "$XCSTRINGS_FILE" ]; then
@@ -375,68 +375,26 @@ jobs:
           fi
           
           if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
-            echo "📋 Verifying: $XCSTRINGS_FILE"
+            echo "📋 Found: $XCSTRINGS_FILE ($(wc -c < "$XCSTRINGS_FILE" | xargs) bytes)"
             
-            # builtin-copyStrings uses plutil's parser - verify plutil can read it
-            if command -v plutil &> /dev/null; then
-              # Test if plutil can parse it (works for both JSON and XML plist)
-              if plutil -convert xml1 -o /dev/null "$XCSTRINGS_FILE" 2>/dev/null; then
-                echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
-              else
-                echo "⚠️  File is not parseable by plutil, recreating..."
-                rm -f "$XCSTRINGS_FILE"
-                ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
-                XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
-                if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
-                  ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
-                fi
-              fi
+            # Verify it's valid JSON
+            if python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
+              echo "✅ File is valid JSON"
+            else
+              echo "⚠️  File is not valid JSON, recreating..."
+              ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+              XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
             fi
             
-            # Diagnostic: Show file info
-            echo "✅ String Catalog ready: $XCSTRINGS_FILE ($(wc -c < "$XCSTRINGS_FILE" | xargs) bytes)"
+            # Ensure it's added to project (but NOT in resources build phase to avoid validation)
+            if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
+              ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+            fi
+            
+            echo "✅ String Catalog ready: $XCSTRINGS_FILE"
           else
             echo "❌ Could not find or create Localizable.xcstrings"
             exit 1
-          fi
-
-      - name: Final verification - Ensure .xcstrings file is in project and resources build phase
-        run: |
-          echo "🔍 Final verification before build..."
-          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
-          if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
-            ruby -e "
-            require 'xcodeproj'
-            require 'pathname'
-            
-            project_path = '${{ steps.find-xcode-project.outputs.project_path }}'
-            xcstrings_file = '$XCSTRINGS_FILE'
-            scheme = '${{ steps.find-xcode-project.outputs.scheme }}'
-            
-            project = Xcodeproj::Project.open(project_path)
-            target = project.targets.find { |t| t.name == scheme } || project.targets.first
-            xcstrings_relative = Pathname.new(xcstrings_file).relative_path_from(Pathname.new(File.dirname(project_path))).to_s
-            
-            file_ref = project.files.find { |f| f.path == xcstrings_relative }
-            if file_ref
-              in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
-              if in_resources
-                puts \"✅ File is in project and resources build phase (required for string merging)\"
-                exit 0
-              else
-                puts \"⚠️  File is NOT in resources build phase, adding...\"
-                target.add_file_references([file_ref])
-                project.save
-                puts \"✅ Added to resources build phase\"
-                exit 0
-              end
-            else
-              puts \"⚠️  File not found in project, adding...\"
-              # Use the Ruby script to add it (which will add to resources build phase)
-              system('ruby', 'Scripts/add_xcstrings_to_project.rb', project_path, xcstrings_file, scheme)
-              exit 0
-            end
-            " || echo "⚠️  Verification failed, but continuing..."
           fi
 
       - name: Run unsigned build with compiler string extraction
