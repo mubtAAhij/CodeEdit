@@ -57,18 +57,49 @@ fi
 # Ensure directory exists
 mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 
-# Create minimal valid String Catalog JSON
+# Create minimal valid String Catalog JSON using Python to ensure proper formatting
 if [ ! -f "$XCSTRINGS_PATH" ]; then
-    cat > "$XCSTRINGS_PATH" << 'EOF'
-{
-  "sourceLanguage": "en",
-  "version": "1.0",
-  "strings": {}
+    python3 -c "
+import json
+import sys
+
+catalog = {
+    'sourceLanguage': 'en',
+    'version': '1.0',
+    'strings': {}
 }
-EOF
+
+# Write with proper JSON formatting
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    json.dump(catalog, f, indent=2, ensure_ascii=False)
+    
+# Validate the JSON we just wrote
+with open(sys.argv[1], 'r', encoding='utf-8') as f:
+    json.load(f)  # This will raise an exception if invalid
+" "$XCSTRINGS_PATH"
     echo "✅ Created $XCSTRINGS_PATH"
 else
     echo "ℹ️ $XCSTRINGS_PATH already exists"
+    # Validate existing file
+    if python3 -c "import json, sys; json.load(open(sys.argv[1], 'r', encoding='utf-8'))" "$XCSTRINGS_PATH" 2>/dev/null; then
+        echo "✅ Existing file is valid JSON"
+    else
+        echo "⚠️  Existing file is not valid JSON, recreating..."
+        python3 -c "
+import json
+import sys
+
+catalog = {
+    'sourceLanguage': 'en',
+    'version': '1.0',
+    'strings': {}
+}
+
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    json.dump(catalog, f, indent=2, ensure_ascii=False)
+" "$XCSTRINGS_PATH"
+        echo "✅ Recreated $XCSTRINGS_PATH"
+    fi
 fi
 
 echo "✅ String catalog ready at: $XCSTRINGS_PATH"
