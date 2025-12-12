@@ -100,9 +100,12 @@ mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 
 # Create minimal valid String Catalog in JSON format that Xcode expects
 # Xcode's builtin-copyStrings expects JSON format that can be parsed as property list
+# IMPORTANT: We must use plutil to convert from plist to JSON to ensure the exact format
+# that builtin-copyStrings expects. Direct JSON creation may not be compatible.
 if [ ! -f "$XCSTRINGS_PATH" ]; then
-    # Try using plutil to create the file in the exact format Xcode expects
-    # This ensures compatibility with builtin-copyStrings
+    # Create as XML plist first (most compatible format), then convert to JSON
+    # This ensures the JSON is in the exact format that plutil produces, which
+    # builtin-copyStrings expects
     TEMP_PLIST=$(mktemp)
     python3 -c "
 import plistlib
@@ -114,22 +117,46 @@ catalog = {
     'strings': {}
 }
 
-# Write as binary plist first
+# Write as XML plist first (more compatible than binary)
 with open(sys.argv[1], 'wb') as f:
-    plistlib.dump(catalog, f, fmt=plistlib.FMT_BINARY)
+    plistlib.dump(catalog, f, fmt=plistlib.FMT_XML)
 " "$TEMP_PLIST"
     
     # Use plutil to convert to JSON (this creates the exact format Xcode expects)
+    # plutil's JSON output is what builtin-copyStrings can parse
     if command -v plutil &> /dev/null; then
         if plutil -convert json -o "$XCSTRINGS_PATH" "$TEMP_PLIST" 2>/dev/null; then
-            # Ensure trailing newline
-            if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                echo "" >> "$XCSTRINGS_PATH"
+            # Verify plutil can read it back (ensures compatibility)
+            if plutil -convert json -o /dev/null "$XCSTRINGS_PATH" 2>/dev/null; then
+                # Ensure trailing newline
+                if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
+                    echo "" >> "$XCSTRINGS_PATH"
+                fi
+                echo "✅ Created $XCSTRINGS_PATH using plutil (Xcode-compatible format)"
+            else
+                echo "⚠️  plutil cannot read back the JSON, trying fallback..."
+                # Fallback: create JSON directly with sorted keys
+                python3 -c "
+import json
+import sys
+
+catalog = {
+    'sourceLanguage': 'en',
+    'version': '1.0',
+    'strings': {}
+}
+
+# Use sort_keys=True to match plutil's output order
+json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
+" "$XCSTRINGS_PATH"
+                echo "✅ Created $XCSTRINGS_PATH (fallback method)"
             fi
-            echo "✅ Created $XCSTRINGS_PATH using plutil (Xcode-compatible format)"
         else
             echo "⚠️  plutil conversion failed, using Python fallback..."
-            # Fallback: create JSON directly
+            # Fallback: create JSON directly with sorted keys
             python3 -c "
 import json
 import sys
@@ -140,7 +167,8 @@ catalog = {
     'strings': {}
 }
 
-json_str = json.dumps(catalog, indent=2, ensure_ascii=False)
+# Use sort_keys=True to match plutil's output order
+json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
 with open(sys.argv[1], 'w', encoding='utf-8') as f:
     f.write(json_str)
     f.write('\n')
@@ -149,7 +177,7 @@ with open(sys.argv[1], 'w', encoding='utf-8') as f:
         fi
         rm -f "$TEMP_PLIST"
     else
-        # No plutil available, create JSON directly
+        # No plutil available, create JSON directly with sorted keys
         python3 -c "
 import json
 import sys
@@ -160,7 +188,8 @@ catalog = {
     'strings': {}
 }
 
-json_str = json.dumps(catalog, indent=2, ensure_ascii=False)
+# Use sort_keys=True to match plutil's output order
+json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
 with open(sys.argv[1], 'w', encoding='utf-8') as f:
     f.write(json_str)
     f.write('\n')
@@ -218,16 +247,38 @@ catalog = {
     'strings': {}
 }
 
+# Write as XML plist first (more compatible than binary)
 with open(sys.argv[1], 'wb') as f:
-    plistlib.dump(catalog, f, fmt=plistlib.FMT_BINARY)
+    plistlib.dump(catalog, f, fmt=plistlib.FMT_XML)
 " "$TEMP_PLIST"
         
         if command -v plutil &> /dev/null; then
             if plutil -convert json -o "$XCSTRINGS_PATH" "$TEMP_PLIST" 2>/dev/null; then
-                if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                    echo "" >> "$XCSTRINGS_PATH"
+                # Verify plutil can read it back (ensures compatibility)
+                if plutil -convert json -o /dev/null "$XCSTRINGS_PATH" 2>/dev/null; then
+                    if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
+                        echo "" >> "$XCSTRINGS_PATH"
+                    fi
+                    echo "✅ Recreated $XCSTRINGS_PATH using plutil (Xcode-compatible format)"
+                else
+                    echo "⚠️  plutil cannot read back the JSON, trying fallback..."
+                    python3 -c "
+import json
+import sys
+
+catalog = {
+    'sourceLanguage': 'en',
+    'version': '1.0',
+    'strings': {}
+}
+
+json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
+" "$XCSTRINGS_PATH"
+                    echo "✅ Recreated $XCSTRINGS_PATH (fallback method)"
                 fi
-                echo "✅ Recreated $XCSTRINGS_PATH using plutil (Xcode-compatible format)"
             else
                 echo "⚠️  plutil conversion failed, trying fallback..."
                 python3 -c "
@@ -240,7 +291,7 @@ catalog = {
     'strings': {}
 }
 
-json_str = json.dumps(catalog, indent=2, ensure_ascii=False, sort_keys=True)
+json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
 with open(sys.argv[1], 'w', encoding='utf-8') as f:
     f.write(json_str)
     f.write('\n')
@@ -259,7 +310,7 @@ catalog = {
     'strings': {}
 }
 
-json_str = json.dumps(catalog, indent=2, ensure_ascii=False, sort_keys=True)
+json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
 with open(sys.argv[1], 'w', encoding='utf-8') as f:
     f.write(json_str)
     f.write('\n')
