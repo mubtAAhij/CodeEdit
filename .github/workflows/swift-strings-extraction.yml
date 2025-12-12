@@ -47,7 +47,7 @@ jobs:
     runs-on: macos-latest
     permissions:
       contents: read
-      id-token: write
+      id-token: write  # Required for OIDC token authentication with Google Cloud
     env:
       GCP_PROJECT_ID: ${{ inputs.gcp_project_id }}
       GCP_REGION: ${{ inputs.gcp_region }}
@@ -66,18 +66,7 @@ jobs:
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "latest"
-
-      - name: Display Xcode and Swift versions
-        run: |
-          echo "📱 Xcode version:"
-          xcodebuild -version
-          echo ""
-          echo "🔧 Swift version:"
-          xcrun swift --version
-          echo ""
-          echo "📍 Xcode path:"
-          xcode-select -p
+          xcode-version: "16.0"
 
       - name: Find Xcode project
         id: find-xcode-project
@@ -106,14 +95,6 @@ jobs:
         run: |
           xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -resolvePackageDependencies || true
 
-      - name: Create merge script if needed
-        run: |
-          mkdir -p Scripts
-          if [ ! -f "Scripts/merge_emitted_strings.py" ]; then
-            echo "IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiIKTWVyZ2UgZW1pdHRlZCAuc3RyaW5ncyBmaWxlcyBmcm9tIFhjb2RlIGJ1aWxkIGludG8gLnhjc3RyaW5ncyBjYXRhbG9nLgpUaGlzIGlzIG5lZWRlZCB3aGVuIHRoZSBidWlsZCBmYWlscywgYXMgWGNvZGUgb25seSBtZXJnZXMgc3RyaW5ncyBvbiBzdWNjZXNzZnVsIGJ1aWxkcy4KIiIiCgppbXBvcnQganNvbgppbXBvcnQgc3lzCmltcG9ydCByZQppbXBvcnQgcGxpc3RsaWIKZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmZyb20gY29sbGVjdGlvbnMgaW1wb3J0IGRlZmF1bHRkaWN0CgpkZWYgcGFyc2Vfc3RyaW5nc19maWxlKHBhdGgpOgogICAgIiIiUGFyc2UgYSAuc3RyaW5ncyBmaWxlIGFuZCByZXR1cm4gYSBkaWN0IG9mIGtleSAtPiB2YWx1ZS4KICAgIFN1cHBvcnRzIGJvdGggWE1MIHBsaXN0IGZvcm1hdCBhbmQgdHJhZGl0aW9uYWwga2V5ID0gInZhbHVlIjsgZm9ybWF0LgogICAgU2tpcHMgYmluYXJ5IGZpbGVzIHNpbGVudGx5LgogICAgIiIiCiAgICBzdHJpbmdzID0ge30KICAgIHRyeToKICAgICAgICAjIENoZWNrIGlmIGZpbGUgaXMgYmluYXJ5IChjb21tb24gZm9yIGZyYW1ld29yayAuc3RyaW5ncyBmaWxlcykKICAgICAgICAjIEJpbmFyeSBzdHJpbmdzIGZpbGVzIHR5cGljYWxseSBzdGFydCB3aXRoIDB4ZmYgMHhmZSAoVVRGLTE2IEJPTSkgb3Igb3RoZXIgYmluYXJ5IG1hcmtlcnMKICAgICAgICB3aXRoIG9wZW4ocGF0aCwgJ3JiJykgYXMgZjoKICAgICAgICAgICAgZmlyc3RfYnl0ZXMgPSBmLnJlYWQoMikKICAgICAgICAgICAgIyBTa2lwIGJpbmFyeSBmaWxlcyAoVVRGLTE2IEJPTSwgb3Igb3RoZXIgYmluYXJ5IGluZGljYXRvcnMpCiAgICAgICAgICAgIGlmIGZpcnN0X2J5dGVzID09IGInXHhmZlx4ZmUnIG9yIGZpcnN0X2J5dGVzID09IGInXHhmZVx4ZmYnOgogICAgICAgICAgICAgICAgcmV0dXJuIHN0cmluZ3MgICMgU2tpcCBiaW5hcnkgZmlsZXMgc2lsZW50bHkKICAgICAgICAgICAgIyBSZXNldCB0byBiZWdpbm5pbmcKICAgICAgICAgICAgZi5zZWVrKDApCiAgICAgICAgCiAgICAgICAgIyBUcnkgdG8gcmVhZCBhcyBVVEYtOAogICAgICAgIHRyeToKICAgICAgICAgICAgY29udGVudCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSd1dGYtOCcpCiAgICAgICAgZXhjZXB0IFVuaWNvZGVEZWNvZGVFcnJvcjoKICAgICAgICAgICAgIyBJZiBVVEYtOCBmYWlscywgaXQncyBsaWtlbHkgYmluYXJ5IC0gc2tpcCBzaWxlbnRseQogICAgICAgICAgICByZXR1cm4gc3RyaW5ncwogICAgICAgIAogICAgICAgICMgVHJ5IFhNTCBwbGlzdCBmb3JtYXQgZmlyc3QgKG1vc3QgY29tbW9uIGZvciBlbWl0dGVkIHN0cmluZ3MpCiAgICAgICAgaWYgY29udGVudC5zdHJpcCgpLnN0YXJ0c3dpdGgoJzw/eG1sJykgb3IgY29udGVudC5zdHJpcCgpLnN0YXJ0c3dpdGgoJzxwbGlzdCcpOgogICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICBwbGlzdF9kYXRhID0gcGxpc3RsaWIubG9hZHMoY29udGVudC5lbmNvZGUoJ3V0Zi04JykpCiAgICAgICAgICAgICAgICBpZiBpc2luc3RhbmNlKHBsaXN0X2RhdGEsIGRpY3QpOgogICAgICAgICAgICAgICAgICAgIHN0cmluZ3MudXBkYXRlKHBsaXN0X2RhdGEpCiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHN0cmluZ3MKICAgICAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbjoKICAgICAgICAgICAgICAgIHBhc3MgICMgRmFsbCB0aHJvdWdoIHRvIHRyYWRpdGlvbmFsIGZvcm1hdCBwYXJzZXIKICAgICAgICAKICAgICAgICAjIFRyeSB0cmFkaXRpb25hbCAuc3RyaW5ncyBmb3JtYXQgKGtleSA9ICJ2YWx1ZSI7KQogICAgICAgIHBhdHRlcm4gPSByJyIoW14iXSspIlxzKj1ccyoiKFteIl0rKSI7JwogICAgICAgIGZvciBtYXRjaCBpbiByZS5maW5kaXRlcihwYXR0ZXJuLCBjb250ZW50LCByZS5NVUxUSUxJTkUpOgogICAgICAgICAgICBrZXkgPSBtYXRjaC5ncm91cCgxKQogICAgICAgICAgICB2YWx1ZSA9IG1hdGNoLmdyb3VwKDIpCiAgICAgICAgICAgIHN0cmluZ3Nba2V5XSA9IHZhbHVlCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgIyBPbmx5IHByaW50IGVycm9yIGZvciBub24tYmluYXJ5IGZpbGVzIChVVEYtOCBkZWNvZGUgZXJyb3JzIGFyZSBoYW5kbGVkIGFib3ZlKQogICAgICAgIGlmICJjb2RlYyBjYW4ndCBkZWNvZGUiIG5vdCBpbiBzdHIoZSk6CiAgICAgICAgICAgIHByaW50KGYi4pqg77iPICBGYWlsZWQgdG8gcGFyc2Uge3BhdGh9OiB7ZX0iLCBmaWxlPXN5cy5zdGRlcnIpCiAgICByZXR1cm4gc3RyaW5ncwoKZGVmIG1lcmdlX3N0cmluZ3NfaW50b194Y3N0cmluZ3Moc3RyaW5nc19kaWN0LCB4Y3N0cmluZ3NfcGF0aCk6CiAgICAiIiJNZXJnZSBzdHJpbmdzIGZyb20gZGljdCBpbnRvIC54Y3N0cmluZ3MgY2F0YWxvZy4iIiIKICAgIHRyeToKICAgICAgICAjIExvYWQgZXhpc3RpbmcgY2F0YWxvZwogICAgICAgIGlmIHhjc3RyaW5nc19wYXRoLmV4aXN0cygpOgogICAgICAgICAgICBjYXRhbG9nID0ganNvbi5sb2Fkcyh4Y3N0cmluZ3NfcGF0aC5yZWFkX3RleHQoZW5jb2Rpbmc9J3V0Zi04JykpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgY2F0YWxvZyA9IHsKICAgICAgICAgICAgICAgICJzb3VyY2VMYW5ndWFnZSI6ICJlbiIsCiAgICAgICAgICAgICAgICAic3RyaW5ncyI6IHt9LAogICAgICAgICAgICAgICAgInZlcnNpb24iOiAiMS4wIgogICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgaWYgInN0cmluZ3MiIG5vdCBpbiBjYXRhbG9nOgogICAgICAgICAgICBjYXRhbG9nWyJzdHJpbmdzIl0gPSB7fQogICAgICAgIAogICAgICAgICMgTWVyZ2Ugc3RyaW5ncyBpbnRvIGNhdGFsb2cKICAgICAgICBtZXJnZWRfY291bnQgPSAwCiAgICAgICAgZm9yIGtleSwgdmFsdWUgaW4gc3RyaW5nc19kaWN0Lml0ZW1zKCk6CiAgICAgICAgICAgIGlmIGtleSBub3QgaW4gY2F0YWxvZ1sic3RyaW5ncyJdOgogICAgICAgICAgICAgICAgY2F0YWxvZ1sic3RyaW5ncyJdW2tleV0gPSB7CiAgICAgICAgICAgICAgICAgICAgImV4dHJhY3Rpb25TdGF0ZSI6ICJtYW51YWwiLAogICAgICAgICAgICAgICAgICAgICJsb2NhbGl6YXRpb25zIjogewogICAgICAgICAgICAgICAgICAgICAgICBjYXRhbG9nLmdldCgic291cmNlTGFuZ3VhZ2UiLCAiZW4iKTogewogICAgICAgICAgICAgICAgICAgICAgICAgICAgInN0cmluZ1VuaXQiOiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInN0YXRlIjogIm5ldyIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInZhbHVlIjogdmFsdWUKICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIG1lcmdlZF9jb3VudCArPSAxCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICAjIFVwZGF0ZSBleGlzdGluZyBlbnRyeSBpZiBuZWVkZWQKICAgICAgICAgICAgICAgIGV4aXN0aW5nID0gY2F0YWxvZ1sic3RyaW5ncyJdW2tleV0KICAgICAgICAgICAgICAgIHNvdXJjZV9sYW5nID0gY2F0YWxvZy5nZXQoInNvdXJjZUxhbmd1YWdlIiwgImVuIikKICAgICAgICAgICAgICAgIGlmICJsb2NhbGl6YXRpb25zIiBub3QgaW4gZXhpc3Rpbmc6CiAgICAgICAgICAgICAgICAgICAgZXhpc3RpbmdbImxvY2FsaXphdGlvbnMiXSA9IHt9CiAgICAgICAgICAgICAgICBpZiBzb3VyY2VfbGFuZyBub3QgaW4gZXhpc3RpbmdbImxvY2FsaXphdGlvbnMiXToKICAgICAgICAgICAgICAgICAgICBleGlzdGluZ1sibG9jYWxpemF0aW9ucyJdW3NvdXJjZV9sYW5nXSA9IHsKICAgICAgICAgICAgICAgICAgICAgICAgInN0cmluZ1VuaXQiOiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAic3RhdGUiOiAibmV3IiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICJ2YWx1ZSI6IHZhbHVlCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWVyZ2VkX2NvdW50ICs9IDEKICAgICAgICAKICAgICAgICAjIFdyaXRlIHVwZGF0ZWQgY2F0YWxvZwogICAgICAgIHhjc3RyaW5nc19wYXRoLndyaXRlX3RleHQoCiAgICAgICAgICAgIGpzb24uZHVtcHMoY2F0YWxvZywgZW5zdXJlX2FzY2lpPUZhbHNlLCBpbmRlbnQ9MiksCiAgICAgICAgICAgIGVuY29kaW5nPSd1dGYtOCcKICAgICAgICApCiAgICAgICAgCiAgICAgICAgcmV0dXJuIG1lcmdlZF9jb3VudAogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHByaW50KGYi4pqg77iPICBGYWlsZWQgdG8gbWVyZ2Ugc3RyaW5ncyBpbnRvIGNhdGFsb2c6IHtlfSIsIGZpbGU9c3lzLnN0ZGVycikKICAgICAgICByZXR1cm4gMAoKZGVmIG1haW4oKToKICAgIGlmIGxlbihzeXMuYXJndikgPCAzOgogICAgICAgIHByaW50KCJVc2FnZTogbWVyZ2VfZW1pdHRlZF9zdHJpbmdzLnB5IDx4Y3N0cmluZ3NfcGF0aD4gPHN0cmluZ3NfZmlsZTE+IFtzdHJpbmdzX2ZpbGUyXSAuLi4iLCBmaWxlPXN5cy5zdGRlcnIpCiAgICAgICAgcHJpbnQoIiAgICAgICBvcjogbWVyZ2VfZW1pdHRlZF9zdHJpbmdzLnB5IDx4Y3N0cmluZ3NfcGF0aD4gPHN0cmluZ3NfZGlyMT4gW3N0cmluZ3NfZGlyMl0gLi4uIiwgZmlsZT1zeXMuc3RkZXJyKQogICAgICAgIHN5cy5leGl0KDEpCiAgICAKICAgIHhjc3RyaW5nc19wYXRoID0gUGF0aChzeXMuYXJndlsxXSkKICAgIHN0cmluZ3NfcGF0aHMgPSBbUGF0aChwKSBmb3IgcCBpbiBzeXMuYXJndlsyOl1dCiAgICAKICAgICMgQ29sbGVjdCBhbGwgc3RyaW5ncyBmcm9tIGFsbCAuc3RyaW5ncyBmaWxlcwogICAgYWxsX3N0cmluZ3MgPSB7fQogICAgdG90YWxfZmlsZXMgPSAwCiAgICAKICAgIGZvciBzdHJpbmdzX3BhdGggaW4gc3RyaW5nc19wYXRoczoKICAgICAgICBpZiBub3Qgc3RyaW5nc19wYXRoLmV4aXN0cygpOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIAogICAgICAgICMgSWYgaXQncyBhIGRpcmVjdG9yeSwgc2VhcmNoIGZvciAuc3RyaW5ncyBmaWxlcyByZWN1cnNpdmVseQogICAgICAgIGlmIHN0cmluZ3NfcGF0aC5pc19kaXIoKToKICAgICAgICAgICAgZm9yIHN0cmluZ3NfZmlsZSBpbiBzdHJpbmdzX3BhdGgucmdsb2IoIiouc3RyaW5ncyIpOgogICAgICAgICAgICAgICAgdG90YWxfZmlsZXMgKz0gMQogICAgICAgICAgICAgICAgcGFyc2VkID0gcGFyc2Vfc3RyaW5nc19maWxlKHN0cmluZ3NfZmlsZSkKICAgICAgICAgICAgICAgICMgTWVyZ2UgaW50byBhbGxfc3RyaW5ncyAobGF0ZXIgZmlsZXMgb3ZlcnJpZGUgZWFybGllciBvbmVzKQogICAgICAgICAgICAgICAgYWxsX3N0cmluZ3MudXBkYXRlKHBhcnNlZCkKICAgICAgICAjIElmIGl0J3MgYSBmaWxlLCBwYXJzZSBpdCBkaXJlY3RseQogICAgICAgIGVsaWYgc3RyaW5nc19wYXRoLmlzX2ZpbGUoKSBhbmQgc3RyaW5nc19wYXRoLnN1ZmZpeCA9PSAiLnN0cmluZ3MiOgogICAgICAgICAgICB0b3RhbF9maWxlcyArPSAxCiAgICAgICAgICAgIHBhcnNlZCA9IHBhcnNlX3N0cmluZ3NfZmlsZShzdHJpbmdzX3BhdGgpCiAgICAgICAgICAgIGFsbF9zdHJpbmdzLnVwZGF0ZShwYXJzZWQpCiAgICAKICAgIGlmIG5vdCBhbGxfc3RyaW5nczoKICAgICAgICBwcmludChmIuKaoO+4jyAgTm8gc3RyaW5ncyBmb3VuZCBpbiB7dG90YWxfZmlsZXN9IC5zdHJpbmdzIGZpbGVzIiwgZmlsZT1zeXMuc3RkZXJyKQogICAgICAgIHN5cy5leGl0KDApCiAgICAKICAgIHByaW50KGYi8J+TnSBGb3VuZCB7bGVuKGFsbF9zdHJpbmdzKX0gdW5pcXVlIHN0cmluZ3MgZnJvbSB7dG90YWxfZmlsZXN9IC5zdHJpbmdzIGZpbGVzIikKICAgIAogICAgIyBNZXJnZSBpbnRvIGNhdGFsb2cKICAgIG1lcmdlZF9jb3VudCA9IG1lcmdlX3N0cmluZ3NfaW50b194Y3N0cmluZ3MoYWxsX3N0cmluZ3MsIHhjc3RyaW5nc19wYXRoKQogICAgCiAgICBpZiBtZXJnZWRfY291bnQgPiAwOgogICAgICAgIHByaW50KGYi4pyFIE1lcmdlZCB7bWVyZ2VkX2NvdW50fSBzdHJpbmdzIGludG8ge3hjc3RyaW5nc19wYXRofSIpCiAgICBlbHNlOgogICAgICAgIHByaW50KGYi4oS577iPICBObyBuZXcgc3RyaW5ncyB0byBtZXJnZSAoY2F0YWxvZyBtYXkgYWxyZWFkeSBjb250YWluIHRoZW0pIikKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICBtYWluKCkKCg==" | base64 -d > Scripts/merge_emitted_strings.py
-            chmod +x Scripts/merge_emitted_strings.py
-          fi
-
       - name: Make scripts executable
         run: |
           chmod +x Scripts/*.sh Scripts/*.py || true
@@ -122,144 +103,10 @@ jobs:
         run: |
           ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
 
-      - name: Install xcodeproj gem
-        run: |
-          # No sudo needed in GitHub Actions - gem install works directly
-          gem install xcodeproj || {
-            echo "⚠️  Failed to install xcodeproj gem, will try to continue..."
-            exit 0
-          }
-
-      - name: Add String Catalog to Xcode project
-        continue-on-error: true
-        run: |
-          # Find the .xcstrings file that was created
-          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
-          if [ -n "$XCSTRINGS_FILE" ]; then
-            echo "📦 Adding $XCSTRINGS_FILE to Xcode project..."
-            # Create the Ruby script if it doesn't exist
-            if [ ! -f "Scripts/add_xcstrings_to_project.rb" ]; then
-              mkdir -p Scripts
-              echo "IyEvdXNyL2Jpbi9lbnYgcnVieQojIGZyb3plbl9zdHJpbmdfbGl0ZXJhbDogdHJ1ZQoKIyBBZGQgLnhjc3RyaW5ncyBmaWxlIHRvIFhjb2RlIHByb2plY3QKIyBVc2FnZTogcnVieSBhZGRfeGNzdHJpbmdzX3RvX3Byb2plY3QucmIgPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0KCnJlcXVpcmUgJ3hjb2RlcHJvaicKcmVxdWlyZSAncGF0aG5hbWUnCgppZiBBUkdWLmxlbmd0aCA8IDIKICBwdXRzICJVc2FnZTogI3skMH0gPHByb2plY3RfcGF0aD4gPHhjc3RyaW5nc19maWxlX3BhdGg+IFt0YXJnZXRfbmFtZV0iCiAgZXhpdCAxCmVuZAoKcHJvamVjdF9wYXRoID0gQVJHVlswXQp4Y3N0cmluZ3NfcGF0aCA9IEFSR1ZbMV0KdGFyZ2V0X25hbWUgPSBBUkdWWzJdCgojIFZhbGlkYXRlIHBhdGhzCnVubGVzcyBGaWxlLmV4aXN0Pyhwcm9qZWN0X3BhdGgpCiAgcHV0cyAi4p2MIFByb2plY3Qgbm90IGZvdW5kOiAje3Byb2plY3RfcGF0aH0iCiAgZXhpdCAxCmVuZAoKdW5sZXNzIEZpbGUuZXhpc3Q/KHhjc3RyaW5nc19wYXRoKQogIHB1dHMgIuKdjCBTdHJpbmcgY2F0YWxvZyBub3QgZm91bmQ6ICN7eGNzdHJpbmdzX3BhdGh9IgogIGV4aXQgMQplbmQKCiMgT3BlbiBwcm9qZWN0CnByb2plY3QgPSBYY29kZXByb2o6OlByb2plY3Qub3Blbihwcm9qZWN0X3BhdGgpCgojIEZpbmQgdGFyZ2V0IChpZiBzcGVjaWZpZWQpCnRhcmdldCA9IG5pbAppZiB0YXJnZXRfbmFtZQogIHRhcmdldCA9IHByb2plY3QudGFyZ2V0cy5maW5kIHsgfHR8IHQubmFtZSA9PSB0YXJnZXRfbmFtZSB9CiAgdW5sZXNzIHRhcmdldAogICAgcHV0cyAi4pqg77iPICBUYXJnZXQgJyN7dGFyZ2V0X25hbWV9JyBub3QgZm91bmQsIHdpbGwgYWRkIHRvIGZpcnN0IHRhcmdldCIKICBlbmQKZW5kCgojIFVzZSBmaXJzdCB0YXJnZXQgaWYgbm90IGZvdW5kCnRhcmdldCB8fD0gcHJvamVjdC50YXJnZXRzLmZpcnN0CnVubGVzcyB0YXJnZXQKICBwdXRzICLinYwgTm8gdGFyZ2V0cyBmb3VuZCBpbiBwcm9qZWN0IgogIGV4aXQgMQplbmQKCnB1dHMgIvCfk6YgQWRkaW5nICN7eGNzdHJpbmdzX3BhdGh9IHRvIHRhcmdldDogI3t0YXJnZXQubmFtZX0iCgojIEdldCByZWxhdGl2ZSBwYXRoIGZyb20gcHJvamVjdCBkaXJlY3RvcnkKcHJvamVjdF9kaXIgPSBGaWxlLmRpcm5hbWUocHJvamVjdF9wYXRoKQp4Y3N0cmluZ3NfcmVsYXRpdmUgPSBQYXRobmFtZS5uZXcoeGNzdHJpbmdzX3BhdGgpLnJlbGF0aXZlX3BhdGhfZnJvbShQYXRobmFtZS5uZXcocHJvamVjdF9kaXIpKS50b19zCgojIENoZWNrIGlmIGZpbGUgaXMgYWxyZWFkeSBpbiBwcm9qZWN0CmV4aXN0aW5nX2ZpbGUgPSBwcm9qZWN0LmZpbGVzLmZpbmQgeyB8ZnwgZi5wYXRoID09IHhjc3RyaW5nc19yZWxhdGl2ZSB9CmlmIGV4aXN0aW5nX2ZpbGUKICBwdXRzICLihLnvuI8gIEZpbGUgYWxyZWFkeSBpbiBwcm9qZWN0OiAje3hjc3RyaW5nc19yZWxhdGl2ZX0iCiAgCiAgIyBFbnN1cmUgaXQncyBhZGRlZCB0byB0aGUgdGFyZ2V0CiAgIyBDaGVjayBpZiBmaWxlIGlzIGFscmVhZHkgaW4gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgaW5fYnVpbGRfcGhhc2UgPSB0YXJnZXQucmVzb3VyY2VzX2J1aWxkX3BoYXNlLmZpbGVzLmFueT8geyB8ZnwgZi5maWxlX3JlZiA9PSBleGlzdGluZ19maWxlIH0KICB1bmxlc3MgaW5fYnVpbGRfcGhhc2UKICAgIHRhcmdldC5hZGRfZmlsZV9yZWZlcmVuY2VzKFtleGlzdGluZ19maWxlXSkKICAgIHB1dHMgIuKchSBBZGRlZCBleGlzdGluZyBmaWxlIHJlZmVyZW5jZSB0byB0YXJnZXQiCiAgZWxzZQogICAgcHV0cyAi4pyFIEZpbGUgYWxyZWFkeSBpbiB0YXJnZXQiCiAgZW5kCmVsc2UKICAjIEZpbmQgb3IgY3JlYXRlIFJlc291cmNlcyBncm91cAogIHJlc291cmNlc19ncm91cCA9IHByb2plY3QubWFpbl9ncm91cFsnUmVzb3VyY2VzJ10gfHwgcHJvamVjdC5tYWluX2dyb3VwLm5ld19ncm91cCgnUmVzb3VyY2VzJykKICAKICAjIEFkZCBmaWxlIHRvIHByb2plY3QKICBmaWxlX3JlZiA9IHJlc291cmNlc19ncm91cC5uZXdfZmlsZSh4Y3N0cmluZ3NfcmVsYXRpdmUpCiAgCiAgIyBBZGQgdG8gdGFyZ2V0J3MgcmVzb3VyY2VzIGJ1aWxkIHBoYXNlCiAgdGFyZ2V0LmFkZF9maWxlX3JlZmVyZW5jZXMoW2ZpbGVfcmVmXSkKICAKICBwdXRzICLinIUgQWRkZWQgI3t4Y3N0cmluZ3NfcmVsYXRpdmV9IHRvIHByb2plY3QgYW5kIHRhcmdldCIKZW5kCgojIFJlbW92ZSBhbnkgZXhpc3RpbmcgTG9jYWxpemFibGUuc3RyaW5ncyBmaWxlcyBmcm9tIHRoZSBwcm9qZWN0CiMgKFhjb2RlIHdvbid0IGVtaXQgdG8gLnhjc3RyaW5ncyBpZiAuc3RyaW5ncyBmaWxlcyBleGlzdCkKcHJvamVjdC5maWxlcy5lYWNoIGRvIHxmaWxlfAogIGlmIGZpbGUucGF0aCAmJiBmaWxlLnBhdGguZW5kX3dpdGg/KCdMb2NhbGl6YWJsZS5zdHJpbmdzJykKICAgIHB1dHMgIuKaoO+4jyAgRm91bmQgZXhpc3RpbmcgTG9jYWxpemFibGUuc3RyaW5ncyBpbiBwcm9qZWN0OiAje2ZpbGUucGF0aH0iCiAgICBwdXRzICIgICBSZW1vdmluZyBmcm9tIHByb2plY3QgKFhjb2RlIHdvbid0IGVtaXQgdG8gLnhjc3RyaW5ncyB3aGVuIC5zdHJpbmdzIGV4aXN0cykiCiAgICBmaWxlLnJlbW92ZV9mcm9tX3Byb2plY3QKICBlbmQKZW5kCgojIFNhdmUgcHJvamVjdApwcm9qZWN0LnNhdmUKcHV0cyAi4pyFIFByb2plY3Qgc2F2ZWQiCg==" | base64 -d > Scripts/add_xcstrings_to_project.rb
-              chmod +x Scripts/add_xcstrings_to_project.rb
-            fi
-            # Run the script
-            ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
-          else
-            echo "⚠️  No Localizable.xcstrings file found to add to project"
-          fi
-
-      - name: Check for existing .strings files that might prevent emission
-        run: |
-          echo "🔍 Checking for existing .strings files that might prevent .xcstrings emission..."
-          STRINGS_FILES=$(find . -name "Localizable.strings" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
-          if [ -n "$STRINGS_FILES" ]; then
-            echo "⚠️  Found existing .strings files (these prevent Xcode from emitting to .xcstrings):"
-            echo "$STRINGS_FILES" | while read f; do
-              echo "  - $f"
-            done
-            echo ""
-            echo "💡 Xcode will NOT emit strings to .xcstrings when .strings files exist."
-            echo "💡 Temporarily renaming .strings files to allow emission..."
-            echo "$STRINGS_FILES" | while read f; do
-              if [ -f "$f" ]; then
-                mv "$f" "${f}.backup" && echo "  ✅ Renamed $f to ${f}.backup"
-              fi
-            done
-          else
-            echo "✅ No existing .strings files found that would prevent emission"
-          fi
-
-      - name: Check for existing .strings files that might prevent emission
-        run: |
-          echo "🔍 Checking for existing .strings files that might prevent .xcstrings emission..."
-          STRINGS_FILES=$(find . -name "Localizable.strings" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
-          if [ -n "$STRINGS_FILES" ]; then
-            echo "⚠️  Found existing .strings files (these prevent Xcode from emitting to .xcstrings):"
-            echo "$STRINGS_FILES" | while read f; do
-              echo "  - $f"
-            done
-            echo ""
-            echo "💡 Xcode will NOT emit strings to .xcstrings when .strings files exist."
-            echo "💡 Temporarily renaming .strings files to allow emission..."
-            echo "$STRINGS_FILES" | while read f; do
-              if [ -f "$f" ]; then
-                mv "$f" "${f}.backup" && echo "  ✅ Renamed $f to ${f}.backup"
-              fi
-            done
-          else
-            echo "✅ No existing .strings files found that would prevent emission"
-          fi
-
-      - name: Check String Catalogs before build
-        run: |
-          echo "📋 String Catalogs before build:"
-          find . -name "*.xcstrings" -type f | while read f; do
-            echo "  - $f ($(wc -c < "$f" | xargs) bytes)"
-            if command -v jq &> /dev/null; then
-              COUNT=$(jq '.strings | length' "$f" 2>/dev/null || echo "0")
-              echo "    Contains $COUNT string entries"
-            fi
-          done || echo "  (none found)"
-
       - name: Run unsigned build with compiler string extraction
         continue-on-error: true
         run: |
           ./Scripts/build_with_compiler_extraction.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
-
-      - name: Diagnostic - Comprehensive strings search
-        continue-on-error: true
-        run: |
-          echo "🔍 Comprehensive search for emitted strings..."
-          BUILD_DIR=$(xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -scheme "${{ steps.find-xcode-project.outputs.scheme }}" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
-          if [ -n "$BUILD_DIR" ]; then
-            DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
-            INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
-            PRODUCTS_DIR="$BUILD_DIR"
-            
-            echo "📂 DerivedData root: $DERIVED_DATA_DIR"
-            echo "📂 Intermediates: $INTERMEDIATES_DIR"
-            echo "📂 Products: $PRODUCTS_DIR"
-            echo ""
-            
-            # Search for compiler-emitted .strings files only (exclude frameworks, dependencies)
-            echo "📊 Searching for compiler-emitted .strings files in Intermediates..."
-            EMITTED_STRINGS=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -20 || echo "")
-            if [ -n "$EMITTED_STRINGS" ]; then
-              echo "✅ Found compiler-emitted .strings files:"
-              echo "$EMITTED_STRINGS" | head -10 | sed 's/^/   /'
-              echo ""
-              echo "📊 Total count: $(echo "$EMITTED_STRINGS" | wc -l | xargs)"
-            else
-              echo "❌ No compiler-emitted .strings files found"
-              echo "💡 This might mean strings weren't emitted, or they're in a different location"
-            fi
-            
-            echo ""
-            echo "📊 Checking for en.lproj directories:"
-            find "$DERIVED_DATA_DIR" -type d -name "en.lproj" 2>/dev/null | head -5 | sed 's/^/   /' || echo "   (none found)"
-            
-            echo ""
-            echo "📊 Checking for Objects-normal directories:"
-            find "$DERIVED_DATA_DIR" -type d -name "Objects-normal" 2>/dev/null | head -5 | sed 's/^/   /' || echo "   (none found)"
-            
-            echo ""
-            echo "📊 Sample directory structure:"
-            find "$INTERMEDIATES_DIR" -maxdepth 3 -type d 2>/dev/null | head -10 | sed 's/^/   /' || echo "   (could not list)"
-          else
-            echo "⚠️  Could not determine BUILD_DIR"
-          fi
-
-      - name: Check String Catalogs after build
-        run: |
-          echo "📋 String Catalogs after build:"
-          find . -name "*.xcstrings" -type f | while read f; do
-            echo "  - $f ($(wc -c < "$f" | xargs) bytes)"
-            if command -v jq &> /dev/null; then
-              COUNT=$(jq '.strings | length' "$f" 2>/dev/null || echo "0")
-              echo "    Contains $COUNT string entries"
-            fi
-          done || echo "  (none found)"
 
       - name: Build skip list from all String Catalogs
         run: |
