@@ -97,13 +97,12 @@ fi
 # Ensure directory exists
 mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 
-# Create minimal valid String Catalog using plutil to ensure exact format Xcode expects
-# Xcode's builtin-copyStrings is very strict - it expects property list JSON format
+# Create minimal valid String Catalog in JSON format that Xcode expects
+# Xcode's builtin-copyStrings expects valid JSON (not plist format)
 if [ ! -f "$XCSTRINGS_PATH" ]; then
-    # Create a temporary plist file first, then convert to JSON
-    TEMP_PLIST=$(mktemp)
+    # Create JSON directly - this is the format Xcode expects for .xcstrings files
     python3 -c "
-import plistlib
+import json
 import sys
 
 catalog = {
@@ -112,64 +111,34 @@ catalog = {
     'strings': {}
 }
 
-# Write as binary plist first
-with open(sys.argv[1], 'wb') as f:
-    plistlib.dump(catalog, f, fmt=plistlib.FMT_BINARY)
-" "$TEMP_PLIST"
+# Use indent=2 and ensure_ascii=False for proper formatting
+# Don't sort keys to match Xcode's format
+json_str = json.dumps(catalog, indent=2, ensure_ascii=False)
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
+" "$XCSTRINGS_PATH"
     
-    # Use plutil to convert binary plist to JSON (this ensures exact format Xcode expects)
-    if command -v plutil &> /dev/null; then
-        if plutil -convert json -o "$XCSTRINGS_PATH" "$TEMP_PLIST" 2>/dev/null; then
-            # Ensure trailing newline
-            if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                echo "" >> "$XCSTRINGS_PATH"
-            fi
-            # Validate the final file
-            if plutil -lint "$XCSTRINGS_PATH" &> /dev/null; then
-                echo "✅ Created and validated $XCSTRINGS_PATH using plutil"
-            else
-                echo "⚠️  Created file but plutil validation failed"
-            fi
+    # Validate the file
+    if command -v jq &> /dev/null; then
+        if jq empty "$XCSTRINGS_PATH" &> /dev/null; then
+            echo "✅ Created and validated $XCSTRINGS_PATH (valid JSON)"
         else
-            echo "⚠️  plutil conversion failed, trying alternative method..."
-            # Fallback: create JSON directly and validate
-            python3 -c "
-import json
-import sys
-
-catalog = {
-    'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
-}
-
-json_str = json.dumps(catalog, indent=2, ensure_ascii=False, sort_keys=True)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
-            echo "✅ Created $XCSTRINGS_PATH (fallback method)"
+            echo "⚠️  Created file but JSON validation failed"
         fi
-        rm -f "$TEMP_PLIST"
+    elif command -v python3 &> /dev/null; then
+        if python3 -c "import json; json.load(open('$XCSTRINGS_PATH', 'r', encoding='utf-8'))" &> /dev/null; then
+            echo "✅ Created and validated $XCSTRINGS_PATH (valid JSON)"
+        else
+            echo "⚠️  Created file but JSON validation failed"
+        fi
     else
-        # No plutil available, create JSON directly
-        python3 -c "
-import json
-import sys
-
-catalog = {
-    'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
-}
-
-json_str = json.dumps(catalog, indent=2, ensure_ascii=False, sort_keys=True)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
-        echo "✅ Created $XCSTRINGS_PATH (plutil not available)"
+        echo "✅ Created $XCSTRINGS_PATH"
     fi
+    
+    # Note: plutil -lint may fail on .xcstrings JSON files even though they're valid
+    # This is because plutil expects plist format, but .xcstrings are JSON
+    # Xcode's builtin-copyStrings will validate the actual format it needs
 else
     echo "ℹ️ $XCSTRINGS_PATH already exists"
     # Validate existing file and ensure it has trailing newline
