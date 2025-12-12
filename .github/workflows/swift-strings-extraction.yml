@@ -443,10 +443,37 @@ jobs:
             cat "$XCSTRINGS_FILE" || true
             echo ""
             
-            # Try to validate with plutil to see what error it gives
+            # Final validation: Ensure the file is in the exact format that builtin-copyStrings expects
+            # We recreate it one more time using plutil to ensure it's in the correct format
             if command -v plutil &> /dev/null; then
-              echo "🔍 Testing plutil validation (expected to fail for JSON):"
-              plutil -lint "$XCSTRINGS_FILE" 2>&1 | head -5 || true
+              echo "🔍 Final format validation and normalization..."
+              TEMP_PLIST=$(mktemp)
+              TEMP_JSON=$(mktemp)
+              
+              # Try to read the file as a plist and convert it back to JSON
+              # This normalizes the format to exactly what plutil produces
+              if plutil -convert json -o "$TEMP_JSON" "$XCSTRINGS_FILE" 2>/dev/null; then
+                # Convert back to plist and then to JSON again to normalize
+                if plutil -convert xml1 -o "$TEMP_PLIST" "$TEMP_JSON" 2>/dev/null && \
+                   plutil -convert json -o "$XCSTRINGS_FILE" "$TEMP_PLIST" 2>/dev/null; then
+                  # Ensure trailing newline
+                  if [ "$(tail -c 1 "$XCSTRINGS_FILE" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
+                    echo "" >> "$XCSTRINGS_FILE"
+                  fi
+                  echo "✅ File normalized to plutil-compatible format"
+                else
+                  echo "⚠️  Could not normalize file format, but continuing..."
+                fi
+              else
+                echo "⚠️  File cannot be read by plutil, recreating..."
+                rm -f "$XCSTRINGS_FILE"
+                ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+                XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+                if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
+                  ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+                fi
+              fi
+              rm -f "$TEMP_PLIST" "$TEMP_JSON"
               echo ""
             fi
           else
