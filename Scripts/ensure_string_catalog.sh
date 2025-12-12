@@ -59,9 +59,10 @@ mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 
 # Create minimal valid String Catalog JSON using Python to ensure proper formatting
 # Xcode's builtin-copyStrings is very strict about the format, so we ensure:
-# 1. Valid JSON
+# 1. Valid JSON (compatible with property list format)
 # 2. Trailing newline
-# 3. UTF-8 encoding
+# 3. UTF-8 encoding without BOM
+# 4. Proper indentation (2 spaces)
 if [ ! -f "$XCSTRINGS_PATH" ]; then
     python3 -c "
 import json
@@ -73,25 +74,75 @@ catalog = {
     'strings': {}
 }
 
-# Write with proper JSON formatting and trailing newline
-with open(sys.argv[1], 'w', encoding='utf-8', newline='') as f:
-    json.dump(catalog, f, indent=2, ensure_ascii=False)
-    f.write('\n')  # Ensure trailing newline
+# Write JSON with proper formatting - ensure no BOM and proper encoding
+json_str = json.dumps(catalog, indent=2, ensure_ascii=False, sort_keys=False)
+# Write with UTF-8 encoding (no BOM) and ensure trailing newline
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
     
 # Validate the JSON we just wrote
 with open(sys.argv[1], 'r', encoding='utf-8') as f:
     json.load(f)  # This will raise an exception if invalid
 " "$XCSTRINGS_PATH"
+    # Validate using plutil (Xcode's property list tool) to ensure it's in the correct format
+    if command -v plutil &> /dev/null; then
+        if plutil -lint "$XCSTRINGS_PATH" &> /dev/null; then
+            echo "✅ File validated by plutil"
+        else
+            echo "⚠️  plutil validation failed, but file was created"
+        fi
+    fi
     echo "✅ Created $XCSTRINGS_PATH"
 else
     echo "ℹ️ $XCSTRINGS_PATH already exists"
     # Validate existing file and ensure it has trailing newline
-    if python3 -c "import json, sys; json.load(open(sys.argv[1], 'r', encoding='utf-8'))" "$XCSTRINGS_PATH" 2>/dev/null; then
+    if python3 -c "
+import json
+import sys
+try:
+    with open(sys.argv[1], 'r', encoding='utf-8') as f:
+        json.load(f)
+    sys.exit(0)
+except Exception:
+    sys.exit(1)
+" "$XCSTRINGS_PATH" 2>/dev/null; then
         # Ensure trailing newline exists
-        if [ "$(tail -c 1 "$XCSTRINGS_PATH" | wc -l)" -eq 0 ]; then
+        last_char=$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')
+        if [ "$last_char" != "0a" ]; then
             echo "" >> "$XCSTRINGS_PATH"
         fi
-        echo "✅ Existing file is valid JSON"
+        # Validate using plutil if available
+        if command -v plutil &> /dev/null; then
+            if plutil -lint "$XCSTRINGS_PATH" &> /dev/null; then
+                echo "✅ Existing file is valid JSON and passes plutil validation"
+            else
+                echo "⚠️  Existing file is valid JSON but fails plutil validation, recreating..."
+                python3 -c "
+import json
+import sys
+
+catalog = {
+    'sourceLanguage': 'en',
+    'version': '1.0',
+    'strings': {}
+}
+
+json_str = json.dumps(catalog, indent=2, ensure_ascii=False, sort_keys=False)
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
+" "$XCSTRINGS_PATH"
+                # Validate again after recreation
+                if plutil -lint "$XCSTRINGS_PATH" &> /dev/null; then
+                    echo "✅ Recreated and validated $XCSTRINGS_PATH"
+                else
+                    echo "⚠️  Recreated file still fails plutil validation"
+                fi
+            fi
+        else
+            echo "✅ Existing file is valid JSON"
+        fi
     else
         echo "⚠️  Existing file is not valid JSON, recreating..."
         python3 -c "
@@ -104,11 +155,23 @@ catalog = {
     'strings': {}
 }
 
-with open(sys.argv[1], 'w', encoding='utf-8', newline='') as f:
-    json.dump(catalog, f, indent=2, ensure_ascii=False)
-    f.write('\n')  # Ensure trailing newline
+# Write JSON with proper formatting
+json_str = json.dumps(catalog, indent=2, ensure_ascii=False, sort_keys=False)
+# Write with UTF-8 encoding and ensure trailing newline
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
 " "$XCSTRINGS_PATH"
-        echo "✅ Recreated $XCSTRINGS_PATH"
+        # Validate using plutil if available
+        if command -v plutil &> /dev/null; then
+            if plutil -lint "$XCSTRINGS_PATH" &> /dev/null; then
+                echo "✅ Recreated and validated $XCSTRINGS_PATH"
+            else
+                echo "⚠️  Recreated file fails plutil validation"
+            fi
+        else
+            echo "✅ Recreated $XCSTRINGS_PATH"
+        fi
     fi
 fi
 
