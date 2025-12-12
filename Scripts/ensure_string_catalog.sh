@@ -35,22 +35,13 @@ if [ -n "$XCSTRINGS_FILES" ]; then
             if [ "$FILE_SIZE" -lt 50 ]; then
                 echo "    ⚠️  File is too small ($FILE_SIZE bytes), will be recreated"
                 INVALID=1
-            # JSON validation (plutil validation skipped - .xcstrings are JSON, not plist)
-            elif command -v jq &> /dev/null; then
-                if ! jq empty "$file" &> /dev/null; then
-                    echo "    ⚠️  File contains invalid JSON, will be recreated"
-                    INVALID=1
-                fi
-            elif command -v python3 &> /dev/null; then
-                if ! python3 -c "import json; json.load(open('$file', 'r', encoding='utf-8'))" &> /dev/null; then
-                    echo "    ⚠️  File contains invalid JSON, will be recreated"
+            # Validate format - check if plutil can parse it (builtin-copyStrings uses same parser)
+            elif command -v plutil &> /dev/null; then
+                if ! plutil -convert xml1 -o /dev/null "$file" 2>/dev/null; then
+                    echo "    ⚠️  File is not parseable by plutil, will be recreated"
                     INVALID=1
                 fi
             fi
-            
-            # Note: plutil validation is intentionally skipped for .xcstrings files
-            # .xcstrings files are JSON format, not plist format
-            # plutil -lint will fail on valid JSON .xcstrings files
             
             if [ "$INVALID" -eq 1 ]; then
                 rm -f "$file" && echo "    🗑️  Removed invalid file: $file"
@@ -98,139 +89,12 @@ fi
 # Ensure directory exists
 mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 
-# Create minimal valid String Catalog in JSON format
-# builtin-copyStrings requires the file to be parseable as a property list
-# We create as XML plist first, then convert to JSON using plutil to ensure
-# the exact format that builtin-copyStrings expects
+# Create minimal valid String Catalog using plutil to ensure builtin-copyStrings compatibility
+# Use plutil to create JSON format that plutil itself can parse (builtin-copyStrings uses same parser)
 if [ ! -f "$XCSTRINGS_PATH" ]; then
-    # Create as XML plist first, then convert to JSON via plutil
-    # This ensures the JSON is in the exact format that plutil produces
-    TEMP_PLIST=$(mktemp)
-    python3 -c "
-import plistlib
-import sys
-
-catalog = {
-    'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
-}
-
-# Write as XML plist first
-with open(sys.argv[1], 'wb') as f:
-    plistlib.dump(catalog, f, fmt=plistlib.FMT_XML)
-" "$TEMP_PLIST"
-    
-    # Convert to JSON using plutil (this creates the exact format builtin-copyStrings expects)
+    # Create using plutil - this ensures the exact format that builtin-copyStrings expects
     if command -v plutil &> /dev/null; then
-        # First validate XML plist
-        if plutil -lint "$TEMP_PLIST" &>/dev/null; then
-            # Convert to JSON - plutil's JSON output is what builtin-copyStrings can parse
-            if plutil -convert json -o "$XCSTRINGS_PATH" "$TEMP_PLIST" 2>/dev/null; then
-                # Verify plutil can read it back as a plist (ensures compatibility)
-                if plutil -convert xml1 -o /dev/null "$XCSTRINGS_PATH" 2>/dev/null; then
-                    # Ensure trailing newline
-                    if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                        echo "" >> "$XCSTRINGS_PATH"
-                    fi
-                    echo "✅ Created $XCSTRINGS_PATH using plutil (Xcode-compatible JSON format)"
-                else
-                    echo "⚠️  plutil cannot read back JSON as plist, trying XML format..."
-                    # Try XML plist format instead
-                    cp "$TEMP_PLIST" "$XCSTRINGS_PATH"
-                    if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                        echo "" >> "$XCSTRINGS_PATH"
-                    fi
-                    echo "✅ Created $XCSTRINGS_PATH as XML plist (builtin-copyStrings may require this)"
-                fi
-            else
-                echo "⚠️  plutil JSON conversion failed, trying XML format..."
-                cp "$TEMP_PLIST" "$XCSTRINGS_PATH"
-                if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                    echo "" >> "$XCSTRINGS_PATH"
-                fi
-                echo "✅ Created $XCSTRINGS_PATH as XML plist"
-            fi
-        else
-            echo "⚠️  XML plist validation failed, using direct JSON creation..."
-            python3 -c "
-import json
-import sys
-
-catalog = {
-    'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
-}
-
-json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
-            echo "✅ Created $XCSTRINGS_PATH (direct JSON)"
-        fi
-        rm -f "$TEMP_PLIST"
-    else
-        # No plutil available, create JSON directly with sorted keys
-        python3 -c "
-import json
-import sys
-
-catalog = {
-    'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
-}
-
-# Use sort_keys=True to match plutil's output order
-json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
-        echo "✅ Created $XCSTRINGS_PATH (plutil not available)"
-    fi
-    
-    # Validate JSON syntax (but skip plutil lint - it will fail on JSON)
-    if command -v jq &> /dev/null; then
-        if jq empty "$XCSTRINGS_PATH" &> /dev/null; then
-            echo "✅ File is valid JSON"
-        else
-            echo "⚠️  File is not valid JSON"
-        fi
-    elif command -v python3 &> /dev/null; then
-        if python3 -c "import json; json.load(open('$XCSTRINGS_PATH', 'r', encoding='utf-8'))" &> /dev/null; then
-            echo "✅ File is valid JSON"
-        else
-            echo "⚠️  File is not valid JSON"
-        fi
-    fi
-else
-    echo "ℹ️ $XCSTRINGS_PATH already exists"
-    # Validate existing file and ensure it has trailing newline
-    if python3 -c "
-import json
-import sys
-try:
-    with open(sys.argv[1], 'r', encoding='utf-8') as f:
-        json.load(f)
-    sys.exit(0)
-except Exception:
-    sys.exit(1)
-" "$XCSTRINGS_PATH" 2>/dev/null; then
-        # Ensure trailing newline exists
-        last_char=$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')
-        if [ "$last_char" != "0a" ]; then
-            echo "" >> "$XCSTRINGS_PATH"
-        fi
-        # Note: plutil -lint validation is skipped for .xcstrings files
-        # .xcstrings files are JSON format, not plist format
-        # plutil -lint will fail on valid JSON .xcstrings files
-        echo "✅ Existing file is valid JSON"
-    else
-        echo "⚠️  Existing file is not valid JSON, recreating..."
-        # Recreate using the same method as initial creation
+        # Create a temporary XML plist first
         TEMP_PLIST=$(mktemp)
         python3 -c "
 import plistlib
@@ -242,24 +106,110 @@ catalog = {
     'strings': {}
 }
 
-# Write as XML plist first
 with open(sys.argv[1], 'wb') as f:
     plistlib.dump(catalog, f, fmt=plistlib.FMT_XML)
 " "$TEMP_PLIST"
         
-        if command -v plutil &> /dev/null; then
+        # Use plutil to convert to JSON - this creates JSON that plutil (and builtin-copyStrings) can parse
+        if plutil -lint "$TEMP_PLIST" &>/dev/null; then
+            # Convert to JSON using plutil - this ensures compatibility
+            if plutil -convert json -o "$XCSTRINGS_PATH" "$TEMP_PLIST" 2>/dev/null; then
+                # Verify plutil can read it back (ensures builtin-copyStrings compatibility)
+                if plutil -convert xml1 -o /dev/null "$XCSTRINGS_PATH" 2>/dev/null; then
+                    # Ensure trailing newline
+                    if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
+                        echo "" >> "$XCSTRINGS_PATH"
+                    fi
+                    echo "✅ Created $XCSTRINGS_PATH using plutil (builtin-copyStrings compatible JSON)"
+                else
+                    echo "⚠️  plutil cannot read JSON back, trying XML format..."
+                    cp "$TEMP_PLIST" "$XCSTRINGS_PATH"
+                    if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
+                        echo "" >> "$XCSTRINGS_PATH"
+                    fi
+                    echo "✅ Created $XCSTRINGS_PATH as XML plist"
+                fi
+            else
+                echo "⚠️  plutil JSON conversion failed, using XML format..."
+                cp "$TEMP_PLIST" "$XCSTRINGS_PATH"
+                if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
+                    echo "" >> "$XCSTRINGS_PATH"
+                fi
+                echo "✅ Created $XCSTRINGS_PATH as XML plist"
+            fi
+        else
+            echo "⚠️  XML plist validation failed"
+            rm -f "$TEMP_PLIST"
+            exit 1
+        fi
+        rm -f "$TEMP_PLIST"
+    else
+        # Fallback: create JSON directly (may not work with builtin-copyStrings)
+        python3 -c "
+import json
+import sys
+
+catalog = {
+    'sourceLanguage': 'en',
+    'version': '1.0',
+    'strings': {}
+}
+
+json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True, indent=2)
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
+" "$XCSTRINGS_PATH"
+        echo "⚠️  Created $XCSTRINGS_PATH as JSON (plutil not available - may fail builtin-copyStrings validation)"
+    fi
+    
+    # Validate format - check if plutil can parse it (builtin-copyStrings uses same parser)
+    if command -v plutil &> /dev/null; then
+        # Test if plutil can read it (works for both JSON and XML plist)
+        if plutil -convert xml1 -o /dev/null "$XCSTRINGS_PATH" 2>/dev/null; then
+            echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
+        else
+            echo "⚠️  File is not parseable by plutil - may fail builtin-copyStrings validation"
+        fi
+    fi
+else
+    echo "ℹ️ $XCSTRINGS_PATH already exists"
+    # Validate existing file - check if plutil can parse it (builtin-copyStrings uses same parser)
+    if command -v plutil &> /dev/null; then
+        if plutil -convert xml1 -o /dev/null "$XCSTRINGS_PATH" 2>/dev/null; then
+            # Ensure trailing newline exists
+            last_char=$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')
+            if [ "$last_char" != "0a" ]; then
+                echo "" >> "$XCSTRINGS_PATH"
+            fi
+            echo "✅ Existing file is parseable by plutil (builtin-copyStrings compatible)"
+        else
+            echo "⚠️  Existing file is not parseable by plutil, recreating..."
+            # Recreate using plutil
+            TEMP_PLIST=$(mktemp)
+            python3 -c "
+import plistlib
+import sys
+
+catalog = {
+    'sourceLanguage': 'en',
+    'version': '1.0',
+    'strings': {}
+}
+
+with open(sys.argv[1], 'wb') as f:
+    plistlib.dump(catalog, f, fmt=plistlib.FMT_XML)
+" "$TEMP_PLIST"
+            
             if plutil -lint "$TEMP_PLIST" &>/dev/null; then
-                # Try JSON first (standard format for .xcstrings)
+                # Convert to JSON using plutil
                 if plutil -convert json -o "$XCSTRINGS_PATH" "$TEMP_PLIST" 2>/dev/null; then
-                    # Verify plutil can read it back
                     if plutil -convert xml1 -o /dev/null "$XCSTRINGS_PATH" 2>/dev/null; then
                         if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
                             echo "" >> "$XCSTRINGS_PATH"
                         fi
-                        echo "✅ Recreated $XCSTRINGS_PATH using plutil (Xcode-compatible JSON)"
+                        echo "✅ Recreated $XCSTRINGS_PATH using plutil (builtin-copyStrings compatible JSON)"
                     else
-                        # If JSON doesn't work, try XML plist format
-                        echo "⚠️  JSON format not readable by plutil, trying XML plist..."
                         cp "$TEMP_PLIST" "$XCSTRINGS_PATH"
                         if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
                             echo "" >> "$XCSTRINGS_PATH"
@@ -267,51 +217,19 @@ with open(sys.argv[1], 'wb') as f:
                         echo "✅ Recreated $XCSTRINGS_PATH as XML plist"
                     fi
                 else
-                    # Fallback to XML plist
                     cp "$TEMP_PLIST" "$XCSTRINGS_PATH"
                     if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
                         echo "" >> "$XCSTRINGS_PATH"
                     fi
-                    echo "✅ Recreated $XCSTRINGS_PATH as XML plist (fallback)"
+                    echo "✅ Recreated $XCSTRINGS_PATH as XML plist"
                 fi
             else
-                echo "⚠️  XML plist validation failed, using direct JSON..."
-                python3 -c "
-import json
-import sys
-
-catalog = {
-    'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
-}
-
-json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
-                echo "✅ Recreated $XCSTRINGS_PATH (direct JSON)"
+                echo "⚠️  XML plist validation failed"
             fi
             rm -f "$TEMP_PLIST"
-        else
-            python3 -c "
-import json
-import sys
-
-catalog = {
-    'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
-}
-
-json_str = json.dumps(catalog, ensure_ascii=False, sort_keys=True)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
-            echo "✅ Recreated $XCSTRINGS_PATH (plutil not available)"
         fi
+    else
+        echo "⚠️  plutil not available, cannot validate file"
     fi
 fi
 
