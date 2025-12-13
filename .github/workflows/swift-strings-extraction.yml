@@ -80,9 +80,32 @@ jobs:
           xcode-select -p
           echo ""
           echo "🔧 Tool versions:"
-          echo "  plutil version: $(plutil -version 2>/dev/null || echo 'unknown')"
-          echo "  macOS version: $(sw_vers -productVersion 2>/dev/null || echo 'unknown')"
-          echo "  macOS build: $(sw_vers -buildVersion 2>/dev/null || echo 'unknown')"
+          MACOS_VERSION=$(sw_vers -productVersion 2>/dev/null || echo 'unknown')
+          MACOS_BUILD=$(sw_vers -buildVersion 2>/dev/null || echo 'unknown')
+          echo "  macOS version: $MACOS_VERSION"
+          echo "  macOS build: $MACOS_BUILD"
+          echo "  plutil location: $(which plutil 2>/dev/null || echo 'not found')"
+          
+          # Check macOS version compatibility
+          MACOS_MAJOR=$(echo "$MACOS_VERSION" | cut -d. -f1)
+          if [ "$MACOS_MAJOR" -lt 15 ]; then
+            echo "  ⚠️  Warning: macOS version $MACOS_VERSION may be too old for Xcode 26.1.1"
+          fi
+          
+          if command -v plutil &> /dev/null; then
+            echo "  Testing plutil with sample JSON..."
+            echo '{"test": "value"}' | plutil -lint - 2>&1 | head -1 || echo "  plutil JSON lint test failed"
+            
+            # Test if plutil can convert JSON to XML (what builtin-copyStrings might do)
+            TEMP_JSON=$(mktemp)
+            echo '{"test": "value"}' > "$TEMP_JSON"
+            if plutil -convert xml1 -o /dev/null "$TEMP_JSON" 2>/dev/null; then
+              echo "  ✅ plutil can parse JSON format"
+            else
+              echo "  ⚠️  plutil cannot parse JSON format"
+            fi
+            rm -f "$TEMP_JSON"
+          fi
 
       - name: Find Xcode project
         id: find-xcode-project
@@ -406,6 +429,21 @@ jobs:
               echo "⚠️  File is not valid JSON, recreating..."
               ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
               XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+            fi
+            
+            # Verify file encoding and format before adding to project
+            echo "🔍 Verifying file encoding and format..."
+            if [ -f "$XCSTRINGS_FILE" ]; then
+              echo "  File size: $(wc -c < "$XCSTRINGS_FILE" | xargs) bytes"
+              echo "  File encoding: $(file -b --mime-encoding "$XCSTRINGS_FILE" 2>/dev/null || echo 'unknown')"
+              echo "  First 10 lines:"
+              head -10 "$XCSTRINGS_FILE" | sed 's/^/    /'
+              
+              # Check if file has BOM or other encoding issues
+              if command -v hexdump &> /dev/null; then
+                echo "  First 20 bytes (hex):"
+                hexdump -C "$XCSTRINGS_FILE" | head -2 | sed 's/^/    /'
+              fi
             fi
             
             # Ensure it's added to project and resources build phase (for automatic merging)
