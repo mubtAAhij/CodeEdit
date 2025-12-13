@@ -138,7 +138,74 @@ else
     echo "✅ Catalog already contains $CATALOG_COUNT strings (Xcode merged them automatically)"
     echo "💡 No need to search DerivedData - strings are already in the catalog"
   else
-    echo "⚠️  Catalog is empty ($CATALOG_COUNT strings)"
+    # Try using xcodebuild -exportLocalizations first (cleaner approach)
+    echo "🔄 Trying xcodebuild -exportLocalizations to extract strings..."
+    EXPORT_DIR="./LocalizationsExport"
+    mkdir -p "$EXPORT_DIR"
+    
+    if xcodebuild -exportLocalizations \
+      -project "$PROJECT_PATH" \
+      -localizationPath "$EXPORT_DIR" \
+      -exportLanguage en 2>&1 | tee -a "$BUILD_LOG_RAW"; then
+      
+      echo "✅ exportLocalizations completed successfully"
+      
+      # Find the exported .xcloc file
+      XCLOC_FILE=$(find "$EXPORT_DIR" -name "*.xcloc" -type d | head -1)
+      if [ -n "$XCLOC_FILE" ] && [ -d "$XCLOC_FILE" ]; then
+        echo "📦 Found exported localization catalog: $XCLOC_FILE"
+        
+        # The .xcloc contains .xliff files and potentially .xcstrings files
+        # Check if there's an .xcstrings file inside (Xcode 15+ with string catalogs)
+        XCSTRINGS_IN_XCLOC=$(find "$XCLOC_FILE" -name "*.xcstrings" -type f | head -1)
+        
+        if [ -n "$XCSTRINGS_IN_XCLOC" ] && [ -f "$XCSTRINGS_IN_XCLOC" ]; then
+          echo "📋 Found .xcstrings file in export: $XCSTRINGS_IN_XCLOC"
+          # The exported .xcstrings should already contain merged strings from the build
+          # Copy it to our catalog location (or merge if we want to preserve existing entries)
+          if [ -f "./Scripts/merge_emitted_strings.py" ]; then
+            # Merge the exported .xcstrings into our catalog
+            python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$XCSTRINGS_IN_XCLOC" || {
+              echo "⚠️  Merge failed, trying direct copy..."
+              # Fallback: if merge fails, just copy the file (it should have all strings)
+              cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
+            }
+          else
+            # No merge script, just copy
+            cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
+          fi
+        else
+          # Check for .xliff files (older format)
+          XLIFF_FILE=$(find "$XCLOC_FILE" -name "*.xliff" -type f | head -1)
+          if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
+            echo "📋 Found .xliff file in export: $XLIFF_FILE"
+            echo "💡 .xliff format detected - would need conversion to .xcstrings"
+            echo "   Falling back to manual .stringsdata parsing..."
+          else
+            echo "⚠️  No .xcstrings or .xliff files found in .xcloc"
+            echo "   Falling back to manual .stringsdata parsing..."
+          fi
+        fi
+        
+        # Check if merge succeeded
+        if command -v jq &> /dev/null; then
+          NEW_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+          if [ "$NEW_COUNT" -gt 0 ]; then
+            echo "✅ Successfully extracted $NEW_COUNT strings via exportLocalizations"
+            CATALOG_COUNT=$NEW_COUNT
+          fi
+        fi
+      else
+        echo "⚠️  No .xcloc file found in export directory"
+      fi
+    else
+      echo "⚠️  exportLocalizations failed, will try manual parsing of .stringsdata files"
+    fi
+  fi
+  
+  # If exportLocalizations didn't work or catalog is still empty, try manual parsing
+  if [ "$CATALOG_COUNT" -eq 0 ]; then
+    echo "⚠️  Catalog is still empty, trying manual parsing of .stringsdata files..."
     echo "🔄 Searching DerivedData for compiler-emitted strings files..."
     
     # Get DerivedData path from build settings
