@@ -304,14 +304,15 @@ jobs:
             file_ref = project.files.find { |f| f.path == xcstrings_relative }
             if file_ref
               puts \"✅ File found in project: #{file_ref.path}\"
-              puts \"   File type: #{file_ref.explicit_file_type || file_ref.last_known_file_type || 'unknown'}\"
+              puts \"   File type: #{file_ref.explicit_file_type || file_ref.last_known_file_type || 'inferred from extension'}\"
               puts \"   File UUID: #{file_ref.uuid}\"
               
-              # Ensure file type is set correctly for .xcstrings
-              if file_ref.explicit_file_type != 'text.plist.strings' && file_ref.last_known_file_type != 'text.plist.strings'
-                puts \"   Setting file type to text.plist.strings...\"
-                file_ref.explicit_file_type = 'text.plist.strings'
+              # Ensure file type is NOT set to 'text.plist.strings' (wrong type for string catalogs)
+              if file_ref.explicit_file_type == 'text.plist.strings'
+                puts \"   ⚠️  Removing incorrect file type 'text.plist.strings'...\"
+                file_ref.explicit_file_type = nil
                 project.save
+                puts \"   ✅ Removed incorrect file type, Xcode will infer from .xcstrings extension\"
               end
               
               # Check if in target's resources build phase
@@ -406,25 +407,11 @@ jobs:
           if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
             echo "📋 Found: $XCSTRINGS_FILE ($(wc -c < "$XCSTRINGS_FILE" | xargs) bytes)"
             
-            # Verify it's valid JSON
+            # Verify it's valid JSON (Xcode's native format for .xcstrings)
+            # Note: plutil -lint may fail on JSON files, but that's expected and not a problem
+            # Xcode string catalogs are JSON, not XML plist
             if python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
-              echo "✅ File is valid JSON"
-              
-              # Check if plutil can parse it (builtin-copyStrings uses plutil's parser)
-              if command -v plutil &> /dev/null; then
-                if plutil -lint "$XCSTRINGS_FILE" &>/dev/null; then
-                  echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
-                else
-                  echo "⚠️  File is NOT parseable by plutil - builtin-copyStrings validation may fail"
-                  echo "📋 File content:"
-                  cat "$XCSTRINGS_FILE"
-                  echo ""
-                  echo "📋 Attempting plutil conversion for debugging:"
-                  plutil -convert xml1 -o - "$XCSTRINGS_FILE" 2>&1 || echo "plutil conversion failed"
-                  echo ""
-                  echo "⚠️  This file may cause build failures. Consider recreating it."
-                fi
-              fi
+              echo "✅ File is valid JSON (correct format for .xcstrings)"
             else
               echo "⚠️  File is not valid JSON, recreating..."
               ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
@@ -453,37 +440,23 @@ jobs:
             
             echo "✅ String Catalog ready: $XCSTRINGS_FILE"
             
-            # Convert JSON to XML plist format for builtin-copyStrings compatibility
-            # builtin-copyStrings requires XML plist format, not JSON
-            # Even though Xcode creates .xcstrings as JSON, builtin-copyStrings validates using plutil which expects XML
-            if command -v plutil &> /dev/null && [ -f "$XCSTRINGS_FILE" ]; then
-              # Check if file is already XML plist format
-              if head -1 "$XCSTRINGS_FILE" | grep -q "<?xml" || head -1 "$XCSTRINGS_FILE" | grep -q "<plist"; then
-                echo "ℹ️  File is already in XML plist format"
-                # Verify it's parseable
-                if plutil -lint "$XCSTRINGS_FILE" &>/dev/null; then
-                  echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
-                else
-                  echo "⚠️  Warning: XML file is not parseable by plutil"
-                fi
-              else
-                # File is JSON, convert to XML
-                echo "🔄 Converting .xcstrings from JSON to XML plist format for builtin-copyStrings..."
-                TEMP_XML=$(mktemp)
-                if plutil -convert xml1 -o "$TEMP_XML" "$XCSTRINGS_FILE" 2>/dev/null; then
-                  mv "$TEMP_XML" "$XCSTRINGS_FILE"
-                  echo "✅ Converted to XML plist format"
-                  # Verify the conversion
-                  if plutil -lint "$XCSTRINGS_FILE" &>/dev/null; then
-                    echo "✅ File is now parseable by plutil (builtin-copyStrings compatible)"
-                  else
-                    echo "⚠️  Warning: File still not parseable by plutil after conversion"
-                  fi
-                else
-                  echo "⚠️  Failed to convert to XML plist format, keeping JSON format"
-                  rm -f "$TEMP_XML"
-                fi
-              fi
+            # Verify file is valid JSON (Xcode's native format for .xcstrings)
+            # Note: plutil -lint may fail on JSON, but that's OK - we validate with Python instead
+            if python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
+              echo "✅ File is valid JSON (Xcode's expected format for .xcstrings)"
+            else
+              echo "⚠️  Warning: File is not valid JSON"
+            fi
+            
+            # Diagnostic: Check file type in pbxproj to ensure it's not set to text.plist.strings
+            echo ""
+            echo "🔍 Checking file type in project.pbxproj..."
+            if grep -n "Localizable.xcstrings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" | grep -q "text.plist.strings"; then
+              echo "⚠️  WARNING: File type is still set to 'text.plist.strings' in project file!"
+              echo "   This may cause builtin-copyStrings to process it incorrectly"
+              grep -n "Localizable.xcstrings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" | grep "text.plist.strings" | head -5
+            else
+              echo "✅ File type is NOT set to 'text.plist.strings' (correct)"
             fi
           else
             echo "❌ Could not find or create Localizable.xcstrings"
