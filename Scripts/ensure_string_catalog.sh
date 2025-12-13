@@ -26,7 +26,7 @@ if [ -n "$XCSTRINGS_FILES" ]; then
     while IFS= read -r file; do
         [ -z "$file" ] && continue
         echo "  - $file"
-                # Validate each file (XML plist check for builtin-copyStrings compatibility)
+                # Validate each file (JSON check - Xcode format)
                 if [ -f "$file" ]; then
                     FILE_SIZE=$(wc -c < "$file" | xargs)
                     INVALID=0
@@ -35,12 +35,10 @@ if [ -n "$XCSTRINGS_FILES" ]; then
                     if [ "$FILE_SIZE" -lt 50 ]; then
                         echo "    ⚠️  File is too small ($FILE_SIZE bytes), will be recreated"
                         INVALID=1
-                    # Validate format - check if it's valid XML plist (builtin-copyStrings compatible)
-                    elif command -v plutil &> /dev/null; then
-                        if ! plutil -lint "$file" &>/dev/null; then
-                            echo "    ⚠️  File is not valid XML plist, will be recreated"
-                            INVALID=1
-                        fi
+                    # Validate format - check if it's valid JSON (Xcode format)
+                    elif ! python3 -c "import json; json.load(open('$file'))" 2>/dev/null; then
+                        echo "    ⚠️  File is not valid JSON, will be recreated"
+                        INVALID=1
                     fi
             
             if [ "$INVALID" -eq 1 ]; then
@@ -89,56 +87,50 @@ fi
 # Ensure directory exists
 mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 
-# Create minimal valid String Catalog as XML plist format
-# builtin-copyStrings validates .xcstrings files as property lists, so we use XML plist format
-# This allows the file to be in resources build phase (for automatic merging) without validation errors
+# Create minimal valid String Catalog in JSON format (as Xcode expects)
+# Xcode creates .xcstrings files as JSON, not XML plist
+# This matches the format Xcode uses when creating a new String Catalog
 if [ ! -f "$XCSTRINGS_PATH" ]; then
     python3 -c "
-import plistlib
+import json
 import sys
 
 catalog = {
     'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
+    'strings': {},
+    'version': '1.1'
 }
 
-with open(sys.argv[1], 'wb') as f:
-    plistlib.dump(catalog, f, fmt=plistlib.FMT_XML)
+# Match Xcode's exact format: JSON with spaces after colons, sorted keys
+json_str = json.dumps(catalog, ensure_ascii=False, indent=2, sort_keys=False)
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
 " "$XCSTRINGS_PATH"
-    # Ensure trailing newline
-    if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-        echo "" >> "$XCSTRINGS_PATH"
-    fi
-    echo "✅ Created $XCSTRINGS_PATH as XML plist (builtin-copyStrings compatible)"
+    echo "✅ Created $XCSTRINGS_PATH in JSON format (Xcode-compatible)"
 else
     echo "ℹ️ $XCSTRINGS_PATH already exists"
-    # Ensure it's valid XML plist (builtin-copyStrings compatible)
-    if command -v plutil &> /dev/null; then
-        if plutil -lint "$XCSTRINGS_PATH" &>/dev/null; then
-            echo "✅ Existing file is valid XML plist (builtin-copyStrings compatible)"
-        else
-            echo "⚠️  Existing file is not valid XML plist, recreating..."
-            python3 -c "
-import plistlib
+    # Ensure it's valid JSON (Xcode format)
+    if python3 -c "import json; json.load(open('$XCSTRINGS_PATH'))" 2>/dev/null; then
+        echo "✅ Existing file is valid JSON (Xcode-compatible)"
+    else
+        echo "⚠️  Existing file is not valid JSON, recreating..."
+        python3 -c "
+import json
 import sys
 
 catalog = {
     'sourceLanguage': 'en',
-    'version': '1.0',
-    'strings': {}
+    'strings': {},
+    'version': '1.1'
 }
 
-with open(sys.argv[1], 'wb') as f:
-    plistlib.dump(catalog, f, fmt=plistlib.FMT_XML)
+json_str = json.dumps(catalog, ensure_ascii=False, indent=2, sort_keys=False)
+with open(sys.argv[1], 'w', encoding='utf-8') as f:
+    f.write(json_str)
+    f.write('\n')
 " "$XCSTRINGS_PATH"
-            if [ "$(tail -c 1 "$XCSTRINGS_PATH" | od -An -tx1 | tr -d ' \n')" != "0a" ]; then
-                echo "" >> "$XCSTRINGS_PATH"
-            fi
-            echo "✅ Recreated $XCSTRINGS_PATH as XML plist"
-        fi
-    else
-        echo "⚠️  plutil not available, cannot validate file"
+        echo "✅ Recreated $XCSTRINGS_PATH in JSON format"
     fi
 fi
 
