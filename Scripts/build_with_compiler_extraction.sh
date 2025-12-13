@@ -58,6 +58,7 @@ fi
 
 # Save build output to file for debugging
 BUILD_LOG="build_output.log"
+BUILD_LOG_RAW="build_output_raw.log"
 
 # Check if xcpretty is available
 if command -v xcpretty &> /dev/null; then
@@ -87,9 +88,22 @@ xcodebuild \
   SWIFT_EMIT_LOC_STRINGS=YES \
   LOCALIZED_STRING_SWIFTUI_SUPPORT=YES \
   -skipPackagePluginValidation \
-  build 2>&1 | tee "$BUILD_LOG" | $XCPRETTY_CMD
+  build 2>&1 | tee "$BUILD_LOG_RAW" | tee "$BUILD_LOG" | $XCPRETTY_CMD
 
 BUILD_EXIT_CODE=${PIPESTATUS[0]}
+
+# Diagnostic: Check if compiler was actually asked to emit strings
+echo ""
+echo "🔍 Checking if Swift compiler was invoked with emit-localized-strings flags..."
+if grep -n "emit-local" "$BUILD_LOG_RAW" 2>/dev/null | head -10; then
+  echo "✅ Found 'emit-local' flags in build log - compiler was asked to emit strings"
+else
+  echo "⚠️  WARNING: No 'emit-local' flags found in build log!"
+  echo "   This suggests SWIFT_EMIT_LOC_STRINGS=YES may not be taking effect"
+  echo "   Checking for other localized string related flags..."
+  grep -n "localized" "$BUILD_LOG_RAW" 2>/dev/null | head -20 || echo "   (no localized flags found)"
+fi
+echo ""
 
 if [ $BUILD_EXIT_CODE -eq 0 ]; then
   echo "✅ Build completed successfully. String Catalogs should be updated."
@@ -135,7 +149,23 @@ else
       INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
       
       # Search for compiler-emitted strings in specific locations
+      # Also search for .stringsdata files and other localization artifacts
+      echo "📊 Searching for .strings files..."
       EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
+      
+      # Also search for .stringsdata and other localization artifacts
+      echo "📊 Searching for .stringsdata and other localization artifacts..."
+      DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
+      OTHER_LOC_ARTIFACTS=$(find "$DERIVED_DATA_DIR" -type f 2>/dev/null \
+        | grep -Ev "/SourcePackages/|/Products/|\\.framework/" \
+        | grep -Ei "\\.(strings|stringsdata|xcstrings)$|loc(alized)?strings|emit" \
+        | head -50 || echo "")
+      
+      if [ -n "$OTHER_LOC_ARTIFACTS" ]; then
+        echo "📁 Found other localization artifacts:"
+        echo "$OTHER_LOC_ARTIFACTS" | head -10 | sed 's/^/   /'
+        echo ""
+      fi
       
       if [ -n "$EMITTED_STRINGS_FILES" ]; then
         STRING_COUNT=$(echo "$EMITTED_STRINGS_FILES" | wc -l | xargs)
@@ -170,6 +200,24 @@ else
   fi
 fi
 
-# Clean up log file
-rm -f "$BUILD_LOG"
+# Diagnostic: Show build log analysis before cleanup
+echo ""
+echo "🔍 Build log analysis for string emission:"
+if [ -f "$BUILD_LOG_RAW" ]; then
+  echo "   Build log size: $(wc -l < "$BUILD_LOG_RAW" | xargs) lines"
+  echo "   Checking for emit-localized-strings flags..."
+  EMIT_COUNT=$(grep -c "emit-local" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
+  if [ "$EMIT_COUNT" -gt 0 ]; then
+    echo "   ✅ Found $EMIT_COUNT references to 'emit-local' flags"
+  else
+    echo "   ⚠️  No 'emit-local' flags found in build log"
+  fi
+fi
+
+# Clean up log files (but keep raw log for diagnostics if build failed)
+if [ $BUILD_EXIT_CODE -eq 0 ]; then
+  rm -f "$BUILD_LOG" "$BUILD_LOG_RAW"
+else
+  echo "   Keeping build logs for debugging (build failed)"
+fi
 
