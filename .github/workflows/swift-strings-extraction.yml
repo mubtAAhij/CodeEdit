@@ -452,6 +452,39 @@ jobs:
             fi
             
             echo "✅ String Catalog ready: $XCSTRINGS_FILE"
+            
+            # Convert JSON to XML plist format for builtin-copyStrings compatibility
+            # builtin-copyStrings requires XML plist format, not JSON
+            # Even though Xcode creates .xcstrings as JSON, builtin-copyStrings validates using plutil which expects XML
+            if command -v plutil &> /dev/null && [ -f "$XCSTRINGS_FILE" ]; then
+              # Check if file is already XML plist format
+              if head -1 "$XCSTRINGS_FILE" | grep -q "<?xml" || head -1 "$XCSTRINGS_FILE" | grep -q "<plist"; then
+                echo "ℹ️  File is already in XML plist format"
+                # Verify it's parseable
+                if plutil -lint "$XCSTRINGS_FILE" &>/dev/null; then
+                  echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
+                else
+                  echo "⚠️  Warning: XML file is not parseable by plutil"
+                fi
+              else
+                # File is JSON, convert to XML
+                echo "🔄 Converting .xcstrings from JSON to XML plist format for builtin-copyStrings..."
+                TEMP_XML=$(mktemp)
+                if plutil -convert xml1 -o "$TEMP_XML" "$XCSTRINGS_FILE" 2>/dev/null; then
+                  mv "$TEMP_XML" "$XCSTRINGS_FILE"
+                  echo "✅ Converted to XML plist format"
+                  # Verify the conversion
+                  if plutil -lint "$XCSTRINGS_FILE" &>/dev/null; then
+                    echo "✅ File is now parseable by plutil (builtin-copyStrings compatible)"
+                  else
+                    echo "⚠️  Warning: File still not parseable by plutil after conversion"
+                  fi
+                else
+                  echo "⚠️  Failed to convert to XML plist format, keeping JSON format"
+                  rm -f "$TEMP_XML"
+                fi
+              fi
+            fi
           else
             echo "❌ Could not find or create Localizable.xcstrings"
             exit 1
