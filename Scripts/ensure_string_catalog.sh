@@ -93,18 +93,27 @@ mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 if [ ! -f "$XCSTRINGS_PATH" ]; then
     # Create file matching Xcode's exact template format
     # Xcode creates .xcstrings files with this exact structure and formatting
-    cat > "$XCSTRINGS_PATH" << 'EOF'
-{
-  "sourceLanguage" : "en",
-  "strings" : {
-
-  },
-  "version" : "1.1"
-}
-EOF
+    # Using printf to ensure ASCII encoding (us-ascii) without BOM, matching Xcode's output
+    printf '%s\n' \
+      '{' \
+      '  "sourceLanguage" : "en",' \
+      '  "strings" : {' \
+      '' \
+      '  },' \
+      '  "version" : "1.1"' \
+      '}' > "$XCSTRINGS_PATH"
     
     # Validate the created file
     echo "🔍 Validating created file..."
+    
+    # Check file encoding (should be us-ascii, matching Xcode)
+    if command -v file &> /dev/null; then
+        ENCODING=$(file -b --mime-encoding "$XCSTRINGS_PATH" 2>/dev/null || echo "unknown")
+        echo "  File encoding: $ENCODING"
+        if [ "$ENCODING" != "us-ascii" ] && [ "$ENCODING" != "ascii" ]; then
+            echo "  ⚠️  Warning: File encoding is $ENCODING, expected us-ascii (like Xcode creates)"
+        fi
+    fi
     
     # Check JSON validity
     if python3 -c "import json; json.load(open('$XCSTRINGS_PATH'))" 2>/dev/null; then
@@ -149,16 +158,15 @@ else
         fi
     else
         echo "⚠️  Existing file is not valid JSON, recreating..."
-        # Recreate with Xcode's exact template format
-        cat > "$XCSTRINGS_PATH" << 'EOF'
-{
-  "sourceLanguage" : "en",
-  "strings" : {
-
-  },
-  "version" : "1.1"
-}
-EOF
+        # Recreate with Xcode's exact template format (ASCII encoding)
+        printf '%s\n' \
+          '{' \
+          '  "sourceLanguage" : "en",' \
+          '  "strings" : {' \
+          '' \
+          '  },' \
+          '  "version" : "1.1"' \
+          '}' > "$XCSTRINGS_PATH"
         
         # Validate recreated file
         if python3 -c "import json; json.load(open('$XCSTRINGS_PATH'))" 2>/dev/null; then
