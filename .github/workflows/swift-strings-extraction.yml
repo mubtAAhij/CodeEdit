@@ -78,6 +78,11 @@ jobs:
           echo ""
           echo "📍 Xcode path:"
           xcode-select -p
+          echo ""
+          echo "🔧 Tool versions:"
+          echo "  plutil version: $(plutil -version 2>/dev/null || echo 'unknown')"
+          echo "  macOS version: $(sw_vers -productVersion 2>/dev/null || echo 'unknown')"
+          echo "  macOS build: $(sw_vers -buildVersion 2>/dev/null || echo 'unknown')"
 
       - name: Find Xcode project
         id: find-xcode-project
@@ -381,6 +386,22 @@ jobs:
             # Verify it's valid JSON
             if python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
               echo "✅ File is valid JSON"
+              
+              # Check if plutil can parse it (builtin-copyStrings uses plutil's parser)
+              if command -v plutil &> /dev/null; then
+                if plutil -lint "$XCSTRINGS_FILE" &>/dev/null; then
+                  echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
+                else
+                  echo "⚠️  File is NOT parseable by plutil - builtin-copyStrings validation may fail"
+                  echo "📋 File content:"
+                  cat "$XCSTRINGS_FILE"
+                  echo ""
+                  echo "📋 Attempting plutil conversion for debugging:"
+                  plutil -convert xml1 -o - "$XCSTRINGS_FILE" 2>&1 || echo "plutil conversion failed"
+                  echo ""
+                  echo "⚠️  This file may cause build failures. Consider recreating it."
+                fi
+              fi
             else
               echo "⚠️  File is not valid JSON, recreating..."
               ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
