@@ -91,46 +91,85 @@ mkdir -p "$(dirname "$XCSTRINGS_PATH")"
 # Xcode creates .xcstrings files as JSON, not XML plist
 # This matches the format Xcode uses when creating a new String Catalog
 if [ ! -f "$XCSTRINGS_PATH" ]; then
-    python3 -c "
-import json
-import sys
+    # Create file matching Xcode's exact template format
+    # Xcode creates .xcstrings files with this exact structure and formatting
+    cat > "$XCSTRINGS_PATH" << 'EOF'
+{
+  "sourceLanguage" : "en",
+  "strings" : {
 
-catalog = {
-    'sourceLanguage': 'en',
-    'strings': {},
-    'version': '1.1'
+  },
+  "version" : "1.1"
 }
-
-# Match Xcode's exact format: JSON with spaces after colons, sorted keys
-json_str = json.dumps(catalog, ensure_ascii=False, indent=2, sort_keys=False)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
+EOF
+    
+    # Validate the created file
+    echo "🔍 Validating created file..."
+    
+    # Check JSON validity
+    if python3 -c "import json; json.load(open('$XCSTRINGS_PATH'))" 2>/dev/null; then
+        echo "✅ File is valid JSON"
+    else
+        echo "❌ File is NOT valid JSON!"
+        cat "$XCSTRINGS_PATH"
+        exit 1
+    fi
+    
+    # Check if plutil can parse it (builtin-copyStrings uses plutil's parser)
+    if command -v plutil &> /dev/null; then
+        if plutil -lint "$XCSTRINGS_PATH" &>/dev/null; then
+            echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
+        else
+            echo "⚠️  File is NOT parseable by plutil - builtin-copyStrings may fail"
+            echo "📋 File content:"
+            cat "$XCSTRINGS_PATH"
+            echo ""
+            echo "📋 Trying to convert with plutil for debugging:"
+            plutil -convert xml1 -o - "$XCSTRINGS_PATH" 2>&1 || true
+        fi
+    fi
+    
     echo "✅ Created $XCSTRINGS_PATH in JSON format (Xcode-compatible)"
 else
     echo "ℹ️ $XCSTRINGS_PATH already exists"
     # Ensure it's valid JSON (Xcode format)
     if python3 -c "import json; json.load(open('$XCSTRINGS_PATH'))" 2>/dev/null; then
-        echo "✅ Existing file is valid JSON (Xcode-compatible)"
+        echo "✅ Existing file is valid JSON"
+        
+        # Check if plutil can parse it (builtin-copyStrings uses plutil's parser)
+        if command -v plutil &> /dev/null; then
+            if plutil -lint "$XCSTRINGS_PATH" &>/dev/null; then
+                echo "✅ File is parseable by plutil (builtin-copyStrings compatible)"
+            else
+                echo "⚠️  File is NOT parseable by plutil - may cause builtin-copyStrings validation errors"
+                echo "📋 File content (first 500 chars):"
+                head -c 500 "$XCSTRINGS_PATH" || cat "$XCSTRINGS_PATH"
+                echo ""
+            fi
+        fi
     else
         echo "⚠️  Existing file is not valid JSON, recreating..."
-        python3 -c "
-import json
-import sys
+        # Recreate with Xcode's exact template format
+        cat > "$XCSTRINGS_PATH" << 'EOF'
+{
+  "sourceLanguage" : "en",
+  "strings" : {
 
-catalog = {
-    'sourceLanguage': 'en',
-    'strings': {},
-    'version': '1.1'
+  },
+  "version" : "1.1"
 }
-
-json_str = json.dumps(catalog, ensure_ascii=False, indent=2, sort_keys=False)
-with open(sys.argv[1], 'w', encoding='utf-8') as f:
-    f.write(json_str)
-    f.write('\n')
-" "$XCSTRINGS_PATH"
-        echo "✅ Recreated $XCSTRINGS_PATH in JSON format"
+EOF
+        
+        # Validate recreated file
+        if python3 -c "import json; json.load(open('$XCSTRINGS_PATH'))" 2>/dev/null; then
+            echo "✅ Recreated file is valid JSON"
+            if command -v plutil &> /dev/null && plutil -lint "$XCSTRINGS_PATH" &>/dev/null; then
+                echo "✅ Recreated file is parseable by plutil"
+            fi
+        else
+            echo "❌ Recreated file is still invalid!"
+            exit 1
+        fi
     fi
 fi
 
