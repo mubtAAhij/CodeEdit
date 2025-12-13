@@ -52,7 +52,7 @@ if [ -n "$XCSTRINGS_FILES" ]; then
     # If we found at least one valid file, exit
     if [ "$VALID_FOUND" -eq 1 ]; then
         echo "✅ Valid String Catalog(s) found, using existing file(s)"
-        exit 0
+    exit 0
     else
         echo "ℹ️  Existing files were invalid and removed, will create new one..."
     fi
