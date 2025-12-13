@@ -125,20 +125,125 @@ XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f | head -1)
 
 if [ -z "$XCSTRINGS_FILE" ]; then
   echo "⚠️  No .xcstrings file found"
+  exit 1
+fi
+
+echo "📋 Found string catalog: $XCSTRINGS_FILE"
+
+# Check initial catalog count (before merging emitted strings)
+INITIAL_CATALOG_COUNT=0
+if command -v jq &> /dev/null; then
+  INITIAL_CATALOG_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+fi
+
+if [ "$INITIAL_CATALOG_COUNT" -gt 0 ]; then
+  echo "📊 Catalog contains $INITIAL_CATALOG_COUNT strings (from existing sources)"
+  echo "💡 Now checking for NEW strings emitted by the build..."
 else
-  echo "📋 Found string catalog: $XCSTRINGS_FILE"
+  echo "📊 Catalog is empty - will extract strings from build"
+fi
+
+# Always check for emitted strings after build (even if catalog already has strings)
+# Xcode should automatically merge emitted strings during build, but we verify and merge manually if needed
+CATALOG_COUNT=$INITIAL_CATALOG_COUNT
+
+# First, check if Xcode automatically merged strings during the build
+if command -v jq &> /dev/null; then
+  CURRENT_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+  if [ "$CURRENT_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
+    NEW_STRINGS=$((CURRENT_COUNT - INITIAL_CATALOG_COUNT))
+    echo "✅ Xcode automatically merged $NEW_STRINGS new strings during build!"
+    echo "✅ Catalog now contains $CURRENT_COUNT strings total"
+    CATALOG_COUNT=$CURRENT_COUNT
+  else
+    echo "⚠️  No new strings were automatically merged by Xcode"
+    echo "💡 Will search DerivedData for emitted strings and merge manually..."
+  fi
+fi
+
+# Always search for emitted strings and merge them (even if catalog already has some)
+# This ensures we capture ALL strings emitted by the build, not just what Xcode auto-merged
+echo ""
+echo "🔄 Searching for compiler-emitted strings from the build..."
+
+# Get DerivedData path from build settings
+BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+
+if [ -n "$BUILD_DIR" ]; then
+  # Convert BUILD_DIR to Intermediates path
+  INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
   
-  # Check if catalog already contains strings (Xcode may have merged them automatically)
-  CATALOG_COUNT=0
-  if command -v jq &> /dev/null; then
-    CATALOG_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+  # Search for compiler-emitted strings in specific locations
+  # Search for both .strings and .stringsdata files
+  echo "📊 Searching for emitted .strings files..."
+  EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
+  
+  # Search for .stringsdata files (newer binary format)
+  echo "📊 Searching for emitted .stringsdata files..."
+  EMITTED_STRINGSDATA_FILES=$(find "$INTERMEDIATES_DIR" -path "*/Objects-normal/*/*.stringsdata" -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
+  
+  # Combine .strings and .stringsdata files for merging
+  ALL_EMITTED_FILES=""
+  FILES_TO_MERGE=0
+  
+  if [ -n "$EMITTED_STRINGS_FILES" ]; then
+    STRING_COUNT=$(echo "$EMITTED_STRINGS_FILES" | wc -l | xargs)
+    echo "📁 Found $STRING_COUNT emitted .strings files"
+    echo "📝 Sample .strings files found:"
+    echo "$EMITTED_STRINGS_FILES" | head -5 | sed 's/^/   /'
+    ALL_EMITTED_FILES="$EMITTED_STRINGS_FILES"
+    FILES_TO_MERGE=$((FILES_TO_MERGE + STRING_COUNT))
   fi
   
-  if [ "$CATALOG_COUNT" -gt 0 ]; then
-    echo "✅ Catalog already contains $CATALOG_COUNT strings (Xcode merged them automatically)"
-    echo "💡 No need to search DerivedData - strings are already in the catalog"
+  if [ -n "$EMITTED_STRINGSDATA_FILES" ]; then
+    STRINGSDATA_COUNT=$(echo "$EMITTED_STRINGSDATA_FILES" | wc -l | xargs)
+    echo "📁 Found $STRINGSDATA_COUNT emitted .stringsdata files"
+    echo "📝 Sample .stringsdata files found:"
+    echo "$EMITTED_STRINGSDATA_FILES" | head -5 | sed 's/^/   /'
+    if [ -n "$ALL_EMITTED_FILES" ]; then
+      ALL_EMITTED_FILES="$ALL_EMITTED_FILES"$'\n'"$EMITTED_STRINGSDATA_FILES"
+    else
+      ALL_EMITTED_FILES="$EMITTED_STRINGSDATA_FILES"
+    fi
+    FILES_TO_MERGE=$((FILES_TO_MERGE + STRINGSDATA_COUNT))
+  fi
+  
+  if [ "$FILES_TO_MERGE" -gt 0 ]; then
+    echo ""
+    echo "🔄 Merging $FILES_TO_MERGE emitted file(s) into catalog..."
+    
+    # Use Python script to merge strings (supports both .strings and .stringsdata)
+    if [ -f "./Scripts/merge_emitted_strings.py" ]; then
+      # Pass the Intermediates directory to the merge script so it can find both .strings and .stringsdata files
+      # This is safer than passing individual file paths which might have spaces
+      python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" || echo "⚠️  Failed to merge strings"
+      
+      # Verify merge succeeded
+      if command -v jq &> /dev/null; then
+        FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+        if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
+          NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
+          echo "✅ Successfully merged $NEW_STRINGS new strings into catalog"
+          echo "✅ Catalog now contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
+          CATALOG_COUNT=$FINAL_COUNT
+        else
+          echo "⚠️  Merge completed but no new strings were added"
+          echo "💡 Catalog still contains $FINAL_COUNT strings (same as before merge)"
+        fi
+      fi
+    else
+      echo "⚠️  merge_emitted_strings.py not found, skipping merge"
+    fi
   else
-    # Try using xcodebuild -exportLocalizations first (cleaner approach)
+    echo "⚠️  No compiler-emitted strings files found in DerivedData"
+    echo "💡 This might mean:"
+    echo "   1. No strings were emitted (check SWIFT_EMIT_LOC_STRINGS setting)"
+    echo "   2. Strings are in a different location"
+    echo "   3. Existing .strings files in project may prevent emission"
+    echo "   4. Strings were already merged by Xcode during build"
+    
+    # Try using xcodebuild -exportLocalizations as a fallback (to capture any strings Xcode found)
+    echo ""
     echo "🔄 Trying xcodebuild -exportLocalizations to extract strings..."
     EXPORT_DIR="./LocalizationsExport"
     mkdir -p "$EXPORT_DIR"
@@ -181,8 +286,7 @@ else
         
         if [ -n "$XCSTRINGS_IN_XCLOC" ] && [ -f "$XCSTRINGS_IN_XCLOC" ]; then
           echo "📋 Found .xcstrings file in export: $XCSTRINGS_IN_XCLOC"
-          # The exported .xcstrings should already contain merged strings from the build
-          # Copy it to our catalog location (or merge if we want to preserve existing entries)
+          # Merge the exported .xcstrings into our catalog (preserving existing entries)
           if [ -f "./Scripts/merge_emitted_strings.py" ]; then
             # Merge the exported .xcstrings into our catalog
             python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$XCSTRINGS_IN_XCLOC" || {
@@ -190,6 +294,17 @@ else
               # Fallback: if merge fails, just copy the file (it should have all strings)
               cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
             }
+            
+            # Verify merge succeeded
+            if command -v jq &> /dev/null; then
+              FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+              if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
+                NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
+                echo "✅ Successfully merged $NEW_STRINGS new strings via exportLocalizations"
+                echo "✅ Catalog now contains $FINAL_COUNT strings total"
+                CATALOG_COUNT=$FINAL_COUNT
+              fi
+            fi
           else
             # No merge script, just copy
             cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
@@ -232,126 +347,37 @@ except:
               if [ "$XLIFF_COUNT" -gt 0 ]; then
                 echo "✅ Found $XLIFF_COUNT strings in XLIFF file"
                 echo "💡 Skip list will be built directly from XLIFF file (no conversion needed)"
-                # Set a flag that we found strings (even though they're in XLIFF, not .xcstrings)
-                # This prevents falling back to manual .stringsdata parsing
-                CATALOG_COUNT=$XLIFF_COUNT
+                # Note: XLIFF strings are for skip list only, not merged into .xcstrings
+                # The .xcstrings file should already have strings from the build
               fi
             fi
           else
             echo "⚠️  No .xcstrings or .xliff files found in .xcloc"
-            echo "   Falling back to manual .stringsdata parsing..."
-          fi
-        fi
-        
-        # Check if we successfully extracted strings (either from .xcstrings or .xliff)
-        if [ "$CATALOG_COUNT" -eq 0 ] && command -v jq &> /dev/null; then
-          NEW_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-          if [ "$NEW_COUNT" -gt 0 ]; then
-            echo "✅ Successfully extracted $NEW_COUNT strings via exportLocalizations"
-            CATALOG_COUNT=$NEW_COUNT
           fi
         fi
       else
         echo "⚠️  No .xcloc file found in export directory"
       fi
     else
-      echo "⚠️  exportLocalizations failed, will try manual parsing of .stringsdata files"
+      echo "⚠️  exportLocalizations failed"
     fi
-  fi
-  
-  # If exportLocalizations didn't work or catalog is still empty, try manual parsing
-  if [ "$CATALOG_COUNT" -eq 0 ]; then
-    echo "⚠️  Catalog is still empty, trying manual parsing of .stringsdata files..."
-    echo "🔄 Searching DerivedData for compiler-emitted strings files..."
-    
-    # Get DerivedData path from build settings
-    BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
-    
-    if [ -n "$BUILD_DIR" ]; then
-      # Convert BUILD_DIR to Intermediates path
-      INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
-      
-      # Search for compiler-emitted strings in specific locations
-      # Search for both .strings and .stringsdata files
-      echo "📊 Searching for .strings files..."
-      EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
-      
-      # Search for .stringsdata files (newer binary format)
-      echo "📊 Searching for .stringsdata files..."
-      EMITTED_STRINGSDATA_FILES=$(find "$INTERMEDIATES_DIR" -path "*/Objects-normal/*/*.stringsdata" -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
-      
-      # Also search for other localization artifacts for diagnostics
-      echo "📊 Searching for other localization artifacts..."
-      DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
-      OTHER_LOC_ARTIFACTS=$(find "$DERIVED_DATA_DIR" -type f 2>/dev/null \
-        | grep -Ev "/SourcePackages/|/Products/|\\.framework/" \
-        | grep -Ei "\\.(strings|stringsdata|xcstrings)$|loc(alized)?strings|emit" \
-        | head -50 || echo "")
-      
-      if [ -n "$OTHER_LOC_ARTIFACTS" ]; then
-        echo "📁 Found other localization artifacts:"
-        echo "$OTHER_LOC_ARTIFACTS" | head -10 | sed 's/^/   /'
-        echo ""
-      fi
-      
-      # Combine .strings and .stringsdata files for merging
-      ALL_EMITTED_FILES=""
-      FILES_TO_MERGE=0
-      
-      if [ -n "$EMITTED_STRINGS_FILES" ]; then
-        STRING_COUNT=$(echo "$EMITTED_STRINGS_FILES" | wc -l | xargs)
-        echo "📁 Found $STRING_COUNT emitted .strings files"
-        echo "📝 Sample .strings files found:"
-        echo "$EMITTED_STRINGS_FILES" | head -5 | sed 's/^/   /'
-        ALL_EMITTED_FILES="$EMITTED_STRINGS_FILES"
-        FILES_TO_MERGE=$((FILES_TO_MERGE + STRING_COUNT))
-      fi
-      
-      if [ -n "$EMITTED_STRINGSDATA_FILES" ]; then
-        STRINGSDATA_COUNT=$(echo "$EMITTED_STRINGSDATA_FILES" | wc -l | xargs)
-        echo "📁 Found $STRINGSDATA_COUNT emitted .stringsdata files"
-        echo "📝 Sample .stringsdata files found:"
-        echo "$EMITTED_STRINGSDATA_FILES" | head -5 | sed 's/^/   /'
-        if [ -n "$ALL_EMITTED_FILES" ]; then
-          ALL_EMITTED_FILES="$ALL_EMITTED_FILES"$'\n'"$EMITTED_STRINGSDATA_FILES"
-        else
-          ALL_EMITTED_FILES="$EMITTED_STRINGSDATA_FILES"
-        fi
-        FILES_TO_MERGE=$((FILES_TO_MERGE + STRINGSDATA_COUNT))
-      fi
-      
-      if [ "$FILES_TO_MERGE" -gt 0 ]; then
-        echo ""
-        echo "🔄 Merging $FILES_TO_MERGE emitted file(s) into catalog..."
-        
-        # Use Python script to merge strings (supports both .strings and .stringsdata)
-        if [ -f "./Scripts/merge_emitted_strings.py" ]; then
-          # Pass the Intermediates directory to the merge script so it can find both .strings and .stringsdata files
-          # This is safer than passing individual file paths which might have spaces
-          python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" || echo "⚠️  Failed to merge strings"
-          
-          # Verify merge succeeded
-          if command -v jq &> /dev/null; then
-            NEW_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-            if [ "$NEW_COUNT" -gt 0 ]; then
-              echo "✅ Successfully merged strings into catalog (now contains $NEW_COUNT strings)"
-            else
-              echo "⚠️  Merge completed but catalog still empty (may need to check .stringsdata conversion)"
-            fi
-          fi
-        else
-          echo "⚠️  merge_emitted_strings.py not found, skipping merge"
-        fi
-      else
-        echo "⚠️  No compiler-emitted strings files found in DerivedData"
-        echo "💡 This might mean:"
-        echo "   1. No strings were emitted (check SWIFT_EMIT_LOC_STRINGS setting)"
-        echo "   2. Strings are in a different location"
-        echo "   3. Existing .strings files in project may prevent emission"
-      fi
-    else
-      echo "⚠️  Could not determine DerivedData path"
-    fi
+else
+  echo "⚠️  Could not determine DerivedData path"
+fi
+
+# Final summary
+echo ""
+echo "📊 Final string catalog status:"
+if command -v jq &> /dev/null; then
+  FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+  if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
+    NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
+    echo "✅ Successfully extracted $NEW_STRINGS new strings from build"
+    echo "✅ Catalog contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
+  elif [ "$FINAL_COUNT" -gt 0 ]; then
+    echo "✅ Catalog contains $FINAL_COUNT strings (no new strings added by build)"
+  else
+    echo "⚠️  Catalog is empty - no strings were extracted"
   fi
 fi
 
