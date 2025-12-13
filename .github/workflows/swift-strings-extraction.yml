@@ -373,6 +373,62 @@ jobs:
             echo "⚠️  No Localizable.xcstrings file found to add to project"
           fi
 
+      - name: Export existing localizations (before removing strings files)
+        continue-on-error: true
+        run: |
+          echo "📤 Step 1: Export existing localizations BEFORE removing .strings files"
+          echo "💡 This captures existing strings from .strings files and .xcstrings catalogs"
+          
+          EXPORT_DIR="./LocalizationsExport"
+          mkdir -p "$EXPORT_DIR"
+          
+          # Run exportLocalizations to capture existing strings
+          # This will export what exists in .strings files and .xcstrings catalogs
+          EXPORT_CMD="xcodebuild -exportLocalizations"
+          EXPORT_CMD="$EXPORT_CMD -project \"${{ steps.find-xcode-project.outputs.project_path }}\""
+          EXPORT_CMD="$EXPORT_CMD -scheme \"${{ steps.find-xcode-project.outputs.scheme }}\""
+          EXPORT_CMD="$EXPORT_CMD -localizationPath \"$EXPORT_DIR\""
+          EXPORT_CMD="$EXPORT_CMD -exportLanguage en"
+          EXPORT_CMD="$EXPORT_CMD -skipPackagePluginValidation"
+          
+          echo "🔍 Running exportLocalizations..."
+          if eval "$EXPORT_CMD" 2>&1 | tee export_localizations.log; then
+            echo "✅ exportLocalizations completed successfully"
+            
+            # Find the exported .xcloc file
+            XCLOC_FILE=$(find "$EXPORT_DIR" -name "*.xcloc" -type d | head -1)
+            if [ -n "$XCLOC_FILE" ] && [ -d "$XCLOC_FILE" ]; then
+              echo "📦 Found exported localization catalog: $XCLOC_FILE"
+              
+              # Check for .xcstrings file first (preferred)
+              XCSTRINGS_IN_XCLOC=$(find "$XCLOC_FILE" -name "*.xcstrings" -type f | head -1)
+              if [ -n "$XCSTRINGS_IN_XCLOC" ] && [ -f "$XCSTRINGS_IN_XCLOC" ]; then
+                echo "📋 Found .xcstrings file in export: $XCSTRINGS_IN_XCLOC"
+                # Backup existing catalog and copy exported one
+                EXISTING_CATALOG=$(find . -name "Localizable.xcstrings" -type f | head -1)
+                if [ -n "$EXISTING_CATALOG" ] && [ -f "$EXISTING_CATALOG" ]; then
+                  cp "$EXISTING_CATALOG" "${EXISTING_CATALOG}.pre-build-backup"
+                  echo "💾 Backed up existing catalog to ${EXISTING_CATALOG}.pre-build-backup"
+                fi
+                # Copy exported catalog (contains existing strings)
+                cp "$XCSTRINGS_IN_XCLOC" "$EXISTING_CATALOG" && echo "✅ Copied exported .xcstrings with existing strings"
+              else
+                # Check for .xliff file (fallback)
+                XLIFF_FILE=$(find "$XCLOC_FILE" -name "*.xliff" -type f | head -1)
+                if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
+                  echo "📋 Found .xliff file in export: $XLIFF_FILE"
+                  echo "💡 XLIFF will be used for skip list generation (contains existing strings)"
+                else
+                  echo "⚠️  No .xcstrings or .xliff files found in export"
+                fi
+              fi
+            else
+              echo "⚠️  No .xcloc file found in export directory"
+            fi
+          else
+            echo "⚠️  exportLocalizations failed (this is OK if no existing strings exist)"
+          fi
+
       - name: Check for existing .strings files that might prevent emission
         run: |
           echo "🔍 Checking for existing .strings files that might prevent .xcstrings emission..."
@@ -384,14 +440,50 @@ jobs:
             done
             echo ""
             echo "💡 Xcode will NOT emit strings to .xcstrings when .strings files exist."
-            echo "💡 Temporarily renaming .strings files to allow emission..."
+            echo "💡 Moving .strings files to temporary location to prevent Xcode from finding them..."
+            mkdir -p .strings-backup
             echo "$STRINGS_FILES" | while read f; do
               if [ -f "$f" ]; then
-                mv "$f" "${f}.backup" && echo "  ✅ Renamed $f to ${f}.backup"
+                BACKUP_NAME=".strings-backup/$(basename "$f").backup"
+                mv "$f" "$BACKUP_NAME" && echo "  ✅ Moved $f to $BACKUP_NAME"
               fi
             done
           else
             echo "✅ No existing .strings files found that would prevent emission"
+          fi
+          
+          echo ""
+          echo "🔍 Verifying no .strings files remain in project file..."
+          # Check if project file still references .strings files (including backups)
+          if grep -r "Localizable.strings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | grep -v "\.backup"; then
+            echo "⚠️  Found references to Localizable.strings in project file (excluding backups)"
+            echo "   These should have been removed by add_xcstrings_to_project.rb"
+            echo "   Attempting to remove them now..."
+            
+            # Use Ruby to remove any remaining .strings file references
+            ruby -e "
+            require 'xcodeproj'
+            project_path = '${{ steps.find-xcode-project.outputs.project_path }}'
+            project = Xcodeproj::Project.open(project_path)
+            removed_count = 0
+            
+            project.files.each do |file|
+              if file.path && (file.path.end_with?('Localizable.strings') || file.path.end_with?('Localizable.strings.backup'))
+                puts \"Removing #{file.path} from project\"
+                file.remove_from_project
+                removed_count += 1
+              end
+            end
+            
+            if removed_count > 0
+              project.save
+              puts \"✅ Removed #{removed_count} .strings file reference(s) from project\"
+            else
+              puts \"ℹ️  No .strings file references found in project (they may have been removed already)\"
+            end
+            " || echo "⚠️  Failed to remove .strings references from project"
+          else
+            echo "✅ No .strings file references found in project file (only .xcstrings)"
           fi
 
       - name: Check String Catalogs before build
@@ -501,7 +593,8 @@ jobs:
         run: |
           echo "🔍 Checking for interfering .strings files..."
           # Check for any Localizable.strings files (including backups) that might interfere
-          STRINGS_FILES=$(find . -name "Localizable.strings*" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
+          # Exclude .strings-backup directory where we moved backup files
+          STRINGS_FILES=$(find . -name "Localizable.strings*" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" | grep -v "/.strings-backup/" || echo "")
           if [ -n "$STRINGS_FILES" ]; then
             echo "⚠️  Found Localizable.strings files that might interfere:"
             echo "$STRINGS_FILES" | while read f; do
