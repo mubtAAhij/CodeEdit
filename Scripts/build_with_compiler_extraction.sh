@@ -143,11 +143,31 @@ else
     EXPORT_DIR="./LocalizationsExport"
     mkdir -p "$EXPORT_DIR"
     
-    if xcodebuild -exportLocalizations \
-      -project "$PROJECT_PATH" \
-      -localizationPath "$EXPORT_DIR" \
-      -exportLanguage en 2>&1 | tee -a "$BUILD_LOG_RAW"; then
-      
+    # Get DerivedData path from build settings to reuse existing build
+    # BUILD_DIR is typically: /path/to/DerivedData/ProjectName-hash/Build/Products/Configuration
+    # We want: /path/to/DerivedData/ProjectName-hash
+    BUILD_DIR_SETTING=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+    if [ -n "$BUILD_DIR_SETTING" ]; then
+      # Strip /Build and everything after it to get DerivedData root
+      DERIVED_DATA_PATH=$(echo "$BUILD_DIR_SETTING" | sed 's|/Build.*||' | xargs)
+    else
+      DERIVED_DATA_PATH=""
+    fi
+    
+    # Build exportLocalizations command with scheme and derivedDataPath
+    EXPORT_CMD="xcodebuild -exportLocalizations"
+    EXPORT_CMD="$EXPORT_CMD -project \"$PROJECT_PATH\""
+    EXPORT_CMD="$EXPORT_CMD -scheme \"$SCHEME\""
+    EXPORT_CMD="$EXPORT_CMD -localizationPath \"$EXPORT_DIR\""
+    EXPORT_CMD="$EXPORT_CMD -exportLanguage en"
+    EXPORT_CMD="$EXPORT_CMD -skipPackagePluginValidation"
+    if [ -n "$DERIVED_DATA_PATH" ]; then
+      EXPORT_CMD="$EXPORT_CMD -derivedDataPath \"$DERIVED_DATA_PATH\""
+      echo "📂 Using existing DerivedData: $DERIVED_DATA_PATH"
+    fi
+    
+    echo "🔍 Running exportLocalizations command..."
+    if eval "$EXPORT_CMD" 2>&1 | tee -a "$BUILD_LOG_RAW"; then
       echo "✅ exportLocalizations completed successfully"
       
       # Find the exported .xcloc file
