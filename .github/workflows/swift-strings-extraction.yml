@@ -147,7 +147,7 @@ jobs:
                 '' \
                 '# Add .xcstrings file to Xcode project AND to resources build phase' \
                 '# Xcode requires the file to be in resources build phase to automatically merge strings during compilation' \
-                '# The file should be in XML plist format (not JSON) to pass builtin-copyStrings validation' \
+                '# The file should be in JSON format (as Xcode creates them) - matching Xcode'\''s template format' \
                 '# Usage: ruby add_xcstrings_to_project.rb <project_path> <xcstrings_file_path> [target_name]' \
                 '' \
                 "require 'xcodeproj'" \
