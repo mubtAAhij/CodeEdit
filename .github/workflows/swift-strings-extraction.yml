@@ -231,10 +231,15 @@ jobs:
                 'if existing_file' \
                 "  puts \"ℹ️  File already in project: #{xcstrings_relative}\"" \
                 '  ' \
-                '  # Ensure file type is set correctly' \
-                "  if existing_file.explicit_file_type != 'text.plist.strings'" \
-                "    existing_file.explicit_file_type = 'text.plist.strings'" \
-                '    puts "   Set file type to text.plist.strings"' \
+                '  # Ensure file type is NOT set to '\''text.plist.strings'\'' (wrong type for string catalogs)' \
+                '  # Let Xcode infer the correct type from the .xcstrings extension' \
+                "  if existing_file.explicit_file_type == 'text.plist.strings'" \
+                '    existing_file.explicit_file_type = nil' \
+                '    puts "   Removed incorrect file type '\''text.plist.strings'\'', letting Xcode infer from extension"' \
+                '  elsif existing_file.explicit_file_type' \
+                "    puts \"   File type is set to '#{existing_file.explicit_file_type}'\"" \
+                '  else' \
+                '    puts "   File type not explicitly set (Xcode will infer from .xcstrings extension)"' \
                 '  end' \
                 '  ' \
                 '  # Ensure it'\''s in resources build phase (required for Xcode to merge strings)' \
@@ -252,8 +257,15 @@ jobs:
                 '  # Add file to project' \
                 '  file_ref = resources_group.new_file(xcstrings_relative)' \
                 '  ' \
-                '  # Set the correct file type for .xcstrings (important for Xcode to recognize it)' \
-                "  file_ref.explicit_file_type = 'text.plist.strings'" \
+                '  # Don'\''t set explicit_file_type - let Xcode infer the correct type from .xcstrings extension' \
+                '  # Setting it to '\''text.plist.strings'\'' causes builtin-copyStrings to process it incorrectly' \
+                '  file_ref.explicit_file_type = nil' \
+                '  # Optionally set last_known_file_type if supported (but not required)' \
+                '  begin' \
+                "    file_ref.last_known_file_type = 'text.json.xcstrings'" \
+                '  rescue' \
+                '    # If last_known_file_type is read-only or not supported, that'\''s fine' \
+                '  end' \
                 '  ' \
                 '  # Add to target'\''s resources build phase (required for Xcode to merge strings automatically)' \
                 '  target.add_file_references([file_ref])' \
