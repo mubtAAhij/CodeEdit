@@ -627,12 +627,40 @@ jobs:
             echo "⚠️  gsutil not available. Skip list upload skipped."
           fi
 
+      - name: Upload XLIFF file to GCS (for debugging)
+        run: |
+          # Find XLIFF files (could be in .xcloc bundles or standalone)
+          XLIFF_FILE=$(find . -name "*.xliff" -type f | grep -v "/.git/" | grep -v "/DerivedData/" | head -1)
+          
+          if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
+            echo "📋 Found XLIFF file: $XLIFF_FILE"
+            
+            # Extract directory path from GCS_PATH (e.g., "project-119/integration-695/1765663761016/skip-list.json" -> "project-119/integration-695/1765663761016/")
+            GCS_DIR=$(dirname "$GCS_PATH")
+            XLIFF_GCS_PATH="${GCS_DIR}/exported-strings.xliff"
+            
+            if command -v gsutil &> /dev/null; then
+              gsutil cp "$XLIFF_FILE" "gs://$GCS_BUCKET/$XLIFF_GCS_PATH" || {
+                echo "⚠️  Failed to upload XLIFF file using gsutil."
+                echo "⚠️  XLIFF file will not be available in GCS, but workflow will continue."
+                exit 0
+              }
+              echo "✅ XLIFF file uploaded to: gs://$GCS_BUCKET/$XLIFF_GCS_PATH"
+            else
+              echo "⚠️  gsutil not available. XLIFF file upload skipped."
+            fi
+          else
+            echo "ℹ️  No XLIFF file found to upload (this is OK if strings were extracted via .xcstrings)"
+          fi
+
       - name: Upload catalogs as artifact (for debugging)
         uses: actions/upload-artifact@v4
         with:
           name: string-catalogs-and-skip-list
           path: |
             **/*.xcstrings
+            **/*.xliff
+            **/*.xcloc
             skip-list.json
           if-no-files-found: ignore
 
@@ -640,6 +668,15 @@ jobs:
         run: |
           echo "✅ Xcode string extraction completed"
           echo "Skip list available at: gs://$GCS_BUCKET/$GCS_PATH"
+          
+          # Check if XLIFF was uploaded
+          XLIFF_FILE=$(find . -name "*.xliff" -type f 2>/dev/null | grep -v "/.git/" | grep -v "/DerivedData/" | head -1)
+          if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
+            GCS_DIR=$(dirname "$GCS_PATH")
+            XLIFF_GCS_PATH="${GCS_DIR}/exported-strings.xliff"
+            echo "XLIFF file available at: gs://$GCS_BUCKET/$XLIFF_GCS_PATH"
+          fi
+          
           echo "Project ID: $PROJECT_ID"
           echo "Integration ID: $INTEGRATION_ID"
 
