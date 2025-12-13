@@ -149,12 +149,16 @@ else
       INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
       
       # Search for compiler-emitted strings in specific locations
-      # Also search for .stringsdata files and other localization artifacts
+      # Search for both .strings and .stringsdata files
       echo "📊 Searching for .strings files..."
       EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
       
-      # Also search for .stringsdata and other localization artifacts
-      echo "📊 Searching for .stringsdata and other localization artifacts..."
+      # Search for .stringsdata files (newer binary format)
+      echo "📊 Searching for .stringsdata files..."
+      EMITTED_STRINGSDATA_FILES=$(find "$INTERMEDIATES_DIR" -path "*/Objects-normal/*/*.stringsdata" -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
+      
+      # Also search for other localization artifacts for diagnostics
+      echo "📊 Searching for other localization artifacts..."
       DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
       OTHER_LOC_ARTIFACTS=$(find "$DERIVED_DATA_DIR" -type f 2>/dev/null \
         | grep -Ev "/SourcePackages/|/Products/|\\.framework/" \
@@ -167,21 +171,49 @@ else
         echo ""
       fi
       
+      # Combine .strings and .stringsdata files for merging
+      ALL_EMITTED_FILES=""
+      FILES_TO_MERGE=0
+      
       if [ -n "$EMITTED_STRINGS_FILES" ]; then
         STRING_COUNT=$(echo "$EMITTED_STRINGS_FILES" | wc -l | xargs)
-        echo "📁 Found $STRING_COUNT emitted strings files, merging into catalog..."
-        echo "📝 Sample files found:"
+        echo "📁 Found $STRING_COUNT emitted .strings files"
+        echo "📝 Sample .strings files found:"
         echo "$EMITTED_STRINGS_FILES" | head -5 | sed 's/^/   /'
+        ALL_EMITTED_FILES="$EMITTED_STRINGS_FILES"
+        FILES_TO_MERGE=$((FILES_TO_MERGE + STRING_COUNT))
+      fi
+      
+      if [ -n "$EMITTED_STRINGSDATA_FILES" ]; then
+        STRINGSDATA_COUNT=$(echo "$EMITTED_STRINGSDATA_FILES" | wc -l | xargs)
+        echo "📁 Found $STRINGSDATA_COUNT emitted .stringsdata files"
+        echo "📝 Sample .stringsdata files found:"
+        echo "$EMITTED_STRINGSDATA_FILES" | head -5 | sed 's/^/   /'
+        if [ -n "$ALL_EMITTED_FILES" ]; then
+          ALL_EMITTED_FILES="$ALL_EMITTED_FILES"$'\n'"$EMITTED_STRINGSDATA_FILES"
+        else
+          ALL_EMITTED_FILES="$EMITTED_STRINGSDATA_FILES"
+        fi
+        FILES_TO_MERGE=$((FILES_TO_MERGE + STRINGSDATA_COUNT))
+      fi
+      
+      if [ "$FILES_TO_MERGE" -gt 0 ]; then
+        echo ""
+        echo "🔄 Merging $FILES_TO_MERGE emitted file(s) into catalog..."
         
-        # Use Python script to merge strings
+        # Use Python script to merge strings (supports both .strings and .stringsdata)
         if [ -f "./Scripts/merge_emitted_strings.py" ]; then
-          python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" $EMITTED_STRINGS_FILES || echo "⚠️  Failed to merge strings"
+          # Pass the Intermediates directory to the merge script so it can find both .strings and .stringsdata files
+          # This is safer than passing individual file paths which might have spaces
+          python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" || echo "⚠️  Failed to merge strings"
           
           # Verify merge succeeded
           if command -v jq &> /dev/null; then
             NEW_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
             if [ "$NEW_COUNT" -gt 0 ]; then
               echo "✅ Successfully merged strings into catalog (now contains $NEW_COUNT strings)"
+            else
+              echo "⚠️  Merge completed but catalog still empty (may need to check .stringsdata conversion)"
             fi
           fi
         else
