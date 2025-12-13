@@ -479,6 +479,49 @@ jobs:
         continue-on-error: true
         run: |
           ./Scripts/build_with_compiler_extraction.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
+          
+          # Diagnostic: Check build log for emit-localized-strings flags
+          echo ""
+          echo "🔍 Analyzing build log for string emission flags..."
+          if [ -f "build_output_raw.log" ]; then
+            echo "📋 Checking for 'emit-local' flags in build log:"
+            if grep -n "emit-local" build_output_raw.log 2>/dev/null | head -20; then
+              echo "✅ Found 'emit-local' flags - compiler was asked to emit strings"
+            else
+              echo "⚠️  WARNING: No 'emit-local' flags found in build log!"
+              echo "   Checking for other localized string related flags..."
+              grep -n "localized" build_output_raw.log 2>/dev/null | head -30 || echo "   (no localized flags found)"
+            fi
+          else
+            echo "⚠️  Build log not found for analysis"
+          fi
+
+      - name: Diagnostic - Check for interfering .strings files
+        continue-on-error: true
+        run: |
+          echo "🔍 Checking for interfering .strings files..."
+          # Check for any Localizable.strings files (including backups) that might interfere
+          STRINGS_FILES=$(find . -name "Localizable.strings*" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
+          if [ -n "$STRINGS_FILES" ]; then
+            echo "⚠️  Found Localizable.strings files that might interfere:"
+            echo "$STRINGS_FILES" | while read f; do
+              echo "  - $f ($(wc -c < "$f" 2>/dev/null | xargs || echo '0') bytes)"
+            done
+            echo ""
+            echo "💡 Note: Even backup .strings files can interfere with string catalog emission"
+          else
+            echo "✅ No interfering Localizable.strings files found"
+          fi
+          
+          # Check project for .strings files in build phases
+          echo ""
+          echo "🔍 Checking project for .strings files in build phases..."
+          if grep -r "Localizable.strings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings"; then
+            echo "⚠️  Found references to Localizable.strings in project file"
+            grep -r "Localizable.strings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | head -10
+          else
+            echo "✅ No Localizable.strings references found in project (only .xcstrings)"
+          fi
 
       - name: Diagnostic - Comprehensive strings search
         continue-on-error: true
@@ -506,6 +549,21 @@ jobs:
             else
               echo "❌ No compiler-emitted .strings files found"
               echo "💡 This might mean strings weren't emitted, or they're in a different location"
+            fi
+            
+            echo ""
+            echo "📊 Broad search for any localization artifacts (.strings, .stringsdata, etc)..."
+            BROAD_SEARCH=$(find "$DERIVED_DATA_DIR" -type f 2>/dev/null \
+              | grep -Ev "/SourcePackages/|/Products/|\\.framework/" \
+              | grep -Ei "\\.(strings|stringsdata|xcstrings)$|loc(alized)?strings|emit" \
+              | head -50 || echo "")
+            if [ -n "$BROAD_SEARCH" ]; then
+              echo "✅ Found localization-related artifacts:"
+              echo "$BROAD_SEARCH" | head -20 | sed 's/^/   /'
+              echo ""
+              echo "📊 Total count: $(echo "$BROAD_SEARCH" | wc -l | xargs)"
+            else
+              echo "❌ No localization artifacts found in broad search"
             fi
             
             echo ""
