@@ -145,9 +145,9 @@ jobs:
                 '#!/usr/bin/env ruby' \
                 '# frozen_string_literal: true' \
                 '' \
-                '# Add .xcstrings file to Xcode project (but NOT to resources build phase)' \
-                '# We add it to the project so Xcode knows about it, but we avoid resources build phase' \
-                '# to prevent builtin-copyStrings validation errors. We merge strings manually after build.' \
+                '# Add .xcstrings file to Xcode project AND to resources build phase' \
+                '# Xcode requires the file to be in resources build phase to automatically merge strings during compilation' \
+                '# The file should be in XML plist format (not JSON) to pass builtin-copyStrings validation' \
                 '# Usage: ruby add_xcstrings_to_project.rb <project_path> <xcstrings_file_path> [target_name]' \
                 '' \
                 "require 'xcodeproj'" \
@@ -192,7 +192,7 @@ jobs:
                 '  exit 1' \
                 'end' \
                 '' \
-                "puts \"📦 Adding #{xcstrings_path} to project (not in resources build phase to avoid validation)\"" \
+                "puts \"📦 Adding #{xcstrings_path} to project and resources build phase\"" \
                 '' \
                 '# Get relative path from project directory' \
                 'project_dir = File.dirname(project_path)' \
@@ -209,20 +209,13 @@ jobs:
                 '    puts "   Set file type to text.plist.strings"' \
                 '  end' \
                 '  ' \
-                '  # Remove from resources build phase in ALL targets (to avoid builtin-copyStrings validation)' \
-                '  removed_from_any = false' \
-                '  project.targets.each do |t|' \
-                '    in_build_phase = t.resources_build_phase.files.any? { |f| f.file_ref == existing_file }' \
-                '    if in_build_phase' \
-                '      t.resources_build_phase.remove_file_reference(existing_file)' \
-                '      puts "✅ Removed from target '\''#{t.name}'\'' resources build phase"' \
-                '      removed_from_any = true' \
-                '    end' \
-                '  end' \
-                '  if removed_from_any' \
-                '    puts "✅ Removed from all targets'\'' resources build phases (to avoid validation errors)"' \
+                '  # Ensure it'\''s in resources build phase (required for Xcode to merge strings)' \
+                '  in_build_phase = target.resources_build_phase.files.any? { |f| f.file_ref == existing_file }' \
+                '  unless in_build_phase' \
+                '    target.add_file_references([existing_file])' \
+                '    puts "✅ Added existing file reference to resources build phase"' \
                 '  else' \
-                '    puts "✅ File is not in any target'\''s resources build phase (as intended)"' \
+                '    puts "✅ File already in resources build phase"' \
                 '  end' \
                 'else' \
                 '  # Find or create Resources group' \
@@ -234,10 +227,10 @@ jobs:
                 '  # Set the correct file type for .xcstrings (important for Xcode to recognize it)' \
                 "  file_ref.explicit_file_type = 'text.plist.strings'" \
                 '  ' \
-                '  # Do NOT add to resources build phase - we merge strings manually after build' \
-                '  # This avoids builtin-copyStrings validation errors' \
+                '  # Add to target'\''s resources build phase (required for Xcode to merge strings automatically)' \
+                '  target.add_file_references([file_ref])' \
                 '  ' \
-                "  puts \"✅ Added #{xcstrings_relative} to project (not in resources build phase)\"" \
+                "  puts \"✅ Added #{xcstrings_relative} to project and resources build phase\"" \
                 'end' \
                 '' \
                 '# Remove any existing Localizable.strings files from the project' \
@@ -294,19 +287,16 @@ jobs:
               end
               
               # Check if in target's resources build phase
-              # File should NOT be in resources build phase to avoid builtin-copyStrings validation
+              # File MUST be in resources build phase for Xcode to merge strings automatically
               in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
               if in_resources
-                puts \"⚠️  File IS in target '#{target.name}' resources build phase (will cause validation errors)\"
-                puts \"   Removing from resources build phase...\"
-                build_file = target.resources_build_phase.files.find { |f| f.file_ref == file_ref }
-                if build_file
-                  target.resources_build_phase.remove_file_reference(file_ref)
-                  project.save
-                  puts \"✅ Removed from resources build phase\"
-                end
+                puts \"✅ File is in target '#{target.name}' resources build phase (required for string merging)\"
               else
-                puts \"✅ File is NOT in target '#{target.name}' resources build phase (as intended)\"
+                puts \"⚠️  File is NOT in target '#{target.name}' resources build phase\"
+                puts \"   Adding to resources build phase (required for Xcode to merge strings)...\"
+                target.add_file_references([file_ref])
+                project.save
+                puts \"✅ Added to resources build phase\"
               end
               
               # Verify file exists on disk and check its content
@@ -374,7 +364,7 @@ jobs:
             fi
           done || echo "  (none found)"
 
-      - name: Ensure .xcstrings file exists and is in project (not in resources build phase)
+      - name: Ensure .xcstrings file exists and is in project and resources build phase
         run: |
           echo "🔍 Ensuring String Catalog exists and is in project..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
@@ -397,7 +387,7 @@ jobs:
               XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
             fi
             
-            # Ensure it's added to project (but NOT in resources build phase to avoid validation)
+            # Ensure it's added to project and resources build phase (for automatic merging)
             if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
               ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
             fi
