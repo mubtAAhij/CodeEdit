@@ -199,16 +199,52 @@ else
           XLIFF_FILE=$(find "$XCLOC_FILE" -name "*.xliff" -type f | head -1)
           if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
             echo "📋 Found .xliff file in export: $XLIFF_FILE"
-            echo "💡 .xliff format detected - would need conversion to .xcstrings"
-            echo "   Falling back to manual .stringsdata parsing..."
+            echo "✅ XLIFF file found - strings will be extracted directly from XLIFF for skip list"
+            
+            # Count strings in XLIFF file (for skip list generation, we'll parse it directly)
+            if command -v python3 &> /dev/null; then
+              XLIFF_COUNT=$(python3 -c "
+import xml.etree.ElementTree as ET
+import sys
+try:
+    tree = ET.parse('$XLIFF_FILE')
+    root = tree.getroot()
+    ns = ''
+    if root.tag.startswith('{'):
+        ns = root.tag.split('}')[0] + '}'
+    trans_units = root.findall(f'.//{ns}trans-unit') if ns else root.findall('.//trans-unit')
+    count = 0
+    for trans_unit in trans_units:
+        source_elem = trans_unit.find(f'{ns}source') if ns else trans_unit.find('source')
+        if source_elem is not None:
+            source_text = ''
+            if source_elem.text:
+                source_text = source_elem.text.strip()
+            elif len(source_elem) > 0:
+                source_text = ''.join(source_elem.itertext()).strip()
+            if source_text:
+                count += 1
+    print(count)
+except:
+    print(0)
+" 2>/dev/null || echo "0")
+              
+              if [ "$XLIFF_COUNT" -gt 0 ]; then
+                echo "✅ Found $XLIFF_COUNT strings in XLIFF file"
+                echo "💡 Skip list will be built directly from XLIFF file (no conversion needed)"
+                # Set a flag that we found strings (even though they're in XLIFF, not .xcstrings)
+                # This prevents falling back to manual .stringsdata parsing
+                CATALOG_COUNT=$XLIFF_COUNT
+              fi
+            fi
           else
             echo "⚠️  No .xcstrings or .xliff files found in .xcloc"
             echo "   Falling back to manual .stringsdata parsing..."
           fi
         fi
         
-        # Check if merge succeeded
-        if command -v jq &> /dev/null; then
+        # Check if we successfully extracted strings (either from .xcstrings or .xliff)
+        if [ "$CATALOG_COUNT" -eq 0 ] && command -v jq &> /dev/null; then
           NEW_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
           if [ "$NEW_COUNT" -gt 0 ]; then
             echo "✅ Successfully extracted $NEW_COUNT strings via exportLocalizations"
