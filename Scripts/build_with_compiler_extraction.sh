@@ -75,31 +75,63 @@ xcodebuild_cmd() {
   fi
 }
 
-# Detect available destinations and choose appropriate one
+# Detect platform from build settings (use SUPPORTED_PLATFORMS - more reliable than PLATFORM_NAME)
+echo "🔍 Detecting target platform from build settings..."
+SUPPORTED_PLATFORMS=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | awk -F"= " '/SUPPORTED_PLATFORMS/ {print $2; exit}' | xargs || echo "")
+
+# Detect available destinations
 echo "🔍 Detecting available build destinations..."
 AVAILABLE_DESTINATIONS=$(xcodebuild_cmd -showdestinations 2>/dev/null || echo "")
 
-# Try to find a suitable destination (prefer iOS Simulator, fall back to macOS)
-if echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS Simulator"; then
-  DESTINATION="generic/platform=iOS Simulator"
-  echo "✅ Using iOS Simulator destination"
-elif echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:macOS"; then
-  DESTINATION="generic/platform=macOS"
-  echo "✅ Using macOS destination"
-else
-  # Fallback: try to extract first available platform
-  FIRST_PLATFORM=$(echo "$AVAILABLE_DESTINATIONS" | grep -m 1 "platform:" | sed -E 's/.*platform:([^,}]+).*/\1/' | head -1 | xargs || echo "")
-  if [ -n "$FIRST_PLATFORM" ]; then
-    DESTINATION="generic/platform=$FIRST_PLATFORM"
-    echo "✅ Using detected destination: $DESTINATION"
-  else
-    # Last resort: try macOS
+# Choose destination based on supported platforms
+DESTINATION=""
+if echo "$SUPPORTED_PLATFORMS" | grep -qw "macosx"; then
+  # macOS project - prefer macOS destination
+  if echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:macOS"; then
     DESTINATION="generic/platform=macOS"
-    echo "⚠️  Could not detect destination, defaulting to macOS"
+    echo "✅ Detected macOS project (SUPPORTED_PLATFORMS: $SUPPORTED_PLATFORMS) - using macOS destination"
+  else
+    echo "⚠️  macOS project but no macOS destination available"
+  fi
+elif echo "$SUPPORTED_PLATFORMS" | grep -qwE "iphoneos|iphonesimulator"; then
+  # iOS project - prefer iOS Simulator
+  if echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS Simulator"; then
+    DESTINATION="generic/platform=iOS Simulator"
+    echo "✅ Detected iOS project (SUPPORTED_PLATFORMS: $SUPPORTED_PLATFORMS) - using iOS Simulator destination"
+  elif echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS"; then
+    DESTINATION="generic/platform=iOS"
+    echo "✅ Detected iOS project (SUPPORTED_PLATFORMS: $SUPPORTED_PLATFORMS) - using iOS destination"
+  fi
+fi
+
+# Fallback: if platform detection failed or destination not found, try available destinations
+if [ -z "$DESTINATION" ]; then
+  echo "⚠️  Platform detection failed or destination not found, trying available destinations..."
+  # Prefer macOS first (most common for CI), then iOS Simulator
+  if echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:macOS"; then
+    DESTINATION="generic/platform=macOS"
+    echo "✅ Using macOS destination (fallback)"
+  elif echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS Simulator"; then
+    DESTINATION="generic/platform=iOS Simulator"
+    echo "✅ Using iOS Simulator destination (fallback)"
+  else
+    # Last resort: try to extract first available platform
+    FIRST_PLATFORM=$(echo "$AVAILABLE_DESTINATIONS" | grep -m 1 "platform:" | sed -E 's/.*platform:([^,}]+).*/\1/' | head -1 | xargs || echo "")
+    if [ -n "$FIRST_PLATFORM" ]; then
+      DESTINATION="generic/platform=$FIRST_PLATFORM"
+      echo "✅ Using detected destination: $DESTINATION (fallback)"
+    else
+      # Final fallback: default to macOS
+      DESTINATION="generic/platform=macOS"
+      echo "⚠️  Could not detect destination, defaulting to macOS"
+    fi
   fi
 fi
 
 echo "📍 Build destination: $DESTINATION"
+if [ -n "$SUPPORTED_PLATFORMS" ]; then
+  echo "   Supported platforms: $SUPPORTED_PLATFORMS"
+fi
 
 echo "🏗  Ensuring String Catalog exists..."
 # Use XCODEPROJ_PATH for Ruby scripts (must be .xcodeproj, not workspace)
@@ -113,7 +145,21 @@ else
 fi
 
 # If file was recreated, ensure it's added to the project
-XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+# Use deterministic path - prefer ./Localizable.xcstrings or ./Resources/Localizable.xcstrings
+# Exclude export directories to avoid picking wrong file
+XCSTRINGS_FILE=""
+if [ -f "./Localizable.xcstrings" ]; then
+  XCSTRINGS_FILE="./Localizable.xcstrings"
+elif [ -f "./Resources/Localizable.xcstrings" ]; then
+  XCSTRINGS_FILE="./Resources/Localizable.xcstrings"
+else
+  # Fallback: search but exclude export directories
+  XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f \
+    ! -path "./LocalizationsExport/*" \
+    ! -path "./**/*.xcloc/*" \
+    ! -path "./DerivedData/*" \
+    | head -n 1)
+fi
 if [ -n "$XCSTRINGS_FILE" ] && [ -f "./Scripts/add_xcstrings_to_project.rb" ] && [ -n "$XCODEPROJ_PATH" ]; then
   echo "🔄 Ensuring .xcstrings file is in Xcode project..."
   ruby ./Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "$SCHEME" 2>/dev/null || echo "⚠️  Note: File may already be in project"
@@ -123,6 +169,22 @@ elif [ -z "$XCODEPROJ_PATH" ]; then
 fi
 
 echo "🏗  Running unsigned build with compiler-based string extraction..."
+
+# CRITICAL: Check initial catalog count BEFORE the build
+# This allows us to detect if Xcode auto-merged strings during the build
+INITIAL_CATALOG_COUNT=0
+if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ] && command -v jq &> /dev/null; then
+  INITIAL_CATALOG_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+  echo "📊 Pre-build catalog count: $INITIAL_CATALOG_COUNT strings"
+  if [ "$INITIAL_CATALOG_COUNT" -gt 0 ]; then
+    echo "💡 Catalog already contains $INITIAL_CATALOG_COUNT strings - will check for new strings after build"
+  else
+    echo "💡 Catalog is empty - will extract strings from build"
+  fi
+else
+  echo "⚠️  Could not determine pre-build catalog count"
+fi
+echo ""
 
 # Verify build settings before building
 echo "🔍 Verifying build settings..."
@@ -176,15 +238,18 @@ else
 fi
 echo ""
 
-# Check for stringsdata files (compiler's extracted-strings intermediate output)
-echo "🔍 Checking for compiler-emitted .stringsdata files (intermediate output)..."
-STRINGSDATA_COUNT=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
-if [ "$STRINGSDATA_COUNT" -gt 0 ]; then
-  echo "✅ Found $STRINGSDATA_COUNT references to .stringsdata files - compiler is producing extracted localization data"
-  echo "📝 Sample .stringsdata references:"
+# Check for stringsdata references in build log (this is just for diagnostics)
+# Note: The real check for actual .stringsdata files happens later in DerivedData
+echo "🔍 Checking for .stringsdata references in build log (diagnostic only)..."
+STRINGSDATA_LOG_REFERENCES=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
+if [ "$STRINGSDATA_LOG_REFERENCES" -gt 0 ]; then
+  echo "✅ Found $STRINGSDATA_LOG_REFERENCES log references to .stringsdata (compiler mentioned them)"
+  echo "📝 Sample .stringsdata log references:"
   grep -n "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null | head -5 | sed 's/^/   /'
+  echo "💡 Note: Actual file count will be checked later in DerivedData"
 else
   echo "⚠️  No .stringsdata references found in build log"
+  echo "💡 Note: This doesn't mean files don't exist - checking DerivedData later"
 fi
 echo ""
 
@@ -216,12 +281,12 @@ if [ -n "$BUILD_DIR" ]; then
     BRIDGE_COUNT=$(echo "$BRIDGE_STRINGS" | wc -l | xargs)
     echo "✅ Found $BRIDGE_COUNT Localizable.strings bridge artifact(s):"
     echo "$BRIDGE_STRINGS" | sed 's/^/   /'
-    echo "💡 These are the compiled localization outputs that Xcode should use to update .xcstrings"
+    echo "💡 These are the compiled localization outputs that Xcode uses to update .xcstrings"
   else
-    echo "⚠️  WARNING: No Localizable.strings bridge artifacts found!"
-    echo "   This means Xcode did NOT produce the compiled localization output"
-    echo "   The pipeline stopped at *.stringsdata and never created the bridge artifacts"
-    echo "   Will fall back to manual import from *.stringsdata files"
+    echo "ℹ️  No Localizable.strings bridge artifacts found in expected location"
+    echo "   This is OK - Xcode may not always create these bridge artifacts"
+    echo "   The build pipeline may merge directly from .stringsdata to .xcstrings"
+    echo "   Will check if catalog was auto-updated, otherwise will merge manually from .stringsdata"
     echo ""
     echo "   Searched in:"
     echo "   - DerivedData: $DERIVED_DATA_DIR"
@@ -235,45 +300,49 @@ echo ""
 # Check if strings were already merged into the catalog by Xcode
 echo "🔍 Checking string catalog for merged strings..."
 
-# Find the xcstrings file (look in common locations)
-XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f | head -1)
+# Find the xcstrings file (deterministic - prefer Localizable.xcstrings, exclude exports)
+# Note: XCSTRINGS_FILE should already be set from before the build, but verify it still exists
+if [ -z "$XCSTRINGS_FILE" ] || [ ! -f "$XCSTRINGS_FILE" ]; then
+  # Re-find if not set or missing
+  if [ -f "./Localizable.xcstrings" ]; then
+    XCSTRINGS_FILE="./Localizable.xcstrings"
+  elif [ -f "./Resources/Localizable.xcstrings" ]; then
+    XCSTRINGS_FILE="./Resources/Localizable.xcstrings"
+  else
+    # Fallback: search for Localizable.xcstrings specifically, excluding export directories
+    # Fix: use * instead of ** for find (find doesn't support ** glob)
+    XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f \
+      ! -path "*/LocalizationsExport/*" \
+      ! -path "*/*.xcloc/*" \
+      ! -path "./DerivedData/*" \
+      | head -1)
+  fi
+fi
 
-if [ -z "$XCSTRINGS_FILE" ]; then
+if [ -z "$XCSTRINGS_FILE" ] || [ ! -f "$XCSTRINGS_FILE" ]; then
   echo "⚠️  No .xcstrings file found"
   exit 1
 fi
 
 echo "📋 Found string catalog: $XCSTRINGS_FILE"
 
-# Check initial catalog count (before merging emitted strings)
-INITIAL_CATALOG_COUNT=0
-if command -v jq &> /dev/null; then
-  INITIAL_CATALOG_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-fi
-
-if [ "$INITIAL_CATALOG_COUNT" -gt 0 ]; then
-  echo "📊 Catalog contains $INITIAL_CATALOG_COUNT strings (from existing sources)"
-  echo "💡 Now checking for NEW strings emitted by the build..."
-else
-  echo "📊 Catalog is empty - will extract strings from build"
-fi
-
-# Always check for emitted strings after build (even if catalog already has strings)
-# Xcode should automatically merge emitted strings during build, but we verify and merge manually if needed
+# Check if Xcode automatically merged strings during the build
+# (INITIAL_CATALOG_COUNT was already set BEFORE the build)
 CATALOG_COUNT=$INITIAL_CATALOG_COUNT
-
-# First, check if Xcode automatically merged strings during the build
 if command -v jq &> /dev/null; then
   CURRENT_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
   if [ "$CURRENT_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
     NEW_STRINGS=$((CURRENT_COUNT - INITIAL_CATALOG_COUNT))
     echo "✅ Xcode automatically merged $NEW_STRINGS new strings during build!"
-    echo "✅ Catalog now contains $CURRENT_COUNT strings total"
+    echo "✅ Catalog now contains $CURRENT_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
     CATALOG_COUNT=$CURRENT_COUNT
   else
     echo "⚠️  No new strings were automatically merged by Xcode"
+    echo "💡 Catalog still contains $CURRENT_COUNT strings (same as before build: $INITIAL_CATALOG_COUNT)"
     echo "💡 Will search DerivedData for emitted strings and merge manually..."
   fi
+else
+  echo "⚠️  jq not available - cannot check if Xcode auto-merged strings"
 fi
 
 # Always search for emitted strings and merge them (even if catalog already has some)
@@ -531,14 +600,14 @@ if [ -f "$BUILD_LOG_RAW" ]; then
   echo "   Build log size: $(wc -l < "$BUILD_LOG_RAW" | xargs) lines"
   echo "   Checking for emit-localized-strings flags..."
   EMIT_COUNT=$(grep -c "emit-local" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
-  STRINGSDATA_COUNT=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
+  STRINGSDATA_LOG_REFERENCES=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
   if [ "$EMIT_COUNT" -gt 0 ]; then
     echo "   ✅ Found $EMIT_COUNT references to 'emit-local' flags"
   else
     echo "   ⚠️  No 'emit-local' flags found in build log"
   fi
-  if [ "$STRINGSDATA_COUNT" -gt 0 ]; then
-    echo "   ✅ Found $STRINGSDATA_COUNT references to '.stringsdata' files"
+  if [ "$STRINGSDATA_LOG_REFERENCES" -gt 0 ]; then
+    echo "   ✅ Found $STRINGSDATA_LOG_REFERENCES log references to '.stringsdata' (diagnostic only)"
   fi
 fi
 
