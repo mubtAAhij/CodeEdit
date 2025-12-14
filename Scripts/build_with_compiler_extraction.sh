@@ -440,91 +440,174 @@ if [ -n "$BUILD_DIR" ]; then
           echo "⚠️  jq not available - cannot count strings in catalog"
         fi
         
-        # Write list to a file to avoid arg-length issues
-        STRINGSDATA_LIST=$(mktemp)
-        printf "%s\n" "$EMITTED_STRINGSDATA_FILES" > "$STRINGSDATA_LIST"
-        
-        SYNC_COUNT=0
-        SYNC_FAILED=0
-        
-        # Sync each stringsdata file into the catalog
-        # CRITICAL: Use --skip-marking-strings-stale to prevent deleting previously-synced strings
+        # Collect all .stringsdata files into an array for single sync call
+        # This is more reliable than per-file syncs and matches the tool's intent
+        STRINGSDATA_ARRAY=()
+        STRINGSDATA_COUNT=0
         while IFS= read -r f; do
           [ -z "$f" ] && continue
           if [ -f "$f" ]; then
-            echo "   🔄 Syncing: $(basename "$f")"
-            echo "      Full command: xcrun xcstringstool sync \"$XCSTRINGS_FILE\" --stringsdata \"$f\" --skip-marking-strings-stale"
-            
-            # Run sync command with --skip-marking-strings-stale to accumulate strings
-            # This prevents each sync from deleting strings from previous files
-            if xcrun xcstringstool sync "$XCSTRINGS_FILE" --stringsdata "$f" --skip-marking-strings-stale 2>&1; then
-              SYNC_COUNT=$((SYNC_COUNT + 1))
-              
-              # Count strings after each sync to verify it's working
-              if command -v jq >/dev/null 2>&1 && [ -f "$XCSTRINGS_FILE" ]; then
-                CURRENT_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-                echo "      ✅ Synced successfully - catalog now has $CURRENT_STRING_COUNT strings"
-              else
-                echo "      ✅ Synced successfully"
-              fi
-            else
-              SYNC_FAILED=$((SYNC_FAILED + 1))
-              echo "      ⚠️  Failed to sync: $f"
-            fi
+            STRINGSDATA_ARRAY+=("$f")
+            STRINGSDATA_COUNT=$((STRINGSDATA_COUNT + 1))
           fi
-        done < "$STRINGSDATA_LIST"
+        done <<< "$EMITTED_STRINGSDATA_FILES"
         
-        rm -f "$STRINGSDATA_LIST"
+        echo "📁 Found $STRINGSDATA_COUNT .stringsdata file(s) to sync"
         
-        # Final count
-        FINAL_STRING_COUNT=0
-        if [ -f "$XCSTRINGS_FILE" ] && command -v jq >/dev/null 2>&1; then
-          FINAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+        if [ "$STRINGSDATA_COUNT" -eq 0 ]; then
+          echo "⚠️  No valid .stringsdata files found to sync"
+        else
+          # Single sync call with all files at once (more reliable than per-file loop)
+          # CRITICAL: Use --skip-marking-strings-stale to prevent deleting previously-synced strings
           echo ""
-          echo "📊 Final catalog string count: $FINAL_STRING_COUNT (started with $INITIAL_STRING_COUNT)"
-          if [ "$FINAL_STRING_COUNT" -gt "$INITIAL_STRING_COUNT" ]; then
-            NEW_STRINGS=$((FINAL_STRING_COUNT - INITIAL_STRING_COUNT))
-            echo "✅ Successfully added $NEW_STRINGS new strings from .stringsdata files"
-          elif [ "$FINAL_STRING_COUNT" -lt "$INITIAL_STRING_COUNT" ]; then
-            echo "⚠️  WARNING: Catalog lost strings (had $INITIAL_STRING_COUNT, now has $FINAL_STRING_COUNT)"
+          echo "🔄 Syncing all .stringsdata files into catalog in a single operation..."
+          echo "   Command: xcrun xcstringstool sync \"$XCSTRINGS_FILE\" --skip-marking-strings-stale --stringsdata ${STRINGSDATA_ARRAY[*]}"
+          
+          if xcrun xcstringstool sync "$XCSTRINGS_FILE" \
+            --skip-marking-strings-stale \
+            --stringsdata "${STRINGSDATA_ARRAY[@]}" 2>&1; then
+            echo "✅ Sync completed successfully"
+            
+            # Format sanity check: verify catalog is valid JSON and countable
+            echo ""
+            echo "🔍 Verifying catalog format and content..."
+            if command -v python3 >/dev/null 2>&1; then
+              python3 - "$XCSTRINGS_FILE" <<'PY'
+import json
+import sys
+try:
+    with open(sys.argv[1], 'r', encoding='utf-8') as f:
+        j = json.load(f)
+    print("✅ xcstrings JSON is valid")
+    print(f"✅ Catalog keys: {list(j.keys())}")
+    string_count = len(j.get("strings", {}))
+    print(f"✅ String count: {string_count}")
+    sys.exit(0)
+except json.JSONDecodeError as e:
+    print(f"❌ Invalid JSON in catalog: {e}")
+    sys.exit(1)
+except Exception as e:
+    print(f"❌ Error reading catalog: {e}")
+    sys.exit(1)
+PY
+              FORMAT_CHECK_EXIT=$?
+            else
+              # Fallback to jq if Python not available
+              if command -v jq >/dev/null 2>&1; then
+                if jq empty "$XCSTRINGS_FILE" 2>/dev/null; then
+                  echo "✅ xcstrings JSON is valid (jq check)"
+                  FORMAT_CHECK_EXIT=0
+                else
+                  echo "❌ Invalid JSON in catalog (jq check failed)"
+                  FORMAT_CHECK_EXIT=1
+                fi
+              else
+                echo "⚠️  Cannot verify JSON format (neither python3 nor jq available)"
+                FORMAT_CHECK_EXIT=0
+              fi
+            fi
+            
+            if [ "$FORMAT_CHECK_EXIT" -eq 0 ]; then
+              # Get final string count
+              FINAL_STRING_COUNT=0
+              if command -v jq >/dev/null 2>&1; then
+                FINAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+              elif command -v python3 >/dev/null 2>&1; then
+                FINAL_STRING_COUNT=$(python3 -c "import json; print(len(json.load(open('$XCSTRINGS_FILE', 'r', encoding='utf-8')).get('strings', {})))" 2>/dev/null || echo "0")
+              fi
+              
+              echo ""
+              echo "📊 Sync results:"
+              echo "   Started with: $INITIAL_STRING_COUNT strings"
+              echo "   Now has: $FINAL_STRING_COUNT strings"
+              
+              if [ "$FINAL_STRING_COUNT" -gt "$INITIAL_STRING_COUNT" ]; then
+                NEW_STRINGS=$((FINAL_STRING_COUNT - INITIAL_STRING_COUNT))
+                echo "✅ Successfully added $NEW_STRINGS new strings from $STRINGSDATA_COUNT .stringsdata file(s)"
+              elif [ "$FINAL_STRING_COUNT" -eq "$INITIAL_STRING_COUNT" ] && [ "$FINAL_STRING_COUNT" -gt 0 ]; then
+                echo "ℹ️  Catalog has $FINAL_STRING_COUNT strings (no new strings added)"
+                echo "   This is normal if strings were already in catalog or .stringsdata files contained duplicates"
+              elif [ "$FINAL_STRING_COUNT" -lt "$INITIAL_STRING_COUNT" ]; then
+                echo "⚠️  WARNING: Catalog lost strings (had $INITIAL_STRING_COUNT, now has $FINAL_STRING_COUNT)"
+              else
+                echo "ℹ️  Catalog is empty - this may be normal if .stringsdata files contained no localizable strings"
+              fi
+              
+              # Show file info for debugging
+              echo ""
+              echo "📄 Catalog file info:"
+              ls -lh "$XCSTRINGS_FILE" 2>/dev/null || echo "   (cannot stat file)"
+              echo ""
+              echo "📋 First 50 lines of catalog (for debugging):"
+              head -50 "$XCSTRINGS_FILE" 2>/dev/null | sed 's/^/   /' || echo "   (cannot read file)"
+            else
+              echo "❌ Catalog format check failed - sync may have corrupted the file"
+            fi
+          else
+            echo "❌ Sync failed"
+            echo "⚠️  Falling back to exportLocalizations or Python script..."
           fi
-        fi
-        
-        echo ""
-        echo "✅ Synced $SYNC_COUNT .stringsdata file(s) into catalog"
-        if [ "$SYNC_FAILED" -gt 0 ]; then
-          echo "⚠️  $SYNC_FAILED file(s) failed to sync (non-fatal)"
         fi
       fi
     fi
     
     # Process .strings files using Python script (if available)
+    # Note: This merges into the catalog, so it should not overwrite existing strings
     if [ -n "$EMITTED_STRINGS_FILES" ] && [ -f "./Scripts/merge_emitted_strings.py" ]; then
       echo ""
       echo "📦 Processing .strings files using Python script..."
+      
+      # Check catalog state before Python merge
+      PRE_PYTHON_COUNT=0
+      if command -v jq >/dev/null 2>&1 && [ -f "$XCSTRINGS_FILE" ]; then
+        PRE_PYTHON_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+        echo "📊 Catalog has $PRE_PYTHON_COUNT strings before Python merge"
+      fi
+      
       python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" 2>/dev/null || {
         echo "⚠️  Failed to merge .strings files via Python script (non-fatal)"
       }
+      
+      # Verify Python script didn't corrupt the catalog
+      if command -v jq >/dev/null 2>&1 && [ -f "$XCSTRINGS_FILE" ]; then
+        POST_PYTHON_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+        if [ "$POST_PYTHON_COUNT" -lt "$PRE_PYTHON_COUNT" ]; then
+          echo "⚠️  WARNING: Python script reduced catalog from $PRE_PYTHON_COUNT to $POST_PYTHON_COUNT strings"
+        fi
+      fi
     fi
     
-    # Verify merge succeeded
-    if command -v jq &> /dev/null; then
-      FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-      if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
-        NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
-        echo ""
-        echo "✅ Successfully merged $NEW_STRINGS new strings into catalog via manual import"
-        echo "✅ Catalog now contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
-        CATALOG_COUNT=$FINAL_COUNT
+    # Final verification after all merge operations
+    echo ""
+    echo "🔍 Final catalog verification after all merge operations..."
+    if [ -f "$XCSTRINGS_FILE" ]; then
+      echo "📄 Catalog file info:"
+      ls -lh "$XCSTRINGS_FILE"
+      echo ""
+      
+      if command -v jq >/dev/null 2>&1; then
+        FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+        if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
+          NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
+          echo "✅ Successfully merged $NEW_STRINGS new strings into catalog via manual import"
+          echo "✅ Catalog now contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
+          CATALOG_COUNT=$FINAL_COUNT
+        elif [ "$FINAL_COUNT" -gt 0 ]; then
+          echo "✅ Catalog contains $FINAL_COUNT strings"
+          echo "ℹ️  No new strings added (may have been duplicates or already present)"
+          CATALOG_COUNT=$FINAL_COUNT
+        else
+          echo "⚠️  Catalog is empty after merge operations"
+          echo "💡 This might mean:"
+          echo "   - .stringsdata files contained no localizable strings"
+          echo "   - .stringsdata files couldn't be synced (check xcstringstool availability)"
+          echo "   - No new strings were actually emitted"
+        fi
       else
-        echo ""
-        echo "⚠️  Merge completed but no new strings were added"
-        echo "💡 Catalog still contains $FINAL_COUNT strings (same as before merge: $INITIAL_CATALOG_COUNT)"
-        echo "💡 This might mean:"
-        echo "   - Strings were already in the catalog"
-        echo "   - .stringsdata files couldn't be synced (check xcstringstool availability)"
-        echo "   - No new strings were actually emitted"
+        echo "⚠️  jq not available - cannot verify final string count"
       fi
+    else
+      echo "❌ Catalog file missing: $XCSTRINGS_FILE"
     fi
   else
     echo "⚠️  No compiler-emitted strings files found in DerivedData"
@@ -548,10 +631,25 @@ if [ -n "$BUILD_DIR" ]; then
     fi
     
     # Try using xcodebuild -exportLocalizations as a fallback (to capture any strings Xcode found)
+    # BUT: Only if catalog is empty or sync failed - don't overwrite existing strings
     echo ""
-    echo "🔄 Trying xcodebuild -exportLocalizations to extract strings..."
-    EXPORT_DIR="./LocalizationsExport"
-    mkdir -p "$EXPORT_DIR"
+    echo "🔄 Checking if exportLocalizations fallback is needed..."
+    
+    # Check if catalog already has strings from sync
+    CATALOG_HAS_STRINGS=0
+    if [ -f "$XCSTRINGS_FILE" ] && command -v jq >/dev/null 2>&1; then
+      CATALOG_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+      if [ "$CATALOG_STRING_COUNT" -gt 0 ]; then
+        CATALOG_HAS_STRINGS=1
+        echo "✅ Catalog already has $CATALOG_STRING_COUNT strings from sync"
+        echo "   Skipping exportLocalizations to avoid overwriting existing strings"
+      fi
+    fi
+    
+    if [ "$CATALOG_HAS_STRINGS" -eq 0 ]; then
+      echo "🔄 Catalog is empty - trying xcodebuild -exportLocalizations as fallback..."
+      EXPORT_DIR="./LocalizationsExport"
+      mkdir -p "$EXPORT_DIR"
     
     # Get DerivedData path from build settings to reuse existing build
     # BUILD_DIR is typically: /path/to/DerivedData/ProjectName-hash/Build/Products/Configuration
@@ -608,15 +706,27 @@ if [ -n "$BUILD_DIR" ]; then
         
         if [ -n "$XCSTRINGS_IN_XCLOC" ] && [ -f "$XCSTRINGS_IN_XCLOC" ]; then
           echo "📋 Found .xcstrings file in export: $XCSTRINGS_IN_XCLOC"
-          # Copy the exported .xcstrings (it should contain all strings from exportLocalizations)
-          cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
           
-          # Verify copy succeeded
-          if command -v jq &> /dev/null; then
-            FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-            if [ "$FINAL_COUNT" -gt 0 ]; then
-              echo "✅ Exported catalog contains $FINAL_COUNT strings"
-              CATALOG_COUNT=$FINAL_COUNT
+          # Check if target catalog already has strings (shouldn't happen if we got here, but be safe)
+          EXISTING_COUNT=0
+          if [ -f "$XCSTRINGS_FILE" ] && command -v jq >/dev/null 2>&1; then
+            EXISTING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+          fi
+          
+          if [ "$EXISTING_COUNT" -gt 0 ]; then
+            echo "⚠️  WARNING: Catalog already has $EXISTING_COUNT strings - not overwriting with export"
+            echo "   Export file would have been: $XCSTRINGS_IN_XCLOC"
+          else
+            # Copy the exported .xcstrings (it should contain all strings from exportLocalizations)
+            cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
+            
+            # Verify copy succeeded
+            if command -v jq &> /dev/null; then
+              FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+              if [ "$FINAL_COUNT" -gt 0 ]; then
+                echo "✅ Exported catalog contains $FINAL_COUNT strings"
+                CATALOG_COUNT=$FINAL_COUNT
+              fi
             fi
           fi
         else
@@ -670,7 +780,10 @@ except:
       fi
     else
       echo "⚠️  exportLocalizations failed"
-    fi  # Close the "if eval "$EXPORT_CMD" ..." block
+    fi  # Close the "if "${EXPORT_CMD[@]}" ..." block
+    else
+      echo "   (Skipped - catalog already populated)"
+    fi  # Close the "if [ "$CATALOG_HAS_STRINGS" -eq 0 ]" block
   fi  # Close the "if [ "$FILES_TO_MERGE" -gt 0 ]" else block
 else
   echo "⚠️  Could not determine DerivedData path"
