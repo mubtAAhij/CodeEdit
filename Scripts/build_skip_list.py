@@ -61,26 +61,48 @@ def parse_xcstrings(path):
         data = json.loads(path.read_text(encoding="utf-8"))
         strings = data.get("strings", {})
         source_lang = data.get("sourceLanguage", "en")
+        
+        print(f"📋 Parsing {path}: found {len(strings)} string entries, sourceLanguage={source_lang}", file=sys.stderr)
 
         for key, meta in strings.items():
             locs = meta.get("localizations", {})
             # Try the source language first; fall back to any localization.
-            loc = locs.get(source_lang) or next(iter(locs.values()), {})
-            unit = loc.get("stringUnit", {})
-            value = unit.get("value")
+            loc = locs.get(source_lang) or next(iter(locs.values()), {}) if locs else {}
+            unit = loc.get("stringUnit", {}) if loc else {}
+            value = unit.get("value") if unit else None
 
             if value:
                 entries.append((key, value))
+            else:
+                # Debug: log why entry was skipped (only for first few to avoid spam)
+                if len(entries) < 3:
+                    if not locs:
+                        print(f"   ⚠️  Skipping '{key}': no localizations found (meta keys: {list(meta.keys())})", file=sys.stderr)
+                    elif not loc:
+                        print(f"   ⚠️  Skipping '{key}': no localization for '{source_lang}' (available: {list(locs.keys())})", file=sys.stderr)
+                    elif not unit:
+                        print(f"   ⚠️  Skipping '{key}': no stringUnit found in localization", file=sys.stderr)
+                    elif not value:
+                        print(f"   ⚠️  Skipping '{key}': stringUnit has no value (unit keys: {list(unit.keys())})", file=sys.stderr)
         
+        print(f"✅ Parsed {len(entries)} entries from {path}", file=sys.stderr)
         return entries
     except Exception as e:
         print(f"⚠️  Failed to parse {path}: {e}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
         return []
 
 # 1. Find all .xcstrings and .xliff files under the repo
 root = Path(".").resolve()
 xcstrings_files = list(root.rglob("*.xcstrings"))
 xliff_files = list(root.rglob("*.xliff"))
+
+# Exclude DerivedData and .git directories
+xcstrings_files = [f for f in xcstrings_files if "DerivedData" not in str(f) and ".git" not in str(f)]
+xliff_files = [f for f in xliff_files if "DerivedData" not in str(f) and ".git" not in str(f)]
+
+print(f"🔍 Found {len(xcstrings_files)} .xcstrings file(s) and {len(xliff_files)} .xliff file(s)", file=sys.stderr)
 
 # Also check for .xcloc bundles (which contain .xliff files inside)
 xcloc_dirs = list(root.rglob("*.xcloc"))
