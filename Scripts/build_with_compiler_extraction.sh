@@ -374,78 +374,12 @@ if [ -n "$BUILD_DIR" ]; then
           if [ -f "$f" ]; then
             echo "$f" >> "$STRINGSDATA_LIST"
             STRINGSDATA_COUNT=$((STRINGSDATA_COUNT + 1))
-            # Collect first 3 files for inspection
+            # Collect first 3 files for upload to GCS
             if [ "${#SAMPLE_FILES[@]}" -lt 3 ]; then
               SAMPLE_FILES+=("$f")
             fi
           fi
         done <<< "$EMITTED_STRINGSDATA_FILES"
-        
-        # Inspect sample .stringsdata files to understand their structure
-        if [ "${#SAMPLE_FILES[@]}" -gt 0 ]; then
-          echo ""
-          echo "Inspecting sample .stringsdata files (structure analysis):"
-          for sample_file in "${SAMPLE_FILES[@]}"; do
-            echo ""
-            echo "File: $sample_file"
-            echo "  Filename suggests source: $(basename "$sample_file" .stringsdata)"
-            
-            # Try to inspect using plutil (macOS built-in)
-            if command -v plutil >/dev/null 2>&1; then
-              echo "  Structure (via plutil):"
-              plutil -p "$sample_file" 2>/dev/null | head -30 | sed 's/^/    /' || echo "    (could not parse with plutil)"
-            fi
-            
-            # Also try Python plistlib for more detailed inspection
-            if command -v python3 >/dev/null 2>&1; then
-              python3 - "$sample_file" <<'PY'
-import plistlib
-import sys
-
-try:
-    with open(sys.argv[1], 'rb') as f:
-        plist = plistlib.load(f)
-    
-    print("  Internal structure:")
-    
-    if isinstance(plist, dict):
-        print(f"    Top-level keys: {list(plist.keys())}")
-        
-        # Look for string entries and their metadata
-        for key, value in plist.items():
-            if isinstance(value, dict):
-                print(f"    '{key}' contains {len(value)} entries")
-                # Inspect first few entries for metadata
-                for i, (entry_key, entry_val) in enumerate(list(value.items())[:3]):
-                    if isinstance(entry_val, dict):
-                        # Look for metadata like line numbers, file paths
-                        metadata_keys = [k for k in entry_val.keys() if any(x in k.lower() for x in ['line', 'file', 'path', 'location', 'source'])]
-                        if metadata_keys:
-                            print(f"      Entry '{entry_key}':")
-                            for meta_key in metadata_keys:
-                                print(f"        {meta_key}: {entry_val[meta_key]}")
-                        # Show all keys for first entry to understand structure
-                        if i == 0:
-                            print(f"      First entry keys: {list(entry_val.keys())}")
-    elif isinstance(plist, list):
-        print(f"    List with {len(plist)} items")
-        if len(plist) > 0 and isinstance(plist[0], dict):
-            print(f"    First item keys: {list(plist[0].keys())}")
-            # Look for metadata in first item
-            metadata_keys = [k for k in plist[0].keys() if any(x in k.lower() for x in ['line', 'file', 'path', 'location', 'source'])]
-            if metadata_keys:
-                print(f"    Metadata found in first item:")
-                for meta_key in metadata_keys:
-                    print(f"      {meta_key}: {plist[0][meta_key]}")
-    
-except Exception as e:
-    print(f"    Error parsing plist: {e}")
-    import traceback
-    traceback.print_exc()
-PY
-            fi
-          done
-        fi
         
         if [ "$STRINGSDATA_COUNT" -eq 0 ]; then
           echo "No valid .stringsdata files found to sync"
