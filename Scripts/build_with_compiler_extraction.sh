@@ -423,10 +423,11 @@ except:
       fi
     else
       echo "⚠️  exportLocalizations failed"
-    fi
+    fi  # Close the "if eval "$EXPORT_CMD" ..." block
+  fi  # Close the "if [ "$FILES_TO_MERGE" -gt 0 ]" else block
 else
   echo "⚠️  Could not determine DerivedData path"
-fi
+fi  # Close the "if [ -n "$BUILD_DIR" ]" block
 
 # Final summary
 echo ""
