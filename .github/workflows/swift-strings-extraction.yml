@@ -906,35 +906,58 @@ jobs:
             exit 0
           fi
           
-          # Find first 3 .stringsdata files
+          # Find .stringsdata files and filter for ones that likely have content
+          # Sort by size (largest first) to get files more likely to have strings
+          # Filter out files smaller than 100 bytes (likely empty)
           SAMPLE_STRINGSDATA_FILES=$(find "$DERIVED_DATA_PATH" -name "*.stringsdata" -type f 2>/dev/null \
             | grep -v "/SourcePackages/" \
             | grep -v "/Products/" \
             | grep -v ".framework/" \
-            | head -3)
+            | while read f; do
+                SIZE=$(stat -f%z "$f" 2>/dev/null || stat -c%s "$f" 2>/dev/null || echo "0")
+                if [ "$SIZE" -gt 100 ]; then
+                  echo "$SIZE $f"
+                fi
+              done \
+            | sort -rn \
+            | head -3 \
+            | awk '{print $2}')
           
           if [ -z "$SAMPLE_STRINGSDATA_FILES" ]; then
-            echo "ℹ️  No .stringsdata files found to upload"
-            exit 0
+            echo "ℹ️  No non-empty .stringsdata files found to upload"
+            # Fallback: try any files if none meet size threshold
+            SAMPLE_STRINGSDATA_FILES=$(find "$DERIVED_DATA_PATH" -name "*.stringsdata" -type f 2>/dev/null \
+              | grep -v "/SourcePackages/" \
+              | grep -v "/Products/" \
+              | grep -v ".framework/" \
+              | head -3)
+            if [ -z "$SAMPLE_STRINGSDATA_FILES" ]; then
+              echo "ℹ️  No .stringsdata files found at all"
+              exit 0
+            fi
+            echo "⚠️  Falling back to first 3 files (may be empty)"
           fi
           
           GCS_DIR=$(dirname "$GCS_PATH")
           UPLOADED_COUNT=0
           
           if command -v gsutil &> /dev/null; then
-            echo "Uploading sample .stringsdata files to GCS..."
+            echo "Uploading sample .stringsdata files to GCS (largest files first)..."
             while IFS= read -r stringsdata_file; do
               [ -z "$stringsdata_file" ] && continue
               if [ ! -f "$stringsdata_file" ]; then
                 continue
               fi
               
+              # Show file size for reference
+              SIZE=$(stat -f%z "$stringsdata_file" 2>/dev/null || stat -c%s "$stringsdata_file" 2>/dev/null || echo "0")
+              
               # Extract filename and create GCS path
               FILENAME=$(basename "$stringsdata_file")
               STRINGSDATA_GCS_PATH="${GCS_DIR}/sample-stringsdata/${FILENAME}"
               
               if gsutil cp "$stringsdata_file" "gs://$GCS_BUCKET/$STRINGSDATA_GCS_PATH" 2>/dev/null; then
-                echo "  ✅ Uploaded: $FILENAME -> gs://$GCS_BUCKET/$STRINGSDATA_GCS_PATH"
+                echo "  ✅ Uploaded: $FILENAME ($SIZE bytes) -> gs://$GCS_BUCKET/$STRINGSDATA_GCS_PATH"
                 UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
               else
                 echo "  ⚠️  Failed to upload: $FILENAME"
