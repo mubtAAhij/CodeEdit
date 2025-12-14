@@ -64,26 +64,46 @@ def parse_xcstrings(path):
         
         print(f"📋 Parsing {path}: found {len(strings)} string entries, sourceLanguage={source_lang}", file=sys.stderr)
 
+        skipped_count = 0
+        skipped_samples = []
+        
         for key, meta in strings.items():
+            value = None
+            
+            # Try standard path: localizations[source_lang].stringUnit.value
             locs = meta.get("localizations", {})
-            # Try the source language first; fall back to any localization.
-            loc = locs.get(source_lang) or next(iter(locs.values()), {}) if locs else {}
-            unit = loc.get("stringUnit", {}) if loc else {}
-            value = unit.get("value") if unit else None
-
-            if value:
-                entries.append((key, value))
-            else:
-                # Debug: log why entry was skipped (only for first few to avoid spam)
-                if len(entries) < 3:
-                    if not locs:
-                        print(f"   ⚠️  Skipping '{key}': no localizations found (meta keys: {list(meta.keys())})", file=sys.stderr)
-                    elif not loc:
-                        print(f"   ⚠️  Skipping '{key}': no localization for '{source_lang}' (available: {list(locs.keys())})", file=sys.stderr)
-                    elif not unit:
-                        print(f"   ⚠️  Skipping '{key}': no stringUnit found in localization", file=sys.stderr)
-                    elif not value:
-                        print(f"   ⚠️  Skipping '{key}': stringUnit has no value (unit keys: {list(unit.keys())})", file=sys.stderr)
+            if locs:
+                # Try the source language first; fall back to any localization.
+                loc = locs.get(source_lang) or next(iter(locs.values()), {}) if locs else {}
+                if loc:
+                    unit = loc.get("stringUnit", {})
+                    if unit:
+                        value = unit.get("value")
+            
+            # If no value found via localizations, try alternative structures
+            if not value:
+                # Some entries might have the value directly in meta
+                if "value" in meta:
+                    value = meta["value"]
+                # Or in a different structure
+                elif "stringUnit" in meta:
+                    value = meta["stringUnit"].get("value")
+            
+            # If still no value, use the key itself as the value
+            # In Swift localization, when no localization exists, the key often IS the display value
+            # This handles entries that don't have localizations yet but are still valid strings
+            if not value:
+                value = key
+                skipped_count += 1
+                # Collect sample keys that used fallback (for debugging)
+                if len(skipped_samples) < 5:
+                    skipped_samples.append((key, list(meta.keys())))
+            
+            # Always include the entry
+            entries.append((key, value))
+        
+        if skipped_count > 0:
+            print(f"   ℹ️  {skipped_count} entries had no localizations - used key as value (sample keys: {[k for k, _ in skipped_samples[:3]]})", file=sys.stderr)
         
         print(f"✅ Parsed {len(entries)} entries from {path}", file=sys.stderr)
         return entries
