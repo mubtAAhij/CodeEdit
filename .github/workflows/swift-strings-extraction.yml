@@ -1305,6 +1305,57 @@ jobs:
             echo "ℹ️  No XLIFF file found to upload (this is OK if strings were extracted via .xcstrings)"
           fi
 
+      - name: Upload .xcstrings file to GCS (for debugging)
+        run: |
+          # Find .xcstrings files (prioritize Localizable.xcstrings)
+          XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f \
+            ! -path "/.git/*" \
+            ! -path "*/DerivedData/*" \
+            ! -path "*/LocalizationsExport/*" \
+            ! -path "*/*.xcloc/*" \
+            | grep -E "(Localizable\.xcstrings|/Resources/.*\.xcstrings)" | head -1)
+          
+          # If no Localizable.xcstrings found, get any .xcstrings file
+          if [ -z "$XCSTRINGS_FILE" ]; then
+            XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f \
+              ! -path "/.git/*" \
+              ! -path "*/DerivedData/*" \
+              ! -path "*/LocalizationsExport/*" \
+              ! -path "*/*.xcloc/*" \
+              | head -1)
+          fi
+          
+          if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
+            echo "📋 Found .xcstrings file: $XCSTRINGS_FILE"
+            
+            # Extract directory path from GCS_PATH
+            GCS_DIR=$(dirname "$GCS_PATH")
+            XCSTRINGS_GCS_PATH="${GCS_DIR}/Localizable.xcstrings"
+            
+            if command -v gsutil &> /dev/null; then
+              gsutil cp "$XCSTRINGS_FILE" "gs://$GCS_BUCKET/$XCSTRINGS_GCS_PATH" || {
+                echo "⚠️  Failed to upload .xcstrings file using gsutil."
+                echo "⚠️  .xcstrings file will not be available in GCS, but workflow will continue."
+                exit 0
+              }
+              echo "✅ .xcstrings file uploaded to: gs://$GCS_BUCKET/$XCSTRINGS_GCS_PATH"
+              
+              # Show file info for debugging
+              echo "📊 File info:"
+              ls -lh "$XCSTRINGS_FILE" 2>/dev/null || echo "   (cannot stat file)"
+              
+              # Show string count if jq is available
+              if command -v jq >/dev/null 2>&1; then
+                STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "unknown")
+                echo "📊 String count in catalog: $STRING_COUNT"
+              fi
+            else
+              echo "⚠️  gsutil not available. .xcstrings file upload skipped."
+            fi
+          else
+            echo "ℹ️  No .xcstrings file found to upload"
+          fi
+
       - name: Upload catalogs as artifact (for debugging)
         uses: actions/upload-artifact@v4
         with:
@@ -1321,12 +1372,33 @@ jobs:
           echo "✅ Xcode string extraction completed"
           echo "Skip list available at: gs://$GCS_BUCKET/$GCS_PATH"
           
+          GCS_DIR=$(dirname "$GCS_PATH")
+          
           # Check if XLIFF was uploaded
           XLIFF_FILE=$(find . -name "*.xliff" -type f 2>/dev/null | grep -v "/.git/" | grep -v "/DerivedData/" | head -1)
           if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
-            GCS_DIR=$(dirname "$GCS_PATH")
             XLIFF_GCS_PATH="${GCS_DIR}/exported-strings.xliff"
             echo "XLIFF file available at: gs://$GCS_BUCKET/$XLIFF_GCS_PATH"
+          fi
+          
+          # Check if .xcstrings was uploaded
+          XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f 2>/dev/null \
+            ! -path "/.git/*" \
+            ! -path "*/DerivedData/*" \
+            ! -path "*/LocalizationsExport/*" \
+            ! -path "*/*.xcloc/*" \
+            | grep -E "(Localizable\.xcstrings|/Resources/.*\.xcstrings)" | head -1)
+          if [ -z "$XCSTRINGS_FILE" ]; then
+            XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f 2>/dev/null \
+              ! -path "/.git/*" \
+              ! -path "*/DerivedData/*" \
+              ! -path "*/LocalizationsExport/*" \
+              ! -path "*/*.xcloc/*" \
+              | head -1)
+          fi
+          if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
+            XCSTRINGS_GCS_PATH="${GCS_DIR}/Localizable.xcstrings"
+            echo ".xcstrings file available at: gs://$GCS_BUCKET/$XCSTRINGS_GCS_PATH"
           fi
           
           echo "Project ID: $PROJECT_ID"
