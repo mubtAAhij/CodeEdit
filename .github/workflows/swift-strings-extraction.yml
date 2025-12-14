@@ -242,6 +242,15 @@ jobs:
             echo "💡 Found project.xcworkspace inside .xcodeproj"
             echo "   This workspace will be used for building"
             echo "workspace_path=$XCODE_PROJECT/project.xcworkspace" >> $GITHUB_OUTPUT
+            # Use workspace for builds, but project for Ruby scripts
+            echo "project_path=$XCODE_PROJECT/project.xcworkspace" >> $GITHUB_OUTPUT
+            echo "project_type=workspace" >> $GITHUB_OUTPUT
+          fi
+          
+          # Always output the actual .xcodeproj path for Ruby scripts (xcodeproj gem needs project, not workspace)
+          if [ -n "$XCODE_PROJECT" ]; then
+            echo "xcodeproj_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
+            echo "💡 xcodeproj_path set to: $XCODE_PROJECT (for Ruby scripts)"
           fi
 
       - name: Capture Build Invocation Parity & Settings
@@ -352,7 +361,22 @@ jobs:
 
       - name: Ensure String Catalog exists
         run: |
-          ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
+          # Use xcodeproj_path for Ruby scripts (workspace path won't work with xcodeproj gem)
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            # Fallback: extract project path from workspace if needed
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              # If workspace is standalone, try to find associated project
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              # If it's project.xcworkspace, extract the parent .xcodeproj
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
 
       - name: Install xcodeproj gem
         run: |
@@ -493,8 +517,20 @@ jobs:
                 > Scripts/add_xcstrings_to_project.rb
               chmod +x Scripts/add_xcstrings_to_project.rb
             fi
-            # Run the script
-            ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
+            # Run the script (use xcodeproj_path for Ruby scripts)
+            XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+            if [ -z "$XCODEPROJ_PATH" ]; then
+              # Fallback: extract project path from workspace if needed
+              PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+              if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+                XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+              elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+                XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+              else
+                XCODEPROJ_PATH="$PROJECT_PATH"
+              fi
+            fi
+            ruby Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
             
             # Verify the file was added to the project and target using xcodeproj
             echo ""
@@ -658,8 +694,20 @@ jobs:
           
           echo ""
           echo "🔍 Verifying no .strings files remain in project file..."
+          # Use xcodeproj_path for accessing project.pbxproj
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
           # Check if project file still references .strings files (including backups)
-          if grep -r "Localizable.strings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | grep -v "\.backup"; then
+          if grep -r "Localizable.strings" "$XCODEPROJ_PATH/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | grep -v "\.backup"; then
             echo "⚠️  Found references to Localizable.strings in project file (excluding backups)"
             echo "   These should have been removed by add_xcstrings_to_project.rb"
             echo "   Attempting to remove them now..."
@@ -667,7 +715,7 @@ jobs:
             # Use Ruby to remove any remaining .strings file references
             ruby -e "
             require 'xcodeproj'
-            project_path = '${{ steps.find-xcode-project.outputs.project_path }}'
+            project_path = '$XCODEPROJ_PATH'
             project = Xcodeproj::Project.open(project_path)
             removed_count = 0
             
@@ -706,9 +754,22 @@ jobs:
           echo "🔍 Ensuring String Catalog exists and is in project..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
+          # Use xcodeproj_path for Ruby scripts
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          
           if [ -z "$XCSTRINGS_FILE" ]; then
             echo "⚠️  No Localizable.xcstrings found, creating one..."
-            ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+            ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || true
             XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           fi
           
@@ -722,7 +783,7 @@ jobs:
               echo "✅ File is valid JSON (correct format for .xcstrings)"
             else
               echo "⚠️  File is not valid JSON, recreating..."
-              ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+              ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || true
               XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
             fi
             
@@ -743,7 +804,7 @@ jobs:
             
             # Ensure it's added to project and resources build phase (for automatic merging)
             if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
-              ruby Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+              ruby Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
             fi
             
             echo "✅ String Catalog ready: $XCSTRINGS_FILE"
@@ -759,10 +820,22 @@ jobs:
             # Diagnostic: Check file type in pbxproj to ensure it's not set to text.plist.strings
             echo ""
             echo "🔍 Checking file type in project.pbxproj..."
-            if grep -n "Localizable.xcstrings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" | grep -q "text.plist.strings"; then
+            # Use xcodeproj_path for accessing project.pbxproj
+            XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+            if [ -z "$XCODEPROJ_PATH" ]; then
+              PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+              if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+                XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+              elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+                XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+              else
+                XCODEPROJ_PATH="$PROJECT_PATH"
+              fi
+            fi
+            if grep -n "Localizable.xcstrings" "$XCODEPROJ_PATH/project.pbxproj" 2>/dev/null | grep -q "text.plist.strings"; then
               echo "⚠️  WARNING: File type is still set to 'text.plist.strings' in project file!"
               echo "   This may cause builtin-copyStrings to process it incorrectly"
-              grep -n "Localizable.xcstrings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" | grep "text.plist.strings" | head -5
+              grep -n "Localizable.xcstrings" "$XCODEPROJ_PATH/project.pbxproj" | grep "text.plist.strings" | head -5
             else
               echo "✅ File type is NOT set to 'text.plist.strings' (correct)"
             fi
@@ -787,10 +860,23 @@ jobs:
           echo "🔍 Verifying String Catalog exists before build..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
+          # Use xcodeproj_path for Ruby scripts
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          
           if [ -z "$XCSTRINGS_FILE" ]; then
             echo "❌ CRITICAL: No Localizable.xcstrings file found!"
             echo "   Creating it now..."
-            ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || {
+            ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || {
               echo "❌ Failed to create string catalog!"
               exit 1
             }
@@ -812,7 +898,7 @@ jobs:
             # Ensure it's added to the project
             if [ -f "./Scripts/add_xcstrings_to_project.rb" ]; then
               echo "   Ensuring catalog is in Xcode project..."
-              ruby ./Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "   ⚠️  Failed to add to project (may already be there)"
+              ruby ./Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "   ⚠️  Failed to add to project (may already be there)"
             fi
           else
             echo "❌ CRITICAL: String Catalog file does not exist and could not be created!"
@@ -823,7 +909,29 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          bash ./Scripts/build_with_compiler_extraction.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
+          # Get paths: BUILD_PATH for xcodebuild, XCODEPROJ_PATH for Ruby scripts
+          BUILD_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          
+          # If XCODEPROJ_PATH not set, derive it from BUILD_PATH
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            if echo "$BUILD_PATH" | grep -q "\.xcworkspace$"; then
+              # Standalone workspace - try to find associated .xcodeproj
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$BUILD_PATH" | grep -q "project\.xcworkspace"; then
+              # Workspace inside .xcodeproj - extract parent
+              XCODEPROJ_PATH=$(echo "$BUILD_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              # Already a project
+              XCODEPROJ_PATH="$BUILD_PATH"
+            fi
+          fi
+          
+          echo "🔨 Build path (for xcodebuild): $BUILD_PATH"
+          echo "📦 Project path (for Ruby scripts): $XCODEPROJ_PATH"
+          
+          # Pass both paths to build script
+          bash ./Scripts/build_with_compiler_extraction.sh "$BUILD_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" "Debug" "$XCODEPROJ_PATH" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
           
           # Diagnostic: Check build log for emit-localized-strings flags
           echo ""
@@ -862,9 +970,21 @@ jobs:
           # Check project for .strings files in build phases
           echo ""
           echo "🔍 Checking project for .strings files in build phases..."
-          if grep -r "Localizable.strings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings"; then
+          # Use xcodeproj_path for accessing project.pbxproj
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          if grep -r "Localizable.strings" "$XCODEPROJ_PATH/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings"; then
             echo "⚠️  Found references to Localizable.strings in project file"
-            grep -r "Localizable.strings" "${{ steps.find-xcode-project.outputs.project_path }}/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | head -10
+            grep -r "Localizable.strings" "$XCODEPROJ_PATH/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | head -10
           else
             echo "✅ No Localizable.strings references found in project (only .xcstrings)"
           fi
