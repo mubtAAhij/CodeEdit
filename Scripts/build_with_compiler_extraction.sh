@@ -203,16 +203,6 @@ else
 fi
 echo ""
 
-# Verify build settings before building
-echo "🔍 Verifying build settings..."
-VERIFY_SETTINGS=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | grep -E "(SWIFT_EMIT_LOC_STRINGS|LOCALIZED_STRING)" || echo "")
-if [ -n "$VERIFY_SETTINGS" ]; then
-  echo "📋 Current build settings:"
-  echo "$VERIFY_SETTINGS" | sed 's/^/   /'
-else
-  echo "⚠️  Could not verify build settings (will set via xcodebuild args)"
-fi
-
 # Save build output to file for debugging
 BUILD_LOG_RAW="build_output_raw.log"
 
@@ -221,9 +211,8 @@ export SWIFTLINT_DISABLE=YES
 export SWIFTLINT_SKIP_BUILD_PHASE=YES
 export DISABLE_SWIFTLINT=YES
 
-# Run xcodebuild and capture raw log (NO xcpretty - we need to see actual swiftc invocations)
-echo "🔨 Starting build (plugins disabled for string extraction only)..."
-echo "💡 Using raw xcodebuild output (no xcpretty) to ensure we capture all emit-local flags"
+# Run xcodebuild and capture raw log
+echo "Starting build with string extraction..."
 # Use -skipPackagePluginValidation to skip SwiftLint and other plugin validation
 # Force a REAL build of the app target (not preview/link noise)
 # Note: xcodebuild compiles files in parallel, so many files may compile successfully
@@ -239,53 +228,12 @@ xcodebuild_cmd \
 
 BUILD_EXIT_CODE=${PIPESTATUS[0]}
 
-# Diagnostic: Check if compiler was actually asked to emit strings
-echo ""
-echo "🔍 Checking if Swift compiler was invoked with emit-localized-strings flags..."
-EMIT_FLAGS_FOUND=$(grep -c "emit-local" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
-if [ "$EMIT_FLAGS_FOUND" -gt 0 ]; then
-  echo "✅ Found $EMIT_FLAGS_FOUND 'emit-local' flags in build log - compiler was asked to emit strings"
-  echo "📝 Sample emit-local flags found:"
-  grep -n "emit-local" "$BUILD_LOG_RAW" 2>/dev/null | head -5 | sed 's/^/   /'
-else
-  echo "⚠️  WARNING: No 'emit-local' flags found in build log!"
-  echo "   This suggests SWIFT_EMIT_LOC_STRINGS=YES may not be taking effect"
-  echo "   Checking for other localized string related flags..."
-  grep -n "localized\|stringsdata" "$BUILD_LOG_RAW" 2>/dev/null | head -20 || echo "   (no localized flags found)"
-fi
-echo ""
-
-# Check for stringsdata references in build log (this is just for diagnostics)
-# Note: The real check for actual .stringsdata files happens later in DerivedData
-echo "🔍 Checking for .stringsdata references in build log (diagnostic only)..."
-STRINGSDATA_LOG_REFERENCES=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
-if [ "$STRINGSDATA_LOG_REFERENCES" -gt 0 ]; then
-  echo "✅ Found $STRINGSDATA_LOG_REFERENCES log references to .stringsdata (compiler mentioned them)"
-  echo "📝 Sample .stringsdata log references:"
-  grep -n "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null | head -5 | sed 's/^/   /'
-  echo "💡 Note: Actual file count will be checked later in DerivedData"
-else
-  echo "⚠️  No .stringsdata references found in build log"
-  echo "💡 Note: This doesn't mean files don't exist - checking DerivedData later"
-fi
-echo ""
 
 if [ $BUILD_EXIT_CODE -eq 0 ]; then
-  echo "✅ Build completed successfully. String Catalogs should be updated."
+  echo "Build completed successfully"
 else
-  echo "⚠️  Build completed with exit code $BUILD_EXIT_CODE"
-  echo "📋 Showing last 50 lines of build output for debugging:"
-  tail -50 "$BUILD_LOG_RAW" || true
-  echo ""
-  echo "⚠️  Build had errors, but attempting to merge emitted strings anyway..."
-  echo "💡 Note: xcodebuild compiles files in parallel, so many Swift files may have compiled successfully"
-  echo "💡 Even if the build failed, we'll try to merge strings from successfully compiled files"
+  echo "Build completed with exit code $BUILD_EXIT_CODE (continuing to merge strings from successfully compiled files)"
 fi
-
-# CRITICAL CHECK: Look for the "bridge artifact" Localizable.strings that Xcode should produce
-# This is the compiled localization output that Xcode uses to update the catalog
-echo ""
-echo "🔍 Checking for bridge artifact: Localizable.strings (compiled localization output)..."
 BUILD_DIR=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
 if [ -n "$BUILD_DIR" ]; then
   DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
@@ -296,18 +244,7 @@ if [ -n "$BUILD_DIR" ]; then
   
   if [ -n "$BRIDGE_STRINGS" ]; then
     BRIDGE_COUNT=$(echo "$BRIDGE_STRINGS" | wc -l | xargs)
-    echo "✅ Found $BRIDGE_COUNT Localizable.strings bridge artifact(s):"
-    echo "$BRIDGE_STRINGS" | sed 's/^/   /'
-    echo "💡 These are the compiled localization outputs that Xcode uses to update .xcstrings"
-  else
-    echo "ℹ️  No Localizable.strings bridge artifacts found in expected location"
-    echo "   This is OK - Xcode may not always create these bridge artifacts"
-    echo "   The build pipeline may merge directly from .stringsdata to .xcstrings"
-    echo "   Will check if catalog was auto-updated, otherwise will merge manually from .stringsdata"
-    echo ""
-    echo "   Searched in:"
-    echo "   - DerivedData: $DERIVED_DATA_DIR"
-    echo "   - Intermediates: $INTERMEDIATES_DIR"
+    echo "Found $BRIDGE_COUNT Localizable.strings bridge artifact(s)"
   fi
 else
   echo "⚠️  Could not determine DerivedData path for bridge artifact check"
@@ -375,51 +312,31 @@ if [ -n "$BUILD_DIR" ]; then
   INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
   
   # Search for compiler-emitted strings in specific locations
-  # CRITICAL: Do NOT limit the search with head - this is the actual file list for syncing
-  # Search for both .strings and .stringsdata files
-  echo "📊 Searching for emitted .strings files..."
   # Collect ALL files (no limit) - this is what we'll actually process
   EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" || echo "")
   
   # Search for .stringsdata files (newer binary format)
-  # CRITICAL: Search ALL of INTERMEDIATES_DIR, not just Objects-normal (broader search)
-  # Do NOT limit with head - this is the actual file list for syncing
-  echo "📊 Searching for emitted .stringsdata files..."
+  # Search ALL of INTERMEDIATES_DIR, not just Objects-normal (broader search)
   EMITTED_STRINGSDATA_FILES=$(find "$INTERMEDIATES_DIR" -type f -name "*.stringsdata" 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" || echo "")
-  
-  # Create separate sample lists for display only (keep logs readable)
-  SAMPLE_STRINGS_FILES=$(echo "$EMITTED_STRINGS_FILES" | head -5 || echo "")
-  SAMPLE_STRINGSDATA_FILES=$(echo "$EMITTED_STRINGSDATA_FILES" | head -5 || echo "")
   
   # Combine .strings and .stringsdata files for merging
   ALL_EMITTED_FILES=""
   FILES_TO_MERGE=0
   
-  # Count and display .strings files
+  # Count .strings files
   if [ -n "$EMITTED_STRINGS_FILES" ]; then
     STRING_COUNT=$(echo "$EMITTED_STRINGS_FILES" | wc -l | xargs)
-    echo "📁 Found $STRING_COUNT emitted .strings files"
-    if [ "$STRING_COUNT" -gt 0 ]; then
-      echo "📝 Sample .strings files found:"
-      echo "$SAMPLE_STRINGS_FILES" | sed 's/^/   /'
-      if [ "$STRING_COUNT" -eq 50 ]; then
-        echo "   ⚠️  WARNING: Exactly 50 files found - check for accidental truncation!"
-      fi
-    fi
+    echo "Found $STRING_COUNT emitted .strings files"
     ALL_EMITTED_FILES="$EMITTED_STRINGS_FILES"
     FILES_TO_MERGE=$((FILES_TO_MERGE + STRING_COUNT))
   fi
   
-  # Count and display .stringsdata files
+  # Count .stringsdata files
   if [ -n "$EMITTED_STRINGSDATA_FILES" ]; then
     STRINGSDATA_COUNT=$(echo "$EMITTED_STRINGSDATA_FILES" | wc -l | xargs)
-    echo "📁 Found $STRINGSDATA_COUNT emitted .stringsdata files"
-    if [ "$STRINGSDATA_COUNT" -gt 0 ]; then
-      echo "📝 Sample .stringsdata files found:"
-      echo "$SAMPLE_STRINGSDATA_FILES" | sed 's/^/   /'
-      if [ "$STRINGSDATA_COUNT" -eq 50 ]; then
-        echo "   ⚠️  WARNING: Exactly 50 files found - check for accidental truncation!"
-      fi
+    echo "Found $STRINGSDATA_COUNT emitted .stringsdata files"
+    if [ "$STRINGSDATA_COUNT" -eq 50 ]; then
+      echo "WARNING: Exactly 50 files found - check for accidental truncation!"
     fi
     if [ -n "$ALL_EMITTED_FILES" ]; then
       ALL_EMITTED_FILES="$ALL_EMITTED_FILES"$'\n'"$EMITTED_STRINGSDATA_FILES"
@@ -430,34 +347,21 @@ if [ -n "$BUILD_DIR" ]; then
   fi
   
   if [ "$FILES_TO_MERGE" -gt 0 ]; then
-    echo ""
-    echo "🔄 Merging $FILES_TO_MERGE emitted file(s) into catalog..."
-    echo "💡 This is the manual import fallback - converting emitted strings into .xcstrings"
+    echo "Merging $FILES_TO_MERGE emitted file(s) into catalog..."
     
     # Process .stringsdata files using xcstringstool (Apple's official tool)
     if [ -n "$EMITTED_STRINGSDATA_FILES" ]; then
-      echo ""
-      echo "📦 Processing .stringsdata files using xcstringstool..."
-      
       # Validate XCSTRINGS_FILE exists before attempting sync
       if [ -z "$XCSTRINGS_FILE" ] || [ ! -f "$XCSTRINGS_FILE" ]; then
-        echo "❌ XCSTRINGS_FILE missing or not found: '$XCSTRINGS_FILE'"
-        echo "   Cannot sync .stringsdata files without a valid catalog"
-        echo "   Falling back to exportLocalizations..."
+        echo "ERROR: XCSTRINGS_FILE missing or not found: '$XCSTRINGS_FILE'"
+        echo "Falling back to exportLocalizations..."
       elif ! command -v xcrun >/dev/null 2>&1 || ! xcrun --find xcstringstool >/dev/null 2>&1; then
-        echo "⚠️  xcstringstool not available"
-        echo "   Falling back to exportLocalizations or Python script..."
+        echo "WARNING: xcstringstool not available, falling back to exportLocalizations..."
       else
-        echo "✅ xcstringstool found - using official Apple tool to sync .stringsdata into catalog"
-        echo "📂 Catalog file: $XCSTRINGS_FILE"
-        
         # Get initial string count from catalog
         INITIAL_STRING_COUNT=0
         if command -v jq >/dev/null 2>&1; then
           INITIAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-          echo "📊 Initial catalog string count: $INITIAL_STRING_COUNT"
-        else
-          echo "⚠️  jq not available - cannot count strings in catalog"
         fi
         
         # Collect all .stringsdata files and write to temp file (handles large lists safely)
@@ -472,20 +376,16 @@ if [ -n "$BUILD_DIR" ]; then
           fi
         done <<< "$EMITTED_STRINGSDATA_FILES"
         
-        echo "📁 Found $STRINGSDATA_COUNT .stringsdata file(s) to sync"
-        
         if [ "$STRINGSDATA_COUNT" -eq 0 ]; then
-          echo "⚠️  No valid .stringsdata files found to sync"
+          echo "No valid .stringsdata files found to sync"
           rm -f "$STRINGSDATA_LIST"
         else
           # Sync in chunks to avoid command-line length limits
-          # Process files in chunks of 100 to avoid argument list too long errors
           CHUNK_SIZE=100
           SYNCED_COUNT=0
           FAILED_COUNT=0
           
-          echo ""
-          echo "🔄 Syncing $STRINGSDATA_COUNT .stringsdata files into catalog (in chunks of $CHUNK_SIZE)..."
+          echo "Syncing $STRINGSDATA_COUNT .stringsdata files (in chunks of $CHUNK_SIZE)..."
           
           # Read file list and process in chunks
           CHUNK_ARRAY=()
@@ -498,7 +398,6 @@ if [ -n "$BUILD_DIR" ]; then
             # When chunk is full, sync it
             if [ "${#CHUNK_ARRAY[@]}" -ge "$CHUNK_SIZE" ]; then
               CHUNK_NUM=$((CHUNK_NUM + 1))
-              echo "   🔄 Syncing chunk $CHUNK_NUM (${#CHUNK_ARRAY[@]} files)..."
               
               if xcrun xcstringstool sync "$XCSTRINGS_FILE" \
                 --skip-marking-strings-stale \
@@ -506,7 +405,6 @@ if [ -n "$BUILD_DIR" ]; then
                 SYNCED_COUNT=$((SYNCED_COUNT + ${#CHUNK_ARRAY[@]}))
               else
                 FAILED_COUNT=$((FAILED_COUNT + ${#CHUNK_ARRAY[@]}))
-                echo "   ⚠️  Chunk $CHUNK_NUM failed (non-fatal, continuing...)"
               fi
               
               # Clear chunk array for next batch
@@ -517,7 +415,6 @@ if [ -n "$BUILD_DIR" ]; then
           # Sync remaining files in final chunk
           if [ "${#CHUNK_ARRAY[@]}" -gt 0 ]; then
             CHUNK_NUM=$((CHUNK_NUM + 1))
-            echo "   🔄 Syncing final chunk $CHUNK_NUM (${#CHUNK_ARRAY[@]} files)..."
             
             if xcrun xcstringstool sync "$XCSTRINGS_FILE" \
               --skip-marking-strings-stale \
@@ -525,30 +422,21 @@ if [ -n "$BUILD_DIR" ]; then
               SYNCED_COUNT=$((SYNCED_COUNT + ${#CHUNK_ARRAY[@]}))
             else
               FAILED_COUNT=$((FAILED_COUNT + ${#CHUNK_ARRAY[@]}))
-              echo "   ⚠️  Final chunk failed (non-fatal)"
             fi
           fi
           
           rm -f "$STRINGSDATA_LIST"
           
-          echo ""
-          echo "📊 Sync summary:"
           if [ "$SYNCED_COUNT" -gt 0 ]; then
-            echo "   ✅ Successfully synced $SYNCED_COUNT file(s) across $CHUNK_NUM chunk(s)"
-          else
-            echo "   ⚠️  No files were successfully synced"
+            echo "Successfully synced $SYNCED_COUNT file(s)"
           fi
           if [ "$FAILED_COUNT" -gt 0 ]; then
-            echo "   ⚠️  $FAILED_COUNT file(s) failed to sync (non-fatal)"
+            echo "WARNING: $FAILED_COUNT file(s) failed to sync"
           fi
           
           # Only proceed with format check if we synced at least some files
           if [ "$SYNCED_COUNT" -gt 0 ]; then
-            echo "✅ Sync completed successfully"
-            
             # Format sanity check: verify catalog is valid JSON and countable
-            echo ""
-            echo "🔍 Verifying catalog format and content..."
             if command -v python3 >/dev/null 2>&1; then
               python3 - "$XCSTRINGS_FILE" <<'PY'
 import json
@@ -656,76 +544,30 @@ PY
     fi
     
     # Final verification after all merge operations
-    echo ""
-    echo "🔍 Final catalog verification after all merge operations..."
-    if [ -f "$XCSTRINGS_FILE" ]; then
-      echo "📄 Catalog file info:"
-      ls -lh "$XCSTRINGS_FILE"
-      echo ""
-      
-      if command -v jq >/dev/null 2>&1; then
-        FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-        if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
-          NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
-          echo "✅ Successfully merged $NEW_STRINGS new strings into catalog via manual import"
-          echo "✅ Catalog now contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
-          CATALOG_COUNT=$FINAL_COUNT
-        elif [ "$FINAL_COUNT" -gt 0 ]; then
-          echo "✅ Catalog contains $FINAL_COUNT strings"
-          echo "ℹ️  No new strings added (may have been duplicates or already present)"
-          CATALOG_COUNT=$FINAL_COUNT
-        else
-          echo "⚠️  Catalog is empty after merge operations"
-          echo "💡 This might mean:"
-          echo "   - .stringsdata files contained no localizable strings"
-          echo "   - .stringsdata files couldn't be synced (check xcstringstool availability)"
-          echo "   - No new strings were actually emitted"
-        fi
+    if [ -f "$XCSTRINGS_FILE" ] && command -v jq >/dev/null 2>&1; then
+      FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+      if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
+        NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
+        echo "Successfully merged $NEW_STRINGS new strings (total: $FINAL_COUNT)"
+      elif [ "$FINAL_COUNT" -gt 0 ]; then
+        echo "Catalog contains $FINAL_COUNT strings"
       else
-        echo "⚠️  jq not available - cannot verify final string count"
+        echo "WARNING: Catalog is empty after merge operations"
       fi
-    else
-      echo "❌ Catalog file missing: $XCSTRINGS_FILE"
     fi
   else
-    echo "⚠️  No compiler-emitted strings files found in DerivedData"
-    echo "💡 This might mean:"
-    echo "   1. No strings were emitted (check SWIFT_EMIT_LOC_STRINGS setting)"
-    echo "   2. Strings are in a different location"
-    echo "   3. Existing .strings files in project may prevent emission"
-    echo "   4. Strings were already merged by Xcode during build"
-    echo ""
-    echo "🔍 Performing broader search for any localization artifacts..."
-    DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
-    BROAD_SEARCH=$(find "$DERIVED_DATA_DIR" -type f 2>/dev/null \
-      | grep -Ev "/SourcePackages/|/Products/|\\.framework/" \
-      | grep -Ei "\\.(strings|stringsdata|xcstrings)$" \
-      | head -20 || echo "")
-    
-    if [ -n "$BROAD_SEARCH" ]; then
-      echo "📁 Found localization artifacts in broader search:"
-      echo "$BROAD_SEARCH" | sed 's/^/   /'
-      echo "💡 These might be in unexpected locations - consider updating search paths"
-    fi
-    
-    # Try using xcodebuild -exportLocalizations as a fallback (to capture any strings Xcode found)
-    # BUT: Only if catalog is empty or sync failed - don't overwrite existing strings
-    echo ""
-    echo "🔄 Checking if exportLocalizations fallback is needed..."
-    
-    # Check if catalog already has strings from sync
+    # Try using xcodebuild -exportLocalizations as a fallback
+    # Only if catalog is empty - don't overwrite existing strings
     CATALOG_HAS_STRINGS=0
     if [ -f "$XCSTRINGS_FILE" ] && command -v jq >/dev/null 2>&1; then
       CATALOG_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
       if [ "$CATALOG_STRING_COUNT" -gt 0 ]; then
         CATALOG_HAS_STRINGS=1
-        echo "✅ Catalog already has $CATALOG_STRING_COUNT strings from sync"
-        echo "   Skipping exportLocalizations to avoid overwriting existing strings"
       fi
     fi
     
     if [ "$CATALOG_HAS_STRINGS" -eq 0 ]; then
-      echo "🔄 Catalog is empty - trying xcodebuild -exportLocalizations as fallback..."
+      echo "Trying xcodebuild -exportLocalizations as fallback..."
       EXPORT_DIR="./LocalizationsExport"
       mkdir -p "$EXPORT_DIR"
     
@@ -843,22 +685,13 @@ except:
 " 2>/dev/null || echo "0")
               
               if [ "$XLIFF_COUNT" -gt 0 ]; then
-                echo "✅ Found $XLIFF_COUNT strings in XLIFF file"
-                echo "💡 Skip list will be built directly from XLIFF file (no conversion needed)"
-                # Note: XLIFF strings are for skip list only, not merged into .xcstrings
-                # The .xcstrings file should already have strings from the build
+                echo "Found $XLIFF_COUNT strings in XLIFF file"
               fi
             fi
-          else
-            echo "⚠️  No .xcstrings or .xliff files found in .xcloc"
           fi
         fi
-      else
-        echo "⚠️  No .xcloc file found in export directory"
       fi
-    else
-      echo "⚠️  exportLocalizations failed"
-    fi  # Close the "if "${EXPORT_CMD[@]}" ..." block
+    fi
     else
       echo "   (Skipped - catalog already populated)"
     fi  # Close the "if [ "$CATALOG_HAS_STRINGS" -eq 0 ]" block
@@ -868,46 +701,13 @@ else
 fi  # Close the "if [ -n "$BUILD_DIR" ]" block
 
 # Final summary
-echo ""
-echo "📊 Final string catalog status:"
 if command -v jq &> /dev/null; then
   FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
   if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
     NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
-    echo "✅ Successfully extracted $NEW_STRINGS new strings from build"
-    echo "✅ Catalog contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
+    echo "Successfully extracted $NEW_STRINGS new strings (total: $FINAL_COUNT)"
   elif [ "$FINAL_COUNT" -gt 0 ]; then
-    echo "✅ Catalog contains $FINAL_COUNT strings (no new strings added by build)"
-  else
-    echo "⚠️  Catalog is empty - no strings were extracted"
+    echo "Catalog contains $FINAL_COUNT strings"
   fi
-fi
-
-# Diagnostic: Show build log analysis before cleanup
-echo ""
-echo "🔍 Build log analysis for string emission:"
-if [ -f "$BUILD_LOG_RAW" ]; then
-  echo "   Build log size: $(wc -l < "$BUILD_LOG_RAW" | xargs) lines"
-  echo "   Checking for emit-localized-strings flags..."
-  EMIT_COUNT=$(grep -c "emit-local" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
-  STRINGSDATA_LOG_REFERENCES=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
-  if [ "$EMIT_COUNT" -gt 0 ]; then
-    echo "   ✅ Found $EMIT_COUNT references to 'emit-local' flags"
-  else
-    echo "   ⚠️  No 'emit-local' flags found in build log"
-  fi
-  if [ "$STRINGSDATA_LOG_REFERENCES" -gt 0 ]; then
-    echo "   ✅ Found $STRINGSDATA_LOG_REFERENCES log references to '.stringsdata' (diagnostic only)"
-  fi
-fi
-
-# Clean up log files (but keep raw log for diagnostics if build failed)
-# Note: We keep BUILD_LOG_RAW for debugging since it contains the actual swiftc invocations
-if [ $BUILD_EXIT_CODE -eq 0 ]; then
-  # Optionally remove log file to save space (comment out if you want to keep it)
-  # rm -f "$BUILD_LOG_RAW"
-  echo "   Build log saved to: $BUILD_LOG_RAW"
-else
-  echo "   Keeping build log for debugging (build failed): $BUILD_LOG_RAW"
 fi
 
