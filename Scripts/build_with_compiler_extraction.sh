@@ -57,26 +57,18 @@ else
 fi
 
 # Save build output to file for debugging
-BUILD_LOG="build_output.log"
 BUILD_LOG_RAW="build_output_raw.log"
-
-# Check if xcpretty is available
-if command -v xcpretty &> /dev/null; then
-  echo "📝 Using xcpretty for formatted output"
-  XCPRETTY_CMD="xcpretty"
-else
-  echo "⚠️  xcpretty not found, using raw xcodebuild output"
-  XCPRETTY_CMD="cat"
-fi
 
 # Disable SwiftLint and other plugins - we only need string extraction, not linting
 export SWIFTLINT_DISABLE=YES
 export SWIFTLINT_SKIP_BUILD_PHASE=YES
 export DISABLE_SWIFTLINT=YES
 
-# Run xcodebuild and capture both formatted output and raw log
+# Run xcodebuild and capture raw log (NO xcpretty - we need to see actual swiftc invocations)
 echo "🔨 Starting build (plugins disabled for string extraction only)..."
+echo "💡 Using raw xcodebuild output (no xcpretty) to ensure we capture all emit-local flags"
 # Use -skipPackagePluginValidation to skip SwiftLint and other plugin validation
+# Force a REAL build of the app target (not preview/link noise)
 # Note: xcodebuild compiles files in parallel, so many files may compile successfully
 # before hitting an error. Strings from successfully compiled files will be extracted.
 xcodebuild \
@@ -88,20 +80,35 @@ xcodebuild \
   SWIFT_EMIT_LOC_STRINGS=YES \
   LOCALIZED_STRING_SWIFTUI_SUPPORT=YES \
   -skipPackagePluginValidation \
-  build 2>&1 | tee "$BUILD_LOG_RAW" | tee "$BUILD_LOG" | $XCPRETTY_CMD
+  build 2>&1 | tee "$BUILD_LOG_RAW"
 
 BUILD_EXIT_CODE=${PIPESTATUS[0]}
 
 # Diagnostic: Check if compiler was actually asked to emit strings
 echo ""
 echo "🔍 Checking if Swift compiler was invoked with emit-localized-strings flags..."
-if grep -n "emit-local" "$BUILD_LOG_RAW" 2>/dev/null | head -10; then
-  echo "✅ Found 'emit-local' flags in build log - compiler was asked to emit strings"
+EMIT_FLAGS_FOUND=$(grep -c "emit-local" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
+if [ "$EMIT_FLAGS_FOUND" -gt 0 ]; then
+  echo "✅ Found $EMIT_FLAGS_FOUND 'emit-local' flags in build log - compiler was asked to emit strings"
+  echo "📝 Sample emit-local flags found:"
+  grep -n "emit-local" "$BUILD_LOG_RAW" 2>/dev/null | head -5 | sed 's/^/   /'
 else
   echo "⚠️  WARNING: No 'emit-local' flags found in build log!"
   echo "   This suggests SWIFT_EMIT_LOC_STRINGS=YES may not be taking effect"
   echo "   Checking for other localized string related flags..."
-  grep -n "localized" "$BUILD_LOG_RAW" 2>/dev/null | head -20 || echo "   (no localized flags found)"
+  grep -n "localized\|stringsdata" "$BUILD_LOG_RAW" 2>/dev/null | head -20 || echo "   (no localized flags found)"
+fi
+echo ""
+
+# Check for stringsdata files (compiler's extracted-strings intermediate output)
+echo "🔍 Checking for compiler-emitted .stringsdata files (intermediate output)..."
+STRINGSDATA_COUNT=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
+if [ "$STRINGSDATA_COUNT" -gt 0 ]; then
+  echo "✅ Found $STRINGSDATA_COUNT references to .stringsdata files - compiler is producing extracted localization data"
+  echo "📝 Sample .stringsdata references:"
+  grep -n "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null | head -5 | sed 's/^/   /'
+else
+  echo "⚠️  No .stringsdata references found in build log"
 fi
 echo ""
 
@@ -110,12 +117,44 @@ if [ $BUILD_EXIT_CODE -eq 0 ]; then
 else
   echo "⚠️  Build completed with exit code $BUILD_EXIT_CODE"
   echo "📋 Showing last 50 lines of build output for debugging:"
-  tail -50 "$BUILD_LOG" || true
+  tail -50 "$BUILD_LOG_RAW" || true
   echo ""
   echo "⚠️  Build had errors, but attempting to merge emitted strings anyway..."
   echo "💡 Note: xcodebuild compiles files in parallel, so many Swift files may have compiled successfully"
   echo "💡 Even if the build failed, we'll try to merge strings from successfully compiled files"
 fi
+
+# CRITICAL CHECK: Look for the "bridge artifact" Localizable.strings that Xcode should produce
+# This is the compiled localization output that Xcode uses to update the catalog
+echo ""
+echo "🔍 Checking for bridge artifact: Localizable.strings (compiled localization output)..."
+BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+if [ -n "$BUILD_DIR" ]; then
+  DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
+  INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
+  
+  # Search for Localizable.strings in the expected location (*.lproj/Localizable.strings)
+  BRIDGE_STRINGS=$(find "$DERIVED_DATA_DIR" -path '*/*.lproj/Localizable.strings' -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | head -10 || echo "")
+  
+  if [ -n "$BRIDGE_STRINGS" ]; then
+    BRIDGE_COUNT=$(echo "$BRIDGE_STRINGS" | wc -l | xargs)
+    echo "✅ Found $BRIDGE_COUNT Localizable.strings bridge artifact(s):"
+    echo "$BRIDGE_STRINGS" | sed 's/^/   /'
+    echo "💡 These are the compiled localization outputs that Xcode should use to update .xcstrings"
+  else
+    echo "⚠️  WARNING: No Localizable.strings bridge artifacts found!"
+    echo "   This means Xcode did NOT produce the compiled localization output"
+    echo "   The pipeline stopped at *.stringsdata and never created the bridge artifacts"
+    echo "   Will fall back to manual import from *.stringsdata files"
+    echo ""
+    echo "   Searched in:"
+    echo "   - DerivedData: $DERIVED_DATA_DIR"
+    echo "   - Intermediates: $INTERMEDIATES_DIR"
+  fi
+else
+  echo "⚠️  Could not determine DerivedData path for bridge artifact check"
+fi
+echo ""
 
 # Check if strings were already merged into the catalog by Xcode
 echo "🔍 Checking string catalog for merged strings..."
@@ -211,28 +250,39 @@ if [ -n "$BUILD_DIR" ]; then
   if [ "$FILES_TO_MERGE" -gt 0 ]; then
     echo ""
     echo "🔄 Merging $FILES_TO_MERGE emitted file(s) into catalog..."
+    echo "💡 This is the manual import fallback - converting *.stringsdata/intermediates into .xcstrings"
     
     # Use Python script to merge strings (supports both .strings and .stringsdata)
     if [ -f "./Scripts/merge_emitted_strings.py" ]; then
       # Pass the Intermediates directory to the merge script so it can find both .strings and .stringsdata files
       # This is safer than passing individual file paths which might have spaces
-      python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" || echo "⚠️  Failed to merge strings"
+      # The merge script will handle conversion from *.stringsdata binary format to .xcstrings JSON
+      python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" || {
+        echo "⚠️  Failed to merge strings via Python script"
+        echo "💡 This is the critical fallback - if this fails, strings won't be imported"
+      }
       
       # Verify merge succeeded
       if command -v jq &> /dev/null; then
         FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
         if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
           NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
-          echo "✅ Successfully merged $NEW_STRINGS new strings into catalog"
+          echo "✅ Successfully merged $NEW_STRINGS new strings into catalog via manual import"
           echo "✅ Catalog now contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
           CATALOG_COUNT=$FINAL_COUNT
         else
           echo "⚠️  Merge completed but no new strings were added"
           echo "💡 Catalog still contains $FINAL_COUNT strings (same as before merge)"
+          echo "💡 This might mean:"
+          echo "   - Strings were already in the catalog"
+          echo "   - Merge script couldn't parse the .stringsdata files"
+          echo "   - No new strings were actually emitted"
         fi
       fi
     else
-      echo "⚠️  merge_emitted_strings.py not found, skipping merge"
+      echo "❌ CRITICAL: merge_emitted_strings.py not found!"
+      echo "   Cannot perform manual import from *.stringsdata files"
+      echo "   This is the fallback mechanism - without it, strings won't be imported"
     fi
   else
     echo "⚠️  No compiler-emitted strings files found in DerivedData"
@@ -241,6 +291,19 @@ if [ -n "$BUILD_DIR" ]; then
     echo "   2. Strings are in a different location"
     echo "   3. Existing .strings files in project may prevent emission"
     echo "   4. Strings were already merged by Xcode during build"
+    echo ""
+    echo "🔍 Performing broader search for any localization artifacts..."
+    DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
+    BROAD_SEARCH=$(find "$DERIVED_DATA_DIR" -type f 2>/dev/null \
+      | grep -Ev "/SourcePackages/|/Products/|\\.framework/" \
+      | grep -Ei "\\.(strings|stringsdata|xcstrings)$" \
+      | head -20 || echo "")
+    
+    if [ -n "$BROAD_SEARCH" ]; then
+      echo "📁 Found localization artifacts in broader search:"
+      echo "$BROAD_SEARCH" | sed 's/^/   /'
+      echo "💡 These might be in unexpected locations - consider updating search paths"
+    fi
     
     # Try using xcodebuild -exportLocalizations as a fallback (to capture any strings Xcode found)
     echo ""
@@ -388,17 +451,24 @@ if [ -f "$BUILD_LOG_RAW" ]; then
   echo "   Build log size: $(wc -l < "$BUILD_LOG_RAW" | xargs) lines"
   echo "   Checking for emit-localized-strings flags..."
   EMIT_COUNT=$(grep -c "emit-local" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
+  STRINGSDATA_COUNT=$(grep -c "stringsdata" "$BUILD_LOG_RAW" 2>/dev/null || echo "0")
   if [ "$EMIT_COUNT" -gt 0 ]; then
     echo "   ✅ Found $EMIT_COUNT references to 'emit-local' flags"
   else
     echo "   ⚠️  No 'emit-local' flags found in build log"
   fi
+  if [ "$STRINGSDATA_COUNT" -gt 0 ]; then
+    echo "   ✅ Found $STRINGSDATA_COUNT references to '.stringsdata' files"
+  fi
 fi
 
 # Clean up log files (but keep raw log for diagnostics if build failed)
+# Note: We keep BUILD_LOG_RAW for debugging since it contains the actual swiftc invocations
 if [ $BUILD_EXIT_CODE -eq 0 ]; then
-  rm -f "$BUILD_LOG" "$BUILD_LOG_RAW"
+  # Optionally remove log file to save space (comment out if you want to keep it)
+  # rm -f "$BUILD_LOG_RAW"
+  echo "   Build log saved to: $BUILD_LOG_RAW"
 else
-  echo "   Keeping build logs for debugging (build failed)"
+  echo "   Keeping build log for debugging (build failed): $BUILD_LOG_RAW"
 fi
 
