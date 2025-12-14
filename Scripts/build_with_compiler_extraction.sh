@@ -2,36 +2,76 @@
 
 set -uo pipefail  # Remove -e to allow graceful error handling
 
-PROJECT_PATH="${1:-YourApp.xcodeproj}"
+# Accept BUILD_PATH (workspace or project for xcodebuild) and optionally XCODEPROJ_PATH (for Ruby scripts)
+# Usage: build_with_compiler_extraction.sh <BUILD_PATH> <SCHEME> [CONFIGURATION] [XCODEPROJ_PATH]
+BUILD_PATH="${1:-YourApp.xcodeproj}"
 SCHEME="${2:-YourApp}"
 CONFIGURATION="${3:-Debug}"
+XCODEPROJ_PATH="${4:-}"
 
-# Detect if we have a workspace or project
-# Check for workspace first (preferred), then project
-PROJECT_TYPE="project"
-if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
-  PROJECT_TYPE="workspace"
-  echo "✅ Using workspace: $PROJECT_PATH"
-elif [ -d "$PROJECT_PATH/project.xcworkspace" ]; then
+# Detect if BUILD_PATH is a workspace or project
+BUILD_TYPE="project"
+if echo "$BUILD_PATH" | grep -q "\.xcworkspace$"; then
+  BUILD_TYPE="workspace"
+  echo "✅ Build path is workspace: $BUILD_PATH"
+  
+  # Derive XCODEPROJ_PATH from workspace if not provided
+  if [ -z "$XCODEPROJ_PATH" ]; then
+    # If workspace is inside .xcodeproj (e.g., CodeEdit.xcodeproj/project.xcworkspace)
+    if echo "$BUILD_PATH" | grep -q "\.xcodeproj/project\.xcworkspace$"; then
+      XCODEPROJ_PATH=$(echo "$BUILD_PATH" | sed 's|/project\.xcworkspace$||')
+      echo "✅ Derived project path from workspace: $XCODEPROJ_PATH"
+    else
+      # Standalone workspace - try to find associated .xcodeproj
+      WORKSPACE_DIR=$(dirname "$BUILD_PATH")
+      XCODEPROJ_PATH=$(find "$WORKSPACE_DIR" -maxdepth 2 -name "*.xcodeproj" -type d | head -n 1)
+      if [ -n "$XCODEPROJ_PATH" ]; then
+        echo "✅ Found associated project: $XCODEPROJ_PATH"
+      else
+        echo "⚠️  Could not find associated .xcodeproj for workspace"
+        echo "   Ruby scripts may fail - please provide XCODEPROJ_PATH as 4th argument"
+      fi
+    fi
+  fi
+elif [ -d "$BUILD_PATH/project.xcworkspace" ]; then
   # Common pattern: workspace inside .xcodeproj
-  WORKSPACE_PATH="$PROJECT_PATH/project.xcworkspace"
-  PROJECT_TYPE="workspace"
+  BUILD_TYPE="workspace"
+  WORKSPACE_PATH="$BUILD_PATH/project.xcworkspace"
   echo "✅ Found workspace inside project: $WORKSPACE_PATH"
-  PROJECT_PATH="$WORKSPACE_PATH"
-elif [ -d "$PROJECT_PATH" ] && [ -f "$PROJECT_PATH/project.pbxproj" ]; then
-  PROJECT_TYPE="project"
-  echo "✅ Using project: $PROJECT_PATH"
+  BUILD_PATH="$WORKSPACE_PATH"
+  # XCODEPROJ_PATH is the parent .xcodeproj
+  if [ -z "$XCODEPROJ_PATH" ]; then
+    XCODEPROJ_PATH=$(dirname "$BUILD_PATH")
+    echo "✅ Using project path: $XCODEPROJ_PATH"
+  fi
+elif [ -d "$BUILD_PATH" ] && [ -f "$BUILD_PATH/project.pbxproj" ]; then
+  BUILD_TYPE="project"
+  echo "✅ Build path is project: $BUILD_PATH"
+  # If XCODEPROJ_PATH not provided, use BUILD_PATH
+  if [ -z "$XCODEPROJ_PATH" ]; then
+    XCODEPROJ_PATH="$BUILD_PATH"
+    echo "✅ Using same path for project operations: $XCODEPROJ_PATH"
+  fi
 else
-  echo "⚠️  Could not determine project type, assuming project"
-  PROJECT_TYPE="project"
+  echo "⚠️  Could not determine build type, assuming project"
+  BUILD_TYPE="project"
+  if [ -z "$XCODEPROJ_PATH" ]; then
+    XCODEPROJ_PATH="$BUILD_PATH"
+  fi
+fi
+
+# Verify XCODEPROJ_PATH exists and is a valid .xcodeproj
+if [ -n "$XCODEPROJ_PATH" ] && [ ! -f "$XCODEPROJ_PATH/project.pbxproj" ]; then
+  echo "⚠️  WARNING: XCODEPROJ_PATH '$XCODEPROJ_PATH' does not contain project.pbxproj"
+  echo "   Ruby scripts that modify the project may fail"
 fi
 
 # Helper function to build xcodebuild command with correct project/workspace flag
 xcodebuild_cmd() {
-  if [ "$PROJECT_TYPE" = "workspace" ]; then
-    xcodebuild -workspace "$PROJECT_PATH" -scheme "$SCHEME" "$@"
+  if [ "$BUILD_TYPE" = "workspace" ]; then
+    xcodebuild -workspace "$BUILD_PATH" -scheme "$SCHEME" "$@"
   else
-    xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" "$@"
+    xcodebuild -project "$BUILD_PATH" -scheme "$SCHEME" "$@"
   fi
 }
 
@@ -62,15 +102,24 @@ fi
 echo "📍 Build destination: $DESTINATION"
 
 echo "🏗  Ensuring String Catalog exists..."
-./Scripts/ensure_string_catalog.sh "$PROJECT_PATH" "$SCHEME" || {
-  echo "⚠️  Warning: Failed to ensure string catalog, continuing anyway..."
-}
+# Use XCODEPROJ_PATH for Ruby scripts (must be .xcodeproj, not workspace)
+if [ -n "$XCODEPROJ_PATH" ]; then
+  ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "$SCHEME" || {
+    echo "⚠️  Warning: Failed to ensure string catalog, continuing anyway..."
+  }
+else
+  echo "⚠️  WARNING: XCODEPROJ_PATH not set - cannot ensure string catalog"
+  echo "   Please provide .xcodeproj path as 4th argument when using workspace"
+fi
 
 # If file was recreated, ensure it's added to the project
 XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
-if [ -n "$XCSTRINGS_FILE" ] && [ -f "./Scripts/add_xcstrings_to_project.rb" ]; then
+if [ -n "$XCSTRINGS_FILE" ] && [ -f "./Scripts/add_xcstrings_to_project.rb" ] && [ -n "$XCODEPROJ_PATH" ]; then
   echo "🔄 Ensuring .xcstrings file is in Xcode project..."
-  ruby ./Scripts/add_xcstrings_to_project.rb "$PROJECT_PATH" "$XCSTRINGS_FILE" "$SCHEME" 2>/dev/null || echo "⚠️  Note: File may already be in project"
+  ruby ./Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "$SCHEME" 2>/dev/null || echo "⚠️  Note: File may already be in project"
+elif [ -z "$XCODEPROJ_PATH" ]; then
+  echo "⚠️  WARNING: XCODEPROJ_PATH not set - cannot add catalog to project"
+  echo "   Catalog may not be populated by build if not in project"
 fi
 
 echo "🏗  Running unsigned build with compiler-based string extraction..."
@@ -155,7 +204,7 @@ fi
 # This is the compiled localization output that Xcode uses to update the catalog
 echo ""
 echo "🔍 Checking for bridge artifact: Localizable.strings (compiled localization output)..."
-BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+BUILD_DIR=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
 if [ -n "$BUILD_DIR" ]; then
   DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
   INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
@@ -350,10 +399,10 @@ if [ -n "$BUILD_DIR" ]; then
     fi
     
     # Build exportLocalizations command with scheme and derivedDataPath
-    if [ "$PROJECT_TYPE" = "workspace" ]; then
-      EXPORT_CMD="xcodebuild -exportLocalizations -workspace \"$PROJECT_PATH\""
+    if [ "$BUILD_TYPE" = "workspace" ]; then
+      EXPORT_CMD="xcodebuild -exportLocalizations -workspace \"$BUILD_PATH\""
     else
-      EXPORT_CMD="xcodebuild -exportLocalizations -project \"$PROJECT_PATH\""
+      EXPORT_CMD="xcodebuild -exportLocalizations -project \"$BUILD_PATH\""
     fi
     EXPORT_CMD="$EXPORT_CMD -scheme \"$SCHEME\""
     EXPORT_CMD="$EXPORT_CMD -localizationPath \"$EXPORT_DIR\""
