@@ -395,39 +395,76 @@ if [ -n "$BUILD_DIR" ]; then
   if [ "$FILES_TO_MERGE" -gt 0 ]; then
     echo ""
     echo "🔄 Merging $FILES_TO_MERGE emitted file(s) into catalog..."
-    echo "💡 This is the manual import fallback - converting *.stringsdata/intermediates into .xcstrings"
+    echo "💡 This is the manual import fallback - converting emitted strings into .xcstrings"
     
-    # Use Python script to merge strings (supports both .strings and .stringsdata)
-    if [ -f "./Scripts/merge_emitted_strings.py" ]; then
-      # Pass the Intermediates directory to the merge script so it can find both .strings and .stringsdata files
-      # This is safer than passing individual file paths which might have spaces
-      # The merge script will handle conversion from *.stringsdata binary format to .xcstrings JSON
-      python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" || {
-        echo "⚠️  Failed to merge strings via Python script"
-        echo "💡 This is the critical fallback - if this fails, strings won't be imported"
-      }
+    # Process .stringsdata files using xcstringstool (Apple's official tool)
+    if [ -n "$EMITTED_STRINGSDATA_FILES" ]; then
+      echo ""
+      echo "📦 Processing .stringsdata files using xcstringstool..."
       
-      # Verify merge succeeded
-      if command -v jq &> /dev/null; then
-        FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-        if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
-          NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
-          echo "✅ Successfully merged $NEW_STRINGS new strings into catalog via manual import"
-          echo "✅ Catalog now contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
-          CATALOG_COUNT=$FINAL_COUNT
-        else
-          echo "⚠️  Merge completed but no new strings were added"
-          echo "💡 Catalog still contains $FINAL_COUNT strings (same as before merge)"
-          echo "💡 This might mean:"
-          echo "   - Strings were already in the catalog"
-          echo "   - Merge script couldn't parse the .stringsdata files"
-          echo "   - No new strings were actually emitted"
+      # Check if xcstringstool is available
+      if command -v xcrun >/dev/null 2>&1 && xcrun --find xcstringstool >/dev/null 2>&1; then
+        echo "✅ xcstringstool found - using official Apple tool to sync .stringsdata into catalog"
+        
+        # Write list to a file to avoid arg-length issues
+        STRINGSDATA_LIST=$(mktemp)
+        printf "%s\n" "$EMITTED_STRINGSDATA_FILES" > "$STRINGSDATA_LIST"
+        
+        SYNC_COUNT=0
+        SYNC_FAILED=0
+        
+        # Sync each stringsdata file into the catalog
+        while IFS= read -r f; do
+          [ -z "$f" ] && continue
+          if [ -f "$f" ]; then
+            if xcrun xcstringstool sync "$XCSTRINGS_FILE" --stringsdata "$f" 2>/dev/null; then
+              SYNC_COUNT=$((SYNC_COUNT + 1))
+            else
+              SYNC_FAILED=$((SYNC_FAILED + 1))
+              echo "   ⚠️  Failed to sync: $f"
+            fi
+          fi
+        done < "$STRINGSDATA_LIST"
+        
+        rm -f "$STRINGSDATA_LIST"
+        
+        echo "✅ Synced $SYNC_COUNT .stringsdata file(s) into catalog"
+        if [ "$SYNC_FAILED" -gt 0 ]; then
+          echo "⚠️  $SYNC_FAILED file(s) failed to sync (non-fatal)"
         fi
+      else
+        echo "⚠️  xcstringstool not available"
+        echo "   Falling back to exportLocalizations or Python script..."
       fi
-    else
-      echo "❌ CRITICAL: merge_emitted_strings.py not found!"
-      echo "   Cannot perform manual import from *.stringsdata files"
-      echo "   This is the fallback mechanism - without it, strings won't be imported"
+    fi
+    
+    # Process .strings files using Python script (if available)
+    if [ -n "$EMITTED_STRINGS_FILES" ] && [ -f "./Scripts/merge_emitted_strings.py" ]; then
+      echo ""
+      echo "📦 Processing .strings files using Python script..."
+      python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$INTERMEDIATES_DIR" 2>/dev/null || {
+        echo "⚠️  Failed to merge .strings files via Python script (non-fatal)"
+      }
+    fi
+    
+    # Verify merge succeeded
+    if command -v jq &> /dev/null; then
+      FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+      if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
+        NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
+        echo ""
+        echo "✅ Successfully merged $NEW_STRINGS new strings into catalog via manual import"
+        echo "✅ Catalog now contains $FINAL_COUNT strings total (was $INITIAL_CATALOG_COUNT)"
+        CATALOG_COUNT=$FINAL_COUNT
+      else
+        echo ""
+        echo "⚠️  Merge completed but no new strings were added"
+        echo "💡 Catalog still contains $FINAL_COUNT strings (same as before merge: $INITIAL_CATALOG_COUNT)"
+        echo "💡 This might mean:"
+        echo "   - Strings were already in the catalog"
+        echo "   - .stringsdata files couldn't be synced (check xcstringstool availability)"
+        echo "   - No new strings were actually emitted"
+      fi
     fi
   else
     echo "⚠️  No compiler-emitted strings files found in DerivedData"
@@ -497,28 +534,16 @@ if [ -n "$BUILD_DIR" ]; then
         
         if [ -n "$XCSTRINGS_IN_XCLOC" ] && [ -f "$XCSTRINGS_IN_XCLOC" ]; then
           echo "📋 Found .xcstrings file in export: $XCSTRINGS_IN_XCLOC"
-          # Merge the exported .xcstrings into our catalog (preserving existing entries)
-          if [ -f "./Scripts/merge_emitted_strings.py" ]; then
-            # Merge the exported .xcstrings into our catalog
-            python3 ./Scripts/merge_emitted_strings.py "$XCSTRINGS_FILE" "$XCSTRINGS_IN_XCLOC" || {
-              echo "⚠️  Merge failed, trying direct copy..."
-              # Fallback: if merge fails, just copy the file (it should have all strings)
-              cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
-            }
-            
-            # Verify merge succeeded
-            if command -v jq &> /dev/null; then
-              FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-              if [ "$FINAL_COUNT" -gt "$INITIAL_CATALOG_COUNT" ]; then
-                NEW_STRINGS=$((FINAL_COUNT - INITIAL_CATALOG_COUNT))
-                echo "✅ Successfully merged $NEW_STRINGS new strings via exportLocalizations"
-                echo "✅ Catalog now contains $FINAL_COUNT strings total"
-                CATALOG_COUNT=$FINAL_COUNT
-              fi
+          # Copy the exported .xcstrings (it should contain all strings from exportLocalizations)
+          cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
+          
+          # Verify copy succeeded
+          if command -v jq &> /dev/null; then
+            FINAL_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+            if [ "$FINAL_COUNT" -gt 0 ]; then
+              echo "✅ Exported catalog contains $FINAL_COUNT strings"
+              CATALOG_COUNT=$FINAL_COUNT
             fi
-          else
-            # No merge script, just copy
-            cp "$XCSTRINGS_IN_XCLOC" "$XCSTRINGS_FILE" && echo "✅ Copied exported .xcstrings file"
           fi
         else
           # Check for .xliff files (older format)
