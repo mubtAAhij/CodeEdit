@@ -567,10 +567,22 @@ jobs:
             exit 1
           fi
 
+      - name: Bash syntax check
+        run: |
+          echo "🔍 Checking bash syntax of build script..."
+          bash -n ./Scripts/build_with_compiler_extraction.sh || {
+            echo "❌ Bash syntax check failed!"
+            exit 1
+          }
+          echo "✅ Bash syntax check passed"
+          # Ensure script is executable
+          chmod +x ./Scripts/build_with_compiler_extraction.sh
+
       - name: Run unsigned build with compiler string extraction
         continue-on-error: true
+        shell: bash
         run: |
-          ./Scripts/build_with_compiler_extraction.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
+          bash ./Scripts/build_with_compiler_extraction.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
           
           # Diagnostic: Check build log for emit-localized-strings flags
           echo ""
