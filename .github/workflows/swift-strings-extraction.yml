@@ -1014,11 +1014,28 @@ jobs:
         continue-on-error: true
         run: |
           echo "🔍 Comprehensive search for emitted strings..."
-          BUILD_DIR=$(xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -scheme "${{ steps.find-xcode-project.outputs.scheme }}" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
-          if [ -n "$BUILD_DIR" ]; then
-            DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
-            INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
-            PRODUCTS_DIR="$BUILD_DIR"
+          # Use isolated DerivedData from workflow (same one used during build)
+          DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
+          if [ -n "$DERIVED_DATA_PATH" ] && [ -d "$DERIVED_DATA_PATH" ]; then
+            echo "📂 Using isolated DerivedData from build: $DERIVED_DATA_PATH"
+            DERIVED_DATA_DIR="$DERIVED_DATA_PATH"
+            INTERMEDIATES_DIR="$DERIVED_DATA_DIR/Build/Intermediates.noindex"
+            PRODUCTS_DIR="$DERIVED_DATA_DIR/Build/Products"
+          else
+            echo "⚠️  Isolated DerivedData not found, falling back to build settings..."
+            BUILD_DIR=$(xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -scheme "${{ steps.find-xcode-project.outputs.scheme }}" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+            if [ -n "$BUILD_DIR" ]; then
+              DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
+              INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
+              PRODUCTS_DIR="$BUILD_DIR"
+            else
+              DERIVED_DATA_DIR=""
+              INTERMEDIATES_DIR=""
+              PRODUCTS_DIR=""
+            fi
+          fi
+          
+          if [ -n "$DERIVED_DATA_DIR" ]; then
             
             echo "📂 DerivedData root: $DERIVED_DATA_DIR"
             echo "📂 Intermediates: $INTERMEDIATES_DIR"
@@ -1091,18 +1108,27 @@ jobs:
           PROJECT_TYPE="${{ steps.find-xcode-project.outputs.project_type }}"
           SCHEME="${{ steps.find-xcode-project.outputs.scheme }}"
           
-          # Get DerivedData path (use workspace if available)
-          if [ "$PROJECT_TYPE" = "workspace" ]; then
-            BUILD_DIR=$(xcodebuild -workspace "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+          # Use isolated DerivedData from workflow (same one used during build)
+          DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
+          if [ -n "$DERIVED_DATA_PATH" ] && [ -d "$DERIVED_DATA_PATH" ]; then
+            echo "📂 Using isolated DerivedData from build: $DERIVED_DATA_PATH"
+            DERIVED_DATA_DIR="$DERIVED_DATA_PATH"
+            INTERMEDIATES_DIR="$DERIVED_DATA_DIR/Build/Intermediates.noindex"
           else
-            BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
-          fi
-          if [ -n "$BUILD_DIR" ]; then
-            DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
-            INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
-          else
-            DERIVED_DATA_DIR=""
-            INTERMEDIATES_DIR=""
+            echo "⚠️  Isolated DerivedData not found, falling back to build settings..."
+            # Fallback: Get DerivedData path from build settings (use workspace if available)
+            if [ "$PROJECT_TYPE" = "workspace" ]; then
+              BUILD_DIR=$(xcodebuild -workspace "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+            else
+              BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+            fi
+            if [ -n "$BUILD_DIR" ]; then
+              DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
+              INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
+            else
+              DERIVED_DATA_DIR=""
+              INTERMEDIATES_DIR=""
+            fi
           fi
           
           # 7) Proof that the merge step happened (or didn't)
@@ -1194,7 +1220,39 @@ jobs:
           if [ ! -f skip-list.json ]; then
             echo "[]" > skip-list.json
           fi
-          echo "Skip list contains $(jq 'length' skip-list.json) entries"
+          
+          # Debug: Show skip list structure and get correct entry count
+          echo ""
+          echo "🔍 Skip list structure analysis:"
+          if command -v jq >/dev/null 2>&1; then
+            echo "   Top-level keys: $(jq 'keys' skip-list.json 2>/dev/null || echo '[]')"
+            echo "   JSON type: $(jq -r 'type' skip-list.json 2>/dev/null || echo 'unknown')"
+            
+            # The skip list uses 'strings' field for entries (from build_skip_list.py)
+            # Check for 'strings' array first, then fallback to other common names
+            if jq -e '.strings | type == "array"' skip-list.json >/dev/null 2>&1; then
+              ENTRY_COUNT=$(jq '.strings | length' skip-list.json)
+              echo "   ✅ Found entries in 'strings' field: $ENTRY_COUNT entries"
+            elif jq -e '.entries | type == "array"' skip-list.json >/dev/null 2>&1; then
+              ENTRY_COUNT=$(jq '.entries | length' skip-list.json)
+              echo "   ✅ Found entries in 'entries' field: $ENTRY_COUNT entries"
+            elif jq -e '.skip_list | type == "array"' skip-list.json >/dev/null 2>&1; then
+              ENTRY_COUNT=$(jq '.skip_list | length' skip-list.json)
+              echo "   ✅ Found entries in 'skip_list' field: $ENTRY_COUNT entries"
+            elif jq -e 'type == "array"' skip-list.json >/dev/null 2>&1; then
+              ENTRY_COUNT=$(jq 'length' skip-list.json)
+              echo "   ✅ Root is array: $ENTRY_COUNT entries"
+            else
+              echo "   ⚠️  Could not determine entry count - showing structure paths:"
+              jq 'paths | map(tostring) | join(".")' skip-list.json 2>/dev/null | head -10 || echo "   (could not introspect)"
+              ENTRY_COUNT="unknown"
+            fi
+            echo ""
+            echo "Skip list contains $ENTRY_COUNT entries"
+          else
+            echo "   ⚠️  jq not available - cannot analyze structure"
+            echo "Skip list generated (structure unknown)"
+          fi
 
       - name: Set up gcloud auth
         uses: google-github-actions/auth@v2
