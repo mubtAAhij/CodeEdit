@@ -896,6 +896,58 @@ jobs:
             echo "ℹ️  No .xcstrings file found to upload"
           fi
 
+      - name: Upload sample .stringsdata files to GCS (for debugging)
+        continue-on-error: true
+        run: |
+          # Use isolated DerivedData from workflow
+          DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
+          if [ -z "$DERIVED_DATA_PATH" ] || [ ! -d "$DERIVED_DATA_PATH" ]; then
+            echo "⚠️  DerivedData path not available, skipping .stringsdata upload"
+            exit 0
+          fi
+          
+          # Find first 3 .stringsdata files
+          SAMPLE_STRINGSDATA_FILES=$(find "$DERIVED_DATA_PATH" -name "*.stringsdata" -type f 2>/dev/null \
+            | grep -v "/SourcePackages/" \
+            | grep -v "/Products/" \
+            | grep -v ".framework/" \
+            | head -3)
+          
+          if [ -z "$SAMPLE_STRINGSDATA_FILES" ]; then
+            echo "ℹ️  No .stringsdata files found to upload"
+            exit 0
+          fi
+          
+          GCS_DIR=$(dirname "$GCS_PATH")
+          UPLOADED_COUNT=0
+          
+          if command -v gsutil &> /dev/null; then
+            echo "Uploading sample .stringsdata files to GCS..."
+            while IFS= read -r stringsdata_file; do
+              [ -z "$stringsdata_file" ] && continue
+              if [ ! -f "$stringsdata_file" ]; then
+                continue
+              fi
+              
+              # Extract filename and create GCS path
+              FILENAME=$(basename "$stringsdata_file")
+              STRINGSDATA_GCS_PATH="${GCS_DIR}/sample-stringsdata/${FILENAME}"
+              
+              if gsutil cp "$stringsdata_file" "gs://$GCS_BUCKET/$STRINGSDATA_GCS_PATH" 2>/dev/null; then
+                echo "  ✅ Uploaded: $FILENAME -> gs://$GCS_BUCKET/$STRINGSDATA_GCS_PATH"
+                UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
+              else
+                echo "  ⚠️  Failed to upload: $FILENAME"
+              fi
+            done <<< "$SAMPLE_STRINGSDATA_FILES"
+            
+            if [ "$UPLOADED_COUNT" -gt 0 ]; then
+              echo "✅ Uploaded $UPLOADED_COUNT sample .stringsdata file(s) to gs://$GCS_BUCKET/$GCS_DIR/sample-stringsdata/"
+            fi
+          else
+            echo "⚠️  gsutil not available. .stringsdata file upload skipped."
+          fi
+
       - name: Upload catalogs as artifact (for debugging)
         uses: actions/upload-artifact@v4
         with:
@@ -939,6 +991,15 @@ jobs:
           if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
             XCSTRINGS_GCS_PATH="${GCS_DIR}/Localizable.xcstrings"
             echo ".xcstrings file available at: gs://$GCS_BUCKET/$XCSTRINGS_GCS_PATH"
+          fi
+          
+          # Check if sample .stringsdata files were uploaded
+          DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
+          if [ -n "$DERIVED_DATA_PATH" ] && [ -d "$DERIVED_DATA_PATH" ]; then
+            SAMPLE_COUNT=$(find "$DERIVED_DATA_PATH" -name "*.stringsdata" -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -3 | wc -l | xargs)
+            if [ "$SAMPLE_COUNT" -gt 0 ]; then
+              echo "Sample .stringsdata files available at: gs://$GCS_BUCKET/$GCS_DIR/sample-stringsdata/"
+            fi
           fi
           
           echo "Project ID: $PROJECT_ID"
