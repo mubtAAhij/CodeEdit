@@ -419,31 +419,25 @@ if [ -n "$BUILD_DIR" ]; then
       echo ""
       echo "📦 Processing .stringsdata files using xcstringstool..."
       
-      # Check if xcstringstool is available
-      if command -v xcrun >/dev/null 2>&1 && xcrun --find xcstringstool >/dev/null 2>&1; then
+      # Validate XCSTRINGS_FILE exists before attempting sync
+      if [ -z "$XCSTRINGS_FILE" ] || [ ! -f "$XCSTRINGS_FILE" ]; then
+        echo "❌ XCSTRINGS_FILE missing or not found: '$XCSTRINGS_FILE'"
+        echo "   Cannot sync .stringsdata files without a valid catalog"
+        echo "   Falling back to exportLocalizations..."
+      elif ! command -v xcrun >/dev/null 2>&1 || ! xcrun --find xcstringstool >/dev/null 2>&1; then
+        echo "⚠️  xcstringstool not available"
+        echo "   Falling back to exportLocalizations or Python script..."
+      else
         echo "✅ xcstringstool found - using official Apple tool to sync .stringsdata into catalog"
-        
-        # Debug: Show xcstringstool help to verify it's working
-        echo ""
-        echo "🔍 xcstringstool diagnostic information:"
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "📋 xcstringstool --help:"
-        xcrun xcstringstool --help 2>&1 | head -20 || echo "   (help not available)"
-        echo ""
-        echo "📋 xcstringstool sync --help:"
-        xcrun xcstringstool sync --help 2>&1 | head -20 || echo "   (sync help not available)"
-        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo ""
+        echo "📂 Catalog file: $XCSTRINGS_FILE"
         
         # Get initial string count from catalog
         INITIAL_STRING_COUNT=0
-        if [ -f "$XCSTRINGS_FILE" ]; then
-          if command -v jq >/dev/null 2>&1; then
-            INITIAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-            echo "📊 Initial catalog string count: $INITIAL_STRING_COUNT"
-          else
-            echo "⚠️  jq not available - cannot count strings in catalog"
-          fi
+        if command -v jq >/dev/null 2>&1; then
+          INITIAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+          echo "📊 Initial catalog string count: $INITIAL_STRING_COUNT"
+        else
+          echo "⚠️  jq not available - cannot count strings in catalog"
         fi
         
         # Write list to a file to avoid arg-length issues
@@ -454,14 +448,16 @@ if [ -n "$BUILD_DIR" ]; then
         SYNC_FAILED=0
         
         # Sync each stringsdata file into the catalog
+        # CRITICAL: Use --skip-marking-strings-stale to prevent deleting previously-synced strings
         while IFS= read -r f; do
           [ -z "$f" ] && continue
           if [ -f "$f" ]; then
             echo "   🔄 Syncing: $(basename "$f")"
-            echo "      Command: xcrun xcstringstool sync \"$XCSTRINGS_FILE\" --stringsdata \"$f\""
+            echo "      Full command: xcrun xcstringstool sync \"$XCSTRINGS_FILE\" --stringsdata \"$f\" --skip-marking-strings-stale"
             
-            # Run sync command (show errors, don't suppress)
-            if xcrun xcstringstool sync "$XCSTRINGS_FILE" --stringsdata "$f" 2>&1; then
+            # Run sync command with --skip-marking-strings-stale to accumulate strings
+            # This prevents each sync from deleting strings from previous files
+            if xcrun xcstringstool sync "$XCSTRINGS_FILE" --stringsdata "$f" --skip-marking-strings-stale 2>&1; then
               SYNC_COUNT=$((SYNC_COUNT + 1))
               
               # Count strings after each sync to verify it's working
@@ -486,6 +482,12 @@ if [ -n "$BUILD_DIR" ]; then
           FINAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
           echo ""
           echo "📊 Final catalog string count: $FINAL_STRING_COUNT (started with $INITIAL_STRING_COUNT)"
+          if [ "$FINAL_STRING_COUNT" -gt "$INITIAL_STRING_COUNT" ]; then
+            NEW_STRINGS=$((FINAL_STRING_COUNT - INITIAL_STRING_COUNT))
+            echo "✅ Successfully added $NEW_STRINGS new strings from .stringsdata files"
+          elif [ "$FINAL_STRING_COUNT" -lt "$INITIAL_STRING_COUNT" ]; then
+            echo "⚠️  WARNING: Catalog lost strings (had $INITIAL_STRING_COUNT, now has $FINAL_STRING_COUNT)"
+          fi
         fi
         
         echo ""
@@ -493,9 +495,6 @@ if [ -n "$BUILD_DIR" ]; then
         if [ "$SYNC_FAILED" -gt 0 ]; then
           echo "⚠️  $SYNC_FAILED file(s) failed to sync (non-fatal)"
         fi
-      else
-        echo "⚠️  xcstringstool not available"
-        echo "   Falling back to exportLocalizations or Python script..."
       fi
     fi
     
@@ -565,23 +564,37 @@ if [ -n "$BUILD_DIR" ]; then
       DERIVED_DATA_PATH=""
     fi
     
-    # Build exportLocalizations command with scheme and derivedDataPath
+    # Build exportLocalizations command using array (safer than string eval)
+    # CRITICAL: Use -workspace when BUILD_TYPE=workspace, -project when BUILD_TYPE=project
+    # Never pass a .xcworkspace path to -project
+    EXPORT_CMD=()
     if [ "$BUILD_TYPE" = "workspace" ]; then
-      EXPORT_CMD="xcodebuild -exportLocalizations -workspace \"$BUILD_PATH\""
+      EXPORT_CMD=(xcodebuild -exportLocalizations -workspace "$BUILD_PATH")
     else
-      EXPORT_CMD="xcodebuild -exportLocalizations -project \"$BUILD_PATH\""
+      EXPORT_CMD=(xcodebuild -exportLocalizations -project "$BUILD_PATH")
     fi
-    EXPORT_CMD="$EXPORT_CMD -scheme \"$SCHEME\""
-    EXPORT_CMD="$EXPORT_CMD -localizationPath \"$EXPORT_DIR\""
-    EXPORT_CMD="$EXPORT_CMD -exportLanguage en"
-    EXPORT_CMD="$EXPORT_CMD -skipPackagePluginValidation"
+    EXPORT_CMD+=(-scheme "$SCHEME")
+    EXPORT_CMD+=(-localizationPath "$EXPORT_DIR")
+    EXPORT_CMD+=(-exportLanguage en)
+    EXPORT_CMD+=(-skipPackagePluginValidation)
+    
+    # Use DERIVED_DATA_PATH from environment if set (from workflow)
+    if [ -z "$DERIVED_DATA_PATH" ]; then
+      # Fallback: try to get from build settings
+      BUILD_DIR_SETTING=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+      if [ -n "$BUILD_DIR_SETTING" ]; then
+        DERIVED_DATA_PATH=$(echo "$BUILD_DIR_SETTING" | sed 's|/Build.*||' | xargs)
+      fi
+    fi
+    
     if [ -n "$DERIVED_DATA_PATH" ]; then
-      EXPORT_CMD="$EXPORT_CMD -derivedDataPath \"$DERIVED_DATA_PATH\""
-      echo "📂 Using existing DerivedData: $DERIVED_DATA_PATH"
+      EXPORT_CMD+=(-derivedDataPath "$DERIVED_DATA_PATH")
+      echo "📂 Using DerivedData: $DERIVED_DATA_PATH"
     fi
     
     echo "🔍 Running exportLocalizations command..."
-    if eval "$EXPORT_CMD" 2>&1 | tee -a "$BUILD_LOG_RAW"; then
+    echo "   Full command: ${EXPORT_CMD[*]}"
+    if "${EXPORT_CMD[@]}" 2>&1 | tee -a "$BUILD_LOG_RAW"; then
       echo "✅ exportLocalizations completed successfully"
       
       # Find the exported .xcloc file
