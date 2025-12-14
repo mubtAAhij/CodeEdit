@@ -375,32 +375,52 @@ if [ -n "$BUILD_DIR" ]; then
   INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
   
   # Search for compiler-emitted strings in specific locations
+  # CRITICAL: Do NOT limit the search with head - this is the actual file list for syncing
   # Search for both .strings and .stringsdata files
   echo "📊 Searching for emitted .strings files..."
-  EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
+  # Collect ALL files (no limit) - this is what we'll actually process
+  EMITTED_STRINGS_FILES=$(find "$INTERMEDIATES_DIR" \( -path "*/en.lproj/*.strings" -o -path "*/Objects-normal/*/*.strings" \) -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" || echo "")
   
   # Search for .stringsdata files (newer binary format)
+  # CRITICAL: Search ALL of INTERMEDIATES_DIR, not just Objects-normal (broader search)
+  # Do NOT limit with head - this is the actual file list for syncing
   echo "📊 Searching for emitted .stringsdata files..."
-  EMITTED_STRINGSDATA_FILES=$(find "$INTERMEDIATES_DIR" -path "*/Objects-normal/*/*.stringsdata" -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -50 || echo "")
+  EMITTED_STRINGSDATA_FILES=$(find "$INTERMEDIATES_DIR" -type f -name "*.stringsdata" 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" || echo "")
+  
+  # Create separate sample lists for display only (keep logs readable)
+  SAMPLE_STRINGS_FILES=$(echo "$EMITTED_STRINGS_FILES" | head -5 || echo "")
+  SAMPLE_STRINGSDATA_FILES=$(echo "$EMITTED_STRINGSDATA_FILES" | head -5 || echo "")
   
   # Combine .strings and .stringsdata files for merging
   ALL_EMITTED_FILES=""
   FILES_TO_MERGE=0
   
+  # Count and display .strings files
   if [ -n "$EMITTED_STRINGS_FILES" ]; then
     STRING_COUNT=$(echo "$EMITTED_STRINGS_FILES" | wc -l | xargs)
     echo "📁 Found $STRING_COUNT emitted .strings files"
-    echo "📝 Sample .strings files found:"
-    echo "$EMITTED_STRINGS_FILES" | head -5 | sed 's/^/   /'
+    if [ "$STRING_COUNT" -gt 0 ]; then
+      echo "📝 Sample .strings files found:"
+      echo "$SAMPLE_STRINGS_FILES" | sed 's/^/   /'
+      if [ "$STRING_COUNT" -eq 50 ]; then
+        echo "   ⚠️  WARNING: Exactly 50 files found - check for accidental truncation!"
+      fi
+    fi
     ALL_EMITTED_FILES="$EMITTED_STRINGS_FILES"
     FILES_TO_MERGE=$((FILES_TO_MERGE + STRING_COUNT))
   fi
   
+  # Count and display .stringsdata files
   if [ -n "$EMITTED_STRINGSDATA_FILES" ]; then
     STRINGSDATA_COUNT=$(echo "$EMITTED_STRINGSDATA_FILES" | wc -l | xargs)
     echo "📁 Found $STRINGSDATA_COUNT emitted .stringsdata files"
-    echo "📝 Sample .stringsdata files found:"
-    echo "$EMITTED_STRINGSDATA_FILES" | head -5 | sed 's/^/   /'
+    if [ "$STRINGSDATA_COUNT" -gt 0 ]; then
+      echo "📝 Sample .stringsdata files found:"
+      echo "$SAMPLE_STRINGSDATA_FILES" | sed 's/^/   /'
+      if [ "$STRINGSDATA_COUNT" -eq 50 ]; then
+        echo "   ⚠️  WARNING: Exactly 50 files found - check for accidental truncation!"
+      fi
+    fi
     if [ -n "$ALL_EMITTED_FILES" ]; then
       ALL_EMITTED_FILES="$ALL_EMITTED_FILES"$'\n'"$EMITTED_STRINGSDATA_FILES"
     else
@@ -440,14 +460,14 @@ if [ -n "$BUILD_DIR" ]; then
           echo "⚠️  jq not available - cannot count strings in catalog"
         fi
         
-        # Collect all .stringsdata files into an array for single sync call
-        # This is more reliable than per-file syncs and matches the tool's intent
-        STRINGSDATA_ARRAY=()
+        # Collect all .stringsdata files and write to temp file (handles large lists safely)
+        # Write full list to temp file to avoid command-line length limits
+        STRINGSDATA_LIST=$(mktemp)
         STRINGSDATA_COUNT=0
         while IFS= read -r f; do
           [ -z "$f" ] && continue
           if [ -f "$f" ]; then
-            STRINGSDATA_ARRAY+=("$f")
+            echo "$f" >> "$STRINGSDATA_LIST"
             STRINGSDATA_COUNT=$((STRINGSDATA_COUNT + 1))
           fi
         done <<< "$EMITTED_STRINGSDATA_FILES"
@@ -456,16 +476,74 @@ if [ -n "$BUILD_DIR" ]; then
         
         if [ "$STRINGSDATA_COUNT" -eq 0 ]; then
           echo "⚠️  No valid .stringsdata files found to sync"
+          rm -f "$STRINGSDATA_LIST"
         else
-          # Single sync call with all files at once (more reliable than per-file loop)
-          # CRITICAL: Use --skip-marking-strings-stale to prevent deleting previously-synced strings
-          echo ""
-          echo "🔄 Syncing all .stringsdata files into catalog in a single operation..."
-          echo "   Command: xcrun xcstringstool sync \"$XCSTRINGS_FILE\" --skip-marking-strings-stale --stringsdata ${STRINGSDATA_ARRAY[*]}"
+          # Sync in chunks to avoid command-line length limits
+          # Process files in chunks of 100 to avoid argument list too long errors
+          CHUNK_SIZE=100
+          SYNCED_COUNT=0
+          FAILED_COUNT=0
           
-          if xcrun xcstringstool sync "$XCSTRINGS_FILE" \
-            --skip-marking-strings-stale \
-            --stringsdata "${STRINGSDATA_ARRAY[@]}" 2>&1; then
+          echo ""
+          echo "🔄 Syncing $STRINGSDATA_COUNT .stringsdata files into catalog (in chunks of $CHUNK_SIZE)..."
+          
+          # Read file list and process in chunks
+          CHUNK_ARRAY=()
+          CHUNK_NUM=0
+          
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            CHUNK_ARRAY+=("$f")
+            
+            # When chunk is full, sync it
+            if [ "${#CHUNK_ARRAY[@]}" -ge "$CHUNK_SIZE" ]; then
+              CHUNK_NUM=$((CHUNK_NUM + 1))
+              echo "   🔄 Syncing chunk $CHUNK_NUM (${#CHUNK_ARRAY[@]} files)..."
+              
+              if xcrun xcstringstool sync "$XCSTRINGS_FILE" \
+                --skip-marking-strings-stale \
+                --stringsdata "${CHUNK_ARRAY[@]}" 2>&1; then
+                SYNCED_COUNT=$((SYNCED_COUNT + ${#CHUNK_ARRAY[@]}))
+              else
+                FAILED_COUNT=$((FAILED_COUNT + ${#CHUNK_ARRAY[@]}))
+                echo "   ⚠️  Chunk $CHUNK_NUM failed (non-fatal, continuing...)"
+              fi
+              
+              # Clear chunk array for next batch
+              CHUNK_ARRAY=()
+            fi
+          done < "$STRINGSDATA_LIST"
+          
+          # Sync remaining files in final chunk
+          if [ "${#CHUNK_ARRAY[@]}" -gt 0 ]; then
+            CHUNK_NUM=$((CHUNK_NUM + 1))
+            echo "   🔄 Syncing final chunk $CHUNK_NUM (${#CHUNK_ARRAY[@]} files)..."
+            
+            if xcrun xcstringstool sync "$XCSTRINGS_FILE" \
+              --skip-marking-strings-stale \
+              --stringsdata "${CHUNK_ARRAY[@]}" 2>&1; then
+              SYNCED_COUNT=$((SYNCED_COUNT + ${#CHUNK_ARRAY[@]}))
+            else
+              FAILED_COUNT=$((FAILED_COUNT + ${#CHUNK_ARRAY[@]}))
+              echo "   ⚠️  Final chunk failed (non-fatal)"
+            fi
+          fi
+          
+          rm -f "$STRINGSDATA_LIST"
+          
+          echo ""
+          echo "📊 Sync summary:"
+          if [ "$SYNCED_COUNT" -gt 0 ]; then
+            echo "   ✅ Successfully synced $SYNCED_COUNT file(s) across $CHUNK_NUM chunk(s)"
+          else
+            echo "   ⚠️  No files were successfully synced"
+          fi
+          if [ "$FAILED_COUNT" -gt 0 ]; then
+            echo "   ⚠️  $FAILED_COUNT file(s) failed to sync (non-fatal)"
+          fi
+          
+          # Only proceed with format check if we synced at least some files
+          if [ "$SYNCED_COUNT" -gt 0 ]; then
             echo "✅ Sync completed successfully"
             
             # Format sanity check: verify catalog is valid JSON and countable
