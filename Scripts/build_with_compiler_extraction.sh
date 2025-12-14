@@ -6,9 +6,38 @@ PROJECT_PATH="${1:-YourApp.xcodeproj}"
 SCHEME="${2:-YourApp}"
 CONFIGURATION="${3:-Debug}"
 
+# Detect if we have a workspace or project
+# Check for workspace first (preferred), then project
+PROJECT_TYPE="project"
+if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+  PROJECT_TYPE="workspace"
+  echo "✅ Using workspace: $PROJECT_PATH"
+elif [ -d "$PROJECT_PATH/project.xcworkspace" ]; then
+  # Common pattern: workspace inside .xcodeproj
+  WORKSPACE_PATH="$PROJECT_PATH/project.xcworkspace"
+  PROJECT_TYPE="workspace"
+  echo "✅ Found workspace inside project: $WORKSPACE_PATH"
+  PROJECT_PATH="$WORKSPACE_PATH"
+elif [ -d "$PROJECT_PATH" ] && [ -f "$PROJECT_PATH/project.pbxproj" ]; then
+  PROJECT_TYPE="project"
+  echo "✅ Using project: $PROJECT_PATH"
+else
+  echo "⚠️  Could not determine project type, assuming project"
+  PROJECT_TYPE="project"
+fi
+
+# Helper function to build xcodebuild command with correct project/workspace flag
+xcodebuild_cmd() {
+  if [ "$PROJECT_TYPE" = "workspace" ]; then
+    xcodebuild -workspace "$PROJECT_PATH" -scheme "$SCHEME" "$@"
+  else
+    xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" "$@"
+  fi
+}
+
 # Detect available destinations and choose appropriate one
 echo "🔍 Detecting available build destinations..."
-AVAILABLE_DESTINATIONS=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showdestinations 2>/dev/null || echo "")
+AVAILABLE_DESTINATIONS=$(xcodebuild_cmd -showdestinations 2>/dev/null || echo "")
 
 # Try to find a suitable destination (prefer iOS Simulator, fall back to macOS)
 if echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS Simulator"; then
@@ -48,7 +77,7 @@ echo "🏗  Running unsigned build with compiler-based string extraction..."
 
 # Verify build settings before building
 echo "🔍 Verifying build settings..."
-VERIFY_SETTINGS=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -E "(SWIFT_EMIT_LOC_STRINGS|LOCALIZED_STRING)" || echo "")
+VERIFY_SETTINGS=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | grep -E "(SWIFT_EMIT_LOC_STRINGS|LOCALIZED_STRING)" || echo "")
 if [ -n "$VERIFY_SETTINGS" ]; then
   echo "📋 Current build settings:"
   echo "$VERIFY_SETTINGS" | sed 's/^/   /'
@@ -71,9 +100,7 @@ echo "💡 Using raw xcodebuild output (no xcpretty) to ensure we capture all em
 # Force a REAL build of the app target (not preview/link noise)
 # Note: xcodebuild compiles files in parallel, so many files may compile successfully
 # before hitting an error. Strings from successfully compiled files will be extracted.
-xcodebuild \
-  -project "$PROJECT_PATH" \
-  -scheme "$SCHEME" \
+xcodebuild_cmd \
   -configuration "$CONFIGURATION" \
   -destination "$DESTINATION" \
   CODE_SIGNING_ALLOWED=NO \
@@ -206,7 +233,7 @@ echo ""
 echo "🔄 Searching for compiler-emitted strings from the build..."
 
 # Get DerivedData path from build settings
-BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+BUILD_DIR=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | grep -m 1 "BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
 
 if [ -n "$BUILD_DIR" ]; then
   # Convert BUILD_DIR to Intermediates path
@@ -314,7 +341,7 @@ if [ -n "$BUILD_DIR" ]; then
     # Get DerivedData path from build settings to reuse existing build
     # BUILD_DIR is typically: /path/to/DerivedData/ProjectName-hash/Build/Products/Configuration
     # We want: /path/to/DerivedData/ProjectName-hash
-    BUILD_DIR_SETTING=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+    BUILD_DIR_SETTING=$(xcodebuild_cmd -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
     if [ -n "$BUILD_DIR_SETTING" ]; then
       # Strip /Build and everything after it to get DerivedData root
       DERIVED_DATA_PATH=$(echo "$BUILD_DIR_SETTING" | sed 's|/Build.*||' | xargs)
@@ -323,8 +350,11 @@ if [ -n "$BUILD_DIR" ]; then
     fi
     
     # Build exportLocalizations command with scheme and derivedDataPath
-    EXPORT_CMD="xcodebuild -exportLocalizations"
-    EXPORT_CMD="$EXPORT_CMD -project \"$PROJECT_PATH\""
+    if [ "$PROJECT_TYPE" = "workspace" ]; then
+      EXPORT_CMD="xcodebuild -exportLocalizations -workspace \"$PROJECT_PATH\""
+    else
+      EXPORT_CMD="xcodebuild -exportLocalizations -project \"$PROJECT_PATH\""
+    fi
     EXPORT_CMD="$EXPORT_CMD -scheme \"$SCHEME\""
     EXPORT_CMD="$EXPORT_CMD -localizationPath \"$EXPORT_DIR\""
     EXPORT_CMD="$EXPORT_CMD -exportLanguage en"
