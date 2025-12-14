@@ -905,10 +905,31 @@ jobs:
             exit 1
           fi
 
+      - name: Setup isolated DerivedData (prevent corruption)
+        run: |
+          echo "🔧 Setting up isolated DerivedData for this run..."
+          export DERIVED_DATA_PATH="$RUNNER_TEMP/deriveddata-${{ github.run_id }}"
+          echo "📂 DerivedData path: $DERIVED_DATA_PATH"
+          
+          # Remove any existing DerivedData from previous runs to prevent corruption
+          if [ -d "$DERIVED_DATA_PATH" ]; then
+            echo "🧹 Cleaning up existing DerivedData..."
+            rm -rf "$DERIVED_DATA_PATH"
+          fi
+          
+          # Create fresh DerivedData directory
+          mkdir -p "$DERIVED_DATA_PATH"
+          echo "✅ Created isolated DerivedData directory: $DERIVED_DATA_PATH"
+          echo "DERIVED_DATA_PATH=$DERIVED_DATA_PATH" >> $GITHUB_ENV
+
       - name: Run unsigned build with compiler string extraction
         continue-on-error: true
         shell: bash
         run: |
+          # Use isolated DerivedData from previous step
+          export DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
+          echo "📂 Using DerivedData: $DERIVED_DATA_PATH"
+          
           # Get paths: BUILD_PATH for xcodebuild, XCODEPROJ_PATH for Ruby scripts
           BUILD_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
           XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
