@@ -192,28 +192,57 @@ jobs:
           echo ""
           echo "💡 Build invocation parity and settings will be captured after project is found"
 
-      - name: Find Xcode project
+      - name: Find Xcode project or workspace
         id: find-xcode-project
         run: |
-          # Find first .xcodeproj file
+          # Prefer workspace over project (workspace includes package dependencies and proper build graph)
+          XCODE_WORKSPACE=$(find . -name "*.xcworkspace" -type d | head -n 1)
           XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
-          if [ -z "$XCODE_PROJECT" ]; then
-            echo "No .xcodeproj found"
+          
+          if [ -n "$XCODE_WORKSPACE" ]; then
+            echo "✅ Found workspace: $XCODE_WORKSPACE"
+            echo "project_path=$XCODE_WORKSPACE" >> $GITHUB_OUTPUT
+            echo "project_type=workspace" >> $GITHUB_OUTPUT
+            
+            # Extract project name from workspace
+            PROJECT_NAME=$(basename "$XCODE_WORKSPACE" .xcworkspace)
+            echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
+            
+            # Try to find scheme from workspace
+            SCHEME=$(xcodebuild -list -workspace "$XCODE_WORKSPACE" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
+            echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
+            
+            echo "Using workspace: $XCODE_WORKSPACE"
+            echo "Project name: $PROJECT_NAME"
+            echo "Scheme: $SCHEME"
+          elif [ -n "$XCODE_PROJECT" ]; then
+            echo "✅ Found project: $XCODE_PROJECT"
+            echo "⚠️  No workspace found - using project directly"
+            echo "project_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
+            echo "project_type=project" >> $GITHUB_OUTPUT
+            
+            # Extract project name (without .xcodeproj extension)
+            PROJECT_NAME=$(basename "$XCODE_PROJECT" .xcodeproj)
+            echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
+            
+            # Try to find scheme (usually same as project name, or first scheme found)
+            SCHEME=$(xcodebuild -list -project "$XCODE_PROJECT" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
+            echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
+            
+            echo "Using project: $XCODE_PROJECT"
+            echo "Project name: $PROJECT_NAME"
+            echo "Scheme: $SCHEME"
+          else
+            echo "❌ No .xcodeproj or .xcworkspace found"
             exit 1
           fi
-          echo "project_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
           
-          # Extract project name (without .xcodeproj extension)
-          PROJECT_NAME=$(basename "$XCODE_PROJECT" .xcodeproj)
-          echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
-          
-          # Try to find scheme (usually same as project name, or first scheme found)
-          SCHEME=$(xcodebuild -list -project "$XCODE_PROJECT" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
-          echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
-          
-          echo "Found Xcode project: $XCODE_PROJECT"
-          echo "Project name: $PROJECT_NAME"
-          echo "Scheme: $SCHEME"
+          # Also check for project.xcworkspace inside .xcodeproj (common pattern)
+          if [ -n "$XCODE_PROJECT" ] && [ -d "$XCODE_PROJECT/project.xcworkspace" ]; then
+            echo "💡 Found project.xcworkspace inside .xcodeproj"
+            echo "   This workspace will be used for building"
+            echo "workspace_path=$XCODE_PROJECT/project.xcworkspace" >> $GITHUB_OUTPUT
+          fi
 
       - name: Capture Build Invocation Parity & Settings
         run: |
@@ -753,6 +782,43 @@ jobs:
           # Ensure script is executable
           chmod +x ./Scripts/build_with_compiler_extraction.sh
 
+      - name: Verify String Catalog exists before build
+        run: |
+          echo "🔍 Verifying String Catalog exists before build..."
+          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          
+          if [ -z "$XCSTRINGS_FILE" ]; then
+            echo "❌ CRITICAL: No Localizable.xcstrings file found!"
+            echo "   Creating it now..."
+            ./Scripts/ensure_string_catalog.sh "${{ steps.find-xcode-project.outputs.project_path }}" "${{ steps.find-xcode-project.outputs.scheme }}" || {
+              echo "❌ Failed to create string catalog!"
+              exit 1
+            }
+            XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          fi
+          
+          if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
+            echo "✅ String Catalog exists: $XCSTRINGS_FILE"
+            SIZE=$(wc -c < "$XCSTRINGS_FILE" | xargs)
+            if command -v jq &> /dev/null; then
+              STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+              echo "   Size: $SIZE bytes"
+              echo "   Current string count: $STRING_COUNT"
+              if [ "$STRING_COUNT" -eq 0 ]; then
+                echo "   ⚠️  Catalog is empty (this is OK - it will be populated by build)"
+              fi
+            fi
+            
+            # Ensure it's added to the project
+            if [ -f "./Scripts/add_xcstrings_to_project.rb" ]; then
+              echo "   Ensuring catalog is in Xcode project..."
+              ruby ./Scripts/add_xcstrings_to_project.rb "${{ steps.find-xcode-project.outputs.project_path }}" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "   ⚠️  Failed to add to project (may already be there)"
+            fi
+          else
+            echo "❌ CRITICAL: String Catalog file does not exist and could not be created!"
+            exit 1
+          fi
+
       - name: Run unsigned build with compiler string extraction
         continue-on-error: true
         shell: bash
@@ -881,10 +947,15 @@ jobs:
           echo ""
           
           PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+          PROJECT_TYPE="${{ steps.find-xcode-project.outputs.project_type }}"
           SCHEME="${{ steps.find-xcode-project.outputs.scheme }}"
           
-          # Get DerivedData path
-          BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+          # Get DerivedData path (use workspace if available)
+          if [ "$PROJECT_TYPE" = "workspace" ]; then
+            BUILD_DIR=$(xcodebuild -workspace "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+          else
+            BUILD_DIR=$(xcodebuild -project "$PROJECT_PATH" -scheme "$SCHEME" -showBuildSettings 2>/dev/null | grep -m 1 "^ *BUILD_DIR" | sed 's/.*= *//' | xargs || echo "")
+          fi
           if [ -n "$BUILD_DIR" ]; then
             DERIVED_DATA_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products.*||')
             INTERMEDIATES_DIR=$(echo "$BUILD_DIR" | sed 's|/Build/Products|/Build/Intermediates.noindex|')
