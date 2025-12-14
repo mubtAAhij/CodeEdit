@@ -66,13 +66,30 @@ if [ -n "$XCODEPROJ_PATH" ] && [ ! -f "$XCODEPROJ_PATH/project.pbxproj" ]; then
   echo "   Ruby scripts that modify the project may fail"
 fi
 
+# Use isolated DerivedData if provided (prevents corruption from previous runs)
+# This should be set by the workflow before calling this script
+DERIVED_DATA_PATH="${DERIVED_DATA_PATH:-}"
+
 # Helper function to build xcodebuild command with correct project/workspace flag
+# Automatically includes -derivedDataPath if DERIVED_DATA_PATH is set
 xcodebuild_cmd() {
+  local cmd_args=()
   if [ "$BUILD_TYPE" = "workspace" ]; then
-    xcodebuild -workspace "$BUILD_PATH" -scheme "$SCHEME" "$@"
+    cmd_args+=(-workspace "$BUILD_PATH")
   else
-    xcodebuild -project "$BUILD_PATH" -scheme "$SCHEME" "$@"
+    cmd_args+=(-project "$BUILD_PATH")
   fi
+  cmd_args+=(-scheme "$SCHEME")
+  
+  # Add derivedDataPath if provided (critical for avoiding corruption)
+  if [ -n "$DERIVED_DATA_PATH" ]; then
+    cmd_args+=(-derivedDataPath "$DERIVED_DATA_PATH")
+  fi
+  
+  # Add all other arguments
+  cmd_args+=("$@")
+  
+  xcodebuild "${cmd_args[@]}"
 }
 
 # Detect platform from build settings (use SUPPORTED_PLATFORMS - more reliable than PLATFORM_NAME)
@@ -406,6 +423,29 @@ if [ -n "$BUILD_DIR" ]; then
       if command -v xcrun >/dev/null 2>&1 && xcrun --find xcstringstool >/dev/null 2>&1; then
         echo "✅ xcstringstool found - using official Apple tool to sync .stringsdata into catalog"
         
+        # Debug: Show xcstringstool help to verify it's working
+        echo ""
+        echo "🔍 xcstringstool diagnostic information:"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo "📋 xcstringstool --help:"
+        xcrun xcstringstool --help 2>&1 | head -20 || echo "   (help not available)"
+        echo ""
+        echo "📋 xcstringstool sync --help:"
+        xcrun xcstringstool sync --help 2>&1 | head -20 || echo "   (sync help not available)"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo ""
+        
+        # Get initial string count from catalog
+        INITIAL_STRING_COUNT=0
+        if [ -f "$XCSTRINGS_FILE" ]; then
+          if command -v jq >/dev/null 2>&1; then
+            INITIAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+            echo "📊 Initial catalog string count: $INITIAL_STRING_COUNT"
+          else
+            echo "⚠️  jq not available - cannot count strings in catalog"
+          fi
+        fi
+        
         # Write list to a file to avoid arg-length issues
         STRINGSDATA_LIST=$(mktemp)
         printf "%s\n" "$EMITTED_STRINGSDATA_FILES" > "$STRINGSDATA_LIST"
@@ -417,17 +457,38 @@ if [ -n "$BUILD_DIR" ]; then
         while IFS= read -r f; do
           [ -z "$f" ] && continue
           if [ -f "$f" ]; then
-            if xcrun xcstringstool sync "$XCSTRINGS_FILE" --stringsdata "$f" 2>/dev/null; then
+            echo "   🔄 Syncing: $(basename "$f")"
+            echo "      Command: xcrun xcstringstool sync \"$XCSTRINGS_FILE\" --stringsdata \"$f\""
+            
+            # Run sync command (show errors, don't suppress)
+            if xcrun xcstringstool sync "$XCSTRINGS_FILE" --stringsdata "$f" 2>&1; then
               SYNC_COUNT=$((SYNC_COUNT + 1))
+              
+              # Count strings after each sync to verify it's working
+              if command -v jq >/dev/null 2>&1 && [ -f "$XCSTRINGS_FILE" ]; then
+                CURRENT_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+                echo "      ✅ Synced successfully - catalog now has $CURRENT_STRING_COUNT strings"
+              else
+                echo "      ✅ Synced successfully"
+              fi
             else
               SYNC_FAILED=$((SYNC_FAILED + 1))
-              echo "   ⚠️  Failed to sync: $f"
+              echo "      ⚠️  Failed to sync: $f"
             fi
           fi
         done < "$STRINGSDATA_LIST"
         
         rm -f "$STRINGSDATA_LIST"
         
+        # Final count
+        FINAL_STRING_COUNT=0
+        if [ -f "$XCSTRINGS_FILE" ] && command -v jq >/dev/null 2>&1; then
+          FINAL_STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
+          echo ""
+          echo "📊 Final catalog string count: $FINAL_STRING_COUNT (started with $INITIAL_STRING_COUNT)"
+        fi
+        
+        echo ""
         echo "✅ Synced $SYNC_COUNT .stringsdata file(s) into catalog"
         if [ "$SYNC_FAILED" -gt 0 ]; then
           echo "⚠️  $SYNC_FAILED file(s) failed to sync (non-fatal)"
