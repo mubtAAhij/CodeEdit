@@ -788,10 +788,11 @@ jobs:
             echo "[]" > skip-list.json
           fi
           
-          # Show skip list entry count
+          # Show skip list entry count and file count
           if command -v jq >/dev/null 2>&1; then
             ENTRY_COUNT=$(jq '.strings | length' skip-list.json 2>/dev/null || echo "0")
-            echo "Skip list contains $ENTRY_COUNT entries"
+            FILE_COUNT=$(jq '.files | length' skip-list.json 2>/dev/null || echo "0")
+            echo "Skip list contains $ENTRY_COUNT entries from $FILE_COUNT source files"
           fi
 
       - name: Set up gcloud auth
