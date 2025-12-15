@@ -54,6 +54,57 @@ def parse_xliff(path):
         print(f"⚠️  Failed to parse XLIFF {path}: {e}", file=sys.stderr)
         return []
 
+def parse_stringsdata(path, repo_root):
+    """Parse a .stringsdata file and return a list of entries with source file and location info."""
+    entries = []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        source_file = data.get("source", "")
+        
+        # Normalize source file path to be relative to repo root if it's absolute
+        if source_file:
+            source_path = Path(source_file)
+            if source_path.is_absolute():
+                try:
+                    # Try to make it relative to repo root
+                    source_file = str(source_path.relative_to(repo_root))
+                except ValueError:
+                    # If it's not under repo root, keep as absolute but try to clean it up
+                    # Remove common CI paths like /Users/runner/work/...
+                    pass
+            else:
+                # Already relative, use as-is
+                pass
+        
+        tables = data.get("tables", {})
+        
+        # Get entries from Localizable table
+        localizable_table = tables.get("Localizable", [])
+        
+        for entry in localizable_table:
+            key = entry.get("key", "")
+            location = entry.get("location", {})
+            starting_line = location.get("startingLine")
+            starting_column = location.get("startingColumn")
+            
+            if key:  # Only include entries with keys
+                entries.append({
+                    "sourceFile": source_file,
+                    "key": key,
+                    "location": {
+                        "startingLine": starting_line,
+                        "startingColumn": starting_column
+                    } if starting_line is not None or starting_column is not None else None
+                })
+        
+        if entries:
+            print(f"📋 Parsed {path.name}: found {len(entries)} entries from {source_file}", file=sys.stderr)
+        
+        return entries
+    except Exception as e:
+        print(f"⚠️  Failed to parse {path}: {e}", file=sys.stderr)
+        return []
+
 def parse_xcstrings(path):
     """Parse an .xcstrings file and return a list of (key, value) tuples."""
     entries = []
@@ -113,16 +164,21 @@ def parse_xcstrings(path):
         traceback.print_exc(file=sys.stderr)
         return []
 
-# 1. Find all .xcstrings and .xliff files under the repo
+# 1. Find all .xcstrings, .xliff, and .stringsdata files
 root = Path(".").resolve()
 xcstrings_files = list(root.rglob("*.xcstrings"))
 xliff_files = list(root.rglob("*.xliff"))
+stringsdata_files = list(root.rglob("*.stringsdata"))
 
-# Exclude DerivedData and .git directories
+# Exclude DerivedData and .git directories for .xcstrings and .xliff
 xcstrings_files = [f for f in xcstrings_files if "DerivedData" not in str(f) and ".git" not in str(f)]
 xliff_files = [f for f in xliff_files if "DerivedData" not in str(f) and ".git" not in str(f)]
 
-print(f"🔍 Found {len(xcstrings_files)} .xcstrings file(s) and {len(xliff_files)} .xliff file(s)", file=sys.stderr)
+# For .stringsdata, we want to include DerivedData (that's where they're generated)
+# But exclude .git and SourcePackages
+stringsdata_files = [f for f in stringsdata_files if ".git" not in str(f) and "SourcePackages" not in str(f) and "Products" not in str(f) and ".framework" not in str(f)]
+
+print(f"🔍 Found {len(xcstrings_files)} .xcstrings file(s), {len(xliff_files)} .xliff file(s), and {len(stringsdata_files)} .stringsdata file(s)", file=sys.stderr)
 
 # Also check for .xcloc bundles (which contain .xliff files inside)
 xcloc_dirs = list(root.rglob("*.xcloc"))
@@ -132,8 +188,8 @@ for xcloc_dir in xcloc_dirs:
         xliff_in_xcloc = list(xcloc_dir.rglob("*.xliff"))
         xliff_files.extend(xliff_in_xcloc)
 
-if not xcstrings_files and not xliff_files:
-    print("No .xcstrings or .xliff files found; skip list will be empty.", file=sys.stderr)
+if not xcstrings_files and not xliff_files and not stringsdata_files:
+    print("No .xcstrings, .xliff, or .stringsdata files found; skip list will be empty.", file=sys.stderr)
     # Write structured output with metadata even for empty lists
     output = {
         "version": 1,
@@ -144,35 +200,78 @@ if not xcstrings_files and not xliff_files:
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     sys.exit(0)
 
+# First, parse .stringsdata files to get source file and location info
+# Build a map: key -> (sourceFile, location)
+stringsdata_map = {}
+for path in stringsdata_files:
+    parsed = parse_stringsdata(path, root)
+    for entry in parsed:
+        key = entry["key"]
+        # If we have multiple .stringsdata files with the same key, keep the first one
+        # (or we could merge locations, but for now first one wins)
+        if key not in stringsdata_map:
+            stringsdata_map[key] = {
+                "sourceFile": entry["sourceFile"],
+                "location": entry["location"]
+            }
+
+print(f"📊 Found location info for {len(stringsdata_map)} unique keys from .stringsdata files", file=sys.stderr)
+
 entries = []
 
-# Parse .xcstrings files
+# Parse .xcstrings files and merge with .stringsdata location info
 for path in xcstrings_files:
     parsed = parse_xcstrings(path)
     for key, value in parsed:
-        entries.append({
+        entry = {
             "catalogPath": str(path.relative_to(root)),
             "key": key,
             "value": value
-        })
+        }
+        
+        # Add source file and location info if available from .stringsdata
+        if key in stringsdata_map:
+            entry["sourceFile"] = stringsdata_map[key]["sourceFile"]
+            if stringsdata_map[key]["location"]:
+                entry["location"] = stringsdata_map[key]["location"]
+        
+        entries.append(entry)
 
 # Parse .xliff files
 for path in xliff_files:
     parsed = parse_xliff(path)
     for key, value in parsed:
-        entries.append({
+        entry = {
             "catalogPath": str(path.relative_to(root)),
             "key": key,
             "value": value
-        })
+        }
+        
+        # Add source file and location info if available from .stringsdata
+        if key in stringsdata_map:
+            entry["sourceFile"] = stringsdata_map[key]["sourceFile"]
+            if stringsdata_map[key]["location"]:
+                entry["location"] = stringsdata_map[key]["location"]
+        
+        entries.append(entry)
+
+# Group entries by source file for easier lookup
+files_dict = {}
+for entry in entries:
+    source_file = entry.get("sourceFile", "unknown")
+    if source_file not in files_dict:
+        files_dict[source_file] = []
+    files_dict[source_file].append(entry)
 
 # Write structured output with metadata
+# Include both flat list and grouped by file
 output = {
     "version": 1,
     "count": len(entries),
     "timestamp": datetime.utcnow().isoformat() + "Z",
-    "strings": entries
+    "strings": entries,
+    "files": files_dict
 }
 out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"✅ Wrote skip list with {len(entries)} entries to {out_path}")
+print(f"✅ Wrote skip list with {len(entries)} entries ({len(files_dict)} source files) to {out_path}")
 
