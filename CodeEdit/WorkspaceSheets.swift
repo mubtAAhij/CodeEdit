@@ -53,33 +53,33 @@ struct WorkspaceSheets: View {
             }
             .alert(isPresented: $sourceControlManager.discardAllAlertIsPresented) {
                 Alert(
-                    title: Text("Do you want to discard all uncommitted, local changes?"),
-                    message: Text("This action cannot be undone."),
-                    primaryButton: .destructive(Text("Discard")) {
+                    title: Text(String(localized: "source-control.discard-all.title", defaultValue: "Do you want to discard all uncommitted, local changes?", comment: "Alert title for discard all confirmation")),
+                    message: Text(String(localized: "source-control.discard-all.message", defaultValue: "This action cannot be undone.", comment: "Alert message for discard all confirmation")),
+                    primaryButton: .destructive(Text(String(localized: "source-control.discard-all.button", defaultValue: "Discard", comment: "Button to discard all changes"))) {
                         sourceControlManager.discardAllChanges()
                     },
                     secondaryButton: .cancel()
                 )
             }
-            .alert("Cannot Stage Changes", isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "source-control.error.cannot-stage", defaultValue: "Cannot Stage Changes", comment: "Alert title when cannot stage changes"), isPresented: $sourceControlManager.noChangesToStageAlertIsPresented) {
+                Button(String(localized: "ok", defaultValue: "OK", comment: "OK button"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "source-control.error.no-uncommitted-changes", defaultValue: "There are no uncommitted changes in the local repository for this project.", comment: "Message when no uncommitted changes"))
             }
-            .alert("Cannot Unstage Changes", isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "source-control.error.cannot-unstage", defaultValue: "Cannot Unstage Changes", comment: "Alert title when cannot unstage changes"), isPresented: $sourceControlManager.noChangesToUnstageAlertIsPresented) {
+                Button(String(localized: "ok", defaultValue: "OK", comment: "OK button"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "source-control.error.no-uncommitted-changes", defaultValue: "There are no uncommitted changes in the local repository for this project.", comment: "Message when no uncommitted changes"))
             }
-            .alert("Cannot Stash Changes", isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "source-control.error.cannot-stash", defaultValue: "Cannot Stash Changes", comment: "Alert title when cannot stash changes"), isPresented: $sourceControlManager.noChangesToStashAlertIsPresented) {
+                Button(String(localized: "ok", defaultValue: "OK", comment: "OK button"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "source-control.error.no-uncommitted-changes", defaultValue: "There are no uncommitted changes in the local repository for this project.", comment: "Message when no uncommitted changes"))
             }
-            .alert("Cannot Discard Changes", isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(String(localized: "source-control.error.cannot-discard", defaultValue: "Cannot Discard Changes", comment: "Alert title when cannot discard changes"), isPresented: $sourceControlManager.noChangesToDiscardAlertIsPresented) {
+                Button(String(localized: "ok", defaultValue: "OK", comment: "OK button"), role: .cancel) {}
             } message: {
-                Text("There are no uncommitted changes in the local repository for this project.")
+                Text(String(localized: "source-control.error.no-uncommitted-changes", defaultValue: "There are no uncommitted changes in the local repository for this project.", comment: "Message when no uncommitted changes"))
             }
     }
 }

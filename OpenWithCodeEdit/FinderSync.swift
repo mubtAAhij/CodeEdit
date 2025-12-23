@@ -83,7 +83,7 @@ class CEOpenWith: FIFinderSync {
 
         let menu = NSMenu(title: "")
         let menuItem = NSMenuItem(
-            title: "Open in CodeEdit",
+            title: String(localized: "finder-sync.open-in-codeedit", defaultValue: "Open in CodeEdit", comment: "Finder context menu item to open in CodeEdit"),
             action: #selector(openInCodeEditAction(_:)),
             keyEquivalent: ""
         )

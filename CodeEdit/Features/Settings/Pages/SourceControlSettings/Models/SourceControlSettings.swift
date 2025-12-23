@@ -24,7 +24,7 @@ extension SettingsData {
                 "Comparison view",
                 "Source control navigator",
                 "Default branch name",
-                "Git",
+                String(localized: "settings.source-control.git", defaultValue: "Git", comment: "Source control settings search key for Git section"),
                 "Author Name",
                 "Author Email",
                 "Prefer to rebase when pulling",

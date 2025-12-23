@@ -15,11 +15,11 @@ final class UtilityAreaViewModelTests: XCTestCase {
     override func setUp() {
         model = UtilityAreaViewModel()
         model.terminals = [
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 1", shell: .bash),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 2", shell: .zsh),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 3", shell: nil),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 4", shell: .bash),
-            UtilityAreaTerminal(id: UUID(), url: rootURL, title: "Terminal 5", shell: .zsh)
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "test.terminal.terminal-1", defaultValue: "Terminal 1", comment: "Test terminal 1 name"), shell: .bash),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "test.terminal.terminal-2", defaultValue: "Terminal 2", comment: "Test terminal 2 name"), shell: .zsh),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "test.terminal.terminal-3", defaultValue: "Terminal 3", comment: "Test terminal 3 name"), shell: nil),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "test.terminal.terminal-4", defaultValue: "Terminal 4", comment: "Test terminal 4 name"), shell: .bash),
+            UtilityAreaTerminal(id: UUID(), url: rootURL, title: String(localized: "test.terminal.terminal-5", defaultValue: "Terminal 5", comment: "Test terminal 5 name"), shell: .zsh)
         ]
     }
 
