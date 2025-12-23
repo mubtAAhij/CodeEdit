@@ -70,7 +70,7 @@ extension RegistryManager {
             case .installationRunning:
                 return // Shouldn't need to handle
             case .invalidResponse(let statusCode):
-                logger.error(String(format: NSLocalizedString("lsp.registry.error.invalid-response", comment: "Error message for invalid HTTP response"), statusCode))
+                logger.error("Invalid response received: \(statusCode)")
             case let .downloadFailed(url, error):
                 logger.error("Download failed for \(url.absoluteString): \(error.localizedDescription)")
             case let .maxRetriesExceeded(url, error):

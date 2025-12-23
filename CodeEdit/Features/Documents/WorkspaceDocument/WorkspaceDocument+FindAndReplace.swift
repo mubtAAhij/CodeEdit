@@ -127,7 +127,7 @@ extension WorkspaceDocument.SearchState {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
             alert.messageText = String(localized: "error", defaultValue: "Error", comment: "Error alert title")
-            alert.informativeText = String(format: NSLocalizedString("find-replace.read-error", comment: "Error message when reading file fails"), file)
+            alert.informativeText = String(format: NSLocalizedString("find-replace.read-error", comment: "Error message when reading file fails"), file as CVarArg)
             alert.alertStyle = .critical
             alert.addButton(withTitle: String(localized: "ok", defaultValue: "OK", comment: "OK button"))
             alert.runModal()
