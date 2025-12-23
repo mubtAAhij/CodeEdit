@@ -195,7 +195,7 @@ if not xcstrings_files and not xliff_files and not stringsdata_files:
         "version": 1,
         "count": 0,
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "strings": []
+        "files": {}
     }
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     sys.exit(0)
@@ -217,61 +217,63 @@ for path in stringsdata_files:
 
 print(f"📊 Found location info for {len(stringsdata_map)} unique keys from .stringsdata files", file=sys.stderr)
 
-entries = []
+# Build a map of key -> value from .xcstrings and .xliff files
+value_map = {}
 
-# Parse .xcstrings files and merge with .stringsdata location info
+# Parse .xcstrings files to get values
 for path in xcstrings_files:
     parsed = parse_xcstrings(path)
     for key, value in parsed:
-        entry = {
-            "catalogPath": str(path.relative_to(root)),
-            "key": key,
-            "value": value
-        }
-        
-        # Add source file and location info if available from .stringsdata
-        if key in stringsdata_map:
-            entry["sourceFile"] = stringsdata_map[key]["sourceFile"]
-            if stringsdata_map[key]["location"]:
-                entry["location"] = stringsdata_map[key]["location"]
-        
-        entries.append(entry)
+        # Store value for this key (later files override earlier ones)
+        value_map[key] = value
 
-# Parse .xliff files
+# Parse .xliff files to get values (will override .xcstrings if same key exists)
 for path in xliff_files:
     parsed = parse_xliff(path)
     for key, value in parsed:
-        entry = {
-            "catalogPath": str(path.relative_to(root)),
-            "key": key,
-            "value": value
-        }
-        
-        # Add source file and location info if available from .stringsdata
-        if key in stringsdata_map:
-            entry["sourceFile"] = stringsdata_map[key]["sourceFile"]
-            if stringsdata_map[key]["location"]:
-                entry["location"] = stringsdata_map[key]["location"]
-        
-        entries.append(entry)
+        value_map[key] = value
 
-# Group entries by source file for easier lookup
+# Group entries by source file path (from project directory)
+# Structure: files_dict[source_file_path] = [list of entries with key, value, and location]
 files_dict = {}
-for entry in entries:
-    source_file = entry.get("sourceFile", "unknown")
+
+# Process all stringsdata entries and enrich with values from .xcstrings/.xliff
+for key, stringsdata_info in stringsdata_map.items():
+    source_file = stringsdata_info["sourceFile"]
+    location = stringsdata_info["location"]
+    
+    # Skip entries without a valid source file path
+    if not source_file or source_file == "":
+        continue
+    
+    # Get value from value_map, or use key as fallback
+    value = value_map.get(key, key)
+    
+    # Create entry with key, value, and location
+    entry = {
+        "key": key,
+        "value": value
+    }
+    
+    # Add location if available
+    if location:
+        entry["location"] = location
+    
+    # Group by source file
     if source_file not in files_dict:
         files_dict[source_file] = []
     files_dict[source_file].append(entry)
 
-# Write structured output with metadata
-# Include both flat list and grouped by file
+# Calculate total count
+total_count = sum(len(entries) for entries in files_dict.values())
+
+# Write structured output grouped by filepath
 output = {
     "version": 1,
-    "count": len(entries),
+    "count": total_count,
     "timestamp": datetime.utcnow().isoformat() + "Z",
-    "strings": entries,
     "files": files_dict
 }
 out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"✅ Wrote skip list with {len(entries)} entries ({len(files_dict)} source files) to {out_path}")
+print(f"✅ Wrote skip list with {total_count} entries from {len(files_dict)} source files to {out_path}")
 
