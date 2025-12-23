@@ -41,6 +41,14 @@ on:
         description: 'GCP Service Account Email (for OIDC auth)'
         required: true
         type: string
+      job_id:
+        description: 'Quetzal Job ID (optional, for status updates)'
+        required: false
+        type: string
+      api_key:
+        description: 'Quetzal API Key (optional, for status updates)'
+        required: false
+        type: string
 
 jobs:
   extract-swift-strings:
@@ -56,25 +64,59 @@ jobs:
       PROJECT_ID: ${{ inputs.project_id }}
       INTEGRATION_ID: ${{ inputs.integration_id }}
       BRANCH: ${{ inputs.branch }}
+      JOB_ID: ${{ inputs.job_id }}
+      API_KEY: ${{ inputs.api_key }}
+      API_BASE_URL: https://api.getquetzal.com
 
     steps:
+      - name: Send workflow started status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Workflow started\\\", \\\"step\\\": \\\"initialization\\\"}\"
+            }" || echo "⚠️  Failed to send status update (workflow started)"
+
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.branch }}
+
+      - name: Send checkout completed status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Repository checked out\\\", \\\"step\\\": \\\"checkout\\\"}\"
+            }" || echo "⚠️  Failed to send status update (checkout completed)"
 
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: "latest"
 
-      - name: Display Xcode and Swift versions
+      - name: Send setup started status
+        if: env.JOB_ID != '' && env.API_KEY != ''
         run: |
-          echo "Xcode version:"
-          xcodebuild -version
-          echo ""
-          echo "Swift version:"
-          /usr/bin/xcrun swift --version
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Setting up Xcode environment\\\", \\\"step\\\": \\\"setup\\\"}\"
+            }" || echo "⚠️  Failed to send status update (setup started)"
 
       - name: Find Xcode project or workspace
         id: find-xcode-project
@@ -327,13 +369,10 @@ jobs:
             fi
             ruby Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
             
-            # Verify the file was added to the project and target using xcodeproj
-            echo ""
-            echo "🔍 Verifying .xcstrings file was added to project and target..."
+            # Ensure file type is correct and file is in resources build phase
             ruby -e "
             require 'xcodeproj'
             require 'pathname'
-            require 'json'
             
             project_path = '${{ steps.find-xcode-project.outputs.project_path }}'
             xcstrings_file = '$XCSTRINGS_FILE'
@@ -343,67 +382,22 @@ jobs:
             target = project.targets.find { |t| t.name == scheme } || project.targets.first
             xcstrings_relative = Pathname.new(xcstrings_file).relative_path_from(Pathname.new(File.dirname(project_path))).to_s
             
-            puts \"Target: #{target.name}\"
-            puts \"Looking for file: #{xcstrings_relative}\"
-            puts \"\"
-            
-            # Check if file is in project
             file_ref = project.files.find { |f| f.path == xcstrings_relative }
             if file_ref
-              puts \"✅ File found in project: #{file_ref.path}\"
-              puts \"   File type: #{file_ref.explicit_file_type || file_ref.last_known_file_type || 'inferred from extension'}\"
-              puts \"   File UUID: #{file_ref.uuid}\"
-              
-              # Ensure file type is NOT set to 'text.plist.strings' (wrong type for string catalogs)
+              # Fix file type if needed
               if file_ref.explicit_file_type == 'text.plist.strings'
-                puts \"   ⚠️  Removing incorrect file type 'text.plist.strings'...\"
                 file_ref.explicit_file_type = nil
                 project.save
-                puts \"   ✅ Removed incorrect file type, Xcode will infer from .xcstrings extension\"
               end
               
-              # Check if in target's resources build phase
-              # File MUST be in resources build phase for Xcode to merge strings automatically
+              # Ensure it's in resources build phase
               in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
-              if in_resources
-                puts \"✅ File is in target '#{target.name}' resources build phase (required for string merging)\"
-              else
-                puts \"⚠️  File is NOT in target '#{target.name}' resources build phase\"
-                puts \"   Adding to resources build phase (required for Xcode to merge strings)...\"
+              unless in_resources
                 target.add_file_references([file_ref])
                 project.save
-                puts \"✅ Added to resources build phase\"
-              end
-              
-              # Verify file exists on disk and check its content
-              if File.exist?(xcstrings_file)
-                file_size = File.size(xcstrings_file)
-                puts \"   File exists on disk: #{file_size} bytes\"
-                
-                # Try to parse as JSON to verify format
-                begin
-                  content = File.read(xcstrings_file)
-                  json_data = JSON.parse(content)
-                  puts \"   ✅ File is valid JSON\"
-                  puts \"   JSON keys: #{json_data.keys.join(', ')}\"
-                  if json_data['strings']
-                    puts \"   Contains #{json_data['strings'].keys.length} string entries\"
-                  end
-                rescue JSON::ParserError => e
-                  puts \"   ❌ File is NOT valid JSON: #{e.message}\"
-                  puts \"   First 200 chars: #{content[0..200].inspect}\"
-                end
-              else
-                puts \"   ❌ File does NOT exist on disk at: #{xcstrings_file}\"
-              end
-            else
-              puts \"❌ File NOT found in project: #{xcstrings_relative}\"
-              puts \"   Available files in project (searching for xcstrings):\"
-              project.files.select { |f| f.path && f.path.include?('xcstrings') }.each do |f|
-                puts \"     - #{f.path} (type: #{f.explicit_file_type || f.last_known_file_type})\"
               end
             end
-            " || echo "⚠️  Verification failed"
+            " 2>/dev/null || true
           else
             echo "⚠️  No Localizable.xcstrings file found to add to project"
           fi
@@ -411,8 +405,6 @@ jobs:
       - name: Export existing localizations (before removing strings files)
         continue-on-error: true
         run: |
-          echo "📤 Step 1: Export existing localizations BEFORE removing .strings files"
-          echo "💡 This captures existing strings from .strings files and .xcstrings catalogs"
           
           EXPORT_DIR="./LocalizationsExport"
           mkdir -p "$EXPORT_DIR"
@@ -426,39 +418,22 @@ jobs:
           EXPORT_CMD="$EXPORT_CMD -exportLanguage en"
           EXPORT_CMD="$EXPORT_CMD -skipPackagePluginValidation"
           
-          echo "🔍 Running exportLocalizations..."
           if eval "$EXPORT_CMD" 2>&1 | tee export_localizations.log; then
-            echo "✅ exportLocalizations completed successfully"
             
             # Find the exported .xcloc file
             XCLOC_FILE=$(find "$EXPORT_DIR" -name "*.xcloc" -type d | head -1)
             if [ -n "$XCLOC_FILE" ] && [ -d "$XCLOC_FILE" ]; then
-              echo "📦 Found exported localization catalog: $XCLOC_FILE"
-              
               # Check for .xcstrings file first (preferred)
               XCSTRINGS_IN_XCLOC=$(find "$XCLOC_FILE" -name "*.xcstrings" -type f | head -1)
               if [ -n "$XCSTRINGS_IN_XCLOC" ] && [ -f "$XCSTRINGS_IN_XCLOC" ]; then
-                echo "📋 Found .xcstrings file in export: $XCSTRINGS_IN_XCLOC"
                 # Backup existing catalog and copy exported one
                 EXISTING_CATALOG=$(find . -name "Localizable.xcstrings" -type f | head -1)
                 if [ -n "$EXISTING_CATALOG" ] && [ -f "$EXISTING_CATALOG" ]; then
                   cp "$EXISTING_CATALOG" "${EXISTING_CATALOG}.pre-build-backup"
-                  echo "💾 Backed up existing catalog to ${EXISTING_CATALOG}.pre-build-backup"
                 fi
                 # Copy exported catalog (contains existing strings)
-                cp "$XCSTRINGS_IN_XCLOC" "$EXISTING_CATALOG" && echo "✅ Copied exported .xcstrings with existing strings"
-              else
-                # Check for .xliff file (fallback)
-                XLIFF_FILE=$(find "$XCLOC_FILE" -name "*.xliff" -type f | head -1)
-                if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
-                  echo "📋 Found .xliff file in export: $XLIFF_FILE"
-                  echo "💡 XLIFF will be used for skip list generation (contains existing strings)"
-                else
-                  echo "⚠️  No .xcstrings or .xliff files found in export"
-                fi
+                cp "$XCSTRINGS_IN_XCLOC" "$EXISTING_CATALOG"
               fi
-            else
-              echo "⚠️  No .xcloc file found in export directory"
             fi
           else
             echo "⚠️  exportLocalizations failed (this is OK if no existing strings exist)"
@@ -466,29 +441,16 @@ jobs:
 
       - name: Check for existing .strings files that might prevent emission
         run: |
-          echo "🔍 Checking for existing .strings files that might prevent .xcstrings emission..."
           STRINGS_FILES=$(find . -name "Localizable.strings" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
           if [ -n "$STRINGS_FILES" ]; then
-            echo "⚠️  Found existing .strings files (these prevent Xcode from emitting to .xcstrings):"
-            echo "$STRINGS_FILES" | while read f; do
-              echo "  - $f"
-            done
-            echo ""
-            echo "💡 Xcode will NOT emit strings to .xcstrings when .strings files exist."
-            echo "💡 Moving .strings files to temporary location to prevent Xcode from finding them..."
             mkdir -p .strings-backup
             echo "$STRINGS_FILES" | while read f; do
               if [ -f "$f" ]; then
                 BACKUP_NAME=".strings-backup/$(basename "$f").backup"
-                mv "$f" "$BACKUP_NAME" && echo "  ✅ Moved $f to $BACKUP_NAME"
+                mv "$f" "$BACKUP_NAME"
               fi
             done
-          else
-            echo "✅ No existing .strings files found that would prevent emission"
           fi
-          
-          echo ""
-          echo "🔍 Verifying no .strings files remain in project file..."
           # Use xcodeproj_path for accessing project.pbxproj
           XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
           if [ -z "$XCODEPROJ_PATH" ]; then
@@ -503,50 +465,24 @@ jobs:
           fi
           # Check if project file still references .strings files (including backups)
           if grep -r "Localizable.strings" "$XCODEPROJ_PATH/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | grep -v "\.backup"; then
-            echo "⚠️  Found references to Localizable.strings in project file (excluding backups)"
-            echo "   These should have been removed by add_xcstrings_to_project.rb"
-            echo "   Attempting to remove them now..."
-            
             # Use Ruby to remove any remaining .strings file references
             ruby -e "
             require 'xcodeproj'
             project_path = '$XCODEPROJ_PATH'
             project = Xcodeproj::Project.open(project_path)
-            removed_count = 0
             
             project.files.each do |file|
               if file.path && (file.path.end_with?('Localizable.strings') || file.path.end_with?('Localizable.strings.backup'))
-                puts \"Removing #{file.path} from project\"
                 file.remove_from_project
-                removed_count += 1
               end
             end
             
-            if removed_count > 0
-              project.save
-              puts \"✅ Removed #{removed_count} .strings file reference(s) from project\"
-            else
-              puts \"ℹ️  No .strings file references found in project (they may have been removed already)\"
-            end
-            " || echo "⚠️  Failed to remove .strings references from project"
-          else
-            echo "✅ No .strings file references found in project file (only .xcstrings)"
+            project.save
+            " 2>/dev/null || true
           fi
-
-      - name: Check String Catalogs before build
-        run: |
-          echo "📋 String Catalogs before build:"
-          find . -name "*.xcstrings" -type f | while read f; do
-            echo "  - $f ($(wc -c < "$f" | xargs) bytes)"
-            if command -v jq &> /dev/null; then
-              COUNT=$(jq '.strings | length' "$f" 2>/dev/null || echo "0")
-              echo "    Contains $COUNT string entries"
-            fi
-          done || echo "  (none found)"
 
       - name: Ensure .xcstrings file exists and is in project and resources build phase
         run: |
-          echo "🔍 Ensuring String Catalog exists and is in project..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
           # Use xcodeproj_path for Ruby scripts
@@ -563,76 +499,20 @@ jobs:
           fi
           
           if [ -z "$XCSTRINGS_FILE" ]; then
-            echo "⚠️  No Localizable.xcstrings found, creating one..."
             ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || true
             XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           fi
           
           if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
-            echo "📋 Found: $XCSTRINGS_FILE ($(wc -c < "$XCSTRINGS_FILE" | xargs) bytes)"
-            
-            # Verify it's valid JSON (Xcode's native format for .xcstrings)
-            # Note: plutil -lint may fail on JSON files, but that's expected and not a problem
-            # Xcode string catalogs are JSON, not XML plist
-            if python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
-              echo "✅ File is valid JSON (correct format for .xcstrings)"
-            else
-              echo "⚠️  File is not valid JSON, recreating..."
+            # Verify it's valid JSON, recreate if not
+            if ! python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
               ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || true
               XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
             fi
             
-            # Verify file encoding and format before adding to project
-            echo "🔍 Verifying file encoding and format..."
-            if [ -f "$XCSTRINGS_FILE" ]; then
-              echo "  File size: $(wc -c < "$XCSTRINGS_FILE" | xargs) bytes"
-              echo "  File encoding: $(file -b --mime-encoding "$XCSTRINGS_FILE" 2>/dev/null || echo 'unknown')"
-              echo "  First 10 lines:"
-              head -10 "$XCSTRINGS_FILE" | sed 's/^/    /'
-              
-              # Check if file has BOM or other encoding issues
-              if command -v hexdump &> /dev/null; then
-                echo "  First 20 bytes (hex):"
-                hexdump -C "$XCSTRINGS_FILE" | head -2 | sed 's/^/    /'
-              fi
-            fi
-            
-            # Ensure it's added to project and resources build phase (for automatic merging)
+            # Ensure it's added to project and resources build phase
             if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
               ruby Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
-            fi
-            
-            echo "✅ String Catalog ready: $XCSTRINGS_FILE"
-            
-            # Verify file is valid JSON (Xcode's native format for .xcstrings)
-            # Note: plutil -lint may fail on JSON, but that's OK - we validate with Python instead
-            if python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
-              echo "✅ File is valid JSON (Xcode's expected format for .xcstrings)"
-            else
-              echo "⚠️  Warning: File is not valid JSON"
-            fi
-            
-            # Diagnostic: Check file type in pbxproj to ensure it's not set to text.plist.strings
-            echo ""
-            echo "🔍 Checking file type in project.pbxproj..."
-            # Use xcodeproj_path for accessing project.pbxproj
-            XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
-            if [ -z "$XCODEPROJ_PATH" ]; then
-              PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
-              if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
-                XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
-              elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
-                XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
-              else
-                XCODEPROJ_PATH="$PROJECT_PATH"
-              fi
-            fi
-            if grep -n "Localizable.xcstrings" "$XCODEPROJ_PATH/project.pbxproj" 2>/dev/null | grep -q "text.plist.strings"; then
-              echo "⚠️  WARNING: File type is still set to 'text.plist.strings' in project file!"
-              echo "   This may cause builtin-copyStrings to process it incorrectly"
-              grep -n "Localizable.xcstrings" "$XCODEPROJ_PATH/project.pbxproj" | grep "text.plist.strings" | head -5
-            else
-              echo "✅ File type is NOT set to 'text.plist.strings' (correct)"
             fi
           else
             echo "❌ Could not find or create Localizable.xcstrings"
@@ -652,7 +532,6 @@ jobs:
 
       - name: Verify String Catalog exists before build
         run: |
-          echo "🔍 Verifying String Catalog exists before build..."
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
           # Use xcodeproj_path for Ruby scripts
@@ -669,8 +548,6 @@ jobs:
           fi
           
           if [ -z "$XCSTRINGS_FILE" ]; then
-            echo "❌ CRITICAL: No Localizable.xcstrings file found!"
-            echo "   Creating it now..."
             ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || {
               echo "❌ Failed to create string catalog!"
               exit 1
@@ -678,44 +555,41 @@ jobs:
             XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           fi
           
-          if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
-            echo "✅ String Catalog exists: $XCSTRINGS_FILE"
-            SIZE=$(wc -c < "$XCSTRINGS_FILE" | xargs)
-            if command -v jq &> /dev/null; then
-              STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "0")
-              echo "   Size: $SIZE bytes"
-              echo "   Current string count: $STRING_COUNT"
-              if [ "$STRING_COUNT" -eq 0 ]; then
-                echo "   ⚠️  Catalog is empty (this is OK - it will be populated by build)"
-              fi
-            fi
-            
-            # Ensure it's added to the project
-            if [ -f "./Scripts/add_xcstrings_to_project.rb" ]; then
-              echo "   Ensuring catalog is in Xcode project..."
-              ruby ./Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "   ⚠️  Failed to add to project (may already be there)"
-            fi
-          else
+          if [ -z "$XCSTRINGS_FILE" ] || [ ! -f "$XCSTRINGS_FILE" ]; then
             echo "❌ CRITICAL: String Catalog file does not exist and could not be created!"
             exit 1
+          fi
+          
+          # Ensure it's added to the project
+          if [ -f "./Scripts/add_xcstrings_to_project.rb" ]; then
+            ruby ./Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
           fi
 
       - name: Setup isolated DerivedData (prevent corruption)
         run: |
-          echo "🔧 Setting up isolated DerivedData for this run..."
           export DERIVED_DATA_PATH="$RUNNER_TEMP/deriveddata-${{ github.run_id }}"
-          echo "📂 DerivedData path: $DERIVED_DATA_PATH"
           
           # Remove any existing DerivedData from previous runs to prevent corruption
           if [ -d "$DERIVED_DATA_PATH" ]; then
-            echo "🧹 Cleaning up existing DerivedData..."
             rm -rf "$DERIVED_DATA_PATH"
           fi
           
           # Create fresh DerivedData directory
           mkdir -p "$DERIVED_DATA_PATH"
-          echo "✅ Created isolated DerivedData directory: $DERIVED_DATA_PATH"
           echo "DERIVED_DATA_PATH=$DERIVED_DATA_PATH" >> $GITHUB_ENV
+
+      - name: Send build started status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_build_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Starting Xcode build with string extraction\\\", \\\"step\\\": \\\"build\\\"}\"
+            }" || echo "⚠️  Failed to send status update (build started)"
 
       - name: Run unsigned build with compiler string extraction
         continue-on-error: true
@@ -723,7 +597,6 @@ jobs:
         run: |
           # Use isolated DerivedData from previous step
           export DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
-          echo "📂 Using DerivedData: $DERIVED_DATA_PATH"
           
           # Get paths: BUILD_PATH for xcodebuild, XCODEPROJ_PATH for Ruby scripts
           BUILD_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
@@ -743,41 +616,21 @@ jobs:
             fi
           fi
           
-          echo "🔨 Build path (for xcodebuild): $BUILD_PATH"
-          echo "📦 Project path (for Ruby scripts): $XCODEPROJ_PATH"
-          
           # Pass both paths to build script
           bash ./Scripts/build_with_compiler_extraction.sh "$BUILD_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" "Debug" "$XCODEPROJ_PATH" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
-          
-          # Diagnostic: Check build log for emit-localized-strings flags
-          echo ""
-          echo "🔍 Analyzing build log for string emission flags..."
-          if [ -f "build_output_raw.log" ]; then
-            echo "📋 Checking for 'emit-local' flags in build log:"
-            if grep -n "emit-local" build_output_raw.log 2>/dev/null | head -20; then
-              echo "✅ Found 'emit-local' flags - compiler was asked to emit strings"
-            else
-              echo "⚠️  WARNING: No 'emit-local' flags found in build log!"
-              echo "   Checking for other localized string related flags..."
-              grep -n "localized" build_output_raw.log 2>/dev/null | head -30 || echo "   (no localized flags found)"
-            fi
-          else
-            echo "⚠️  Build log not found for analysis"
-          fi
 
-
-      - name: Check String Catalogs after build
-        continue-on-error: true
+      - name: Send build completed status
+        if: env.JOB_ID != '' && env.API_KEY != ''
         run: |
-          echo "String catalogs after build:"
-          find . -name "*.xcstrings" -type f 2>/dev/null | grep -v ".git/" | grep -v "DerivedData/" | while read f; do
-            if command -v jq &> /dev/null; then
-              COUNT=$(jq '.strings | length' "$f" 2>/dev/null || echo "0")
-              echo "  - $f ($COUNT strings)"
-            else
-              echo "  - $f"
-            fi
-          done || echo "  (none found)"
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_build_completed\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Build completed, generating skip list\\\", \\\"step\\\": \\\"skip-list\\\"}\"
+            }" || echo "⚠️  Failed to send status update (build completed)"
 
       - name: Build skip list from all String Catalogs
         run: |
@@ -790,9 +643,22 @@ jobs:
           
           # Show skip list entry count and file count
           if command -v jq >/dev/null 2>&1; then
-            ENTRY_COUNT=$(jq '.strings | length' skip-list.json 2>/dev/null || echo "0")
+            ENTRY_COUNT=$(jq '.count' skip-list.json 2>/dev/null || echo "0")
             FILE_COUNT=$(jq '.files | length' skip-list.json 2>/dev/null || echo "0")
             echo "Skip list contains $ENTRY_COUNT entries from $FILE_COUNT source files"
+          fi
+          
+          # Send skip list completion status
+          if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
+            curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+              -H "Content-Type: application/json" \
+              -H "api-key: $API_KEY" \
+              -d "{
+                \"jobId\": \"$JOB_ID\",
+                \"status\": \"workflow_build_completed\",
+                \"extractionStatus\": \"extracting\",
+                \"progress\": \"{\\\"message\\\": \\\"Skip list generated with $ENTRY_COUNT entries\\\", \\\"step\\\": \\\"skip-list-complete\\\"}\"
+              }" || echo "⚠️  Failed to send status update (skip list completed)"
           fi
 
       - name: Set up gcloud auth
@@ -816,216 +682,52 @@ jobs:
               exit 0
             }
             echo "Skip list uploaded to: gs://$GCS_BUCKET/$GCS_PATH"
+            
+            # Send upload status
+            if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
+              curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+                -H "Content-Type: application/json" \
+                -H "api-key: $API_KEY" \
+                -d "{
+                  \"jobId\": \"$JOB_ID\",
+                  \"status\": \"workflow_build_completed\",
+                  \"extractionStatus\": \"extracting\",
+                  \"progress\": \"{\\\"message\\\": \\\"Skip list uploaded to GCS\\\", \\\"step\\\": \\\"upload\\\"}\"
+                }" || echo "⚠️  Failed to send status update (upload completed)"
+            fi
           else
             echo "⚠️  gsutil not available. Skip list upload skipped."
           fi
 
-      - name: Upload XLIFF file to GCS (for debugging)
-        run: |
-          # Find XLIFF files (could be in .xcloc bundles or standalone)
-          XLIFF_FILE=$(find . -name "*.xliff" -type f | grep -v "/.git/" | grep -v "/DerivedData/" | head -1)
-          
-          if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
-            echo "📋 Found XLIFF file: $XLIFF_FILE"
-            
-            # Extract directory path from GCS_PATH (e.g., "project-119/integration-695/1765663761016/skip-list.json" -> "project-119/integration-695/1765663761016/")
-            GCS_DIR=$(dirname "$GCS_PATH")
-            XLIFF_GCS_PATH="${GCS_DIR}/exported-strings.xliff"
-            
-            if command -v gsutil &> /dev/null; then
-              gsutil cp "$XLIFF_FILE" "gs://$GCS_BUCKET/$XLIFF_GCS_PATH" || {
-                echo "⚠️  Failed to upload XLIFF file using gsutil."
-                echo "⚠️  XLIFF file will not be available in GCS, but workflow will continue."
-                exit 0
-              }
-              echo "✅ XLIFF file uploaded to: gs://$GCS_BUCKET/$XLIFF_GCS_PATH"
-            else
-              echo "⚠️  gsutil not available. XLIFF file upload skipped."
-            fi
-          else
-            echo "ℹ️  No XLIFF file found to upload (this is OK if strings were extracted via .xcstrings)"
-          fi
-
-      - name: Upload .xcstrings file to GCS (for debugging)
-        run: |
-          # Find .xcstrings files (prioritize Localizable.xcstrings)
-          XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f \
-            ! -path "/.git/*" \
-            ! -path "*/DerivedData/*" \
-            ! -path "*/LocalizationsExport/*" \
-            ! -path "*/*.xcloc/*" \
-            | grep -E "(Localizable\.xcstrings|/Resources/.*\.xcstrings)" | head -1)
-          
-          # If no Localizable.xcstrings found, get any .xcstrings file
-          if [ -z "$XCSTRINGS_FILE" ]; then
-            XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f \
-              ! -path "/.git/*" \
-              ! -path "*/DerivedData/*" \
-              ! -path "*/LocalizationsExport/*" \
-              ! -path "*/*.xcloc/*" \
-              | head -1)
-          fi
-          
-          if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
-            echo "📋 Found .xcstrings file: $XCSTRINGS_FILE"
-            
-            # Extract directory path from GCS_PATH
-            GCS_DIR=$(dirname "$GCS_PATH")
-            XCSTRINGS_GCS_PATH="${GCS_DIR}/Localizable.xcstrings"
-            
-            if command -v gsutil &> /dev/null; then
-              gsutil cp "$XCSTRINGS_FILE" "gs://$GCS_BUCKET/$XCSTRINGS_GCS_PATH" || {
-                echo "⚠️  Failed to upload .xcstrings file using gsutil."
-                echo "⚠️  .xcstrings file will not be available in GCS, but workflow will continue."
-                exit 0
-              }
-              echo "✅ .xcstrings file uploaded to: gs://$GCS_BUCKET/$XCSTRINGS_GCS_PATH"
-              
-              # Show file info for debugging
-              echo "📊 File info:"
-              ls -lh "$XCSTRINGS_FILE" 2>/dev/null || echo "   (cannot stat file)"
-              
-              # Show string count if jq is available
-              if command -v jq >/dev/null 2>&1; then
-                STRING_COUNT=$(jq '.strings | length' "$XCSTRINGS_FILE" 2>/dev/null || echo "unknown")
-                echo "📊 String count in catalog: $STRING_COUNT"
-              fi
-            else
-              echo "⚠️  gsutil not available. .xcstrings file upload skipped."
-            fi
-          else
-            echo "ℹ️  No .xcstrings file found to upload"
-          fi
-
-      - name: Upload sample .stringsdata files to GCS (for debugging)
-        continue-on-error: true
-        run: |
-          # Use isolated DerivedData from workflow
-          DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
-          if [ -z "$DERIVED_DATA_PATH" ] || [ ! -d "$DERIVED_DATA_PATH" ]; then
-            echo "⚠️  DerivedData path not available, skipping .stringsdata upload"
-            exit 0
-          fi
-          
-          # Find .stringsdata files and filter for ones that likely have content
-          # Sort by size (largest first) to get files more likely to have strings
-          # Filter out files smaller than 100 bytes (likely empty)
-          SAMPLE_STRINGSDATA_FILES=$(find "$DERIVED_DATA_PATH" -name "*.stringsdata" -type f 2>/dev/null \
-            | grep -v "/SourcePackages/" \
-            | grep -v "/Products/" \
-            | grep -v ".framework/" \
-            | while read f; do
-                SIZE=$(stat -f%z "$f" 2>/dev/null || stat -c%s "$f" 2>/dev/null || echo "0")
-                if [ "$SIZE" -gt 100 ]; then
-                  echo "$SIZE $f"
-                fi
-              done \
-            | sort -rn \
-            | head -3 \
-            | awk '{print $2}')
-          
-          if [ -z "$SAMPLE_STRINGSDATA_FILES" ]; then
-            echo "ℹ️  No non-empty .stringsdata files found to upload"
-            # Fallback: try any files if none meet size threshold
-            SAMPLE_STRINGSDATA_FILES=$(find "$DERIVED_DATA_PATH" -name "*.stringsdata" -type f 2>/dev/null \
-              | grep -v "/SourcePackages/" \
-              | grep -v "/Products/" \
-              | grep -v ".framework/" \
-              | head -3)
-            if [ -z "$SAMPLE_STRINGSDATA_FILES" ]; then
-              echo "ℹ️  No .stringsdata files found at all"
-              exit 0
-            fi
-            echo "⚠️  Falling back to first 3 files (may be empty)"
-          fi
-          
-          GCS_DIR=$(dirname "$GCS_PATH")
-          UPLOADED_COUNT=0
-          
-          if command -v gsutil &> /dev/null; then
-            echo "Uploading sample .stringsdata files to GCS (largest files first)..."
-            while IFS= read -r stringsdata_file; do
-              [ -z "$stringsdata_file" ] && continue
-              if [ ! -f "$stringsdata_file" ]; then
-                continue
-              fi
-              
-              # Show file size for reference
-              SIZE=$(stat -f%z "$stringsdata_file" 2>/dev/null || stat -c%s "$stringsdata_file" 2>/dev/null || echo "0")
-              
-              # Extract filename and create GCS path
-              FILENAME=$(basename "$stringsdata_file")
-              STRINGSDATA_GCS_PATH="${GCS_DIR}/sample-stringsdata/${FILENAME}"
-              
-              if gsutil cp "$stringsdata_file" "gs://$GCS_BUCKET/$STRINGSDATA_GCS_PATH" 2>/dev/null; then
-                echo "  ✅ Uploaded: $FILENAME ($SIZE bytes) -> gs://$GCS_BUCKET/$STRINGSDATA_GCS_PATH"
-                UPLOADED_COUNT=$((UPLOADED_COUNT + 1))
-              else
-                echo "  ⚠️  Failed to upload: $FILENAME"
-              fi
-            done <<< "$SAMPLE_STRINGSDATA_FILES"
-            
-            if [ "$UPLOADED_COUNT" -gt 0 ]; then
-              echo "✅ Uploaded $UPLOADED_COUNT sample .stringsdata file(s) to gs://$GCS_BUCKET/$GCS_DIR/sample-stringsdata/"
-            fi
-          else
-            echo "⚠️  gsutil not available. .stringsdata file upload skipped."
-          fi
-
-      - name: Upload catalogs as artifact (for debugging)
-        uses: actions/upload-artifact@v4
-        with:
-          name: string-catalogs-and-skip-list
-          path: |
-            **/*.xcstrings
-            **/*.xliff
-            **/*.xcloc
-            skip-list.json
-          if-no-files-found: ignore
-
       - name: Notify completion
+        if: always()
         run: |
           echo "✅ Xcode string extraction completed"
           echo "Skip list available at: gs://$GCS_BUCKET/$GCS_PATH"
-          
-          GCS_DIR=$(dirname "$GCS_PATH")
-          
-          # Check if XLIFF was uploaded
-          XLIFF_FILE=$(find . -name "*.xliff" -type f 2>/dev/null | grep -v "/.git/" | grep -v "/DerivedData/" | head -1)
-          if [ -n "$XLIFF_FILE" ] && [ -f "$XLIFF_FILE" ]; then
-            XLIFF_GCS_PATH="${GCS_DIR}/exported-strings.xliff"
-            echo "XLIFF file available at: gs://$GCS_BUCKET/$XLIFF_GCS_PATH"
-          fi
-          
-          # Check if .xcstrings was uploaded
-          XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f 2>/dev/null \
-            ! -path "/.git/*" \
-            ! -path "*/DerivedData/*" \
-            ! -path "*/LocalizationsExport/*" \
-            ! -path "*/*.xcloc/*" \
-            | grep -E "(Localizable\.xcstrings|/Resources/.*\.xcstrings)" | head -1)
-          if [ -z "$XCSTRINGS_FILE" ]; then
-            XCSTRINGS_FILE=$(find . -name "*.xcstrings" -type f 2>/dev/null \
-              ! -path "/.git/*" \
-              ! -path "*/DerivedData/*" \
-              ! -path "*/LocalizationsExport/*" \
-              ! -path "*/*.xcloc/*" \
-              | head -1)
-          fi
-          if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
-            XCSTRINGS_GCS_PATH="${GCS_DIR}/Localizable.xcstrings"
-            echo ".xcstrings file available at: gs://$GCS_BUCKET/$XCSTRINGS_GCS_PATH"
-          fi
-          
-          # Check if sample .stringsdata files were uploaded
-          DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
-          if [ -n "$DERIVED_DATA_PATH" ] && [ -d "$DERIVED_DATA_PATH" ]; then
-            SAMPLE_COUNT=$(find "$DERIVED_DATA_PATH" -name "*.stringsdata" -type f 2>/dev/null | grep -v "/SourcePackages/" | grep -v "/Products/" | grep -v ".framework/" | head -3 | wc -l | xargs)
-            if [ "$SAMPLE_COUNT" -gt 0 ]; then
-              echo "Sample .stringsdata files available at: gs://$GCS_BUCKET/$GCS_DIR/sample-stringsdata/"
-            fi
-          fi
-          
           echo "Project ID: $PROJECT_ID"
           echo "Integration ID: $INTEGRATION_ID"
+          
+          # Send final status update
+          if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
+            # Determine status based on whether skip list was created and uploaded
+            if [ -f "skip-list.json" ] && [ -s "skip-list.json" ]; then
+              STATUS="workflow_finished"
+              EXTRACTION_STATUS="complete"
+              MESSAGE="Workflow completed successfully"
+            else
+              STATUS="workflow_finished"
+              EXTRACTION_STATUS="error"
+              MESSAGE="Workflow completed but skip list may be missing or empty"
+            fi
+            
+            curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+              -H "Content-Type: application/json" \
+              -H "api-key: $API_KEY" \
+              -d "{
+                \"jobId\": \"$JOB_ID\",
+                \"status\": \"$STATUS\",
+                \"extractionStatus\": \"$EXTRACTION_STATUS\",
+                \"progress\": \"{\\\"message\\\": \\\"$MESSAGE\\\", \\\"step\\\": \\\"complete\\\"}\"
+              }" || echo "⚠️  Failed to send final status update"
+          fi
 
