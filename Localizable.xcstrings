@@ -12544,7 +12544,7 @@
     "write:discussion": {},
     "Zsh": {},
     "activity-viewer.accessibility-label": {
-      "comment": "Accessibility label for the activity viewer panel",
+      "comment": "Accessibility label for the activity viewer",
       "extractionState": "manual",
       "localizations": {
         "en": {
