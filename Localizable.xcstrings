@@ -12552,24 +12552,6 @@
             "state": "translated",
             "value": "Activity Bananas"
           }
-        },
-        "es-419": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plátanos de Actividad"
-          }
-        },
-        "zh-CN": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "活动香蕉"
-          }
-        },
-        "fr-FR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bananes d'activité"
-          }
         }
       }
     }
