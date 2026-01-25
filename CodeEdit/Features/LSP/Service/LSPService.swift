@@ -336,7 +336,7 @@ extension LSPService {
         // TODO: Re-Enable when this is more fleshed out (don't send duplicate notifications in a session)
         return
         let lspLanguageTitle = lspLanguage.rawValue.capitalized
-        let notificationTitle = String(format: NSLocalizedString("lsp.install.title", comment: "Title for notification to install language server"), lspLanguageTitle)
+        let notificationTitle = "Install the \(lspLanguageTitle) Language Server"
         // Make sure the user doesn't have the same existing notification
         guard !NotificationManager.shared.notifications.contains(where: { $0.title == notificationTitle }) else {
             return
@@ -346,7 +346,7 @@ extension LSPService {
             iconSymbol: "arrow.down.circle",
             iconColor: .clear,
             title: notificationTitle,
-            description: String(format: NSLocalizedString("lsp.install.description", comment: "Description for notification to install language server"), lspLanguageTitle),
+            description: "Install the \(lspLanguageTitle) language server to enable important code intelligence features.",
             actionButtonTitle: String(localized: "lsp.install.button", defaultValue: "Install", comment: "Button to install language server")
         ) { [weak self] in
             // TODO: Warning:
