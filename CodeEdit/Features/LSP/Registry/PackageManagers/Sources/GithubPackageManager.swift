@@ -52,7 +52,7 @@ final class GithubPackageManager: PackageManagerProtocol {
             PackageManagerInstallStep(
                 name: "",
                 confirmation: .required(
-                    message: "This package requires the use of git to install. Allow CodeEdit to run git commands?"
+                    message: String(localized: "package-manager.github.git-permission", defaultValue: "This package requires the use of git to install. Allow CodeEdit to run git commands?", comment: "Confirmation message asking for permission to run git commands")
                 )
             ) { model in
                 let versionOutput = try await model.runCommand("git --version")
@@ -161,7 +161,7 @@ final class GithubPackageManager: PackageManagerProtocol {
             let packagePath = downloadPath.appending(path: fileName)
 
             if packagePath.pathExtension == "tar" || packagePath.pathExtension == ".zip" {
-                await model.status("Currently decompressing \(fileName)")
+                await model.status(String(format: NSLocalizedString("package-manager.github.decompressing-file", comment: "Status message while decompressing file"), fileName))
                 try await FileManager.default.unzipItem(at: packagePath, to: downloadPath, progress: model.progress)
                 if FileManager.default.fileExists(atPath: packagePath.path(percentEncoded: false)) {
                     try FileManager.default.removeItem(at: packagePath)
