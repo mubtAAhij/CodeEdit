@@ -29,7 +29,7 @@ struct ExtensionDetailView: View {
                 .formStyle(.grouped)
             }
 
-            Text("All Extension Settings")
+            Text(String(localized: "extensions.detail.settings.all", defaultValue: "All Extension Settings", comment: "All extension settings section header"))
                 .font(.title3)
                 .fontWeight(.semibold)
                 .padding(.leading)
