@@ -12552,6 +12552,24 @@
             "state": "translated",
             "value": "Features (this is a test, please do not click)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Características (esto es una prueba, por favor no haga clic)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "功能（这是测试，请勿点击）"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonctionnalités (ceci est un test, veuillez ne pas cliquer)"
+          }
         }
       }
     },
@@ -12563,6 +12581,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Extension Settings (still a test)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración de extensión (aún en prueba)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "扩展设置（仍在测试中）"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paramètres d'extension (encore un test)"
           }
         }
       }
