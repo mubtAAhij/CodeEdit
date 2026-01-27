@@ -12552,6 +12552,24 @@
             "state": "translated",
             "value": "(This is a bug, please report it to the developers.)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Esto es un error, por favor repórtalo a los desarrolladores.)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "（这是一个缺陷，请向开发者报告。）"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Ceci est un bug, veuillez le signaler aux développeurs.)"
+          }
         }
       }
     }
