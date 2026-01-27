@@ -35,7 +35,7 @@ struct NonTextFileView: View {
             } else {
                 ZStack {
                     Text(String(localized: "editor.file.cannot-retrieve-url", defaultValue: "Cannot retrieve URL of the file you opened.", comment: "Error message when file URL cannot be retrieved"))
-                    Text("(This is a bug, please report it to the developers.)")
+                    Text(String(localized: "editor.file.bug-report", defaultValue: "(This is a bug, please report it to the developers.)", comment: "Message asking users to report a bug"))
                 }
             }
         }
