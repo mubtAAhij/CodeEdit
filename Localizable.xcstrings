@@ -12552,6 +12552,24 @@
             "state": "translated",
             "value": "Features (this is a test, please do not click)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Características (esto es una prueba, por favor no haga clic)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "功能（这是测试，请勿点击）"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonctionnalités (ceci est un test, veuillez ne pas cliquer)"
+          }
         }
       }
     },
@@ -12593,6 +12611,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "All Extension Settings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas las configuraciones de extensión"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有扩展设置"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les paramètres d'extension"
           }
         }
       }
