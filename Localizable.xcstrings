@@ -12552,24 +12552,6 @@
             "state": "translated",
             "value": "Features (this is a test, please do not click)"
           }
-        },
-        "es-419": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Características (esto es una prueba, por favor no haga clic)"
-          }
-        },
-        "zh-CN": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "功能（这是测试，请勿点击）"
-          }
-        },
-        "fr-FR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fonctionnalités (ceci est un test, veuillez ne pas cliquer)"
-          }
         }
       }
     },
@@ -12599,6 +12581,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Paramètres d'extension (encore un test)"
+          }
+        }
+      }
+    },
+    "extensions.detail.settings.all": {
+      "comment": "All extension settings section header",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All Extension Settings"
           }
         }
       }
