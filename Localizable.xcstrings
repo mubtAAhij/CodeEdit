@@ -561,6 +561,24 @@
             "state": "translated",
             "value": "Cannot retrieve URL of the file you opened."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede obtener la URL del archivo que abrió."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法获取您打开的文件的 URL。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de récupérer l'URL du fichier que vous avez ouvert."
+          }
         }
       }
     },
