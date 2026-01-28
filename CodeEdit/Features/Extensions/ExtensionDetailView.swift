@@ -29,10 +29,6 @@ struct ExtensionDetailView: View {
                 .formStyle(.grouped)
             }
 
-            Text(String(localized: "extensions.detail.settings.all", defaultValue: "All Extension Settings", comment: "All extension settings section header"))
-                .font(.title3)
-                .fontWeight(.semibold)
-                .padding(.leading)
             ExtensionSceneView(with: ext.endpoint, sceneID: "Settings")
                 .padding(.top, -5)
                 .ceEnvironment(\.complexValue, ["HAllo"])
