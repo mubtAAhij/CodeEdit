@@ -154,7 +154,7 @@ struct SettingsView: View {
             /// Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
             if #unavailable(macOS 26.0) {
                 List { }
-                    .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                    .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "common.search", defaultValue: "Search", comment: "Search placeholder"))
                     .scrollDisabled(true)
                     .frame(height: 30)
                 List(selection: $selectedPage) {
@@ -174,7 +174,7 @@ struct SettingsView: View {
                     }
                 }
                 .toolbar(removing: .sidebarToggle)
-                .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "common.search", defaultValue: "Search", comment: "Search placeholder"))
                 .navigationSplitViewColumnWidth(215)
             }
         } detail: {
@@ -203,7 +203,7 @@ struct SettingsView: View {
                 case .developer:
                     DeveloperSettingsView()
                 default:
-                    Text("Implementation Needed").frame(alignment: .center)
+                    Text(String(localized: "settings.implementation-needed", defaultValue: "Implementation Needed", comment: "Implementation needed message")).frame(alignment: .center)
                 }
             }
             .navigationSplitViewColumnWidth(500)
