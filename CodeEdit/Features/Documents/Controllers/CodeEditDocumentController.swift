@@ -89,7 +89,7 @@ final class CodeEditDocumentController: NSDocumentController {
                 if let document {
                     self.addDocument(document)
                 } else {
-                    let errorMessage = error?.localizedDescription ?? "unknown error"
+                    let errorMessage = error?.localizedDescription ?? NSLocalizedString("document.unknown-error", comment: "unknown error")
                     print("Unable to open document '\(url)': \(errorMessage)")
                 }
 
@@ -146,7 +146,7 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Open Workspace or File"
+        dialog.title = NSLocalizedString("document.open-workspace-or-file", comment: "Open Workspace or File")
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
