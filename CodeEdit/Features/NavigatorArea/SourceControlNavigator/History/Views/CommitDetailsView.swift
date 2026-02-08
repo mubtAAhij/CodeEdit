@@ -33,7 +33,7 @@ struct CommitDetailsView: View {
                     Image(systemName: "chevron.backward")
                 }
                 .buttonStyle(SidebarButtonStyle())
-                Text("Commit Details")
+                Text(String(localized: "source-control.commit-details", defaultValue: "Commit Details", comment: "Commit details title"))
                     .font(.system(size: 13, weight: .bold))
             }
             .padding(10)
@@ -56,7 +56,7 @@ struct CommitDetailsView: View {
                     }
                     .environment(\.defaultMinListRowHeight, 22)
                 } else {
-                    CEContentUnavailableView("No Changes")
+                    CEContentUnavailableView(String(localized: "source-control.no-changes", defaultValue: "No Changes", comment: "No changes message"))
                 }
             } else {
                 Spacer()
