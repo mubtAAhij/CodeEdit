@@ -46,7 +46,7 @@ struct ImageFileView: View {
                 .frame(width: proxy.size.width, height: proxy.size.height)
             }
         } else {
-            Text("Cannot preview image")
+            Text(String(localized: "editor.image-preview-error", defaultValue: "Cannot preview image", comment: "Image preview error message"))
         }
     }
 
