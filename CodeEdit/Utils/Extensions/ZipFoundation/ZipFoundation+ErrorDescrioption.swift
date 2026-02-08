@@ -12,47 +12,47 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(localized: "zip.error.unreadable-archive", defaultValue: "Unreadable archive.", comment: "Unreadable archive error")
         case .unwritableArchive:
-            "Unwritable archive."
+            String(localized: "zip.error.unwritable-archive", defaultValue: "Unwritable archive.", comment: "Unwritable archive error")
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(localized: "zip.error.invalid-entry-path", defaultValue: "Invalid entry path.", comment: "Invalid entry path error")
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(localized: "zip.error.invalid-compression-method", defaultValue: "Invalid compression method.", comment: "Invalid compression method error")
         case .invalidCRC32:
-            "Invalid checksum."
+            String(localized: "zip.error.invalid-checksum", defaultValue: "Invalid checksum.", comment: "Invalid checksum error")
         case .cancelledOperation:
-            "Operation cancelled."
+            String(localized: "zip.error.operation-cancelled", defaultValue: "Operation cancelled.", comment: "Operation cancelled error")
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(localized: "zip.error.invalid-buffer-size", defaultValue: "Invalid buffer size.", comment: "Invalid buffer size error")
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(localized: "zip.error.invalid-entry-size", defaultValue: "Invalid entry size.", comment: "Invalid entry size error")
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(localized: "zip.error.invalid-file-detected", defaultValue: "Invalid file detected.", comment: "Invalid file detected error")
         case .uncontainedSymlink:
-            "Uncontained symlink detected."
+            String(localized: "zip.error.uncontained-symlink", defaultValue: "Uncontained symlink detected.", comment: "Uncontained symlink error")
         }
     }
 
     public var failureReason: String? {
         return switch self {
         case .invalidLocalHeaderDataOffset:
-            "Invalid local header data offset."
+            String(localized: "zip.error.invalid-local-header-data-offset", defaultValue: "Invalid local header data offset.", comment: "Invalid local header data offset error")
         case .invalidLocalHeaderSize:
-            "Invalid local header size."
+            String(localized: "zip.error.invalid-local-header-size", defaultValue: "Invalid local header size.", comment: "Invalid local header size error")
         case .invalidCentralDirectoryOffset:
-            "Invalid central directory offset."
+            String(localized: "zip.error.invalid-central-directory-offset", defaultValue: "Invalid central directory offset.", comment: "Invalid central directory offset error")
         case .invalidCentralDirectorySize:
-            "Invalid central directory size."
+            String(localized: "zip.error.invalid-central-directory-size", defaultValue: "Invalid central directory size.", comment: "Invalid central directory size error")
         case .invalidCentralDirectoryEntryCount:
-            "Invalid central directory entry count."
+            String(localized: "zip.error.invalid-central-directory-entry-count", defaultValue: "Invalid central directory entry count.", comment: "Invalid central directory entry count error")
         case .missingEndOfCentralDirectoryRecord:
-            "Missing end of central directory record."
+            String(localized: "zip.error.missing-end-of-central-directory-record", defaultValue: "Missing end of central directory record.", comment: "Missing end of central directory record error")
         default:
             nil
         }
