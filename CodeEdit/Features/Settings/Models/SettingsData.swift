@@ -114,10 +114,10 @@ struct SettingsData: Codable, Hashable {
             }
         case .developer:
             developerSettings.searchKeys.forEach { settings.append(.init(name, isSetting: true, settingName: $0)) }
-        case .behavior: return [.init(name, settingName: "Error")]
-        case .components: return [.init(name, settingName: "Error")]
-        case .keybindings: return [.init(name, settingName: "Error")]
-        case .advanced: return [.init(name, settingName: "Error")]
+        case .behavior: return [.init(name, settingName: NSLocalizedString("settings.error", comment: "Error"))]
+        case .components: return [.init(name, settingName: NSLocalizedString("settings.error", comment: "Error"))]
+        case .keybindings: return [.init(name, settingName: NSLocalizedString("settings.error", comment: "Error"))]
+        case .advanced: return [.init(name, settingName: NSLocalizedString("settings.error", comment: "Error"))]
         }
 
         return settings

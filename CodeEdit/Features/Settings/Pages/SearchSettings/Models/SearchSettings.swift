@@ -13,10 +13,9 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Ignore Glob Patterns",
-                "Ignore Patterns"
+                NSLocalizedString("search-settings.ignore-glob-patterns", comment: "Ignore Glob Patterns"),
+                NSLocalizedString("search-settings.ignore-patterns", comment: "Ignore Patterns")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// List of Glob Patterns that determine which files or directories to ignore

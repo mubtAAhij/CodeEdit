@@ -169,8 +169,8 @@ extension SettingsData {
             let mgr = CommandManager.shared
 
             mgr.addCommand(
-                name: "Toggle Type-Over Completion",
-                title: "Toggle Type-Over Completion",
+                name: String(localized: "settings.text-editing.toggle-type-over", defaultValue: "Toggle Type-Over Completion", comment: "Toggle type-over completion command"),
+                title: String(localized: "settings.text-editing.toggle-type-over", defaultValue: "Toggle Type-Over Completion", comment: "Toggle type-over completion command"),
                 id: "prefs.text_editing.type_over_completion",
                 command: {
                     Settings[\.textEditing].enableTypeOverCompletion.toggle()
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "settings.text-editing.toggle-autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Toggle autocomplete braces command"),
+                title: String(localized: "settings.text-editing.toggle-autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Toggle autocomplete braces command"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,15 +187,15 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "settings.text-editing.toggle-word-wrap", defaultValue: "Toggle Word Wrap", comment: "Toggle word wrap command"),
+                title: String(localized: "settings.text-editing.toggle-word-wrap", defaultValue: "Toggle Word Wrap", comment: "Toggle word wrap command"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
                 }
             )
 
-            mgr.addCommand(name: "Toggle Minimap", title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
+            mgr.addCommand(name: String(localized: "settings.text-editing.toggle-minimap", defaultValue: "Toggle Minimap", comment: "Toggle minimap command"), title: String(localized: "settings.text-editing.toggle-minimap", defaultValue: "Toggle Minimap", comment: "Toggle minimap command"), id: "prefs.text_editing.toggle_minimap") {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 

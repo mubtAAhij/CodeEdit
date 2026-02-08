@@ -39,9 +39,9 @@ struct TaskDropDownView: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("TaskDropdown")
-        .accessibilityValue(taskManager.selectedTask?.name ?? "Create Tasks")
-        .accessibilityLabel("Active Task")
-        .accessibilityHint("Open the active task menu")
+        .accessibilityValue(taskManager.selectedTask?.name ?? String(localized: "task.create-tasks", defaultValue: "Create Tasks", comment: "Create tasks"))
+        .accessibilityLabel(String(localized: "task.active-task", defaultValue: "Active Task", comment: "Active task accessibility label"))
+        .accessibilityHint(String(localized: "task.open-menu-hint", defaultValue: "Open the active task menu", comment: "Open task menu hint"))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
@@ -82,7 +82,7 @@ struct TaskDropDownView: View {
                         .fixedSize()
                 }
             } else {
-                Text("Create Tasks")
+                Text(String(localized: "task.create-tasks", defaultValue: "Create Tasks", comment: "Create tasks"))
                     .frame(minWidth: 0)
             }
         }
@@ -120,10 +120,10 @@ struct TaskDropDownView: View {
             Divider()
                 .padding(.vertical, 5)
         }
-        OptionMenuItemView(label: "Add Task...") {
+        OptionMenuItemView(label: String(localized: "task.add-task", defaultValue: "Add Task...", comment: "Add task menu item")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
-        OptionMenuItemView(label: "Manage Tasks...") {
+        OptionMenuItemView(label: String(localized: "task.manage-tasks", defaultValue: "Manage Tasks...", comment: "Manage tasks menu item")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
     }
