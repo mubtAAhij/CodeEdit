@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import sys
 import subprocess
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from datetime import datetime, timezone
 
-if len(sys.argv) != 2:
-    print(f"Usage: {sys.argv[0]} OUTPUT_JSON", file=sys.stderr)
+if len(sys.argv) < 2:
+    print(f"Usage: {sys.argv[0]} OUTPUT_JSON [DERIVED_DATA_PATH]", file=sys.stderr)
+    print("  OUTPUT_JSON       path to write skip-list JSON", file=sys.stderr)
+    print("  DERIVED_DATA_PATH optional; Xcode DerivedData dir to search for .stringsdata (or set DERIVED_DATA_PATH env)", file=sys.stderr)
     sys.exit(1)
 
 out_path = Path(sys.argv[1])
+derived_data_arg = sys.argv[2] if len(sys.argv) > 2 else None
 
 def parse_xliff(path):
     """Parse an XLIFF file and return a list of (key, value) tuples."""
@@ -170,6 +174,20 @@ xcstrings_files = list(root.rglob("*.xcstrings"))
 xliff_files = list(root.rglob("*.xliff"))
 stringsdata_files = list(root.rglob("*.stringsdata"))
 
+# Also search DerivedData if set (workflow uses isolated DerivedData outside repo root)
+derived_data_path = derived_data_arg or os.environ.get("DERIVED_DATA_PATH")
+if derived_data_path:
+    dd = Path(derived_data_path)
+    if dd.is_dir():
+        extra = list(dd.rglob("*.stringsdata"))
+        # Exclude noise (same filters as repo .stringsdata)
+        extra = [f for f in extra if "SourcePackages" not in str(f) and "Products" not in str(f) and ".framework" not in str(f)]
+        stringsdata_files = list(stringsdata_files) + extra
+        if extra:
+            print(f"🔍 Found {len(extra)} .stringsdata file(s) in DERIVED_DATA_PATH ({dd})", file=sys.stderr)
+    else:
+        print(f"⚠️  DERIVED_DATA_PATH not a directory: {derived_data_path}", file=sys.stderr)
+
 # Exclude DerivedData and .git directories for .xcstrings and .xliff
 xcstrings_files = [f for f in xcstrings_files if "DerivedData" not in str(f) and ".git" not in str(f)]
 xliff_files = [f for f in xliff_files if "DerivedData" not in str(f) and ".git" not in str(f)]
@@ -194,7 +212,7 @@ if not xcstrings_files and not xliff_files and not stringsdata_files:
     output = {
         "version": 1,
         "count": 0,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "files": {}
     }
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -264,6 +282,25 @@ for key, stringsdata_info in stringsdata_map.items():
         files_dict[source_file] = []
     files_dict[source_file].append(entry)
 
+# Fallback: when no .stringsdata files were found (e.g. build failed or DerivedData not in repo),
+# populate the skip list from .xcstrings keys so the extractor can still skip known-localized strings.
+if not files_dict and value_map:
+    # Use the first .xcstrings file path (relative to root) as the synthetic "source file"
+    synthetic_source = "Localizable.xcstrings"
+    if xcstrings_files:
+        try:
+            synthetic_source = str(xcstrings_files[0].relative_to(root))
+        except ValueError:
+            pass
+    files_dict[synthetic_source] = [
+        {"key": key, "value": value}
+        for key, value in value_map.items()
+    ]
+    print(
+        f"📋 No .stringsdata location info found; using {len(value_map)} keys from .xcstrings as skip list (source: {synthetic_source})",
+        file=sys.stderr,
+    )
+
 # Calculate total count
 total_count = sum(len(entries) for entries in files_dict.values())
 
@@ -271,7 +308,7 @@ total_count = sum(len(entries) for entries in files_dict.values())
 output = {
     "version": 1,
     "count": total_count,
-    "timestamp": datetime.utcnow().isoformat() + "Z",
+    "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     "files": files_dict
 }
 out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
