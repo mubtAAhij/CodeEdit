@@ -634,8 +634,8 @@ jobs:
 
       - name: Build skip list from all String Catalogs
         run: |
-          # Always create skip-list.json, even if empty
-          python3 Scripts/build_skip_list.py skip-list.json || echo "[]" > skip-list.json
+          # Search repo + DerivedData for .stringsdata (DERIVED_DATA_PATH has file/line info from the build)
+          python3 Scripts/build_skip_list.py skip-list.json "${{ env.DERIVED_DATA_PATH }}" || echo "[]" > skip-list.json
           # Ensure file exists
           if [ ! -f skip-list.json ]; then
             echo "[]" > skip-list.json
