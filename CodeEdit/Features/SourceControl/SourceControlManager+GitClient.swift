@@ -103,7 +103,7 @@ extension SourceControlManager {
                 // requires CodeEditSourceEditor changes
             } catch {
                 logger.error("Failed to discard changes for file (\(file.lastPathComponent): \(error)")
-                await showAlertForError(title: "Failed to discard changes", error: error)
+                await showAlertForError(title: NSLocalizedString("source-control.discard-changes-error", comment: "Failed to discard changes"), error: error)
             }
         }
     }
@@ -117,7 +117,7 @@ extension SourceControlManager {
                 // requires CodeEditSourceEditor changes
             } catch {
                 logger.error("Failed to discard changes: \(error)")
-                await showAlertForError(title: "Failed to discard changes", error: error)
+                await showAlertForError(title: NSLocalizedString("source-control.discard-changes-error", comment: "Failed to discard changes"), error: error)
             }
         }
     }

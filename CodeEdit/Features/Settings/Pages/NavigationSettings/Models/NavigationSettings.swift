@@ -15,9 +15,8 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Navigation Style",
+                NSLocalizedString("settings.navigation.style", comment: "Navigation style setting"),
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Navigation style used

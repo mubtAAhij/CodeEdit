@@ -26,7 +26,7 @@ final class AcknowledgementsViewModel: ObservableObject {
     func fetchDependencies() {
         self.acknowledgements.removeAll()
         do {
-            if let bundlePath = Bundle.main.path(forResource: "Package", ofType: "resolved") {
+            if let bundlePath = Bundle.main.path(forResource: NSLocalizedString("about.package-resource", comment: "Package resource name"), ofType: "resolved") {
                 let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8)
                 let parsedJSON = try JSONDecoder().decode(AcknowledgementObject.self, from: jsonData!)
                 for dependency in parsedJSON.pins.sorted(by: { $0.identity < $1.identity })

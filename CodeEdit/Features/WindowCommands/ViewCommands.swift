@@ -28,18 +28,18 @@ struct ViewCommands: Commands {
 
     var body: some Commands {
         CommandGroup(after: .toolbar) {
-            Button("Show Command Palette") {
+            Button(String(localized: "view.show-command-palette", defaultValue: "Show Command Palette", comment: "Show command palette menu item")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openCommandPalette(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("p", modifiers: [.shift, .command])
 
-            Button("Open Search Navigator") {
+            Button(String(localized: "view.open-search-navigator", defaultValue: "Open Search Navigator", comment: "Open search navigator menu item")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openSearchNavigator(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("f", modifiers: [.shift, .command])
 
             Menu("Font Size") {
-                Button("Increase") {
+                Button(String(localized: "view.font-size.increase", defaultValue: "Increase", comment: "Increase font size menu item")) {
                     if editorFontSize < 288 {
                         editorFontSize += 1
                     }
@@ -49,7 +49,7 @@ struct ViewCommands: Commands {
                 }
                 .keyboardShortcut("+")
 
-                Button("Decrease") {
+                Button(String(localized: "view.font-size.decrease", defaultValue: "Decrease", comment: "Decrease font size menu item")) {
                     if editorFontSize > 1 {
                         editorFontSize -= 1
                     }
@@ -61,7 +61,7 @@ struct ViewCommands: Commands {
 
                 Divider()
 
-                Button("Reset") {
+                Button(String(localized: "view.font-size.reset", defaultValue: "Reset", comment: "Reset font size menu item")) {
                     editorFontSize = 12
                     terminalFontSize = 12
                 }
@@ -69,7 +69,7 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button("Customize Toolbar...") {
+            Button(String(localized: "view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "Customize toolbar menu item")) {
 
             }
             .disabled(true)
@@ -80,11 +80,11 @@ struct ViewCommands: Commands {
 
             Divider()
 
-            Button("\(showEditorJumpBar ? "Hide" : "Show") Jump Bar") {
+            Button(String(format: NSLocalizedString("view.toggle-jump-bar", comment: "Toggle jump bar menu item"), showEditorJumpBar ? String(localized: "view.hide", defaultValue: "Hide", comment: "Hide action") : String(localized: "view.show", defaultValue: "Show", comment: "Show action"))) {
                 showEditorJumpBar.toggle()
             }
 
-            Toggle("Dim editors without focus", isOn: $dimEditorsWithoutFocus)
+            Toggle(String(localized: "view.dim-editors-without-focus", defaultValue: "Dim editors without focus", comment: "Dim editors without focus toggle"), isOn: $dimEditorsWithoutFocus)
 
             Divider()
 
@@ -121,31 +121,31 @@ extension ViewCommands {
         }
 
         var body: some View {
-            Button("\(navigatorCollapsed ? "Show" : "Hide") Navigator") {
+            Button(String(format: NSLocalizedString("view.toggle-navigator", comment: "Toggle navigator menu item"), navigatorCollapsed ? String(localized: "view.show", defaultValue: "Show", comment: "Show action") : String(localized: "view.hide", defaultValue: "Hide", comment: "Hide action"))) {
                 windowController?.toggleFirstPanel()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("0", modifiers: [.command])
 
-            Button("\(inspectorCollapsed ? "Show" : "Hide") Inspector") {
+            Button(String(format: NSLocalizedString("view.toggle-inspector", comment: "Toggle inspector menu item"), inspectorCollapsed ? String(localized: "view.show", defaultValue: "Show", comment: "Show action") : String(localized: "view.hide", defaultValue: "Hide", comment: "Hide action"))) {
                 windowController?.toggleLastPanel()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("i", modifiers: [.control, .command])
 
-            Button("\(utilityAreaCollapsed ? "Show" : "Hide") Utility Area") {
+            Button(String(format: NSLocalizedString("view.toggle-utility-area", comment: "Toggle utility area menu item"), utilityAreaCollapsed ? String(localized: "view.show", defaultValue: "Show", comment: "Show action") : String(localized: "view.hide", defaultValue: "Hide", comment: "Hide action"))) {
                 CommandManager.shared.executeCommand("open.drawer")
             }
             .disabled(windowController == nil)
             .keyboardShortcut("y", modifiers: [.shift, .command])
 
-            Button("\(toolbarCollapsed ? "Show" : "Hide") Toolbar") {
+            Button(String(format: NSLocalizedString("view.toggle-toolbar", comment: "Toggle toolbar menu item"), toolbarCollapsed ? String(localized: "view.show", defaultValue: "Show", comment: "Show action") : String(localized: "view.hide", defaultValue: "Hide", comment: "Hide action"))) {
                 windowController?.toggleToolbar()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("t", modifiers: [.option, .command])
 
-            Button("\(isInterfaceHidden ? "Show" : "Hide") Interface") {
+            Button(String(format: NSLocalizedString("view.toggle-interface", comment: "Toggle interface menu item"), isInterfaceHidden ? String(localized: "view.show", defaultValue: "Show", comment: "Show action") : String(localized: "view.hide", defaultValue: "Hide", comment: "Hide action"))) {
                 windowController?.toggleInterface(shouldHide: !isInterfaceHidden)
             }
             .disabled(windowController == nil)
@@ -159,7 +159,7 @@ extension ViewCommands {
         @ObservedObject var model: NavigatorAreaViewModel
 
         var body: some View {
-            Menu("Navigators", content: {
+            Menu(String(localized: "view.navigators", defaultValue: "Navigators", comment: "Navigators menu"), content: {
                 ForEach(Array(model.tabItems.prefix(9).enumerated()), id: \.element) { index, tab in
                     Button(tab.title) {
                         model.setNavigatorTab(tab: tab)

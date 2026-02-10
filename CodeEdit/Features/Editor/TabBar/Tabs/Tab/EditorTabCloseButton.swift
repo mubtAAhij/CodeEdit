@@ -71,7 +71,7 @@ struct EditorTabCloseButton: View {
             isHoveringClose = hover
         }
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Close"))
+        .accessibilityLabel(Text(String(localized: "common.close", defaultValue: "Close", comment: "Close button")))
         // Only show when the mouse is hovering and there is no tab dragging.
         .opacity((isHoveringTab || isDocumentEdited == true) && !isDragging ? 1 : 0)
         .animation(.easeInOut(duration: 0.08), value: isHoveringTab)
@@ -109,7 +109,6 @@ struct EditorTabCloseButton: View {
     }
 }
 
-@available(macOS 14.0, *)
 #Preview {
     @Previewable @State var closeButtonGestureActive: Bool = false
     @Previewable @State var isHoveringClose: Bool = false

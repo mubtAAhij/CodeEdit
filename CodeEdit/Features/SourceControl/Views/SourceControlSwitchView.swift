@@ -23,12 +23,9 @@ struct SourceControlSwitchView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Do you want to switch to “\(branch.name)”?")
+                    Text(String(format: NSLocalizedString("source-control.switch-branch-prompt", comment: "Switch branch prompt"), branch.name))
                         .font(.headline)
-                    Text(
-                        "All files in the local repository will switch from the current branch " +
-                        "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
-                    )
+                    Text(String(format: NSLocalizedString("source-control.switch-branch-details", comment: "Switch branch details"), sourceControlManager.currentBranch?.name ?? "", branch.name))
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
                 }
@@ -42,13 +39,13 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "common.cancel", defaultValue: "Cancel", comment: "Cancel button"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Switch")
+                    Text(String(localized: "source-control.switch", defaultValue: "Switch", comment: "Switch button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -70,7 +67,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: NSLocalizedString("source-control.checkout-failed", comment: "Failed to checkout"), error: error)
             }
         }
     }

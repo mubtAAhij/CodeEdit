@@ -23,11 +23,11 @@ struct ProjectNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             addNewFileButton
             PaneTextField(
-                "Filter",
+                String(localized: "navigator.filter", defaultValue: "Filter", comment: "Filter text field placeholder"),
                 text: $workspace.navigatorFilter,
                 leadingAccessories: {
                     FilterDropDownIconButton(menu: {
-                        ForEach([(true, "Folders on top"), (false, "Alphabetically")], id: \.0) { value, title in
+                        ForEach([(true, String(localized: "navigator.folders-on-top", defaultValue: "Folders on top", comment: "Folders on top sort option")), (false, String(localized: "navigator.alphabetically", defaultValue: "Alphabetically", comment: "Alphabetically sort option"))], id: \.0) { value, title in
                             Toggle(title, isOn: Binding(get: {
                                 workspace.sortFoldersOnTop == value
                             }, set: { _ in
@@ -44,18 +44,18 @@ struct ProjectNavigatorToolbarBottom: View {
                         ? Color(nsColor: .secondaryLabelColor)
                         : Color(nsColor: .controlAccentColor)
                     )
-                    .help("Show files with matching name")
+                    .help(String(localized: "navigator.show-files-matching-name", defaultValue: "Show files with matching name", comment: "Filter help text"))
                 },
                 trailingAccessories: {
                     HStack(spacing: 0) {
                         Toggle(isOn: $recentsFilter) {
                             Image(systemName: "clock")
                         }
-                        .help("Show only recent files")
+                        .help(String(localized: "navigator.show-only-recent-files", defaultValue: "Show only recent files", comment: "Recent files filter help text"))
                         Toggle(isOn: $workspace.sourceControlFilter) {
                             Image(systemName: "plusminus.circle")
                         }
-                        .help("Show only files with source-control status")
+                        .help(String(localized: "navigator.show-only-source-control-files", defaultValue: "Show only files with source-control status", comment: "Source control filter help text"))
                     }
                     .toggleStyle(.icon(font: .system(size: 14), size: CGSize(width: 18, height: 20)))
                     .padding(.trailing, 2.5)
@@ -98,12 +98,12 @@ struct ProjectNavigatorToolbarBottom: View {
 
     private var addNewFileButton: some View {
         Menu {
-            Button("Add File") {
+            Button(String(localized: "navigator.add-file", defaultValue: "Add File", comment: "Add file menu item")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
                     if let newFile = try workspace.workspaceFileManager?.addFile(
-                        fileName: "untitled",
+                        fileName: String(localized: "file.untitled", defaultValue: "untitled", comment: "Default filename for new files"),
                         toFile: rootFile
                     ) {
                         workspace.listenerModel.highlightedFileItem = newFile
@@ -111,24 +111,24 @@ struct ProjectNavigatorToolbarBottom: View {
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(localized: "common.dismiss", defaultValue: "Dismiss", comment: "Dismiss button"))
                     alert.runModal()
                 }
             }
 
-            Button("Add Folder") {
+            Button(String(localized: "navigator.add-folder", defaultValue: "Add Folder", comment: "Add folder menu item")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
                     if let newFolder = try workspace.workspaceFileManager?.addFolder(
-                        folderName: "untitled",
+                        folderName: String(localized: "file.untitled", defaultValue: "untitled", comment: "Default filename for new files"),
                         toFile: rootFile
                     ) {
                         workspace.listenerModel.highlightedFileItem = newFolder
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(localized: "common.dismiss", defaultValue: "Dismiss", comment: "Dismiss button"))
                     alert.runModal()
                 }
             }
@@ -141,7 +141,7 @@ struct ProjectNavigatorToolbarBottom: View {
         .menuIndicator(.hidden)
         .frame(maxWidth: 18, alignment: .center)
         .opacity(activeState == .inactive ? 0.45 : 1)
-        .accessibilityLabel("Add Folder or File")
+        .accessibilityLabel(String(localized: "navigator.add-folder-or-file", defaultValue: "Add Folder or File", comment: "Add folder or file accessibility label"))
         .accessibilityIdentifier("addButton")
     }
 

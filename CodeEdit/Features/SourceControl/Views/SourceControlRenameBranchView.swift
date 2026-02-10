@@ -22,11 +22,11 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent(String(localized: "source-control.from", defaultValue: "From", comment: "From label"), value: branch.name)
+                        TextField(String(localized: "source-control.to", defaultValue: "To", comment: "To field"), text: $name)
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text(String(localized: "source-control.rename-branch", defaultValue: "Rename branch", comment: "Rename branch header"))
+                        Text(String(localized: "source-control.rename-branch-description", defaultValue: "All uncommited changes will be preserved on the renamed branch.", comment: "Rename branch description"))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +38,13 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "common.cancel", defaultValue: "Cancel", comment: "Cancel button"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text(String(localized: "source-control.rename", defaultValue: "Rename", comment: "Rename button"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +67,7 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: NSLocalizedString("source-control.rename-branch-failed", comment: "Failed to rename branch"),
                     error: error
                 )
             }

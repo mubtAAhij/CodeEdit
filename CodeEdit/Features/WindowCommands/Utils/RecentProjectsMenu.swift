@@ -14,7 +14,7 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
     // MARK: - Menu construction
 
     private let menuTitle = NSLocalizedString(
-        "Open Recent",
+        "menu.open-recent",
         comment: "Open Recent menu title"
     )
 

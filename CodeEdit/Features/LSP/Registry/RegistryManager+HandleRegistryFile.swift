@@ -70,18 +70,18 @@ extension RegistryManager {
             case .installationRunning:
                 return // Shouldn't need to handle
             case .invalidResponse(let statusCode):
-                logger.error("Invalid response received: \(statusCode)")
+                logger.error(String(format: NSLocalizedString("registry.log.invalid-response", comment: "Invalid response log"), statusCode))
             case let .downloadFailed(url, error):
-                logger.error("Download failed for \(url.absoluteString): \(error.localizedDescription)")
+                logger.error(String(format: NSLocalizedString("registry.log.download-failed", comment: "Download failed log"), url.absoluteString, error.localizedDescription))
             case let .maxRetriesExceeded(url, error):
-                logger.error("Max retries exceeded for \(url.absoluteString): \(error.localizedDescription)")
+                logger.error(String(format: NSLocalizedString("registry.log.max-retries", comment: "Max retries log"), url.absoluteString, error.localizedDescription))
             case let .writeFailed(error):
-                logger.error("Failed to write files to disk: \(error.localizedDescription)")
+                logger.error(String(format: NSLocalizedString("registry.log.write-failed", comment: "Write failed log"), error.localizedDescription))
             case .failedToSaveRegistryCache:
-                logger.error("Failed to read registry from cache after download and write.")
+                logger.error(String(localized: "registry.log.cache-read-failed", defaultValue: "Failed to read registry from cache after download and write.", comment: "Cache read failed log"))
             }
         } else {
-            logger.error("Unexpected registry error: \(error.localizedDescription)")
+            logger.error(String(format: NSLocalizedString("registry.log.unexpected-error", comment: "Unexpected error log"), error.localizedDescription))
         }
     }
 
@@ -93,7 +93,7 @@ extension RegistryManager {
 
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw RegistryManagerError.downloadFailed(
-                    url: url, error: NSError(domain: "Invalid response type", code: -1)
+                    url: url, error: NSError(domain: NSLocalizedString("registry.invalid-response-type", comment: "Invalid response type"), code: -1)
                 )
             }
             guard (200...299).contains(httpResponse.statusCode) else {

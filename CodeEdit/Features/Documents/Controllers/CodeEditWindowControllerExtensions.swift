@@ -12,22 +12,22 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: "Quick Open",
-            title: "Quick Open",
+            name: String(localized: "command.quick-open", defaultValue: "Quick Open", comment: "Quick open command name"),
+            title: String(localized: "command.quick-open", defaultValue: "Quick Open", comment: "Quick open command title"),
             id: "quick_open",
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Navigator",
-            title: "Toggle Navigator",
+            name: String(localized: "command.toggle-navigator", defaultValue: "Toggle Navigator", comment: "Toggle navigator command name"),
+            title: String(localized: "command.toggle-navigator", defaultValue: "Toggle Navigator", comment: "Toggle navigator command title"),
             id: "toggle_left_sidebar",
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Inspector",
-            title: "Toggle Inspector",
+            name: String(localized: "command.toggle-inspector", defaultValue: "Toggle Inspector", comment: "Toggle inspector command name"),
+            title: String(localized: "command.toggle-inspector", defaultValue: "Toggle Inspector", comment: "Toggle inspector command title"),
             id: "toggle_right_sidebar",
             command: { [weak self] in self?.toggleLastPanel() }
         )
@@ -105,7 +105,7 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle("Workspace Settings")
+            settingsWindow.setAccessibilityTitle(String(localized: "workspace.settings", defaultValue: "Workspace Settings", comment: "Workspace settings window title"))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }
