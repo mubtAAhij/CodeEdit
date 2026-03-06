@@ -712,8 +712,8 @@ jobs:
             # Determine status based on whether skip list was created and uploaded
             if [ -f "skip-list.json" ] && [ -s "skip-list.json" ]; then
               STATUS="workflow_finished"
-              EXTRACTION_STATUS="complete"
-              MESSAGE="Workflow completed successfully"
+              EXTRACTION_STATUS="extracting"
+              MESSAGE="Build complete, SwiftStringExtractor starting..."
             else
               STATUS="workflow_finished"
               EXTRACTION_STATUS="error"
