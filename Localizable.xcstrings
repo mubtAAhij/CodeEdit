@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "welcome.clone-git-repository": {
+      "comment": "Button title to clone a git repository",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clone Git Repository..."
+          }
+        }
+      }
+    },
+    "welcome.create-new-file": {
+      "comment": "Button title to create a new file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create New File..."
+          }
+        }
+      }
+    },
+    "welcome.open-file-or-folder": {
+      "comment": "Button title to open a file or folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open File or Folder..."
+          }
+        }
+      }
+    },
+    "welcome.system-info.macos": {
+      "comment": "macOS version label in system info",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS: %@"
+          }
+        }
+      }
+    },
+    "welcome.system-info.xcode": {
+      "comment": "Xcode version label in system info",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode: %@"
+          }
+        }
+      }
+    },
+    "welcome.copy-system-info": {
+      "comment": "Tooltip for copying system information",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy System Information to Clipboard"
+          }
+        }
+      }
+    }
+  }
+}
