@@ -40,8 +40,9 @@ struct WelcomeSubtitleView: View {
 
     private func copyInformation() {
         var copyString = "\(Bundle.displayName): \(appVersion)\(appVersionPostfix) (\(appBuild))\n"
-        copyString.append("macOS: \(macOSVersion)\n")
-        if let xcodeVersion { copyString.append("Xcode: \(xcodeVersion)") }
+        copyString.append(String(format: NSLocalizedString("welcome.system-info.macos", comment: "macOS version label in system info"), macOSVersion))
+        copyString.append("\n")
+        if let xcodeVersion { copyString.append(String(format: NSLocalizedString("welcome.system-info.xcode", comment: "Xcode version label in system info"), xcodeVersion)) }
 
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -56,6 +57,6 @@ struct WelcomeSubtitleView: View {
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help("Copy System Information to Clipboard")
+        .help(String(localized: "welcome.copy-system-info", defaultValue: "Copy System Information to Clipboard", comment: "Tooltip for copying system information"))
     }
 }
