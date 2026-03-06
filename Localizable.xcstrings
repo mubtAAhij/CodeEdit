@@ -11,6 +11,24 @@
             "state": "translated",
             "value": "Clone Git Repository..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clonar repositorio Git..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "克隆 Git 仓库..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloner un dépôt Git..."
+          }
         }
       }
     },
@@ -22,6 +40,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Create New File..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear Nuevo Archivo..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建文件..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer un nouveau fichier..."
           }
         }
       }
@@ -47,6 +83,24 @@
             "state": "translated",
             "value": "macOS: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS : %@"
+          }
         }
       }
     },
@@ -59,6 +113,24 @@
             "state": "translated",
             "value": "Xcode: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode : %@"
+          }
         }
       }
     },
@@ -70,6 +142,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Copy System Information to Clipboard"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar información del sistema al portapapeles"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制系统信息到剪贴板"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier les informations système dans le presse-papiers"
           }
         }
       }
