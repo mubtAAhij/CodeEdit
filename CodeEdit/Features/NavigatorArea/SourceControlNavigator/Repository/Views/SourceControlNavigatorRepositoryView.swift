@@ -80,12 +80,12 @@ struct SourceControlNavigatorRepositoryView: View {
         }
         .alert(
             sourceControlManager.changedFiles.isEmpty
-            ? "Do you want to apply stashed changes?"
-            : "The local repository has uncommitted changes.",
+            ? String(localized: "sourcecontrol.stash.apply-prompt", defaultValue: "Do you want to apply stashed changes?", comment: "Alert title asking if user wants to apply stashed changes")
+            : String(localized: "sourcecontrol.stash.uncommitted-changes", defaultValue: "The local repository has uncommitted changes.", comment: "Alert title when repository has uncommitted changes"),
             isPresented: $applyStashedChangesIsPresented
         ) {
             if sourceControlManager.changedFiles.isEmpty {
-                Button("Apply") {
+                Button(String(localized: "sourcecontrol.stash.apply", defaultValue: "Apply", comment: "Button to apply stashed changes")) {
                     if let stashEntry = stashEntryToApply {
                         Task {
                             try await sourceControlManager.applyStashEntry(stashEntry: stashEntry)
@@ -94,7 +94,7 @@ struct SourceControlNavigatorRepositoryView: View {
                         }
                     }
                 }
-                Button("Apply and Delete") {
+                Button(String(localized: "sourcecontrol.stash.apply-and-delete", defaultValue: "Apply and Delete", comment: "Button to apply stashed changes and delete the stash")) {
                     if let stashEntry = stashEntryToApply {
                         Task {
                             try await sourceControlManager.applyStashEntry(stashEntry: stashEntry)
@@ -104,27 +104,27 @@ struct SourceControlNavigatorRepositoryView: View {
                         }
                     }
                 }
-                Button("Cancel", role: .cancel) {}
+                Button(String(localized: "sourcecontrol.stash.cancel", defaultValue: "Cancel", comment: "Cancel button in stash apply dialog"), role: .cancel) {}
             } else {
-                Button("Okay", role: .cancel) {}
+                Button(String(localized: "sourcecontrol.stash.okay", defaultValue: "Okay", comment: "OK button when uncommitted changes exist"), role: .cancel) {}
             }
         } message: {
             sourceControlManager.changedFiles.isEmpty
-            ? Text("Applying the stashed changes will restore modifications to files in your local repository.")
-            : Text("Try committing or discarding the changes.")
+            ? Text(String(localized: "sourcecontrol.stash.apply-message", defaultValue: "Applying the stashed changes will restore modifications to files in your local repository.", comment: "Message explaining what happens when applying stashed changes"))
+            : Text(String(localized: "sourcecontrol.stash.uncommitted-message", defaultValue: "Try committing or discarding the changes.", comment: "Message suggesting user commit or discard changes"))
         }
         .confirmationDialog(
-            "Do you want to delete the branch “\(branchToDelete?.name ?? "")”?",
+            String(format: String(localized: "sourcecontrol.branch.delete-prompt", defaultValue: "Do you want to delete the branch \"%@\"?", comment: "Confirmation prompt for deleting a branch"), branchToDelete?.name ?? ""),
             isPresented: $isPresentingConfirmDeleteBranch
         ) {
-            Button("Delete") {
+            Button(String(localized: "sourcecontrol.branch.delete", defaultValue: "Delete", comment: "Button to delete a branch")) {
                 if let branch = branchToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteBranch(branch: branch)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Failed to delete",
+                                title: String(localized: "sourcecontrol.branch.delete-failed", defaultValue: "Failed to delete", comment: "Error title when branch deletion fails"),
                                 error: error
                             )
                         }
@@ -133,20 +133,20 @@ struct SourceControlNavigatorRepositoryView: View {
                 }
             }
         } message: {
-            Text("The branch will be removed from the repository. You can’t undo this action.")
+            Text(String(localized: "sourcecontrol.branch.delete-message", defaultValue: "The branch will be removed from the repository. You can't undo this action.", comment: "Warning message for branch deletion"))
         }
         .confirmationDialog(
-            "Do you want to delete the stash “\(stashEntryToDelete?.message ?? "")”?",
+            String(format: String(localized: "sourcecontrol.stash.delete-prompt", defaultValue: "Do you want to delete the stash \"%@\"?", comment: "Confirmation prompt for deleting a stash"), stashEntryToDelete?.message ?? ""),
             isPresented: $isPresentingConfirmDeleteStashEntry
         ) {
-            Button("Delete") {
+            Button(String(localized: "sourcecontrol.stash.delete", defaultValue: "Delete", comment: "Button to delete a stash")) {
                 if let stashEntry = stashEntryToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteStashEntry(stashEntry: stashEntry)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Failed to delete",
+                                title: String(localized: "sourcecontrol.stash.delete-failed", defaultValue: "Failed to delete", comment: "Error title when stash deletion fails"),
                                 error: error
                             )
                         }
@@ -155,20 +155,20 @@ struct SourceControlNavigatorRepositoryView: View {
                 }
             }
         } message: {
-            Text("The stash will be removed from the repository. You can’t undo this action.")
+            Text(String(localized: "sourcecontrol.stash.delete-message", defaultValue: "The stash will be removed from the repository. You can't undo this action.", comment: "Warning message for stash deletion"))
         }
         .confirmationDialog(
-            "Do you want to delete the remote “\(remoteToDelete?.name ?? "")”?",
+            String(format: String(localized: "sourcecontrol.remote.delete-prompt", defaultValue: "Do you want to delete the remote \"%@\"?", comment: "Confirmation prompt for deleting a remote"), remoteToDelete?.name ?? ""),
             isPresented: $isPresentingConfirmDeleteRemote
         ) {
-            Button("Delete") {
+            Button(String(localized: "sourcecontrol.remote.delete", defaultValue: "Delete", comment: "Button to delete a remote")) {
                 if let remote = remoteToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteRemote(remote: remote)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Failed to delete",
+                                title: String(localized: "sourcecontrol.remote.delete-failed", defaultValue: "Failed to delete", comment: "Error title when remote deletion fails"),
                                 error: error
                             )
                         }
@@ -177,7 +177,7 @@ struct SourceControlNavigatorRepositoryView: View {
                 }
             }
         } message: {
-            Text("The remote will be removed from the repository. You can’t undo this action.")
+            Text(String(localized: "sourcecontrol.remote.delete-message", defaultValue: "The remote will be removed from the repository. You can't undo this action.", comment: "Warning message for remote deletion"))
         }
         .task {
             await sourceControlManager.refreshBranches()
