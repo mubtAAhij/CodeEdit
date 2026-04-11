@@ -14,13 +14,12 @@ extension SettingsData {
         var searchKeys: [String] {
             [
                 "Language Servers",
-                "LSP Binaries",
-                "Linters",
-                "Formatters",
-                "Debug Protocol",
+                String(localized: "settings.extensions.lsp-binaries", defaultValue: "LSP Binaries", comment: "LSP Binaries search key"),
+                String(localized: "settings.extensions.linters", defaultValue: "Linters", comment: "Linters search key"),
+                String(localized: "settings.extensions.formatters", defaultValue: "Formatters", comment: "Formatters search key"),
+                String(localized: "settings.extensions.debug-protocol", defaultValue: "Debug Protocol", comment: "Debug Protocol search key"),
                 "DAP",
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Stores the currently installed language servers. The key is the name of the language server.
