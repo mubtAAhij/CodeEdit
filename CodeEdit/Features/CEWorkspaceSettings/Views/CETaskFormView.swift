@@ -16,32 +16,32 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text(String(localized: "ce-task-form.name", defaultValue: "Name", comment: "Name field label"))
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
-                    Text("My Mac")
-                        .tag("My Mac")
+                .accessibilityLabel(String(localized: "ce-task-form.task-name", defaultValue: "Task Name", comment: "Task name accessibility label"))
+                Picker(String(localized: "ce-task-form.target", defaultValue: "Target", comment: "Target picker label"), selection: $task.target) {
+                    Text(String(localized: "ce-task-form.my-mac-option", defaultValue: "My Mac", comment: "My Mac target option"))
+                        .tag(String(localized: "ce-task-form.my-mac-tag", defaultValue: "My Mac", comment: "My Mac target tag"))
 
-                    Text("SSH")
-                        .tag("SSH")
+                    Text(String(localized: "ce-task-form.ssh-option", defaultValue: "SSH", comment: "SSH target option"))
+                        .tag(String(localized: "ce-task-form.ssh-tag", defaultValue: "SSH", comment: "SSH target tag"))
 
-                    Text("Docker")
-                        .tag("Docker")
+                    Text(String(localized: "ce-task-form.docker-option", defaultValue: "Docker", comment: "Docker target option"))
+                        .tag(String(localized: "ce-task-form.docker-tag", defaultValue: "Docker", comment: "Docker target tag"))
 
-                    Text("Docker Compose")
-                        .tag("Docker Compose")
+                    Text(String(localized: "ce-task-form.docker-compose-option", defaultValue: "Docker Compose", comment: "Docker Compose target option"))
+                        .tag(String(localized: "ce-task-form.docker-compose-tag", defaultValue: "Docker Compose", comment: "Docker Compose target tag"))
                 }
                 .disabled(true)
             }
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text(String(localized: "ce-task-form.task", defaultValue: "Task", comment: "Task field label"))
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "ce-task-form.task-command", defaultValue: "Task Command", comment: "Task command accessibility label"))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text(String(localized: "ce-task-form.working-directory", defaultValue: "Working Directory", comment: "Working directory field label"))
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text(String(localized: "ce-task-form.no-environment-variables", defaultValue: "No environment variables", comment: "No environment variables placeholder"))
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text(String(localized: "ce-task-form.environment-variables", defaultValue: "Environment Variables", comment: "Environment variables section header"))
             }
         }
         .formStyle(.grouped)
