@@ -27,7 +27,7 @@ struct LoadingFileView: View {
         VStack(spacing: 10) {
             Spacer()
             ProgressView()
-            Text("Opening \(filename)...")
+            Text(String(format: String(localized: "editor.opening-file", defaultValue: "Opening %@...", comment: "Loading message when opening file"), filename))
             Spacer()
         }
     }
