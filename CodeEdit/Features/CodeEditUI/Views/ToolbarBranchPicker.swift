@@ -99,7 +99,7 @@ struct ToolbarBranchPicker: View {
     }
 
     private var title: String {
-        workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+        workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "branch-picker.empty", defaultValue: "Empty", comment: "Empty branch indicator")
     }
 
     // MARK: Popover View
@@ -114,7 +114,7 @@ struct ToolbarBranchPicker: View {
             VStack(alignment: .leading) {
                 if let currentBranch = sourceControlManager.currentBranch {
                     Section {
-                        headerLabel("Current Branch")
+                        headerLabel(String(localized: "branch-picker.current", defaultValue: "Current Branch", comment: "Current branch label"))
                         BranchCell(sourceControlManager: sourceControlManager, branch: currentBranch, active: true)
                     }
                 }
@@ -134,7 +134,7 @@ struct ToolbarBranchPicker: View {
 
                 if !branches.isEmpty {
                     Section {
-                        headerLabel("Branches")
+                        headerLabel(String(localized: "branch-picker.branches", defaultValue: "Branches", comment: "Branches section label"))
                         ForEach(branchesGroups.keys.sorted(), id: \.self) { branchGroupPrefix in
                             if let group = branchesGroups[branchGroupPrefix] {
                                 if !group.shouldNest {
@@ -219,7 +219,7 @@ struct ToolbarBranchPicker: View {
                     do {
                         try await sourceControlManager.checkoutBranch(branch: branch)
                     } catch {
-                        await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                        await sourceControlManager.showAlertForError(title: String(localized: "branch-picker.checkout-failed", defaultValue: "Failed to checkout", comment: "Checkout failed error"), error: error)
                     }
                 }
             }
