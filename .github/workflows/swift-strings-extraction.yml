@@ -615,7 +615,7 @@ jobs:
               \"jobId\": \"${{ env.JOB_ID }}\",
               \"status\": \"workflow_build_started\",
               \"extractionStatus\": \"extracting\",
-              \"progress\": \"{\\\"message\\\": \\\"Starting Xcode build with string extraction\\\", \\\"step\\\": \\\"build\\\"}\"
+              \"progress\": \"{\\\"message\\\": \\\"Xcode build running on GitHub Actions (compiler string extraction). This step may take several minutes.\\\", \\\"step\\\": \\\"build\\\"}\"
             }" || echo "⚠️  Failed to send status update (build started)"
 
       - name: Run unsigned build with compiler string extraction
@@ -733,20 +733,19 @@ jobs:
           
           # Send final status update
           if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
-            # If the workflow job failed (e.g. no .xcodeproj found), report workflow_failed so
-            # SwiftStringExtractor can stop waiting immediately instead of timing out
-            if [ "${{ job.status }}" = "failure" ]; then
-              STATUS="workflow_failed"
-              EXTRACTION_STATUS="extracting"
-              MESSAGE="GitHub Actions workflow failed. Proceeding without skip list."
-              ERROR_MSG="Workflow failed - check GitHub Actions logs. Common causes: No .xcodeproj or .xcworkspace found, build errors, or missing dependencies."
-            # Success path: skip list was created and uploaded
-            elif [ -f "skip-list.json" ] && [ -s "skip-list.json" ]; then
+            # Prefer evidence of a usable skip list over raw job.status. A step may "fail" with
+            # continue-on-error (e.g. xcodebuild) and still leave job.status=failure even though
+            # skip-list + upload succeeded — we must not report workflow_failed in that case.
+            if [ -f "skip-list.json" ] && [ -s "skip-list.json" ]; then
               STATUS="workflow_finished"
               EXTRACTION_STATUS="extracting"
               MESSAGE="Build complete, SwiftStringExtractor starting..."
               ERROR_MSG=""
-            # Workflow completed but skip list missing (e.g. upload failed)
+            elif [ "${{ job.status }}" = "failure" ]; then
+              STATUS="workflow_failed"
+              EXTRACTION_STATUS="extracting"
+              MESSAGE="GitHub Actions workflow failed. Proceeding without skip list."
+              ERROR_MSG="Workflow failed - check GitHub Actions logs. Common causes: No .xcodeproj or .xcworkspace found, build errors, or missing dependencies."
             else
               STATUS="workflow_finished"
               EXTRACTION_STATUS="extracting"
