@@ -23,6 +23,15 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     enum URLProtocol: String, Codable, CaseIterable {
         case https = "HTTPS"
         case ssh = "SSH"
+
+        var localizedName: String {
+            switch self {
+            case .https:
+                return String(localized: "source-control-account.https", defaultValue: "HTTPS", comment: "HTTPS protocol name")
+            case .ssh:
+                return String(localized: "source-control-account.ssh", defaultValue: "SSH", comment: "SSH protocol name")
+            }
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -53,17 +62,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "source-control-account.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "Bitbucket Cloud provider name")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "source-control-account.bitbucket-server", defaultValue: "BitBucket Server", comment: "Bitbucket Server provider name")
             case .github:
-                return "GitHub"
+                return String(localized: "source-control-account.github", defaultValue: "GitHub", comment: "GitHub provider name")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "source-control-account.github-enterprise", defaultValue: "GitHub Enterprise", comment: "GitHub Enterprise provider name")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "source-control-account.gitlab", defaultValue: "GitLab", comment: "GitLab provider name")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "source-control-account.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "GitLab Self-hosted provider name")
             }
         }
 
