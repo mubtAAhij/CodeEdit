@@ -18,9 +18,9 @@ struct InternalDevelopmentNotificationsView: View {
     @State private var delay: Bool = false
     @State private var sticky: Bool = false
     @State private var selectedIconType: IconType = .symbol
-    @State private var actionButtonText: String = "View"
-    @State private var notificationTitle: String = "Test Notification"
-    @State private var notificationDescription: String = "This is a test notification."
+    @State private var actionButtonText: String = String(localized: "internal-dev-notifications.view", defaultValue: "View", comment: "View action button text")
+    @State private var notificationTitle: String = String(localized: "internal-dev-notifications.test-notification", defaultValue: "Test Notification", comment: "Test notification title")
+    @State private var notificationDescription: String = String(localized: "internal-dev-notifications.test-description", defaultValue: "This is a test notification.", comment: "Test notification description")
 
     // Icon selection states
     @State private var selectedSymbol: String?
@@ -55,45 +55,45 @@ struct InternalDevelopmentNotificationsView: View {
     ]
 
     var body: some View {
-        Section("Notifications") {
-            Toggle("Delay 5s", isOn: $delay)
-            Toggle("Sticky", isOn: $sticky)
+        Section(String(localized: "internal-dev-notifications.section", defaultValue: "Notifications", comment: "Notifications section header")) {
+            Toggle(String(localized: "internal-dev-notifications.delay", defaultValue: "Delay 5s", comment: "Delay 5 seconds toggle"), isOn: $delay)
+            Toggle(String(localized: "internal-dev-notifications.sticky", defaultValue: "Sticky", comment: "Sticky notification toggle"), isOn: $sticky)
 
-            Picker("Icon Type", selection: $selectedIconType) {
+            Picker(String(localized: "internal-dev-notifications.icon-type", defaultValue: "Icon Type", comment: "Icon type picker label"), selection: $selectedIconType) {
                 ForEach(IconType.allCases, id: \.self) { type in
-                    Text(type.rawValue).tag(type)
+                    Text(String(localized: "internal-dev-notifications.icon-type.\(type.rawValue.lowercased())", defaultValue: type.rawValue, comment: "\(type.rawValue) icon type")).tag(type)
                 }
             }
 
             Group {
                 switch selectedIconType {
                 case .symbol:
-                    Picker("Symbol", selection: $selectedSymbol) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                    Picker(String(localized: "internal-dev-notifications.symbol", defaultValue: "Symbol", comment: "Symbol picker label"), selection: $selectedSymbol) {
+                        Label(String(localized: "internal-dev-notifications.random", defaultValue: "Random", comment: "Random option label"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableSymbols, id: \.self) { symbol in
                             Label(symbol, systemImage: symbol).tag(symbol as String?)
                         }
                     }
                 case .emoji:
-                    Picker("Emoji", selection: $selectedEmoji) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                    Picker(String(localized: "internal-dev-notifications.emoji", defaultValue: "Emoji", comment: "Emoji picker label"), selection: $selectedEmoji) {
+                        Label(String(localized: "internal-dev-notifications.random-emoji", defaultValue: "Random", comment: "Random emoji option label"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableEmojis, id: \.self) { emoji in
                             Text(emoji).tag(emoji as String?)
                         }
                     }
                 case .text:
-                    Picker("Text", selection: $selectedText) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                    Picker(String(localized: "internal-dev-notifications.text", defaultValue: "Text", comment: "Text picker label"), selection: $selectedText) {
+                        Label(String(localized: "internal-dev-notifications.random-text", defaultValue: "Random", comment: "Random text option label"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach("ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { String($0) }, id: \.self) { letter in
                             Text(letter).tag(letter as String?)
                         }
                     }
                 case .image:
-                    Picker("Image", selection: $selectedImage) {
-                        Label("Random", systemImage: "dice").tag(nil as String?)
+                    Picker(String(localized: "internal-dev-notifications.image", defaultValue: "Image", comment: "Image picker label"), selection: $selectedImage) {
+                        Label(String(localized: "internal-dev-notifications.random-image", defaultValue: "Random", comment: "Random image option label"), systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableImages, id: \.self) { image in
                             Text(image).tag(image as String?)
@@ -102,8 +102,8 @@ struct InternalDevelopmentNotificationsView: View {
                 }
 
                 if selectedIconType == .symbol || selectedIconType == .text || selectedIconType == .emoji {
-                    Picker("Icon Color", selection: $selectedColor) {
-                        Label("Random", systemImage: "dice").tag(nil as Color?)
+                    Picker(String(localized: "internal-dev-notifications.icon-color", defaultValue: "Icon Color", comment: "Icon color picker label"), selection: $selectedColor) {
+                        Label(String(localized: "internal-dev-notifications.random-color", defaultValue: "Random", comment: "Random color option label"), systemImage: "dice").tag(nil as Color?)
                         Divider()
                         ForEach(availableColors, id: \.0) { name, color in
                             HStack {
@@ -117,12 +117,12 @@ struct InternalDevelopmentNotificationsView: View {
                 }
             }
 
-            TextField("Title", text: $notificationTitle)
-            TextField("Description", text: $notificationDescription, axis: .vertical)
+            TextField(String(localized: "internal-dev-notifications.title-field", defaultValue: "Title", comment: "Title text field label"), text: $notificationTitle)
+            TextField(String(localized: "internal-dev-notifications.description-field", defaultValue: "Description", comment: "Description text field label"), text: $notificationDescription, axis: .vertical)
                 .lineLimit(1...5)
-            TextField("Action Button", text: $actionButtonText)
+            TextField(String(localized: "internal-dev-notifications.action-button-field", defaultValue: "Action Button", comment: "Action button text field label"), text: $actionButtonText)
 
-            Button("Add Notification") {
+            Button(String(localized: "internal-dev-notifications.add-notification", defaultValue: "Add Notification", comment: "Add notification button")) {
                 let action = {
                     switch selectedIconType {
                     case .symbol:
