@@ -32,7 +32,7 @@ struct CommitDetailsHeaderView: View {
         if commit.committerEmail == "noreply@github.com" {
             return ""
         } else if commit.authorEmail != commit.committerEmail {
-            return "Co-authored by: \(commit.committer)\n<\(commit.committerEmail)>"
+            return String(format: String(localized: "source-control.commit.co-authored", defaultValue: "Co-authored by: %@\n<%@>", comment: "Co-author details in commit"), commit.committer, commit.committerEmail)
         }
         return ""
     }
