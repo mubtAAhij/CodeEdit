@@ -15,7 +15,7 @@ struct SourceControlFetchView: View {
     @EnvironmentObject var workspace: WorkspaceDocument
 
     var projectName: String {
-        workspace.workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+        workspace.workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "empty", defaultValue: "Empty", comment: "Empty workspace label")
     }
 
     var body: some View {
@@ -25,9 +25,9 @@ struct SourceControlFetchView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Fetching changes for “\(projectName)”...")
+                    Text(String(format: String(localized: "source-control.fetching-changes-for", defaultValue: "Fetching changes for \"%@\"...", comment: "Title when fetching changes for project"), projectName))
                         .font(.headline)
-                    Text("CodeEdit is fetching changes and updating the status of files in the local repository.")
+                    Text(String(localized: "source-control.fetching-changes-description", defaultValue: "CodeEdit is fetching changes and updating the status of files in the local repository.", comment: "Description of fetch changes operation"))
                         .font(.subheadline)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -40,14 +40,14 @@ struct SourceControlFetchView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .controlSize(.small)
-                    Text("Fetching changes...")
+                    Text(String(localized: "source-control.fetching-changes", defaultValue: "Fetching changes...", comment: "Status message while fetching changes"))
                         .font(.subheadline)
                 }
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", defaultValue: "Cancel", comment: "Cancel button"))
                         .frame(minWidth: 48)
                 }
             }
@@ -60,7 +60,7 @@ struct SourceControlFetchView: View {
                 try await sourceControlManager.fetch()
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to fetch changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.failed-to-fetch", defaultValue: "Failed to fetch changes", comment: "Error title when fetching changes fails"), error: error)
             }
         }
     }
