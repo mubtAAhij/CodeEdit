@@ -10,13 +10,13 @@ import Foundation
 extension Bundle {
 
     static var appName: String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Unknown App"
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? String(localized: "app.unknown-app", defaultValue: "Unknown App", comment: "Fallback app name")
     }
 
     static var displayName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
         ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
-        ?? "Unknown App"
+        ?? String(localized: "app.unknown-app", defaultValue: "Unknown App", comment: "Fallback app name")
     }
 
     static var copyrightString: String? {
