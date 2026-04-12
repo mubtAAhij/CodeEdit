@@ -98,7 +98,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                     .padding(0)
                 HStack(spacing: 0) {
                     if options.isEmpty {
-                        Text("No matching options")
+                        Text(String(localized: "search.no-matching-options", defaultValue: "No matching options", comment: "No matching options message"))
                             .font(.system(size: 17))
                             .foregroundColor(.secondary)
                             .frame(maxWidth: hasPreview ? 272 : .infinity, maxHeight: .infinity)
@@ -123,7 +123,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                                     .frame(maxWidth: .infinity)
                                     .transition(.move(edge: .trailing))
                             } else {
-                                Text("Select an option to preview")
+                                Text(String(localized: "search.select-option-to-preview", defaultValue: "Select an option to preview", comment: "Select option to preview message"))
                                     .frame(maxWidth: .infinity)
                             }
                         }
@@ -149,7 +149,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.escape, modifiers: [])
-            .accessibilityLabel("Close Overlay")
+            .accessibilityLabel(String(localized: "search.close-overlay", defaultValue: "Close Overlay", comment: "Close overlay accessibility label"))
         Button {
             guard selection != options.first else {
                 return
@@ -162,7 +162,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.upArrow, modifiers: [])
-            .accessibilityLabel("Select Up")
+            .accessibilityLabel(String(localized: "search.select-up", defaultValue: "Select Up", comment: "Select up accessibility label"))
         Button {
             guard selection != options.last else {
                 return
@@ -176,7 +176,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.downArrow, modifiers: [])
-            .accessibilityLabel("Select Down")
+            .accessibilityLabel(String(localized: "search.select-down", defaultValue: "Select Down", comment: "Select down accessibility label"))
     }
 }
 
