@@ -38,22 +38,22 @@ struct ThemeSettingsThemeDetails: View {
             Form {
                 Group {
                     Section {
-                        TextField("Name", text: $theme.displayName)
-                        TextField("Author", text: $theme.author)
-                        Picker("Type", selection: $theme.appearance) {
-                            Text("Light")
+                        TextField(String(localized: "theme.name", defaultValue: "Name", comment: "Name text field"), text: $theme.displayName)
+                        TextField(String(localized: "theme.author", defaultValue: "Author", comment: "Author text field"), text: $theme.author)
+                        Picker(String(localized: "theme.type", defaultValue: "Type", comment: "Type picker"), selection: $theme.appearance) {
+                            Text(String(localized: "theme.light", defaultValue: "Light", comment: "Light theme type"))
                                 .tag(Theme.ThemeType.light)
-                            Text("Dark")
+                            Text(String(localized: "theme.dark", defaultValue: "Dark", comment: "Dark theme type"))
                                 .tag(Theme.ThemeType.dark)
                         }
                     }
-                    Section("Text") {
+                    Section(String(localized: "theme.text", defaultValue: "Text", comment: "Text section header")) {
                         SettingsColorPicker(
-                            "Text",
+                            String(localized: "theme.text", defaultValue: "Text", comment: "Text section header"),
                             color: $theme.editor.text.swiftColor
                         )
                         SettingsColorPicker(
-                            "Cursor",
+                            String(localized: "theme.cursor", defaultValue: "Cursor", comment: "Cursor color picker"),
                             color: $theme.editor.insertionPoint.swiftColor
                         )
                         SettingsColorPicker(
@@ -61,87 +61,87 @@ struct ThemeSettingsThemeDetails: View {
                             color: $theme.editor.invisibles.swiftColor
                         )
                     }
-                    Section("Background") {
+                    Section(String(localized: "theme.background", defaultValue: "Background", comment: "Background section header")) {
                         SettingsColorPicker(
-                            "Background",
+                            String(localized: "theme.background", defaultValue: "Background", comment: "Background section header"),
                             color: $theme.editor.background.swiftColor
                         )
                         SettingsColorPicker(
-                            "Current Line",
+                            String(localized: "theme.current-line", defaultValue: "Current Line", comment: "Current Line color picker"),
                             color: $theme.editor.lineHighlight.swiftColor
                         )
                         SettingsColorPicker(
-                            "Selection",
+                            String(localized: "theme.selection", defaultValue: "Selection", comment: "Selection color picker"),
                             color: $theme.editor.selection.swiftColor
                         )
                     }
-                    Section("Tokens") {
+                    Section(String(localized: "theme.tokens", defaultValue: "Tokens", comment: "Tokens section header")) {
                         VStack(spacing: 0) {
                             ThemeSettingsThemeToken(
-                                "Keywords",
+                                String(localized: "theme.keywords", defaultValue: "Keywords", comment: "Keywords token"),
                                 color: $theme.editor.keywords.swiftColor,
                                 bold: $theme.editor.keywords.bold,
                                 italic: $theme.editor.keywords.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Commands",
+                                String(localized: "theme.commands", defaultValue: "Commands", comment: "Commands token"),
                                 color: $theme.editor.commands.swiftColor,
                                 bold: $theme.editor.commands.bold,
                                 italic: $theme.editor.commands.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Types",
+                                String(localized: "theme.types", defaultValue: "Types", comment: "Types token"),
                                 color: $theme.editor.types.swiftColor,
                                 bold: $theme.editor.types.bold,
                                 italic: $theme.editor.types.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Attributes",
+                                String(localized: "theme.attributes", defaultValue: "Attributes", comment: "Attributes token"),
                                 color: $theme.editor.attributes.swiftColor,
                                 bold: $theme.editor.attributes.bold,
                                 italic: $theme.editor.attributes.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Variables",
+                                String(localized: "theme.variables", defaultValue: "Variables", comment: "Variables token"),
                                 color: $theme.editor.variables.swiftColor,
                                 bold: $theme.editor.variables.bold,
                                 italic: $theme.editor.variables.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Values",
+                                String(localized: "theme.values", defaultValue: "Values", comment: "Values token"),
                                 color: $theme.editor.values.swiftColor,
                                 bold: $theme.editor.values.bold,
                                 italic: $theme.editor.values.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Numbers",
+                                String(localized: "theme.numbers", defaultValue: "Numbers", comment: "Numbers token"),
                                 color: $theme.editor.numbers.swiftColor,
                                 bold: $theme.editor.numbers.bold,
                                 italic: $theme.editor.numbers.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Strings",
+                                String(localized: "theme.strings", defaultValue: "Strings", comment: "Strings token"),
                                 color: $theme.editor.strings.swiftColor,
                                 bold: $theme.editor.strings.bold,
                                 italic: $theme.editor.strings.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Characters",
+                                String(localized: "theme.characters", defaultValue: "Characters", comment: "Characters token"),
                                 color: $theme.editor.characters.swiftColor,
                                 bold: $theme.editor.characters.bold,
                                 italic: $theme.editor.characters.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Comments",
+                                String(localized: "theme.comments", defaultValue: "Comments", comment: "Comments token"),
                                 color: $theme.editor.comments.swiftColor,
                                 bold: $theme.editor.comments.bold,
                                 italic: $theme.editor.comments.italic
@@ -167,18 +167,18 @@ struct ThemeSettingsThemeDetails: View {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .font(.body)
                             .foregroundStyle(Color.yellow)
-                        Text("Duplicate this theme to make changes.")
+                        Text(String(localized: "theme.duplicate-to-edit", defaultValue: "Duplicate this theme to make changes.", comment: "Duplicate this theme to make changes message"))
                             .font(.subheadline)
                             .lineLimit(2)
                     }
-                    .help("Bundled themes must be duplicated to make changes.")
+                    .help(String(localized: "theme.bundled-must-duplicate", defaultValue: "Bundled themes must be duplicated to make changes.", comment: "Bundled themes must be duplicated help text"))
                     .accessibilityElement(children: .combine)
-                    .accessibilityLabel("Warning: Duplicate this theme to make changes.")
+                    .accessibilityLabel(String(localized: "theme.warning-duplicate-to-edit", defaultValue: "Warning: Duplicate this theme to make changes.", comment: "Warning duplicate this theme accessibility label"))
                 } else if !themeModel.isAdding {
                     Button(role: .destructive) {
                         deleteConfirmationIsPresented = true
                     } label: {
-                        Text("Delete...")
+                        Text(String(localized: "theme.delete", defaultValue: "Delete...", comment: "Delete button"))
                             .foregroundStyle(.red)
                             .frame(minWidth: 56)
                     }
@@ -188,7 +188,7 @@ struct ThemeSettingsThemeDetails: View {
                             themeModel.duplicate(fileURL)
                         }
                     } label: {
-                        Text("Duplicate...")
+                        Text(String(localized: "theme.duplicate-ellipsis", defaultValue: "Duplicate...", comment: "Duplicate button"))
                             .frame(minWidth: 56)
                     }
                 }
@@ -200,7 +200,7 @@ struct ThemeSettingsThemeDetails: View {
                             themeModel.duplicate(fileURL)
                         }
                     } label: {
-                        Text("Duplicate")
+                        Text(String(localized: "theme.duplicate", defaultValue: "Duplicate", comment: "Duplicate button"))
                             .frame(minWidth: 56)
                     }
                 } else {
@@ -229,7 +229,7 @@ struct ThemeSettingsThemeDetails: View {
                             themeModel.isAdding = false
                         }
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "theme.cancel", defaultValue: "Cancel", comment: "Cancel button"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.bordered)
@@ -240,7 +240,7 @@ struct ThemeSettingsThemeDetails: View {
                     }
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "theme.done", defaultValue: "Done", comment: "Done button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -249,18 +249,18 @@ struct ThemeSettingsThemeDetails: View {
         }
         .constrainHeightToWindow()
         .alert(
-            Text("Are you sure you want to delete the theme “\(theme.displayName)”?"),
+            Text(String(format: String(localized: "theme.delete-confirmation", defaultValue: "Are you sure you want to delete the theme \"%@\"?", comment: "Delete theme confirmation message"), theme.displayName)),
             isPresented: $deleteConfirmationIsPresented
         ) {
-            Button("Delete Theme") {
+            Button(String(localized: "theme.delete-theme", defaultValue: "Delete Theme", comment: "Delete Theme button")) {
                 themeModel.delete(theme)
                 dismiss()
             }
-            Button("Cancel") {
+            Button(String(localized: "theme.cancel", defaultValue: "Cancel", comment: "Cancel button")) {
                 deleteConfirmationIsPresented = false
             }
         } message: {
-            Text("This action cannot be undone.")
+            Text(String(localized: "theme.cannot-undo", defaultValue: "This action cannot be undone.", comment: "Cannot undo message"))
         }
     }
 }
