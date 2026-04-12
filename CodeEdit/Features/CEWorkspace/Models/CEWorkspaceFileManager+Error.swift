@@ -20,28 +20,28 @@ extension CEWorkspaceFileManager {
         var errorDescription: String? {
             switch self {
             case .fileNotFound:
-                return "File not found"
+                return String(localized: "file-manager.file-not-found", defaultValue: "File not found", comment: "Error message when file is not found")
             case .fileNotIndexed:
-                return "File not found in CodeEdit"
+                return String(localized: "file-manager.file-not-indexed", defaultValue: "File not found in CodeEdit", comment: "Error message when file is not indexed")
             case .originFileNotFound:
-                return "Failed to find origin file"
+                return String(localized: "file-manager.origin-not-found", defaultValue: "Failed to find origin file", comment: "Error message when origin file is not found")
             case .destinationFileExists:
-                return "Destination already exists"
+                return String(localized: "file-manager.destination-exists", defaultValue: "Destination already exists", comment: "Error message when destination already exists")
             case .invalidFileName:
-                return "Invalid file name"
+                return String(localized: "file-manager.invalid-name", defaultValue: "Invalid file name", comment: "Error message for invalid file name")
             }
         }
 
         var recoverySuggestion: String? {
             switch self {
             case .fileNotIndexed:
-                return "Reopen the workspace to reindex the file system."
+                return String(localized: "file-manager.reopen-workspace", defaultValue: "Reopen the workspace to reindex the file system.", comment: "Recovery suggestion to reopen workspace")
             case .fileNotFound, .originFileNotFound:
-                return "The file may have moved during the operation, try again."
+                return String(localized: "file-manager.file-moved", defaultValue: "The file may have moved during the operation, try again.", comment: "Recovery suggestion when file moved")
             case .destinationFileExists:
-                return "Use a different file name or remove the conflicting file."
+                return String(localized: "file-manager.use-different-name", defaultValue: "Use a different file name or remove the conflicting file.", comment: "Recovery suggestion for existing destination")
             case .invalidFileName:
-                return "File names must not contain the : character and be less than 256 characters."
+                return String(localized: "file-manager.filename-rules", defaultValue: "File names must not contain the : character and be less than 256 characters.", comment: "Recovery suggestion for invalid file name")
             }
         }
     }
