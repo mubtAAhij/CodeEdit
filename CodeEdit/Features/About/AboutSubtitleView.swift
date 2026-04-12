@@ -12,19 +12,19 @@ struct AboutSubtitleView: View {
     @State private var didCopyVersion = false
     @State private var isHoveringVersion = false
 
-    private var appVersion: String { Bundle.versionString ?? "No Version" }
-    private var appBuild: String { Bundle.buildString ?? "No Build" }
+    private var appVersion: String { Bundle.versionString ?? String(localized: "about.no-version", defaultValue: "No Version", comment: "Fallback when app version is not available") }
+    private var appBuild: String { Bundle.buildString ?? String(localized: "about.no-build", defaultValue: "No Build", comment: "Fallback when build number is not available") }
     private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
 
     var body: some View {
-        Text("Version \(appVersion)\(appVersionPostfix) (\(appBuild))")
+        Text(String(format: String(localized: "about.version", defaultValue: "Version %@%@ (%@)", comment: "Version display format with version, postfix, and build number"), appVersion, appVersionPostfix, appBuild))
             .textSelection(.disabled)
             .onTapGesture {
                 // Create a string suitable for pasting into a bug report
                 let macOSVersion = ProcessInfo.processInfo.operatingSystemVersion.semverString
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(
-                    "CodeEdit: \(appVersion) (\(appBuild))\nmacOS: \(macOSVersion)",
+                    String(format: String(localized: "about.copy-version-info", defaultValue: "CodeEdit: %@ (%@)\nmacOS: %@", comment: "Format for version info copied to clipboard"), appVersion, appBuild, macOSVersion),
                     forType: .string
                 )
                 didCopyVersion.toggle()
