@@ -57,7 +57,7 @@ struct EditorTabBarTrailingAccessories: View {
                         .keyboardShortcut("M", modifiers: [.command, .shift, .control])
                     Divider()
                     Toggle(
-                        "Wrap Lines",
+                        String(localized: "editor.wrap-lines", defaultValue: "Wrap Lines", comment: "Toggle for wrapping lines in editor"),
                         isOn: Binding(
                             get: { [weak codeFile] in codeFile?.wrapLines ?? wrapLinesToEditorWidth },
                             set: { [weak codeFile] in
@@ -80,7 +80,7 @@ struct EditorTabBarTrailingAccessories: View {
                 } label: {
                     Image(symbol: "square.split.horizontal.plus")
                 }
-                .help("Split Vertically")
+                .help(String(localized: "editor.split-vertically", defaultValue: "Split Vertically", comment: "Tooltip for split editor vertically"))
 
             case (.vertical, true), (.horizontal, false):
                 Button {
@@ -88,7 +88,7 @@ struct EditorTabBarTrailingAccessories: View {
                 } label: {
                     Image(symbol: "square.split.vertical.plus")
                 }
-                .help("Split Horizontally")
+                .help(String(localized: "editor.split-horizontally", defaultValue: "Split Horizontally", comment: "Tooltip for split editor horizontally"))
 
             default:
                 EmptyView()
