@@ -47,9 +47,9 @@ enum PackageManagerType: String, Codable {
         case .composer:
             "Composer"
         case .sourceBuild:
-            "Build From Source"
+            String(localized: "lsp.build-from-source", defaultValue: "Build From Source", comment: "Build from source installation method")
         case .github:
-            "Download From GitHub"
+            String(localized: "lsp.download-from-github", defaultValue: "Download From GitHub", comment: "Download from GitHub installation method")
         }
     }
 }
