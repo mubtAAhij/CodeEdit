@@ -20,13 +20,13 @@ struct InvisiblesSettingsView: View {
             Form {
                 Section {
                     VStack {
-                        Toggle(isOn: $invisibleCharacters.showSpaces) { Text("Show Spaces") }
+                        Toggle(isOn: $invisibleCharacters.showSpaces) { Text(String(localized: "text-editing.invisibles.show-spaces", defaultValue: "Show Spaces", comment: "Show spaces toggle")) }
                         if invisibleCharacters.showSpaces {
                             TextField(
                                 text: $invisibleCharacters.spaceReplacement,
-                                prompt: Text("Default: \(Config.default.spaceReplacement)")
+                                prompt: Text(String(format: String(localized: "text-editing.invisibles.default-space", defaultValue: "Default: %@", comment: "Default space replacement placeholder"), Config.default.spaceReplacement))
                             ) {
-                                Text("Character used to render spaces")
+                                Text(String(localized: "text-editing.invisibles.space-character", defaultValue: "Character used to render spaces", comment: "Space character description"))
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -35,13 +35,13 @@ struct InvisiblesSettingsView: View {
                     }
 
                     VStack {
-                        Toggle(isOn: $invisibleCharacters.showTabs) { Text("Show Tabs") }
+                        Toggle(isOn: $invisibleCharacters.showTabs) { Text(String(localized: "text-editing.invisibles.show-tabs", defaultValue: "Show Tabs", comment: "Show tabs toggle")) }
                         if invisibleCharacters.showTabs {
                             TextField(
                                 text: $invisibleCharacters.tabReplacement,
-                                prompt: Text("Default: \(Config.default.tabReplacement)")
+                                prompt: Text(String(format: String(localized: "text-editing.invisibles.default-tab", defaultValue: "Default: %@", comment: "Default tab replacement placeholder"), Config.default.tabReplacement))
                             ) {
-                                Text("Character used to render tabs")
+                                Text(String(localized: "text-editing.invisibles.tab-character", defaultValue: "Character used to render tabs", comment: "Tab character description"))
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -50,13 +50,13 @@ struct InvisiblesSettingsView: View {
                     }
 
                     VStack {
-                        Toggle(isOn: $invisibleCharacters.showLineEndings) { Text("Show Line Endings") }
+                        Toggle(isOn: $invisibleCharacters.showLineEndings) { Text(String(localized: "text-editing.invisibles.show-line-endings", defaultValue: "Show Line Endings", comment: "Show line endings toggle")) }
                         if invisibleCharacters.showLineEndings {
                             TextField(
                                 text: $invisibleCharacters.lineFeedReplacement,
-                                prompt: Text("Default: \(Config.default.lineFeedReplacement)")
+                                prompt: Text(String(format: String(localized: "text-editing.invisibles.default-line-feed", defaultValue: "Default: %@", comment: "Default line feed replacement placeholder"), Config.default.lineFeedReplacement))
                             ) {
-                                Text("Character used to render line feeds (\\n)")
+                                Text(String(localized: "text-editing.invisibles.line-feed-character", defaultValue: "Character used to render line feeds (\\n)", comment: "Line feed character description"))
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -64,9 +64,9 @@ struct InvisiblesSettingsView: View {
 
                             TextField(
                                 text: $invisibleCharacters.carriageReturnReplacement,
-                                prompt: Text("Default: \(Config.default.carriageReturnReplacement)")
+                                prompt: Text(String(format: String(localized: "text-editing.invisibles.default-carriage-return", defaultValue: "Default: %@", comment: "Default carriage return replacement placeholder"), Config.default.carriageReturnReplacement))
                             ) {
-                                Text("Character used to render carriage returns (Microsoft-style line endings)")
+                                Text(String(localized: "text-editing.invisibles.carriage-return-character", defaultValue: "Character used to render carriage returns (Microsoft-style line endings)", comment: "Carriage return character description"))
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -74,9 +74,9 @@ struct InvisiblesSettingsView: View {
 
                             TextField(
                                 text: $invisibleCharacters.paragraphSeparatorReplacement,
-                                prompt: Text("Default: \(Config.default.paragraphSeparatorReplacement)")
+                                prompt: Text(String(format: String(localized: "text-editing.invisibles.default-paragraph-separator", defaultValue: "Default: %@", comment: "Default paragraph separator replacement placeholder"), Config.default.paragraphSeparatorReplacement))
                             ) {
-                                Text("Character used to render paragraph separators")
+                                Text(String(localized: "text-editing.invisibles.paragraph-separator-character", defaultValue: "Character used to render paragraph separators", comment: "Paragraph separator character description"))
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -84,9 +84,9 @@ struct InvisiblesSettingsView: View {
 
                             TextField(
                                 text: $invisibleCharacters.lineSeparatorReplacement,
-                                prompt: Text("Default: \(Config.default.lineSeparatorReplacement)")
+                                prompt: Text(String(format: String(localized: "text-editing.invisibles.default-line-separator", defaultValue: "Default: %@", comment: "Default line separator replacement placeholder"), Config.default.lineSeparatorReplacement))
                             ) {
-                                Text("Character used to render line separators")
+                                Text(String(localized: "text-editing.invisibles.line-separator-character", defaultValue: "Character used to render line separators", comment: "Line separator character description"))
                                     .foregroundStyle(.secondary)
                                     .font(.caption)
                             }
@@ -94,8 +94,8 @@ struct InvisiblesSettingsView: View {
                         }
                     }
                 } header: {
-                    Text("Invisible Characters")
-                    Text("Toggle whitespace symbols CodeEdit will render with replacement characters.")
+                    Text(String(localized: "text-editing.invisibles.header", defaultValue: "Invisible Characters", comment: "Invisible characters section header"))
+                    Text(String(localized: "text-editing.invisibles.description", defaultValue: "Toggle whitespace symbols CodeEdit will render with replacement characters.", comment: "Invisible characters section description"))
                 }
                 .textFieldStyle(.roundedBorder)
             }
@@ -106,7 +106,7 @@ struct InvisiblesSettingsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "text-editing.invisibles.done", defaultValue: "Done", comment: "Done button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
