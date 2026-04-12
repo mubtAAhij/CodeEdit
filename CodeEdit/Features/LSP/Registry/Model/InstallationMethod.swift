@@ -72,12 +72,12 @@ enum InstallationMethod: Equatable {
     }
 
     var installerDescription: String {
-        guard let packageManagerType else { return "Unknown" }
+        guard let packageManagerType else { return String(localized: "package-manager.unknown", defaultValue: "Unknown", comment: "Unknown package manager type") }
         switch packageManagerType {
         case .npm, .cargo, .golang, .pip, .sourceBuild, .github:
             return packageManagerType.userDescription
         case .nuget, .opam, .gem, .composer:
-            return "(Unsupported) \(packageManagerType.userDescription)"
+            return String(format: String(localized: "package-manager.unsupported", defaultValue: "(Unsupported) %@", comment: "Unsupported package manager type"), packageManagerType.userDescription)
         }
     }
 
