@@ -26,11 +26,11 @@ struct SourceControlGitView: View {
                 gitAuthorName
                 gitEmail
             } header: {
-                Text("Git Configuration")
-                Text("""
+                Text(String(localized: "source-control.git-configuration", defaultValue: "Git Configuration", comment: "Section header for Git configuration"))
+                Text(String(localized: "source-control.git-configuration.description", defaultValue: """
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/git-config)
-                """)
+                """, comment: "Description for Git configuration section"))
             }
             Section {
                 defaultBranchName
@@ -43,12 +43,12 @@ struct SourceControlGitView: View {
             Section {
                 IgnoredFilesListView()
             } header: {
-                Text("Ignored Files")
-                Text("""
+                Text(String(localized: "source-control.ignored-files", defaultValue: "Ignored Files", comment: "Section header for ignored files"))
+                Text(String(localized: "source-control.ignored-files.description", defaultValue: """
                 Patterns for files and folders that Git should ignore and not track. \
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/gitignore)
-                """)
+                """, comment: "Description for ignored files section"))
             }
             Section {
                 gitIgnoreEditor
@@ -71,7 +71,7 @@ struct SourceControlGitView: View {
 
 private extension SourceControlGitView {
     private var gitAuthorName: some View {
-        TextField("Author Name", text: $authorName)
+        TextField(String(localized: "source-control.author-name", defaultValue: "Author Name", comment: "Label for Git author name field"), text: $authorName)
             .onChange(of: authorName) { _, newValue in
                 if hasAppeared {
                     Limiter.debounce(id: "authorNameDebouncer", duration: 0.5) {
@@ -84,7 +84,7 @@ private extension SourceControlGitView {
     }
 
     private var gitEmail: some View {
-        TextField("Author Email", text: $authorEmail)
+        TextField(String(localized: "source-control.author-email", defaultValue: "Author Email", comment: "Label for Git author email field"), text: $authorEmail)
             .onChange(of: authorEmail) { _, newValue in
                 if hasAppeared {
                     Limiter.debounce(id: "authorEmailDebouncer", duration: 0.5) {
@@ -98,8 +98,8 @@ private extension SourceControlGitView {
 
     private var defaultBranchName: some View {
         TextField(text: $defaultBranch) {
-            Text("Default branch name")
-            Text("Cannot contain spaces, backslashes, or other symbols")
+            Text(String(localized: "source-control.default-branch-name", defaultValue: "Default branch name", comment: "Label for default branch name field"))
+            Text(String(localized: "source-control.default-branch-name.help", defaultValue: "Cannot contain spaces, backslashes, or other symbols", comment: "Help text for default branch name field"))
         }
         .onChange(of: defaultBranch) { _, newValue in
             if hasAppeared {
@@ -114,7 +114,7 @@ private extension SourceControlGitView {
 
     private var preferToRebaseWhenPulling: some View {
         Toggle(
-            "Prefer to rebase when pulling",
+            String(localized: "source-control.prefer-rebase-when-pulling", defaultValue: "Prefer to rebase when pulling", comment: "Toggle for preferring rebase when pulling"),
             isOn: $preferRebaseWhenPulling
         )
         .onChange(of: preferRebaseWhenPulling) { _, newValue in
@@ -130,29 +130,29 @@ private extension SourceControlGitView {
 
     private var showMergeCommitsInPerFileLog: some View {
         Toggle(
-            "Show merge commits in per-file log",
+            String(localized: "source-control.show-merge-commits", defaultValue: "Show merge commits in per-file log", comment: "Toggle for showing merge commits in per-file log"),
             isOn: $git.showMergeCommitsPerFileLog
         )
     }
 
     private var gitConfigEditor: some View {
         HStack {
-            Text("Git configuration is stored in \"~/.gitconfig\".")
+            Text(String(localized: "source-control.git-config-location", defaultValue: "Git configuration is stored in \"~/.gitconfig\".", comment: "Text showing where Git config is stored"))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitConfigFile)
+            Button(String(localized: "source-control.open-in-editor", defaultValue: "Open in Editor...", comment: "Button to open file in editor"), action: openGitConfigFile)
         }
         .frame(maxWidth: .infinity)
     }
 
     private var gitIgnoreEditor: some View {
         HStack {
-            Text("Ignored file patterns are stored in \"\(resolvedGitIgnorePath)\".")
+            Text(String(format: String(localized: "source-control.gitignore-location", defaultValue: "Ignored file patterns are stored in \"%@\".", comment: "Text showing where gitignore patterns are stored"), resolvedGitIgnorePath))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitIgnoreFile)
+            Button(String(localized: "source-control.open-in-editor", defaultValue: "Open in Editor...", comment: "Button to open file in editor"), action: openGitIgnoreFile)
         }
         .frame(maxWidth: .infinity)
         .onAppear {
