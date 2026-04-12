@@ -25,15 +25,15 @@ extension SourceControlNavigatorRepositoryView {
 
     @ViewBuilder
     func contextMenu(for item: RepoOutlineGroupItem, branch: GitBranch) -> some View {
-        Button("Switch...") {
+        Button(String(localized: "source-control.switch-ellipsis", defaultValue: "Switch...", comment: "Switch branch menu item")) {
             sourceControlManager.switchToBranch = branch
         }
         .disabled(item.branch == nil || sourceControlManager.currentBranch == item.branch)
         Divider()
         Button(
             item.branch == nil && item.id != "BranchesGroup"
-            ? "New Branch..."
-            : "New Branch from \"\(branch.name)\"..."
+            ? String(localized: "source-control.new-branch-ellipsis", defaultValue: "New Branch...", comment: "New branch menu item")
+            : String(format: String(localized: "source-control.new-branch-from", defaultValue: "New Branch from \"%@\"...", comment: "New branch from menu item"), branch.name)
         ) {
             showNewBranch = true
             fromBranch =  item.branch
@@ -41,26 +41,26 @@ extension SourceControlNavigatorRepositoryView {
         .disabled(item.branch == nil && item.id != "BranchesGroup")
         Button(
             item.branch == nil
-            ? "Rename Branch..."
-            : "Rename \"\(branch.name)\"..."
+            ? String(localized: "source-control.rename-branch-ellipsis", defaultValue: "Rename Branch...", comment: "Rename branch menu item")
+            : String(format: String(localized: "source-control.rename-branch-name", defaultValue: "Rename \"%@\"...", comment: "Rename branch name menu item"), branch.name)
         ) {
             showRenameBranch = true
             fromBranch = item.branch
         }
         .disabled(item.branch == nil || item.branch?.isRemote == true)
         Divider()
-        Button("Add Existing Remote...") {
+        Button(String(localized: "source-control.add-existing-remote", defaultValue: "Add Existing Remote...", comment: "Add existing remote menu item")) {
             sourceControlManager.addExistingRemoteSheetIsPresented = true
         }
         .disabled(item.id != "RemotesGroup")
         Divider()
-        Button("Apply Stashed Changes...") {
+        Button(String(localized: "source-control.apply-stashed-changes", defaultValue: "Apply Stashed Changes...", comment: "Apply stashed changes menu item")) {
             applyStashedChangesIsPresented = true
             stashEntryToApply = item.stashEntry
         }
         .disabled(item.stashEntry == nil)
         Divider()
-        Button("Delete...") {
+        Button(String(localized: "common.delete-ellipsis", defaultValue: "Delete...", comment: "Delete menu item")) {
             handleDelete(item)
         }
         .disabled(
