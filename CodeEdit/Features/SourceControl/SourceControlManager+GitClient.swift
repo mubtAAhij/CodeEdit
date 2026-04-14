@@ -102,7 +102,7 @@ extension SourceControlManager {
                 // TODO: Refresh content of active and unmodified document,
                 // requires CodeEditSourceEditor changes
             } catch {
-                logger.error("Failed to discard changes for file (\(file.lastPathComponent): \(error)")
+                logger.error(String(localized: "source-control.discard-failed", defaultValue: "Failed to discard changes", comment: "Error message when discarding changes fails"))
                 await showAlertForError(title: "Failed to discard changes", error: error)
             }
         }
@@ -116,7 +116,7 @@ extension SourceControlManager {
                 // TODO: Refresh content of active and unmodified document,
                 // requires CodeEditSourceEditor changes
             } catch {
-                logger.error("Failed to discard changes: \(error)")
+                logger.fault(String(localized: "source-control.discard-failed", defaultValue: "Failed to discard changes", comment: "Error message when discarding changes fails"))
                 await showAlertForError(title: "Failed to discard changes", error: error)
             }
         }
