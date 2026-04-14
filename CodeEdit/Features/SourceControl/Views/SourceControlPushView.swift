@@ -26,11 +26,11 @@ struct SourceControlPushView: View {
                         canCreateBranch: true
                     )
                 } header: {
-                    Text("Push local changes to")
+                    Text(String(localized: "source-control.push.title", defaultValue: "Push local changes to", comment: "Push changes title", os_id: "102650"))
                 }
                 Section {
-                    Toggle("Force", isOn: $sourceControlManager.operationForce)
-                    Toggle("Include Tags", isOn: $sourceControlManager.operationIncludeTags)
+                    Toggle(String(localized: "source-control.push.force", defaultValue: "Force", comment: "Force push option", os_id: "102651"), isOn: $sourceControlManager.operationForce)
+                    Toggle(String(localized: "source-control.push.include-tags", defaultValue: "Include Tags", comment: "Include tags option", os_id: "102652"), isOn: $sourceControlManager.operationIncludeTags)
                 }
             }
             .formStyle(.grouped)
@@ -42,7 +42,7 @@ struct SourceControlPushView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text("Pushing changes...")
+                        Text(String(localized: "source-control.push.in-progress", defaultValue: "Pushing changes...", comment: "Pushing changes progress", os_id: "102653"))
                             .font(.subheadline)
                     }
                 }
@@ -50,12 +50,12 @@ struct SourceControlPushView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "source-control.push.cancel", defaultValue: "Cancel", comment: "Cancel button"))
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text("Push")
+                    Text(String(localized: "source-control.push.button", defaultValue: "Push", comment: "Push button", os_id: "102654"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -83,7 +83,7 @@ struct SourceControlPushView: View {
                 dismiss()
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.push.failed", defaultValue: "Failed to push", comment: "Error when push fails", os_id: "102215"), error: error)
             }
         }
     }
