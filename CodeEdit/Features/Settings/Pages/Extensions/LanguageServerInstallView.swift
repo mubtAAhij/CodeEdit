@@ -23,14 +23,14 @@ struct LanguageServerInstallView: View {
         }
         .constrainHeightToWindow()
         .alert(
-            "Confirm Step",
+            String(localized: "confirm-step", defaultValue: "Confirm Step", comment: "Confirm step alert title", os_id: "102349"),
             isPresented: Binding(get: { operation.waitingForConfirmation != nil }, set: { _ in }),
             presenting: operation.waitingForConfirmation
         ) { _ in
-            Button("Cancel") {
+            Button(String(localized: "cancel", defaultValue: "Cancel", comment: "Cancel button")) {
                 registryManager.cancelInstallation()
             }
-            Button("Continue") {
+            Button(String(localized: "continue", defaultValue: "Continue", comment: "Continue button")) {
                 operation.confirmCurrentStep()
             }
         } message: { confirmationMessage in
@@ -60,7 +60,7 @@ struct LanguageServerInstallView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", defaultValue: "Cancel", comment: "Cancel button"))
                 }
                 .buttonStyle(.bordered)
                 Button {
@@ -71,7 +71,7 @@ struct LanguageServerInstallView: View {
                         NSAlert(error: error).runModal()
                     }
                 } label: {
-                    Text("Install")
+                    Text(String(localized: "install", defaultValue: "Install", comment: "Install button"))
                 }
                 .buttonStyle(.borderedProminent)
             case .running:
@@ -79,7 +79,7 @@ struct LanguageServerInstallView: View {
                     registryManager.cancelInstallation()
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", defaultValue: "Cancel", comment: "Cancel button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.bordered)
@@ -87,7 +87,7 @@ struct LanguageServerInstallView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Continue")
+                    Text(String(localized: "continue", defaultValue: "Continue", comment: "Continue button", os_id: "102350"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -98,12 +98,12 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var packageInfoSection: some View {
         Section {
-            LabeledContent("Installing Package", value: operation.package.sanitizedName)
-            LabeledContent("Homepage") {
+            LabeledContent(String(localized: "installing-package", defaultValue: "Installing Package", comment: "Installing package label", os_id: "102352"), value: operation.package.sanitizedName)
+            LabeledContent(String(localized: "homepage", defaultValue: "Homepage", comment: "Homepage label", os_id: "102353")) {
                 sourceButton.cursor(.pointingHand)
             }
             VStack(alignment: .leading, spacing: 6) {
-                Text("Description")
+                Text(String(localized: "description", defaultValue: "Description", comment: "Description label", os_id: "102011"))
                 Text(operation.package.sanitizedDescription)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.secondary)
@@ -118,7 +118,7 @@ struct LanguageServerInstallView: View {
             Section {
                 HStack(spacing: 4) {
                     Image(systemName: "exclamationmark.octagon.fill").foregroundColor(.red)
-                    Text("Error Occurred")
+                    Text(String(localized: "error-occurred", defaultValue: "Error Occurred", comment: "Error occurred message"))
                 }
                 .font(.title3)
                 ErrorDescriptionLabel(error: error)
@@ -147,16 +147,16 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var progressSection: some View {
         Section {
-            LabeledContent("Step") {
+            LabeledContent(String(localized: "step", defaultValue: "Step", comment: "Step label", os_id: "102355")) {
                 if registryManager.installedLanguageServers[operation.package.name] != nil {
                     HStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(.green)
-                        Text("Successfully Installed")
+                        Text(String(localized: "successfully-installed", defaultValue: "Successfully Installed", comment: "Successfully installed message", os_id: "102356"))
                             .foregroundStyle(.primary)
                     }
                 } else if operation.error != nil {
-                    Text("Error Occurred")
+                    Text(String(localized: "error-occurred", defaultValue: "Error Occurred", comment: "Error occurred message", os_id: "102354"))
                 } else {
                     Text(operation.currentStep?.name ?? "")
                 }
@@ -215,14 +215,14 @@ struct LanguageServerInstallView: View {
     @ViewBuilder private var notInstalledSection: some View {
         Section {
             if let method = operation.package.installMethod {
-                LabeledContent("Install Method", value: method.installerDescription)
+                LabeledContent(String(localized: "install-method", defaultValue: "Install Method", comment: "Install method label", os_id: "102357"), value: method.installerDescription)
                     .textSelection(.enabled)
                 if let packageDescription = method.packageDescription {
-                    LabeledContent("Package", value: packageDescription)
+                    LabeledContent(String(localized: "package", defaultValue: "Package", comment: "Package label", os_id: "101877"), value: packageDescription)
                         .textSelection(.enabled)
                 }
             } else {
-                LabeledContent("Installer", value: "Unknown")
+                LabeledContent(String(localized: "installer", defaultValue: "Installer", comment: "Installer label", os_id: "102358"), value: String(localized: "unknown", defaultValue: "Unknown", comment: "Unknown value"))
             }
         }
     }
