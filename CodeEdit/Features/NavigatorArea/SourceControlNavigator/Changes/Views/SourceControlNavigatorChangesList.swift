@@ -28,24 +28,24 @@ struct SourceControlNavigatorChangesList: View {
                 if selectedFiles.count == 1,
                    let file = selectedFiles.first {
                     Group {
-                        Button("View in Finder") {
+                        Button(String(localized: "source-control.view-in-finder", defaultValue: "View in Finder", comment: "View in Finder menu item")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button("Reveal in Project Navigator") {}
+                        Button(String(localized: "source-control.reveal-in-navigator", defaultValue: "Reveal in Project Navigator", comment: "Reveal in navigator menu item")) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button("Open in New Tab") {
+                        Button(String(localized: "source-control.open-new-tab", defaultValue: "Open in New Tab", comment: "Open in new tab menu item")) {
                             openGitFile(file)
                         }
-                        Button("Open in New Window") {}
+                        Button(String(localized: "source-control.open-new-window", defaultValue: "Open in New Window", comment: "Open in new window menu item")) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
                         Group {
                             Divider()
-                            Button("Discard Changes in \(file.fileURL.lastPathComponent)...") {
+                            Button(String(format: String(localized: "source-control.discard-changes-in-file", defaultValue: "Discard Changes in %@...", comment: "Discard changes in file menu item"), file.fileURL.lastPathComponent)) {
                                 sourceControlManager.discardChanges(for: file.fileURL)
                             }
                             Divider()
