@@ -27,7 +27,7 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? "No Project found")
+        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "activity-viewer.no-project", defaultValue: "No Project found", comment: "Message when no project is found"))
         : workspaceName
     }
 
@@ -52,8 +52,8 @@ struct SchemeDropDownView: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("SchemeDropdown")
         .accessibilityValue(workspaceDisplayName)
-        .accessibilityLabel("Active Scheme")
-        .accessibilityHint("Open the active scheme menu")
+        .accessibilityLabel(String(localized: "activity-viewer.active-scheme", defaultValue: "Active Scheme", comment: "Active scheme accessibility label"))
+        .accessibilityHint(String(localized: "activity-viewer.active-scheme-hint", defaultValue: "Open the active scheme menu", comment: "Active scheme accessibility hint"))
         .accessibilityAction {
             isSchemePopOverPresented.toggle()
         }
@@ -141,12 +141,12 @@ struct SchemeDropDownView: View {
         Divider()
             .padding(.vertical, 5)
         Group {
-            OptionMenuItemView(label: "Add Folder...") {
+            OptionMenuItemView(label: String(localized: "activity-viewer.add-folder", defaultValue: "Add Folder...", comment: "Add folder button")) {
                 // TODO: Implment Add Folder
                 print("NOT IMPLEMENTED")
             }
             .disabled(true)
-            OptionMenuItemView(label: "Workspace Settings...") {
+            OptionMenuItemView(label: String(localized: "activity-viewer.workspace-settings", defaultValue: "Workspace Settings...", comment: "Workspace settings button")) {
                 NSApp.sendAction(
                     #selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil
                 )
