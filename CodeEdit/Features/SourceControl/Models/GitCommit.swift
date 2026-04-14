@@ -54,15 +54,15 @@ struct GitCommit: Equatable, Hashable, Identifiable {
     var remoteString: String {
         if let remoteURL {
             if remoteURL.absoluteString.contains("github") {
-                return "GitHub"
+                return String(localized: "source-control.provider.github", defaultValue: "GitHub", comment: "GitHub provider name")
             }
             if remoteURL.absoluteString.contains("bitbucket") {
-                return "BitBucket"
+                return String(localized: "source-control.provider.bitbucket", defaultValue: "BitBucket", comment: "BitBucket provider name")
             }
             if remoteURL.absoluteString.contains("gitlab") {
-                return "GitLab"
+                return String(localized: "source-control.provider.gitlab", defaultValue: "GitLab", comment: "GitLab provider name")
             }
         }
-        return "Remote"
+        return String(localized: "source-control.provider.remote", defaultValue: "Remote", comment: "Generic remote provider name")
     }
 }
