@@ -11,6 +11,30 @@
             "state": "translated",
             "value": "Activity Viewer"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity Viewer"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visor de Actividad"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "活动查看器"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visualiseur d'activité"
+          }
         }
       }
     },
@@ -22,6 +46,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "working"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "working"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "trabajando"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "工作中"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "en cours"
           }
         }
       }
@@ -35,6 +83,30 @@
             "state": "translated",
             "value": "No Project found"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No project found"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró ningún proyecto"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未找到项目"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun projet trouvé"
+          }
         }
       }
     },
@@ -46,6 +118,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Active Scheme"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Scheme"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esquema Activo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当前方案"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schéma actif"
           }
         }
       }
@@ -59,6 +155,30 @@
             "state": "translated",
             "value": "Open the active scheme menu"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the active scheme menu"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir el menú del esquema activo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开活动方案菜单"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le menu du schéma actif"
+          }
         }
       }
     },
@@ -70,6 +190,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add Folder..."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Folder..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar carpeta..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加文件夹..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un dossier..."
           }
         }
       }
@@ -83,6 +227,30 @@
             "state": "translated",
             "value": "Workspace Settings..."
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workspace Settings..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración del espacio de trabajo..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "工作空间设置..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages de l'espace de travail..."
+          }
         }
       }
     },
@@ -94,6 +262,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Create Tasks"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Tasks"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear tareas"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建任务"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer des tâches"
           }
         }
       }
@@ -107,6 +299,30 @@
             "state": "translated",
             "value": "Active Task"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Task"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarea activa"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "活动任务"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tâche active"
+          }
         }
       }
     },
@@ -118,6 +334,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open the active task menu"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the active task menu"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir el menú de la tarea activa"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开活动任务菜单"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le menu de la tâche active"
           }
         }
       }
@@ -131,6 +371,30 @@
             "state": "translated",
             "value": "Add Task..."
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Task..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar tarea..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加任务..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter une tâche..."
+          }
         }
       }
     },
@@ -142,6 +406,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Manage Tasks..."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Tasks..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Administrar tareas..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理任务..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérer les tâches..."
           }
         }
       }
