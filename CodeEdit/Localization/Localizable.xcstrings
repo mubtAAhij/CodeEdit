@@ -1,0 +1,150 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "activity-viewer.label": {
+      "comment": "Accessibility label for the activity viewer component",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity Viewer"
+          }
+        }
+      }
+    },
+    "activity-viewer.progress.working": {
+      "comment": "Accessibility value when task progress is indeterminate",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "working"
+          }
+        }
+      }
+    },
+    "scheme-dropdown.no-project": {
+      "comment": "Fallback text when no project is found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Project found"
+          }
+        }
+      }
+    },
+    "scheme-dropdown.label": {
+      "comment": "Accessibility label for the scheme dropdown",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Scheme"
+          }
+        }
+      }
+    },
+    "scheme-dropdown.hint": {
+      "comment": "Accessibility hint for the scheme dropdown button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the active scheme menu"
+          }
+        }
+      }
+    },
+    "scheme-dropdown.add-folder": {
+      "comment": "Menu item to add a folder to the workspace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Folder..."
+          }
+        }
+      }
+    },
+    "scheme-dropdown.workspace-settings": {
+      "comment": "Menu item to open workspace settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workspace Settings..."
+          }
+        }
+      }
+    },
+    "task-dropdown.create-tasks": {
+      "comment": "Placeholder text when no task is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Tasks"
+          }
+        }
+      }
+    },
+    "task-dropdown.label": {
+      "comment": "Accessibility label for the task dropdown",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Task"
+          }
+        }
+      }
+    },
+    "task-dropdown.hint": {
+      "comment": "Accessibility hint for the task dropdown button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the active task menu"
+          }
+        }
+      }
+    },
+    "task-dropdown.add-task": {
+      "comment": "Menu item to add a new task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Task..."
+          }
+        }
+      }
+    },
+    "task-dropdown.manage-tasks": {
+      "comment": "Menu item to manage existing tasks",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Tasks..."
+          }
+        }
+      }
+    }
+  }
+}
