@@ -688,6 +688,18 @@ jobs:
               }" || echo "⚠️  Failed to send status update (skip list completed)"
           fi
 
+      - name: Upload skip list debug artifacts (for diff vs local Xcode / skip-list.json)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skip-list-debug-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            skip-list.json
+            skip-list.comparison-summary.json
+            skip-list.*.txt
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Set up gcloud auth
         uses: google-github-actions/auth@v2
         with:
