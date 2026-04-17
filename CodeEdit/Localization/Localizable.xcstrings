@@ -11,6 +11,30 @@
             "state": "translated",
             "value": "MIT License"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT License"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licencia MIT"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT 许可证"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licence MIT"
+          }
         }
       }
     },
@@ -22,6 +46,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "No Version"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Version"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin versión"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无版本"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune version"
           }
         }
       }
@@ -35,6 +83,30 @@
             "state": "translated",
             "value": "No Build"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Build"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin compilación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无构建版本"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun build"
+          }
         }
       }
     },
@@ -43,6 +115,30 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@%@ (%@)"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@%@ (%@)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %@%@ (%@)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版本 %@%@（%@）"
+          }
+        },
+        "fr-FR": {
           "stringUnit": {
             "state": "translated",
             "value": "Version %@%@ (%@)"
@@ -59,6 +155,30 @@
             "state": "translated",
             "value": "CodeEdit: %@ (%@)\nmacOS: %@"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit: %@ (%@)\nmacOS: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit: %@ (%@)\nmacOS: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit：%@ (%@)\nmacOS：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit : %@ (%@)\nmacOS : %@"
+          }
         }
       }
     },
@@ -70,6 +190,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Package"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paquete"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "包"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paquet"
           }
         }
       }
@@ -83,6 +227,30 @@
             "state": "translated",
             "value": "Acknowledgements"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledgements"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agradecimientos"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "致谢"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remerciements"
+          }
         }
       }
     },
@@ -94,6 +262,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Contributors"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contributors"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colaboradores"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "贡献者"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contributeurs"
           }
         }
       }
