@@ -18,17 +18,17 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
+            String(localized: "registry.installation-running", defaultValue: "A package is already being installed.", comment: "Installation already running error")
         case .invalidResponse(let statusCode):
             "Invalid response received: \(statusCode)"
         case .downloadFailed(let url, _):
-            "Download for \(url) error."
+            String(format: String(localized: "registry.download-failed", defaultValue: "Download for %@ error.", comment: "Download failed error"), url.absoluteString)
         case .maxRetriesExceeded(let url, _):
-            "Maximum retries exceeded for url: \(url)"
+            String(format: String(localized: "registry.max-retries-exceeded", defaultValue: "Maximum retries exceeded for url: %@", comment: "Maximum retries exceeded error"), url.absoluteString)
         case .writeFailed:
-            "Failed to write to file."
+            String(localized: "registry.write-failed", defaultValue: "Failed to write to file.", comment: "Write failed error")
         case .failedToSaveRegistryCache:
-            "Failed to write to registry cache."
+            String(localized: "registry.failed-to-save-cache", defaultValue: "Failed to write to registry cache.", comment: "Failed to save registry cache error")
         }
     }
 
