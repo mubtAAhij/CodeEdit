@@ -22,11 +22,11 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent(String(localized: "git.from", defaultValue: "From", comment: "From label"), value: branch.name)
+                        TextField(String(localized: "git.to", defaultValue: "To", comment: "To field"), text: $name)
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text(String(localized: "git.rename-branch", defaultValue: "Rename branch", comment: "Rename branch header"))
+                        Text(String(localized: "git.rename-branch-note", defaultValue: "All uncommited changes will be preserved on the renamed branch.", comment: "Rename branch note"))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +38,13 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "git.cancel", defaultValue: "Cancel", comment: "Cancel button"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text(String(localized: "git.rename", defaultValue: "Rename", comment: "Rename button"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +67,7 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "git.failed-to-create-branch", defaultValue: "Failed to create branch", comment: "Failed to create branch error"),
                     error: error
                 )
             }
