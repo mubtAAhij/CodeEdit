@@ -15,7 +15,7 @@ struct AddCETaskView: View {
     @StateObject var newTask: CETask
 
     init() {
-        self._newTask = StateObject(wrappedValue: CETask(target: "My Mac"))
+        self._newTask = StateObject(wrappedValue: CETask(target: String(localized: "task.my-mac", defaultValue: "My Mac", comment: "Default task target")))
     }
     var body: some View {
         VStack(spacing: 0) {
@@ -25,7 +25,7 @@ struct AddCETaskView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", defaultValue: "Cancel", comment: "Cancel button"))
                         .frame(minWidth: 56)
                 }
                 Spacer()
@@ -34,7 +34,7 @@ struct AddCETaskView: View {
                     try? workspaceSettingsManager.savePreferences()
                     dismiss()
                 } label: {
-                    Text("Save")
+                    Text(String(localized: "save", defaultValue: "Save", comment: "Save button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
