@@ -96,7 +96,7 @@ class CETask: ObservableObject, Identifiable, Hashable, Codable {
         if !name.isEmpty {
             try container.encode(name, forKey: .name)
         }
-        if !target.isEmpty && target != "My Mac" {
+        if !target.isEmpty && target != String(localized: "task.my-mac", defaultValue: "My Mac", comment: "Default task target") {
             try container.encode(target, forKey: .target)
         }
 
