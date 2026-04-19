@@ -23,12 +23,9 @@ struct SourceControlSwitchView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Do you want to switch to “\(branch.name)”?")
+                    Text(String(format: String(localized: "git.switch-branch-prompt", defaultValue: "Do you want to switch to \u{201C}%@\u{201D}?", comment: "Switch branch prompt"), branch.name))
                         .font(.headline)
-                    Text(
-                        "All files in the local repository will switch from the current branch " +
-                        "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
-                    )
+                    Text(String(format: String(localized: "git.switch-branch-description", defaultValue: "All files in the local repository will switch from the current branch (\u{201C}%@\u{201D}) to \u{201C}%@\u{201D}.", comment: "Switch branch description"), sourceControlManager.currentBranch?.name ?? "", branch.name))
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
                 }
@@ -42,13 +39,13 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "cancel", defaultValue: "Cancel", comment: "Cancel button"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Switch")
+                    Text(String(localized: "git.switch", defaultValue: "Switch", comment: "Switch button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -70,7 +67,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "git.failed-to-checkout", defaultValue: "Failed to checkout", comment: "Failed to checkout error title"), error: error)
             }
         }
     }
