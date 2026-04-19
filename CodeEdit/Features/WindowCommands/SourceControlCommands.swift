@@ -17,29 +17,29 @@ struct SourceControlCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Source Control") {
+        CommandMenu(String(localized: "menu.source-control", defaultValue: "Source Control", comment: "Source Control menu")) {
             Group {
-                Button("Commit...") {
+                Button(String(localized: "menu.commit", defaultValue: "Commit...", comment: "Commit menu item")) {
                     // TODO: Open Source Control Navigator to Changes tab
                 }
                 .disabled(true)
 
-                Button("Push...") {
+                Button(String(localized: "menu.push", defaultValue: "Push...", comment: "Push menu item")) {
                     sourceControlManager?.pushSheetIsPresented = true
                 }
 
-                Button("Pull...") {
+                Button(String(localized: "menu.pull", defaultValue: "Pull...", comment: "Pull menu item")) {
                     sourceControlManager?.pullSheetIsPresented = true
                 }
                 .keyboardShortcut("x", modifiers: [.command, .option])
 
-                Button("Fetch Changes") {
+                Button(String(localized: "menu.fetch-changes", defaultValue: "Fetch Changes", comment: "Fetch Changes menu item")) {
                     sourceControlManager?.fetchSheetIsPresented = true
                 }
 
                 Divider()
 
-                Button("Stage All Changes") {
+                Button(String(localized: "menu.stage-all-changes", defaultValue: "Stage All Changes", comment: "Stage All Changes menu item")) {
                     guard let sourceControlManager else { return }
                     if sourceControlManager.changedFiles.isEmpty {
                         sourceControlManager.noChangesToStageAlertIsPresented = true
@@ -49,7 +49,7 @@ struct SourceControlCommands: Commands {
                                 try await sourceControlManager.add(sourceControlManager.changedFiles.map { $0.fileURL })
                             } catch {
                                 await sourceControlManager.showAlertForError(
-                                    title: "Failed To Stage Changes",
+                                    title: String(localized: "git.failed-to-stage-changes", defaultValue: "Failed To Stage Changes", comment: "Failed to stage changes error"),
                                     error: error
                                 )
                             }
@@ -57,7 +57,7 @@ struct SourceControlCommands: Commands {
                     }
                 }
 
-                Button("Unstage All Changes") {
+                Button(String(localized: "menu.unstage-all-changes", defaultValue: "Unstage All Changes", comment: "Unstage All Changes menu item")) {
                     guard let sourceControlManager else { return }
                     if sourceControlManager.changedFiles.isEmpty {
                         sourceControlManager.noChangesToUnstageAlertIsPresented = true
@@ -69,7 +69,7 @@ struct SourceControlCommands: Commands {
                                 )
                             } catch {
                                 await sourceControlManager.showAlertForError(
-                                    title: "Failed To Unstage Changes",
+                                    title: String(localized: "git.failed-to-unstage-changes", defaultValue: "Failed To Unstage Changes", comment: "Failed to unstage changes error"),
                                     error: error
                                 )
                             }
@@ -79,12 +79,12 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Cherry-Pick...") {
+                Button(String(localized: "menu.cherry-pick", defaultValue: "Cherry-Pick...", comment: "Cherry-Pick menu item")) {
                     // TODO: Implementation Needed
                 }
                 .disabled(true)
 
-                Button("Stash Changes...") {
+                Button(String(localized: "menu.stash-changes", defaultValue: "Stash Changes...", comment: "Stash Changes menu item")) {
                     if sourceControlManager?.changedFiles.isEmpty ?? false {
                         sourceControlManager?.noChangesToStashAlertIsPresented = true
                     } else {
@@ -94,7 +94,7 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Discard All Changes...") {
+                Button(String(localized: "menu.discard-all-changes", defaultValue: "Discard All Changes...", comment: "Discard All Changes menu item")) {
                     if sourceControlManager?.changedFiles.isEmpty ?? false {
                         sourceControlManager?.noChangesToDiscardAlertIsPresented = true
                     } else {
@@ -104,7 +104,7 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Add Exisiting Remote...") {
+                Button(String(localized: "menu.add-existing-remote", defaultValue: "Add Exisiting Remote...", comment: "Add Existing Remote menu item")) {
                     sourceControlManager?.addExistingRemoteSheetIsPresented = true
                 }
             }
