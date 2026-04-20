@@ -129,7 +129,7 @@ def write_skip_list_debug_artifacts(
             "If counts differ, check diff.*.txt and stringsdata-keys.dropped-no-source-file.txt.",
         ],
     }
-    (prefix.with_name(f"{stem}.comparison-summary.json")).write_text(
+    _sidecar("comparison-summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
@@ -481,14 +481,26 @@ output = {
 out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
 print(f"✅ Wrote skip list with {total_count} entries from {len(files_dict)} source files to {out_path}")
 
-write_skip_list_debug_artifacts(
-    out_path,
-    stringsdata_map=stringsdata_map,
-    value_map=value_map,
-    files_dict=files_dict,
-    stringsdata_skipped_no_source=stringsdata_skipped_no_source,
-    xcstrings_paths=xcstrings_files,
-    used_xcstrings_fallback=used_xcstrings_fallback,
-    empty_reason=None,
-)
+# Sidecars must not fail the job: workflows that use `|| echo "[]" > skip-list.json` would
+# overwrite a valid skip-list.json if this step raised after the file was written.
+try:
+    write_skip_list_debug_artifacts(
+        out_path,
+        stringsdata_map=stringsdata_map,
+        value_map=value_map,
+        files_dict=files_dict,
+        stringsdata_skipped_no_source=stringsdata_skipped_no_source,
+        xcstrings_paths=xcstrings_files,
+        used_xcstrings_fallback=used_xcstrings_fallback,
+        empty_reason=None,
+    )
+except Exception as e:
+    print(
+        f"⚠️  Skip list JSON was written successfully; debug artifacts failed: {e}",
+        file=sys.stderr,
+    )
+    import traceback
 
+    traceback.print_exc(file=sys.stderr)
+
+sys.exit(0)
