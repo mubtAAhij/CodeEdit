@@ -34,10 +34,10 @@ extension SettingsData {
 
         var searchKeys: [String] {
             [
-                "Automatically Change theme based on system appearance",
-                "Always use dark terminal appearance",
-                "Use theme background",
-                "Light Appearance",
+                String(localized: "theme-settings.search-key.auto-change-theme", defaultValue: "Automatically Change theme based on system appearance", comment: "Search key for auto change theme setting"),
+                String(localized: "theme-settings.search-key.always-dark-terminal", defaultValue: "Always use dark terminal appearance", comment: "Search key for always dark terminal setting"),
+                String(localized: "theme-settings.search-key.use-theme-background", defaultValue: "Use theme background", comment: "Search key for use theme background setting"),
+                String(localized: "theme-settings.search-key.light-appearance", defaultValue: "Light Appearance", comment: "Search key for light appearance theme category"),
                 "GitHub Light",
                 "Xcode Light",
                 "Solarized Light",
@@ -46,7 +46,6 @@ extension SettingsData {
                 "Xcode Dark",
                 "GitHub Dark"
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// The name of the currently selected dark theme
