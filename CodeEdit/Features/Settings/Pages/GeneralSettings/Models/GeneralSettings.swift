@@ -24,31 +24,30 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
-                "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
-                "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "general-settings-search.appearance", defaultValue: "Appearance", comment: "Appearance search key", os_id: "105928"),
+                String(localized: "general-settings-search.file-icon-style", defaultValue: "File Icon Style", comment: "File icon style search key", os_id: "105943"),
+                String(localized: "general-settings-search.tab-bar-style", defaultValue: "Tab Bar Style", comment: "Tab bar style search key", os_id: "105976"),
+                String(localized: "general-settings-search.show-jump-bar", defaultValue: "Show Jump Bar", comment: "Show jump bar search key", os_id: "105936"),
+                String(localized: "general-settings-search.dim-editors", defaultValue: "Dim editors without focus", comment: "Dim editors search key", os_id: "105937"),
+                String(localized: "general-settings-search.navigator-position", defaultValue: "Navigator Tab Bar Position", comment: "Navigator position search key", os_id: "105946"),
+                String(localized: "general-settings-search.inspector-position", defaultValue: "Inspector Tab Bar Position", comment: "Inspector position search key", os_id: "105949"),
+                String(localized: "general-settings-search.show-issues", defaultValue: "Show Issues", comment: "Show issues search key", os_id: "105932"),
+                String(localized: "general-settings-search.show-live-issues", defaultValue: "Show Live Issues", comment: "Show live issues search key", os_id: "105935"),
+                String(localized: "general-settings-search.autosave", defaultValue: "Automatically save change to disk", comment: "Autosave search key", os_id: "105977"),
+                String(localized: "general-settings-search.auto-reveal", defaultValue: "Automatically reveal in project navigator", comment: "Auto reveal search key", os_id: "105975"),
+                String(localized: "general-settings-search.reopen-behavior", defaultValue: "Reopen Behavior", comment: "Reopen behavior search key", os_id: "105950"),
+                String(localized: "general-settings-search.after-close", defaultValue: "After the last window is closed", comment: "After close search key", os_id: "105954"),
+                String(localized: "general-settings-search.file-extensions", defaultValue: "File Extensions", comment: "File extensions search key", os_id: "105938"),
+                String(localized: "general-settings-search.project-nav-size", defaultValue: "Project Navigator Size", comment: "Project navigator size search key", os_id: "105958"),
+                String(localized: "general-settings-search.find-nav-detail", defaultValue: "Find Navigator Detail", comment: "Find navigator detail search key", os_id: "105962"),
+                String(localized: "general-settings-search.issue-nav-detail", defaultValue: "Issue Navigator Detail", comment: "Issue navigator detail search key", os_id: "105963"),
+                String(localized: "general-settings-search.open-with-codeedit", defaultValue: "Show \"Open With CodeEdit\" option in Finder", comment: "Open with CodeEdit search key", os_id: "105978"),
+                String(localized: "general-settings-search.shell-command", defaultValue: "'codeedit' Shell command", comment: "Shell command search key", os_id: "105979"),
+                String(localized: "general-settings-search.dialog-warnings", defaultValue: "Dialog Warnings", comment: "Dialog warnings search key", os_id: "105964"),
+                String(localized: "general-settings-search.check-updates", defaultValue: "Check for updates", comment: "Check for updates search key", os_id: "105968"),
+                String(localized: "general-settings-search.auto-check-updates", defaultValue: "Automatically check for app updates", comment: "Auto check updates search key", os_id: "105970"),
+                String(localized: "general-settings-search.prerelease", defaultValue: "Include pre-release versions", comment: "Include pre-release search key", os_id: "105971")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -309,9 +308,9 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "navigator-detail.one-line", defaultValue: "One Line", comment: "One line navigator detail", os_id: "105980")
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(format: String(localized: "navigator-detail.up-to-lines", defaultValue: "Up to %d lines", comment: "Up to N lines navigator detail", os_id: "105981"), self.rawValue)
             }
         }
     }
