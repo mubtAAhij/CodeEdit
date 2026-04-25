@@ -7,6 +7,159 @@ import subprocess
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from datetime import datetime, timezone
+from typing import Optional
+
+
+def _write_text_lines(path: Path, lines: list) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("".join(f"{line}\n" for line in lines), encoding="utf-8")
+
+
+def write_skip_list_debug_artifacts(
+    out_path: Path,
+    *,
+    stringsdata_map: dict,
+    value_map: dict,
+    files_dict: dict,
+    stringsdata_skipped_no_source: list,
+    xcstrings_paths: list,
+    used_xcstrings_fallback: bool,
+    empty_reason: Optional[str] = None,
+) -> None:
+    """
+    Writes sidecar files next to skip-list.json so CI logs / artifacts can be diffed
+    against a local Xcode build and against the skip-list JSON (see comparison-summary).
+    """
+    stem = out_path.stem
+    parent = out_path.parent
+
+    def _sidecar(name: str) -> Path:
+        return parent / f"{stem}.{name}"
+
+    if empty_reason:
+        summary = {
+            "version": 1,
+            "empty_reason": empty_reason,
+            "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        }
+        _sidecar("comparison-summary.json").write_text(
+            json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+        print(
+            f"📎 Wrote {stem}.comparison-summary.json (empty run: {empty_reason})",
+            file=sys.stderr,
+        )
+        return
+
+    sd_keys = sorted(stringsdata_map.keys())
+    vm_keys = sorted(value_map.keys())
+    _write_text_lines(_sidecar("stringsdata-keys.unique-sorted.txt"), sd_keys)
+    _write_text_lines(_sidecar("value-map.keys.unique-sorted.txt"), vm_keys)
+
+    all_rows = []
+    for sf in sorted(files_dict.keys()):
+        for ent in files_dict[sf]:
+            all_rows.append(
+                {
+                    "source_file": sf,
+                    "key": ent.get("key", ""),
+                    "value": ent.get("value", ""),
+                }
+            )
+
+    all_values = [r["value"] for r in all_rows]
+    all_keys_out = [r["key"] for r in all_rows]
+    _write_text_lines(
+        _sidecar("skip-list-rows.values-sorted-one-per-row.txt"),
+        sorted(all_values),
+    )
+    _write_text_lines(
+        _sidecar("skip-list-values.unique-sorted.txt"),
+        sorted(set(all_values)),
+    )
+    _write_text_lines(
+        _sidecar("skip-list-rows.catalog-keys-sorted-one-per-row.txt"),
+        sorted(all_keys_out),
+    )
+    _write_text_lines(
+        _sidecar("skip-list.catalog-keys.unique-sorted.txt"),
+        sorted(set(all_keys_out)),
+    )
+
+    sd_set = set(stringsdata_map.keys())
+    vm_set = set(value_map.keys())
+    dropped = sorted(stringsdata_skipped_no_source)
+    _write_text_lines(_sidecar("stringsdata-keys.dropped-no-source-file.txt"), dropped)
+
+    only_vm = sorted(vm_set - sd_set)
+    only_sd = sorted(sd_set - vm_set)
+    _write_text_lines(_sidecar("diff.value-map-keys-not-in-stringsdata.txt"), only_vm)
+    _write_text_lines(_sidecar("diff.stringsdata-keys-not-in-value-map.txt"), only_sd)
+
+    root_resolved = Path(".").resolve()
+    xc_rel = []
+    for p in xcstrings_paths:
+        try:
+            xc_rel.append(
+                str(p.resolve().relative_to(root_resolved))
+                if p.is_absolute()
+                else str(p)
+            )
+        except ValueError:
+            xc_rel.append(str(p))
+
+    summary = {
+        "version": 1,
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "used_xcstrings_fallback_only": used_xcstrings_fallback,
+        "xcstrings_files_used_for_value_map": xc_rel,
+        "counts": {
+            "stringsdata_unique_keys": len(sd_set),
+            "value_map_unique_keys": len(vm_set),
+            "stringsdata_keys_dropped_no_source_file": len(dropped),
+            "skip_list_total_rows": len(all_rows),
+            "skip_list_unique_values": len(set(all_values)),
+            "skip_list_unique_catalog_keys": len(set(all_keys_out)),
+            "value_map_keys_not_in_stringsdata": len(only_vm),
+            "stringsdata_keys_not_in_value_map": len(only_sd),
+        },
+        "notes": [
+            "SwiftStringExtractor matches extracted literals against skip-list entry `value` (see skip-list-values.unique-sorted.txt).",
+            "Compare stringsdata-keys.unique-sorted.txt with your local xcodebuild / .stringsdata output.",
+            "If counts differ, check diff.*.txt and stringsdata-keys.dropped-no-source-file.txt.",
+        ],
+    }
+    _sidecar("comparison-summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+
+    print(
+        f"📎 Wrote {stem}.comparison-summary.json and {stem}.*.txt debug sidecars next to {out_path}",
+        file=sys.stderr,
+    )
+
+    gh_sum = os.environ.get("GITHUB_STEP_SUMMARY")
+    if gh_sum:
+        try:
+            with open(gh_sum, "a", encoding="utf-8") as gh:
+                gh.write("### Skip list debug (compare with local Xcode / skip-list.json)\n\n")
+                gh.write(
+                    f"| Metric | Count |\n| --- | ---: |\n"
+                    f"| stringsdata unique keys | {len(sd_set)} |\n"
+                    f"| value_map keys (from .xcstrings/.xliff) | {len(vm_set)} |\n"
+                    f"| dropped (no source file in .stringsdata) | {len(dropped)} |\n"
+                    f"| skip list rows | {len(all_rows)} |\n"
+                    f"| unique skip-list `value` strings | {len(set(all_values))} |\n\n"
+                )
+                gh.write(
+                    "Artifact files: `skip-list.comparison-summary.json`, "
+                    "`skip-list.stringsdata-keys.unique-sorted.txt`, "
+                    "`skip-list.skip-list-values.unique-sorted.txt`, "
+                    "`skip-list.diff.*.txt`, …\n"
+                )
+        except OSError:
+            pass
+
 
 if len(sys.argv) < 2:
     print(f"Usage: {sys.argv[0]} OUTPUT_JSON [DERIVED_DATA_PATH]", file=sys.stderr)
@@ -216,6 +369,16 @@ if not xcstrings_files and not xliff_files and not stringsdata_files:
         "files": {}
     }
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_skip_list_debug_artifacts(
+        out_path,
+        stringsdata_map={},
+        value_map={},
+        files_dict={},
+        stringsdata_skipped_no_source=[],
+        xcstrings_paths=[],
+        used_xcstrings_fallback=False,
+        empty_reason="no .xcstrings, .xliff, or .stringsdata files found",
+    )
     sys.exit(0)
 
 # First, parse .stringsdata files to get source file and location info
@@ -254,6 +417,7 @@ for path in xliff_files:
 # Group entries by source file path (from project directory)
 # Structure: files_dict[source_file_path] = [list of entries with key, value, and location]
 files_dict = {}
+stringsdata_skipped_no_source = []
 
 # Process all stringsdata entries and enrich with values from .xcstrings/.xliff
 for key, stringsdata_info in stringsdata_map.items():
@@ -262,6 +426,7 @@ for key, stringsdata_info in stringsdata_map.items():
     
     # Skip entries without a valid source file path
     if not source_file or source_file == "":
+        stringsdata_skipped_no_source.append(key)
         continue
     
     # Get value from value_map, or use key as fallback
@@ -284,7 +449,9 @@ for key, stringsdata_info in stringsdata_map.items():
 
 # Fallback: when no .stringsdata files were found (e.g. build failed or DerivedData not in repo),
 # populate the skip list from .xcstrings keys so the extractor can still skip known-localized strings.
+used_xcstrings_fallback = False
 if not files_dict and value_map:
+    used_xcstrings_fallback = True
     # Use the first .xcstrings file path (relative to root) as the synthetic "source file"
     synthetic_source = "Localizable.xcstrings"
     if xcstrings_files:
@@ -314,3 +481,26 @@ output = {
 out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
 print(f"✅ Wrote skip list with {total_count} entries from {len(files_dict)} source files to {out_path}")
 
+# Sidecars must not fail the job: workflows that use `|| echo "[]" > skip-list.json` would
+# overwrite a valid skip-list.json if this step raised after the file was written.
+try:
+    write_skip_list_debug_artifacts(
+        out_path,
+        stringsdata_map=stringsdata_map,
+        value_map=value_map,
+        files_dict=files_dict,
+        stringsdata_skipped_no_source=stringsdata_skipped_no_source,
+        xcstrings_paths=xcstrings_files,
+        used_xcstrings_fallback=used_xcstrings_fallback,
+        empty_reason=None,
+    )
+except Exception as e:
+    print(
+        f"⚠️  Skip list JSON was written successfully; debug artifacts failed: {e}",
+        file=sys.stderr,
+    )
+    import traceback
+
+    traceback.print_exc(file=sys.stderr)
+
+sys.exit(0)
