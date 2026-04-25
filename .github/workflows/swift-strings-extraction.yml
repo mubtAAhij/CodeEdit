@@ -49,6 +49,21 @@ on:
         description: 'Quetzal API Key (optional, for status updates)'
         required: false
         type: string
+      xcode_version:
+        description: 'Xcode version for maxim-lobanov/setup-xcode (e.g. 16.4, 16.3, latest-stable, latest). Pin to match local Xcode for comparable string extraction.'
+        required: false
+        default: 'latest'
+        type: string
+      scheme:
+        description: 'Explicit xcodebuild scheme (e.g. CodeEdit). If omitted, the first scheme from xcodebuild -list is used.'
+        required: false
+        default: ''
+        type: string
+      xcode_workspace_or_project:
+        description: 'Optional path from repo root to .xcworkspace or .xcodeproj (e.g. CodeEdit.xcodeproj/project.xcworkspace). If omitted, auto-discovery (find) is used.'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   extract-swift-strings:
@@ -103,7 +118,7 @@ jobs:
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "latest"
+          xcode-version: ${{ inputs.xcode_version }}
 
       - name: Send setup started status
         if: env.JOB_ID != '' && env.API_KEY != ''
@@ -121,46 +136,65 @@ jobs:
       - name: Find Xcode project or workspace
         id: find-xcode-project
         run: |
-          # Prefer workspace over project (workspace includes package dependencies and proper build graph)
-          XCODE_WORKSPACE=$(find . -name "*.xcworkspace" -type d | head -n 1)
-          XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
-          
+          set -euo pipefail
+          PATH_OVERRIDE='${{ inputs.xcode_workspace_or_project }}'
+          # Trim leading/trailing whitespace
+          PATH_OVERRIDE="${PATH_OVERRIDE#"${PATH_OVERRIDE%%[![:space:]]*}"}"
+          PATH_OVERRIDE="${PATH_OVERRIDE%"${PATH_OVERRIDE##*[![:space:]]}"}"
+
+          XCODE_WORKSPACE=""
+          XCODE_PROJECT=""
+
+          if [ -n "$PATH_OVERRIDE" ]; then
+            echo "📌 Using workflow input xcode_workspace_or_project: $PATH_OVERRIDE"
+            if [ ! -e "$PATH_OVERRIDE" ]; then
+              echo "::error::Path does not exist: $PATH_OVERRIDE"
+              exit 1
+            fi
+            case "$PATH_OVERRIDE" in
+              *.xcworkspace)
+                XCODE_WORKSPACE="$PATH_OVERRIDE"
+                if [[ "$XCODE_WORKSPACE" == *.xcodeproj/project.xcworkspace ]]; then
+                  XCODE_PROJECT="$(dirname "$XCODE_WORKSPACE")"
+                else
+                  XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
+                  if [ -z "$XCODE_PROJECT" ]; then
+                    echo "::error::Could not find a .xcodeproj for workspace $XCODE_WORKSPACE"
+                    exit 1
+                  fi
+                fi
+                ;;
+              *.xcodeproj)
+                XCODE_PROJECT="$PATH_OVERRIDE"
+                if [ -d "$XCODE_PROJECT/project.xcworkspace" ]; then
+                  XCODE_WORKSPACE="$XCODE_PROJECT/project.xcworkspace"
+                fi
+                ;;
+              *)
+                echo "::error::xcode_workspace_or_project must end with .xcworkspace or .xcodeproj (got: $PATH_OVERRIDE)"
+                exit 1
+                ;;
+            esac
+          else
+            # Prefer workspace over project (workspace includes SPM and full build graph)
+            XCODE_WORKSPACE=$(find . -name "*.xcworkspace" -type d | head -n 1)
+            XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
+          fi
+
           if [ -n "$XCODE_WORKSPACE" ]; then
-            echo "✅ Found workspace: $XCODE_WORKSPACE"
+            echo "✅ Using workspace: $XCODE_WORKSPACE"
             echo "project_path=$XCODE_WORKSPACE" >> $GITHUB_OUTPUT
             echo "project_type=workspace" >> $GITHUB_OUTPUT
-            
-            # Extract project name from workspace
             PROJECT_NAME=$(basename "$XCODE_WORKSPACE" .xcworkspace)
             echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
-            
-            # Try to find scheme from workspace
-            SCHEME=$(xcodebuild -list -workspace "$XCODE_WORKSPACE" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
-            echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
-            
-            echo "Using workspace: $XCODE_WORKSPACE"
-            echo "Project name: $PROJECT_NAME"
-            echo "Scheme: $SCHEME"
           elif [ -n "$XCODE_PROJECT" ]; then
-            echo "✅ Found project: $XCODE_PROJECT"
-            echo "⚠️  No workspace found - using project directly"
+            echo "✅ Using project (no workspace): $XCODE_PROJECT"
             echo "project_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
             echo "project_type=project" >> $GITHUB_OUTPUT
-            
-            # Extract project name (without .xcodeproj extension)
             PROJECT_NAME=$(basename "$XCODE_PROJECT" .xcodeproj)
             echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
-            
-            # Try to find scheme (usually same as project name, or first scheme found)
-            SCHEME=$(xcodebuild -list -project "$XCODE_PROJECT" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
-            echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
-            
-            echo "Using project: $XCODE_PROJECT"
-            echo "Project name: $PROJECT_NAME"
-            echo "Scheme: $SCHEME"
           else
             echo "❌ No .xcodeproj or .xcworkspace found"
-            # Report workflow failure immediately so SwiftStringExtractor can stop waiting for skip list
             if [ -n "${{ env.JOB_ID }}" ] && [ -n "${{ env.API_KEY }}" ]; then
               curl -s -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
                 -H "Content-Type: application/json" \
@@ -174,21 +208,35 @@ jobs:
             fi
             exit 1
           fi
-          
-          # Also check for project.xcworkspace inside .xcodeproj (common pattern)
+
+          # Prefer embedded project.xcworkspace for xcodebuild when appropriate (same as historical behavior)
           if [ -n "$XCODE_PROJECT" ] && [ -d "$XCODE_PROJECT/project.xcworkspace" ]; then
-            echo "💡 Found project.xcworkspace inside .xcodeproj"
-            echo "   This workspace will be used for building"
-            echo "workspace_path=$XCODE_PROJECT/project.xcworkspace" >> $GITHUB_OUTPUT
-            # Use workspace for builds, but project for Ruby scripts
-            echo "project_path=$XCODE_PROJECT/project.xcworkspace" >> $GITHUB_OUTPUT
-            echo "project_type=workspace" >> $GITHUB_OUTPUT
+            if [ -z "$PATH_OVERRIDE" ] || [[ "$PATH_OVERRIDE" == *.xcodeproj ]]; then
+              XCODE_WORKSPACE="$XCODE_PROJECT/project.xcworkspace"
+              echo "💡 Using project.xcworkspace inside .xcodeproj for xcodebuild: $XCODE_WORKSPACE"
+              echo "workspace_path=$XCODE_WORKSPACE" >> $GITHUB_OUTPUT
+              echo "project_path=$XCODE_WORKSPACE" >> $GITHUB_OUTPUT
+              echo "project_type=workspace" >> $GITHUB_OUTPUT
+            fi
           fi
-          
-          # Always output the actual .xcodeproj path for Ruby scripts (xcodeproj gem needs project, not workspace)
+
+          # Scheme: explicit workflow input wins; else first scheme from xcodebuild -list
+          if [ -n "${{ inputs.scheme }}" ]; then
+            SCHEME="${{ inputs.scheme }}"
+            echo "::notice::Scheme from workflow input: $SCHEME"
+          elif [ -n "$XCODE_WORKSPACE" ]; then
+            SCHEME=$(xcodebuild -list -workspace "$XCODE_WORKSPACE" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || true)
+            if [ -z "$SCHEME" ]; then SCHEME=$(basename "$XCODE_PROJECT" .xcodeproj); fi
+          else
+            SCHEME=$(xcodebuild -list -project "$XCODE_PROJECT" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || true)
+            if [ -z "$SCHEME" ]; then SCHEME=$(basename "$XCODE_PROJECT" .xcodeproj); fi
+          fi
+          echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
+          echo "Resolved scheme: $SCHEME"
+
           if [ -n "$XCODE_PROJECT" ]; then
             echo "xcodeproj_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
-            echo "💡 xcodeproj_path set to: $XCODE_PROJECT (for Ruby scripts)"
+            echo "💡 xcodeproj_path for Ruby scripts: $XCODE_PROJECT"
           fi
 
       # Report workflow failure when ANY previous step fails (e.g. find-xcode-project, checkout, build)
@@ -209,7 +257,12 @@ jobs:
 
       - name: Resolve Swift packages (if any)
         run: |
-          xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -resolvePackageDependencies || true
+          PP="${{ steps.find-xcode-project.outputs.project_path }}"
+          if [ "${{ steps.find-xcode-project.outputs.project_type }}" = "workspace" ]; then
+            xcodebuild -workspace "$PP" -resolvePackageDependencies || true
+          else
+            xcodebuild -project "$PP" -resolvePackageDependencies || true
+          fi
 
       - name: Create merge script if needed
         run: |
@@ -661,11 +714,12 @@ jobs:
 
       - name: Build skip list from all String Catalogs
         run: |
+          set -euo pipefail
           # Search repo + DerivedData for .stringsdata (DERIVED_DATA_PATH has file/line info from the build)
-          python3 Scripts/build_skip_list.py skip-list.json "${{ env.DERIVED_DATA_PATH }}" || echo "[]" > skip-list.json
-          # Ensure file exists
+          python3 Scripts/build_skip_list.py skip-list.json "${{ env.DERIVED_DATA_PATH }}"
           if [ ! -f skip-list.json ]; then
-            echo "[]" > skip-list.json
+            echo "::error::build_skip_list.py exited successfully but skip-list.json is missing"
+            exit 1
           fi
           
           # Show skip list entry count and file count
@@ -687,6 +741,18 @@ jobs:
                 \"progress\": \"{\\\"message\\\": \\\"Skip list generated with $ENTRY_COUNT entries\\\", \\\"step\\\": \\\"skip-list-complete\\\"}\"
               }" || echo "⚠️  Failed to send status update (skip list completed)"
           fi
+
+      - name: Upload skip list debug artifacts (for diff vs local Xcode / skip-list.json)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skip-list-debug-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            skip-list.json
+            skip-list.comparison-summary.json
+            skip-list.*.txt
+          retention-days: 30
+          if-no-files-found: warn
 
       - name: Set up gcloud auth
         uses: google-github-actions/auth@v2
