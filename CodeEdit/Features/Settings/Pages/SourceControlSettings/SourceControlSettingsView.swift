@@ -20,8 +20,8 @@ struct SourceControlSettingsView: View {
             } footer: {
                 if settings.sourceControlIsEnabled {
                     Picker("", selection: $selectedTab) {
-                        Text("General").tag("general")
-                        Text("Git").tag("git")
+                        Text(String(localized: "source-control.tab.general", defaultValue: "General", comment: "General tab in source control settings")).tag("general")
+                        Text(String(localized: "source-control.tab.git", defaultValue: "Git", comment: "Git tab in source control settings")).tag("git")
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
@@ -46,11 +46,8 @@ struct SourceControlSettingsView: View {
             isOn: $settings.sourceControlIsEnabled
         ) {
             Label {
-                Text("Source Control")
-                Text("""
-                 Back up your files, collaborate with others, and tag your releases. \
-                 [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)
-                 """)
+                Text(String(localized: "source-control.title", defaultValue: "Source Control", comment: "Source control feature title"))
+                Text(String(localized: "source-control.description", defaultValue: "Back up your files, collaborate with others, and tag your releases. [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)", comment: "Source control feature description with link"))
                 .font(.callout)
              } icon: {
                 FeatureIcon(symbol: "vault", color: Color(.systemBlue), size: 26)
