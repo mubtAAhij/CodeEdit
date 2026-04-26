@@ -283,23 +283,23 @@ extension SettingsData {
 
         struct WarningCharacters: Equatable, Hashable, Codable {
             static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
-                0x0003: "End of text",
+                0x0003: String(localized: "text-editing.warning-characters.end-of-text", defaultValue: "End of text", comment: "Warning character description for U+0003 (End of text)"),
 
-                0x00A0: "Non-breaking space",
-                0x202F: "Narrow non-breaking space",
-                0x200B: "Zero-width space",
-                0x200C: "Zero-width non-joiner",
-                0x2029: "Paragraph separator",
+                0x00A0: String(localized: "text-editing.warning-characters.non-breaking-space", defaultValue: "Non-breaking space", comment: "Warning character description for U+00A0 (Non-breaking space)"),
+                0x202F: String(localized: "text-editing.warning-characters.narrow-non-breaking-space", defaultValue: "Narrow non-breaking space", comment: "Warning character description for U+202F (Narrow non-breaking space)"),
+                0x200B: String(localized: "text-editing.warning-characters.zero-width-space", defaultValue: "Zero-width space", comment: "Warning character description for U+200B (Zero-width space)"),
+                0x200C: String(localized: "text-editing.warning-characters.zero-width-non-joiner", defaultValue: "Zero-width non-joiner", comment: "Warning character description for U+200C (Zero-width non-joiner)"),
+                0x2029: String(localized: "text-editing.warning-characters.paragraph-separator", defaultValue: "Paragraph separator", comment: "Warning character description for U+2029 (Paragraph separator)"),
 
-                0x2013: "Em-dash",
-                0x00AD: "Soft hyphen",
+                0x2013: String(localized: "text-editing.warning-characters.em-dash", defaultValue: "Em-dash", comment: "Warning character description for U+2013 (Em-dash)"),
+                0x00AD: String(localized: "text-editing.warning-characters.soft-hyphen", defaultValue: "Soft hyphen", comment: "Warning character description for U+00AD (Soft hyphen)"),
 
-                0x2018: "Left single quote",
-                0x2019: "Right single quote",
-                0x201C: "Left double quote",
-                0x201D: "Right double quote",
+                0x2018: String(localized: "text-editing.warning-characters.left-single-quote", defaultValue: "Left single quote", comment: "Warning character description for U+2018 (Left single quote)"),
+                0x2019: String(localized: "text-editing.warning-characters.right-single-quote", defaultValue: "Right single quote", comment: "Warning character description for U+2019 (Right single quote)"),
+                0x201C: String(localized: "text-editing.warning-characters.left-double-quote", defaultValue: "Left double quote", comment: "Warning character description for U+201C (Left double quote)"),
+                0x201D: String(localized: "text-editing.warning-characters.right-double-quote", defaultValue: "Right double quote", comment: "Warning character description for U+201D (Right double quote)"),
 
-                0x037E: "Greek Question Mark"
+                0x037E: String(localized: "text-editing.warning-characters.greek-question-mark", defaultValue: "Greek Question Mark", comment: "Warning character description for U+037E (Greek Question Mark)")
             ])
 
             var enabled: Bool
