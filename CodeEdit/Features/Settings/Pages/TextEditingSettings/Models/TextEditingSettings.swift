@@ -169,8 +169,8 @@ extension SettingsData {
             let mgr = CommandManager.shared
 
             mgr.addCommand(
-                name: "Toggle Type-Over Completion",
-                title: "Toggle Type-Over Completion",
+                name: String(localized: "command.toggle-type-over-completion", defaultValue: "Toggle Type-Over Completion", comment: "Command to toggle type-over completion"),
+                title: String(localized: "command.toggle-type-over-completion", defaultValue: "Toggle Type-Over Completion", comment: "Command to toggle type-over completion"),
                 id: "prefs.text_editing.type_over_completion",
                 command: {
                     Settings[\.textEditing].enableTypeOverCompletion.toggle()
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "command.toggle-autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command to toggle autocomplete braces"),
+                title: String(localized: "command.toggle-autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command to toggle autocomplete braces"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,25 +187,25 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "command.toggle-word-wrap", defaultValue: "Toggle Word Wrap", comment: "Command to toggle word wrap"),
+                title: String(localized: "command.toggle-word-wrap", defaultValue: "Toggle Word Wrap", comment: "Command to toggle word wrap"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
                 }
             )
 
-            mgr.addCommand(name: "Toggle Minimap", title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
+            mgr.addCommand(name: String(localized: "command.toggle-minimap", defaultValue: "Toggle Minimap", comment: "Command to toggle minimap"), title: String(localized: "command.toggle-minimap", defaultValue: "Toggle Minimap", comment: "Command to toggle minimap"), id: "prefs.text_editing.toggle_minimap") {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 
-            mgr.addCommand(name: "Toggle Gutter", title: "Toggle Gutter", id: "prefs.text_editing.toggle_gutter") {
+            mgr.addCommand(name: String(localized: "command.toggle-gutter", defaultValue: "Toggle Gutter", comment: "Command to toggle gutter"), title: String(localized: "command.toggle-gutter", defaultValue: "Toggle Gutter", comment: "Command to toggle gutter"), id: "prefs.text_editing.toggle_gutter") {
                 Settings[\.textEditing].showGutter.toggle()
             }
 
             mgr.addCommand(
-                name: "Toggle Folding Ribbon",
-                title: "Toggle Folding Ribbon",
+                name: String(localized: "command.toggle-folding-ribbon", defaultValue: "Toggle Folding Ribbon", comment: "Command to toggle folding ribbon"),
+                title: String(localized: "command.toggle-folding-ribbon", defaultValue: "Toggle Folding Ribbon", comment: "Command to toggle folding ribbon"),
                 id: "prefs.text_editing.toggle_folding_ribbon"
             ) {
                 Settings[\.textEditing].showFoldingRibbon.toggle()
@@ -283,23 +283,23 @@ extension SettingsData {
 
         struct WarningCharacters: Equatable, Hashable, Codable {
             static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
-                0x0003: "End of text",
+                0x0003: String(localized: "warning-character.end-of-text", defaultValue: "End of text", comment: "Warning character description for end of text"),
 
-                0x00A0: "Non-breaking space",
-                0x202F: "Narrow non-breaking space",
-                0x200B: "Zero-width space",
-                0x200C: "Zero-width non-joiner",
-                0x2029: "Paragraph separator",
+                0x00A0: String(localized: "warning-character.non-breaking-space", defaultValue: "Non-breaking space", comment: "Warning character description for non-breaking space"),
+                0x202F: String(localized: "warning-character.narrow-non-breaking-space", defaultValue: "Narrow non-breaking space", comment: "Warning character description for narrow non-breaking space"),
+                0x200B: String(localized: "warning-character.zero-width-space", defaultValue: "Zero-width space", comment: "Warning character description for zero-width space"),
+                0x200C: String(localized: "warning-character.zero-width-non-joiner", defaultValue: "Zero-width non-joiner", comment: "Warning character description for zero-width non-joiner"),
+                0x2029: String(localized: "warning-character.paragraph-separator", defaultValue: "Paragraph separator", comment: "Warning character description for paragraph separator"),
 
-                0x2013: "Em-dash",
-                0x00AD: "Soft hyphen",
+                0x2013: String(localized: "warning-character.em-dash", defaultValue: "Em-dash", comment: "Warning character description for em-dash"),
+                0x00AD: String(localized: "warning-character.soft-hyphen", defaultValue: "Soft hyphen", comment: "Warning character description for soft hyphen"),
 
-                0x2018: "Left single quote",
-                0x2019: "Right single quote",
-                0x201C: "Left double quote",
-                0x201D: "Right double quote",
+                0x2018: String(localized: "warning-character.left-single-quote", defaultValue: "Left single quote", comment: "Warning character description for left single quote"),
+                0x2019: String(localized: "warning-character.right-single-quote", defaultValue: "Right single quote", comment: "Warning character description for right single quote"),
+                0x201C: String(localized: "warning-character.left-double-quote", defaultValue: "Left double quote", comment: "Warning character description for left double quote"),
+                0x201D: String(localized: "warning-character.right-double-quote", defaultValue: "Right double quote", comment: "Warning character description for right double quote"),
 
-                0x037E: "Greek Question Mark"
+                0x037E: String(localized: "warning-character.greek-question-mark", defaultValue: "Greek Question Mark", comment: "Warning character description for Greek question mark")
             ])
 
             var enabled: Bool
