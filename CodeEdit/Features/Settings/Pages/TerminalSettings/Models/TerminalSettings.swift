@@ -16,15 +16,14 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Shell",
-                "Use \"Option\" key as \"Meta\"",
-                "Use text editor font",
-                "Font",
-                "Font Size",
-                "Terminal Cursor Style",
-                "Blink Cursor"
+                String(localized: "terminal-settings.search-key.shell", defaultValue: "Shell", comment: "Search keyword for terminal shell setting"),
+                String(localized: "terminal-settings.search-key.option-as-meta", defaultValue: "Use \"Option\" key as \"Meta\"", comment: "Search keyword for terminal option key setting"),
+                String(localized: "terminal-settings.search-key.use-text-editor-font", defaultValue: "Use text editor font", comment: "Search keyword for terminal font setting"),
+                String(localized: "terminal-settings.search-key.font", defaultValue: "Font", comment: "Search keyword for terminal font"),
+                String(localized: "terminal-settings.search-key.font-size", defaultValue: "Font Size", comment: "Search keyword for terminal font size"),
+                String(localized: "terminal-settings.search-key.cursor-style", defaultValue: "Terminal Cursor Style", comment: "Search keyword for terminal cursor style"),
+                String(localized: "terminal-settings.search-key.blink-cursor", defaultValue: "Blink Cursor", comment: "Search keyword for terminal blink cursor")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// If true terminal will use editor theme.
