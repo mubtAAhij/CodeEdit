@@ -35,12 +35,12 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Themes` folder
     internal var themesURL: URL {
-        baseURL.appending(path: "Themes", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "settings.theme.themes-folder", defaultValue: "Themes", comment: "Themes folder name"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "settings.theme.extensions-folder", defaultValue: "Extensions", comment: "Extensions folder name"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
