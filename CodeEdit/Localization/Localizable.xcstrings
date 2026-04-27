@@ -1,0 +1,1746 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "terminal-settings.search.shell": {
+      "comment": "Terminal settings search key for shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        }
+      }
+    },
+    "terminal-settings.search.option-as-meta": {
+      "comment": "Terminal settings search key for option key as meta",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \"Option\" key as \"Meta\""
+          }
+        }
+      }
+    },
+    "terminal-settings.search.use-editor-font": {
+      "comment": "Terminal settings search key for using text editor font",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        }
+      }
+    },
+    "terminal-settings.search.font": {
+      "comment": "Terminal settings search key for font",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "terminal-settings.search.font-size": {
+      "comment": "Terminal settings search key for font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "terminal-settings.search.cursor-style": {
+      "comment": "Terminal settings search key for cursor style",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        }
+      }
+    },
+    "terminal-settings.search.blink-cursor": {
+      "comment": "Terminal settings search key for blink cursor option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        }
+      }
+    },
+    "theme-model.folder.themes": {
+      "comment": "Themes folder name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Themes"
+          }
+        }
+      }
+    },
+    "theme-model.folder.extensions": {
+      "comment": "Extensions folder name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "theme-settings.search.auto-change-theme": {
+      "comment": "Theme settings search key for automatic theme switching",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically Change theme based on system appearance"
+          }
+        }
+      }
+    },
+    "theme-settings.search.dark-terminal": {
+      "comment": "Theme settings search key for dark terminal appearance",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always use dark terminal appearance"
+          }
+        }
+      }
+    },
+    "theme-settings.search.theme-background": {
+      "comment": "Theme settings search key for using theme background",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use theme background"
+          }
+        }
+      }
+    },
+    "theme-settings.search.light-appearance": {
+      "comment": "Theme settings search key for light appearance",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light Appearance"
+          }
+        }
+      }
+    },
+    "theme-settings.search.github-light": {
+      "comment": "Theme settings search key for GitHub Light theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Light"
+          }
+        }
+      }
+    },
+    "theme-settings.search.xcode-light": {
+      "comment": "Theme settings search key for Xcode Light theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode Light"
+          }
+        }
+      }
+    },
+    "theme-settings.search.solarized-light": {
+      "comment": "Theme settings search key for Solarized Light theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solarized Light"
+          }
+        }
+      }
+    },
+    "theme-settings.search.solarized-dark": {
+      "comment": "Theme settings search key for Solarized Dark theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solarized Dark"
+          }
+        }
+      }
+    },
+    "theme-settings.search.midnight": {
+      "comment": "Theme settings search key for Midnight theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Midnight"
+          }
+        }
+      }
+    },
+    "theme-settings.search.xcode-dark": {
+      "comment": "Theme settings search key for Xcode Dark theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode Dark"
+          }
+        }
+      }
+    },
+    "theme-settings.search.github-dark": {
+      "comment": "Theme settings search key for GitHub Dark theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Dark"
+          }
+        }
+      }
+    },
+    "theme-settings.button.choose": {
+      "comment": "Button to choose a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose"
+          }
+        }
+      }
+    },
+    "theme-settings.menu.details": {
+      "comment": "Menu item to show theme details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details..."
+          }
+        }
+      }
+    },
+    "theme-settings.menu.duplicate": {
+      "comment": "Menu item to duplicate a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate..."
+          }
+        }
+      }
+    },
+    "theme-settings.menu.export": {
+      "comment": "Menu item to export a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export..."
+          }
+        }
+      }
+    },
+    "theme-settings.menu.delete": {
+      "comment": "Menu item to delete a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete..."
+          }
+        }
+      }
+    },
+    "theme-settings.alert.title": {
+      "comment": "Alert title for theme deletion confirmation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete the theme"
+          }
+        }
+      }
+    },
+    "theme-settings.alert.delete-theme": {
+      "comment": "Alert button to confirm theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Theme"
+          }
+        }
+      }
+    },
+    "theme-settings.alert.cancel": {
+      "comment": "Alert button to cancel theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "theme-settings.alert.message": {
+      "comment": "Alert message warning about theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This action cannot be undone."
+          }
+        }
+      }
+    },
+    "theme-settings.token.bold": {
+      "comment": "Tooltip for bold formatting toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
+          }
+        }
+      }
+    },
+    "theme-settings.token.italic": {
+      "comment": "Tooltip for italic formatting toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
+          }
+        }
+      }
+    },
+    "theme-settings.search-field": {
+      "comment": "Search field placeholder for themes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search"
+          }
+        }
+      }
+    },
+    "theme-settings.help.create-theme": {
+      "comment": "Tooltip for create new theme button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a new Theme"
+          }
+        }
+      }
+    },
+    "theme-settings.menu.import-theme": {
+      "comment": "Menu item to import a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import Theme..."
+          }
+        }
+      }
+    },
+    "theme-settings.menu.export-all": {
+      "comment": "Menu item to export all custom themes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export All Custom Themes..."
+          }
+        }
+      }
+    },
+    "theme-settings.help.import-export": {
+      "comment": "Tooltip for import/export menu button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import or Export Custom Themes"
+          }
+        }
+      }
+    },
+    "theme-settings.button.import": {
+      "comment": "Button to import a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import..."
+          }
+        }
+      }
+    },
+    "theme-settings.toggle.use-theme-background": {
+      "comment": "Toggle to use theme background",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use theme background"
+          }
+        }
+      }
+    },
+    "theme-settings.toggle.dark-terminal": {
+      "comment": "Toggle to always use dark terminal appearance",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always use dark terminal appearance"
+          }
+        }
+      }
+    },
+    "theme-settings.toggle.auto-change": {
+      "comment": "Toggle to automatically change theme based on system appearance",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically change theme based on system appearance"
+          }
+        }
+      }
+    },
+    "invisibles.toggle.show-spaces": {
+      "comment": "Toggle to show space characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Spaces"
+          }
+        }
+      }
+    },
+    "invisibles.label.space-character": {
+      "comment": "Label for space replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render spaces"
+          }
+        }
+      }
+    },
+    "invisibles.toggle.show-tabs": {
+      "comment": "Toggle to show tab characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Tabs"
+          }
+        }
+      }
+    },
+    "invisibles.label.tab-character": {
+      "comment": "Label for tab replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render tabs"
+          }
+        }
+      }
+    },
+    "invisibles.toggle.show-line-endings": {
+      "comment": "Toggle to show line ending characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Line Endings"
+          }
+        }
+      }
+    },
+    "invisibles.label.line-feed-character": {
+      "comment": "Label for line feed replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render line feeds (\n)"
+          }
+        }
+      }
+    },
+    "invisibles.label.carriage-return-character": {
+      "comment": "Label for carriage return replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render carriage returns (Microsoft-style line endings)"
+          }
+        }
+      }
+    },
+    "invisibles.label.paragraph-separator-character": {
+      "comment": "Label for paragraph separator replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render paragraph separators"
+          }
+        }
+      }
+    },
+    "invisibles.label.line-separator-character": {
+      "comment": "Label for line separator replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render line separators"
+          }
+        }
+      }
+    },
+    "invisibles.header.title": {
+      "comment": "Section header title for invisible characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invisible Characters"
+          }
+        }
+      }
+    },
+    "invisibles.header.description": {
+      "comment": "Section header description for invisible characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle whitespace symbols CodeEdit will render with replacement characters."
+          }
+        }
+      }
+    },
+    "invisibles.button.done": {
+      "comment": "Button to close invisible characters settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "text-editing.search.prefer-indent": {
+      "comment": "Text editing search key for prefer indent using",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer Indent Using"
+          }
+        }
+      }
+    },
+    "text-editing.search.tab-width": {
+      "comment": "Text editing search key for tab width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Width"
+          }
+        }
+      }
+    },
+    "text-editing.search.wrap-lines": {
+      "comment": "Text editing search key for wrap lines to editor width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap lines to editor width"
+          }
+        }
+      }
+    },
+    "text-editing.search.overscroll": {
+      "comment": "Text editing search key for editor overscroll",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor Overscroll"
+          }
+        }
+      }
+    },
+    "text-editing.search.font-size": {
+      "comment": "Text editing search key for font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "text-editing.search.line-height": {
+      "comment": "Text editing search key for line height",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Line Height"
+          }
+        }
+      }
+    },
+    "text-editing.search.letter-spacing": {
+      "comment": "Text editing search key for letter spacing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letter Spacing"
+          }
+        }
+      }
+    },
+    "text-editing.search.autocomplete-braces": {
+      "comment": "Text editing search key for autocomplete braces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocomplete braces"
+          }
+        }
+      }
+    },
+    "text-editing.search.type-over-completion": {
+      "comment": "Text editing search key for enable type-over completion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable type-over completion"
+          }
+        }
+      }
+    },
+    "text-editing.search.bracket-highlight": {
+      "comment": "Text editing search key for bracket pair highlight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight"
+          }
+        }
+      }
+    },
+    "text-editing.search.show-gutter": {
+      "comment": "Text editing search key for show gutter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Gutter"
+          }
+        }
+      }
+    },
+    "text-editing.search.show-minimap": {
+      "comment": "Text editing search key for show minimap",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        }
+      }
+    },
+    "text-editing.search.reformat-column": {
+      "comment": "Text editing search key for reformat at column",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformat at Column"
+          }
+        }
+      }
+    },
+    "text-editing.search.show-reformatting-guide": {
+      "comment": "Text editing search key for show reformatting guide",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Reformatting Guide"
+          }
+        }
+      }
+    },
+    "text-editing.search.warning-characters": {
+      "comment": "Text editing search key for warning characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning Characters"
+          }
+        }
+      }
+    },
+    "terminal-settings.picker.shell": {
+      "comment": "Picker label for shell selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        }
+      }
+    },
+    "terminal-settings.shell.system-default": {
+      "comment": "Shell option for system default",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System Default"
+          }
+        }
+      }
+    },
+    "terminal-settings.shell.zsh": {
+      "comment": "Shell option for Zsh",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zsh"
+          }
+        }
+      }
+    },
+    "terminal-settings.shell.bash": {
+      "comment": "Shell option for Bash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bash"
+          }
+        }
+      }
+    },
+    "terminal-settings.picker.cursor-style": {
+      "comment": "Picker label for terminal cursor style",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        }
+      }
+    },
+    "terminal-settings.cursor.block": {
+      "comment": "Cursor style option for block",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block"
+          }
+        }
+      }
+    },
+    "terminal-settings.cursor.underline": {
+      "comment": "Cursor style option for underline",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        }
+      }
+    },
+    "terminal-settings.cursor.bar": {
+      "comment": "Cursor style option for bar",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bar"
+          }
+        }
+      }
+    },
+    "terminal-settings.toggle.blink-cursor": {
+      "comment": "Toggle for blinking cursor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        }
+      }
+    },
+    "terminal-settings.toggle.option-as-meta": {
+      "comment": "Toggle for using Option key as Meta",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \"Option\" key as \"Meta\""
+          }
+        }
+      }
+    },
+    "terminal-settings.toggle.use-editor-font": {
+      "comment": "Toggle for using text editor font",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        }
+      }
+    },
+    "terminal-settings.stepper.font-size": {
+      "comment": "Stepper label for font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "terminal-settings.toggle.shell-integration": {
+      "comment": "Toggle for shell integration",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell Integration"
+          }
+        }
+      }
+    },
+    "terminal-settings.help.shell-integration": {
+      "comment": "Help text for shell integration toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection."
+          }
+        }
+      }
+    },
+    "terminal-settings.warning.integration-disabled": {
+      "comment": "Warning message when shell integration is disabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning: Disabling integration disables features such as terminal title detection."
+          }
+        }
+      }
+    },
+    "terminal-settings.toggle.login-shell": {
+      "comment": "Toggle for using login shell",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Login Shell"
+          }
+        }
+      }
+    },
+    "terminal-settings.help.login-shell": {
+      "comment": "Help text for login shell toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app."
+          }
+        }
+      }
+    },
+    "text-editing.stepper.font-size": {
+      "comment": "Stepper label for font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "text-editing.toggle.autocomplete-braces": {
+      "comment": "Toggle label for autocomplete braces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocomplete braces"
+          }
+        }
+      }
+    },
+    "text-editing.toggle.autocomplete-braces.description": {
+      "comment": "Description for autocomplete braces toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically insert closing braces (\"}\")"
+          }
+        }
+      }
+    },
+    "text-editing.toggle.type-over-completion": {
+      "comment": "Toggle label for type-over completion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable type-over completion"
+          }
+        }
+      }
+    },
+    "text-editing.toggle.wrap-lines": {
+      "comment": "Toggle label for wrap lines to editor width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap lines to editor width"
+          }
+        }
+      }
+    },
+    "text-editing.toggle.system-cursor": {
+      "comment": "Toggle label for using system cursor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use System Cursor"
+          }
+        }
+      }
+    },
+    "text-editing.picker.overscroll": {
+      "comment": "Picker label for editor overscroll",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor Overscroll"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.none": {
+      "comment": "Overscroll option for none",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.small": {
+      "comment": "Overscroll option for small",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Small"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.medium": {
+      "comment": "Overscroll option for medium",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medium"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.large": {
+      "comment": "Overscroll option for large",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Large"
+          }
+        }
+      }
+    },
+    "text-editing.stepper.line-height": {
+      "comment": "Stepper label for line height",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Line Height"
+          }
+        }
+      }
+    },
+    "text-editing.picker.prefer-indent": {
+      "comment": "Picker label for prefer indent using",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer Indent Using"
+          }
+        }
+      }
+    },
+    "text-editing.indent.tabs": {
+      "comment": "Indent option for tabs",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabs"
+          }
+        }
+      }
+    },
+    "text-editing.indent.spaces": {
+      "comment": "Indent option for spaces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaces"
+          }
+        }
+      }
+    },
+    "text-editing.stepper.indent-width": {
+      "comment": "Stepper label for indent width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indent Width"
+          }
+        }
+      }
+    },
+    "text-editing.label.spaces": {
+      "comment": "Label for spaces unit",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "spaces"
+          }
+        }
+      }
+    },
+    "text-editing.help.indent-width": {
+      "comment": "Help text for indent width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The number of spaces to insert when the tab key is pressed."
+          }
+        }
+      }
+    },
+    "text-editing.stepper.tab-width": {
+      "comment": "Stepper label for tab width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Width"
+          }
+        }
+      }
+    },
+    "text-editing.help.tab-width": {
+      "comment": "Help text for tab width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The visual width of tabs."
+          }
+        }
+      }
+    },
+    "text-editing.stepper.letter-spacing": {
+      "comment": "Stepper label for letter spacing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letter Spacing"
+          }
+        }
+      }
+    },
+    "text-editing.picker.bracket-highlight": {
+      "comment": "Picker label for bracket pair highlight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.disabled": {
+      "comment": "Bracket highlight option for disabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disabled"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.bordered": {
+      "comment": "Bracket highlight option for bordered",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bordered"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.flash": {
+      "comment": "Bracket highlight option for flash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flash"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.underline": {
+      "comment": "Bracket highlight option for underline",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        }
+      }
+    },
+    "text-editing.toggle.custom-color": {
+      "comment": "Toggle for using custom color",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Custom Color"
+          }
+        }
+      }
+    },
+    "text-editing.toggle.show-gutter": {
+      "comment": "Toggle for showing gutter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Gutter"
+          }
+        }
+      }
+    },
+    "text-editing.help.show-gutter": {
+      "comment": "Help text for show gutter toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The gutter displays line numbers and code folding regions."
+          }
+        }
+      }
+    },
+    "text-editing.toggle.show-minimap": {
+      "comment": "Toggle for showing minimap",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        }
+      }
+    },
+    "text-editing.help.show-minimap": {
+      "comment": "Help text for show minimap toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The minimap gives you a high-level summary of your source code, with controls to quickly navigate your document."
+          }
+        }
+      }
+    },
+    "text-editing.toggle.show-folding-ribbon": {
+      "comment": "Toggle for showing code folding ribbon",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Code Folding Ribbon"
+          }
+        }
+      }
+    },
+    "text-editing.help.show-folding-ribbon": {
+      "comment": "Help text for show folding ribbon toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The code folding ribbon lets you fold regions of code. When the gutter is disabled, the folding ribbon is disabled."
+          }
+        }
+      }
+    },
+    "text-editing.toggle.show-reformatting-guide": {
+      "comment": "Toggle for showing reformatting guide",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Reformatting Guide"
+          }
+        }
+      }
+    },
+    "text-editing.help.show-reformatting-guide": {
+      "comment": "Help text for show reformatting guide toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows a vertical guide at the reformat column."
+          }
+        }
+      }
+    },
+    "text-editing.stepper.reformat-column": {
+      "comment": "Stepper label for reformat at column",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformat at Column"
+          }
+        }
+      }
+    },
+    "text-editing.help.reformat-column": {
+      "comment": "Help text for reformat at column stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The column at which text should be reformatted."
+          }
+        }
+      }
+    },
+    "text-editing.label.show-invisible-characters": {
+      "comment": "Label for show invisible characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Invisible Characters"
+          }
+        }
+      }
+    },
+    "text-editing.button.configure": {
+      "comment": "Button label for configure",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure..."
+          }
+        }
+      }
+    },
+    "theme-details.field.name": {
+      "comment": "Text field label for theme name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "theme-details.field.author": {
+      "comment": "Text field label for theme author",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Author"
+          }
+        }
+      }
+    },
+    "theme-details.picker.type": {
+      "comment": "Picker label for theme type",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
+          }
+        }
+      }
+    },
+    "theme-details.type.light": {
+      "comment": "Theme type option for light",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light"
+          }
+        }
+      }
+    },
+    "theme-details.type.dark": {
+      "comment": "Theme type option for dark",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark"
+          }
+        }
+      }
+    },
+    "theme-details.section.text": {
+      "comment": "Section header for text colors",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        }
+      }
+    },
+    "theme-details.color.text": {
+      "comment": "Color picker label for text color",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        }
+      }
+    },
+    "theme-details.section.background": {
+      "comment": "Section header for background colors",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Background"
+          }
+        }
+      }
+    },
+    "theme-details.color.background": {
+      "comment": "Color picker label for background color",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Background"
+          }
+        }
+      }
+    },
+    "theme-details.section.tokens": {
+      "comment": "Section header for token colors",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tokens"
+          }
+        }
+      }
+    },
+    "theme-details.warning.duplicate": {
+      "comment": "Warning message for bundled theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate this theme to make changes."
+          }
+        }
+      }
+    },
+    "theme-details.help.bundled-duplicate": {
+      "comment": "Help text for bundled theme warning",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bundled themes must be duplicated to make changes."
+          }
+        }
+      }
+    },
+    "theme-details.accessibility.duplicate-warning": {
+      "comment": "Accessibility label for duplicate warning",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning: Duplicate this theme to make changes."
+          }
+        }
+      }
+    },
+    "theme-details.button.delete": {
+      "comment": "Button to delete theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete..."
+          }
+        }
+      }
+    },
+    "theme-details.button.duplicate": {
+      "comment": "Button to duplicate theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate..."
+          }
+        }
+      }
+    },
+    "theme-details.button.duplicate-action": {
+      "comment": "Button to duplicate bundled theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate"
+          }
+        }
+      }
+    },
+    "theme-details.button.cancel": {
+      "comment": "Button to cancel theme editing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "theme-details.button.done": {
+      "comment": "Button to finish theme editing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "theme-details.alert.delete-theme": {
+      "comment": "Alert button to confirm theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Theme"
+          }
+        }
+      }
+    },
+    "theme-details.alert.cancel": {
+      "comment": "Alert button to cancel theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "text-editing.label.show-warning-characters": {
+      "comment": "Label for show warning characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Warning Characters"
+          }
+        }
+      }
+    },
+    "theme-details.alert.message": {
+      "comment": "Alert message warning about theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This action cannot be undone."
+          }
+        }
+      }
+    }
+  }
+}

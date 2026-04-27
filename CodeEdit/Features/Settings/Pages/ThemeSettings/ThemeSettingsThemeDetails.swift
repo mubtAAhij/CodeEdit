@@ -38,18 +38,18 @@ struct ThemeSettingsThemeDetails: View {
             Form {
                 Group {
                     Section {
-                        TextField("Name", text: $theme.displayName)
-                        TextField("Author", text: $theme.author)
-                        Picker("Type", selection: $theme.appearance) {
-                            Text("Light")
+                        TextField(String(localized: "theme-details.field.name", defaultValue: "Name", comment: "Text field label for theme name"), text: $theme.displayName)
+                        TextField(String(localized: "theme-details.field.author", defaultValue: "Author", comment: "Text field label for theme author"), text: $theme.author)
+                        Picker(String(localized: "theme-details.picker.type", defaultValue: "Type", comment: "Picker label for theme type"), selection: $theme.appearance) {
+                            Text(String(localized: "theme-details.type.light", defaultValue: "Light", comment: "Theme type option for light"))
                                 .tag(Theme.ThemeType.light)
-                            Text("Dark")
+                            Text(String(localized: "theme-details.type.dark", defaultValue: "Dark", comment: "Theme type option for dark"))
                                 .tag(Theme.ThemeType.dark)
                         }
                     }
-                    Section("Text") {
+                    Section(String(localized: "theme-details.section.text", defaultValue: "Text", comment: "Section header for text colors")) {
                         SettingsColorPicker(
-                            "Text",
+                            String(localized: "theme-details.color.text", defaultValue: "Text", comment: "Color picker label for text color"),
                             color: $theme.editor.text.swiftColor
                         )
                         SettingsColorPicker(
@@ -61,9 +61,9 @@ struct ThemeSettingsThemeDetails: View {
                             color: $theme.editor.invisibles.swiftColor
                         )
                     }
-                    Section("Background") {
+                    Section(String(localized: "theme-details.section.background", defaultValue: "Background", comment: "Section header for background colors")) {
                         SettingsColorPicker(
-                            "Background",
+                            String(localized: "theme-details.color.background", defaultValue: "Background", comment: "Color picker label for background color"),
                             color: $theme.editor.background.swiftColor
                         )
                         SettingsColorPicker(
@@ -75,7 +75,7 @@ struct ThemeSettingsThemeDetails: View {
                             color: $theme.editor.selection.swiftColor
                         )
                     }
-                    Section("Tokens") {
+                    Section(String(localized: "theme-details.section.tokens", defaultValue: "Tokens", comment: "Section header for token colors")) {
                         VStack(spacing: 0) {
                             ThemeSettingsThemeToken(
                                 "Keywords",
@@ -167,18 +167,18 @@ struct ThemeSettingsThemeDetails: View {
                         Image(systemName: "exclamationmark.triangle.fill")
                             .font(.body)
                             .foregroundStyle(Color.yellow)
-                        Text("Duplicate this theme to make changes.")
+                        Text(String(localized: "theme-details.warning.duplicate", defaultValue: "Duplicate this theme to make changes.", comment: "Warning message for bundled theme"))
                             .font(.subheadline)
                             .lineLimit(2)
                     }
-                    .help("Bundled themes must be duplicated to make changes.")
+                    .help(String(localized: "theme-details.help.bundled-duplicate", defaultValue: "Bundled themes must be duplicated to make changes.", comment: "Help text for bundled theme warning"))
                     .accessibilityElement(children: .combine)
-                    .accessibilityLabel("Warning: Duplicate this theme to make changes.")
+                    .accessibilityLabel(String(localized: "theme-details.accessibility.duplicate-warning", defaultValue: "Warning: Duplicate this theme to make changes.", comment: "Accessibility label for duplicate warning"))
                 } else if !themeModel.isAdding {
                     Button(role: .destructive) {
                         deleteConfirmationIsPresented = true
                     } label: {
-                        Text("Delete...")
+                        Text(String(localized: "theme-details.button.delete", defaultValue: "Delete...", comment: "Button to delete theme"))
                             .foregroundStyle(.red)
                             .frame(minWidth: 56)
                     }
@@ -188,7 +188,7 @@ struct ThemeSettingsThemeDetails: View {
                             themeModel.duplicate(fileURL)
                         }
                     } label: {
-                        Text("Duplicate...")
+                        Text(String(localized: "theme-details.button.duplicate", defaultValue: "Duplicate...", comment: "Button to duplicate theme"))
                             .frame(minWidth: 56)
                     }
                 }
@@ -200,7 +200,7 @@ struct ThemeSettingsThemeDetails: View {
                             themeModel.duplicate(fileURL)
                         }
                     } label: {
-                        Text("Duplicate")
+                        Text(String(localized: "theme-details.button.duplicate-action", defaultValue: "Duplicate", comment: "Button to duplicate bundled theme"))
                             .frame(minWidth: 56)
                     }
                 } else {
@@ -229,7 +229,7 @@ struct ThemeSettingsThemeDetails: View {
                             themeModel.isAdding = false
                         }
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "theme-details.button.cancel", defaultValue: "Cancel", comment: "Button to cancel theme editing"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.bordered)
@@ -240,7 +240,7 @@ struct ThemeSettingsThemeDetails: View {
                     }
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "theme-details.button.done", defaultValue: "Done", comment: "Button to finish theme editing"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -249,18 +249,18 @@ struct ThemeSettingsThemeDetails: View {
         }
         .constrainHeightToWindow()
         .alert(
-            Text("Are you sure you want to delete the theme “\(theme.displayName)”?"),
+            Text(String(format: String(localized: "theme-details.alert.title", defaultValue: "Are you sure you want to delete the theme \"%@\"?", comment: "Alert title for theme deletion confirmation"), theme.displayName)),
             isPresented: $deleteConfirmationIsPresented
         ) {
-            Button("Delete Theme") {
+            Button(String(localized: "theme-details.alert.delete-theme", defaultValue: "Delete Theme", comment: "Alert button to confirm theme deletion")) {
                 themeModel.delete(theme)
                 dismiss()
             }
-            Button("Cancel") {
+            Button(String(localized: "theme-details.alert.cancel", defaultValue: "Cancel", comment: "Alert button to cancel theme deletion")) {
                 deleteConfirmationIsPresented = false
             }
         } message: {
-            Text("This action cannot be undone.")
+            Text(String(localized: "theme-details.alert.message", defaultValue: "This action cannot be undone.", comment: "Alert message warning about theme deletion"))
         }
     }
 }
