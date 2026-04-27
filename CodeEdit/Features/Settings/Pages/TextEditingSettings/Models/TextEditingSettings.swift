@@ -15,30 +15,30 @@ extension SettingsData {
 
         var searchKeys: [String] {
             var keys = [
-                "Prefer Indent Using",
-                "Tab Width",
-                "Wrap lines to editor width",
-                "Editor Overscroll",
+                String(localized: "text-editing.search.prefer-indent", defaultValue: "Prefer Indent Using", comment: "Text editing search key for prefer indent using"),
+                String(localized: "text-editing.search.tab-width", defaultValue: "Tab Width", comment: "Text editing search key for tab width"),
+                String(localized: "text-editing.search.wrap-lines", defaultValue: "Wrap lines to editor width", comment: "Text editing search key for wrap lines to editor width"),
+                String(localized: "text-editing.search.overscroll", defaultValue: "Editor Overscroll", comment: "Text editing search key for editor overscroll"),
                 "Font",
-                "Font Size",
+                String(localized: "text-editing.search.font-size", defaultValue: "Font Size", comment: "Text editing search key for font size"),
                 "Font Weight",
-                "Line Height",
-                "Letter Spacing",
-                "Autocomplete braces",
-                "Enable type-over completion",
+                String(localized: "text-editing.search.line-height", defaultValue: "Line Height", comment: "Text editing search key for line height"),
+                String(localized: "text-editing.search.letter-spacing", defaultValue: "Letter Spacing", comment: "Text editing search key for letter spacing"),
+                String(localized: "text-editing.search.autocomplete-braces", defaultValue: "Autocomplete braces", comment: "Text editing search key for autocomplete braces"),
+                String(localized: "text-editing.search.type-over-completion", defaultValue: "Enable type-over completion", comment: "Text editing search key for enable type-over completion"),
                 "Bracket Pair Emphasis",
-                "Bracket Pair Highlight",
-                "Show Gutter",
-                "Show Minimap",
-                "Reformat at Column",
-                "Show Reformatting Guide",
+                String(localized: "text-editing.search.bracket-highlight", defaultValue: "Bracket Pair Highlight", comment: "Text editing search key for bracket pair highlight"),
+                String(localized: "text-editing.search.show-gutter", defaultValue: "Show Gutter", comment: "Text editing search key for show gutter"),
+                String(localized: "text-editing.search.show-minimap", defaultValue: "Show Minimap", comment: "Text editing search key for show minimap"),
+                String(localized: "text-editing.search.reformat-column", defaultValue: "Reformat at Column", comment: "Text editing search key for reformat at column"),
+                String(localized: "text-editing.search.show-reformatting-guide", defaultValue: "Show Reformatting Guide", comment: "Text editing search key for show reformatting guide"),
                 "Invisibles",
-                "Warning Characters"
+                String(localized: "text-editing.search.warning-characters", defaultValue: "Warning Characters", comment: "Text editing search key for warning characters")
             ]
             if #available(macOS 14.0, *) {
                 keys.append("System Cursor")
             }
-            return keys.map { NSLocalizedString($0, comment: "") }
+            return keys
         }
 
         /// An integer indicating how many spaces a `tab` will appear as visually.
