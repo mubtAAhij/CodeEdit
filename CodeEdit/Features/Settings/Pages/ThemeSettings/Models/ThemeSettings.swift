@@ -35,8 +35,8 @@ extension SettingsData {
         var searchKeys: [String] {
             [
                 "Automatically Change theme based on system appearance",
-                "Always use dark terminal appearance",
-                "Use theme background",
+                String(localized: "theme-settings.search.dark-terminal", defaultValue: "Always use dark terminal appearance", comment: "Theme settings search key for dark terminal appearance"),
+                String(localized: "theme-settings.search.theme-background", defaultValue: "Use theme background", comment: "Theme settings search key for using theme background"),
                 "Light Appearance",
                 "GitHub Light",
                 "Xcode Light",
