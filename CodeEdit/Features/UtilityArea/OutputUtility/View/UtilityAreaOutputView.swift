@@ -17,11 +17,11 @@ struct UtilityAreaOutputView: View {
         var title: String {
             switch self {
             case .extensions(let source):
-                "Extension - \(source.extensionInfo.name)"
+                String(format: String(localized: "utility-area.output.extension", defaultValue: "Extension - %@", comment: "Extension output source"), source.extensionInfo.name)
             case .languageServer(let source):
-                "Language Server - \(source.id)"
+                String(format: String(localized: "utility-area.output.lsp", defaultValue: "Language Server - %@", comment: "Language server output source"), source.id)
             case .devOutput:
-                "Internal Development Output"
+                String(localized: "utility-area.output.internal", defaultValue: "Internal Development Output", comment: "Internal development output")
             }
         }
 
@@ -79,14 +79,14 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text("No output")
+                    Text(String(localized: "utility-area.output.empty", defaultValue: "No output", comment: "No output message"))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)
                         .paneToolbar {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                             Spacer()
-                            UtilityAreaFilterTextField(title: "Filter", text: $filterText)
+                            UtilityAreaFilterTextField(title: String(localized: "utility-area.output.filter", defaultValue: "Filter", comment: "Filter placeholder"), text: $filterText)
                                 .frame(maxWidth: 175)
                             Button { } label: {
                                 Image(systemName: "trash")

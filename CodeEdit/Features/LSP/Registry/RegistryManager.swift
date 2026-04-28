@@ -88,7 +88,7 @@ final class RegistryManager: ObservableObject {
             userInfo: [
                 "id": packageName,
                 "action": "create",
-                "title": "Removing \(packageName)"
+                "title": String(format: String(localized: "lsp.registry.removing", defaultValue: "Removing %@", comment: "Removing package message"), packageName)
             ]
         )
 
@@ -142,7 +142,7 @@ final class RegistryManager: ObservableObject {
             let activityTitle = "\(operation.package.name)\("@" + (method.version ?? "latest"))"
             TaskNotificationHandler.postTask(
                 action: .create,
-                model: TaskNotificationModel(id: operation.package.name, title: "Installing \(activityTitle)")
+                model: TaskNotificationModel(id: operation.package.name, title: String(format: String(localized: "lsp.registry.installing", defaultValue: "Installing %@", comment: "Installing package message"), activityTitle))
             )
 
             guard !Task.isCancelled else { return }
@@ -183,15 +183,15 @@ final class RegistryManager: ObservableObject {
             NotificationManager.shared.post(
                 iconSymbol: "xmark.circle",
                 iconColor: .clear,
-                title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                title: String(format: String(localized: "lsp.registry.install-failed", defaultValue: "Could not install %@", comment: "Installation failed message"), activityName),
+                description: String(localized: "lsp.registry.install-problem", defaultValue: "There was a problem during installation.", comment: "Installation problem message"),
+                actionButtonTitle: String(localized: "common.done", defaultValue: "Done", comment: "Done button"),
                 action: {},
             )
         } else {
             TaskNotificationHandler.postTask(
                 action: .update,
-                model: TaskNotificationModel(id: id, title: "Successfully installed \(activityName)", isLoading: false)
+                model: TaskNotificationModel(id: id, title: String(format: String(localized: "lsp.registry.install-success", defaultValue: "Successfully installed %@", comment: "Installation success message"), activityName), isLoading: false)
             )
             NotificationCenter.default.post(
                 name: .taskNotification,

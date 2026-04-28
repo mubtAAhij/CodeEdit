@@ -18,34 +18,34 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Find") {
+        CommandMenu(String(localized: "find.menu", defaultValue: "Find", comment: "Find menu title")) {
             Group {
-                Button("Find...") {
+                Button(String(localized: "find.find", defaultValue: "Find...", comment: "Find menu item")) {
                     send(.showFindPanel)
                 }
                 .keyboardShortcut("f")
 
-                Button("Find and Replace...") {
+                Button(String(localized: "find.find-replace", defaultValue: "Find and Replace...", comment: "Find and Replace menu item")) {
                     send(.init(rawValue: 12)!)
                 }
                 .keyboardShortcut("f", modifiers: [.option, .command])
 
-                Button("Find Next") {
+                Button(String(localized: "find.find-next", defaultValue: "Find Next", comment: "Find Next menu item")) {
                     send(.next)
                 }
                 .keyboardShortcut("g")
 
-                Button("Find Previous") {
+                Button(String(localized: "find.find-previous", defaultValue: "Find Previous", comment: "Find Previous menu item")) {
                     send(.previous)
                 }
                 .keyboardShortcut("g", modifiers: [.shift, .command])
 
-                Button("Use Selection for Find") {
+                Button(String(localized: "find.use-selection", defaultValue: "Use Selection for Find", comment: "Use Selection for Find menu item")) {
                     send(.setFindString)
                 }
                 .keyboardShortcut("e")
 
-                Button("Jump to Selection") {
+                Button(String(localized: "find.jump-to-selection", defaultValue: "Jump to Selection", comment: "Jump to Selection menu item")) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j")

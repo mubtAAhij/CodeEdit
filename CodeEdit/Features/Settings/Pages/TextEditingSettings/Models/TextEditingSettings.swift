@@ -15,30 +15,30 @@ extension SettingsData {
 
         var searchKeys: [String] {
             var keys = [
-                "Prefer Indent Using",
-                "Tab Width",
-                "Wrap lines to editor width",
-                "Editor Overscroll",
+                String(localized: "textediting.prefer-indent-using", defaultValue: "Prefer Indent Using", comment: "Label for indent type picker"),
+                String(localized: "textediting.tab-width", defaultValue: "Tab Width", comment: "Label for tab width stepper"),
+                String(localized: "textediting.wrap-lines", defaultValue: "Wrap lines to editor width", comment: "Toggle for wrapping lines to editor width"),
+                String(localized: "textediting.editor-overscroll", defaultValue: "Editor Overscroll", comment: "Label for editor overscroll picker"),
                 "Font",
-                "Font Size",
+                String(localized: "textediting.font-size", defaultValue: "Font Size", comment: "Label for font size stepper"),
                 "Font Weight",
-                "Line Height",
-                "Letter Spacing",
-                "Autocomplete braces",
-                "Enable type-over completion",
+                String(localized: "textediting.line-height", defaultValue: "Line Height", comment: "Label for line height stepper"),
+                String(localized: "textediting.letter-spacing", defaultValue: "Letter Spacing", comment: "Label for letter spacing stepper"),
+                String(localized: "textediting.autocomplete-braces", defaultValue: "Autocomplete braces", comment: "Toggle for autocompleting braces"),
+                String(localized: "textediting.enable-type-over-completion", defaultValue: "Enable type-over completion", comment: "Toggle for enabling type-over completion"),
                 "Bracket Pair Emphasis",
-                "Bracket Pair Highlight",
-                "Show Gutter",
-                "Show Minimap",
-                "Reformat at Column",
-                "Show Reformatting Guide",
+                String(localized: "textediting.bracket-pair-highlight", defaultValue: "Bracket Pair Highlight", comment: "Label for bracket pair highlight picker"),
+                String(localized: "textediting.show-gutter", defaultValue: "Show Gutter", comment: "Toggle for showing gutter"),
+                String(localized: "textediting.show-minimap", defaultValue: "Show Minimap", comment: "Toggle for showing minimap"),
+                String(localized: "textediting.reformat-at-column", defaultValue: "Reformat at Column", comment: "Label for reformat at column stepper"),
+                String(localized: "textediting.show-reformatting-guide", defaultValue: "Show Reformatting Guide", comment: "Toggle for showing reformatting guide"),
                 "Invisibles",
-                "Warning Characters"
+                String(localized: "textediting.warning-characters", defaultValue: "Warning Characters", comment: "Label for warning characters settings")
             ]
             if #available(macOS 14.0, *) {
                 keys.append("System Cursor")
             }
-            return keys.map { NSLocalizedString($0, comment: "") }
+            return keys
         }
 
         /// An integer indicating how many spaces a `tab` will appear as visually.
@@ -283,23 +283,23 @@ extension SettingsData {
 
         struct WarningCharacters: Equatable, Hashable, Codable {
             static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
-                0x0003: "End of text",
+                0x0003: String(localized: "textediting.warning-char.end-of-text", defaultValue: "End of text", comment: "Warning character description: End of text"),
 
-                0x00A0: "Non-breaking space",
-                0x202F: "Narrow non-breaking space",
-                0x200B: "Zero-width space",
-                0x200C: "Zero-width non-joiner",
-                0x2029: "Paragraph separator",
+                0x00A0: String(localized: "textediting.warning-char.non-breaking-space", defaultValue: "Non-breaking space", comment: "Warning character description: Non-breaking space"),
+                0x202F: String(localized: "textediting.warning-char.narrow-non-breaking-space", defaultValue: "Narrow non-breaking space", comment: "Warning character description: Narrow non-breaking space"),
+                0x200B: String(localized: "textediting.warning-char.zero-width-space", defaultValue: "Zero-width space", comment: "Warning character description: Zero-width space"),
+                0x200C: String(localized: "textediting.warning-char.zero-width-non-joiner", defaultValue: "Zero-width non-joiner", comment: "Warning character description: Zero-width non-joiner"),
+                0x2029: String(localized: "textediting.warning-char.paragraph-separator", defaultValue: "Paragraph separator", comment: "Warning character description: Paragraph separator"),
 
-                0x2013: "Em-dash",
-                0x00AD: "Soft hyphen",
+                0x2013: String(localized: "textediting.warning-char.em-dash", defaultValue: "Em-dash", comment: "Warning character description: Em-dash"),
+                0x00AD: String(localized: "textediting.warning-char.soft-hyphen", defaultValue: "Soft hyphen", comment: "Warning character description: Soft hyphen"),
 
-                0x2018: "Left single quote",
-                0x2019: "Right single quote",
-                0x201C: "Left double quote",
-                0x201D: "Right double quote",
+                0x2018: String(localized: "textediting.warning-char.left-single-quote", defaultValue: "Left single quote", comment: "Warning character description: Left single quote"),
+                0x2019: String(localized: "textediting.warning-char.right-single-quote", defaultValue: "Right single quote", comment: "Warning character description: Right single quote"),
+                0x201C: String(localized: "textediting.warning-char.left-double-quote", defaultValue: "Left double quote", comment: "Warning character description: Left double quote"),
+                0x201D: String(localized: "textediting.warning-char.right-double-quote", defaultValue: "Right double quote", comment: "Warning character description: Right double quote"),
 
-                0x037E: "Greek Question Mark"
+                0x037E: String(localized: "textediting.warning-char.greek-question-mark", defaultValue: "Greek Question Mark", comment: "Warning character description: Greek Question Mark")
             ])
 
             var enabled: Bool
