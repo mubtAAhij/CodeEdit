@@ -39,9 +39,9 @@ struct TaskDropDownView: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("TaskDropdown")
-        .accessibilityValue(taskManager.selectedTask?.name ?? "Create Tasks")
-        .accessibilityLabel("Active Task")
-        .accessibilityHint("Open the active task menu")
+        .accessibilityValue(taskManager.selectedTask?.name ?? String(localized: "task-dropdown.create-tasks", defaultValue: "Create Tasks", comment: "Prompt when no task is selected"))
+        .accessibilityLabel(String(localized: "task-dropdown.label", defaultValue: "Active Task", comment: "Accessibility label for the active task dropdown"))
+        .accessibilityHint(String(localized: "task-dropdown.hint", defaultValue: "Open the active task menu", comment: "Accessibility hint for the active task dropdown action"))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
@@ -82,7 +82,7 @@ struct TaskDropDownView: View {
                         .fixedSize()
                 }
             } else {
-                Text("Create Tasks")
+                Text(String(localized: "task-dropdown.create-tasks", defaultValue: "Create Tasks", comment: "Prompt when no task is selected"))
                     .frame(minWidth: 0)
             }
         }
@@ -120,10 +120,10 @@ struct TaskDropDownView: View {
             Divider()
                 .padding(.vertical, 5)
         }
-        OptionMenuItemView(label: "Add Task...") {
+        OptionMenuItemView(label: String(localized: "task-dropdown.add-task", defaultValue: "Add Task...", comment: "Menu item to add a new task")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
-        OptionMenuItemView(label: "Manage Tasks...") {
+        OptionMenuItemView(label: String(localized: "task-dropdown.manage-tasks", defaultValue: "Manage Tasks...", comment: "Menu item to manage existing tasks")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
     }
