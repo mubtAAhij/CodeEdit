@@ -135,7 +135,7 @@ extension ThemeModel {
         let openPanel = NSOpenPanel()
         let allowedTypes = [UTType(filenameExtension: "cetheme")!]
 
-        openPanel.prompt = "Import"
+        openPanel.prompt = String(localized: "themes.import", defaultValue: "Import", comment: "Import theme dialog prompt")
         openPanel.allowedContentTypes = allowedTypes
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = false
@@ -226,7 +226,7 @@ extension ThemeModel {
                 throw NSError(
                     domain: "ThemeModel",
                     code: 1,
-                    userInfo: [NSLocalizedDescriptionKey: "Theme file URL not found"]
+                    userInfo: [NSLocalizedDescriptionKey: String(localized: "themes.error.file-url-not-found", defaultValue: "Theme file URL not found", comment: "Error message when theme file URL is missing")]
                 )
             }
 
