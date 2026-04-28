@@ -39,9 +39,9 @@ struct TaskDropDownView: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("TaskDropdown")
-        .accessibilityValue(taskManager.selectedTask?.name ?? "Create Tasks")
-        .accessibilityLabel("Active Task")
-        .accessibilityHint("Open the active task menu")
+        .accessibilityValue(taskManager.selectedTask?.name ?? CEContentUnavailableView(String(localized: "activity-viewer.create-tasks", defaultValue: "Create Tasks", comment: "Create tasks message")))
+        .accessibilityLabel(String(localized: "activity-viewer.active-task", defaultValue: "Active Task", comment: "Active task accessibility label"))
+        .accessibilityHint(String(localized: "activity-viewer.active-task-hint", defaultValue: "Open the active task menu", comment: "Active task accessibility hint"))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
@@ -82,7 +82,7 @@ struct TaskDropDownView: View {
                         .fixedSize()
                 }
             } else {
-                Text("Create Tasks")
+                Text(String(localized: "activity-viewer.create-tasks-label", defaultValue: "Create Tasks", comment: "Create tasks label"))
                     .frame(minWidth: 0)
             }
         }
@@ -120,10 +120,10 @@ struct TaskDropDownView: View {
             Divider()
                 .padding(.vertical, 5)
         }
-        OptionMenuItemView(label: "Add Task...") {
+        OptionMenuItemView(label: String(localized: "activity-viewer.add-task", defaultValue: "Add Task...", comment: "Add task button")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
-        OptionMenuItemView(label: "Manage Tasks...") {
+        OptionMenuItemView(label: String(localized: "activity-viewer.manage-tasks", defaultValue: "Manage Tasks...", comment: "Manage tasks button")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
     }

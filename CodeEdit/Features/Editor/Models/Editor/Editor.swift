@@ -62,7 +62,7 @@ final class Editor: ObservableObject, Identifiable {
     weak var parent: SplitViewData?
     weak var workspace: WorkspaceDocument?
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "Editor")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "editor.logger-category", defaultValue: "Editor", comment: "Logger category for editor"))
 
     init() {
         self.tabs = []

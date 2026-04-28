@@ -54,30 +54,29 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent("Account") {
+                LabeledContent(String(localized: "account", defaultValue: "Account", comment: "Account label", os_id: "102298")) {
                     Text(currentAccount.name)
                 }
-                TextField("Description", text: $currentAccount.description)
+                TextField(String(localized: "description", defaultValue: "Description", comment: "Description text field"), text: $currentAccount.description)
                 if currentAccount.provider.baseURL == nil {
-                    TextField("Server", text: $currentAccount.serverURL)
+                    TextField(String(localized: "server", defaultValue: "Server", comment: "Server text field"), text: $currentAccount.serverURL)
                 }
             }
 
             Section {
                 Picker(selection: $currentAccount.urlProtocol) {
-                    Text("HTTPS")
+                    Text(String(localized: "https", defaultValue: "HTTPS", comment: "HTTPS option", os_id: "102300"))
                         .tag(SourceControlAccount.URLProtocol.https)
-                    Text("SSH")
+                    Text(String(localized: "ssh", defaultValue: "SSH", comment: "SSH option"))
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text("Clone Using")
-                    Text("New repositories will be cloned from \(currentAccount.provider.name)"
-                         + " using \(currentAccount.urlProtocol.rawValue).")
+                    Text(String(localized: "clone-using", defaultValue: "Clone Using", comment: "Clone Using label", os_id: "102301"))
+                    Text(String(format: String(localized: "new-repositories-will-be-cloned", defaultValue: "New repositories will be cloned from %@ using %@.", comment: "Clone repositories message", os_id: "102302"), currentAccount.provider.name, currentAccount.urlProtocol.rawValue))
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker("SSH Key", selection: $currentAccount.sshKey) {
-                        Text("None")
+                    Picker(String(localized: "ssh-key", defaultValue: "SSH Key", comment: "SSH Key picker label", os_id: "102303"), selection: $currentAccount.sshKey) {
+                        Text(String(localized: "none", defaultValue: "None", comment: "None option", os_id: "102304"))
                             .tag("")
                         Divider()
                         if let sshPath = FileManager.default.homeDirectoryForCurrentUser.appending(
@@ -99,9 +98,9 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text("Create New...")
+                        Text(String(localized: "create-new", defaultValue: "Create New...", comment: "Create New option", os_id: "102305"))
                             .tag("CREATE_NEW")
-                        Text("Choose...")
+                        Text(String(localized: "choose", defaultValue: "Choose...", comment: "Choose option", os_id: "102022"))
                             .tag("CHOOSE")
                     }
                     .onReceive([currentAccount.sshKey].publisher.first()) { value in
@@ -122,24 +121,24 @@ struct AccountsSettingsDetailsView: View {
                 }
             } footer: {
                 HStack {
-                    Button("Delete Account...") {
+                    Button(String(localized: "delete-account", defaultValue: "Delete Account...", comment: "Delete Account button", os_id: "102306")) {
                         deleteConfirmationIsPresented.toggle()
                     }
                     .alert(
-                        Text("Are you sure you want to delete the account “\(account.description)”?"),
+                        Text(String(format: String(localized: "delete-account-confirmation", defaultValue: "Are you sure you want to delete the account \"%@\"?", comment: "Delete account confirmation message", os_id: "102307"), account.description)),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button("OK") {
+                        Button(String(localized: "ok", defaultValue: "OK", comment: "OK button", os_id: "102309")) {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()
                         }
-                        Button("Cancel") {
+                        Button(String(localized: "cancel", defaultValue: "Cancel", comment: "Cancel button", os_id: "102310")) {
                             // Handle the cancel, dismiss the alert
                             deleteConfirmationIsPresented.toggle()
                         }
                     } message: {
-                        Text("Deleting this account will remove it from CodeEdit.")
+                        Text(String(localized: "delete-account-warning", defaultValue: "Deleting this account will remove it from CodeEdit.", comment: "Delete account warning message", os_id: "102308"))
                     }
 
                     Spacer()

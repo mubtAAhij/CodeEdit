@@ -19,21 +19,21 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
 
     /// An enum of all the settings pages
     enum Name: String {
-        case general = "General"
-        case accounts = "Accounts"
-        case behavior = "Behaviors"
-        case navigation = "Navigation"
-        case theme = "Themes"
-        case textEditing = "Text Editing"
-        case terminal = "Terminal"
-        case search = "Search"
-        case keybindings = "Key Bindings"
-        case sourceControl = "Source Control"
-        case components = "Components"
-        case location = "Locations"
-        case advanced = "Advanced"
+        case general = "settings.general"
+        case accounts = "settings.accounts"
+        case behavior = "settings.behaviors"
+        case navigation = "settings.navigation"
+        case theme = "settings.themes"
+        case textEditing = "settings.text-editing"
+        case terminal = "settings.terminal"
+        case search = "settings.search"
+        case keybindings = "settings.key-bindings"
+        case sourceControl = "settings.source-control"
+        case components = "settings.components"
+        case location = "settings.locations"
+        case advanced = "settings.advanced"
         case languageServers = "Language Servers"
-        case developer = "Developer"
+        case developer = "settings.developer"
     }
 
     let id: UUID = UUID()

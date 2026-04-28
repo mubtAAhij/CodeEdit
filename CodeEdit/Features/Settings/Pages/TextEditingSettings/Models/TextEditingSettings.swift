@@ -15,30 +15,30 @@ extension SettingsData {
 
         var searchKeys: [String] {
             var keys = [
-                "Prefer Indent Using",
-                "Tab Width",
-                "Wrap lines to editor width",
-                "Editor Overscroll",
+                String(localized: "prefer-indent", defaultValue: "Prefer Indent Using", comment: "Prefer indent search key", os_id: "102498"),
+                String(localized: "tab-width", defaultValue: "Tab Width", comment: "Tab width search key", os_id: "102499"),
+                String(localized: "wrap-lines", defaultValue: "Wrap lines to editor width", comment: "Wrap lines search key", os_id: "102500"),
+                String(localized: "editor-overscroll", defaultValue: "Editor Overscroll", comment: "Editor overscroll search key", os_id: "102501"),
                 "Font",
-                "Font Size",
+                String(localized: "font-size", defaultValue: "Font Size", comment: "Font size search key"),
                 "Font Weight",
-                "Line Height",
-                "Letter Spacing",
-                "Autocomplete braces",
-                "Enable type-over completion",
+                String(localized: "line-height", defaultValue: "Line Height", comment: "Line height search key", os_id: "102502"),
+                String(localized: "letter-spacing", defaultValue: "Letter Spacing", comment: "Letter spacing search key", os_id: "102503"),
+                String(localized: "autocomplete-braces", defaultValue: "Autocomplete braces", comment: "Autocomplete braces search key", os_id: "102504"),
+                String(localized: "enable-typeover", defaultValue: "Enable type-over completion", comment: "Enable type-over completion search key", os_id: "102505"),
                 "Bracket Pair Emphasis",
-                "Bracket Pair Highlight",
-                "Show Gutter",
-                "Show Minimap",
-                "Reformat at Column",
-                "Show Reformatting Guide",
+                String(localized: "bracket-pair-highlight", defaultValue: "Bracket Pair Highlight", comment: "Bracket pair highlight search key", os_id: "102506"),
+                String(localized: "show-gutter", defaultValue: "Show Gutter", comment: "Show gutter search key", os_id: "102507"),
+                String(localized: "show-minimap", defaultValue: "Show Minimap", comment: "Show minimap search key"),
+                String(localized: "reformat-at-column", defaultValue: "Reformat at Column", comment: "Reformat at column search key", os_id: "102508"),
+                String(localized: "show-reformatting-guide", defaultValue: "Show Reformatting Guide", comment: "Show reformatting guide search key", os_id: "102509"),
                 "Invisibles",
-                "Warning Characters"
+                String(localized: "warning-characters", defaultValue: "Warning Characters", comment: "Warning characters search key", os_id: "102510")
             ]
             if #available(macOS 14.0, *) {
                 keys.append("System Cursor")
             }
-            return keys.map { NSLocalizedString($0, comment: "") }
+            return keys
         }
 
         /// An integer indicating how many spaces a `tab` will appear as visually.
@@ -283,23 +283,23 @@ extension SettingsData {
 
         struct WarningCharacters: Equatable, Hashable, Codable {
             static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
-                0x0003: "End of text",
+                0x0003: String(localized: "end-of-text", defaultValue: "End of text", comment: "End of text warning character", os_id: "102511"),
 
-                0x00A0: "Non-breaking space",
-                0x202F: "Narrow non-breaking space",
-                0x200B: "Zero-width space",
-                0x200C: "Zero-width non-joiner",
-                0x2029: "Paragraph separator",
+                0x00A0: String(localized: "non-breaking-space", defaultValue: "Non-breaking space", comment: "Non-breaking space warning character", os_id: "102512"),
+                0x202F: String(localized: "narrow-non-breaking-space", defaultValue: "Narrow non-breaking space", comment: "Narrow non-breaking space warning character", os_id: "102513"),
+                0x200B: String(localized: "zero-width-space", defaultValue: "Zero-width space", comment: "Zero-width space warning character", os_id: "102514"),
+                0x200C: String(localized: "zero-width-non-joiner", defaultValue: "Zero-width non-joiner", comment: "Zero-width non-joiner warning character", os_id: "102515"),
+                0x2029: String(localized: "paragraph-separator", defaultValue: "Paragraph separator", comment: "Paragraph separator warning character", os_id: "102516"),
 
-                0x2013: "Em-dash",
-                0x00AD: "Soft hyphen",
+                0x2013: String(localized: "em-dash", defaultValue: "Em-dash", comment: "Em-dash warning character", os_id: "102517"),
+                0x00AD: String(localized: "soft-hyphen", defaultValue: "Soft hyphen", comment: "Soft hyphen warning character", os_id: "102518"),
 
-                0x2018: "Left single quote",
-                0x2019: "Right single quote",
-                0x201C: "Left double quote",
-                0x201D: "Right double quote",
+                0x2018: String(localized: "left-single-quote", defaultValue: "Left single quote", comment: "Left single quote warning character", os_id: "102519"),
+                0x2019: String(localized: "right-single-quote", defaultValue: "Right single quote", comment: "Right single quote warning character", os_id: "102520"),
+                0x201C: String(localized: "left-double-quote", defaultValue: "Left double quote", comment: "Left double quote warning character", os_id: "102521"),
+                0x201D: String(localized: "right-double-quote", defaultValue: "Right double quote", comment: "Right double quote warning character", os_id: "102522"),
 
-                0x037E: "Greek Question Mark"
+                0x037E: String(localized: "greek-question-mark", defaultValue: "Greek Question Mark", comment: "Greek question mark warning character", os_id: "102523")
             ])
 
             var enabled: Bool
