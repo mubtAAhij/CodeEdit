@@ -33,14 +33,14 @@ struct ThemeSettingsThemeToken: View {
                         Image(systemName: "bold")
                     }
                     .toggleStyle(.icon)
-                    .help("Bold")
+                    .help(String(localized: "settings.theme.bold", defaultValue: "Bold", comment: "Bold formatting toggle"))
                     Divider()
                         .fixedSize()
                     Toggle(isOn: $italic) {
                         Image(systemName: "italic")
                     }
                     .toggleStyle(.icon)
-                    .help("Italic")
+                    .help(String(localized: "settings.theme.italic", defaultValue: "Italic", comment: "Italic formatting toggle"))
                 }
                 .opacity(isHovering || bold || italic ? 1 : 0)
 

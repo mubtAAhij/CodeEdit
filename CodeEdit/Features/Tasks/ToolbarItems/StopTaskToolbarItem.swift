@@ -31,8 +31,8 @@ final class StopTaskToolbarItem: NSToolbarItem {
         let config = NSImage.SymbolConfiguration(pointSize: 14, weight: .regular)
         image = image?.withSymbolConfiguration(config) ?? image
 
-        paletteLabel = "Stop Task"
-        toolTip = "Stop the selected task"
+        paletteLabel = String(localized: "task.stop-task", defaultValue: "Stop Task", comment: "Stop task toolbar item")
+        toolTip = String(localized: "task.stop-selected-tooltip", defaultValue: "Stop the selected task", comment: "Stop selected task tooltip")
         target = self
         isEnabled = false
         isBordered = true
