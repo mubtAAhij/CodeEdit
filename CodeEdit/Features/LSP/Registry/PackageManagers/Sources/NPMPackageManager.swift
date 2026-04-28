@@ -38,7 +38,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: String(localized: "npm.requires-npm", defaultValue: "This package requires npm to install. Allow CodeEdit to run npm commands?", comment: "Confirmation message to allow npm commands")
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -65,7 +65,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "npm.initialize", defaultValue: "Initialize Directory Structure", comment: "Step name for initializing directory structure"), confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -108,14 +108,12 @@ final class NPMPackageManager: PackageManagerProtocol {
         }
         let packagesDescription = packageList.joined(separator: ", ")
 
-        let sSuffix = packageList.count > 1 ? "s" : ""
-        let suffix = plural ? "these packages" : "this package"
+        let suffix = plural ? String(localized: "npm.these-packages", defaultValue: "these packages", comment: "Plural form for multiple packages") : String(localized: "npm.this-package", defaultValue: "this package", comment: "Singular form for one package")
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: String(localized: "npm.install-package", defaultValue: "Install Package Using npm", comment: "Step name for installing package using npm"),
             confirmation: .required(
-                message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                message: String(format: String(localized: "npm.install-confirmation", defaultValue: "This requires the npm package%@ %@.\nAllow CodeEdit to install %@?", comment: "Confirmation message to install npm packages"), plural ? "s" : "", packagesDescription, suffix)
             )
         ) { model in
             do {
@@ -150,7 +148,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "npm.verify-installation", defaultValue: "Verify Installation", comment: "Step name for verifying installation"),
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path
@@ -161,7 +159,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                   let packageDict = packageJson as? [String: Any],
                   let dependencies = packageDict["dependencies"] as? [String: String],
                   let installedVersion = dependencies[package] else {
-                throw PackageManagerError.installationFailed("Package not found in package.json")
+                throw PackageManagerError.installationFailed(String(localized: "npm.package-not-in-json", defaultValue: "Package not found in package.json", comment: "Error message when package is not found in package.json"))
             }
 
             // Verify installed version matches requested version
@@ -170,7 +168,7 @@ final class NPMPackageManager: PackageManagerProtocol {
             if normalizedInstalledVersion != normalizedRequestedVersion &&
                 !installedVersion.contains(normalizedRequestedVersion) {
                 throw PackageManagerError.installationFailed(
-                    "Version mismatch: Expected \(version), but found \(installedVersion)"
+                    String(format: String(localized: "npm.version-mismatch", defaultValue: "Version mismatch: Expected %@, but found %@", comment: "Error message when version doesn't match"), version, installedVersion)
                 )
             }
 
@@ -179,7 +177,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                 .appending(path: "node_modules")
                 .appending(path: package)
             guard FileManager.default.fileExists(atPath: packageDirectory.path) else {
-                throw PackageManagerError.installationFailed("Package not found in node_modules")
+                throw PackageManagerError.installationFailed(String(localized: "npm.package-not-in-modules", defaultValue: "Package not found in node_modules", comment: "Error message when package is not found in node_modules"))
             }
         }
     }
