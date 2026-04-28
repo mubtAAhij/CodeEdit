@@ -83,7 +83,7 @@ struct NotificationBannerView: View {
             if notification.isSticky {
                 HStack(spacing: 8) {
                     Button(action: onDismiss, label: {
-                        Text("Dismiss")
+                        Text(String(localized: "common.dismiss", defaultValue: "Dismiss", comment: "Dismiss button"))
                             .frame(maxWidth: .infinity)
                     })
                     .buttonStyle(.secondaryBlur)

@@ -283,23 +283,23 @@ extension SettingsData {
 
         struct WarningCharacters: Equatable, Hashable, Codable {
             static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
-                0x0003: "End of text",
+                0x0003: String(localized: "warning-chars.end-of-text", defaultValue: "End of text", comment: "Warning character: End of text"),
 
-                0x00A0: "Non-breaking space",
-                0x202F: "Narrow non-breaking space",
-                0x200B: "Zero-width space",
-                0x200C: "Zero-width non-joiner",
-                0x2029: "Paragraph separator",
+                0x00A0: String(localized: "warning-chars.non-breaking-space", defaultValue: "Non-breaking space", comment: "Warning character: Non-breaking space"),
+                0x202F: String(localized: "warning-chars.narrow-non-breaking-space", defaultValue: "Narrow non-breaking space", comment: "Warning character: Narrow non-breaking space"),
+                0x200B: String(localized: "warning-chars.zero-width-space", defaultValue: "Zero-width space", comment: "Warning character: Zero-width space"),
+                0x200C: String(localized: "warning-chars.zero-width-non-joiner", defaultValue: "Zero-width non-joiner", comment: "Warning character: Zero-width non-joiner"),
+                0x2029: String(localized: "warning-chars.paragraph-separator", defaultValue: "Paragraph separator", comment: "Warning character: Paragraph separator"),
 
-                0x2013: "Em-dash",
-                0x00AD: "Soft hyphen",
+                0x2013: String(localized: "warning-chars.em-dash", defaultValue: "Em-dash", comment: "Warning character: Em-dash"),
+                0x00AD: String(localized: "warning-chars.soft-hyphen", defaultValue: "Soft hyphen", comment: "Warning character: Soft hyphen"),
 
-                0x2018: "Left single quote",
-                0x2019: "Right single quote",
-                0x201C: "Left double quote",
-                0x201D: "Right double quote",
+                0x2018: String(localized: "warning-chars.left-single-quote", defaultValue: "Left single quote", comment: "Warning character: Left single quote"),
+                0x2019: String(localized: "warning-chars.right-single-quote", defaultValue: "Right single quote", comment: "Warning character: Right single quote"),
+                0x201C: String(localized: "warning-chars.left-double-quote", defaultValue: "Left double quote", comment: "Warning character: Left double quote"),
+                0x201D: String(localized: "warning-chars.right-double-quote", defaultValue: "Right double quote", comment: "Warning character: Right double quote"),
 
-                0x037E: "Greek Question Mark"
+                0x037E: String(localized: "warning-chars.greek-question-mark", defaultValue: "Greek Question Mark", comment: "Warning character: Greek Question Mark")
             ])
 
             var enabled: Bool
