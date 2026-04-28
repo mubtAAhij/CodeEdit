@@ -15,30 +15,30 @@ extension SettingsData {
 
         var searchKeys: [String] {
             var keys = [
-                "Prefer Indent Using",
-                "Tab Width",
-                "Wrap lines to editor width",
-                "Editor Overscroll",
-                "Font",
-                "Font Size",
-                "Font Weight",
-                "Line Height",
-                "Letter Spacing",
-                "Autocomplete braces",
-                "Enable type-over completion",
-                "Bracket Pair Emphasis",
-                "Bracket Pair Highlight",
-                "Show Gutter",
-                "Show Minimap",
-                "Reformat at Column",
-                "Show Reformatting Guide",
-                "Invisibles",
-                "Warning Characters"
+                String(localized: "text-editing.search.indent-using", defaultValue: "Prefer Indent Using", comment: "Text editing search key for indent using"),
+                String(localized: "text-editing.search.tab-width", defaultValue: "Tab Width", comment: "Text editing search key for tab width"),
+                String(localized: "text-editing.search.wrap-lines", defaultValue: "Wrap lines to editor width", comment: "Text editing search key for wrap lines"),
+                String(localized: "text-editing.search.overscroll", defaultValue: "Editor Overscroll", comment: "Text editing search key for overscroll"),
+                String(localized: "text-editing.search.font", defaultValue: "Font", comment: "Text editing search key for font"),
+                String(localized: "text-editing.search.font-size", defaultValue: "Font Size", comment: "Text editing search key for font size"),
+                String(localized: "text-editing.search.font-weight", defaultValue: "Font Weight", comment: "Text editing search key for font weight"),
+                String(localized: "text-editing.search.line-height", defaultValue: "Line Height", comment: "Text editing search key for line height"),
+                String(localized: "text-editing.search.letter-spacing", defaultValue: "Letter Spacing", comment: "Text editing search key for letter spacing"),
+                String(localized: "text-editing.search.autocomplete-braces", defaultValue: "Autocomplete braces", comment: "Text editing search key for autocomplete braces"),
+                String(localized: "text-editing.search.type-over-completion", defaultValue: "Enable type-over completion", comment: "Text editing search key for type-over completion"),
+                String(localized: "text-editing.search.bracket-emphasis", defaultValue: "Bracket Pair Emphasis", comment: "Text editing search key for bracket pair emphasis"),
+                String(localized: "text-editing.search.bracket-highlight", defaultValue: "Bracket Pair Highlight", comment: "Text editing search key for bracket highlight"),
+                String(localized: "text-editing.search.show-gutter", defaultValue: "Show Gutter", comment: "Text editing search key for show gutter"),
+                String(localized: "text-editing.search.show-minimap", defaultValue: "Show Minimap", comment: "Text editing search key for show minimap"),
+                String(localized: "text-editing.search.reformat-column", defaultValue: "Reformat at Column", comment: "Text editing search key for reformat at column"),
+                String(localized: "text-editing.search.reformat-guide", defaultValue: "Show Reformatting Guide", comment: "Text editing search key for show reformatting guide"),
+                String(localized: "text-editing.search.invisibles", defaultValue: "Invisibles", comment: "Text editing search key for invisibles"),
+                String(localized: "text-editing.search.warning-characters", defaultValue: "Warning Characters", comment: "Text editing search key for warning characters")
             ]
             if #available(macOS 14.0, *) {
-                keys.append("System Cursor")
+                keys.append(String(localized: "text-editing.search.system-cursor", defaultValue: "System Cursor", comment: "Text editing search key for system cursor"))
             }
-            return keys.map { NSLocalizedString($0, comment: "") }
+            return keys
         }
 
         /// An integer indicating how many spaces a `tab` will appear as visually.
@@ -169,8 +169,8 @@ extension SettingsData {
             let mgr = CommandManager.shared
 
             mgr.addCommand(
-                name: "Toggle Type-Over Completion",
-                title: "Toggle Type-Over Completion",
+                name: String(localized: "text-editing.command.type-over-completion", defaultValue: "Toggle Type-Over Completion", comment: "Command name for toggle type-over completion"),
+                title: String(localized: "text-editing.command.type-over-completion", defaultValue: "Toggle Type-Over Completion", comment: "Command title for toggle type-over completion"),
                 id: "prefs.text_editing.type_over_completion",
                 command: {
                     Settings[\.textEditing].enableTypeOverCompletion.toggle()
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "text-editing.command.autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command name for toggle autocomplete braces"),
+                title: String(localized: "text-editing.command.autocomplete-braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command title for toggle autocomplete braces"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,8 +187,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "text-editing.command.word-wrap", defaultValue: "Toggle Word Wrap", comment: "Command name for toggle word wrap"),
+                title: String(localized: "text-editing.command.word-wrap", defaultValue: "Toggle Word Wrap", comment: "Command title for toggle word wrap"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
