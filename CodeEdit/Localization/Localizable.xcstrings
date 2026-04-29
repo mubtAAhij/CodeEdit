@@ -11,6 +11,30 @@
             "state": "translated",
             "value": "Shell"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
         }
       }
     },
@@ -22,6 +46,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Use \"Option\" key as \"Meta\""
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \\\"Option\\\" key as \\\"Meta\\\""
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar tecla \\\"Option\\\" como \\\"Meta\\\""
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将\\\"Option\\\"键用作\\\"Meta\\\""
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser la touche \\\"Option\\\" comme \\\"Meta\\\""
           }
         }
       }
@@ -35,6 +83,30 @@
             "state": "translated",
             "value": "Use text editor font"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar fuente del editor de texto"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用文本编辑器字体"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser la police de l'éditeur de texte"
+          }
         }
       }
     },
@@ -46,6 +118,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Font Size"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño de fuente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体大小"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille de police"
           }
         }
       }
@@ -59,6 +155,30 @@
             "state": "translated",
             "value": "Terminal Cursor Style"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo del cursor de terminal"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "终端光标样式"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Style du curseur du terminal"
+          }
         }
       }
     },
@@ -70,6 +190,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Blink Cursor"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursor parpadeante"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "闪烁光标"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Curseur clignotant"
           }
         }
       }
@@ -95,6 +239,30 @@
             "state": "translated",
             "value": "Font"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Police"
+          }
         }
       }
     },
@@ -103,6 +271,30 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        },
+        "fr-FR": {
           "stringUnit": {
             "state": "translated",
             "value": "Shell"
@@ -119,6 +311,30 @@
             "state": "translated",
             "value": "System Default"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System Default"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Predeterminado del sistema"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统默认"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valeur système par défaut"
+          }
         }
       }
     },
@@ -127,6 +343,30 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zsh"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zsh"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zsh"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zsh"
+          }
+        },
+        "fr-FR": {
           "stringUnit": {
             "state": "translated",
             "value": "Zsh"
@@ -143,6 +383,30 @@
             "state": "translated",
             "value": "Bash"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bash"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bash"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bash"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bash"
+          }
         }
       }
     },
@@ -154,6 +418,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Terminal Cursor Style"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de cursor de terminal"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "终端光标样式"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Style du curseur du terminal"
           }
         }
       }
@@ -167,6 +455,30 @@
             "state": "translated",
             "value": "Block"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloque"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "阻止"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloc"
+          }
         }
       }
     },
@@ -178,6 +490,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Underline"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subrayado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下划线"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Souligner"
           }
         }
       }
@@ -191,6 +527,30 @@
             "state": "translated",
             "value": "Bar"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "栏"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barre"
+          }
         }
       }
     },
@@ -202,6 +562,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Blink Cursor"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parpadear cursor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "光标闪烁"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Curseur clignotant"
           }
         }
       }
@@ -215,6 +599,30 @@
             "state": "translated",
             "value": "Use \"Option\" key as \"Meta\""
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \\\"Option\\\" key as \\\"Meta\\\""
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar la tecla \\\"Option\\\" como \\\"Meta\\\""
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将 \\\"Option\\\" 键用作 \\\"Meta\\\""
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser la touche \\\"Option\\\" comme \\\"Meta\\\""
+          }
         }
       }
     },
@@ -226,6 +634,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Use text editor font"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar fuente del editor de texto"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用文本编辑器字体"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser la police de l'éditeur de texte"
           }
         }
       }
@@ -239,6 +671,30 @@
             "state": "translated",
             "value": "Font Size"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño de fuente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体大小"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille de police"
+          }
         }
       }
     },
@@ -250,6 +706,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Shell Integration"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell Integration"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integración con el Shell"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell 集成"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intégration shell"
           }
         }
       }
@@ -263,6 +743,30 @@
             "state": "translated",
             "value": "CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection."
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit admite la integración con shells comunes como Bash y Zsh. Esto habilita funciones como la detección de título de terminal."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit 支持与 Bash 和 Zsh 等常见 shell 集成。这将启用终端标题检测等功能。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit prend en charge l'intégration avec les shells courants tels que Bash et Zsh. Cela active des fonctionnalités comme la détection du titre du terminal."
+          }
         }
       }
     },
@@ -274,6 +778,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Warning: Disabling integration disables features such as terminal title detection."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning: Disabling integration disables features such as terminal title detection."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advertencia: Desactivar la integración desactiva funciones como la detección de títulos de terminal."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "警告：停用集成会禁用终端标题检测等功能。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attention : Désactiver l'intégration désactive des fonctionnalités telles que la détection du titre du terminal."
           }
         }
       }
@@ -287,6 +815,30 @@
             "state": "translated",
             "value": "Use Login Shell"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Login Shell"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Shell de Inicio de Sesión"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用登录 Shell"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser un shell de connexion"
+          }
         }
       }
     },
@@ -298,6 +850,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whether or not to use a login shell when starting a terminal session. By default, a login shell is used similar to Terminal.app."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indica si se debe usar un shell de inicio de sesión al iniciar una sesión de terminal. De forma predeterminada, se usa un shell de inicio de sesión de manera similar a Terminal.app."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动终端会话时是否使用登录 shell。默认情况下，会使用登录 shell，与 Terminal.app 类似。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilise ou non un shell de connexion au démarrage d'une session de terminal. Par défaut, un shell de connexion est utilisé, comme dans Terminal.app."
           }
         }
       }
