@@ -15,30 +15,30 @@ extension SettingsData {
 
         var searchKeys: [String] {
             var keys = [
-                "Prefer Indent Using",
-                "Tab Width",
-                "Wrap lines to editor width",
-                "Editor Overscroll",
-                "Font",
-                "Font Size",
-                "Font Weight",
-                "Line Height",
-                "Letter Spacing",
-                "Autocomplete braces",
-                "Enable type-over completion",
-                "Bracket Pair Emphasis",
-                "Bracket Pair Highlight",
-                "Show Gutter",
-                "Show Minimap",
-                "Reformat at Column",
-                "Show Reformatting Guide",
-                "Invisibles",
-                "Warning Characters"
+                String(localized: "settings.text-editing.search.prefer-indent-using", defaultValue: "Prefer Indent Using", comment: "Search key for indent type preference"),
+                String(localized: "settings.text-editing.search.tab-width", defaultValue: "Tab Width", comment: "Search key for tab width setting"),
+                String(localized: "settings.text-editing.search.wrap-lines", defaultValue: "Wrap lines to editor width", comment: "Search key for line wrapping setting"),
+                String(localized: "settings.text-editing.search.editor-overscroll", defaultValue: "Editor Overscroll", comment: "Search key for editor overscroll setting"),
+                String(localized: "settings.text-editing.search.font", defaultValue: "Font", comment: "Search key for font setting"),
+                String(localized: "settings.text-editing.search.font-size", defaultValue: "Font Size", comment: "Search key for font size setting"),
+                String(localized: "settings.text-editing.search.font-weight", defaultValue: "Font Weight", comment: "Search key for font weight setting"),
+                String(localized: "settings.text-editing.search.line-height", defaultValue: "Line Height", comment: "Search key for line height setting"),
+                String(localized: "settings.text-editing.search.letter-spacing", defaultValue: "Letter Spacing", comment: "Search key for letter spacing setting"),
+                String(localized: "settings.text-editing.search.autocomplete-braces", defaultValue: "Autocomplete braces", comment: "Search key for autocomplete braces setting"),
+                String(localized: "settings.text-editing.search.type-over-completion", defaultValue: "Enable type-over completion", comment: "Search key for type-over completion setting"),
+                String(localized: "settings.text-editing.search.bracket-pair-emphasis", defaultValue: "Bracket Pair Emphasis", comment: "Search key for bracket pair emphasis setting"),
+                String(localized: "settings.text-editing.search.bracket-pair-highlight", defaultValue: "Bracket Pair Highlight", comment: "Search key for bracket pair highlight setting"),
+                String(localized: "settings.text-editing.search.show-gutter", defaultValue: "Show Gutter", comment: "Search key for show gutter setting"),
+                String(localized: "settings.text-editing.search.show-minimap", defaultValue: "Show Minimap", comment: "Search key for show minimap setting"),
+                String(localized: "settings.text-editing.search.reformat-at-column", defaultValue: "Reformat at Column", comment: "Search key for reformat column setting"),
+                String(localized: "settings.text-editing.search.show-reformatting-guide", defaultValue: "Show Reformatting Guide", comment: "Search key for reformatting guide setting"),
+                String(localized: "settings.text-editing.search.invisibles", defaultValue: "Invisibles", comment: "Search key for invisible characters setting"),
+                String(localized: "settings.text-editing.search.warning-characters", defaultValue: "Warning Characters", comment: "Search key for warning characters setting")
             ]
             if #available(macOS 14.0, *) {
-                keys.append("System Cursor")
+                keys.append(String(localized: "settings.text-editing.search.system-cursor", defaultValue: "System Cursor", comment: "Search key for system cursor setting"))
             }
-            return keys.map { NSLocalizedString($0, comment: "") }
+            return keys
         }
 
         /// An integer indicating how many spaces a `tab` will appear as visually.
@@ -169,8 +169,8 @@ extension SettingsData {
             let mgr = CommandManager.shared
 
             mgr.addCommand(
-                name: "Toggle Type-Over Completion",
-                title: "Toggle Type-Over Completion",
+                name: String(localized: "toggle_type_over_completion", defaultValue: "Toggle Type-Over Completion", comment: "Command name for toggling type-over completion"),
+                title: String(localized: "toggle_type_over_completion", defaultValue: "Toggle Type-Over Completion", comment: "Command title for toggling type-over completion"),
                 id: "prefs.text_editing.type_over_completion",
                 command: {
                     Settings[\.textEditing].enableTypeOverCompletion.toggle()
@@ -178,8 +178,8 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Autocomplete Braces",
-                title: "Toggle Autocomplete Braces",
+                name: String(localized: "toggle_autocomplete_braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command name for toggling autocomplete braces"),
+                title: String(localized: "toggle_autocomplete_braces", defaultValue: "Toggle Autocomplete Braces", comment: "Command title for toggling autocomplete braces"),
                 id: "prefs.text_editing.autocomplete_braces",
                 command: {
                     Settings[\.textEditing].autocompleteBraces.toggle()
@@ -187,25 +187,25 @@ extension SettingsData {
             )
 
             mgr.addCommand(
-                name: "Toggle Word Wrap",
-                title: "Toggle Word Wrap",
+                name: String(localized: "toggle_word_wrap", defaultValue: "Toggle Word Wrap", comment: "Command name for toggling word wrap"),
+                title: String(localized: "toggle_word_wrap", defaultValue: "Toggle Word Wrap", comment: "Command title for toggling word wrap"),
                 id: "prefs.text_editing.wrap_lines_to_editor_width",
                 command: {
                     Settings[\.textEditing].wrapLinesToEditorWidth.toggle()
                 }
             )
 
-            mgr.addCommand(name: "Toggle Minimap", title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
+            mgr.addCommand(name: String(localized: "toggle_minimap", defaultValue: "Toggle Minimap", comment: "Command name for toggling minimap"), title: String(localized: "toggle_minimap", defaultValue: "Toggle Minimap", comment: "Command title for toggling minimap"), id: "prefs.text_editing.toggle_minimap") {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 
-            mgr.addCommand(name: "Toggle Gutter", title: "Toggle Gutter", id: "prefs.text_editing.toggle_gutter") {
+            mgr.addCommand(name: String(localized: "toggle_gutter", defaultValue: "Toggle Gutter", comment: "Command name for toggling gutter"), title: String(localized: "toggle_gutter", defaultValue: "Toggle Gutter", comment: "Command title for toggling gutter"), id: "prefs.text_editing.toggle_gutter") {
                 Settings[\.textEditing].showGutter.toggle()
             }
 
             mgr.addCommand(
-                name: "Toggle Folding Ribbon",
-                title: "Toggle Folding Ribbon",
+                name: String(localized: "toggle_folding_ribbon", defaultValue: "Toggle Folding Ribbon", comment: "Command name for toggling folding ribbon"),
+                title: String(localized: "toggle_folding_ribbon", defaultValue: "Toggle Folding Ribbon", comment: "Command title for toggling folding ribbon"),
                 id: "prefs.text_editing.toggle_folding_ribbon"
             ) {
                 Settings[\.textEditing].showFoldingRibbon.toggle()
@@ -283,23 +283,23 @@ extension SettingsData {
 
         struct WarningCharacters: Equatable, Hashable, Codable {
             static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
-                0x0003: "End of text",
+                0x0003: String(localized: "end_of_text", defaultValue: "End of text", comment: "Warning character description for end of text"),
 
-                0x00A0: "Non-breaking space",
-                0x202F: "Narrow non-breaking space",
-                0x200B: "Zero-width space",
-                0x200C: "Zero-width non-joiner",
-                0x2029: "Paragraph separator",
+                0x00A0: String(localized: "non_breaking_space", defaultValue: "Non-breaking space", comment: "Warning character description for non-breaking space"),
+                0x202F: String(localized: "narrow_non_breaking_space", defaultValue: "Narrow non-breaking space", comment: "Warning character description for narrow non-breaking space"),
+                0x200B: String(localized: "zero_width_space", defaultValue: "Zero-width space", comment: "Warning character description for zero-width space"),
+                0x200C: String(localized: "zero_width_non_joiner", defaultValue: "Zero-width non-joiner", comment: "Warning character description for zero-width non-joiner"),
+                0x2029: String(localized: "paragraph_separator", defaultValue: "Paragraph separator", comment: "Warning character description for paragraph separator"),
 
-                0x2013: "Em-dash",
-                0x00AD: "Soft hyphen",
+                0x2013: String(localized: "em_dash", defaultValue: "Em-dash", comment: "Warning character description for em-dash"),
+                0x00AD: String(localized: "soft_hyphen", defaultValue: "Soft hyphen", comment: "Warning character description for soft hyphen"),
 
-                0x2018: "Left single quote",
-                0x2019: "Right single quote",
-                0x201C: "Left double quote",
-                0x201D: "Right double quote",
+                0x2018: String(localized: "left_single_quote", defaultValue: "Left single quote", comment: "Warning character description for left single quote"),
+                0x2019: String(localized: "right_single_quote", defaultValue: "Right single quote", comment: "Warning character description for right single quote"),
+                0x201C: String(localized: "left_double_quote", defaultValue: "Left double quote", comment: "Warning character description for left double quote"),
+                0x201D: String(localized: "right_double_quote", defaultValue: "Right double quote", comment: "Warning character description for right double quote"),
 
-                0x037E: "Greek Question Mark"
+                0x037E: String(localized: "greek_question_mark", defaultValue: "Greek Question Mark", comment: "Warning character description for Greek question mark")
             ])
 
             var enabled: Bool
