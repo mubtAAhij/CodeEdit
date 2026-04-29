@@ -1,0 +1,306 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "settings.terminal.search-key.shell": {
+      "comment": "Terminal settings search key for shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        }
+      }
+    },
+    "settings.terminal.search-key.option-as-meta": {
+      "comment": "Terminal settings search key for option as meta",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \"Option\" key as \"Meta\""
+          }
+        }
+      }
+    },
+    "settings.terminal.search-key.use-editor-font": {
+      "comment": "Terminal settings search key for using text editor font",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        }
+      }
+    },
+    "settings.terminal.search-key.font-size": {
+      "comment": "Terminal settings search key for font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "settings.terminal.search-key.cursor-style": {
+      "comment": "Terminal settings search key for cursor style",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        }
+      }
+    },
+    "settings.terminal.search-key.blink-cursor": {
+      "comment": "Terminal settings search key for cursor blink",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        }
+      }
+    },
+    "settings.terminal.search-key.font": {
+      "comment": "Terminal settings search key for font",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "font": {
+      "comment": "Terminal font picker label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "settings.terminal.shell": {
+      "comment": "Terminal shell picker label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        }
+      }
+    },
+    "settings.terminal.shell.system-default": {
+      "comment": "System default shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System Default"
+          }
+        }
+      }
+    },
+    "settings.terminal.shell.zsh": {
+      "comment": "Zsh shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zsh"
+          }
+        }
+      }
+    },
+    "settings.terminal.shell.bash": {
+      "comment": "Bash shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bash"
+          }
+        }
+      }
+    },
+    "settings.terminal.cursor-style": {
+      "comment": "Terminal cursor style picker label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        }
+      }
+    },
+    "settings.terminal.cursor-style.block": {
+      "comment": "Block cursor style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block"
+          }
+        }
+      }
+    },
+    "settings.terminal.cursor-style.underline": {
+      "comment": "Underline cursor style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        }
+      }
+    },
+    "settings.terminal.cursor-style.bar": {
+      "comment": "Bar cursor style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bar"
+          }
+        }
+      }
+    },
+    "settings.terminal.blink-cursor": {
+      "comment": "Terminal cursor blink toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        }
+      }
+    },
+    "settings.terminal.option-as-meta": {
+      "comment": "Terminal option as meta toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \"Option\" key as \"Meta\""
+          }
+        }
+      }
+    },
+    "settings.terminal.use-text-editor-font": {
+      "comment": "Terminal use text editor font toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        }
+      }
+    },
+    "settings.terminal.font-size": {
+      "comment": "Terminal font size stepper label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "settings.terminal.shell-integration": {
+      "comment": "Terminal shell integration toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell Integration"
+          }
+        }
+      }
+    },
+    "settings.terminal.shell-integration.help": {
+      "comment": "Terminal shell integration help text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection."
+          }
+        }
+      }
+    },
+    "settings.terminal.shell-integration.warning": {
+      "comment": "Terminal shell integration disabled warning",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning: Disabling integration disables features such as terminal title detection."
+          }
+        }
+      }
+    },
+    "settings.terminal.use-login-shell": {
+      "comment": "Terminal use login shell toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Login Shell"
+          }
+        }
+      }
+    },
+    "settings.terminal.use-login-shell.help": {
+      "comment": "Terminal use login shell help text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app."
+          }
+        }
+      }
+    }
+  }
+}
