@@ -11,6 +11,30 @@
             "state": "translated",
             "value": "Show Spaces"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Spaces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar espacios"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示空格"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les espaces"
+          }
         }
       }
     },
@@ -35,6 +59,30 @@
             "state": "translated",
             "value": "Character used to render spaces"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render spaces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carácter utilizado para renderizar espacios"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于渲染空格的字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractère utilisé pour représenter les espaces"
+          }
         }
       }
     },
@@ -46,6 +94,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Tabs"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Tabs"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar tabulaciones"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示制表符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les tabulations"
           }
         }
       }
@@ -59,6 +131,30 @@
             "state": "translated",
             "value": "Character used to render tabs"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render tabs"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carácter usado para renderizar tabulaciones"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于渲染制表符的字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractère utilisé pour représenter les tabulations"
+          }
         }
       }
     },
@@ -70,6 +166,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Line Endings"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Line Endings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar finales de línea"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示行尾符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les fins de ligne"
           }
         }
       }
@@ -83,6 +203,30 @@
             "state": "translated",
             "value": "Character used to render line feeds (\n)"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render line feeds (\n)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carácter usado para renderizar avances de línea (\n)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于渲染换行符 (\n) 的字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractère utilisé pour représenter les sauts de ligne (\n)"
+          }
         }
       }
     },
@@ -94,6 +238,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Character used to render carriage returns (Microsoft-style line endings)"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render carriage returns (Microsoft-style line endings)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carácter usado para renderizar retornos de carro (finales de línea estilo Microsoft)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于渲染回车符的字符(Microsoft 风格的行尾)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractère utilisé pour représenter les retours chariot (fins de ligne de style Microsoft)"
           }
         }
       }
@@ -107,6 +275,30 @@
             "state": "translated",
             "value": "Character used to render paragraph separators"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render paragraph separators"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carácter usado para renderizar separadores de párrafo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于渲染段落分隔符的字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractère utilisé pour représenter les séparateurs de paragraphe"
+          }
         }
       }
     },
@@ -118,6 +310,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Default: %@"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Predeterminado: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par défaut : %@"
           }
         }
       }
@@ -131,6 +347,30 @@
             "state": "translated",
             "value": "Character used to render line separators"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render line separators"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carácter usado para renderizar separadores de línea"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于渲染行分隔符的字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractère utilisé pour représenter les séparateurs de ligne"
+          }
         }
       }
     },
@@ -142,6 +382,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invisible Characters"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invisible Characters"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caracteres invisibles"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不可见字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractères invisibles"
           }
         }
       }
@@ -155,6 +419,30 @@
             "state": "translated",
             "value": "Toggle whitespace symbols CodeEdit will render with replacement characters."
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle whitespace symbols CodeEdit will render with replacement characters."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternar símbolos de espacio en blanco que CodeEdit renderizará con caracteres de reemplazo."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换空白符号，CodeEdit 将使用替代字符进行渲染。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les symboles d'espacement que CodeEdit représentera avec des caractères de remplacement."
+          }
         }
       }
     },
@@ -166,6 +454,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Done"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
           }
         }
       }
@@ -179,6 +491,30 @@
             "state": "translated",
             "value": "Font"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Police"
+          }
         }
       }
     },
@@ -190,6 +526,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Font Size"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño de fuente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体大小"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille de police"
           }
         }
       }
@@ -203,6 +563,30 @@
             "state": "translated",
             "value": "Autocomplete braces"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocomplete braces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocompletar llaves"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动补全花括号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complétion automatique des accolades"
+          }
         }
       }
     },
@@ -214,6 +598,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatically insert closing braces (\"}\")"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically insert closing braces (\\\"}\\\")"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insertar automáticamente llaves de cierre (\\\"}\\\")"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动插入右花括号(\\\"}\\\")"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insérer automatiquement les accolades fermantes (\\\"}\\\")"
           }
         }
       }
@@ -227,6 +635,30 @@
             "state": "translated",
             "value": "Enable type-over completion"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable type-over completion"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habilitar completado con sobreescritura"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用覆盖式补全"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer la complétion par remplacement"
+          }
         }
       }
     },
@@ -238,6 +670,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Wrap lines to editor width"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap lines to editor width"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustar líneas al ancho del editor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按编辑器宽度换行"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renvoyer les lignes à la largeur de l'éditeur"
           }
         }
       }
@@ -251,6 +707,30 @@
             "state": "translated",
             "value": "Use System Cursor"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use System Cursor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar cursor del sistema"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用系统光标"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser le curseur système"
+          }
         }
       }
     },
@@ -262,6 +742,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Editor Overscroll"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor Overscroll"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overscroll del editor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑器过度滚动"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Défilement au-delà de l'éditeur"
           }
         }
       }
@@ -275,6 +779,30 @@
             "state": "translated",
             "value": "None"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguno"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun"
+          }
         }
       }
     },
@@ -286,6 +814,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Small"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Small"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pequeño"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petite"
           }
         }
       }
@@ -299,6 +851,30 @@
             "state": "translated",
             "value": "Medium"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medium"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mediano"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moyen"
+          }
         }
       }
     },
@@ -310,6 +886,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Large"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Large"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grande"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grand"
           }
         }
       }
@@ -323,6 +923,30 @@
             "state": "translated",
             "value": "Line Height"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Line Height"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura de Línea"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "行高"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hauteur de ligne"
+          }
         }
       }
     },
@@ -334,6 +958,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Prefer Indent Using"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer Indent Using"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferir sangría usando"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缩进方式"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Préférer l'indentation avec"
           }
         }
       }
@@ -347,6 +995,30 @@
             "state": "translated",
             "value": "Tabs"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabs"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabulaciones"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "制表符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabulations"
+          }
         }
       }
     },
@@ -358,6 +1030,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Spaces"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacios"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空格"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espaces"
           }
         }
       }
@@ -371,6 +1067,30 @@
             "state": "translated",
             "value": "Indent Width"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indent Width"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancho de sangría"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缩进宽度"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Largeur d'indentation"
+          }
         }
       }
     },
@@ -382,6 +1102,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "spaces"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "spaces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "espacios"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空格"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "espaces"
           }
         }
       }
@@ -395,6 +1139,30 @@
             "state": "translated",
             "value": "The number of spaces to insert when the tab key is pressed."
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The number of spaces to insert when the tab key is pressed."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El número de espacios a insertar cuando se presiona la tecla de tabulación."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按下制表符键时插入的空格数量。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le nombre d'espaces à insérer lorsque la touche de tabulation est pressée."
+          }
         }
       }
     },
@@ -406,6 +1174,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tab Width"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Width"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancho de tabulación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "制表符宽度"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Largeur de tabulation"
           }
         }
       }
@@ -419,6 +1211,30 @@
             "state": "translated",
             "value": "spaces"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "spaces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "espacios"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "空格"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "espaces"
+          }
         }
       }
     },
@@ -430,6 +1246,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "The visual width of tabs."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The visual width of tabs."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El ancho visual de las tabulaciones."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "制表符的视觉宽度。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La largeur visuelle des tabulations."
           }
         }
       }
@@ -443,6 +1283,30 @@
             "state": "translated",
             "value": "Letter Spacing"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letter Spacing"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espaciado entre letras"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字符间距"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacement des lettres"
+          }
         }
       }
     },
@@ -454,6 +1318,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bracket Pair Highlight"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resaltado de Pares de Corchetes"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "括号配对高亮"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mise en surbrillance des paires de délimiteurs"
           }
         }
       }
@@ -467,6 +1355,30 @@
             "state": "translated",
             "value": "Disabled"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disabled"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已停用"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivé"
+          }
         }
       }
     },
@@ -478,6 +1390,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bordered"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bordered"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con borde"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "带边框"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec bordure"
           }
         }
       }
@@ -491,6 +1427,30 @@
             "state": "translated",
             "value": "Flash"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flash"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Destello"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "闪烁"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clignotement"
+          }
         }
       }
     },
@@ -502,6 +1462,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Underline"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subrayado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下划线"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Souligné"
           }
         }
       }
@@ -515,6 +1499,30 @@
             "state": "translated",
             "value": "Use Custom Color"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Custom Color"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar color personalizado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用自定义颜色"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser une couleur personnalisée"
+          }
         }
       }
     },
@@ -526,6 +1534,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bracket Pair Highlight Color"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight Color"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color de Resaltado de Pares de Corchetes"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "括号配对高亮颜色"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couleur de mise en surbrillance des paires de délimiteurs"
           }
         }
       }
@@ -539,6 +1571,30 @@
             "state": "translated",
             "value": "Show Gutter"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Gutter"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Gutter"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示装订线"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la gouttière"
+          }
         }
       }
     },
@@ -550,6 +1606,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "The gutter displays line numbers and code folding regions."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The gutter displays line numbers and code folding regions."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El gutter muestra los números de línea y las regiones de plegado de código."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "装订线显示行号和代码折叠区域。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La gouttière affiche les numéros de ligne et les régions de repliement de code."
           }
         }
       }
@@ -563,6 +1643,30 @@
             "state": "translated",
             "value": "Show Minimap"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar minimapa"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示迷你地图"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la minimap"
+          }
         }
       }
     },
@@ -574,6 +1678,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "The minimap gives you a high-level summary of your source code, with controls to quickly navigate your document."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The minimap gives you a high-level summary of your source code, with controls to quickly navigate your document."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El minimapa proporciona un resumen general de tu código fuente, con controles para navegar rápidamente por tu documento."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小地图提供源代码的高层级概览，并提供控件以快速导航文档。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La minimap fournit un aperçu synthétique de votre code source, avec des commandes pour naviguer rapidement dans votre document."
           }
         }
       }
@@ -587,6 +1715,30 @@
             "state": "translated",
             "value": "Show Code Folding Ribbon"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Code Folding Ribbon"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar cinta de plegado de código"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示代码折叠区域"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher le ruban de repliement de code"
+          }
         }
       }
     },
@@ -598,6 +1750,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "The code folding ribbon lets you fold regions of code. When the gutter is disabled, the folding ribbon is disabled."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The code folding ribbon lets you fold regions of code. When the gutter is disabled, the folding ribbon is disabled."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La cinta de plegado de código te permite plegar regiones de código. Cuando el gutter está desactivado, la cinta de plegado está desactivada."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代码折叠功能区可让你折叠代码区域。当装订线停用时，折叠功能区也会停用。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le ruban de repliage de code permet de replier des régions de code. Lorsque la gouttière est désactivée, le ruban de repliage est désactivé."
           }
         }
       }
@@ -611,6 +1787,30 @@
             "state": "translated",
             "value": "Show Reformatting Guide"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Reformatting Guide"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar guía de reformateo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示重新格式化参考线"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher le guide de reformatage"
+          }
         }
       }
     },
@@ -622,6 +1822,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Shows a vertical guide at the reformat column."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows a vertical guide at the reformat column."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muestra una guía vertical en la columna de reformateo."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在重新格式化列处显示垂直参考线。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Affiche un guide vertical à la colonne de reformatage."
           }
         }
       }
@@ -635,6 +1859,30 @@
             "state": "translated",
             "value": "Reformat at Column"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformat at Column"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformatear en columna"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重排列数"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformater à la colonne"
+          }
         }
       }
     },
@@ -646,6 +1894,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "The column at which text should be reformatted."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The column at which text should be reformatted."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La columna en la cual el texto debe ser reformateado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新格式化文本的列位置。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La colonne à laquelle le texte doit être reformaté."
           }
         }
       }
@@ -659,6 +1931,30 @@
             "state": "translated",
             "value": "Prefer Indent Using"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer Indent Using"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferir sangría usando"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缩进方式"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Préférer l'indentation avec"
+          }
         }
       }
     },
@@ -670,6 +1966,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tab Width"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Width"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancho de tabulación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "制表符宽度"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Largeur de tabulation"
           }
         }
       }
@@ -683,6 +2003,30 @@
             "state": "translated",
             "value": "Wrap lines to editor width"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap lines to editor width"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustar líneas al ancho del editor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按编辑器宽度换行"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renvoyer les lignes à la largeur de l'éditeur"
+          }
         }
       }
     },
@@ -694,6 +2038,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Editor Overscroll"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor Overscroll"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overscroll del editor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑器过度滚动"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Défilement au-delà de l'éditeur"
           }
         }
       }
@@ -707,6 +2075,30 @@
             "state": "translated",
             "value": "Font Size"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño de fuente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体大小"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille de police"
+          }
         }
       }
     },
@@ -718,6 +2110,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Line Height"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Line Height"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altura de línea"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "行高"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hauteur de ligne"
           }
         }
       }
@@ -731,6 +2147,30 @@
             "state": "translated",
             "value": "Letter Spacing"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letter Spacing"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espaciado entre letras"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字符间距"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacement des lettres"
+          }
         }
       }
     },
@@ -742,6 +2182,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Autocomplete braces"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocomplete braces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocompletar llaves"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动补全花括号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complétion automatique des accolades"
           }
         }
       }
@@ -755,6 +2219,30 @@
             "state": "translated",
             "value": "Enable type-over completion"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable type-over completion"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habilitar completado con sobreescritura"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用覆盖式补全"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer la complétion par remplacement"
+          }
         }
       }
     },
@@ -766,6 +2254,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bracket Pair Highlight"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resaltado de Pares de Corchetes"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "括号配对高亮"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mise en surbrillance des paires de délimiteurs"
           }
         }
       }
@@ -779,6 +2291,30 @@
             "state": "translated",
             "value": "Show Gutter"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Gutter"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Gutter"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示装订线"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la gouttière"
+          }
         }
       }
     },
@@ -790,6 +2326,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Minimap"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar minimapa"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示迷你地图"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la minimap"
           }
         }
       }
@@ -803,6 +2363,30 @@
             "state": "translated",
             "value": "Reformat at Column"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformat at Column"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformatear en columna"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重排列数"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformater à la colonne"
+          }
         }
       }
     },
@@ -814,6 +2398,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Reformatting Guide"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Reformatting Guide"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar guía de reformateo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示重新格式化参考线"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher le guide de reformatage"
           }
         }
       }
@@ -827,6 +2435,30 @@
             "state": "translated",
             "value": "Warning Characters"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning Characters"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caracteres de advertencia"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "警告字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caractères d'avertissement"
+          }
         }
       }
     },
@@ -838,6 +2470,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toggle Type-Over Completion"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Type-Over Completion"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternar completado con sobreescritura"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换覆盖式补全"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer la complétion par remplacement"
           }
         }
       }
@@ -851,6 +2507,30 @@
             "state": "translated",
             "value": "Toggle Autocomplete Braces"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Autocomplete Braces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternar autocompletar llaves"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换自动补全花括号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la complétion automatique des accolades"
+          }
         }
       }
     },
@@ -862,6 +2542,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toggle Word Wrap"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Word Wrap"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternar ajuste de línea"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换自动换行"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer/désactiver le renvoi à la ligne"
           }
         }
       }
@@ -875,6 +2579,30 @@
             "state": "translated",
             "value": "Toggle Minimap"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Minimap"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternar minimapa"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换小地图"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la minimap"
+          }
         }
       }
     },
@@ -886,6 +2614,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toggle Gutter"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Gutter"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternar Gutter"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换装订线"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher la gouttière"
           }
         }
       }
@@ -899,6 +2651,30 @@
             "state": "translated",
             "value": "Toggle Folding Ribbon"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Folding Ribbon"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternar cinta de plegado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换折叠功能区"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher le ruban de repliement"
+          }
         }
       }
     },
@@ -910,6 +2686,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "End of text"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End of text"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin del texto"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文本末尾"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin du texte"
           }
         }
       }
@@ -923,6 +2723,30 @@
             "state": "translated",
             "value": "Non-breaking space"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-breaking space"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacio de no separación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不间断空格"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espace insécable"
+          }
         }
       }
     },
@@ -934,6 +2758,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Narrow non-breaking space"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Narrow non-breaking space"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacio estrecho sin separación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "窄型不间断空格"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espace fine insécable"
           }
         }
       }
@@ -947,6 +2795,30 @@
             "state": "translated",
             "value": "Zero-width space"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero-width space"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacio de ancho cero"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "零宽空格"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espace sans largeur"
+          }
         }
       }
     },
@@ -958,6 +2830,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Zero-width non-joiner"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero-width non-joiner"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antiunión de ancho cero"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "零宽非连字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antiliant de largeur nulle"
           }
         }
       }
@@ -971,6 +2867,30 @@
             "state": "translated",
             "value": "Paragraph separator"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph separator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Separador de párrafo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "段落分隔符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Séparateur de paragraphe"
+          }
         }
       }
     },
@@ -982,6 +2902,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Em-dash"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em-dash"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guion largo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "长破折号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiret cadratin"
           }
         }
       }
@@ -995,6 +2939,30 @@
             "state": "translated",
             "value": "Soft hyphen"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soft hyphen"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guion suave"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "软连字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trait d'union conditionnel"
+          }
         }
       }
     },
@@ -1006,6 +2974,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Left single quote"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left single quote"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comilla simple izquierda"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "左单引号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guillemet simple gauche"
           }
         }
       }
@@ -1019,6 +3011,30 @@
             "state": "translated",
             "value": "Right single quote"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right single quote"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comilla simple derecha"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "右单引号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guillemet simple droit"
+          }
         }
       }
     },
@@ -1030,6 +3046,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Left double quote"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left double quote"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comilla doble izquierda"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "左双引号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guillemet double gauche"
           }
         }
       }
@@ -1043,6 +3083,30 @@
             "state": "translated",
             "value": "Right double quote"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right double quote"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comilla doble derecha"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "右双引号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guillemet double droit"
+          }
         }
       }
     },
@@ -1054,6 +3118,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Greek Question Mark"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Greek Question Mark"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signo de interrogación griego"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "希腊问号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Point d'interrogation grec"
           }
         }
       }
@@ -1127,6 +3215,30 @@
             "state": "translated",
             "value": "Show Invisible Characters"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Invisible Characters"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar caracteres invisibles"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示不可见字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les caractères invisibles"
+          }
         }
       }
     },
@@ -1138,6 +3250,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Configure..."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configurar..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配置..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configurer..."
           }
         }
       }
@@ -1151,6 +3287,30 @@
             "state": "translated",
             "value": "Show Warning Characters"
           }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Warning Characters"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar caracteres de advertencia"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示警告字符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les caractères d'avertissement"
+          }
         }
       }
     },
@@ -1162,6 +3322,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Configure..."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configurar..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配置..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configurer..."
           }
         }
       }
