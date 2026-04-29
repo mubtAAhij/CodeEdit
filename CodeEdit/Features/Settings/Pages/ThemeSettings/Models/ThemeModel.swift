@@ -35,12 +35,12 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Themes` folder
     internal var themesURL: URL {
-        baseURL.appending(path: "Themes", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme-settings.folders.themes", defaultValue: "Themes", comment: "Name of Themes folder"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme-settings.folders.extensions", defaultValue: "Extensions", comment: "Name of Extensions folder"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -57,7 +57,7 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? "Broken"
+                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? String(localized: "theme-settings.broken", defaultValue: "Broken", comment: "Fallback theme name when theme is missing")
             }
         }
     }
@@ -68,7 +68,7 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? "Broken"
+                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? String(localized: "theme-settings.broken", defaultValue: "Broken", comment: "Fallback theme name when theme is missing")
             }
         }
     }
@@ -134,8 +134,17 @@ final class ThemeModel: ObservableObject {
     }
 
     enum ThemeSettingsAppearances: String, CaseIterable {
-        case light = "Light Appearance"
-        case dark = "Dark Appearance"
+        case light
+        case dark
+
+        var displayName: String {
+            switch self {
+            case .light:
+                return String(localized: "theme-settings.appearance.light", defaultValue: "Light Appearance", comment: "Light appearance theme option")
+            case .dark:
+                return String(localized: "theme-settings.appearance.dark", defaultValue: "Dark Appearance", comment: "Dark appearance theme option")
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +173,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "theme-settings.export", defaultValue: "Export", comment: "Prompt for export theme dialog")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +190,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "theme-settings.export", defaultValue: "Export", comment: "Prompt for export theme dialog")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false
