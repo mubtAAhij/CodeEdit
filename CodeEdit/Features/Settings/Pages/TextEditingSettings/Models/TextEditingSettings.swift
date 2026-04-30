@@ -15,30 +15,30 @@ extension SettingsData {
 
         var searchKeys: [String] {
             var keys = [
-                "Prefer Indent Using",
-                "Tab Width",
-                "Wrap lines to editor width",
-                "Editor Overscroll",
-                "Font",
-                "Font Size",
-                "Font Weight",
-                "Line Height",
-                "Letter Spacing",
-                "Autocomplete braces",
-                "Enable type-over completion",
-                "Bracket Pair Emphasis",
-                "Bracket Pair Highlight",
-                "Show Gutter",
-                "Show Minimap",
-                "Reformat at Column",
-                "Show Reformatting Guide",
-                "Invisibles",
-                "Warning Characters"
+                String(localized: "settings.text-editing.search-key.prefer-indent-using", defaultValue: "Prefer Indent Using", comment: "Text editing settings search key for indent preference"),
+                String(localized: "settings.text-editing.search-key.tab-width", defaultValue: "Tab Width", comment: "Text editing settings search key for tab width"),
+                String(localized: "settings.text-editing.search-key.wrap-lines", defaultValue: "Wrap lines to editor width", comment: "Text editing settings search key for line wrapping"),
+                String(localized: "settings.text-editing.search-key.editor-overscroll", defaultValue: "Editor Overscroll", comment: "Text editing settings search key for editor overscroll"),
+                String(localized: "settings.text-editing.search-key.font", defaultValue: "Font", comment: "Text editing settings search key for font"),
+                String(localized: "settings.text-editing.search-key.font-size", defaultValue: "Font Size", comment: "Text editing settings search key for font size"),
+                String(localized: "settings.text-editing.search-key.font-weight", defaultValue: "Font Weight", comment: "Text editing settings search key for font weight"),
+                String(localized: "settings.text-editing.search-key.line-height", defaultValue: "Line Height", comment: "Text editing settings search key for line height"),
+                String(localized: "settings.text-editing.search-key.letter-spacing", defaultValue: "Letter Spacing", comment: "Text editing settings search key for letter spacing"),
+                String(localized: "settings.text-editing.search-key.autocomplete-braces", defaultValue: "Autocomplete braces", comment: "Text editing settings search key for autocomplete braces"),
+                String(localized: "settings.text-editing.search-key.type-over-completion", defaultValue: "Enable type-over completion", comment: "Text editing settings search key for type-over completion"),
+                String(localized: "settings.text-editing.search-key.bracket-pair-emphasis", defaultValue: "Bracket Pair Emphasis", comment: "Text editing settings search key for bracket pair emphasis"),
+                String(localized: "settings.text-editing.search-key.bracket-pair-highlight", defaultValue: "Bracket Pair Highlight", comment: "Text editing settings search key for bracket pair highlight"),
+                String(localized: "settings.text-editing.search-key.show-gutter", defaultValue: "Show Gutter", comment: "Text editing settings search key for gutter visibility"),
+                String(localized: "settings.text-editing.search-key.show-minimap", defaultValue: "Show Minimap", comment: "Text editing settings search key for minimap visibility"),
+                String(localized: "settings.text-editing.search-key.reformat-at-column", defaultValue: "Reformat at Column", comment: "Text editing settings search key for reformat column"),
+                String(localized: "settings.text-editing.search-key.show-reformatting-guide", defaultValue: "Show Reformatting Guide", comment: "Text editing settings search key for reformatting guide"),
+                String(localized: "settings.text-editing.search-key.invisibles", defaultValue: "Invisibles", comment: "Text editing settings search key for invisible characters"),
+                String(localized: "settings.text-editing.search-key.warning-characters", defaultValue: "Warning Characters", comment: "Text editing settings search key for warning characters")
             ]
             if #available(macOS 14.0, *) {
-                keys.append("System Cursor")
+                keys.append(String(localized: "settings.text-editing.search-key.system-cursor", defaultValue: "System Cursor", comment: "Text editing settings search key for system cursor"))
             }
-            return keys.map { NSLocalizedString($0, comment: "") }
+            return keys
         }
 
         /// An integer indicating how many spaces a `tab` will appear as visually.
@@ -283,23 +283,23 @@ extension SettingsData {
 
         struct WarningCharacters: Equatable, Hashable, Codable {
             static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
-                0x0003: "End of text",
+                0x0003: String(localized: "settings.text-editing.warning-character.end-of-text", defaultValue: "End of text", comment: "Warning character description for end of text"),
 
-                0x00A0: "Non-breaking space",
-                0x202F: "Narrow non-breaking space",
-                0x200B: "Zero-width space",
-                0x200C: "Zero-width non-joiner",
-                0x2029: "Paragraph separator",
+                0x00A0: String(localized: "settings.text-editing.warning-character.non-breaking-space", defaultValue: "Non-breaking space", comment: "Warning character description for non-breaking space"),
+                0x202F: String(localized: "settings.text-editing.warning-character.narrow-non-breaking-space", defaultValue: "Narrow non-breaking space", comment: "Warning character description for narrow non-breaking space"),
+                0x200B: String(localized: "settings.text-editing.warning-character.zero-width-space", defaultValue: "Zero-width space", comment: "Warning character description for zero-width space"),
+                0x200C: String(localized: "settings.text-editing.warning-character.zero-width-non-joiner", defaultValue: "Zero-width non-joiner", comment: "Warning character description for zero-width non-joiner"),
+                0x2029: String(localized: "settings.text-editing.warning-character.paragraph-separator", defaultValue: "Paragraph separator", comment: "Warning character description for paragraph separator"),
 
-                0x2013: "Em-dash",
-                0x00AD: "Soft hyphen",
+                0x2013: String(localized: "settings.text-editing.warning-character.em-dash", defaultValue: "Em-dash", comment: "Warning character description for em-dash"),
+                0x00AD: String(localized: "settings.text-editing.warning-character.soft-hyphen", defaultValue: "Soft hyphen", comment: "Warning character description for soft hyphen"),
 
-                0x2018: "Left single quote",
-                0x2019: "Right single quote",
-                0x201C: "Left double quote",
-                0x201D: "Right double quote",
+                0x2018: String(localized: "settings.text-editing.warning-character.left-single-quote", defaultValue: "Left single quote", comment: "Warning character description for left single quote"),
+                0x2019: String(localized: "settings.text-editing.warning-character.right-single-quote", defaultValue: "Right single quote", comment: "Warning character description for right single quote"),
+                0x201C: String(localized: "settings.text-editing.warning-character.left-double-quote", defaultValue: "Left double quote", comment: "Warning character description for left double quote"),
+                0x201D: String(localized: "settings.text-editing.warning-character.right-double-quote", defaultValue: "Right double quote", comment: "Warning character description for right double quote"),
 
-                0x037E: "Greek Question Mark"
+                0x037E: String(localized: "settings.text-editing.warning-character.greek-question-mark", defaultValue: "Greek Question Mark", comment: "Warning character description for Greek question mark")
             ])
 
             var enabled: Bool
