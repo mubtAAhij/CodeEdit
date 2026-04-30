@@ -1,0 +1,1374 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "terminal.search.shell": {
+      "comment": "Terminal search key for shell settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        }
+      }
+    },
+    "terminal.search.option-as-meta": {
+      "comment": "Terminal search key for Option key as Meta setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \"Option\" key as \"Meta\""
+          }
+        }
+      }
+    },
+    "terminal.search.use-editor-font": {
+      "comment": "Terminal search key for using text editor font",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        }
+      }
+    },
+    "terminal.font.label": {
+      "comment": "Label for font picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "terminal.search.font-size": {
+      "comment": "Terminal search key for font size settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "terminal.search.cursor-style": {
+      "comment": "Terminal search key for cursor style settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        }
+      }
+    },
+    "terminal.search.blink-cursor": {
+      "comment": "Terminal search key for cursor blink setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.show-spaces": {
+      "comment": "Toggle label for showing space characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Spaces"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.default-format": {
+      "comment": "Default value format for invisible character replacement",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default: %@"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.space-character-description": {
+      "comment": "Description for space replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render spaces"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.show-tabs": {
+      "comment": "Toggle label for showing tab characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Tabs"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.tab-character-description": {
+      "comment": "Description for tab replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render tabs"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.show-line-endings": {
+      "comment": "Toggle label for showing line ending characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Line Endings"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.line-feed-description": {
+      "comment": "Description for line feed replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render line feeds (\n)"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.carriage-return-description": {
+      "comment": "Description for carriage return replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render carriage returns (Microsoft-style line endings)"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.paragraph-separator-description": {
+      "comment": "Description for paragraph separator replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render paragraph separators"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.line-separator-description": {
+      "comment": "Description for line separator replacement character field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character used to render line separators"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.section-title": {
+      "comment": "Section title for invisible characters settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invisible Characters"
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.section-description": {
+      "comment": "Section description for invisible characters settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle whitespace symbols CodeEdit will render with replacement characters."
+          }
+        }
+      }
+    },
+    "text-editing.invisibles.done": {
+      "comment": "Done button to dismiss invisible characters settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "terminal.shell.label": {
+      "comment": "Label for shell selector",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell"
+          }
+        }
+      }
+    },
+    "terminal.shell.system-default": {
+      "comment": "System default shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System Default"
+          }
+        }
+      }
+    },
+    "terminal.shell.zsh": {
+      "comment": "Zsh shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zsh"
+          }
+        }
+      }
+    },
+    "terminal.shell.bash": {
+      "comment": "Bash shell option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bash"
+          }
+        }
+      }
+    },
+    "terminal.cursor-style.label": {
+      "comment": "Label for terminal cursor style picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Cursor Style"
+          }
+        }
+      }
+    },
+    "terminal.cursor-style.block": {
+      "comment": "Block cursor style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block"
+          }
+        }
+      }
+    },
+    "terminal.cursor-style.underline": {
+      "comment": "Underline cursor style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        }
+      }
+    },
+    "terminal.cursor-style.bar": {
+      "comment": "Bar cursor style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bar"
+          }
+        }
+      }
+    },
+    "terminal.cursor-blink.label": {
+      "comment": "Toggle label for cursor blinking",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blink Cursor"
+          }
+        }
+      }
+    },
+    "terminal.option-as-meta.label": {
+      "comment": "Toggle label for using Option key as Meta",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use \"Option\" key as \"Meta\""
+          }
+        }
+      }
+    },
+    "terminal.use-editor-font.label": {
+      "comment": "Toggle label for using text editor font",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use text editor font"
+          }
+        }
+      }
+    },
+    "terminal.font-size.label": {
+      "comment": "Label for font size stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "terminal.shell-integration.label": {
+      "comment": "Toggle label for shell integration",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shell Integration"
+          }
+        }
+      }
+    },
+    "terminal.shell-integration.help": {
+      "comment": "Help text for shell integration toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection."
+          }
+        }
+      }
+    },
+    "terminal.shell-integration.warning": {
+      "comment": "Warning message when shell integration is disabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning: Disabling integration disables features such as terminal title detection."
+          }
+        }
+      }
+    },
+    "terminal.login-shell.label": {
+      "comment": "Toggle label for using login shell",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Login Shell"
+          }
+        }
+      }
+    },
+    "terminal.login-shell.help": {
+      "comment": "Help text for login shell toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app."
+          }
+        }
+      }
+    },
+    "text-editing.font": {
+      "comment": "Label for font picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "text-editing.font-size": {
+      "comment": "Label for font size stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "text-editing.autocomplete-braces": {
+      "comment": "Toggle label for autocomplete braces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocomplete braces"
+          }
+        }
+      }
+    },
+    "text-editing.autocomplete-braces-description": {
+      "comment": "Description for autocomplete braces toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically insert closing braces (\"}\")"
+          }
+        }
+      }
+    },
+    "text-editing.type-over-completion": {
+      "comment": "Toggle label for type-over completion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable type-over completion"
+          }
+        }
+      }
+    },
+    "text-editing.wrap-lines": {
+      "comment": "Toggle label for wrapping lines to editor width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap lines to editor width"
+          }
+        }
+      }
+    },
+    "text-editing.use-system-cursor": {
+      "comment": "Toggle label for using system cursor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use System Cursor"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll": {
+      "comment": "Label for editor overscroll picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor Overscroll"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.none": {
+      "comment": "No overscroll option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.small": {
+      "comment": "Small overscroll option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Small"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.medium": {
+      "comment": "Medium overscroll option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medium"
+          }
+        }
+      }
+    },
+    "text-editing.overscroll.large": {
+      "comment": "Large overscroll option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Large"
+          }
+        }
+      }
+    },
+    "text-editing.line-height": {
+      "comment": "Label for line height stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Line Height"
+          }
+        }
+      }
+    },
+    "text-editing.indent-using": {
+      "comment": "Label for indent type picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer Indent Using"
+          }
+        }
+      }
+    },
+    "text-editing.indent-using.tabs": {
+      "comment": "Tabs indent option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabs"
+          }
+        }
+      }
+    },
+    "text-editing.indent-using.spaces": {
+      "comment": "Spaces indent option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaces"
+          }
+        }
+      }
+    },
+    "text-editing.indent-width": {
+      "comment": "Label for indent width stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indent Width"
+          }
+        }
+      }
+    },
+    "text-editing.indent-width.spaces-label": {
+      "comment": "Unit label for indent width in spaces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "spaces"
+          }
+        }
+      }
+    },
+    "text-editing.indent-width.help": {
+      "comment": "Help text for indent width setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The number of spaces to insert when the tab key is pressed."
+          }
+        }
+      }
+    },
+    "text-editing.tab-width": {
+      "comment": "Label for tab width stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Width"
+          }
+        }
+      }
+    },
+    "text-editing.tab-width.spaces-label": {
+      "comment": "Unit label for tab width in spaces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "spaces"
+          }
+        }
+      }
+    },
+    "text-editing.tab-width.help": {
+      "comment": "Help text for tab width setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The visual width of tabs."
+          }
+        }
+      }
+    },
+    "text-editing.letter-spacing": {
+      "comment": "Label for letter spacing stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letter Spacing"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight": {
+      "comment": "Label for bracket pair highlight picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.disabled": {
+      "comment": "Disabled bracket highlight option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disabled"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.bordered": {
+      "comment": "Bordered bracket highlight option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bordered"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.flash": {
+      "comment": "Flash bracket highlight option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flash"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.underline": {
+      "comment": "Underline bracket highlight option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.use-custom-color": {
+      "comment": "Toggle label for using custom bracket highlight color",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Custom Color"
+          }
+        }
+      }
+    },
+    "text-editing.bracket-highlight.color": {
+      "comment": "Label for bracket pair highlight color picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight Color"
+          }
+        }
+      }
+    },
+    "text-editing.show-gutter": {
+      "comment": "Toggle label for showing gutter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Gutter"
+          }
+        }
+      }
+    },
+    "text-editing.show-gutter.help": {
+      "comment": "Help text for show gutter toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The gutter displays line numbers and code folding regions."
+          }
+        }
+      }
+    },
+    "text-editing.show-minimap": {
+      "comment": "Toggle label for showing minimap",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        }
+      }
+    },
+    "text-editing.show-minimap.help": {
+      "comment": "Help text for show minimap toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The minimap gives you a high-level summary of your source code, with controls to quickly navigate your document."
+          }
+        }
+      }
+    },
+    "text-editing.show-folding-ribbon": {
+      "comment": "Toggle label for showing code folding ribbon",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Code Folding Ribbon"
+          }
+        }
+      }
+    },
+    "text-editing.show-folding-ribbon.help": {
+      "comment": "Help text for show code folding ribbon toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The code folding ribbon lets you fold regions of code. When the gutter is disabled, the folding ribbon is disabled."
+          }
+        }
+      }
+    },
+    "text-editing.show-reformatting-guide": {
+      "comment": "Toggle label for showing reformatting guide",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Reformatting Guide"
+          }
+        }
+      }
+    },
+    "text-editing.show-reformatting-guide.help": {
+      "comment": "Help text for show reformatting guide toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows a vertical guide at the reformat column."
+          }
+        }
+      }
+    },
+    "text-editing.reformat-at-column": {
+      "comment": "Label for reformat at column stepper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformat at Column"
+          }
+        }
+      }
+    },
+    "text-editing.reformat-at-column.help": {
+      "comment": "Help text for reformat at column setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The column at which text should be reformatted."
+          }
+        }
+      }
+    },
+    "text-editing.search.indent-using": {
+      "comment": "Text editing search key for indent using",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prefer Indent Using"
+          }
+        }
+      }
+    },
+    "text-editing.search.tab-width": {
+      "comment": "Text editing search key for tab width",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Width"
+          }
+        }
+      }
+    },
+    "text-editing.search.wrap-lines": {
+      "comment": "Text editing search key for wrap lines",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap lines to editor width"
+          }
+        }
+      }
+    },
+    "text-editing.search.overscroll": {
+      "comment": "Text editing search key for overscroll",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor Overscroll"
+          }
+        }
+      }
+    },
+    "text-editing.search.font-size": {
+      "comment": "Text editing search key for font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "text-editing.search.line-height": {
+      "comment": "Text editing search key for line height",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Line Height"
+          }
+        }
+      }
+    },
+    "text-editing.search.letter-spacing": {
+      "comment": "Text editing search key for letter spacing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letter Spacing"
+          }
+        }
+      }
+    },
+    "text-editing.search.autocomplete-braces": {
+      "comment": "Text editing search key for autocomplete braces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autocomplete braces"
+          }
+        }
+      }
+    },
+    "text-editing.search.type-over-completion": {
+      "comment": "Text editing search key for type-over completion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable type-over completion"
+          }
+        }
+      }
+    },
+    "text-editing.search.bracket-highlight": {
+      "comment": "Text editing search key for bracket pair highlight",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bracket Pair Highlight"
+          }
+        }
+      }
+    },
+    "text-editing.search.show-gutter": {
+      "comment": "Text editing search key for show gutter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Gutter"
+          }
+        }
+      }
+    },
+    "text-editing.search.show-minimap": {
+      "comment": "Text editing search key for show minimap",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        }
+      }
+    },
+    "text-editing.search.reformat-at-column": {
+      "comment": "Text editing search key for reformat at column",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reformat at Column"
+          }
+        }
+      }
+    },
+    "text-editing.search.show-reformatting-guide": {
+      "comment": "Text editing search key for show reformatting guide",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Reformatting Guide"
+          }
+        }
+      }
+    },
+    "text-editing.search.warning-characters": {
+      "comment": "Text editing search key for warning characters",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning Characters"
+          }
+        }
+      }
+    },
+    "text-editing.command.toggle-type-over-completion": {
+      "comment": "Command title for toggling type-over completion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Type-Over Completion"
+          }
+        }
+      }
+    },
+    "text-editing.command.toggle-autocomplete-braces": {
+      "comment": "Command title for toggling autocomplete braces",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Autocomplete Braces"
+          }
+        }
+      }
+    },
+    "text-editing.command.toggle-word-wrap": {
+      "comment": "Command title for toggling word wrap",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Word Wrap"
+          }
+        }
+      }
+    },
+    "text-editing.command.toggle-minimap": {
+      "comment": "Command title for toggling minimap",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Minimap"
+          }
+        }
+      }
+    },
+    "text-editing.command.toggle-gutter": {
+      "comment": "Command title for toggling gutter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Gutter"
+          }
+        }
+      }
+    },
+    "text-editing.command.toggle-folding-ribbon": {
+      "comment": "Command title for toggling folding ribbon",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle Folding Ribbon"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.end-of-text": {
+      "comment": "Warning character description for end of text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End of text"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.non-breaking-space": {
+      "comment": "Warning character description for non-breaking space",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non-breaking space"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.narrow-non-breaking-space": {
+      "comment": "Warning character description for narrow non-breaking space",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Narrow non-breaking space"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.zero-width-space": {
+      "comment": "Warning character description for zero-width space",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero-width space"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.zero-width-non-joiner": {
+      "comment": "Warning character description for zero-width non-joiner",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero-width non-joiner"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.paragraph-separator": {
+      "comment": "Warning character description for paragraph separator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph separator"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.em-dash": {
+      "comment": "Warning character description for em-dash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em-dash"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.soft-hyphen": {
+      "comment": "Warning character description for soft hyphen",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soft hyphen"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.left-single-quote": {
+      "comment": "Warning character description for left single quote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left single quote"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.right-single-quote": {
+      "comment": "Warning character description for right single quote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right single quote"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.left-double-quote": {
+      "comment": "Warning character description for left double quote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left double quote"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.right-double-quote": {
+      "comment": "Warning character description for right double quote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right double quote"
+          }
+        }
+      }
+    },
+    "text-editing.warning-char.greek-question-mark": {
+      "comment": "Warning character description for Greek question mark",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Greek Question Mark"
+          }
+        }
+      }
+    },
+    "text-editing.show-invisible-characters": {
+      "comment": "Label for show invisible characters toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Invisible Characters"
+          }
+        }
+      }
+    },
+    "text-editing.configure-button": {
+      "comment": "Button label to configure settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configure..."
+          }
+        }
+      }
+    },
+    "text-editing.show-warning-characters": {
+      "comment": "Label for show warning characters toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Warning Characters"
+          }
+        }
+      }
+    }
+  }
+}
