@@ -16,15 +16,14 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Shell",
-                "Use \"Option\" key as \"Meta\"",
-                "Use text editor font",
-                "Font",
-                "Font Size",
-                "Terminal Cursor Style",
-                "Blink Cursor"
+                String(localized: "settings.terminal.search-key.shell", defaultValue: "Shell", comment: "Terminal settings search key for shell option"),
+                String(localized: "settings.terminal.search-key.option-as-meta", defaultValue: "Use \"Option\" key as \"Meta\"", comment: "Terminal settings search key for Option as Meta option"),
+                String(localized: "settings.terminal.search-key.use-editor-font", defaultValue: "Use text editor font", comment: "Terminal settings search key for using editor font"),
+                String(localized: "settings.terminal.search-key.font", defaultValue: "Font", comment: "Terminal settings search key for font option"),
+                String(localized: "settings.terminal.search-key.font-size", defaultValue: "Font Size", comment: "Terminal settings search key for font size option"),
+                String(localized: "settings.terminal.search-key.cursor-style", defaultValue: "Terminal Cursor Style", comment: "Terminal settings search key for cursor style option"),
+                String(localized: "settings.terminal.search-key.blink-cursor", defaultValue: "Blink Cursor", comment: "Terminal settings search key for cursor blinking option")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// If true terminal will use editor theme.
@@ -102,7 +101,7 @@ extension SettingsData {
         var size: Double = 12
 
         /// The name of the custom font
-        var name: String = "SF Mono"
+        var name: String = String(localized: "settings.terminal.font.default-name", defaultValue: "SF Mono", comment: "Default terminal font name")
 
         /// The weight of the custom font
         var weight: NSFont.Weight = .medium
