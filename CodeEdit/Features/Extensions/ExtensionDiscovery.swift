@@ -16,10 +16,10 @@ final class ExtensionDiscovery: ObservableObject {
     static var shared = ExtensionDiscovery()
 
     /// Endpoint used by extensions.
-    static var endPointIdentifier = "codeedit.extension"
+    static var endPointIdentifier = String(localized: "extension.discovery.endpoint.identifier", defaultValue: "codeedit.extension", comment: "Extension endpoint identifier for CodeEdit extensions")
 
     private static var dbURL = URL.libraryDirectory
-        .appending(path: "Preferences/com.apple.LaunchServices/com.apple.LaunchServices.SettingsStore.sql")
+        .appending(path: String(localized: "extension.discovery.db.path", defaultValue: "Preferences/com.apple.LaunchServices/com.apple.LaunchServices.SettingsStore.sql", comment: "System path to LaunchServices settings database"))
 
     /// Publishes a list of extension endpoints approved by the user.
     /// These endpoints can be used to create new extension processes with XPC.
@@ -47,7 +47,7 @@ final class ExtensionDiscovery: ObservableObject {
                     await self?.updateExtensions(endpoints: endpoints, shouldRestartExisting: true)
                 }
             } catch {
-                print("Error while searching for extensions: \(error.localizedDescription)")
+                print(String(format: String(localized: "extension.discovery.search.error", defaultValue: "Error while searching for extensions: %@", comment: "Error message when extension discovery fails"), error.localizedDescription))
             }
         }
     }
@@ -64,7 +64,7 @@ final class ExtensionDiscovery: ObservableObject {
         if shouldRestartExisting {
             self.extensions.filter(\.isDebug)
                 .forEach {
-                    print("Restarting \($0.name)...")
+                    print(String(format: String(localized: "extension.discovery.restarting", defaultValue: "Restarting %@...", comment: "Debug message when restarting an extension"), $0.name))
                     $0.restart()
                 }
         }
@@ -79,14 +79,14 @@ final class ExtensionDiscovery: ObservableObject {
                 guard !Task.isCancelled && self != nil else { return }
                 do {
                     if availability.disabledCount > 0 {
-                        print("Found \(availability.disabledCount) disabled extensions, trying to activate...")
+                        print(String(format: String(localized: "extension.discovery.disabled.found", defaultValue: "Found %d disabled extensions, trying to activate...", comment: "Debug message when disabled extensions are found"), availability.disabledCount))
                         try await self?.activateDisabledExtensions()
                     }
 
                     if availability.unapprovedCount > 0 {
-                        print("Found \(availability.disabledCount) unapproved extensions, trying to activate...")
+                        print(String(format: String(localized: "extension.discovery.unapproved.found", defaultValue: "Found %d unapproved extensions, trying to activate...", comment: "Debug message when unapproved extensions are found"), availability.disabledCount))
 
-                        let identifiers = [("com.tweety.TestCodeEdit.AutoActivatedExtension", "2MMGJGVTB4")]
+                        let identifiers = [(String(localized: "extension.discovery.test.bundle.id", defaultValue: "com.tweety.TestCodeEdit.AutoActivatedExtension", comment: "Test extension bundle identifier"), String(localized: "extension.discovery.test.developer.id", defaultValue: "2MMGJGVTB4", comment: "Test extension developer identifier"))]
                         try await self?.activateUnapprovedExtensions(with: identifiers)
                     }
 
@@ -97,7 +97,7 @@ final class ExtensionDiscovery: ObservableObject {
                     guard let extensions else { return }
                     await self?.updateExtensions(endpoints: extensions)
                 } catch {
-                    print("Could not auto-activate extensions.")
+                    print(String(localized: "extension.discovery.auto.activate.error", defaultValue: "Could not auto-activate extensions.", comment: "Error message when automatic extension activation fails"))
                 }
             }
         }
@@ -108,7 +108,7 @@ final class ExtensionDiscovery: ObservableObject {
         var timestamp: String
         var userElection: Int
 
-        static var databaseTableName: String = "Election"
+        static var databaseTableName: String = String(localized: "extension.discovery.db.table.name", defaultValue: "Election", comment: "LaunchServices database table name for extension settings")
     }
 
     private func activateDisabledExtensions() async throws {
@@ -116,9 +116,9 @@ final class ExtensionDiscovery: ObservableObject {
 
         return try await dbQueue.write {
             try SettingsStoreRecord
-                .filter(Column("identifier").like("%\(Self.endPointIdentifier)%"))
-                .filter(Column("userElection") == 2)
-                .updateAll($0, Column("userElection") -= 1)
+                .filter(Column(String(localized: "extension.discovery.db.column.identifier", defaultValue: "identifier", comment: "Database column name for extension identifier")).like(String(format: String(localized: "extension.discovery.db.like.pattern", defaultValue: "%%%@%%", comment: "SQL LIKE pattern for extension endpoint identifier"), Self.endPointIdentifier)))
+                .filter(Column(String(localized: "extension.discovery.db.column.user.election", defaultValue: "userElection", comment: "Database column name for user election status")) == 2)
+                .updateAll($0, Column(String(localized: "extension.discovery.db.column.user.election", defaultValue: "userElection", comment: "Database column name for user election status")) -= 1)
         }
     }
 
@@ -129,7 +129,7 @@ final class ExtensionDiscovery: ObservableObject {
             try identifiers.map { identifier in
                 SettingsStoreRecord(
                     // swiftlint:disable:next line_length
-                    identifier: "\(Bundle.main.bundleIdentifier!)::\(Self.endPointIdentifier):\(identifier.bundleID):\(identifier.devID)",
+                    identifier: String(format: String(localized: "extension.discovery.identifier.format", defaultValue: "%@::%@:%@:%@", comment: "Extension identifier format for LaunchServices database"), Bundle.main.bundleIdentifier!, Self.endPointIdentifier, identifier.bundleID, identifier.devID),
                     timestamp: String(Date.now.description.dropLast(6)),
                     userElection: 1
                 )
