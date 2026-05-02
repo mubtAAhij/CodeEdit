@@ -27,7 +27,7 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? "No Project found")
+        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "project.not.found", defaultValue: "No Project found", comment: "No project found placeholder"))
         : workspaceName
     }
 
@@ -50,10 +50,10 @@ struct SchemeDropDownView: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
-        .accessibilityIdentifier("SchemeDropdown")
+        .accessibilityIdentifier(String(localized: "scheme.dropdown.identifier", defaultValue: "SchemeDropdown", comment: "Scheme dropdown accessibility identifier (technical constant, should not be localized)"))
         .accessibilityValue(workspaceDisplayName)
-        .accessibilityLabel("Active Scheme")
-        .accessibilityHint("Open the active scheme menu")
+        .accessibilityLabel(String(localized: "scheme.active.label", defaultValue: "Active Scheme", comment: "Active scheme accessibility label"))
+        .accessibilityHint(String(localized: "scheme.menu.open.hint", defaultValue: "Open the active scheme menu", comment: "Open active scheme menu accessibility hint"))
         .accessibilityAction {
             isSchemePopOverPresented.toggle()
         }
@@ -141,12 +141,12 @@ struct SchemeDropDownView: View {
         Divider()
             .padding(.vertical, 5)
         Group {
-            OptionMenuItemView(label: "Add Folder...") {
+            OptionMenuItemView(label: String(localized: "workspace.add.folder", defaultValue: "Add Folder...", comment: "Add folder menu item")) {
                 // TODO: Implment Add Folder
-                print("NOT IMPLEMENTED")
+                print(String(localized: "debug.not.implemented", defaultValue: "NOT IMPLEMENTED", comment: "Debug message for not implemented feature (technical constant, should not be localized)"))
             }
             .disabled(true)
-            OptionMenuItemView(label: "Workspace Settings...") {
+            OptionMenuItemView(label: String(localized: "workspace.settings", defaultValue: "Workspace Settings...", comment: "Workspace settings menu item")) {
                 NSApp.sendAction(
                     #selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil
                 )
