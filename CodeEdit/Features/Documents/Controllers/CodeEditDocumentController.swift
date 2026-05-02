@@ -28,7 +28,7 @@ final class CodeEditDocumentController: NSDocumentController {
         )
 
         guard createdFile else {
-            print("Failed to create new document")
+            print(String(localized: "document.create-failed", defaultValue: "Failed to create new document", comment: "Error message when document creation fails"))
             return
         }
 
@@ -46,7 +46,7 @@ final class CodeEditDocumentController: NSDocumentController {
             attributes: [FileAttributeKey.creationDate: Date()]
         )
         guard createdFile else {
-            print("Failed to create new document")
+            print(String(localized: "document.create-failed", defaultValue: "Failed to create new document", comment: "Error message when document creation fails"))
             return
         }
 
@@ -67,7 +67,7 @@ final class CodeEditDocumentController: NSDocumentController {
             // TODO: handle errors
 
             guard let document else {
-                print("Failed to unwrap document")
+                print(String(localized: "document.unwrap-failed", defaultValue: "Failed to unwrap document", comment: "Error message when document unwrap fails"))
                 return
             }
 
@@ -89,8 +89,8 @@ final class CodeEditDocumentController: NSDocumentController {
                 if let document {
                     self.addDocument(document)
                 } else {
-                    let errorMessage = error?.localizedDescription ?? "unknown error"
-                    print("Unable to open document '\(url)': \(errorMessage)")
+                    let errorMessage = error?.localizedDescription ?? String(localized: "document.unknown-error", defaultValue: "unknown error", comment: "Unknown error message")
+                    print(String(format: String(localized: "document.open-failed", defaultValue: "Unable to open document '%@': %@", comment: "Error opening document"), url.path, errorMessage))
                 }
 
                 RecentsStore.documentOpened(at: url)
@@ -146,7 +146,7 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Open Workspace or File"
+        dialog.title = String(localized: "document.open-dialog-title", defaultValue: "Open Workspace or File", comment: "Title for open file dialog")
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
@@ -162,16 +162,13 @@ extension NSDocumentController {
 
                     guard let document else {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString(
-                            "Failed to get document",
-                            comment: "Failed to get document"
-                        )
+                        alert.messageText = String(localized: "document.get-failed", defaultValue: "Failed to get document", comment: "Error message when getting document fails")
                         alert.runModal()
                         return
                     }
                     onCompletion(document, documentWasAlreadyOpen)
-                    print("Document:", document)
-                    print("Was already open?", documentWasAlreadyOpen)
+                    print(String(localized: "document.debug-label", defaultValue: "Document:", comment: "Debug label for document"))
+                    print(String(localized: "document.debug-already-open", defaultValue: "Was already open?", comment: "Debug label for already open status"), documentWasAlreadyOpen)
                 }
             } else if result == NSApplication.ModalResponse.cancel {
                 onCancel()
