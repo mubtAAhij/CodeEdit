@@ -96,76 +96,76 @@ enum FileIcon {
     static func fileIcon(fileType: FileType?) -> String { // swiftlint:disable:this cyclomatic_complexity function_body_length line_length
         switch fileType {
         case .json, .yml, .resolved:
-            return "doc.json"
+            return String(localized: "file.icon.doc.json", defaultValue: "doc.json", comment: "JSON document icon")
         case .lock:
-            return "lock.doc"
+            return String(localized: "file.icon.lock.doc", defaultValue: "lock.doc", comment: "Lock document icon")
         case .css:
-            return "curlybraces"
+            return String(localized: "file.icon.curlybraces", defaultValue: "curlybraces", comment: "CSS curlybraces icon")
         case .js, .mjs:
-            return "doc.javascript"
+            return String(localized: "file.icon.doc.javascript", defaultValue: "doc.javascript", comment: "JavaScript document icon")
         case .jsx, .tsx:
-            return "atom"
+            return String(localized: "file.icon.atom", defaultValue: "atom", comment: "Atom icon for React files")
         case .swift:
-            return "swift"
+            return String(localized: "file.icon.swift", defaultValue: "swift", comment: "Swift icon")
         case .env, .example:
-            return "gearshape.fill"
+            return String(localized: "file.icon.gearshape.fill", defaultValue: "gearshape.fill", comment: "Gearshape fill icon for config files")
         case .gitignore:
-            return "arrow.triangle.branch"
+            return String(localized: "file.icon.arrow.triangle.branch", defaultValue: "arrow.triangle.branch", comment: "Branch icon for gitignore")
         case .pdf, .png, .jpg, .jpeg, .ico:
-            return "photo"
+            return String(localized: "file.icon.photo", defaultValue: "photo", comment: "Photo icon for image files")
         case .svg:
-            return "square.fill.on.circle.fill"
+            return String(localized: "file.icon.square.fill.on.circle.fill", defaultValue: "square.fill.on.circle.fill", comment: "Square on circle icon for SVG")
         case .entitlements:
-            return "checkmark.seal"
+            return String(localized: "file.icon.checkmark.seal", defaultValue: "checkmark.seal", comment: "Checkmark seal icon for entitlements")
         case .plist:
-            return "tablecells"
+            return String(localized: "file.icon.tablecells", defaultValue: "tablecells", comment: "Table cells icon for plist")
         case .md, .txt:
-            return "doc.plaintext"
+            return String(localized: "file.icon.doc.plaintext", defaultValue: "doc.plaintext", comment: "Plain text document icon")
         case .rtf:
-            return "doc.richtext"
+            return String(localized: "file.icon.doc.richtext", defaultValue: "doc.richtext", comment: "Rich text document icon")
         case .html:
-            return "chevron.left.forwardslash.chevron.right"
+            return String(localized: "file.icon.chevron.left.forwardslash.chevron.right", defaultValue: "chevron.left.forwardslash.chevron.right", comment: "HTML tag icon")
         case .LICENSE:
-            return "key.fill"
+            return String(localized: "file.icon.key.fill", defaultValue: "key.fill", comment: "Key icon for LICENSE")
         case .java:
-            return "cup.and.saucer"
+            return String(localized: "file.icon.cup.and.saucer", defaultValue: "cup.and.saucer", comment: "Coffee cup icon for Java")
         case .py:
-            return "doc.python"
+            return String(localized: "file.icon.doc.python", defaultValue: "doc.python", comment: "Python document icon")
         case .rb:
-            return "doc.ruby"
+            return String(localized: "file.icon.doc.ruby", defaultValue: "doc.ruby", comment: "Ruby document icon")
         case .strings:
-            return "text.quote"
+            return String(localized: "file.icon.text.quote", defaultValue: "text.quote", comment: "Text quote icon for strings files")
         case .h:
-            return "h.square"
+            return String(localized: "file.icon.h.square", defaultValue: "h.square", comment: "H square icon for header files")
         case .m:
-            return "m.square"
+            return String(localized: "file.icon.m.square", defaultValue: "m.square", comment: "M square icon for Objective-C files")
         case .vue:
-            return "v.square"
+            return String(localized: "file.icon.v.square", defaultValue: "v.square", comment: "V square icon for Vue files")
         case .go:
-            return "g.square"
+            return String(localized: "file.icon.g.square", defaultValue: "g.square", comment: "G square icon for Go files")
         case .sum:
-            return "s.square"
+            return String(localized: "file.icon.s.square", defaultValue: "s.square", comment: "S square icon for sum files")
         case .mod:
-            return "m.square"
+            return String(localized: "file.icon.m.square", defaultValue: "m.square", comment: "M square icon for mod files")
         case .bash, .sh, .Makefile, .zsh:
-            return "terminal"
+            return String(localized: "file.icon.terminal", defaultValue: "terminal", comment: "Terminal icon for shell scripts")
         case .rs:
-            return "r.square"
+            return String(localized: "file.icon.r.square", defaultValue: "r.square", comment: "R square icon for Rust files")
         case .wav, .mp3, .aif, .mid:
-            return "speaker.wave.2"
+            return String(localized: "file.icon.speaker.wave.2", defaultValue: "speaker.wave.2", comment: "Speaker wave icon for audio files")
         case .avi, .mp4, .mov:
-            return "film"
+            return String(localized: "file.icon.film", defaultValue: "film", comment: "Film icon for video files")
         case .scpt:
-            return "applescript"
+            return String(localized: "file.icon.applescript", defaultValue: "applescript", comment: "AppleScript icon")
         case .xcconfig:
-            return "gearshape.2"
+            return String(localized: "file.icon.gearshape.2", defaultValue: "gearshape.2", comment: "Gearshape 2 icon for xcconfig files")
         case .cetheme:
-            return "paintbrush"
+            return String(localized: "file.icon.paintbrush", defaultValue: "paintbrush", comment: "Paintbrush icon for theme files")
         case .adb, .clj, .cls, .cs, .d, .dart, .elm, .ex, .f95, .fs, .gs, .hs,
              .jl, .kt, .l, .lsp, .lua, .mk, .pas, .pl, .scm, .ss:
-            return "doc.plaintext"
+            return String(localized: "file.icon.doc.plaintext", defaultValue: "doc.plaintext", comment: "Plain text document icon")
         default:
-            return "doc"
+            return String(localized: "file.icon.doc", defaultValue: "doc", comment: "Default document icon")
         }
     }
 
