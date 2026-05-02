@@ -24,7 +24,7 @@ struct StatusBarFileInfoView: View {
                 let width = dimensionsNumberStyle.format(dimensions.width)
                 let height = dimensionsNumberStyle.format(dimensions.height)
 
-                Text("\(width) × \(height)")
+                Text(String(format: String(localized: "status-bar.dimensions", defaultValue: "%@ × %@", comment: "Image dimensions width × height"), width, height))
             }
 
             if let fileSize = statusBarViewModel.fileSize {
