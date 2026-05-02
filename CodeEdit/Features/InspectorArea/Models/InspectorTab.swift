@@ -18,13 +18,13 @@ enum InspectorTab: WorkspacePanelTab {
     var systemImage: String {
         switch self {
         case .file:
-            return "doc"
+            return String(localized: "inspector.tab.file.icon", defaultValue: "doc", comment: "File inspector icon")
         case .gitHistory:
-            return "clock"
+            return String(localized: "inspector.tab.history.icon", defaultValue: "clock", comment: "History inspector icon")
         case .internalDevelopment:
-            return "hammer"
+            return String(localized: "inspector.tab.internal-development.icon", defaultValue: "hammer", comment: "Internal development inspector icon")
         case .uiExtension(_, let data):
-            return data.icon ?? "e.square"
+            return data.icon ?? String(localized: "inspector.tab.extension.icon", defaultValue: "e.square", comment: "Extension inspector icon")
         }
     }
 
@@ -38,11 +38,11 @@ enum InspectorTab: WorkspacePanelTab {
     var title: String {
         switch self {
         case .file:
-            return "File Inspector"
+            return String(localized: "inspector.tab.file", defaultValue: "File Inspector", comment: "File inspector title")
         case .gitHistory:
-            return "History Inspector"
+            return String(localized: "inspector.tab.history", defaultValue: "History Inspector", comment: "History inspector title")
         case .internalDevelopment:
-            return "Internal Development"
+            return String(localized: "inspector.tab.internal-development", defaultValue: "Internal Development", comment: "Internal development inspector title")
         case .uiExtension(_, let data):
             return data.help ?? data.sceneID
         }
