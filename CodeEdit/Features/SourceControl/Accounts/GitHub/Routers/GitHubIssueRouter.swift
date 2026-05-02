@@ -51,65 +51,65 @@ enum GitHubIssueRouter: GitJSONPostRouter {
     var params: [String: Any] {
         switch self {
         case let .readAuthenticatedIssues(_, page, perPage, state):
-            return ["per_page": perPage, "page": page, "state": state.rawValue]
+            return [String(localized: "github.api.param.per.page", defaultValue: "per_page", comment: "GitHub API parameter for items per page"): perPage, String(localized: "github.api.param.page", defaultValue: "page", comment: "GitHub API parameter for page number"): page, String(localized: "github.api.param.state", defaultValue: "state", comment: "GitHub API parameter for issue state"): state.rawValue]
         case .readIssue:
             return [:]
         case let .readIssues(_, _, _, page, perPage, state):
-            return ["per_page": perPage, "page": page, "state": state.rawValue]
+            return [String(localized: "github.api.param.per.page", defaultValue: "per_page", comment: "GitHub API parameter for items per page"): perPage, String(localized: "github.api.param.page", defaultValue: "page", comment: "GitHub API parameter for page number"): page, String(localized: "github.api.param.state", defaultValue: "state", comment: "GitHub API parameter for issue state"): state.rawValue]
         case let .postIssue(_, _, _, title, body, assignee, labels):
-            var params: [String: Any] = ["title": title]
+            var params: [String: Any] = [String(localized: "github.api.param.title", defaultValue: "title", comment: "GitHub API parameter for issue title"): title]
             if let body {
-                params["body"] = body
+                params[String(localized: "github.api.param.body", defaultValue: "body", comment: "GitHub API parameter for issue body")] = body
             }
             if let assignee {
-                params["assignee"] = assignee
+                params[String(localized: "github.api.param.assignee", defaultValue: "assignee", comment: "GitHub API parameter for assignee")] = assignee
             }
             if !labels.isEmpty {
-                params["labels"] = labels
+                params[String(localized: "github.api.param.labels", defaultValue: "labels", comment: "GitHub API parameter for labels")] = labels
             }
             return params
         case let .patchIssue(_, _, _, _, title, body, assignee, state):
             var params: [String: String] = [:]
             if let title {
-                params["title"] = title
+                params[String(localized: "github.api.param.title", defaultValue: "title", comment: "GitHub API parameter for issue title")] = title
             }
             if let body {
-                params["body"] = body
+                params[String(localized: "github.api.param.body", defaultValue: "body", comment: "GitHub API parameter for issue body")] = body
             }
             if let assignee {
-                params["assignee"] = assignee
+                params[String(localized: "github.api.param.assignee", defaultValue: "assignee", comment: "GitHub API parameter for assignee")] = assignee
             }
             if let state {
-                params["state"] = state.rawValue
+                params[String(localized: "github.api.param.state", defaultValue: "state", comment: "GitHub API parameter for issue state")] = state.rawValue
             }
             return params
         case let .commentIssue(_, _, _, _, body):
-            return ["body": body]
+            return [String(localized: "github.api.param.body", defaultValue: "body", comment: "GitHub API parameter for issue body"): body]
         case let .readIssueComments(_, _, _, _, page, perPage):
-            return ["per_page": perPage, "page": page]
+            return [String(localized: "github.api.param.per.page", defaultValue: "per_page", comment: "GitHub API parameter for items per page"): perPage, String(localized: "github.api.param.page", defaultValue: "page", comment: "GitHub API parameter for page number"): page]
         case let .patchIssueComment(_, _, _, _, body):
-            return ["body": body]
+            return [String(localized: "github.api.param.body", defaultValue: "body", comment: "GitHub API parameter for issue body"): body]
         }
     }
 
     var path: String {
         switch self {
         case .readAuthenticatedIssues:
-            return "issues"
+            return String(localized: "github.api.path.issues", defaultValue: "issues", comment: "GitHub API path for issues")
         case let .readIssue(_, owner, repository, number):
-            return "repos/\(owner)/\(repository)/issues/\(number)"
+            return String(format: String(localized: "github.api.path.repo.issue", defaultValue: "repos/%@/%@/issues/%d", comment: "GitHub API path for specific issue"), owner, repository, number)
         case let .readIssues(_, owner, repository, _, _, _):
-            return "repos/\(owner)/\(repository)/issues"
+            return String(format: String(localized: "github.api.path.repo.issues", defaultValue: "repos/%@/%@/issues", comment: "GitHub API path for repository issues"), owner, repository)
         case let .postIssue(_, owner, repository, _, _, _, _):
-            return "repos/\(owner)/\(repository)/issues"
+            return String(format: String(localized: "github.api.path.repo.issues", defaultValue: "repos/%@/%@/issues", comment: "GitHub API path for repository issues"), owner, repository)
         case let .patchIssue(_, owner, repository, number, _, _, _, _):
-            return "repos/\(owner)/\(repository)/issues/\(number)"
+            return String(format: String(localized: "github.api.path.repo.issue", defaultValue: "repos/%@/%@/issues/%d", comment: "GitHub API path for specific issue"), owner, repository, number)
         case let .commentIssue(_, owner, repository, number, _):
-            return "repos/\(owner)/\(repository)/issues/\(number)/comments"
+            return String(format: String(localized: "github.api.path.repo.issue.comments", defaultValue: "repos/%@/%@/issues/%d/comments", comment: "GitHub API path for issue comments"), owner, repository, number)
         case let .readIssueComments(_, owner, repository, number, _, _):
-            return "repos/\(owner)/\(repository)/issues/\(number)/comments"
+            return String(format: String(localized: "github.api.path.repo.issue.comments", defaultValue: "repos/%@/%@/issues/%d/comments", comment: "GitHub API path for issue comments"), owner, repository, number)
         case let .patchIssueComment(_, owner, repository, number, _):
-            return "repos/\(owner)/\(repository)/issues/comments/\(number)"
+            return String(format: String(localized: "github.api.path.repo.issue.comment", defaultValue: "repos/%@/%@/issues/comments/%d", comment: "GitHub API path for specific issue comment"), owner, repository, number)
         }
     }
 }
