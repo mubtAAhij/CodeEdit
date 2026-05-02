@@ -63,7 +63,7 @@ extension CEWorkspaceFile {
         return topmostParent
     }
 
-#if DEBUG
+    #if DEBUG
     /// Print a debug description of the file.
     /// - Parameters:
     ///   - tabCount: The number of tabs to tab the description over (for recursive calls)
@@ -89,5 +89,5 @@ extension CEWorkspaceFile {
             return childDetails
         }
     }
-#endif
+    #endif
 }
