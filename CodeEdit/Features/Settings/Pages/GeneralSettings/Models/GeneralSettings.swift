@@ -24,31 +24,30 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
-                "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
-                "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "settings.general.appearance", defaultValue: "Appearance", comment: "Search key for appearance setting"),
+                String(localized: "settings.general.file.icon.style", defaultValue: "File Icon Style", comment: "Search key for file icon style setting"),
+                String(localized: "settings.general.tab.bar.style", defaultValue: "Tab Bar Style", comment: "Search key for tab bar style setting"),
+                String(localized: "settings.general.show.jump.bar", defaultValue: "Show Jump Bar", comment: "Search key for show jump bar setting"),
+                String(localized: "settings.general.dim.editors.without.focus", defaultValue: "Dim editors without focus", comment: "Search key for dim editors setting"),
+                String(localized: "settings.general.navigator.tab.bar.position", defaultValue: "Navigator Tab Bar Position", comment: "Search key for navigator tab bar position setting"),
+                String(localized: "settings.general.inspector.tab.bar.position", defaultValue: "Inspector Tab Bar Position", comment: "Search key for inspector tab bar position setting"),
+                String(localized: "settings.general.show.issues", defaultValue: "Show Issues", comment: "Search key for show issues setting"),
+                String(localized: "settings.general.show.live.issues", defaultValue: "Show Live Issues", comment: "Search key for show live issues setting"),
+                String(localized: "settings.general.automatically.save.change.to.disk", defaultValue: "Automatically save change to disk", comment: "Search key for auto save setting"),
+                String(localized: "settings.general.automatically.reveal.in.project.navigator", defaultValue: "Automatically reveal in project navigator", comment: "Search key for auto reveal setting"),
+                String(localized: "settings.general.reopen.behavior", defaultValue: "Reopen Behavior", comment: "Search key for reopen behavior setting"),
+                String(localized: "settings.general.after.last.window.closed", defaultValue: "After the last window is closed", comment: "Search key for window close behavior setting"),
+                String(localized: "settings.general.file.extensions", defaultValue: "File Extensions", comment: "Search key for file extensions setting"),
+                String(localized: "settings.general.project.navigator.size", defaultValue: "Project Navigator Size", comment: "Search key for project navigator size setting"),
+                String(localized: "settings.general.find.navigator.detail", defaultValue: "Find Navigator Detail", comment: "Search key for find navigator detail setting"),
+                String(localized: "settings.general.issue.navigator.detail", defaultValue: "Issue Navigator Detail", comment: "Search key for issue navigator detail setting"),
+                String(localized: "settings.general.show.open.with.codeedit.option.in.finder", defaultValue: "Show \"Open With CodeEdit\" option in Finder", comment: "Search key for Finder integration setting"),
+                String(localized: "settings.general.codeedit.shell.command", defaultValue: "'codeedit' Shell command", comment: "Search key for shell command setting"),
+                String(localized: "settings.general.dialog.warnings", defaultValue: "Dialog Warnings", comment: "Search key for dialog warnings setting"),
+                String(localized: "settings.general.check.for.updates", defaultValue: "Check for updates", comment: "Search key for check for updates setting"),
+                String(localized: "settings.general.automatically.check.for.app.updates", defaultValue: "Automatically check for app updates", comment: "Search key for automatically check for app updates setting"),
+                String(localized: "settings.general.include.prerelease.versions", defaultValue: "Include pre-release versions", comment: "Search key for include pre-release versions setting")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -230,19 +229,31 @@ extension SettingsData {
 
         var string: String {
             get {
-                extensions.joined(separator: ", ")
+                extensions.joined(separator: String(localized: "settings.general.file.extensions.separator.display", defaultValue: ", ", comment: "File extensions display separator"))
             }
             set {
                 extensions = newValue
-                    .components(separatedBy: ",")
+                    .components(separatedBy: String(localized: "settings.general.file.extensions.separator.input", defaultValue: ",", comment: "File extensions input separator"))
                     .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) })
                     .filter({ !$0.isEmpty || string.count < newValue.count })
             }
         }
 
         static var `default` = FileExtensions(extensions: [
-            "c", "cc", "cpp", "h", "hpp", "m", "mm", "gif",
-            "icns", "jpeg", "jpg", "png", "tiff", "swift"
+            String(localized: "settings.general.file.extension.c", defaultValue: "c", comment: "C file extension"),
+            String(localized: "settings.general.file.extension.cc", defaultValue: "cc", comment: "C++ file extension"),
+            String(localized: "settings.general.file.extension.cpp", defaultValue: "cpp", comment: "C++ file extension"),
+            String(localized: "settings.general.file.extension.h", defaultValue: "h", comment: "Header file extension"),
+            String(localized: "settings.general.file.extension.hpp", defaultValue: "hpp", comment: "C++ header file extension"),
+            String(localized: "settings.general.file.extension.m", defaultValue: "m", comment: "Objective-C file extension"),
+            String(localized: "settings.general.file.extension.mm", defaultValue: "mm", comment: "Objective-C++ file extension"),
+            String(localized: "settings.general.file.extension.gif", defaultValue: "gif", comment: "GIF image file extension"),
+            String(localized: "settings.general.file.extension.icns", defaultValue: "icns", comment: "Icon file extension"),
+            String(localized: "settings.general.file.extension.jpeg", defaultValue: "jpeg", comment: "JPEG image file extension"),
+            String(localized: "settings.general.file.extension.jpg", defaultValue: "jpg", comment: "JPG image file extension"),
+            String(localized: "settings.general.file.extension.png", defaultValue: "png", comment: "PNG image file extension"),
+            String(localized: "settings.general.file.extension.tiff", defaultValue: "tiff", comment: "TIFF image file extension"),
+            String(localized: "settings.general.file.extension.swift", defaultValue: "swift", comment: "Swift file extension")
         ])
     }
     /// The style for file icons
@@ -309,9 +320,9 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "settings.general.navigator.detail.one.line", defaultValue: "One Line", comment: "Navigator detail one line option")
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(format: String(localized: "settings.general.navigator.detail.up.to.lines", defaultValue: "Up to %d lines", comment: "Navigator detail up to N lines option"), self.rawValue)
             }
         }
     }
