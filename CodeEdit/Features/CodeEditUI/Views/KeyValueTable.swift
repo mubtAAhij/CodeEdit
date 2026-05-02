@@ -60,7 +60,7 @@ private struct NewListTableItemView<HeaderView: View>: View {
                                 Text(key).tag(key)
                             }
                             Divider()
-                            Text("No Selection").tag("")
+                            Text(String(localized: "keyvalue.noselection", defaultValue: "No Selection", comment: "No selection picker option")).tag("")
                         }
                     }
                     TextField(valueColumnName, text: $value)
@@ -84,10 +84,10 @@ private struct NewListTableItemView<HeaderView: View>: View {
 
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "keyvalue.cancel", defaultValue: "Cancel", comment: "Cancel button label")) {
                     dismiss()
                 }
-                Button("Add") {
+                Button(String(localized: "keyvalue.add", defaultValue: "Add", comment: "Add button label")) {
                     if !key.isEmpty && !value.isEmpty {
                         completion(key, value)
                     }
@@ -146,10 +146,10 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         .contextMenu(
             forSelectionType: UUID.self,
             menu: { selectedItems in
-                Button("Edit") {
+                Button(String(localized: "keyvalue.edit", defaultValue: "Edit", comment: "Edit context menu item")) {
                     editItem(id: selectedItems.first)
                 }
-                Button("Remove") {
+                Button(String(localized: "keyvalue.remove", defaultValue: "Remove", comment: "Remove context menu item")) {
                     removeItem(selectedItems)
                 }
             },
