@@ -54,36 +54,36 @@ extension CEWorkspaceFileManager {
 
     func handleGitEvents(events: [DirectoryEventStream.Event]) {
         // Changes excluding .git folder
-        let notGitChanges = events.filter({ !$0.path.contains(".git/") })
+        let notGitChanges = events.filter({ !$0.path.contains(String(localized: "workspace.file-manager.git-path", defaultValue: ".git/", comment: "Git directory path pattern")) })
 
         // .git folder was changed
         let gitFolderChange = events.first(where: {
-            $0.path == "\(self.folderUrl.relativePath)/.git"
+            $0.path == String(format: String(localized: "workspace.file-manager.git-folder-path-format", defaultValue: "%@/.git", comment: "Git folder path format"), self.folderUrl.relativePath)
         })
 
         // Change made to git index file, staged/unstaged files
         let gitIndexChange = events.first(where: {
-            $0.path == "\(self.folderUrl.relativePath)/.git/index"
+            $0.path == String(format: String(localized: "workspace.file-manager.git-index-path-format", defaultValue: "%@/.git/index", comment: "Git index file path format"), self.folderUrl.relativePath)
         })
 
         // Change made to git stash
         let gitStashChange = events.first(where: {
-            $0.path == "\(self.folderUrl.relativePath)/.git/refs/stash"
+            $0.path == String(format: String(localized: "workspace.file-manager.git-stash-path-format", defaultValue: "%@/.git/refs/stash", comment: "Git stash file path format"), self.folderUrl.relativePath)
         })
 
         // Changes made to git branches
         let gitBranchChange = events.first(where: {
-            $0.path.contains("\(self.folderUrl.relativePath)/.git/refs/heads")
+            $0.path.contains(String(format: String(localized: "workspace.file-manager.git-heads-path-format", defaultValue: "%@/.git/refs/heads", comment: "Git heads directory path format"), self.folderUrl.relativePath))
         })
 
         // Changes made to git HEAD - current branch changed
         let gitHeadChange = events.first(where: {
-            $0.path.contains("\(self.folderUrl.relativePath)/.git/HEAD")
+            $0.path.contains(String(format: String(localized: "workspace.file-manager.git-head-path-format", defaultValue: "%@/.git/HEAD", comment: "Git HEAD file path format"), self.folderUrl.relativePath))
         })
 
         // Change made to remotes by looking at .git/config
         let gitConfigChange = events.first(where: {
-            $0.path == "\(self.folderUrl.relativePath)/.git/config"
+            $0.path == String(format: String(localized: "workspace.file-manager.git-config-path-format", defaultValue: "%@/.git/config", comment: "Git config file path format"), self.folderUrl.relativePath)
         })
 
         // If changes were made to project OR files were staged, refresh changes
