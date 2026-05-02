@@ -52,20 +52,20 @@ class IgnorePatternModel: ObservableObject {
     /// Resolves the URL for the Git ignore file.
     /// - Returns: The resolved `URL` for the Git ignore file.
     private func gitIgnoreURL() async throws -> URL {
-        let excludesFile = try await gitConfig.get(key: "core.excludesfile") ?? ""
+        let excludesFile = try await gitConfig.get(key: String(localized: "git.config.core.excludesfile", defaultValue: "core.excludesfile", comment: "Git config key for excludes file")) ?? ""
         if !excludesFile.isEmpty {
-            if excludesFile.starts(with: "~/") {
+            if excludesFile.starts(with: String(localized: "git.path.home.prefix", defaultValue: "~/", comment: "Home directory path prefix")) {
                 let relativePath = String(excludesFile.dropFirst(2)) // Remove "~/"
                 return FileManager.default.homeDirectoryForCurrentUser.appending(path: relativePath)
-            } else if excludesFile.starts(with: "/") {
+            } else if excludesFile.starts(with: String(localized: "git.path.root.prefix", defaultValue: "/", comment: "Root directory path prefix")) {
                 return URL(fileURLWithPath: excludesFile) // Absolute path
             } else {
                 return FileManager.default.homeDirectoryForCurrentUser.appending(path: excludesFile)
             }
         } else {
-            let defaultPath = ".gitignore_global"
+            let defaultPath = String(localized: "git.ignore.default.filename", defaultValue: ".gitignore_global", comment: "Default gitignore filename")
             let fileURL = FileManager.default.homeDirectoryForCurrentUser.appending(path: defaultPath)
-            await gitConfig.set(key: "core.excludesfile", value: "~/\(defaultPath)", global: true)
+            await gitConfig.set(key: String(localized: "git.config.core.excludesfile.set", defaultValue: "core.excludesfile", comment: "Git config key for setting excludes file"), value: String(format: String(localized: "git.path.home.with.file", defaultValue: "~/%@", comment: "Home directory path with file"), defaultPath), global: true)
             return fileURL
         }
     }
@@ -116,7 +116,7 @@ class IgnorePatternModel: ObservableObject {
             if let content = try? String(contentsOf: fileURL) {
                 patterns = content.split(separator: "\n")
                     .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-                    .filter { !$0.isEmpty && !$0.starts(with: "#") }
+                    .filter { !$0.isEmpty && !$0.starts(with: String(localized: "git.ignore.comment.prefix", defaultValue: "#", comment: "Git ignore comment prefix")) }
                     .map { GlobPattern(value: String($0)) }
                 loadingPatterns = false
             } else {
@@ -124,7 +124,7 @@ class IgnorePatternModel: ObservableObject {
                 loadingPatterns = false
             }
         } catch {
-            print("Error loading patterns: \(error)")
+            print(String(format: String(localized: "git.ignore.error.loading", defaultValue: "Error loading patterns: %@", comment: "Error loading patterns"), String(describing: error)))
             patterns = []
             loadingPatterns = false
         }
@@ -171,7 +171,7 @@ class IgnorePatternModel: ObservableObject {
                 let updatedContent = reorderedLines.joined(separator: "\n")
                 try updatedContent.write(to: fileURL, atomically: true, encoding: .utf8)
             } catch {
-                print("Error saving patterns: \(error)")
+                print(String(format: String(localized: "git.ignore.error.saving", defaultValue: "Error saving patterns: %@", comment: "Error saving patterns"), String(describing: error)))
             }
         }
     }
@@ -183,7 +183,7 @@ class IgnorePatternModel: ObservableObject {
 
         for (index, line) in lines.enumerated() {
             let trimmedLine = line.trimmingCharacters(in: .whitespaces)
-            if !trimmedLine.isEmpty && !trimmedLine.hasPrefix("#") {
+            if !trimmedLine.isEmpty && !trimmedLine.hasPrefix(String(localized: "git.ignore.comment.prefix.check", defaultValue: "#", comment: "Git ignore comment prefix for checking")) {
                 patternToLineIndex[trimmedLine] = index
             } else if index != lines.count - 1 {
                 nonPatternLines.append((line: line, index: index))
@@ -261,7 +261,7 @@ class IgnorePatternModel: ObservableObject {
             let content = patterns.map(\.value).joined(separator: "\n")
             try content.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
-            print("Failed to write all patterns: \(error)")
+            print(String(format: String(localized: "git.ignore.error.write.all", defaultValue: "Failed to write all patterns: %@", comment: "Failed to write all patterns error"), String(describing: error)))
         }
     }
 
