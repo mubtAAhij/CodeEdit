@@ -22,23 +22,23 @@ struct TaskOutputActionsView: View {
                     await taskManager.runTask(task: activeTask.task)
                 }
             } label: {
-                Image(systemName: "memories")
+                Image(systemName: String(localized: "task.run.icon", defaultValue: "memories", comment: "Run task icon"))
                     .foregroundStyle(.green)
             }
             .buttonStyle(.icon)
-            .help("Run Task")
+            .help(String(localized: "task.run.help", defaultValue: "Run Task", comment: "Run task help text"))
 
             Button {
                 taskManager.terminateTask(taskID: activeTask.task.id)
             } label: {
-                Image(systemName: "stop.fill")
+                Image(systemName: String(localized: "task.stop.icon", defaultValue: "stop.fill", comment: "Stop task icon"))
                     .foregroundStyle(
                         (activeTask.status == .running || activeTask.status == .stopped) ? .red : .gray
                     )
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
-            .help("Stop Task")
+            .help(String(localized: "task.stop.help", defaultValue: "Stop Task", comment: "Stop task help text"))
 
             Button {
                 if activeTask.status == .stopped {
@@ -48,15 +48,15 @@ struct TaskOutputActionsView: View {
                 }
             } label: {
                 if activeTask.status == .stopped {
-                    Image(systemName: "play")
+                    Image(systemName: String(localized: "task.resume.icon", defaultValue: "play", comment: "Resume task icon"))
                 } else {
-                    Image(systemName: "pause")
+                    Image(systemName: String(localized: "task.suspend.icon", defaultValue: "pause", comment: "Suspend task icon"))
                 }
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
             .opacity(activeTask.status == .running || activeTask.status == .stopped ? 1 : 0.5)
-            .help(activeTask.status == .stopped ? "Resume Task" : "Suspend Task")
+            .help(activeTask.status == .stopped ? String(localized: "task.resume.help", defaultValue: "Resume Task", comment: "Resume task help text") : String(localized: "task.suspend.help", defaultValue: "Suspend Task", comment: "Suspend task help text"))
 
             Divider()
 
@@ -65,18 +65,18 @@ struct TaskOutputActionsView: View {
                     scrollProxy?.scrollTo(bottomID, anchor: .bottom)
                 }
             } label: {
-                Image(systemName: "text.append")
+                Image(systemName: String(localized: "task.scroll.icon", defaultValue: "text.append", comment: "Scroll to bottom icon"))
             }
             .buttonStyle(.icon)
-            .help("Scroll down to the bottom")
+            .help(String(localized: "task.scroll.help", defaultValue: "Scroll down to the bottom", comment: "Scroll to bottom help text"))
 
             Button {
                 activeTask.clearOutput()
             } label: {
-                Image(systemName: "trash")
+                Image(systemName: String(localized: "task.clear.icon", defaultValue: "trash", comment: "Clear output icon"))
             }
             .buttonStyle(.icon)
-            .help("Clear Output")
+            .help(String(localized: "task.clear.help", defaultValue: "Clear Output", comment: "Clear output help text"))
         }
     }
 }
