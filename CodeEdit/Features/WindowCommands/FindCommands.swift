@@ -18,37 +18,37 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Find") {
+        CommandMenu(String(localized: "find.menu.title", defaultValue: "Find", comment: "Find menu title")) {
             Group {
-                Button("Find...") {
+                Button(String(localized: "find.menu.find", defaultValue: "Find...", comment: "Find menu item")) {
                     send(.showFindPanel)
                 }
-                .keyboardShortcut("f")
+                .keyboardShortcut(KeyEquivalent(Character(String(localized: "find.menu.find.key", defaultValue: "f", comment: "Find menu keyboard shortcut key"))))
 
-                Button("Find and Replace...") {
+                Button(String(localized: "find.menu.replace", defaultValue: "Find and Replace...", comment: "Find and replace menu item")) {
                     send(.init(rawValue: 12)!)
                 }
-                .keyboardShortcut("f", modifiers: [.option, .command])
+                .keyboardShortcut(KeyEquivalent(Character(String(localized: "find.menu.replace.key", defaultValue: "f", comment: "Find and replace keyboard shortcut key"))), modifiers: [.option, .command])
 
-                Button("Find Next") {
+                Button(String(localized: "find.menu.next", defaultValue: "Find Next", comment: "Find next menu item")) {
                     send(.next)
                 }
-                .keyboardShortcut("g")
+                .keyboardShortcut(KeyEquivalent(Character(String(localized: "find.menu.next.key", defaultValue: "g", comment: "Find next keyboard shortcut key"))))
 
-                Button("Find Previous") {
+                Button(String(localized: "find.menu.previous", defaultValue: "Find Previous", comment: "Find previous menu item")) {
                     send(.previous)
                 }
-                .keyboardShortcut("g", modifiers: [.shift, .command])
+                .keyboardShortcut(KeyEquivalent(Character(String(localized: "find.menu.previous.key", defaultValue: "g", comment: "Find previous keyboard shortcut key"))), modifiers: [.shift, .command])
 
-                Button("Use Selection for Find") {
+                Button(String(localized: "find.menu.use.selection", defaultValue: "Use Selection for Find", comment: "Use selection for find menu item")) {
                     send(.setFindString)
                 }
-                .keyboardShortcut("e")
+                .keyboardShortcut(KeyEquivalent(Character(String(localized: "find.menu.use.selection.key", defaultValue: "e", comment: "Use selection for find keyboard shortcut key"))))
 
-                Button("Jump to Selection") {
+                Button(String(localized: "find.menu.jump.to.selection", defaultValue: "Jump to Selection", comment: "Jump to selection menu item")) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
-                .keyboardShortcut("j")
+                .keyboardShortcut(KeyEquivalent(Character(String(localized: "find.menu.jump.to.selection.key", defaultValue: "j", comment: "Jump to selection keyboard shortcut key"))))
             }
             .disabled(!hasResponder)
         }
