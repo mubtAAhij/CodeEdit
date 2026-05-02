@@ -28,9 +28,9 @@ struct FeedbackView: View {
                 HelpButton(action: {})
                 Spacer()
                 if feedbackModel.isSubmitted {
-                    Text("Feedback submitted")
+                    Text(String(localized: "feedback.submitted", defaultValue: "Feedback submitted", comment: "Status message when feedback is submitted"))
                 } else if feedbackModel.failedToSubmit {
-                    Text("Failed to submit feedback")
+                    Text(String(localized: "feedback.failed-to-submit", defaultValue: "Failed to submit feedback", comment: "Status message when feedback submission fails"))
                 }
                 Button {
                     feedbackModel.createIssue(
@@ -42,14 +42,14 @@ struct FeedbackView: View {
                     )
                     isSubmitButtonPressed = true
                 } label: {
-                    Text("Submit")
+                    Text(String(localized: "feedback.submit-button", defaultValue: "Submit", comment: "Button to submit feedback"))
                 }
                 .alert(isPresented: self.$showsAlert) {
                     Alert(
-                        title: Text("No GitHub Account"),
-                        message: Text("A GitHub account is required to submit feedback."),
-                        primaryButton: .default(Text("Cancel")),
-                        secondaryButton: .default(Text("Add Account"))
+                        title: Text(String(localized: "feedback.no-github-account-title", defaultValue: "No GitHub Account", comment: "Alert title when GitHub account is missing")),
+                        message: Text(String(localized: "feedback.no-github-account-message", defaultValue: "A GitHub account is required to submit feedback.", comment: "Alert message when GitHub account is missing")),
+                        primaryButton: .default(Text(String(localized: "feedback.cancel", defaultValue: "Cancel", comment: "Button to cancel adding GitHub account"))),
+                        secondaryButton: .default(Text(String(localized: "feedback.add-account-button", defaultValue: "Add Account", comment: "Button to add GitHub account")))
                     )
                 }
             }
@@ -61,7 +61,7 @@ struct FeedbackView: View {
 
     private var basicInformation: some View {
         VStack(alignment: .leading) {
-            Text("Basic Information")
+            Text(String(localized: "feedback.basic-information-title", defaultValue: "Basic Information", comment: "Section title for basic feedback information"))
                 .fontWeight(.bold)
                 .font(.system(size: 20))
 
@@ -69,16 +69,16 @@ struct FeedbackView: View {
                 HStack {
                     if isSubmitButtonPressed && feedbackModel.feedbackTitle.isEmpty {
                         HStack {
-                            Image(systemName: "arrow.right.circle.fill")
+                            Image(systemName: String(localized: "feedback.required-field-icon", defaultValue: "arrow.right.circle.fill", comment: "SF Symbol for required field indicator"))
                                 .foregroundColor(.red)
-                            Text("Please provide a descriptive title for your feedback:")
+                            Text(String(localized: "feedback.title-prompt", defaultValue: "Please provide a descriptive title for your feedback:", comment: "Prompt for feedback title"))
                         }.padding(.leading, -23)
                     } else {
-                        Text("Please provide a descriptive title for your feedback:")
+                        Text(String(localized: "feedback.title-prompt", defaultValue: "Please provide a descriptive title for your feedback:", comment: "Prompt for feedback title"))
                     }
                 }
                 TextField("", text: $feedbackModel.feedbackTitle)
-                Text("Example: CodeEdit crashes when using autocomplete")
+                Text(String(localized: "feedback.title-example", defaultValue: "Example: CodeEdit crashes when using autocomplete", comment: "Example feedback title"))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
             }
@@ -86,19 +86,19 @@ struct FeedbackView: View {
 
             VStack(alignment: .leading) {
                 HStack {
-                    if isSubmitButtonPressed && feedbackModel.issueAreaListSelection == "none" {
+                    if isSubmitButtonPressed && feedbackModel.issueAreaListSelection == String(localized: "feedback.picker.none-value", defaultValue: "none", comment: "Value for no selection in picker") {
                         HStack {
-                            Image(systemName: "arrow.right.circle.fill")
+                            Image(systemName: String(localized: "feedback.required-field-icon", defaultValue: "arrow.right.circle.fill", comment: "SF Symbol for required field indicator"))
                                 .foregroundColor(.red)
-                            Text("Which area are you seeing an issue with?")
+                            Text(String(localized: "feedback.area-prompt", defaultValue: "Which area are you seeing an issue with?", comment: "Prompt for issue area selection"))
                         }.padding(.leading, -23)
                     } else {
-                        Text("Which area are you seeing an issue with?")
+                        Text(String(localized: "feedback.area-prompt", defaultValue: "Which area are you seeing an issue with?", comment: "Prompt for issue area selection"))
                     }
                 }
                 Picker("", selection: $feedbackModel.issueAreaListSelection) {
                     ForEach(feedbackModel.issueAreaList) {
-                        if feedbackModel.issueAreaListSelection == "none" {
+                        if feedbackModel.issueAreaListSelection == String(localized: "feedback.picker.none-value", defaultValue: "none", comment: "Value for no selection in picker") {
                             Text($0.name)
                                 .tag($0.id)
                                 .foregroundColor(.secondary)
@@ -113,18 +113,18 @@ struct FeedbackView: View {
             .padding(.top)
 
             VStack(alignment: .leading) {
-                if isSubmitButtonPressed && feedbackModel.feedbackTypeListSelection == "none" {
+                if isSubmitButtonPressed && feedbackModel.feedbackTypeListSelection == String(localized: "feedback.picker.none-value", defaultValue: "none", comment: "Value for no selection in picker") {
                     HStack {
-                        Image(systemName: "arrow.right.circle.fill")
+                        Image(systemName: String(localized: "feedback.required-field-icon", defaultValue: "arrow.right.circle.fill", comment: "SF Symbol for required field indicator"))
                             .foregroundColor(.red)
-                        Text("What type of feedback are you reporting?")
+                        Text(String(localized: "feedback.type-prompt", defaultValue: "What type of feedback are you reporting?", comment: "Prompt for feedback type selection"))
                     }.padding(.leading, -23)
                 } else {
-                    Text("What type of feedback are you reporting?")
+                    Text(String(localized: "feedback.type-prompt", defaultValue: "What type of feedback are you reporting?", comment: "Prompt for feedback type selection"))
                 }
                 Picker("", selection: $feedbackModel.feedbackTypeListSelection) {
                     ForEach(feedbackModel.feedbackTypeList) {
-                        if feedbackModel.feedbackTypeListSelection == "none" {
+                        if feedbackModel.feedbackTypeListSelection == String(localized: "feedback.picker.none-value", defaultValue: "none", comment: "Value for no selection in picker") {
                             Text($0.name)
                                 .tag($0.id)
                                 .foregroundColor(.secondary)
@@ -142,7 +142,7 @@ struct FeedbackView: View {
 
     private var description: some View {
         VStack(alignment: .leading) {
-            Text("Description")
+            Text(String(localized: "feedback.description-title", defaultValue: "Description", comment: "Section title for feedback description"))
                 .fontWeight(.bold)
                 .font(.system(size: 20))
                 .padding(.top)
@@ -151,58 +151,58 @@ struct FeedbackView: View {
                 HStack {
                     if isSubmitButtonPressed && feedbackModel.issueDescription.isEmpty {
                         HStack {
-                            Image(systemName: "arrow.right.circle.fill")
+                            Image(systemName: String(localized: "feedback.required-field-icon", defaultValue: "arrow.right.circle.fill", comment: "SF Symbol for required field indicator"))
                                 .foregroundColor(.red)
-                            Text("Please describe the issue:")
+                            Text(String(localized: "feedback.issue-description-prompt", defaultValue: "Please describe the issue:", comment: "Prompt for issue description"))
                         }.padding(.leading, -23)
                     } else {
-                        Text("Please describe the issue:")
+                        Text(String(localized: "feedback.issue-description-prompt", defaultValue: "Please describe the issue:", comment: "Prompt for issue description"))
                     }
                 }
                 TextEditor(text: $feedbackModel.issueDescription)
                            .frame(minHeight: 127, alignment: .leading)
                            .border(Color(NSColor.separatorColor))
-                Text("Example: CodeEdit crashes when the autocomplete popup appears on screen.")
+                Text(String(localized: "feedback.issue-description-example", defaultValue: "Example: CodeEdit crashes when the autocomplete popup appears on screen.", comment: "Example issue description"))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
             }
             .padding(.top, -5)
 
             VStack(alignment: .leading) {
-                Text("Please list the steps you took to reproduce the issue:")
+                Text(String(localized: "feedback.steps-to-reproduce-prompt", defaultValue: "Please list the steps you took to reproduce the issue:", comment: "Prompt for steps to reproduce"))
                 TextEditor(text: $feedbackModel.stepsReproduceDescription)
                            .frame(minHeight: 60, alignment: .leading)
                            .border(Color(NSColor.separatorColor))
-                Text("Example:")
+                Text(String(localized: "feedback.steps-example-label", defaultValue: "Example:", comment: "Label for example steps"))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
-                Text("1. Open the attached sample project")
+                Text(String(localized: "feedback.steps-example-step1", defaultValue: "1. Open the attached sample project", comment: "Example step 1 for reproducing issue"))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
-                Text("2. type #import and wait for autocompletion to begin")
+                Text(String(localized: "feedback.steps-example-step2", defaultValue: "2. type #import and wait for autocompletion to begin", comment: "Example step 2 for reproducing issue"))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
             }
             .padding(.top)
 
             VStack(alignment: .leading) {
-                Text("What did you expect to happen?")
+                Text(String(localized: "feedback.expectation-prompt", defaultValue: "What did you expect to happen?", comment: "Prompt for expected behavior"))
                 TextEditor(text: $feedbackModel.expectationDescription)
                            .frame(minHeight: 60, alignment: .leading)
                            .border(Color(NSColor.separatorColor))
-                Text("Example: I expected autocomplete to show me a list of headers.")
+                Text(String(localized: "feedback.expectation-example", defaultValue: "Example: I expected autocomplete to show me a list of headers.", comment: "Example expected behavior"))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
             }
             .padding(.top)
 
             VStack(alignment: .leading) {
-                Text("What actually happened?")
+                Text(String(localized: "feedback.actual-behavior-prompt", defaultValue: "What actually happened?", comment: "Prompt for actual behavior"))
                 TextEditor(text: $feedbackModel.whatHappenedDescription)
                            .frame(minHeight: 60, alignment: .leading)
                            .border(Color(NSColor.separatorColor))
                 // swiftlint:disable:next line_length
-                Text("Example: The autocomplete window flickered on screen and CodeEdit crashed. See attached crashlog.")
+                Text(String(localized: "feedback.actual-behavior-example", defaultValue: "Example: The autocomplete window flickered on screen and CodeEdit crashed. See attached crashlog.", comment: "Example actual behavior"))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
             }
