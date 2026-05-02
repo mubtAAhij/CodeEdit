@@ -99,7 +99,7 @@ struct ToolbarBranchPicker: View {
     }
 
     private var title: String {
-        workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+        workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "workspace.empty", defaultValue: "Empty", comment: "Empty workspace placeholder")
     }
 
     // MARK: Popover View
@@ -114,7 +114,7 @@ struct ToolbarBranchPicker: View {
             VStack(alignment: .leading) {
                 if let currentBranch = sourceControlManager.currentBranch {
                     Section {
-                        headerLabel("Current Branch")
+                        headerLabel(String(localized: "sourcecontrol.branch.current", defaultValue: "Current Branch", comment: "Current Branch section header"))
                         BranchCell(sourceControlManager: sourceControlManager, branch: currentBranch, active: true)
                     }
                 }
@@ -134,7 +134,7 @@ struct ToolbarBranchPicker: View {
 
                 if !branches.isEmpty {
                     Section {
-                        headerLabel("Branches")
+                        headerLabel(String(localized: "sourcecontrol.branches", defaultValue: "Branches", comment: "Branches section header"))
                         ForEach(branchesGroups.keys.sorted(), id: \.self) { branchGroupPrefix in
                             if let group = branchesGroups[branchGroupPrefix] {
                                 if !group.shouldNest {
@@ -219,7 +219,7 @@ struct ToolbarBranchPicker: View {
                     do {
                         try await sourceControlManager.checkoutBranch(branch: branch)
                     } catch {
-                        await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                        await sourceControlManager.showAlertForError(title: String(localized: "sourcecontrol.checkout.failed", defaultValue: "Failed to checkout", comment: "Failed to checkout error title"), error: error)
                     }
                 }
             }
