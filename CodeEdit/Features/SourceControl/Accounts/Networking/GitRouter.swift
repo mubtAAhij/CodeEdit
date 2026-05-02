@@ -34,7 +34,7 @@ protocol GitRouterConfiguration {
 
 extension GitRouterConfiguration {
     var accessTokenFieldName: String? {
-        "access_token"
+        String(localized: "git.router.access.token.field", defaultValue: "access_token", comment: "Git router access token field name")
     }
 
     var authorizationHeader: String? {
@@ -42,7 +42,7 @@ extension GitRouterConfiguration {
     }
 
     var errorDomain: String? {
-        "com.codeedit.models.accounts.networking"
+        String(localized: "git.router.error.domain", defaultValue: "com.codeedit.models.accounts.networking", comment: "Git router error domain")
     }
 
     var customHeaders: [GitHTTPHeader]? {
@@ -80,7 +80,7 @@ protocol GitRouter {
 
 extension GitRouter {
 
-    var gitErrorKey: String { "ErrorKey" }
+    var gitErrorKey: String { String(localized: "git.router.error.key", defaultValue: "ErrorKey", comment: "Git router error key") }
 
     func request() -> URLRequest? {
         let url = URL(string: path, relativeTo: URL(string: configuration?.apiEndpoint ?? "")!)
@@ -96,7 +96,7 @@ extension GitRouter {
         var urlRequest = request(components!, parameters: parameters)
 
         if let accessToken = configuration?.accessToken, let tokenType = configuration?.authorizationHeader {
-            urlRequest?.addValue("\(tokenType) \(accessToken)", forHTTPHeaderField: "Authorization")
+            urlRequest?.addValue(String(format: String(localized: "git.router.authorization.value", defaultValue: "%@ %@", comment: "Git router authorization header value"), tokenType, accessToken), forHTTPHeaderField: String(localized: "git.router.authorization.header", defaultValue: "Authorization", comment: "Git router authorization header field"))
         }
 
         if let customHeaders = configuration?.customHeaders {
@@ -131,7 +131,7 @@ extension GitRouter {
                     if let escapedValue = item.addingPercentEncoding(
                         withAllowedCharacters: CharacterSet.URLQueryAllowedCharacterSet()
                     ) {
-                        components.append(URLQueryItem(name: "\(key)[\(index)]", value: escapedValue))
+                        components.append(URLQueryItem(name: String(format: String(localized: "git.router.array.param.format", defaultValue: "%@[%d]", comment: "Git router array parameter format"), key, index), value: escapedValue))
                     }
                 }
             case let valueDict as [String: Any]:
@@ -140,11 +140,11 @@ extension GitRouter {
                     if let escapedValue = value.addingPercentEncoding(
                         withAllowedCharacters: CharacterSet.URLQueryAllowedCharacterSet()
                     ) {
-                        components.append(URLQueryItem(name: "\(key)[\(nestedKey)]", value: escapedValue))
+                        components.append(URLQueryItem(name: String(format: String(localized: "git.router.dict.param.format", defaultValue: "%@[%@]", comment: "Git router dictionary parameter format"), key, nestedKey), value: escapedValue))
                     }
                 }
             default:
-                print("Cannot encode object of type \(type(of: value))")
+                print(String(format: String(localized: "git.router.encode.error", defaultValue: "Cannot encode object of type %@", comment: "Git router encode error message"), String(describing: type(of: value))))
             }
         }
 
@@ -155,9 +155,11 @@ extension GitRouter {
 
         var urlComponents = urlComponents
 
+        let equalsSeparator = String(localized: "git.router.query.equals", defaultValue: "=", comment: "Git router query equals separator")
+        let ampersandSeparator = String(localized: "git.router.query.ampersand", defaultValue: "&", comment: "Git router query ampersand separator")
         urlComponents.percentEncodedQuery = urlQuery(parameters)?.map {
-            [$0.name, $0.value ?? ""].joined(separator: "=")
-        }.joined(separator: "&")
+            [$0.name, $0.value ?? ""].joined(separator: equalsSeparator)
+        }.joined(separator: ampersandSeparator)
 
         guard let url = urlComponents.url else { return nil }
 
@@ -176,7 +178,7 @@ extension GitRouter {
 
             var mutableURLRequest = Foundation.URLRequest(url: urlComponents.url!)
 
-            mutableURLRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
+            mutableURLRequest.setValue(String(localized: "git.router.form.content.type", defaultValue: "application/x-www-form-urlencoded", comment: "Git router form content type"), forHTTPHeaderField: String(localized: "git.router.content.type.header", defaultValue: "content-type", comment: "Git router content type header"))
 
             mutableURLRequest.httpBody = queryData
 
@@ -348,7 +350,7 @@ private extension CharacterSet {
     static func URLQueryAllowedCharacterSet() -> CharacterSet {
 
         // does not include "?" or "/" due to RFC 3986 - Section 3.4
-        let generalDelimitersToEncode = ":#[]@"
+        let generalDelimitersToEncode = String(localized: "git.router.general.delimiters", defaultValue: ":#[]@", comment: "Git router general delimiters to encode")
         let subDelimitersToEncode = "!$&'()*+,;="
 
         var allowedCharacterSet = CharacterSet.urlQueryAllowed
