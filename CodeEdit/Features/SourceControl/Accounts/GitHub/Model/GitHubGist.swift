@@ -33,16 +33,16 @@ class GitHubGist: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case url
-        case forksURL = "forks_url"
-        case commitsURL = "commits_url"
-        case gitPushURL = "git_pull_url"
-        case gitPullURL = "git_push_url"
-        case commentsURL = "comments_url"
-        case htmlURL = "html_url"
+        case forksURL = String(localized: "github.gist.forks.url", defaultValue: "forks_url", comment: "GitHub gist forks URL field")
+        case commitsURL = String(localized: "github.gist.commits.url", defaultValue: "commits_url", comment: "GitHub gist commits URL field")
+        case gitPushURL = String(localized: "github.gist.git.pull.url", defaultValue: "git_pull_url", comment: "GitHub gist git pull URL field")
+        case gitPullURL = String(localized: "github.gist.git.push.url", defaultValue: "git_push_url", comment: "GitHub gist git push URL field")
+        case commentsURL = String(localized: "github.gist.comments.url", defaultValue: "comments_url", comment: "GitHub gist comments URL field")
+        case htmlURL = String(localized: "github.gist.html.url", defaultValue: "html_url", comment: "GitHub gist HTML URL field")
         case files
-        case publicGist = "public"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
+        case publicGist = String(localized: "github.gist.public", defaultValue: "public", comment: "GitHub gist public field")
+        case createdAt = String(localized: "github.gist.created.at", defaultValue: "created_at", comment: "GitHub gist created at field")
+        case updatedAt = String(localized: "github.gist.updated.at", defaultValue: "updated_at", comment: "GitHub gist updated at field")
         case description
         case comments
         case user
@@ -62,8 +62,8 @@ extension GitHubAccount {
     @discardableResult
     func myGists(
         _ session: GitURLSession = URLSession.shared,
-        page: String = "1",
-        perPage: String = "100",
+        page: String = String(localized: "github.gist.default.page", defaultValue: "1", comment: "GitHub gist default page number"),
+        perPage: String = String(localized: "github.gist.default.per.page", defaultValue: "100", comment: "GitHub gist default items per page"),
         completion: @escaping (_ response: Result<[GitHubGist], Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
 
@@ -97,8 +97,8 @@ extension GitHubAccount {
     func gists(
         _ session: GitURLSession = URLSession.shared,
         owner: String,
-        page: String = "1",
-        perPage: String = "100",
+        page: String = String(localized: "github.gist.default.page", defaultValue: "1", comment: "GitHub gist default page number"),
+        perPage: String = String(localized: "github.gist.default.per.page", defaultValue: "100", comment: "GitHub gist default items per page"),
         completion: @escaping (_ response: Result<[GitHubGist], Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
 
