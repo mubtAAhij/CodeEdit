@@ -46,7 +46,7 @@ final class CodeEditWindowController: NSWindowController, NSToolbarDelegate, Obs
         self.workspace = workspace
         self.toolbarCollapsed = workspace.getFromWorkspaceState(.toolbarCollapsed) as? Bool ?? false
         guard let splitViewController = setupSplitView(with: workspace) else {
-            fatalError("Failed to set up content view.")
+            fatalError(String(localized: "window.controller.error.setup.content.view", defaultValue: "Failed to set up content view.", comment: "Fatal error message when content view setup fails"))
         }
 
         // Previous:
@@ -85,12 +85,12 @@ final class CodeEditWindowController: NSWindowController, NSToolbarDelegate, Obs
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "window.controller.error.init.coder", defaultValue: "init(coder:) has not been implemented", comment: "Fatal error message when init(coder:) is called"))
     }
 
     private func setupSplitView(with workspace: WorkspaceDocument) -> CodeEditSplitViewController? {
         guard let window else {
-            assertionFailure("No window found for this controller. Cannot set up content.")
+            assertionFailure(String(localized: "window.controller.error.no.window", defaultValue: "No window found for this controller. Cannot set up content.", comment: "Assertion failure message when window is not found"))
             return nil
         }
 
