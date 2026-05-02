@@ -24,10 +24,10 @@ struct SourceControlAddExistingRemoteView: View {
     var body: some View {
         VStack(spacing: 0) {
             Form {
-                Section("Add Remote") {
-                    TextField("Remote Name", value: $name, formatter: RegexFormatter(pattern: "[^a-zA-Z0-9_-]"))
+                Section(String(localized: "sourcecontrol.remote.add", defaultValue: "Add Remote", comment: "Add Remote section header")) {
+                    TextField(String(localized: "sourcecontrol.remote.name", defaultValue: "Remote Name", comment: "Remote Name text field label"), value: $name, formatter: RegexFormatter(pattern: String(localized: "sourcecontrol.remote.name.pattern", defaultValue: "[^a-zA-Z0-9_-]", comment: "Regex pattern for remote name validation")))
                         .focused($focusedField, equals: .name)
-                    TextField("Location", value: $location, formatter: TrimWhitespaceFormatter())
+                    TextField(String(localized: "sourcecontrol.remote.location", defaultValue: "Location", comment: "Location text field label"), value: $location, formatter: TrimWhitespaceFormatter())
                         .focused($focusedField, equals: .location)
                 }
             }
@@ -42,13 +42,13 @@ struct SourceControlAddExistingRemoteView: View {
                     name = ""
                     location = ""
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "general.cancel", defaultValue: "Cancel", comment: "Cancel button"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Add")
+                    Text(String(localized: "general.add", defaultValue: "Add", comment: "Add button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -58,10 +58,10 @@ struct SourceControlAddExistingRemoteView: View {
         }
         .frame(width: 500)
         .onAppear {
-            let originExists = sourceControlManager.remotes.contains { $0.name == "origin" }
+            let originExists = sourceControlManager.remotes.contains { $0.name == String(localized: "sourcecontrol.remote.default.name", defaultValue: "origin", comment: "Default remote name") }
 
             if !originExists {
-                name = "origin"
+                name = String(localized: "sourcecontrol.remote.default.name", defaultValue: "origin", comment: "Default remote name")
                 focusedField = .location
             }
         }
@@ -80,7 +80,7 @@ struct SourceControlAddExistingRemoteView: View {
                 location = ""
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to add remote", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "sourcecontrol.remote.add.failed", defaultValue: "Failed to add remote", comment: "Failed to add remote error title"), error: error)
             }
         }
     }
