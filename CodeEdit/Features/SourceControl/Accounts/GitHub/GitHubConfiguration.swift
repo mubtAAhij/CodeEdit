@@ -14,8 +14,8 @@ struct GitHubTokenConfiguration: GitRouterConfiguration {
     let provider = SourceControlAccount.Provider.github
     var apiEndpoint: String?
     var accessToken: String?
-    let errorDomain: String? = "com.codeedit.models.accounts.github"
-    let authorizationHeader: String? = "Basic"
+    let errorDomain: String? = String(localized: "github.config.error.domain", defaultValue: "com.codeedit.models.accounts.github", comment: "Error domain identifier for GitHub account configuration")
+    let authorizationHeader: String? = String(localized: "github.config.auth.header", defaultValue: "Basic", comment: "HTTP authorization header type for GitHub authentication")
 
     /// Custom `Accept` header for API previews.
     ///
@@ -43,7 +43,7 @@ struct GitHubOAuthConfiguration: GitRouterConfiguration {
     let secret: String
     let scopes: [String]
     let webEndpoint: String?
-    let errorDomain = "com.codeedit.models.accounts.github"
+    let errorDomain = String(localized: "github.config.error.domain", defaultValue: "com.codeedit.models.accounts.github", comment: "Error domain identifier for GitHub account configuration")
 
     /// Custom `Accept` header for API previews.
     ///
@@ -109,7 +109,7 @@ struct GitHubOAuthConfiguration: GitRouterConfiguration {
         completion: @escaping (_ config: GitHubTokenConfiguration) -> Void
     ) {
 
-        if let code = url.URLParameters["code"] {
+        if let code = url.URLParameters[String(localized: "github.oauth.param.code", defaultValue: "code", comment: "OAuth parameter name for authorization code")] {
             authorize(session, code: code) { config in
                 completion(config)
             }
@@ -117,9 +117,9 @@ struct GitHubOAuthConfiguration: GitRouterConfiguration {
     }
 
     func accessTokenFromResponse(_ response: String) -> String? {
-        let accessTokenParam = response.components(separatedBy: "&").first
+        let accessTokenParam = response.components(separatedBy: String(localized: "github.oauth.separator.ampersand", defaultValue: "&", comment: "URL parameter separator character")).first
         if let accessTokenParam {
-            return accessTokenParam.components(separatedBy: "=").last
+            return accessTokenParam.components(separatedBy: String(localized: "github.oauth.separator.equals", defaultValue: "=", comment: "URL parameter key-value separator character")).last
         }
         return nil
     }
@@ -157,19 +157,19 @@ enum GitHubOAuthRouter: GitRouter {
     var path: String {
         switch self {
         case .authorize:
-            return "login/oauth/authorize"
+            return String(localized: "github.oauth.path.authorize", defaultValue: "login/oauth/authorize", comment: "GitHub OAuth authorization endpoint path")
         case .accessToken:
-            return "login/oauth/access_token"
+            return String(localized: "github.oauth.path.access.token", defaultValue: "login/oauth/access_token", comment: "GitHub OAuth access token endpoint path")
         }
     }
 
     var params: [String: Any] {
         switch self {
         case let .authorize(config):
-            let scope = (config.scopes as NSArray).componentsJoined(by: ",")
-            return ["scope": scope, "client_id": config.token, "allow_signup": "false"]
+            let scope = (config.scopes as NSArray).componentsJoined(by: String(localized: "github.oauth.separator.comma", defaultValue: ",", comment: "Separator for joining OAuth scopes"))
+            return [String(localized: "github.oauth.param.scope", defaultValue: "scope", comment: "OAuth parameter name for scope"): scope, String(localized: "github.oauth.param.client.id", defaultValue: "client_id", comment: "OAuth parameter name for client ID"): config.token, String(localized: "github.oauth.param.allow.signup", defaultValue: "allow_signup", comment: "OAuth parameter name for allow signup flag"): String(localized: "github.oauth.value.false", defaultValue: "false", comment: "Boolean false value for OAuth parameter")]
         case let .accessToken(config, code):
-            return ["client_id": config.token, "client_secret": config.secret, "code": code]
+            return [String(localized: "github.oauth.param.client.id", defaultValue: "client_id", comment: "OAuth parameter name for client ID"): config.token, String(localized: "github.oauth.param.client.secret", defaultValue: "client_secret", comment: "OAuth parameter name for client secret"): config.secret, String(localized: "github.oauth.param.code", defaultValue: "code", comment: "OAuth parameter name for authorization code"): code]
         }
     }
 
