@@ -30,17 +30,17 @@ class GitHubRepositories: Codable {
         case id
         case owner
         case name
-        case fullName = "full_name"
-        case isPrivate = "private"
-        case repositoryDescription = "description"
-        case isFork = "fork"
-        case gitURL = "git_url"
-        case sshURL = "ssh_url"
-        case cloneURL = "clone_url"
-        case htmlURL = "html_url"
+        case fullName = String(localized: "github.api.field.full.name", defaultValue: "full_name", comment: "GitHub API full_name field")
+        case isPrivate = String(localized: "github.api.field.private", defaultValue: "private", comment: "GitHub API private field")
+        case repositoryDescription = String(localized: "github.api.field.description", defaultValue: "description", comment: "GitHub API description field")
+        case isFork = String(localized: "github.api.field.fork", defaultValue: "fork", comment: "GitHub API fork field")
+        case gitURL = String(localized: "github.api.field.git.url", defaultValue: "git_url", comment: "GitHub API git_url field")
+        case sshURL = String(localized: "github.api.field.ssh.url", defaultValue: "ssh_url", comment: "GitHub API ssh_url field")
+        case cloneURL = String(localized: "github.api.field.clone.url", defaultValue: "clone_url", comment: "GitHub API clone_url field")
+        case htmlURL = String(localized: "github.api.field.html.url", defaultValue: "html_url", comment: "GitHub API html_url field")
         case size
-        case lastPush = "pushed_at"
-        case stargazersCount = "stargazers_count"
+        case lastPush = String(localized: "github.api.field.pushed.at", defaultValue: "pushed_at", comment: "GitHub API pushed_at field")
+        case stargazersCount = String(localized: "github.api.field.stargazers.count", defaultValue: "stargazers_count", comment: "GitHub API stargazers_count field")
     }
 }
 
@@ -59,8 +59,8 @@ extension GitHubAccount {
     func repositories(
         _ session: GitURLSession = URLSession.shared,
         owner: String? = nil,
-        page: String = "1",
-        perPage: String = "100",
+        page: String = String(localized: "github.pagination.page.default", defaultValue: "1", comment: "GitHub pagination default page number"),
+        perPage: String = String(localized: "github.pagination.perpage.default", defaultValue: "100", comment: "GitHub pagination default items per page"),
         completion: @escaping (_ response: Result<[GitHubRepositories], Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
         let router = (owner != nil)
