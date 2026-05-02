@@ -12,7 +12,7 @@ import OSLog
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "AppDelegate")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "app.delegate.logger.category", defaultValue: "AppDelegate", comment: "Logger category for app delegate"))
     private let updater = SoftwareUpdater()
 
     @Environment(\.openWindow)
@@ -102,7 +102,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Handle urls with the form `codeedit://file/{filepath}:{line}:{column}`
     func application(_ application: NSApplication, open urls: [URL]) {
         for url in urls {
-            let file = URL(fileURLWithPath: url.path).path.split(separator: ":")
+            let file = URL(fileURLWithPath: url.path).path.split(separator: Character(String(localized: "app.delegate.url.separator.colon", defaultValue: ":", comment: "Colon separator for URL path components")))
             let filePath = URL(fileURLWithPath: String(file[0]))
             let line = file.count > 1 ? Int(file[1]) ?? 0 : 0
             let column = file.count > 2 ? Int(file[2]) ?? 1 : 1
@@ -209,17 +209,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     // MARK: - Open With CodeEdit (Extension) functions
     private func checkForFilesToOpen() {
         guard let defaults = UserDefaults.init(
-            suiteName: "app.codeedit.CodeEdit.shared"
+            suiteName: String(localized: "app.delegate.shared.defaults.suite", defaultValue: "app.codeedit.CodeEdit.shared", comment: "App group suite name for shared user defaults")
         ) else {
-            print("Failed to get/init shared defaults")
+            print(String(localized: "app.delegate.shared.defaults.error", defaultValue: "Failed to get/init shared defaults", comment: "Error message when shared defaults initialization fails"))
             return
         }
 
         // Register enableOpenInCE (enable Open In CodeEdit
-        defaults.register(defaults: ["enableOpenInCE": true])
+        defaults.register(defaults: [String(localized: "app.delegate.defaults.key.enable.open", defaultValue: "enableOpenInCE", comment: "User defaults key for enabling Open in CodeEdit"): true])
 
-        if let filesToOpen = defaults.string(forKey: "openInCEFiles") {
-            let files = filesToOpen.split(separator: ";")
+        if let filesToOpen = defaults.string(forKey: String(localized: "app.delegate.defaults.key.open.files", defaultValue: "openInCEFiles", comment: "User defaults key for files to open")) {
+            let files = filesToOpen.split(separator: Character(String(localized: "app.delegate.file.separator.semicolon", defaultValue: ";", comment: "Semicolon separator for file paths list")))
 
             for filePath in files {
                 let fileURL = URL(fileURLWithPath: String(filePath))
@@ -232,7 +232,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 }
             }
 
-            defaults.removeObject(forKey: "openInCEFiles")
+            defaults.removeObject(forKey: String(localized: "app.delegate.defaults.key.open.files", defaultValue: "openInCEFiles", comment: "User defaults key for files to open"))
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
@@ -243,7 +243,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Enable window size restoring on app relaunch after quitting.
     private func enableWindowSizeSaveOnQuit() {
         // This enables window restoring on normal quit (instead of only on force-quit).
-        UserDefaults.standard.setValue(true, forKey: "NSQuitAlwaysKeepsWindows")
+        UserDefaults.standard.setValue(true, forKey: String(localized: "app.delegate.defaults.key.quit.keeps.windows", defaultValue: "NSQuitAlwaysKeepsWindows", comment: "User defaults key for window restoration on quit"))
     }
 
     // MARK: NSDocumentController delegate
@@ -260,9 +260,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private func terminateLanguageServers() {
         Task { @MainActor in
             let task = TaskNotificationModel(
-                id: "appdelegate.terminate_language_servers",
-                title: "Stopping Language Servers",
-                message: "Stopping running language server processes...",
+                id: String(localized: "app.delegate.task.id.terminate.lsp", defaultValue: "appdelegate.terminate_language_servers", comment: "Task notification ID for terminating language servers"),
+                title: String(localized: "app.delegate.task.title.stopping.lsp", defaultValue: "Stopping Language Servers", comment: "Task notification title for stopping language servers"),
+                message: String(localized: "app.delegate.task.message.stopping.lsp", defaultValue: "Stopping running language server processes...", comment: "Task notification message for stopping language servers"),
                 isLoading: true
             )
 
@@ -289,9 +289,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Terminates all running tasks. Used during app termination to ensure resources are freed.
     private func terminateTasks() {
         let task = TaskNotificationModel(
-            id: "appdelegate.terminate_tasks",
-            title: "Terminating Tasks",
-            message: "Interrupting all running tasks before quitting...",
+            id: String(localized: "app.delegate.task.id.terminate.tasks", defaultValue: "appdelegate.terminate_tasks", comment: "Task notification ID for terminating tasks"),
+            title: String(localized: "app.delegate.task.title.terminating.tasks", defaultValue: "Terminating Tasks", comment: "Task notification title for terminating tasks"),
+            message: String(localized: "app.delegate.task.message.terminating.tasks", defaultValue: "Interrupting all running tasks before quitting...", comment: "Task notification message for terminating tasks"),
             isLoading: true
         )
 
@@ -312,5 +312,5 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 }
 
 extension AppDelegate {
-    static let recoverWorkspacesKey = "recover.workspaces"
+    static let recoverWorkspacesKey = String(localized: "app.delegate.defaults.key.recover.workspaces", defaultValue: "recover.workspaces", comment: "User defaults key for recovering workspaces on restart")
 }
