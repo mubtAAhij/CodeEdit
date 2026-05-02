@@ -28,24 +28,24 @@ struct SourceControlNavigatorChangesList: View {
                 if selectedFiles.count == 1,
                    let file = selectedFiles.first {
                     Group {
-                        Button("View in Finder") {
+                        Button(String(localized: "sourcecontrol.view.in.finder", defaultValue: "View in Finder", comment: "View file in Finder")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button("Reveal in Project Navigator") {}
+                        Button(String(localized: "sourcecontrol.reveal.in.navigator", defaultValue: "Reveal in Project Navigator", comment: "Reveal file in project navigator")) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button("Open in New Tab") {
+                        Button(String(localized: "sourcecontrol.open.new.tab", defaultValue: "Open in New Tab", comment: "Open file in new tab")) {
                             openGitFile(file)
                         }
-                        Button("Open in New Window") {}
+                        Button(String(localized: "sourcecontrol.open.new.window", defaultValue: "Open in New Window", comment: "Open file in new window")) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
                         Group {
                             Divider()
-                            Button("Discard Changes in \(file.fileURL.lastPathComponent)...") {
+                            Button(String(format: String(localized: "sourcecontrol.discard.changes", defaultValue: "Discard Changes in %@...", comment: "Discard changes in file"), file.fileURL.lastPathComponent)) {
                                 sourceControlManager.discardChanges(for: file.fileURL)
                             }
                             Divider()
