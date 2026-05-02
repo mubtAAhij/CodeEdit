@@ -15,33 +15,33 @@ struct WelcomeSubtitleView: View {
     private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
 
     private var macOSVersion: String {
-        let url = URL(fileURLWithPath: "/System/Library/CoreServices/SystemVersion.plist")
+        let url = URL(fileURLWithPath: String(localized: "welcome.system.version.plist.path", defaultValue: "/System/Library/CoreServices/SystemVersion.plist", comment: "Path to macOS system version plist"))
         guard let dict = NSDictionary(contentsOf: url),
-              let version = dict["ProductUserVisibleVersion"],
-              let build = dict["ProductBuildVersion"] else {
+              let version = dict[String(localized: "welcome.product.user.visible.version", defaultValue: "ProductUserVisibleVersion", comment: "Product user visible version key")],
+              let build = dict[String(localized: "welcome.product.build.version", defaultValue: "ProductBuildVersion", comment: "Product build version key")] else {
             return ProcessInfo.processInfo.operatingSystemVersionString
         }
-        return "\(version) (\(build))"
+        return String(format: String(localized: "welcome.version.build.format", defaultValue: "%@ (%@)", comment: "Version and build format"), String(describing: version), String(describing: build))
     }
 
     private var xcodeVersion: String? {
-        guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.dt.Xcode"),
+        guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: String(localized: "welcome.xcode.bundle.id", defaultValue: "com.apple.dt.Xcode", comment: "Xcode bundle identifier")),
               let bundle = Bundle(url: url),
               let infoDict = bundle.infoDictionary,
-              let version = infoDict["CFBundleShortVersionString"] as? String,
-              let buildURL = URL(string: "\(url)Contents/version.plist"),
+              let version = infoDict[String(localized: "welcome.bundle.short.version", defaultValue: "CFBundleShortVersionString", comment: "Bundle short version key")] as? String,
+              let buildURL = URL(string: String(format: String(localized: "welcome.xcode.version.plist.format", defaultValue: "%@Contents/version.plist", comment: "Xcode version plist path format"), url.absoluteString)),
               let buildDict = try? NSDictionary(contentsOf: buildURL, error: ()),
-              let build = buildDict["ProductBuildVersion"]
+              let build = buildDict[String(localized: "welcome.product.build.version", defaultValue: "ProductBuildVersion", comment: "Product build version key")]
         else {
             return nil
         }
-        return "\(version) (\(build))"
+        return String(format: String(localized: "welcome.version.build.format", defaultValue: "%@ (%@)", comment: "Version and build format"), version, String(describing: build))
     }
 
     private func copyInformation() {
-        var copyString = "\(Bundle.displayName): \(appVersion)\(appVersionPostfix) (\(appBuild))\n"
-        copyString.append("macOS: \(macOSVersion)\n")
-        if let xcodeVersion { copyString.append("Xcode: \(xcodeVersion)") }
+        var copyString = String(format: String(localized: "welcome.copy.app.info", defaultValue: "%@: %@%@ (%@)\n", comment: "App information format for clipboard"), Bundle.displayName, appVersion, appVersionPostfix, appBuild)
+        copyString.append(String(format: String(localized: "welcome.copy.macos.info", defaultValue: "macOS: %@\n", comment: "macOS information format for clipboard"), macOSVersion))
+        if let xcodeVersion { copyString.append(String(format: String(localized: "welcome.copy.xcode.info", defaultValue: "Xcode: %@", comment: "Xcode information format for clipboard"), xcodeVersion)) }
 
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -50,12 +50,12 @@ struct WelcomeSubtitleView: View {
 
     var body: some View {
         Text(String(
-            format: NSLocalizedString("Version %@%@ (%@)", comment: ""),
+            format: String(localized: "welcome.version.display", defaultValue: "Version %@%@ (%@)", comment: "Welcome window version display format"),
             appVersion, appVersionPostfix, appBuild
         ))
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help("Copy System Information to Clipboard")
+        .help(String(localized: "welcome.copy.tooltip", defaultValue: "Copy System Information to Clipboard", comment: "Tooltip for copying system information"))
     }
 }
