@@ -23,17 +23,17 @@ class GitClient {
         var description: String {
             switch self {
             case .outputError(let string): string
-            case .notGitRepository: "Not a git repository"
-            case .failedToDecodeURL: "Failed to decode URL"
-            case .noRemoteConfigured: "No remote configured"
-            case .statusParseEarlyEnd: "Invalid status, found end of string too early"
-            case let .invalidStatus(char): "Invalid status received: \(char)"
-            case let .statusInvalidChangeType(char): "Status invalid change type: \(char)"
+            case .notGitRepository: String(localized: "git-client.error.not-repository", defaultValue: "Not a git repository", comment: "Error message when directory is not a git repository")
+            case .failedToDecodeURL: String(localized: "git-client.error.decode-url", defaultValue: "Failed to decode URL", comment: "Error message when URL decoding fails")
+            case .noRemoteConfigured: String(localized: "git-client.error.no-remote", defaultValue: "No remote configured", comment: "Error message when no remote is configured")
+            case .statusParseEarlyEnd: String(localized: "git-client.error.status-early-end", defaultValue: "Invalid status, found end of string too early", comment: "Error message when status parsing ends prematurely")
+            case let .invalidStatus(char): String(format: String(localized: "git-client.error.invalid-status", defaultValue: "Invalid status received: %@", comment: "Error message when invalid status character is received"), String(char))
+            case let .statusInvalidChangeType(char): String(format: String(localized: "git-client.error.invalid-change-type", defaultValue: "Status invalid change type: %@", comment: "Error message when invalid change type character is received"), String(char))
             }
         }
     }
 
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "GitClient")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "git-client.logger-category", defaultValue: "GitClient", comment: "Logger category for Git client operations"))
 
     internal let directoryURL: URL
     internal let shellClient: ShellClient
@@ -78,19 +78,19 @@ class GitClient {
     }
 
     private func generateCommand(_ command: String) -> String {
-        "cd \(directoryURL.relativePath.escapedDirectory());git \(command)"
+        String(format: String(localized: "git-client.command-template", defaultValue: "cd %@;git %@", comment: "Shell command template for running git commands"), directoryURL.relativePath.escapedDirectory(), command)
     }
 
     private func processCommonErrors(_ output: String) throws -> String {
-        if output.contains("fatal: not a git repository") {
+        if output.contains(String(localized: "git-client.error-matcher.not-repository", defaultValue: "fatal: not a git repository", comment: "Git error message matcher for non-repository directories")) {
             throw GitClientError.notGitRepository
         }
 
-        if output.contains("fatal: No remote configured") {
+        if output.contains(String(localized: "git-client.error-matcher.no-remote", defaultValue: "fatal: No remote configured", comment: "Git error message matcher for missing remote configuration")) {
             throw GitClientError.noRemoteConfigured
         }
 
-        if output.hasPrefix("fatal:") {
+        if output.hasPrefix(String(localized: "git-client.error-matcher.fatal-prefix", defaultValue: "fatal:", comment: "Git error message prefix matcher for fatal errors")) {
             throw GitClientError.outputError(output)
         }
 
