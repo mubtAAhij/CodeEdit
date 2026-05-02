@@ -11,7 +11,7 @@ struct SourceControlSettingsView: View {
     @AppSettings(\.sourceControl.general)
     var settings
 
-    @State var selectedTab: String = "general"
+    @State var selectedTab: String = String(localized: "settings.sourcecontrol.tab.general.id", defaultValue: "general", comment: "General tab identifier (technical constant, should not be localized)")
 
     var body: some View {
         SettingsForm {
@@ -20,8 +20,8 @@ struct SourceControlSettingsView: View {
             } footer: {
                 if settings.sourceControlIsEnabled {
                     Picker("", selection: $selectedTab) {
-                        Text("General").tag("general")
-                        Text("Git").tag("git")
+                        Text(String(localized: "settings.sourcecontrol.tab.general", defaultValue: "General", comment: "General tab label")).tag(String(localized: "settings.sourcecontrol.tab.general.id", defaultValue: "general", comment: "General tab identifier (technical constant, should not be localized)"))
+                        Text(String(localized: "settings.sourcecontrol.tab.git", defaultValue: "Git", comment: "Git tab label")).tag(String(localized: "settings.sourcecontrol.tab.git.id", defaultValue: "git", comment: "Git tab identifier (technical constant, should not be localized)"))
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
@@ -30,9 +30,9 @@ struct SourceControlSettingsView: View {
             }
             if settings.sourceControlIsEnabled {
                 switch selectedTab {
-                case "general":
+                case String(localized: "settings.sourcecontrol.tab.general.id", defaultValue: "general", comment: "General tab identifier (technical constant, should not be localized)"):
                     SourceControlGeneralView()
-                case "git":
+                case String(localized: "settings.sourcecontrol.tab.git.id", defaultValue: "git", comment: "Git tab identifier (technical constant, should not be localized)"):
                     SourceControlGitView()
                 default:
                     SourceControlGeneralView()
@@ -46,11 +46,8 @@ struct SourceControlSettingsView: View {
             isOn: $settings.sourceControlIsEnabled
         ) {
             Label {
-                Text("Source Control")
-                Text("""
-                 Back up your files, collaborate with others, and tag your releases. \
-                 [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)
-                 """)
+                Text(String(localized: "settings.sourcecontrol.title", defaultValue: "Source Control", comment: "Source Control settings title"))
+                Text(String(localized: "settings.sourcecontrol.description", defaultValue: "Back up your files, collaborate with others, and tag your releases. [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)", comment: "Source Control settings description"))
                 .font(.callout)
              } icon: {
                 FeatureIcon(symbol: "vault", color: Color(.systemBlue), size: 26)
