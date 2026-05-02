@@ -31,8 +31,8 @@ struct AccountsSettingsDetailsView: View {
     private let filemanager = FileManager.default
 
     func isPrivateSSHKey(_ contents: String) -> Bool {
-        if contents.starts(with: "-----BEGIN OPENSSH PRIVATE KEY-----\n") &&
-           contents.hasSuffix("\n-----END OPENSSH PRIVATE KEY-----\n") {
+        if contents.starts(with: String(localized: "accounts.details.ssh.private.key.begin", defaultValue: "-----BEGIN OPENSSH PRIVATE KEY-----\n", comment: "OpenSSH private key begin marker")) &&
+           contents.hasSuffix(String(localized: "accounts.details.ssh.private.key.end", defaultValue: "\n-----END OPENSSH PRIVATE KEY-----\n", comment: "OpenSSH private key end marker")) {
             return true
         } else {
             return false
@@ -46,7 +46,7 @@ struct AccountsSettingsDetailsView: View {
             let range = NSRange(location: 0, length: contents.utf16.count)
             return regex.firstMatch(in: contents, options: [], range: range) != nil
         } catch {
-            print("Error creating regular expression: \(error.localizedDescription)")
+            print(String(format: String(localized: "accounts.details.debug.regex.error", defaultValue: "Error creating regular expression: %@", comment: "Debug message for regex error"), error.localizedDescription))
             return false
         }
     }
@@ -54,34 +54,33 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent("Account") {
+                LabeledContent(String(localized: "accounts.details.account.label", defaultValue: "Account", comment: "Label for account name")) {
                     Text(currentAccount.name)
                 }
-                TextField("Description", text: $currentAccount.description)
+                TextField(String(localized: "accounts.details.description.label", defaultValue: "Description", comment: "Label for account description"), text: $currentAccount.description)
                 if currentAccount.provider.baseURL == nil {
-                    TextField("Server", text: $currentAccount.serverURL)
+                    TextField(String(localized: "accounts.details.server.label", defaultValue: "Server", comment: "Label for server URL"), text: $currentAccount.serverURL)
                 }
             }
 
             Section {
                 Picker(selection: $currentAccount.urlProtocol) {
-                    Text("HTTPS")
+                    Text(String(localized: "accounts.details.protocol.https", defaultValue: "HTTPS", comment: "HTTPS protocol option"))
                         .tag(SourceControlAccount.URLProtocol.https)
-                    Text("SSH")
+                    Text(String(localized: "accounts.details.protocol.ssh", defaultValue: "SSH", comment: "SSH protocol option"))
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text("Clone Using")
-                    Text("New repositories will be cloned from \(currentAccount.provider.name)"
-                         + " using \(currentAccount.urlProtocol.rawValue).")
+                    Text(String(localized: "accounts.details.clone.using.label", defaultValue: "Clone Using", comment: "Label for clone protocol picker"))
+                    Text(String(format: String(localized: "accounts.details.clone.using.description", defaultValue: "New repositories will be cloned from %@ using %@.", comment: "Description for clone protocol"), currentAccount.provider.name, currentAccount.urlProtocol.rawValue))
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker("SSH Key", selection: $currentAccount.sshKey) {
-                        Text("None")
+                    Picker(String(localized: "accounts.details.ssh.key.label", defaultValue: "SSH Key", comment: "Label for SSH key picker"), selection: $currentAccount.sshKey) {
+                        Text(String(localized: "accounts.details.ssh.key.none", defaultValue: "None", comment: "No SSH key option"))
                             .tag("")
                         Divider()
                         if let sshPath = FileManager.default.homeDirectoryForCurrentUser.appending(
-                            path: ".ssh",
+                            path: String(localized: "accounts.details.ssh.directory", defaultValue: ".ssh", comment: "SSH directory name"),
                             directoryHint: .isDirectory
                         ) as URL? {
                             if let files = try? FileManager.default.contentsOfDirectory(
@@ -91,7 +90,7 @@ struct AccountsSettingsDetailsView: View {
                                     let fileURL = sshPath.appending(path: filename)
                                     if let contents = try? String(contentsOf: fileURL) {
                                         if isPublicSSHKey(contents) {
-                                            Text(filename.replacingOccurrences(of: ".pub", with: ""))
+                                            Text(filename.replacingOccurrences(of: String(localized: "accounts.details.ssh.pub.extension", defaultValue: ".pub", comment: "Public key file extension"), with: ""))
                                                 .tag(fileURL.path)
                                         }
                                     }
@@ -99,18 +98,18 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text("Create New...")
-                            .tag("CREATE_NEW")
-                        Text("Choose...")
-                            .tag("CHOOSE")
+                        Text(String(localized: "accounts.details.ssh.create.new", defaultValue: "Create New...", comment: "Create new SSH key option"))
+                            .tag(String(localized: "accounts.details.ssh.create.new.tag", defaultValue: "CREATE_NEW", comment: "Tag for create new SSH key"))
+                        Text(String(localized: "accounts.details.ssh.choose", defaultValue: "Choose...", comment: "Choose SSH key option"))
+                            .tag(String(localized: "accounts.details.ssh.choose.tag", defaultValue: "CHOOSE", comment: "Tag for choose SSH key"))
                     }
                     .onReceive([currentAccount.sshKey].publisher.first()) { value in
-                        if value == "CREATE_NEW" {
-                            print("Create a new ssh key...")
+                        if value == String(localized: "accounts.details.ssh.create.new.tag", defaultValue: "CREATE_NEW", comment: "Tag for create new SSH key") {
+                            print(String(localized: "accounts.details.debug.create.ssh.key", defaultValue: "Create a new ssh key...", comment: "Debug message for creating SSH key"))
                             createSshKeyIsPresented = true
                             currentAccount.sshKey = prevSshKey
-                        } else if value == "CHOOSE" {
-                            print("Choose a ssh key...")
+                        } else if value == String(localized: "accounts.details.ssh.choose.tag", defaultValue: "CHOOSE", comment: "Tag for choose SSH key") {
+                            print(String(localized: "accounts.details.debug.choose.ssh.key", defaultValue: "Choose a ssh key...", comment: "Debug message for choosing SSH key"))
                             currentAccount.sshKey = prevSshKey
                         } else {
                             // TODO: Validate SSH key and check if it is uploaded to git provider.
@@ -122,24 +121,24 @@ struct AccountsSettingsDetailsView: View {
                 }
             } footer: {
                 HStack {
-                    Button("Delete Account...") {
+                    Button(String(localized: "accounts.details.delete.button", defaultValue: "Delete Account...", comment: "Button to delete account")) {
                         deleteConfirmationIsPresented.toggle()
                     }
                     .alert(
-                        Text("Are you sure you want to delete the account “\(account.description)”?"),
+                        Text(String(format: String(localized: "accounts.details.delete.alert.title", defaultValue: "Are you sure you want to delete the account \"%@\"?", comment: "Alert title for account deletion"), account.description)),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button("OK") {
+                        Button(String(localized: "accounts.details.delete.alert.ok", defaultValue: "OK", comment: "OK button in delete confirmation alert")) {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()
                         }
-                        Button("Cancel") {
+                        Button(String(localized: "accounts.details.delete.alert.cancel", defaultValue: "Cancel", comment: "Cancel button in delete confirmation alert")) {
                             // Handle the cancel, dismiss the alert
                             deleteConfirmationIsPresented.toggle()
                         }
                     } message: {
-                        Text("Deleting this account will remove it from CodeEdit.")
+                        Text(String(localized: "accounts.details.delete.alert.message", defaultValue: "Deleting this account will remove it from CodeEdit.", comment: "Message for account deletion alert"))
                     }
 
                     Spacer()
