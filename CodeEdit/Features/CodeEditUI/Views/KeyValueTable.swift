@@ -60,7 +60,7 @@ private struct NewListTableItemView<HeaderView: View>: View {
                                 Text(key).tag(key)
                             }
                             Divider()
-                            Text("No Selection").tag("")
+                            Text(String(localized: "key-value-table.no-selection", defaultValue: "No Selection", comment: "No selection picker option")).tag("")
                         }
                     }
                     TextField(valueColumnName, text: $value)
@@ -84,10 +84,10 @@ private struct NewListTableItemView<HeaderView: View>: View {
 
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "key-value-table.cancel", defaultValue: "Cancel", comment: "Cancel button")) {
                     dismiss()
                 }
-                Button("Add") {
+                Button(String(localized: "key-value-table.add", defaultValue: "Add", comment: "Add button")) {
                     if !key.isEmpty && !value.isEmpty {
                         completion(key, value)
                     }
@@ -146,10 +146,10 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         .contextMenu(
             forSelectionType: UUID.self,
             menu: { selectedItems in
-                Button("Edit") {
+                Button(String(localized: "key-value-table.edit", defaultValue: "Edit", comment: "Edit context menu item")) {
                     editItem(id: selectedItems.first)
                 }
-                Button("Remove") {
+                Button(String(localized: "key-value-table.remove", defaultValue: "Remove", comment: "Remove context menu item")) {
                     removeItem(selectedItems)
                 }
             },
@@ -162,7 +162,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
                 Button {
                     editingItem = KeyValueItem(key: "", value: "")
                 } label: {
-                    Image(systemName: "plus")
+                    Image(systemName: String(localized: "key-value-table.plus-icon", defaultValue: "plus", comment: "Plus icon"))
                 }
 
                 Divider()
@@ -171,7 +171,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
                 Button {
                     removeItem()
                 } label: {
-                    Image(systemName: "minus")
+                    Image(systemName: String(localized: "key-value-table.minus-icon", defaultValue: "minus", comment: "Minus icon"))
                 }
                 .disabled(selection.isEmpty)
                 .opacity(selection.isEmpty ? 0.5 : 1)
