@@ -30,17 +30,17 @@ struct ThemeSettingsThemeToken: View {
             HStack(spacing: 20) {
                 HStack(spacing: 8) {
                     Toggle(isOn: $bold) {
-                        Image(systemName: "bold")
+                        Image(systemName: String(localized: "theme.token.bold.icon", defaultValue: "bold", comment: "Bold icon system name"))
                     }
                     .toggleStyle(.icon)
-                    .help("Bold")
+                    .help(String(localized: "theme.token.bold.help", defaultValue: "Bold", comment: "Help text for bold toggle"))
                     Divider()
                         .fixedSize()
                     Toggle(isOn: $italic) {
-                        Image(systemName: "italic")
+                        Image(systemName: String(localized: "theme.token.italic.icon", defaultValue: "italic", comment: "Italic icon system name"))
                     }
                     .toggleStyle(.icon)
-                    .help("Italic")
+                    .help(String(localized: "theme.token.italic.help", defaultValue: "Italic", comment: "Help text for italic toggle"))
                 }
                 .opacity(isHovering || bold || italic ? 1 : 0)
 
