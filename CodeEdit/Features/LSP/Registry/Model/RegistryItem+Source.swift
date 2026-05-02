@@ -28,8 +28,8 @@ extension RegistryItem {
                         return
                     } else if let simpleFile = try? container.decode([String: String].self),
                               simpleFile.count == 1,
-                              simpleFile.keys.contains("file"),
-                              let file = simpleFile["file"] {
+                              simpleFile.keys.contains(String(localized: "registry.source.asset.file.key", defaultValue: "file", comment: "Registry asset file key in JSON")),
+                              let file = simpleFile[String(localized: "registry.source.asset.file.key.value", defaultValue: "file", comment: "Registry asset file key for dictionary lookup")] {
                         self = .simpleFile(file)
                         return
                     }
@@ -45,7 +45,7 @@ extension RegistryItem {
                 case .multiple(let values):
                     try container.encode(values)
                 case .simpleFile(let file):
-                    try container.encode(["file": file])
+                    try container.encode([String(localized: "registry.source.asset.file.encode.key", defaultValue: "file", comment: "Registry asset file key for encoding"): file])
                 case .none:
                     try container.encodeNil()
                 }
@@ -156,7 +156,7 @@ extension RegistryItem {
                         Target.self,
                         DecodingError.Context(
                             codingPath: decoder.codingPath,
-                            debugDescription: "Invalid target format"
+                            debugDescription: String(localized: "registry.source.target.error.invalid.format", defaultValue: "Invalid target format", comment: "Error message for invalid target format in registry source")
                         )
                     )
                 }
@@ -176,19 +176,19 @@ extension RegistryItem {
                 switch self {
                 case .single(let value):
 #if arch(arm64)
-                    return value == "darwin" || value == "darwin_arm64" || value == "unix"
+                    return value == String(localized: "registry.source.target.darwin", defaultValue: "darwin", comment: "Darwin target platform identifier") || value == String(localized: "registry.source.target.darwin.arm64", defaultValue: "darwin_arm64", comment: "Darwin ARM64 target platform identifier") || value == String(localized: "registry.source.target.unix", defaultValue: "unix", comment: "Unix target platform identifier")
 #else
-                    return value == "darwin" || value == "darwin_x64" || value == "unix"
+                    return value == String(localized: "registry.source.target.darwin.x64.single", defaultValue: "darwin", comment: "Darwin target platform identifier for x64") || value == String(localized: "registry.source.target.darwin.x64", defaultValue: "darwin_x64", comment: "Darwin x64 target platform identifier") || value == String(localized: "registry.source.target.unix.x64", defaultValue: "unix", comment: "Unix target platform identifier for x64")
 #endif
                 case .multiple(let values):
 #if arch(arm64)
-                    return values.contains("darwin") ||
-                    values.contains("darwin_arm64") ||
-                    values.contains("unix")
+                    return values.contains(String(localized: "registry.source.target.darwin.arm64.multi", defaultValue: "darwin", comment: "Darwin target platform identifier for ARM64 multi")) ||
+                    values.contains(String(localized: "registry.source.target.darwin.arm64.value", defaultValue: "darwin_arm64", comment: "Darwin ARM64 target platform value")) ||
+                    values.contains(String(localized: "registry.source.target.unix.arm64", defaultValue: "unix", comment: "Unix target platform identifier for ARM64"))
 #else
-                    return values.contains("darwin") ||
-                    values.contains("darwin_x64") ||
-                    values.contains("unix")
+                    return values.contains(String(localized: "registry.source.target.darwin.x64.multi", defaultValue: "darwin", comment: "Darwin target platform identifier for x64 multi")) ||
+                    values.contains(String(localized: "registry.source.target.darwin.x64.value", defaultValue: "darwin_x64", comment: "Darwin x64 target platform value")) ||
+                    values.contains(String(localized: "registry.source.target.unix.x64.multi", defaultValue: "unix", comment: "Unix target platform identifier for x64 multi"))
 #endif
                 }
             }
@@ -209,7 +209,7 @@ extension RegistryItem {
                         BinContainer.self,
                         DecodingError.Context(
                             codingPath: decoder.codingPath,
-                            debugDescription: "Invalid bin format"
+                            debugDescription: String(localized: "registry.source.bin.error.invalid.format", defaultValue: "Invalid bin format", comment: "Error message for invalid bin format in registry source")
                         )
                     )
                 }
