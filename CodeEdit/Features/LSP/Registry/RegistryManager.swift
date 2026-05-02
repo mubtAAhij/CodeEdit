@@ -14,16 +14,16 @@ import Combine
 final class RegistryManager: ObservableObject {
     static let shared = RegistryManager()
 
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "RegistryManager")
-    let installPath = Settings.shared.baseURL.appending(path: "Language Servers")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "registry-manager.logger-category", defaultValue: "RegistryManager", comment: "Logger category for registry manager"))
+    let installPath = Settings.shared.baseURL.appending(path: String(localized: "registry-manager.language-servers-path", defaultValue: "Language Servers", comment: "Directory name for language servers"))
 
     /// The URL of where the registry.json file will be downloaded from
     let registryURL = URL(
-        string: "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip"
+        string: String(localized: "registry-manager.registry-url", defaultValue: "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip", comment: "URL for registry JSON file")
     )!
     /// The URL of where the checksums.txt file will be downloaded from
     let checksumURL = URL(
-        string: "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt"
+        string: String(localized: "registry-manager.checksum-url", defaultValue: "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt", comment: "URL for checksums file")
     )!
 
     @Published var isDownloadingRegistry: Bool = false
@@ -86,9 +86,9 @@ final class RegistryManager: ObservableObject {
             name: .taskNotification,
             object: nil,
             userInfo: [
-                "id": packageName,
-                "action": "create",
-                "title": "Removing \(packageName)"
+                String(localized: "registry-manager.notification-key.id", defaultValue: "id", comment: "Notification key for ID"): packageName,
+                String(localized: "registry-manager.notification-key.action", defaultValue: "action", comment: "Notification key for action"): String(localized: "registry-manager.notification-action.create", defaultValue: "create", comment: "Notification action value for create"),
+                String(localized: "registry-manager.notification-key.title", defaultValue: "title", comment: "Notification key for title"): String(format: String(localized: "registry-manager.removing-package", defaultValue: "Removing %@", comment: "Activity title for removing package"), packageName)
             ]
         )
 
@@ -139,10 +139,10 @@ final class RegistryManager: ObservableObject {
             self?.runningInstall = operation
 
             // Add to activity viewer
-            let activityTitle = "\(operation.package.name)\("@" + (method.version ?? "latest"))"
+            let activityTitle = "\(operation.package.name)\("@" + (method.version ?? String(localized: "registry-manager.version.latest", defaultValue: "latest", comment: "Version label for latest version")))"
             TaskNotificationHandler.postTask(
                 action: .create,
-                model: TaskNotificationModel(id: operation.package.name, title: "Installing \(activityTitle)")
+                model: TaskNotificationModel(id: operation.package.name, title: String(format: String(localized: "registry-manager.installing-package", defaultValue: "Installing %@", comment: "Activity title for installing package"), activityTitle))
             )
 
             guard !Task.isCancelled else { return }
@@ -181,25 +181,25 @@ final class RegistryManager: ObservableObject {
     ) {
         if failed {
             NotificationManager.shared.post(
-                iconSymbol: "xmark.circle",
+                iconSymbol: String(localized: "registry-manager.error-icon", defaultValue: "xmark.circle", comment: "SF Symbol name for error icon"),
                 iconColor: .clear,
-                title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                title: String(format: String(localized: "registry-manager.install-failed", defaultValue: "Could not install %@", comment: "Notification title for failed installation"), activityName),
+                description: String(localized: "registry-manager.install-problem", defaultValue: "There was a problem during installation.", comment: "Notification description for installation problem"),
+                actionButtonTitle: String(localized: "registry-manager.done", defaultValue: "Done", comment: "Button label for done action"),
                 action: {},
             )
         } else {
             TaskNotificationHandler.postTask(
                 action: .update,
-                model: TaskNotificationModel(id: id, title: "Successfully installed \(activityName)", isLoading: false)
+                model: TaskNotificationModel(id: id, title: String(format: String(localized: "registry-manager.install-success", defaultValue: "Successfully installed %@", comment: "Activity title for successful installation"), activityName), isLoading: false)
             )
             NotificationCenter.default.post(
                 name: .taskNotification,
                 object: nil,
                 userInfo: [
-                    "id": id,
-                    "action": "deleteWithDelay",
-                    "delay": 5.0,
+                    String(localized: "registry-manager.notification-key.id", defaultValue: "id", comment: "Notification key for ID"): id,
+                    String(localized: "registry-manager.notification-key.action", defaultValue: "action", comment: "Notification key for action"): String(localized: "registry-manager.notification-action.delete-with-delay", defaultValue: "deleteWithDelay", comment: "Notification action value for delete with delay"),
+                    String(localized: "registry-manager.notification-key.delay", defaultValue: "delay", comment: "Notification key for delay"): 5.0,
                 ]
             )
         }
