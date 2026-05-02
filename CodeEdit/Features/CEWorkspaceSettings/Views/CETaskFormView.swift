@@ -16,32 +16,32 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text(String(localized: "task.form.name.label", defaultValue: "Name", comment: "Label for task name field"))
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
-                    Text("My Mac")
-                        .tag("My Mac")
+                .accessibilityLabel(String(localized: "task.form.name.accessibility", defaultValue: "Task Name", comment: "Accessibility label for task name field"))
+                Picker(String(localized: "task.form.target.label", defaultValue: "Target", comment: "Label for task target picker"), selection: $task.target) {
+                    Text(String(localized: "task.form.target.my.mac", defaultValue: "My Mac", comment: "Task target option for local Mac"))
+                        .tag(String(localized: "task.form.target.my.mac.tag", defaultValue: "My Mac", comment: "Tag value for My Mac task target"))
 
-                    Text("SSH")
-                        .tag("SSH")
+                    Text(String(localized: "task.form.target.ssh", defaultValue: "SSH", comment: "Task target option for SSH"))
+                        .tag(String(localized: "task.form.target.ssh.tag", defaultValue: "SSH", comment: "Tag value for SSH task target"))
 
-                    Text("Docker")
-                        .tag("Docker")
+                    Text(String(localized: "task.form.target.docker", defaultValue: "Docker", comment: "Task target option for Docker"))
+                        .tag(String(localized: "task.form.target.docker.tag", defaultValue: "Docker", comment: "Tag value for Docker task target"))
 
-                    Text("Docker Compose")
-                        .tag("Docker Compose")
+                    Text(String(localized: "task.form.target.docker.compose", defaultValue: "Docker Compose", comment: "Task target option for Docker Compose"))
+                        .tag(String(localized: "task.form.target.docker.compose.tag", defaultValue: "Docker Compose", comment: "Tag value for Docker Compose task target"))
                 }
                 .disabled(true)
             }
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text(String(localized: "task.form.command.label", defaultValue: "Task", comment: "Label for task command field"))
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "task.form.command.accessibility", defaultValue: "Task Command", comment: "Accessibility label for task command field"))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text(String(localized: "task.form.working.directory.label", defaultValue: "Working Directory", comment: "Label for task working directory field"))
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text(String(localized: "task.form.environment.variables.empty", defaultValue: "No environment variables", comment: "Message shown when task has no environment variables"))
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -66,13 +66,13 @@ struct CETaskFormView: View {
                     Button {
                           self.task.environmentVariables.append(CETask.EnvironmentVariable())
                     } label: {
-                        Image(systemName: "plus")
+                        Image(systemName: String(localized: "task.form.environment.variables.add.icon", defaultValue: "plus", comment: "System icon name for add environment variable button"))
                     }
                     Divider()
                     Button {
                         removeSelectedEnv()
                     } label: {
-                        Image(systemName: "minus")
+                        Image(systemName: String(localized: "task.form.environment.variables.remove.icon", defaultValue: "minus", comment: "System icon name for remove environment variable button"))
                     }
                     .disabled(selectedEnvID == nil)
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text(String(localized: "task.form.environment.variables.header", defaultValue: "Environment Variables", comment: "Section header for environment variables"))
             }
         }
         .formStyle(.grouped)
