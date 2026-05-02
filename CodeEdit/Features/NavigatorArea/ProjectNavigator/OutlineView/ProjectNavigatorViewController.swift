@@ -16,7 +16,7 @@ import OSLog
 final class ProjectNavigatorViewController: NSViewController {
     static let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier ?? "",
-        category: "ProjectNavigatorViewController"
+        category: String(localized: "navigator.project.logger.category", defaultValue: "ProjectNavigatorViewController", comment: "Logger category for project navigator")
     )
 
     var scrollView: NSScrollView!
@@ -87,11 +87,11 @@ final class ProjectNavigatorViewController: NSViewController {
         self.outlineView.doubleAction = #selector(onItemDoubleClicked)
         self.outlineView.allowsMultipleSelection = true
 
-        self.outlineView.setAccessibilityIdentifier("ProjectNavigator")
-        self.outlineView.setAccessibilityLabel("Project Navigator")
+        self.outlineView.setAccessibilityIdentifier(String(localized: "navigator.project.accessibility.id", defaultValue: "ProjectNavigator", comment: "Project navigator accessibility identifier"))
+        self.outlineView.setAccessibilityLabel(String(localized: "navigator.project.accessibility.label", defaultValue: "Project Navigator", comment: "Project navigator accessibility label"))
 
-        let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
-        column.title = "Cell"
+        let column = NSTableColumn(identifier: .init(rawValue: String(localized: "navigator.project.column.id", defaultValue: "Cell", comment: "Column identifier")))
+        column.title = String(localized: "navigator.project.column.title", defaultValue: "Cell", comment: "Column title")
         outlineView.addTableColumn(column)
 
         outlineView.setDraggingSourceOperationMask(.move, forLocal: false)
@@ -117,7 +117,7 @@ final class ProjectNavigatorViewController: NSViewController {
         }
 
         /// "No Filter Results" label.
-        noResultsLabel = NSTextField(labelWithString: "No Filter Results")
+        noResultsLabel = NSTextField(labelWithString: String(localized: "navigator.project.no.filter.results", defaultValue: "No Filter Results", comment: "No filter results message"))
         noResultsLabel.isHidden = true
         noResultsLabel.font = NSFont.systemFont(ofSize: 16)
         noResultsLabel.textColor = NSColor.secondaryLabelColor
