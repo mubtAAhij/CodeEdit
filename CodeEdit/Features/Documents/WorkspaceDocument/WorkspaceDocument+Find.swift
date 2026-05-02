@@ -23,11 +23,11 @@ extension WorkspaceDocument.SearchState {
 
         switch mode {
         case .Containing:
-            return "*\(newQuery)*"
+            return String(format: String(localized: "search.term.containing", defaultValue: "*%@*", comment: "Search term pattern for containing match"), newQuery)
         case .StartingWith:
-            return "\(newQuery)*"
+            return String(format: String(localized: "search.term.starting.with", defaultValue: "%@*", comment: "Search term pattern for starting with match"), newQuery)
         case .EndingWith:
-            return "*\(newQuery)"
+            return String(format: String(localized: "search.term.ending.with", defaultValue: "*%@", comment: "Search term pattern for ending with match"), newQuery)
         default:
             return newQuery
         }
@@ -39,7 +39,7 @@ extension WorkspaceDocument.SearchState {
             in: string,
             options: [],
             range: NSRange(location: 0, length: string.utf16.count),
-            withTemplate: "*"
+            withTemplate: String(localized: "search.wildcard", defaultValue: "*", comment: "Search wildcard character")
         )
     }
 
@@ -62,13 +62,13 @@ extension WorkspaceDocument.SearchState {
 
         switch mode {
         case .Containing:
-            return "\(newQuery)"
+            return String(format: String(localized: "search.regex.containing", defaultValue: "%@", comment: "Regex pattern for containing match"), newQuery)
         case .StartingWith:
-            return "\\b\(newQuery)"
+            return String(format: String(localized: "search.regex.starting.with", defaultValue: "\\b%@", comment: "Regex pattern for starting with match"), newQuery)
         case .EndingWith:
-            return "\(newQuery)\\b"
+            return String(format: String(localized: "search.regex.ending.with", defaultValue: "%@\\b", comment: "Regex pattern for ending with match"), newQuery)
         case .MatchingWord:
-            return "\\b\(newQuery)\\b"
+            return String(format: String(localized: "search.regex.matching.word", defaultValue: "\\b%@\\b", comment: "Regex pattern for matching word"), newQuery)
         default:
             return newQuery
         }
@@ -99,13 +99,13 @@ extension WorkspaceDocument.SearchState {
         let regexPattern = getRegexPattern(query)
 
         guard let indexer = indexer else {
-            await setStatus(.failed(errorMessage: "No index found. Try rebuilding the index."))
+            await setStatus(.failed(errorMessage: String(localized: "search.error.no.index", defaultValue: "No index found. Try rebuilding the index.", comment: "Search error no index found")))
             return
         }
 
         let asyncController = SearchIndexer.AsyncManager(index: indexer)
         let evaluateResultGroup = DispatchGroup()
-        let evaluateSearchQueue = DispatchQueue(label: "app.codeedit.CodeEdit.EvaluateSearch")
+        let evaluateSearchQueue = DispatchQueue(label: String(localized: "search.queue.label", defaultValue: "app.codeedit.CodeEdit.EvaluateSearch", comment: "Search evaluation dispatch queue label"))
 
         let searchStream = await asyncController.search(query: searchQuery, 20)
         for try await result in searchStream {
@@ -191,7 +191,7 @@ extension WorkspaceDocument.SearchState {
             return
         }
         guard let fileContent = String(bytes: data, encoding: .utf8) else {
-            await setStatus(.failed(errorMessage: "Failed to decode file content."))
+            await setStatus(.failed(errorMessage: String(localized: "search.error.decode.failed", defaultValue: "Failed to decode file content.", comment: "Search error failed to decode file content")))
             return
         }
 
@@ -200,7 +200,7 @@ extension WorkspaceDocument.SearchState {
             pattern: query,
             options: caseSensitive ? [] : .caseInsensitive
         ) else {
-            await setStatus(.failed(errorMessage: "Invalid regular expression."))
+            await setStatus(.failed(errorMessage: String(localized: "search.error.invalid.regex", defaultValue: "Invalid regular expression.", comment: "Search error invalid regular expression")))
             return
         }
 
