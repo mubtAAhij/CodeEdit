@@ -39,9 +39,9 @@ enum GitLabOAuthRouter: GitRouter {
     var path: String {
         switch self {
         case .authorize:
-            return "oauth/authorize"
+            return String(localized: "gitlab.oauth.authorize.path", defaultValue: "oauth/authorize", comment: "GitLab OAuth authorize endpoint path")
         case .accessToken:
-            return "oauth/token"
+            return String(localized: "gitlab.oauth.token.path", defaultValue: "oauth/token", comment: "GitLab OAuth token endpoint path")
         }
     }
 
@@ -49,16 +49,16 @@ enum GitLabOAuthRouter: GitRouter {
         switch self {
         case let .authorize(config, redirectURI):
             return [
-                "client_id": config.token as AnyObject,
-                "response_type": "code" as AnyObject,
-                "redirect_uri": redirectURI as AnyObject]
+                String(localized: "gitlab.oauth.param.client.id", defaultValue: "client_id", comment: "OAuth client ID parameter"): config.token as AnyObject,
+                String(localized: "gitlab.oauth.param.response.type", defaultValue: "response_type", comment: "OAuth response type parameter"): String(localized: "gitlab.oauth.param.code", defaultValue: "code", comment: "OAuth code parameter value") as AnyObject,
+                String(localized: "gitlab.oauth.param.redirect.uri", defaultValue: "redirect_uri", comment: "OAuth redirect URI parameter"): redirectURI as AnyObject]
         case let .accessToken(config, code, rediredtURI):
             return [
-                "client_id": config.token as AnyObject,
-                "client_secret": config.secret as AnyObject,
-                "code": code as AnyObject, "grant_type":
-                    "authorization_code" as AnyObject,
-                "redirect_uri": rediredtURI as AnyObject]
+                String(localized: "gitlab.oauth.param.client.id.token", defaultValue: "client_id", comment: "OAuth client ID parameter for token"): config.token as AnyObject,
+                String(localized: "gitlab.oauth.param.client.secret", defaultValue: "client_secret", comment: "OAuth client secret parameter"): config.secret as AnyObject,
+                String(localized: "gitlab.oauth.param.code.value", defaultValue: "code", comment: "OAuth code parameter"): code as AnyObject, String(localized: "gitlab.oauth.param.grant.type", defaultValue: "grant_type", comment: "OAuth grant type parameter"):
+                    String(localized: "gitlab.oauth.param.authorization.code", defaultValue: "authorization_code", comment: "OAuth authorization code grant type") as AnyObject,
+                String(localized: "gitlab.oauth.param.redirect.uri.token", defaultValue: "redirect_uri", comment: "OAuth redirect URI parameter for token"): rediredtURI as AnyObject]
         }
     }
 
