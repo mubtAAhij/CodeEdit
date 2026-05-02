@@ -102,7 +102,7 @@ import CodeEditLanguages
 final class LSPService: ObservableObject {
     typealias LanguageServerType = LanguageServer<CodeFileDocument>
 
-    let logger: Logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "LSPService")
+    let logger: Logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "lsp.service.category", defaultValue: "LSPService", comment: "Logger category for LSP service"))
 
     struct ClientKey: Hashable, Equatable {
         let languageId: LanguageIdentifier
