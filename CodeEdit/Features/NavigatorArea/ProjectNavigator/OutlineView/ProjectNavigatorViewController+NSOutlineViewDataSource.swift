@@ -138,13 +138,14 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
 
     func replaceFileDialog(fileName: String) -> Bool {
         let alert = NSAlert()
-        alert.messageText = """
-        A file or folder with the name \(fileName) already exists in the destination folder. Do you want to replace it?
-        """
-        alert.informativeText = "This action is irreversible!"
+        alert.messageText = String(
+            format: String(localized: "project.navigator.replace.file.message", defaultValue: "A file or folder with the name %@ already exists in the destination folder. Do you want to replace it?", comment: "Message asking if user wants to replace existing file"),
+            fileName
+        )
+        alert.informativeText = String(localized: "project.navigator.replace.file.warning", defaultValue: "This action is irreversible!", comment: "Warning that file replacement is irreversible")
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "Replace")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: String(localized: "project.navigator.replace.file.button", defaultValue: "Replace", comment: "Replace file button"))
+        alert.addButton(withTitle: String(localized: "project.navigator.replace.file.cancel", defaultValue: "Cancel", comment: "Cancel button"))
         return alert.runModal() == .alertFirstButtonReturn
     }
 }
