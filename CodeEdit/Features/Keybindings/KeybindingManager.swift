@@ -20,12 +20,12 @@ final class KeybindingManager {
 
     // We need this fallback shortcut because optional shortcuts available only from 12.3, while we have target of 12.0x
     var fallbackShortcut = KeyboardShortcutWrapper(
-        name: "?",
-        description: "Test",
-        context: "Fallback",
-        keybinding: "?",
-        modifier: "shift",
-        id: "fallback"
+        name: String(localized: "keybinding.fallback.name", defaultValue: "?", comment: "Keybinding fallback name"),
+        description: String(localized: "keybinding.fallback.description", defaultValue: "Test", comment: "Keybinding fallback description"),
+        context: String(localized: "keybinding.fallback.context", defaultValue: "Fallback", comment: "Keybinding fallback context"),
+        keybinding: String(localized: "keybinding.fallback.key", defaultValue: "?", comment: "Keybinding fallback key"),
+        modifier: String(localized: "keybinding.modifier.shift", defaultValue: "shift", comment: "Keybinding shift modifier"),
+        id: String(localized: "keybinding.fallback.id", defaultValue: "fallback", comment: "Keybinding fallback identifier")
     )
 
     /// Adds new shortcut
@@ -35,7 +35,7 @@ final class KeybindingManager {
 
     private func loadKeybindings() {
 
-        let bindingsURL = Bundle.main.url(forResource: "default_keybindings.json", withExtension: nil)
+        let bindingsURL = Bundle.main.url(forResource: String(localized: "keybinding.default.filename", defaultValue: "default_keybindings.json", comment: "Keybinding default filename"), withExtension: nil)
         if let json = try? Data(contentsOf: bindingsURL!) {
             do {
                 let prefs = try JSONDecoder().decode([KeyboardShortcutWrapper].self, from: json)
@@ -43,7 +43,7 @@ final class KeybindingManager {
                     addNewShortcut(shortcut: pref, name: pref.id)
                 }
                 } catch {
-                    print("error:\(error)")
+                    print(String(format: String(localized: "keybinding.load.error", defaultValue: "error:%@", comment: "Keybinding load error message"), String(describing: error)))
                 }
         }
         return
@@ -67,13 +67,13 @@ struct KeyboardShortcutWrapper: Codable, Hashable {
 
     var parsedModifier: EventModifiers {
         switch modifier {
-        case "command":
+        case String(localized: "keybinding.modifier.command", defaultValue: "command", comment: "Keybinding command modifier"):
             return EventModifiers.command
-        case "shift":
+        case String(localized: "keybinding.modifier.shift", defaultValue: "shift", comment: "Keybinding shift modifier"):
             return EventModifiers.shift
-        case "option":
+        case String(localized: "keybinding.modifier.option", defaultValue: "option", comment: "Keybinding option modifier"):
             return EventModifiers.option
-        case "control":
+        case String(localized: "keybinding.modifier.control", defaultValue: "control", comment: "Keybinding control modifier"):
             return EventModifiers.control
         default:
             return EventModifiers.command
