@@ -19,13 +19,13 @@ struct RegistryItem: Codable {
     let bin: [String: String]?
 
     var sanitizedName: String {
-        name.replacingOccurrences(of: "-", with: " ")
-            .replacingOccurrences(of: "_", with: " ")
+        name.replacingOccurrences(of: String(localized: "registry.item.separator.hyphen", defaultValue: "-", comment: "Registry item hyphen separator"), with: " ")
+            .replacingOccurrences(of: String(localized: "registry.item.separator.underscore", defaultValue: "_", comment: "Registry item underscore separator"), with: " ")
             .split(separator: " ")
             .map { word -> String in
                 let str = String(word).lowercased()
                 // Check for special cases
-                if str == "ls" || str == "lsp" || str == "ci" || str == "cli" {
+                if str == String(localized: "registry.item.abbrev.ls", defaultValue: "ls", comment: "Registry item ls abbreviation") || str == String(localized: "registry.item.abbrev.lsp", defaultValue: "lsp", comment: "Registry item lsp abbreviation") || str == String(localized: "registry.item.abbrev.ci", defaultValue: "ci", comment: "Registry item ci abbreviation") || str == String(localized: "registry.item.abbrev.cli", defaultValue: "cli", comment: "Registry item cli abbreviation") {
                     return str.uppercased()
                 }
                 return str.capitalized
@@ -51,17 +51,17 @@ struct RegistryItem: Codable {
     /// The method for installation, parsed from this item's ``source-swift.property`` parameter.
     var installMethod: InstallationMethod? {
         let sourceId = source.id
-        if sourceId.hasPrefix("pkg:cargo/") {
+        if sourceId.hasPrefix(String(localized: "registry.item.pkg.cargo", defaultValue: "pkg:cargo/", comment: "Registry item Cargo package prefix")) {
             return PackageSourceParser.parseCargoPackage(self)
-        } else if sourceId.hasPrefix("pkg:npm/") {
+        } else if sourceId.hasPrefix(String(localized: "registry.item.pkg.npm", defaultValue: "pkg:npm/", comment: "Registry item NPM package prefix")) {
             return PackageSourceParser.parseNpmPackage(self)
-        } else if sourceId.hasPrefix("pkg:pypi/") {
+        } else if sourceId.hasPrefix(String(localized: "registry.item.pkg.pypi", defaultValue: "pkg:pypi/", comment: "Registry item PyPI package prefix")) {
             return PackageSourceParser.parsePythonPackage(self)
-        } else if sourceId.hasPrefix("pkg:gem/") {
+        } else if sourceId.hasPrefix(String(localized: "registry.item.pkg.gem", defaultValue: "pkg:gem/", comment: "Registry item Gem package prefix")) {
             return PackageSourceParser.parseRubyGem(self)
-        } else if sourceId.hasPrefix("pkg:golang/") {
+        } else if sourceId.hasPrefix(String(localized: "registry.item.pkg.golang", defaultValue: "pkg:golang/", comment: "Registry item Golang package prefix")) {
             return PackageSourceParser.parseGolangPackage(self)
-        } else if sourceId.hasPrefix("pkg:github/") {
+        } else if sourceId.hasPrefix(String(localized: "registry.item.pkg.github", defaultValue: "pkg:github/", comment: "Registry item GitHub package prefix")) {
             return PackageSourceParser.parseGithubPackage(self)
         } else {
             return nil
@@ -73,7 +73,7 @@ struct RegistryItem: Codable {
         let data = try JSONEncoder().encode(self)
         let jsonObject = try JSONSerialization.jsonObject(with: data)
         guard let dictionary = jsonObject as? [String: Any] else {
-            throw NSError(domain: "ConversionError", code: 1)
+            throw NSError(domain: String(localized: "registry.item.conversion.error", defaultValue: "ConversionError", comment: "Registry item conversion error domain"), code: 1)
         }
         return dictionary
     }
