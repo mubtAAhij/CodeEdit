@@ -34,7 +34,7 @@ struct ToolbarBranchPicker: View {
         HStack(alignment: .center, spacing: 7) {
             Group {
                 if currentBranch != nil {
-                    Image(symbol: "branch")
+                    Image(symbol: String(localized: "toolbar.branch-picker.branch-icon", defaultValue: "branch", comment: "Branch icon symbol"))
                 } else {
                     Image(systemName: "folder.fill.badge.gearshape")
                 }
@@ -99,7 +99,7 @@ struct ToolbarBranchPicker: View {
     }
 
     private var title: String {
-        workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+        workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "toolbar.branch-picker.empty", defaultValue: "Empty", comment: "Empty workspace title")
     }
 
     // MARK: Popover View
@@ -114,7 +114,7 @@ struct ToolbarBranchPicker: View {
             VStack(alignment: .leading) {
                 if let currentBranch = sourceControlManager.currentBranch {
                     Section {
-                        headerLabel("Current Branch")
+                        headerLabel(String(localized: "toolbar.branch-picker.current-branch", defaultValue: "Current Branch", comment: "Current branch section header"))
                         BranchCell(sourceControlManager: sourceControlManager, branch: currentBranch, active: true)
                     }
                 }
@@ -134,7 +134,7 @@ struct ToolbarBranchPicker: View {
 
                 if !branches.isEmpty {
                     Section {
-                        headerLabel("Branches")
+                        headerLabel(String(localized: "toolbar.branch-picker.branches", defaultValue: "Branches", comment: "Branches section header"))
                         ForEach(branchesGroups.keys.sorted(), id: \.self) { branchGroupPrefix in
                             if let group = branchesGroups[branchGroupPrefix] {
                                 if !group.shouldNest {
@@ -219,7 +219,7 @@ struct ToolbarBranchPicker: View {
                     do {
                         try await sourceControlManager.checkoutBranch(branch: branch)
                     } catch {
-                        await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                        await sourceControlManager.showAlertForError(title: String(localized: "toolbar.branch-picker.checkout-error", defaultValue: "Failed to checkout", comment: "Error alert when checkout fails"), error: error)
                     }
                 }
             }
