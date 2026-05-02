@@ -35,7 +35,7 @@ extension GitClient {
     /// - Returns: A ``GitClient/Status`` struct with information about the changed files in the repository.
     /// - Throws: Can throw ``GitClient/GitClientError`` errors if it finds unexpected output.
     func getStatus() async throws -> Status {
-        let output = try await run("status -z --porcelain=2 -u")
+        let output = try await run(String(localized: "git.status.command", defaultValue: "status -z --porcelain=2 -u", comment: "Git status command with porcelain v2 format"))
         return try parseStatusString(output)
     }
 
@@ -64,15 +64,15 @@ extension GitClient {
             index = nextIndex
 
             switch output[typeIndex] {
-            case "1": // Ordinary changes
+            case String(localized: "git.status.type.ordinary", defaultValue: "1", comment: "Git status type code for ordinary changes"): // Ordinary changes
                 status.changedFiles.append(try parseOrdinary(index: &index, output: output))
-            case "2": // Renamed or copied changes
+            case String(localized: "git.status.type.renamed", defaultValue: "2", comment: "Git status type code for renamed or copied changes"): // Renamed or copied changes
                 status.changedFiles.append(try parseRenamed(index: &index, output: output))
-            case "u": // Unmerged changes
+            case String(localized: "git.status.type.unmerged", defaultValue: "u", comment: "Git status type code for unmerged changes"): // Unmerged changes
                 status.unmergedChanges.append(try parseUnmerged(index: &index, output: output))
-            case "?": // Untracked files
+            case String(localized: "git.status.type.untracked", defaultValue: "?", comment: "Git status type code for untracked files"): // Untracked files
                 status.untrackedFiles.append(try parseUntracked(index: &index, output: output))
-            case "!", "#": // Ignored files or Header
+            case String(localized: "git.status.type.ignored", defaultValue: "!", comment: "Git status type code for ignored files"), String(localized: "git.status.type.header", defaultValue: "#", comment: "Git status type code for header"): // Ignored files or Header
                 try substringToNextNull(from: &index, output: output) // move the index to the next line.
             default:
                 throw GitClientError.statusInvalidChangeType(output[typeIndex])
@@ -84,12 +84,12 @@ extension GitClient {
 
     /// Discard changes for file
     func discardChanges(for file: URL) async throws {
-        _ = try await run("restore '\(file.path(percentEncoded: false))'")
+        _ = try await run(String(format: String(localized: "git.restore.file.command", defaultValue: "restore '%@'", comment: "Git restore command for specific file"), file.path(percentEncoded: false)))
     }
 
     /// Discard unstaged changes
     func discardAllChanges() async throws {
-        _ = try await run("restore .")
+        _ = try await run(String(localized: "git.restore.all.command", defaultValue: "restore .", comment: "Git restore command for all changes"))
     }
 
     // MARK: - Parsing Helpers
