@@ -35,10 +35,10 @@ class GitHubIssue: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case url
-        case repositoryURL = "repository_url"
-        case commentsURL = "comments_url"
-        case eventsURL = "events_url"
-        case htmlURL = "html_url"
+        case repositoryURL = String(localized: "github.issue.field.repository.url", defaultValue: "repository_url", comment: "GitHub API field name for issue repository URL")
+        case commentsURL = String(localized: "github.issue.field.comments.url", defaultValue: "comments_url", comment: "GitHub API field name for issue comments URL")
+        case eventsURL = String(localized: "github.issue.field.events.url", defaultValue: "events_url", comment: "GitHub API field name for issue events URL")
+        case htmlURL = String(localized: "github.issue.field.html.url", defaultValue: "html_url", comment: "GitHub API field name for issue HTML URL")
         case number
         case state
         case title
@@ -47,10 +47,10 @@ class GitHubIssue: Codable {
         case assignee
         case locked
         case comments
-        case closedAt = "closed_at"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case closedBy = "closed_by"
+        case closedAt = String(localized: "github.issue.field.closed.at", defaultValue: "closed_at", comment: "GitHub API field name for issue closed date")
+        case createdAt = String(localized: "github.issue.field.created.at", defaultValue: "created_at", comment: "GitHub API field name for issue created date")
+        case updatedAt = String(localized: "github.issue.field.updated.at", defaultValue: "updated_at", comment: "GitHub API field name for issue updated date")
+        case closedBy = String(localized: "github.issue.field.closed.by", defaultValue: "closed_by", comment: "GitHub API field name for issue closed by user")
     }
 }
 
@@ -67,8 +67,8 @@ extension GitHubAccount {
     func myIssues(
         _ session: GitURLSession = URLSession.shared,
         state: GitHubOpenness = .open,
-        page: String = "1",
-        perPage: String = "100",
+        page: String = String(localized: "github.pagination.default.page", defaultValue: "1", comment: "Default page number for GitHub pagination"),
+        perPage: String = String(localized: "github.pagination.default.per.page", defaultValue: "100", comment: "Default items per page for GitHub pagination"),
         completion: @escaping (_ response: Result<[GitHubIssue], Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
         let router = GitHubIssueRouter.readAuthenticatedIssues(configuration, page, perPage, state)
@@ -138,8 +138,8 @@ extension GitHubAccount {
         owner: String,
         repository: String,
         state: GitHubOpenness = .open,
-        page: String = "1",
-        perPage: String = "100",
+        page: String = String(localized: "github.pagination.default.page", defaultValue: "1", comment: "Default page number for GitHub pagination"),
+        perPage: String = String(localized: "github.pagination.default.per.page", defaultValue: "100", comment: "Default items per page for GitHub pagination"),
         completion: @escaping (_ response: Result<[GitHubIssue], Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
         let router = GitHubIssueRouter.readIssues(configuration, owner, repository, page, perPage, state)
@@ -306,8 +306,8 @@ extension GitHubAccount {
         owner: String,
         repository: String,
         number: Int,
-        page: String = "1",
-        perPage: String = "100",
+        page: String = String(localized: "github.pagination.default.page", defaultValue: "1", comment: "Default page number for GitHub pagination"),
+        perPage: String = String(localized: "github.pagination.default.per.page", defaultValue: "100", comment: "Default items per page for GitHub pagination"),
         completion: @escaping (_ response: Result<[GitHubComment], Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
 
