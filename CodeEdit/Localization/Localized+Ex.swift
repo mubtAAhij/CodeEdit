@@ -11,5 +11,5 @@ extension String {
 }
 
 extension LocalizedStringKey {
-    static let helloWorld = "Hello, world!".localized()
+    static let helloWorld = LocalizedStringKey(String(localized: "example.hello.world", defaultValue: "Hello, world!", comment: "Example localized string"))
 }
