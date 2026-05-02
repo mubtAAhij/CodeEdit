@@ -34,26 +34,25 @@ extension SettingsData {
 
         var searchKeys: [String] {
             [
-                "Automatically Change theme based on system appearance",
-                "Always use dark terminal appearance",
-                "Use theme background",
-                "Light Appearance",
-                "GitHub Light",
-                "Xcode Light",
-                "Solarized Light",
-                "Solarized Dark",
-                "Midnight",
-                "Xcode Dark",
-                "GitHub Dark"
+                String(localized: "theme.settings.auto.change.appearance", defaultValue: "Automatically Change theme based on system appearance", comment: "Theme settings search key for auto-change based on system appearance"),
+                String(localized: "theme.settings.dark.terminal", defaultValue: "Always use dark terminal appearance", comment: "Theme settings search key for always using dark terminal"),
+                String(localized: "theme.settings.use.background", defaultValue: "Use theme background", comment: "Theme settings search key for using theme background"),
+                String(localized: "theme.settings.light.appearance", defaultValue: "Light Appearance", comment: "Theme settings search key for light appearance"),
+                String(localized: "theme.name.github.light", defaultValue: "GitHub Light", comment: "Theme name for GitHub Light theme"),
+                String(localized: "theme.name.xcode.light", defaultValue: "Xcode Light", comment: "Theme name for Xcode Light theme"),
+                String(localized: "theme.name.solarized.light", defaultValue: "Solarized Light", comment: "Theme name for Solarized Light theme"),
+                String(localized: "theme.name.solarized.dark", defaultValue: "Solarized Dark", comment: "Theme name for Solarized Dark theme"),
+                String(localized: "theme.name.midnight", defaultValue: "Midnight", comment: "Theme name for Midnight theme"),
+                String(localized: "theme.name.xcode.dark", defaultValue: "Xcode Dark", comment: "Theme name for Xcode Dark theme"),
+                String(localized: "theme.name.github.dark", defaultValue: "GitHub Dark", comment: "Theme name for GitHub Dark theme")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// The name of the currently selected dark theme
-        var selectedDarkTheme: String = "Default (Dark)"
+        var selectedDarkTheme: String = String(localized: "theme.default.dark", defaultValue: "Default (Dark)", comment: "Default dark theme name")
 
         /// The name of the currently selected light theme
-        var selectedLightTheme: String = "Default (Light)"
+        var selectedLightTheme: String = String(localized: "theme.default.light", defaultValue: "Default (Light)", comment: "Default light theme name")
 
         /// The name of the currently selected theme
         var selectedTheme: String?
