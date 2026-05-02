@@ -26,77 +26,77 @@ struct SettingsView: View {
             SettingsPage(
                 .general,
                 baseColor: .gray,
-                icon: .system("gear")
+                icon: .system(String(localized: "settings.icon.general", defaultValue: "gear", comment: "SF Symbol icon for general settings"))
             )
         ),
         .init(
             SettingsPage(
                 .accounts,
                 baseColor: .blue,
-                icon: .system("at")
+                icon: .system(String(localized: "settings.icon.accounts", defaultValue: "at", comment: "SF Symbol icon for accounts settings"))
             )
         ),
         .init(
             SettingsPage(
                 .navigation,
                 baseColor: .green,
-                icon: .system("arrow.triangle.turn.up.right.diamond.fill")
+                icon: .system(String(localized: "settings.icon.navigation", defaultValue: "arrow.triangle.turn.up.right.diamond.fill", comment: "SF Symbol icon for navigation settings"))
             )
         ),
         .init(
             SettingsPage(
                 .theme,
                 baseColor: .pink,
-                icon: .system("paintbrush.fill")
+                icon: .system(String(localized: "settings.icon.theme", defaultValue: "paintbrush.fill", comment: "SF Symbol icon for theme settings"))
             )
         ),
         .init(
             SettingsPage(
                 .textEditing,
                 baseColor: .blue,
-                icon: .system("pencil.line")
+                icon: .system(String(localized: "settings.icon.text.editing", defaultValue: "pencil.line", comment: "SF Symbol icon for text editing settings"))
             )
         ),
         .init(
             SettingsPage(
                 .terminal,
                 baseColor: .blue,
-                icon: .system("terminal.fill")
+                icon: .system(String(localized: "settings.icon.terminal", defaultValue: "terminal.fill", comment: "SF Symbol icon for terminal settings"))
             )
         ),
         .init(
             SettingsPage(
                 .search,
                 baseColor: .blue,
-                icon: .system("magnifyingglass")
+                icon: .system(String(localized: "settings.icon.search", defaultValue: "magnifyingglass", comment: "SF Symbol icon for search settings"))
             )
         ),
         .init(
             SettingsPage(
                 .sourceControl,
                 baseColor: .blue,
-                icon: .symbol("vault")
+                icon: .symbol(String(localized: "settings.icon.source.control", defaultValue: "vault", comment: "SF Symbol icon for source control settings"))
             )
         ),
         .init(
             SettingsPage(
                 .location,
                 baseColor: .green,
-                icon: .system("externaldrive.fill")
+                icon: .system(String(localized: "settings.icon.location", defaultValue: "externaldrive.fill", comment: "SF Symbol icon for location settings"))
             )
         ),
         .init(
             SettingsPage(
                 .languageServers,
-                baseColor: Color(hex: "#6A69DC"), // Purple
-                icon: .system("cube.box.fill")
+                baseColor: Color(hex: String(localized: "settings.color.language.servers", defaultValue: "#6A69DC", comment: "Hex color code for language servers settings icon")), // Purple
+                icon: .system(String(localized: "settings.icon.language.servers", defaultValue: "cube.box.fill", comment: "SF Symbol icon for language servers settings"))
             )
         ),
         .init(
             SettingsPage(
                 .developer,
                 baseColor: .pink,
-                icon: .system("bolt")
+                icon: .system(String(localized: "settings.icon.developer", defaultValue: "bolt", comment: "SF Symbol icon for developer settings"))
             )
         ),
     ]
@@ -154,7 +154,7 @@ struct SettingsView: View {
             /// Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
             if #unavailable(macOS 26.0) {
                 List { }
-                    .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                    .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.search.prompt", defaultValue: "Search", comment: "Placeholder text for settings search field"))
                     .scrollDisabled(true)
                     .frame(height: 30)
                 List(selection: $selectedPage) {
@@ -174,7 +174,7 @@ struct SettingsView: View {
                     }
                 }
                 .toolbar(removing: .sidebarToggle)
-                .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.search.prompt.macos26", defaultValue: "Search", comment: "Placeholder text for settings search field on macOS 26+"))
                 .navigationSplitViewColumnWidth(215)
             }
         } detail: {
@@ -203,7 +203,7 @@ struct SettingsView: View {
                 case .developer:
                     DeveloperSettingsView()
                 default:
-                    Text("Implementation Needed").frame(alignment: .center)
+                    Text(String(localized: "settings.implementation.needed", defaultValue: "Implementation Needed", comment: "Placeholder text for settings pages not yet implemented")).frame(alignment: .center)
                 }
             }
             .navigationSplitViewColumnWidth(500)
