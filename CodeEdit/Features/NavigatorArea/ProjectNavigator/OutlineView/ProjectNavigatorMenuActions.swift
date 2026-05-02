@@ -76,7 +76,7 @@ extension ProjectNavigatorMenu {
     func openWithExternalEditor() {
         /// Using  `Process` to open all of the selected files at the same time.
         let process = Process()
-        process.launchPath = "/usr/bin/open"
+        process.launchPath = String(localized: "project.navigator.open.command.path", defaultValue: "/usr/bin/open", comment: "Path to the open command for external editor")
         process.arguments = selectedItems().map { $0.url.absoluteString }
         try? process.run()
     }
@@ -87,13 +87,13 @@ extension ProjectNavigatorMenu {
     func newFile() {
         guard let item else { return }
         do {
-            if let newFile = try workspace?.workspaceFileManager?.addFile(fileName: "untitled", toFile: item) {
+            if let newFile = try workspace?.workspaceFileManager?.addFile(fileName: String(localized: "project.navigator.new.file.name", defaultValue: "untitled", comment: "Default name for new untitled file"), toFile: item) {
                 workspace?.listenerModel.highlightedFileItem = newFile
                 workspace?.editorManager?.openTab(item: newFile)
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project.navigator.dismiss.button", defaultValue: "Dismiss", comment: "Dismiss button for error alert"))
             alert.runModal()
         }
     }
@@ -124,7 +124,7 @@ extension ProjectNavigatorMenu {
             if let clipBoardContent, !clipBoardContent.isEmpty, let newFile = try workspace?
                 .workspaceFileManager?
                 .addFile(
-                    fileName: "untitled",
+                    fileName: String(localized: "project.navigator.new.file.from.clipboard.name", defaultValue: "untitled", comment: "Default name for new file from clipboard"),
                     toFile: item,
                     contents: clipBoardContent
                 ) {
@@ -134,7 +134,7 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project.navigator.dismiss.button.clipboard", defaultValue: "Dismiss", comment: "Dismiss button for clipboard error alert"))
             alert.runModal()
         }
     }
@@ -145,12 +145,12 @@ extension ProjectNavigatorMenu {
     func newFolder() {
         guard let item else { return }
         do {
-            if let newFolder = try workspace?.workspaceFileManager?.addFolder(folderName: "untitled", toFile: item) {
+            if let newFolder = try workspace?.workspaceFileManager?.addFolder(folderName: String(localized: "project.navigator.new.folder.name", defaultValue: "untitled", comment: "Default name for new untitled folder"), toFile: item) {
                 workspace?.listenerModel.highlightedFileItem = newFolder
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project.navigator.dismiss.button.folder", defaultValue: "Dismiss", comment: "Dismiss button for folder error alert"))
             alert.runModal()
         }
     }
@@ -164,11 +164,11 @@ extension ProjectNavigatorMenu {
         guard let parent = selectedItems.first?.parent else { return }
 
         /// Get 'New Folder' name.
-        var newFolderURL = parent.url.appendingPathComponent("New Folder With Items", conformingTo: .folder)
+        var newFolderURL = parent.url.appendingPathComponent(String(localized: "project.navigator.new.folder.with.items", defaultValue: "New Folder With Items", comment: "Default name for new folder created from selection"), conformingTo: .folder)
         var folderNumber = 0
         while workspaceFileManager.fileManager.fileExists(atPath: newFolderURL.path) {
             folderNumber += 1
-            newFolderURL = parent.url.appending(path: "New Folder With Items \(folderNumber)")
+            newFolderURL = parent.url.appending(path: String(format: String(localized: "project.navigator.new.folder.with.items.numbered", defaultValue: "New Folder With Items %d", comment: "Name for numbered folder created from selection"), folderNumber))
         }
 
         do {
@@ -177,7 +177,7 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project.navigator.dismiss.button.folder.selection", defaultValue: "Dismiss", comment: "Dismiss button for folder from selection error alert"))
             alert.runModal()
         }
 
@@ -201,7 +201,7 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project.navigator.dismiss.button.trash", defaultValue: "Dismiss", comment: "Dismiss button for trash error alert"))
             alert.runModal()
         }
     }
@@ -228,7 +228,7 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project.navigator.dismiss.button.delete", defaultValue: "Dismiss", comment: "Dismiss button for delete error alert"))
             alert.runModal()
         }
     }
@@ -243,7 +243,7 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project.navigator.dismiss.button.duplicate", defaultValue: "Dismiss", comment: "Dismiss button for duplicate error alert"))
             alert.runModal()
         }
     }
@@ -275,8 +275,8 @@ extension ProjectNavigatorMenu {
                 prefixCount += 1
             }
             // Build the relative path
-            let upPath = String(repeating: "../", count: baseComponents.count - prefixCount)
-            let downPath = destinationComponents[prefixCount...].joined(separator: "/")
+            let upPath = String(repeating: String(localized: "project.navigator.relative.path.up", defaultValue: "../", comment: "Parent directory path component for relative paths"), count: baseComponents.count - prefixCount)
+            let downPath = destinationComponents[prefixCount...].joined(separator: String(localized: "project.navigator.path.separator", defaultValue: "/", comment: "Path separator for file paths"))
             return upPath + downPath
         }.sorted().joined(separator: "\n")
 
