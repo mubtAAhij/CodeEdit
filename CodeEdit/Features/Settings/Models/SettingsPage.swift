@@ -34,6 +34,41 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case advanced = "Advanced"
         case languageServers = "Language Servers"
         case developer = "Developer"
+
+        var displayName: String {
+            switch self {
+            case .general:
+                return String(localized: "settings.page.general", defaultValue: "General", comment: "General settings page title")
+            case .accounts:
+                return String(localized: "settings.page.accounts", defaultValue: "Accounts", comment: "Accounts settings page title")
+            case .behavior:
+                return String(localized: "settings.page.behaviors", defaultValue: "Behaviors", comment: "Behaviors settings page title")
+            case .navigation:
+                return String(localized: "settings.page.navigation", defaultValue: "Navigation", comment: "Navigation settings page title")
+            case .theme:
+                return String(localized: "settings.page.themes", defaultValue: "Themes", comment: "Themes settings page title")
+            case .textEditing:
+                return String(localized: "settings.page.text-editing", defaultValue: "Text Editing", comment: "Text Editing settings page title")
+            case .terminal:
+                return String(localized: "settings.page.terminal", defaultValue: "Terminal", comment: "Terminal settings page title")
+            case .search:
+                return String(localized: "settings.page.search", defaultValue: "Search", comment: "Search settings page title")
+            case .keybindings:
+                return String(localized: "settings.page.key-bindings", defaultValue: "Key Bindings", comment: "Key Bindings settings page title")
+            case .sourceControl:
+                return String(localized: "settings.page.source-control", defaultValue: "Source Control", comment: "Source Control settings page title")
+            case .components:
+                return String(localized: "settings.page.components", defaultValue: "Components", comment: "Components settings page title")
+            case .location:
+                return String(localized: "settings.page.locations", defaultValue: "Locations", comment: "Locations settings page title")
+            case .advanced:
+                return String(localized: "settings.page.advanced", defaultValue: "Advanced", comment: "Advanced settings page title")
+            case .languageServers:
+                return String(localized: "settings.page.language-servers", defaultValue: "Language Servers", comment: "Language Servers settings page title")
+            case .developer:
+                return String(localized: "settings.page.developer", defaultValue: "Developer", comment: "Developer settings page title")
+            }
+        }
     }
 
     let id: UUID = UUID()
@@ -43,7 +78,7 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
     let isSetting: Bool
     let settingName: String
     var nameString: LocalizedStringKey {
-        LocalizedStringKey(name.rawValue)
+        LocalizedStringKey(name.displayName)
     }
     let icon: IconResource?
 
