@@ -52,14 +52,14 @@ final class GithubPackageManager: PackageManagerProtocol {
             PackageManagerInstallStep(
                 name: "",
                 confirmation: .required(
-                    message: "This package requires git to install. Allow CodeEdit to run git commands?"
+                    message: String(localized: "github.package.install.confirmation", defaultValue: "This package requires git to install. Allow CodeEdit to run git commands?", comment: "Confirmation message for allowing git commands")
                 )
             ) { model in
-                let versionOutput = try await model.runCommand("git --version")
+                let versionOutput = try await model.runCommand(String(localized: "github.git.version.command", defaultValue: "git --version", comment: "Git version command"))
                 let output = versionOutput.reduce(into: "") {
                     $0 += $1.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
-                guard output.contains("git version") else {
+                guard output.contains(String(localized: "github.git.version.prefix", defaultValue: "git version", comment: "Git version prefix")) else {
                     throw PackageManagerError.packageManagerNotInstalled
                 }
             }
@@ -73,14 +73,14 @@ final class GithubPackageManager: PackageManagerProtocol {
     }
 
     func getBinaryPath(for package: String) -> String {
-        return installationDirectory.appending(path: package).appending(path: "bin").path
+        return installationDirectory.appending(path: package).appending(path: String(localized: "github.bin.directory", defaultValue: "bin", comment: "Binary directory name")).path
     }
 
     // MARK: - Initialize
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "github.initialize.step.name", defaultValue: "Initialize Directory Structure", comment: "Installation step name for initializing directory structure"),
             confirmation: .none
         ) { model in
             do {
@@ -99,11 +99,11 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Download Binary Executable",
+            name: String(localized: "github.download.step.name", defaultValue: "Download Binary Executable", comment: "Installation step name for downloading binary executable"),
             confirmation: .none
         ) { model in
             do {
-                await model.status("Downloading \(url)")
+                await model.status(String(format: String(localized: "github.status.downloading", defaultValue: "Downloading %@", comment: "Status message for downloading a URL"), url.absoluteString))
                 let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 120.0)
                 // TODO: Progress Updates
                 let (tempURL, response) = try await URLSession.shared.download(for: request)
@@ -112,7 +112,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                       (200...299).contains(httpResponse.statusCode) else {
                     throw RegistryManagerError.downloadFailed(
                         url: url,
-                        error: NSError(domain: "HTTP error", code: (response as? HTTPURLResponse)?.statusCode ?? -1)
+                        error: NSError(domain: String(localized: "github.error.http.domain", defaultValue: "HTTP error", comment: "HTTP error domain"), code: (response as? HTTPURLResponse)?.statusCode ?? -1)
                     )
                 }
 
@@ -128,7 +128,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                 if !FileManager.default.fileExists(atPath: packagePath.path) {
                     throw RegistryManagerError.downloadFailed(
                         url: url,
-                        error: NSError(domain: "Could not download package", code: -1)
+                        error: NSError(domain: String(localized: "github.error.download.failed.domain", defaultValue: "Could not download package", comment: "Error domain for download failure"), code: -1)
                     )
                 }
             } catch {
@@ -153,37 +153,37 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Decompress Binary Executable",
+            name: String(localized: "github.decompress.step.name", defaultValue: "Decompress Binary Executable", comment: "Installation step name for decompressing binary executable"),
             confirmation: .none,
         ) { model in
             let fileName = url.lastPathComponent
             let downloadPath = installationDirectory.appending(path: source.entryName)
             let packagePath = downloadPath.appending(path: fileName)
 
-            if packagePath.pathExtension == "tar" || packagePath.pathExtension == ".zip" {
-                await model.status("Decompressing \(fileName)")
+            if packagePath.pathExtension == String(localized: "github.extension.tar", defaultValue: "tar", comment: "Tar file extension") || packagePath.pathExtension == String(localized: "github.extension.zip", defaultValue: "zip", comment: "Zip file extension") {
+                await model.status(String(format: String(localized: "github.status.decompressing", defaultValue: "Decompressing %@", comment: "Status message for decompressing a file"), fileName))
                 try await FileManager.default.unzipItem(at: packagePath, to: downloadPath, progress: model.progress)
                 if FileManager.default.fileExists(atPath: packagePath.path(percentEncoded: false)) {
                     try FileManager.default.removeItem(at: packagePath)
                 }
-                await model.status("Decompressed to '\(downloadPath.path(percentEncoded: false))'")
-            } else if packagePath.lastPathComponent.hasSuffix(".tar.gz") {
-                await model.status("Decompressing \(fileName) using `tar`")
+                await model.status(String(format: String(localized: "github.status.decompressed.to", defaultValue: "Decompressed to '%@'", comment: "Status message for successful decompression"), downloadPath.path(percentEncoded: false)))
+            } else if packagePath.lastPathComponent.hasSuffix(String(localized: "github.extension.tar.gz", defaultValue: ".tar.gz", comment: "Tar.gz file extension")) {
+                await model.status(String(format: String(localized: "github.status.decompressing.tar", defaultValue: "Decompressing %@ using `tar`", comment: "Status message for decompressing using tar"), fileName))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
-                        "tar",
-                        "-xzf",
+                        String(localized: "github.command.tar", defaultValue: "tar", comment: "Tar command"),
+                        String(localized: "github.tar.flag.xzf", defaultValue: "-xzf", comment: "Tar extraction flags"),
                         packagePath.path(percentEncoded: false).escapedDirectory(),
                     ]
                 )
-            } else if packagePath.pathExtension == "gz" {
-                await model.status("Decompressing \(fileName) using `gunzip`")
+            } else if packagePath.pathExtension == String(localized: "github.extension.gz", defaultValue: "gz", comment: "Gz file extension") {
+                await model.status(String(format: String(localized: "github.status.decompressing.gunzip", defaultValue: "Decompressing %@ using `gunzip`", comment: "Status message for decompressing using gunzip"), fileName))
                 _ = try await model.executeInDirectory(
                     in: packagePath.deletingLastPathComponent().path(percentEncoded: false),
                     [
-                        "gunzip",
-                        "-f",
+                        String(localized: "github.command.gunzip", defaultValue: "gunzip", comment: "Gunzip command"),
+                        String(localized: "github.gunzip.flag.force", defaultValue: "-f", comment: "Gunzip force flag"),
                         packagePath.path(percentEncoded: false).escapedDirectory(),
                     ]
                 )
