@@ -60,14 +60,14 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
     func outlineViewItemDidExpand(_ notification: Notification) {
         /// Save expanded items' state to restore when finish filtering.
         guard let workspace else { return }
-        if workspace.navigatorFilter.isEmpty, let item = notification.userInfo?["NSObject"] as? CEWorkspaceFile {
+        if workspace.navigatorFilter.isEmpty, let item = notification.userInfo?[String(localized: "project-navigator.notification-key.nsobject", defaultValue: "NSObject", comment: "Notification userInfo key for NSObject")] as? CEWorkspaceFile {
             expandedItems.insert(item)
         }
 
         guard let id = workspace.editorManager?.activeEditor.selectedTab?.file.id,
               let item = workspace.workspaceFileManager?.getFile(id, createIfNotFound: true),
               /// update outline selection only if the parent of selected item match with expanded item
-              item.parent === notification.userInfo?["NSObject"] as? CEWorkspaceFile else {
+              item.parent === notification.userInfo?[String(localized: "project-navigator.notification-key.nsobject", defaultValue: "NSObject", comment: "Notification userInfo key for NSObject")] as? CEWorkspaceFile else {
             return
         }
         /// select active file under collapsed folder only if its parent is expanding
@@ -79,7 +79,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
     func outlineViewItemDidCollapse(_ notification: Notification) {
         /// Save expanded items' state to restore when finish filtering.
         guard let workspace else { return }
-        if workspace.navigatorFilter.isEmpty, let item = notification.userInfo?["NSObject"] as? CEWorkspaceFile {
+        if workspace.navigatorFilter.isEmpty, let item = notification.userInfo?[String(localized: "project-navigator.notification-key.nsobject", defaultValue: "NSObject", comment: "Notification userInfo key for NSObject")] as? CEWorkspaceFile {
             expandedItems.remove(item)
         }
     }
@@ -133,10 +133,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
 
         if row < 0 {
             let alert = NSAlert()
-            alert.messageText = NSLocalizedString(
-                "Could not find file",
-                comment: "Could not find file"
-            )
+            alert.messageText = String(localized: "project-navigator.reveal.error.file-not-found", defaultValue: "Could not find file", comment: "Alert message when file cannot be found in project navigator")
             alert.runModal()
             return
         } else {
