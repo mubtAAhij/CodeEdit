@@ -96,76 +96,76 @@ enum FileIcon {
     static func fileIcon(fileType: FileType?) -> String { // swiftlint:disable:this cyclomatic_complexity function_body_length line_length
         switch fileType {
         case .json, .yml, .resolved:
-            return "doc.json"
+            return String(localized: "file-icon.symbol.doc-json", defaultValue: "doc.json", comment: "SF Symbol for JSON file icon")
         case .lock:
-            return "lock.doc"
+            return String(localized: "file-icon.symbol.lock-doc", defaultValue: "lock.doc", comment: "SF Symbol for lock file icon")
         case .css:
-            return "curlybraces"
+            return String(localized: "file-icon.symbol.curlybraces", defaultValue: "curlybraces", comment: "SF Symbol for CSS file icon")
         case .js, .mjs:
-            return "doc.javascript"
+            return String(localized: "file-icon.symbol.doc-javascript", defaultValue: "doc.javascript", comment: "SF Symbol for JavaScript file icon")
         case .jsx, .tsx:
-            return "atom"
+            return String(localized: "file-icon.symbol.atom", defaultValue: "atom", comment: "SF Symbol for JSX/TSX file icon")
         case .swift:
-            return "swift"
+            return String(localized: "file-icon.symbol.swift", defaultValue: "swift", comment: "SF Symbol for Swift file icon")
         case .env, .example:
-            return "gearshape.fill"
+            return String(localized: "file-icon.symbol.gearshape-fill", defaultValue: "gearshape.fill", comment: "SF Symbol for environment file icon")
         case .gitignore:
-            return "arrow.triangle.branch"
+            return String(localized: "file-icon.symbol.arrow-triangle-branch", defaultValue: "arrow.triangle.branch", comment: "SF Symbol for gitignore file icon")
         case .pdf, .png, .jpg, .jpeg, .ico:
-            return "photo"
+            return String(localized: "file-icon.symbol.photo", defaultValue: "photo", comment: "SF Symbol for image/PDF file icon")
         case .svg:
-            return "square.fill.on.circle.fill"
+            return String(localized: "file-icon.symbol.square-fill-on-circle-fill", defaultValue: "square.fill.on.circle.fill", comment: "SF Symbol for SVG file icon")
         case .entitlements:
-            return "checkmark.seal"
+            return String(localized: "file-icon.symbol.checkmark-seal", defaultValue: "checkmark.seal", comment: "SF Symbol for entitlements file icon")
         case .plist:
-            return "tablecells"
+            return String(localized: "file-icon.symbol.tablecells", defaultValue: "tablecells", comment: "SF Symbol for plist file icon")
         case .md, .txt:
-            return "doc.plaintext"
+            return String(localized: "file-icon.symbol.doc-plaintext", defaultValue: "doc.plaintext", comment: "SF Symbol for plain text file icon")
         case .rtf:
-            return "doc.richtext"
+            return String(localized: "file-icon.symbol.doc-richtext", defaultValue: "doc.richtext", comment: "SF Symbol for rich text file icon")
         case .html:
-            return "chevron.left.forwardslash.chevron.right"
+            return String(localized: "file-icon.symbol.chevron-left-forwardslash-chevron-right", defaultValue: "chevron.left.forwardslash.chevron.right", comment: "SF Symbol for HTML file icon")
         case .LICENSE:
-            return "key.fill"
+            return String(localized: "file-icon.symbol.key-fill", defaultValue: "key.fill", comment: "SF Symbol for LICENSE file icon")
         case .java:
-            return "cup.and.saucer"
+            return String(localized: "file-icon.symbol.cup-and-saucer", defaultValue: "cup.and.saucer", comment: "SF Symbol for Java file icon")
         case .py:
-            return "doc.python"
+            return String(localized: "file-icon.symbol.doc-python", defaultValue: "doc.python", comment: "SF Symbol for Python file icon")
         case .rb:
-            return "doc.ruby"
+            return String(localized: "file-icon.symbol.doc-ruby", defaultValue: "doc.ruby", comment: "SF Symbol for Ruby file icon")
         case .strings:
-            return "text.quote"
+            return String(localized: "file-icon.symbol.text-quote", defaultValue: "text.quote", comment: "SF Symbol for strings file icon")
         case .h:
-            return "h.square"
+            return String(localized: "file-icon.symbol.h-square", defaultValue: "h.square", comment: "SF Symbol for header file icon")
         case .m:
-            return "m.square"
+            return String(localized: "file-icon.symbol.m-square", defaultValue: "m.square", comment: "SF Symbol for Objective-C file icon")
         case .vue:
-            return "v.square"
+            return String(localized: "file-icon.symbol.v-square", defaultValue: "v.square", comment: "SF Symbol for Vue file icon")
         case .go:
-            return "g.square"
+            return String(localized: "file-icon.symbol.g-square", defaultValue: "g.square", comment: "SF Symbol for Go file icon")
         case .sum:
-            return "s.square"
+            return String(localized: "file-icon.symbol.s-square", defaultValue: "s.square", comment: "SF Symbol for sum file icon")
         case .mod:
-            return "m.square"
+            return String(localized: "file-icon.symbol.m-square-mod", defaultValue: "m.square", comment: "SF Symbol for mod file icon")
         case .bash, .sh, .Makefile, .zsh:
-            return "terminal"
+            return String(localized: "file-icon.symbol.terminal", defaultValue: "terminal", comment: "SF Symbol for shell script file icon")
         case .rs:
-            return "r.square"
+            return String(localized: "file-icon.symbol.r-square", defaultValue: "r.square", comment: "SF Symbol for Rust file icon")
         case .wav, .mp3, .aif, .mid:
-            return "speaker.wave.2"
+            return String(localized: "file-icon.symbol.speaker-wave-2", defaultValue: "speaker.wave.2", comment: "SF Symbol for audio file icon")
         case .avi, .mp4, .mov:
-            return "film"
+            return String(localized: "file-icon.symbol.film", defaultValue: "film", comment: "SF Symbol for video file icon")
         case .scpt:
-            return "applescript"
+            return String(localized: "file-icon.symbol.applescript", defaultValue: "applescript", comment: "SF Symbol for AppleScript file icon")
         case .xcconfig:
-            return "gearshape.2"
+            return String(localized: "file-icon.symbol.gearshape-2", defaultValue: "gearshape.2", comment: "SF Symbol for xcconfig file icon")
         case .cetheme:
-            return "paintbrush"
+            return String(localized: "file-icon.symbol.paintbrush", defaultValue: "paintbrush", comment: "SF Symbol for theme file icon")
         case .adb, .clj, .cls, .cs, .d, .dart, .elm, .ex, .f95, .fs, .gs, .hs,
              .jl, .kt, .l, .lsp, .lua, .mk, .pas, .pl, .scm, .ss:
-            return "doc.plaintext"
+            return String(localized: "file-icon.symbol.doc-plaintext-generic", defaultValue: "doc.plaintext", comment: "SF Symbol for generic code file icon")
         default:
-            return "doc"
+            return String(localized: "file-icon.symbol.doc", defaultValue: "doc", comment: "SF Symbol for default file icon")
         }
     }
 
