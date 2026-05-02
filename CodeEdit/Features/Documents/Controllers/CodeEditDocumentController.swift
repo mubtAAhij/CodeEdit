@@ -28,7 +28,7 @@ final class CodeEditDocumentController: NSDocumentController {
         )
 
         guard createdFile else {
-            print("Failed to create new document")
+            print(String(localized: "debug.document.create.failed", defaultValue: "Failed to create new document", comment: "Debug message for document creation failure (technical constant, should not be localized)"))
             return
         }
 
@@ -46,7 +46,7 @@ final class CodeEditDocumentController: NSDocumentController {
             attributes: [FileAttributeKey.creationDate: Date()]
         )
         guard createdFile else {
-            print("Failed to create new document")
+            print(String(localized: "debug.document.create.failed", defaultValue: "Failed to create new document", comment: "Debug message for document creation failure (technical constant, should not be localized)"))
             return
         }
 
@@ -67,11 +67,12 @@ final class CodeEditDocumentController: NSDocumentController {
             // TODO: handle errors
 
             guard let document else {
-                print("Failed to unwrap document")
+                print(String(localized: "debug.document.unwrap.failed", defaultValue: "Failed to unwrap document", comment: "Debug message for document unwrap failure (technical constant, should not be localized)"))
                 return
             }
 
-            print(document, documentWasAlreadyOpen)
+            print(String(localized: "debug.document.label", defaultValue: "Document:", comment: "Debug label (technical constant, should not be localized)"), document)
+            print(String(localized: "debug.document.already.open", defaultValue: "Was already open?", comment: "Debug message (technical constant, should not be localized)"), documentWasAlreadyOpen)
         }, onCancel: {})
     }
 
@@ -89,8 +90,8 @@ final class CodeEditDocumentController: NSDocumentController {
                 if let document {
                     self.addDocument(document)
                 } else {
-                    let errorMessage = error?.localizedDescription ?? "unknown error"
-                    print("Unable to open document '\(url)': \(errorMessage)")
+                    let errorMessage = error?.localizedDescription ?? String(localized: "error.unknown", defaultValue: "unknown error", comment: "Unknown error placeholder")
+                    print(String(format: String(localized: "debug.document.open.failed", defaultValue: "Unable to open document '%@': %@", comment: "Debug message for document open failure (technical constant, should not be localized)"), url.path, errorMessage))
                 }
 
                 RecentsStore.documentOpened(at: url)
@@ -146,7 +147,7 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Open Workspace or File"
+        dialog.title = String(localized: "dialog.open.workspace.or.file", defaultValue: "Open Workspace or File", comment: "Open workspace or file dialog title")
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
@@ -162,16 +163,13 @@ extension NSDocumentController {
 
                     guard let document else {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString(
-                            "Failed to get document",
-                            comment: "Failed to get document"
-                        )
+                        alert.messageText = String(localized: "error.document.get.failed", defaultValue: "Failed to get document", comment: "Failed to get document error message")
                         alert.runModal()
                         return
                     }
                     onCompletion(document, documentWasAlreadyOpen)
-                    print("Document:", document)
-                    print("Was already open?", documentWasAlreadyOpen)
+                    print(String(localized: "debug.document.label", defaultValue: "Document:", comment: "Debug label (technical constant, should not be localized)"), document)
+                    print(String(localized: "debug.document.already.open", defaultValue: "Was already open?", comment: "Debug message (technical constant, should not be localized)"), documentWasAlreadyOpen)
                 }
             } else if result == NSApplication.ModalResponse.cancel {
                 onCancel()
