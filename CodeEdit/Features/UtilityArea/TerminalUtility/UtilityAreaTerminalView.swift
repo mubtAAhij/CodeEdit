@@ -117,11 +117,11 @@ struct UtilityAreaTerminalView: View {
                             )
                             .frame(height: max(0, constrainedHeight - 1))
                             .id(selectedTerminal.id)
-                            .accessibilityIdentifier("terminal")
+                            .accessibilityIdentifier(String(localized: "utility-area.terminal.identifier", defaultValue: "terminal", comment: "Terminal accessibility identifier"))
                         }
                     }
                 } else {
-                    CEContentUnavailableView("No Selection")
+                    CEContentUnavailableView(String(localized: "utility-area.terminal.no-selection", defaultValue: "No Selection", comment: "No terminal selected message"))
                 }
             }
             .padding(.horizontal, 10)
@@ -141,16 +141,16 @@ struct UtilityAreaTerminalView: View {
                         }
                         utilityAreaViewModel.replaceTerminal(terminal.id)
                     } label: {
-                        Image(systemName: "trash")
+                        Image(systemName: String(localized: "utility-area.terminal.trash-icon", defaultValue: "trash", comment: "Trash icon"))
                     }
-                    .help("Reset the terminal")
+                    .help(String(localized: "utility-area.terminal.reset", defaultValue: "Reset the terminal", comment: "Reset terminal button tooltip"))
                     .disabled(getSelectedTerminal() == nil)
                     Button {
                         // split terminal
                     } label: {
-                        Image(systemName: "square.split.2x1")
+                        Image(systemName: String(localized: "utility-area.terminal.split-icon", defaultValue: "square.split.2x1", comment: "Split icon"))
                     }
-                    .help("Implementation Needed")
+                    .help(String(localized: "utility-area.terminal.implementation-needed", defaultValue: "Implementation Needed", comment: "Implementation needed tooltip"))
                     .disabled(true)
                 }
             }
@@ -163,12 +163,12 @@ struct UtilityAreaTerminalView: View {
         }
         .onAppear {
             guard let workspaceURL = workspace.fileURL else {
-                assertionFailure("Workspace does not have a file URL.")
+                assertionFailure(String(localized: "utility-area.terminal.no-url", defaultValue: "Workspace does not have a file URL.", comment: "Workspace URL error message"))
                 return
             }
             utilityAreaViewModel.initializeTerminals(workspaceURL: workspaceURL)
         }
-        .accessibilityIdentifier("terminal-area")
+        .accessibilityIdentifier(String(localized: "utility-area.terminal.area-identifier", defaultValue: "terminal-area", comment: "Terminal area accessibility identifier"))
     }
 
     @ViewBuilder var backgroundEffectView: some View {

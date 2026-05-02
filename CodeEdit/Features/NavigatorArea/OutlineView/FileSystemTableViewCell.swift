@@ -92,13 +92,13 @@ class FileSystemTableViewCell: StandardTableViewCell {
             return
         }
 
-        if fileItem.url.isSymbolicLink { secondaryLabel.stringValue = "􀰞" }
+        if fileItem.url.isSymbolicLink { secondaryLabel.stringValue = String(localized: "file-system.cell.symbolic-link-icon", defaultValue: "􀰞", comment: "Icon shown for symbolic link files") }
 
         guard let gitStatus = fileItem.gitStatus?.description else {
             return
         }
 
-        if gitStatus == "?" { secondaryLabel.stringValue += "A" } else {
+        if gitStatus == String(localized: "file-system.cell.git-status.untracked", defaultValue: "?", comment: "Git status character for untracked files") { secondaryLabel.stringValue += "A" } else {
             secondaryLabel.stringValue += gitStatus
         }
     }
@@ -106,18 +106,12 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// *Not Implemented*
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        fatalError("""
-            init(frame: ) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        fatalError(String(localized: "file-system.cell.error.init-frame-not-implemented", defaultValue: "init(frame: ) isn't implemented on `OutlineTableViewCell`.\nPlease use `.init(frame: NSRect, item: FileSystemClient.FileItem?)", comment: "Error message when unsupported init(frame:) is called"))
     }
 
     /// *Not Implemented*
     required init?(coder: NSCoder) {
-        fatalError("""
-            init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        fatalError(String(localized: "file-system.cell.error.init-coder-not-implemented", defaultValue: "init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.\nPlease use `.init(frame: NSRect, item: FileSystemClient.FileItem?)", comment: "Error message when unsupported init?(coder:) is called"))
     }
 
     /// Returns the font size for the current row height. Defaults to `13.0`
@@ -171,7 +165,7 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "file-system.rename.dismiss", defaultValue: "Dismiss", comment: "Dismiss button for file rename error"))
             alert.runModal()
         }
     }

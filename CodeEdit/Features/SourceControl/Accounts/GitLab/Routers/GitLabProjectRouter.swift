@@ -241,9 +241,9 @@ enum GitLabProjectRouter: GitRouter {
         case .readProjectEvents(_, let id, _, _):
             return "projects/\(id)/events"
         case .readProjectHooks(_, let id):
-            return "projects/\(id)/hooks"
+            return String(format: String(localized: "gitlab.api.path.project-hooks", defaultValue: "projects/%@/hooks", comment: "GitLab API path for project hooks"), id)
         case let .readProjectHook(_, id, hookId):
-            return "projects/\(id)/hooks/\(hookId)"
+            return String(format: String(localized: "gitlab.api.path.project-hook", defaultValue: "projects/%@/hooks/%@", comment: "GitLab API path for specific project hook"), id, hookId)
         }
     }
 }

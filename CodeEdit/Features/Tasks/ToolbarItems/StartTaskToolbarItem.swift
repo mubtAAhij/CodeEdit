@@ -23,8 +23,8 @@ final class StartTaskToolbarItem: NSToolbarItem {
         let config = NSImage.SymbolConfiguration(pointSize: 14, weight: .regular)
         image = image?.withSymbolConfiguration(config) ?? image
 
-        paletteLabel = "Start Task"
-        toolTip = "Run the selected task"
+        paletteLabel = String(localized: "tasks.start-task", defaultValue: "Start Task", comment: "Start task toolbar label")
+        toolTip = String(localized: "tasks.start-task.help", defaultValue: "Run the selected task", comment: "Start task tooltip")
         target = self
         action = #selector(startTask)
         isBordered = true

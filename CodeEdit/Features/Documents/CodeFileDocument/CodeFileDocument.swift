@@ -28,12 +28,12 @@ final class CodeFileDocument: NSDocument, ObservableObject {
         let cursorPositions: [CursorPosition]
     }
 
-    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "CodeFileDocument")
+    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "code-file-document.logger-category", defaultValue: "CodeFileDocument", comment: "Logger category for code file document"))
 
     /// Sent when the document is opened. The document will be sent in the notification's object.
-    static let didOpenNotification = Notification.Name(rawValue: "CodeFileDocument.didOpen")
+    static let didOpenNotification = Notification.Name(rawValue: String(localized: "code-file-document.notification.did-open", defaultValue: "CodeFileDocument.didOpen", comment: "Notification name for document opened"))
     /// Sent when the document is closed. The document's `fileURL` will be sent in the notification's object.
-    static let didCloseNotification = Notification.Name(rawValue: "CodeFileDocument.didClose")
+    static let didCloseNotification = Notification.Name(rawValue: String(localized: "code-file-document.notification.did-close", defaultValue: "CodeFileDocument.didClose", comment: "Notification name for document closed"))
 
     /// The text content of the document, stored as a text storage
     ///
@@ -131,7 +131,7 @@ final class CodeFileDocument: NSDocument, ObservableObject {
 
         window.makeKeyAndOrderFront(nil)
 
-        if let fileURL, UserDefaults.standard.object(forKey: "NSWindow Frame \(fileURL.path)") == nil {
+        if let fileURL, UserDefaults.standard.object(forKey: String(format: String(localized: "code-file-document.window-frame-key", defaultValue: "NSWindow Frame %@", comment: "UserDefaults key for window frame"), fileURL.path)) == nil {
             window.center()
         }
     }
@@ -140,7 +140,7 @@ final class CodeFileDocument: NSDocument, ObservableObject {
 
     override func data(ofType _: String) throws -> Data {
         guard let sourceEncoding, let data = (content?.string as NSString?)?.data(using: sourceEncoding.nsValue) else {
-            Self.logger.error("Failed to encode contents to \(self.sourceEncoding.debugDescription)")
+            Self.logger.error("Failed to encode contents to \(self.sourceEncoding.debugDescription, privacy: .public)")
             throw CodeFileError.failedToEncode
         }
         return data
@@ -163,7 +163,7 @@ final class CodeFileDocument: NSDocument, ObservableObject {
             usedLossyConversion: nil
         )
         guard let validEncoding = FileEncoding(rawEncoding), let nsString else {
-            Self.logger.error("Failed to read file from data using encoding: \(rawEncoding)")
+            Self.logger.error("Failed to read file from data using encoding: \(rawEncoding, privacy: .public)")
             return
         }
         self.sourceEncoding = validEncoding
@@ -350,6 +350,6 @@ extension CodeFileDocument: LanguageServerDocument {
 private extension CodeFileDocument {
 
     static let fileTypeExtension: [String: String?] = [
-        "public.make-source": nil
+        String(localized: "code-file-document.file-type.make-source", defaultValue: "public.make-source", comment: "UTI for Makefile source files"): nil
     ]
 }

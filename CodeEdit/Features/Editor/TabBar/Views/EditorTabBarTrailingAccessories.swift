@@ -50,14 +50,14 @@ struct EditorTabBarTrailingAccessories: View {
 
     func editorOptionsMenu(codeFile: CodeFileDocument) -> some View {
         // This is a button so it gets the same styling from the Group in `body`.
-        Button(action: {}, label: { Image(systemName: "slider.horizontal.3") })
+        Button(action: {}, label: { Image(systemName: String(localized: "editor.tab-bar.options-icon", defaultValue: "slider.horizontal.3", comment: "Editor options icon")) })
             .overlay {
                 Menu {
-                    Toggle("Show Minimap", isOn: $showMinimap)
-                        .keyboardShortcut("M", modifiers: [.command, .shift, .control])
+                    Toggle(String(localized: "editor.tab-bar.show-minimap", defaultValue: "Show Minimap", comment: "Show minimap toggle"), isOn: $showMinimap)
+                        .keyboardShortcut(KeyEquivalent(String(localized: "editor.tab-bar.minimap-shortcut", defaultValue: "M", comment: "Minimap keyboard shortcut")), modifiers: [.command, .shift, .control])
                     Divider()
                     Toggle(
-                        "Wrap Lines",
+                        String(localized: "editor.tab-bar.wrap-lines", defaultValue: "Wrap Lines", comment: "Wrap lines toggle"),
                         isOn: Binding(
                             get: { [weak codeFile] in codeFile?.wrapLines ?? wrapLinesToEditorWidth },
                             set: { [weak codeFile] in
@@ -78,17 +78,17 @@ struct EditorTabBarTrailingAccessories: View {
                 Button {
                     split(edge: .bottom)
                 } label: {
-                    Image(symbol: "square.split.horizontal.plus")
+                    Image(symbol: String(localized: "editor.tab-bar.split-horizontal-icon", defaultValue: "square.split.horizontal.plus", comment: "Split horizontally icon"))
                 }
-                .help("Split Vertically")
+                .help(String(localized: "editor.tab-bar.split-vertically", defaultValue: "Split Vertically", comment: "Split vertically tooltip"))
 
             case (.vertical, true), (.horizontal, false):
                 Button {
                     split(edge: .trailing)
                 } label: {
-                    Image(symbol: "square.split.vertical.plus")
+                    Image(symbol: String(localized: "editor.tab-bar.split-vertical-icon", defaultValue: "square.split.vertical.plus", comment: "Split vertically icon"))
                 }
-                .help("Split Horizontally")
+                .help(String(localized: "editor.tab-bar.split-horizontally", defaultValue: "Split Horizontally", comment: "Split horizontally tooltip"))
 
             default:
                 EmptyView()

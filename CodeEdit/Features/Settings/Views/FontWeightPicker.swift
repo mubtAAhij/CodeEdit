@@ -24,21 +24,21 @@ struct FontWeightPicker: View {
     ]
 
     var weightNames: [NSFont.Weight: String] = [
-        .ultraLight: "Ultra Light",
-        .thin: "Thin",
-        .light: "Light",
-        .regular: "Regular",
-        .medium: "Medium",
-        .semibold: "Semi Bold",
-        .bold: "Bold",
-        .heavy: "Heavy",
-        .black: "Black"
+        .ultraLight: String(localized: "font-weight.ultra-light", defaultValue: "Ultra Light", comment: "Font weight: ultra light"),
+        .thin: String(localized: "font-weight.thin", defaultValue: "Thin", comment: "Font weight: thin"),
+        .light: String(localized: "font-weight.light", defaultValue: "Light", comment: "Font weight: light"),
+        .regular: String(localized: "font-weight.regular", defaultValue: "Regular", comment: "Font weight: regular"),
+        .medium: String(localized: "font-weight.medium", defaultValue: "Medium", comment: "Font weight: medium"),
+        .semibold: String(localized: "font-weight.semibold", defaultValue: "Semi Bold", comment: "Font weight: semi bold"),
+        .bold: String(localized: "font-weight.bold", defaultValue: "Bold", comment: "Font weight: bold"),
+        .heavy: String(localized: "font-weight.heavy", defaultValue: "Heavy", comment: "Font weight: heavy"),
+        .black: String(localized: "font-weight.black", defaultValue: "Black", comment: "Font weight: black")
     ]
 
     var body: some View {
-        Picker(label ?? "Font Weight", selection: $selection) {
+        Picker(label ?? String(localized: "font-weight.label", defaultValue: "Font Weight", comment: "Label for font weight picker"), selection: $selection) {
             ForEach(fontWeights, id: \.self) { weight in
-                Text(weightNames[weight] ?? "Unknown")
+                Text(weightNames[weight] ?? String(localized: "font-weight.unknown", defaultValue: "Unknown", comment: "Unknown font weight"))
                     .tag(weight)
             }
         }

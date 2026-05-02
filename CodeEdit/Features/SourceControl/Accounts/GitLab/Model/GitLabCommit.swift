@@ -25,17 +25,17 @@ class GitLabCommit: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case shortID = "short_id"
+        case shortID = String(localized: "gitlab.commit.key.short-id", defaultValue: "short_id", comment: "GitLab API key for commit short ID")
         case title
-        case authorName = "author_name"
-        case authorEmail = "author_email"
-        case committerName = "committer_name"
-        case committerEmail = "committer_email"
-        case createdAt = "created_at"
+        case authorName = String(localized: "gitlab.commit.key.author-name", defaultValue: "author_name", comment: "GitLab API key for commit author name")
+        case authorEmail = String(localized: "gitlab.commit.key.author-email", defaultValue: "author_email", comment: "GitLab API key for commit author email")
+        case committerName = String(localized: "gitlab.commit.key.committer-name", defaultValue: "committer_name", comment: "GitLab API key for commit committer name")
+        case committerEmail = String(localized: "gitlab.commit.key.committer-email", defaultValue: "committer_email", comment: "GitLab API key for commit committer email")
+        case createdAt = String(localized: "gitlab.commit.key.created-at", defaultValue: "created_at", comment: "GitLab API key for commit created date")
         case message
-        case committedDate = "committed_date"
-        case authoredDate = "authored_date"
-        case parentIDs = "parent_ids"
+        case committedDate = String(localized: "gitlab.commit.key.committed-date", defaultValue: "committed_date", comment: "GitLab API key for commit committed date")
+        case authoredDate = String(localized: "gitlab.commit.key.authored-date", defaultValue: "authored_date", comment: "GitLab API key for commit authored date")
+        case parentIDs = String(localized: "gitlab.commit.key.parent-ids", defaultValue: "parent_ids", comment: "GitLab API key for commit parent IDs")
         case stats
         case status
     }
@@ -65,13 +65,13 @@ class GitLabCommitDiff: Codable {
 
     enum CodingKeys: String, CodingKey {
         case diff
-        case newPath = "new_path"
-        case oldPath = "old_path"
-        case aMode = "a_mode"
-        case bMode = "b_mode"
-        case newFile = "new_file"
-        case renamedFile = "renamed_file"
-        case deletedFile = "deleted_file"
+        case newPath = String(localized: "gitlab.commit-diff.key.new-path", defaultValue: "new_path", comment: "GitLab API key for commit diff new path")
+        case oldPath = String(localized: "gitlab.commit-diff.key.old-path", defaultValue: "old_path", comment: "GitLab API key for commit diff old path")
+        case aMode = String(localized: "gitlab.commit-diff.key.a-mode", defaultValue: "a_mode", comment: "GitLab API key for commit diff a mode")
+        case bMode = String(localized: "gitlab.commit-diff.key.b-mode", defaultValue: "b_mode", comment: "GitLab API key for commit diff b mode")
+        case newFile = String(localized: "gitlab.commit-diff.key.new-file", defaultValue: "new_file", comment: "GitLab API key for commit diff new file")
+        case renamedFile = String(localized: "gitlab.commit-diff.key.renamed-file", defaultValue: "renamed_file", comment: "GitLab API key for commit diff renamed file")
+        case deletedFile = String(localized: "gitlab.commit-diff.key.deleted-file", defaultValue: "deleted_file", comment: "GitLab API key for commit diff deleted file")
     }
 }
 
@@ -101,15 +101,15 @@ class GitLabCommitStatus: Codable {
 
     enum CodingKeys: String, CodingKey {
         case status
-        case createdAt = "created_at"
-        case startedAt = "started_at"
+        case createdAt = String(localized: "gitlab.commit-status.key.created-at", defaultValue: "created_at", comment: "GitLab API key for commit status created date")
+        case startedAt = String(localized: "gitlab.commit-status.key.started-at", defaultValue: "started_at", comment: "GitLab API key for commit status started date")
         case name
-        case allowFailure = "allow_failure"
+        case allowFailure = String(localized: "gitlab.commit-status.key.allow-failure", defaultValue: "allow_failure", comment: "GitLab API key for commit status allow failure")
         case author
-        case statusDescription = "description"
+        case statusDescription = String(localized: "gitlab.commit-status.key.description", defaultValue: "description", comment: "GitLab API key for commit status description")
         case sha
-        case targetURL = "target_url"
-        case finishedAt = "finished_at"
+        case targetURL = String(localized: "gitlab.commit-status.key.target-url", defaultValue: "target_url", comment: "GitLab API key for commit status target URL")
+        case finishedAt = String(localized: "gitlab.commit-status.key.finished-at", defaultValue: "finished_at", comment: "GitLab API key for commit status finished date")
         case id
         case ref
     }

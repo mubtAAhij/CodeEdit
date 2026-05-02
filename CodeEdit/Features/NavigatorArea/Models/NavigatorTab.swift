@@ -18,13 +18,13 @@ enum NavigatorTab: WorkspacePanelTab {
     var systemImage: String {
         switch self {
         case .project:
-            return "folder"
+            return String(localized: "navigator.tab.project.icon", defaultValue: "folder", comment: "Project navigator icon")
         case .sourceControl:
-            return "vault"
+            return String(localized: "navigator.tab.source-control.icon", defaultValue: "vault", comment: "Source control navigator icon")
         case .search:
-            return "magnifyingglass"
+            return String(localized: "navigator.tab.search.icon", defaultValue: "magnifyingglass", comment: "Search navigator icon")
         case .uiExtension(_, let data):
-            return data.icon ?? "e.square"
+            return data.icon ?? String(localized: "navigator.tab.extension.icon", defaultValue: "e.square", comment: "Extension navigator icon")
         }
     }
 
@@ -38,11 +38,11 @@ enum NavigatorTab: WorkspacePanelTab {
     var title: String {
         switch self {
         case .project:
-            return "Project"
+            return String(localized: "navigator.tab.project", defaultValue: "Project", comment: "Project navigator title")
         case .sourceControl:
-            return "Source Control"
+            return String(localized: "navigator.tab.source-control", defaultValue: "Source Control", comment: "Source control navigator title")
         case .search:
-            return "Search"
+            return String(localized: "navigator.tab.search", defaultValue: "Search", comment: "Search navigator title")
         case .uiExtension(_, let data):
             return data.help ?? data.sceneID
         }

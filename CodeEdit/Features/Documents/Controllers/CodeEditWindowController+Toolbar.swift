@@ -108,7 +108,7 @@ extension CodeEditWindowController {
     func updateToolbarVisibility() {
         if toolbarCollapsed {
             window?.titleVisibility = .visible
-            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "toolbar.empty", defaultValue: "Empty", comment: "Empty workspace title")
             window?.toolbar = nil
         } else {
             window?.titleVisibility = .hidden
@@ -133,26 +133,26 @@ extension CodeEditWindowController {
             )
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
-            toolbarItem.paletteLabel = " Navigator Sidebar"
-            toolbarItem.toolTip = "Hide or show the Navigator"
+            toolbarItem.paletteLabel = String(localized: "toolbar.navigator-sidebar", defaultValue: " Navigator Sidebar", comment: "Navigator sidebar palette label")
+            toolbarItem.toolTip = String(localized: "toolbar.navigator-tooltip", defaultValue: "Hide or show the Navigator", comment: "Navigator sidebar tooltip")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleFirstPanel)
             toolbarItem.image = NSImage(
-                systemSymbolName: "sidebar.leading",
+                systemSymbolName: String(localized: "toolbar.sidebar-leading-icon", defaultValue: "sidebar.leading", comment: "Leading sidebar icon"),
                 accessibilityDescription: nil
             )?.withSymbolConfiguration(.init(scale: .large))
 
             return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
-            toolbarItem.paletteLabel = "Inspector Sidebar"
-            toolbarItem.toolTip = "Hide or show the Inspectors"
+            toolbarItem.paletteLabel = String(localized: "toolbar.inspector-sidebar", defaultValue: "Inspector Sidebar", comment: "Inspector sidebar palette label")
+            toolbarItem.toolTip = String(localized: "toolbar.inspector-tooltip", defaultValue: "Hide or show the Inspectors", comment: "Inspector sidebar tooltip")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleLastPanel)
             toolbarItem.image = NSImage(
-                systemSymbolName: "sidebar.trailing",
+                systemSymbolName: String(localized: "toolbar.sidebar-trailing-icon", defaultValue: "sidebar.trailing", comment: "Trailing sidebar icon"),
                 accessibilityDescription: nil
             )?.withSymbolConfiguration(.init(scale: .large))
 
@@ -177,7 +177,7 @@ extension CodeEditWindowController {
             return notificationItem()
         case .taskSidebarItem:
             guard #available(macOS 26, *) else {
-                fatalError("Unified task sidebar item used on pre-tahoe platform.")
+                fatalError(String(localized: "toolbar.task-sidebar-error", defaultValue: "Unified task sidebar item used on pre-tahoe platform.", comment: "Task sidebar platform error"))
             }
             guard let workspace,
                     let stop = StopTaskToolbarItem(workspace: workspace) else {
