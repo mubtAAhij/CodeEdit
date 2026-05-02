@@ -17,11 +17,11 @@ extension WorkspaceDocument.SearchState {
         indexStatus = .indexing(progress: 0.0)
         let uuidString = UUID().uuidString
         let createInfo: [String: Any] = [
-            "id": uuidString,
-            "action": "create",
-            "title": "Indexing | Processing files",
-            "message": "Creating an index to enable fast and accurate searches within your codebase.",
-            "isLoading": true
+            String(localized: "task.notification.key.id", defaultValue: "id", comment: "Notification key for task id"): uuidString,
+            String(localized: "task.notification.key.action", defaultValue: "action", comment: "Notification key for task action"): String(localized: "task.notification.action.create", defaultValue: "create", comment: "Action to create notification"),
+            String(localized: "task.notification.key.title", defaultValue: "title", comment: "Notification key for task title"): String(localized: "indexing.task.title.processing", defaultValue: "Indexing | Processing files", comment: "Title for indexing task when processing files"),
+            String(localized: "task.notification.key.message", defaultValue: "message", comment: "Notification key for task message"): String(localized: "indexing.task.message.creating", defaultValue: "Creating an index to enable fast and accurate searches within your codebase.", comment: "Message explaining index creation purpose"),
+            String(localized: "task.notification.key.isloading", defaultValue: "isLoading", comment: "Notification key for task loading state"): true
         ]
         NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: createInfo)
 
@@ -42,9 +42,9 @@ extension WorkspaceDocument.SearchState {
                         self.indexStatus = .indexing(progress: progress)
                     }
                     let updateInfo: [String: Any] = [
-                        "id": uuidString,
-                        "action": "update",
-                        "percentage": progress
+                        String(localized: "task.notification.key.id", defaultValue: "id", comment: "Notification key for task id"): uuidString,
+                        String(localized: "task.notification.key.action", defaultValue: "action", comment: "Notification key for task action"): String(localized: "task.notification.action.update", defaultValue: "update", comment: "Action to update notification"),
+                        String(localized: "task.notification.key.percentage", defaultValue: "percentage", comment: "Notification key for task percentage"): progress
                     ]
                     NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: updateInfo)
                 }
@@ -55,17 +55,17 @@ extension WorkspaceDocument.SearchState {
                 self.indexStatus = .done
             }
             let updateInfo: [String: Any] = [
-                "id": uuidString,
-                "action": "update",
-                "title": "Finished indexing",
-                "isLoading": false
+                String(localized: "task.notification.key.id", defaultValue: "id", comment: "Notification key for task id"): uuidString,
+                String(localized: "task.notification.key.action", defaultValue: "action", comment: "Notification key for task action"): String(localized: "task.notification.action.update", defaultValue: "update", comment: "Action to update notification"),
+                String(localized: "task.notification.key.title", defaultValue: "title", comment: "Notification key for task title"): String(localized: "indexing.task.title.finished", defaultValue: "Finished indexing", comment: "Title for indexing task when finished"),
+                String(localized: "task.notification.key.isloading", defaultValue: "isLoading", comment: "Notification key for task loading state"): false
             ]
             NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: updateInfo)
 
             let deleteInfo = [
-                "id": uuidString,
-                "action": "deleteWithDelay",
-                "delay": 4.0
+                String(localized: "task.notification.key.id", defaultValue: "id", comment: "Notification key for task id"): uuidString,
+                String(localized: "task.notification.key.action", defaultValue: "action", comment: "Notification key for task action"): String(localized: "task.notification.action.delete.with.delay", defaultValue: "deleteWithDelay", comment: "Action to delete notification with delay"),
+                String(localized: "task.notification.key.delay", defaultValue: "delay", comment: "Notification key for task delay"): 4.0
             ]
             NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: deleteInfo)
         }
