@@ -12,7 +12,7 @@ extension GitClient {
     /// - Parameter name: Name for remote
     /// - Parameter location: URL string for remote location
     func getRemotes() async throws -> [GitRemote] {
-        let command = "remote -v"
+        let command = String(localized: "git.remote.command.list", defaultValue: "remote -v", comment: "Git command to list remotes")
         let output = try await run(command)
         let remotes = parseGitRemotes(from: output)
 
@@ -23,13 +23,13 @@ extension GitClient {
     /// - Parameter name: Name for remote
     /// - Parameter location: URL string for remote location
     func addRemote(name: String, location: String) async throws {
-        _ = try await run("remote add \(name) \(location)")
+        _ = try await run(String(format: String(localized: "git.remote.command.add", defaultValue: "remote add %@ %@", comment: "Git command to add remote"), name, location))
     }
 
     /// Remove remote from local git
     /// - Parameter name: Name for remote to remove
     func removeRemote(name: String) async throws {
-        _ = try await run("remote rm \(name)")
+        _ = try await run(String(format: String(localized: "git.remote.command.remove", defaultValue: "remote rm %@", comment: "Git command to remove remote"), name))
     }
 
     /// Get the URL of the remote
@@ -40,7 +40,7 @@ extension GitClient {
     /// - Throws: `GitClientError.outputError` if the underlying git command fails unexpectedly
     func getRemoteURL() async throws -> URL? {
         do {
-            let remote = try await run("ls-remote --get-url")
+            let remote = try await run(String(localized: "git.remote.command.get.url", defaultValue: "ls-remote --get-url", comment: "Git command to get remote URL"))
             return URL(string: remote.trimmingCharacters(in: .whitespacesAndNewlines))
         } catch GitClientError.noRemoteConfigured {
             return nil
@@ -59,17 +59,17 @@ func parseGitRemotes(from output: String) -> [GitRemote] {
 
         let name = String(components[0])
         let location = String(components[1])
-        let type = components[2].contains("(fetch)") ? "fetch" : "push"
+        let type = components[2].contains(String(localized: "git.remote.type.fetch.marker", defaultValue: "(fetch)", comment: "Git remote fetch type marker")) ? String(localized: "git.remote.type.fetch", defaultValue: "fetch", comment: "Git remote fetch type") : String(localized: "git.remote.type.push", defaultValue: "push", comment: "Git remote push type")
 
         if var remote = remotes[name] {
-            if type == "fetch" {
+            if type == String(localized: "git.remote.type.fetch", defaultValue: "fetch", comment: "Git remote fetch type") {
                 remote.fetch = location
             } else {
                 remote.push = location
             }
             remotes[name] = remote
         } else {
-            if type == "fetch" {
+            if type == String(localized: "git.remote.type.fetch", defaultValue: "fetch", comment: "Git remote fetch type") {
                 remotes[name] = (fetch: location, push: nil)
             } else {
                 remotes[name] = (fetch: nil, push: location)
