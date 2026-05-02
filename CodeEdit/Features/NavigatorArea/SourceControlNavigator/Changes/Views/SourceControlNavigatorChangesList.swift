@@ -28,24 +28,24 @@ struct SourceControlNavigatorChangesList: View {
                 if selectedFiles.count == 1,
                    let file = selectedFiles.first {
                     Group {
-                        Button("View in Finder") {
+                        Button(String(localized: "menu.view-in-finder", defaultValue: "View in Finder", comment: "View in Finder menu item")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button("Reveal in Project Navigator") {}
+                        Button(String(localized: "menu.reveal-in-navigator", defaultValue: "Reveal in Project Navigator", comment: "Reveal in Project Navigator menu item")) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button("Open in New Tab") {
+                        Button(String(localized: "menu.open-new-tab", defaultValue: "Open in New Tab", comment: "Open in New Tab menu item")) {
                             openGitFile(file)
                         }
-                        Button("Open in New Window") {}
+                        Button(String(localized: "menu.open-new-window", defaultValue: "Open in New Window", comment: "Open in New Window menu item")) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
                         Group {
                             Divider()
-                            Button("Discard Changes in \(file.fileURL.lastPathComponent)...") {
+                            Button(String(format: String(localized: "source-control.discard-changes", defaultValue: "Discard Changes in %@...", comment: "Discard changes menu item"), file.fileURL.lastPathComponent)) {
                                 sourceControlManager.discardChanges(for: file.fileURL)
                             }
                             Divider()
