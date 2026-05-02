@@ -26,7 +26,7 @@ struct ThemeSettingsView: View {
             SettingsForm {
                 Section {
                     HStack(spacing: 10) {
-                        SearchField("Search", text: $themeSearchQuery)
+                        SearchField(String(localized: "theme.search.placeholder", defaultValue: "Search", comment: "Theme search placeholder"), text: $themeSearchQuery)
 
                         Button {
                             // As discussed, the expected behavior is to duplicate the selected theme.
@@ -36,28 +36,28 @@ struct ThemeSettingsView: View {
                                 }
                             }
                         } label: {
-                            Image(systemName: "plus")
+                            Image(systemName: String(localized: "theme.add.icon", defaultValue: "plus", comment: "Add theme icon"))
                         }
                         .disabled(themeModel.selectedTheme == nil)
-                        .help("Create a new Theme")
+                        .help(String(localized: "theme.create.help", defaultValue: "Create a new Theme", comment: "Create theme help text"))
 
-                        MenuWithButtonStyle(systemImage: "ellipsis", menu: {
+                        MenuWithButtonStyle(systemImage: String(localized: "theme.menu.icon", defaultValue: "ellipsis", comment: "Theme menu icon"), menu: {
                             Group {
                                 Button {
                                     themeModel.importTheme()
                                 } label: {
-                                    Text("Import Theme...")
+                                    Text(String(localized: "theme.import.button", defaultValue: "Import Theme...", comment: "Import theme button"))
                                 }
                                 Button {
                                     themeModel.exportAllCustomThemes()
                                 } label: {
-                                    Text("Export All Custom Themes...")
+                                    Text(String(localized: "theme.export.all.button", defaultValue: "Export All Custom Themes...", comment: "Export all custom themes button"))
                                 }
                                 .disabled(themeModel.themes.filter { !$0.isBundled }.isEmpty)
                             }
                         })
                         .padding(.horizontal, 5)
-                        .help("Import or Export Custom Themes")
+                        .help(String(localized: "theme.import.export.help", defaultValue: "Import or Export Custom Themes", comment: "Import or export themes help text"))
                     }
                 }
                 if themeSearchQuery.isEmpty {
@@ -85,7 +85,7 @@ struct ThemeSettingsView: View {
                 } footer: {
                     HStack {
                         Spacer()
-                        Button("Import...") {
+                        Button(String(localized: "theme.import.footer.button", defaultValue: "Import...", comment: "Import theme footer button")) {
                             themeModel.importTheme()
                         }
                     }
@@ -153,16 +153,16 @@ struct ThemeSettingsView: View {
 
 private extension ThemeSettingsView {
     private var useThemeBackground: some View {
-        Toggle("Use theme background ", isOn: $settings.useThemeBackground)
+        Toggle(String(localized: "theme.use.background", defaultValue: "Use theme background", comment: "Use theme background toggle"), isOn: $settings.useThemeBackground)
     }
 
     private var alwaysUseDarkTerminalAppearance: some View {
-        Toggle("Always use dark terminal appearance", isOn: $useDarkTerminalAppearance)
+        Toggle(String(localized: "theme.terminal.dark.appearance", defaultValue: "Always use dark terminal appearance", comment: "Always use dark terminal appearance toggle"), isOn: $useDarkTerminalAppearance)
     }
 
     private var changeThemeOnSystemAppearance: some View {
         Toggle(
-            "Automatically change theme based on system appearance",
+            String(localized: "theme.auto.change.system.appearance", defaultValue: "Automatically change theme based on system appearance", comment: "Automatically change theme based on system appearance toggle"),
             isOn: $settings.matchAppearance
         )
         .onChange(of: settings.matchAppearance) { _, value in
