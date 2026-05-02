@@ -20,41 +20,48 @@ extension GitClient {
         fileLocalPath: String? = nil,
         showMergeCommits: Bool = false
     ) async throws -> [GitCommit] {
-        let branchString = branchName != nil ? "\"\(branchName ?? "")\"" : ""
-        let fileString = fileLocalPath != nil ? "\"\(fileLocalPath ?? "")\"" : ""
-        let countString = maxCount != nil ? "-n \(maxCount ?? 0)" : ""
+        let branchString = branchName != nil ? String(format: String(localized: "git.log.branch.param", defaultValue: "\"%@\"", comment: "Git log branch parameter"), branchName ?? "") : ""
+        let fileString = fileLocalPath != nil ? String(format: String(localized: "git.log.file.param", defaultValue: "\"%@\"", comment: "Git log file parameter"), fileLocalPath ?? "") : ""
+        let countString = maxCount != nil ? String(format: String(localized: "git.log.count.param", defaultValue: "-n %d", comment: "Git log count parameter"), maxCount ?? 0) : ""
 
         let dateFormatter = DateFormatter()
 
         // Can't use `Locale.current`, since it'd give a nil date outside the US
         dateFormatter.locale = Locale(identifier: Locale.current.identifier)
-        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
+        dateFormatter.dateFormat = String(localized: "git.log.date.format", defaultValue: "EEE, dd MMM yyyy HH:mm:ss Z", comment: "Git log date format")
 
+        let noMergesFlag = String(localized: "git.log.no.merges.flag", defaultValue: "--no-merges", comment: "Git log no merges flag")
         let output = try await run(
             """
-            log \(showMergeCommits ? "" : "--no-merges") -z \
+            log \(showMergeCommits ? "" : noMergesFlag) -z \
             --pretty=%h¦%H¦%s¦%aN¦%ae¦%cn¦%ce¦%aD¦%b¦%D¦ \
             \(countString) \(branchString) -- \(fileString)
             """.trimmingCharacters(in: .whitespacesAndNewlines)
         )
         let remoteURL = try await getRemoteURL()
 
+        let separator = String(localized: "git.log.separator", defaultValue: "¦", comment: "Git log field separator")
+        let tagPrefix = String(localized: "git.log.tag.prefix", defaultValue: "tag:", comment: "Git log tag prefix")
+        let commaSeparator = String(localized: "git.log.comma.separator", defaultValue: ",", comment: "Git log comma separator")
+        let originHead = String(localized: "git.log.origin.head", defaultValue: "origin/HEAD", comment: "Git log origin HEAD marker")
+        let headMarker = String(localized: "git.log.head.marker", defaultValue: "HEAD -> ", comment: "Git log HEAD marker")
+
         return output
             .split(separator: "\0")
             .map { line -> GitCommit in
-                let parameters = String(line).components(separatedBy: "¦")
+                let parameters = String(line).components(separatedBy: separator)
                 let infoRef = parameters[safe: 9]
                 var refs: [String] = []
                 var tag = ""
                 if let infoRef = infoRef {
-                    if infoRef.contains("tag:") {
-                        tag = infoRef.components(separatedBy: "tag:")[1].trimmingCharacters(in: .whitespaces)
+                    if infoRef.contains(tagPrefix) {
+                        tag = infoRef.components(separatedBy: tagPrefix)[1].trimmingCharacters(in: .whitespaces)
                     } else {
-                        refs = infoRef.split(separator: ",").compactMap {
+                        refs = infoRef.split(separator: Character(commaSeparator)).compactMap {
                             var element = String($0)
-                            if element.contains("origin/HEAD") { return nil }
-                            if element.contains("HEAD -> ") {
-                                element = element.replacingOccurrences(of: "HEAD -> ", with: "")
+                            if element.contains(originHead) { return nil }
+                            if element.contains(headMarker) {
+                                element = element.replacingOccurrences(of: headMarker, with: "")
                             }
                             return element.trimmingCharacters(in: .whitespaces)
                         }
