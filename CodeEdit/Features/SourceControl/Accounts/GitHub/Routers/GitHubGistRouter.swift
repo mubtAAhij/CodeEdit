@@ -45,29 +45,29 @@ enum GitHubGistRouter: GitJSONPostRouter {
     var params: [String: Any] {
         switch self {
         case let .readAuthenticatedGists(_, page, perPage):
-            return ["per_page": perPage, "page": page]
+            return [String(localized: "github.gist.param.per.page", defaultValue: "per_page", comment: "GitHub API parameter for items per page"): perPage, String(localized: "github.gist.param.page", defaultValue: "page", comment: "GitHub API parameter for page number"): page]
         case let .readGists(_, _, page, perPage):
-            return ["per_page": perPage, "page": page]
+            return [String(localized: "github.gist.param.per.page", defaultValue: "per_page", comment: "GitHub API parameter for items per page"): perPage, String(localized: "github.gist.param.page", defaultValue: "page", comment: "GitHub API parameter for page number"): page]
         case .readGist:
             return [:]
         case let .postGistFile(_, description, filename, fileContent, publicAccess):
             var params = [String: Any]()
-            params["public"] = publicAccess
-            params["description"] = description
+            params[String(localized: "github.gist.param.public", defaultValue: "public", comment: "GitHub API parameter for public gist visibility")] = publicAccess
+            params[String(localized: "github.gist.param.description", defaultValue: "description", comment: "GitHub API parameter for gist description")] = description
             var file = [String: Any]()
-            file["content"] = fileContent
+            file[String(localized: "github.gist.param.content", defaultValue: "content", comment: "GitHub API parameter for file content")] = fileContent
             var files = [String: Any]()
             files[filename] = file
-            params["files"] = files
+            params[String(localized: "github.gist.param.files", defaultValue: "files", comment: "GitHub API parameter for gist files")] = files
             return params
         case let .patchGistFile(_, _, description, filename, fileContent):
             var params = [String: Any]()
-            params["description"] = description
+            params[String(localized: "github.gist.param.description", defaultValue: "description", comment: "GitHub API parameter for gist description")] = description
             var file = [String: Any]()
-            file["content"] = fileContent
+            file[String(localized: "github.gist.param.content", defaultValue: "content", comment: "GitHub API parameter for file content")] = fileContent
             var files = [String: Any]()
             files[filename] = file
-            params["files"] = files
+            params[String(localized: "github.gist.param.files", defaultValue: "files", comment: "GitHub API parameter for gist files")] = files
             return params
         }
     }
@@ -75,15 +75,15 @@ enum GitHubGistRouter: GitJSONPostRouter {
     var path: String {
         switch self {
         case .readAuthenticatedGists:
-            return "gists"
+            return String(localized: "github.gist.path.gists", defaultValue: "gists", comment: "GitHub API path for gists endpoint")
         case let .readGists(_, owner, _, _):
-            return "users/\(owner)/gists"
+            return String(format: String(localized: "github.gist.path.user.gists", defaultValue: "users/%@/gists", comment: "GitHub API path for user gists endpoint"), owner)
         case let .readGist(_, id):
-            return "gists/\(id)"
+            return String(format: String(localized: "github.gist.path.gist.id", defaultValue: "gists/%@", comment: "GitHub API path for specific gist by ID"), id)
         case .postGistFile:
-            return "gists"
+            return String(localized: "github.gist.path.gists", defaultValue: "gists", comment: "GitHub API path for gists endpoint")
         case let .patchGistFile(_, id, _, _, _):
-            return "gists/\(id)"
+            return String(format: String(localized: "github.gist.path.gist.id", defaultValue: "gists/%@", comment: "GitHub API path for specific gist by ID"), id)
         }
     }
 }
