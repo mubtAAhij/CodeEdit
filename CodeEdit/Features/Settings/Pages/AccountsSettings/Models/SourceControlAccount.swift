@@ -23,6 +23,10 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     enum URLProtocol: String, Codable, CaseIterable {
         case https = "HTTPS"
         case ssh = "SSH"
+
+        var displayName: String {
+            return self.rawValue
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -36,49 +40,49 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var id: String {
             switch self {
             case .bitbucketCloud:
-                return "bitbucketCloud"
+                return String(localized: "source.control.provider.id.bitbucket.cloud", defaultValue: "bitbucketCloud", comment: "Provider ID for Bitbucket Cloud")
             case .bitbucketServer:
-                return "bitbucketServer"
+                return String(localized: "source.control.provider.id.bitbucket.server", defaultValue: "bitbucketServer", comment: "Provider ID for Bitbucket Server")
             case .github:
-                return "github"
+                return String(localized: "source.control.provider.id.github", defaultValue: "github", comment: "Provider ID for GitHub")
             case .githubEnterprise:
-                return "githubEnterprise"
+                return String(localized: "source.control.provider.id.github.enterprise", defaultValue: "githubEnterprise", comment: "Provider ID for GitHub Enterprise")
             case .gitlab:
-                return "gitlab"
+                return String(localized: "source.control.provider.id.gitlab", defaultValue: "gitlab", comment: "Provider ID for GitLab")
             case .gitlabSelfHosted:
-                return "gitlabSelfHosted"
+                return String(localized: "source.control.provider.id.gitlab.self.hosted", defaultValue: "gitlabSelfHosted", comment: "Provider ID for GitLab Self-hosted")
             }
         }
 
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "source.control.provider.name.bitbucket.cloud", defaultValue: "BitBucket Cloud", comment: "Display name for Bitbucket Cloud")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "source.control.provider.name.bitbucket.server", defaultValue: "BitBucket Server", comment: "Display name for Bitbucket Server")
             case .github:
-                return "GitHub"
+                return String(localized: "source.control.provider.name.github", defaultValue: "GitHub", comment: "Display name for GitHub")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "source.control.provider.name.github.enterprise", defaultValue: "GitHub Enterprise", comment: "Display name for GitHub Enterprise")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "source.control.provider.name.gitlab", defaultValue: "GitLab", comment: "Display name for GitLab")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "source.control.provider.name.gitlab.self.hosted", defaultValue: "GitLab Self-hosted", comment: "Display name for GitLab Self-hosted")
             }
         }
 
         var baseURL: URL? {
             switch self {
             case .bitbucketCloud:
-                return URL(string: "https://www.bitbucket.com/")!
+                return URL(string: String(localized: "source.control.provider.base.url.bitbucket.cloud", defaultValue: "https://www.bitbucket.com/", comment: "Base URL for Bitbucket Cloud"))!
             case .bitbucketServer:
                 return nil
             case .github:
-                return URL(string: "https://www.github.com/")!
+                return URL(string: String(localized: "source.control.provider.base.url.github", defaultValue: "https://www.github.com/", comment: "Base URL for GitHub"))!
             case .githubEnterprise:
                 return nil
             case .gitlab:
-                return URL(string: "https://www.gitlab.com/")!
+                return URL(string: String(localized: "source.control.provider.base.url.gitlab", defaultValue: "https://www.gitlab.com/", comment: "Base URL for GitLab"))!
             case .gitlabSelfHosted:
                 return nil
             }
@@ -87,15 +91,15 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var apiURL: URL? {
             switch self {
             case .bitbucketCloud:
-                return URL(string: "https://api.bitbucket.org/2.0/")!
+                return URL(string: String(localized: "source.control.provider.api.url.bitbucket.cloud", defaultValue: "https://api.bitbucket.org/2.0/", comment: "API URL for Bitbucket Cloud"))!
             case .bitbucketServer:
                 return nil
             case .github:
-                return URL(string: "https://api.github.com/")!
+                return URL(string: String(localized: "source.control.provider.api.url.github", defaultValue: "https://api.github.com/", comment: "API URL for GitHub"))!
             case .githubEnterprise:
                 return nil
             case .gitlab:
-                return URL(string: "https://gitlab.com/api/v4/")!
+                return URL(string: String(localized: "source.control.provider.api.url.gitlab", defaultValue: "https://gitlab.com/api/v4/", comment: "API URL for GitLab"))!
             case .gitlabSelfHosted:
                 return nil
             }
@@ -115,18 +119,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var authHelpURL: URL {
             switch self {
             case .bitbucketCloud:
-                return URL(string: "https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/")!
+                return URL(string: String(localized: "source.control.provider.auth.help.url.bitbucket.cloud", defaultValue: "https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/", comment: "Auth help URL for Bitbucket Cloud"))!
             case .bitbucketServer:
-                return URL(string:
-                    "https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html")!
+                return URL(string: String(localized: "source.control.provider.auth.help.url.bitbucket.server", defaultValue: "https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html", comment: "Auth help URL for Bitbucket Server"))!
             case .github:
-                return URL(string: "https://github.com/settings/tokens/new")!
+                return URL(string: String(localized: "source.control.provider.auth.help.url.github", defaultValue: "https://github.com/settings/tokens/new", comment: "Auth help URL for GitHub"))!
             case .githubEnterprise:
-                return URL(string: "https://github.com/settings/tokens/new")!
+                return URL(string: String(localized: "source.control.provider.auth.help.url.github.enterprise", defaultValue: "https://github.com/settings/tokens/new", comment: "Auth help URL for GitHub Enterprise"))!
             case .gitlab:
-                return URL(string: "https://gitlab.com/-/profile/personal_access_tokens")!
+                return URL(string: String(localized: "source.control.provider.auth.help.url.gitlab", defaultValue: "https://gitlab.com/-/profile/personal_access_tokens", comment: "Auth help URL for GitLab"))!
             case .gitlabSelfHosted:
-                return URL(string: "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html")!
+                return URL(string: String(localized: "source.control.provider.auth.help.url.gitlab.self.hosted", defaultValue: "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html", comment: "Auth help URL for GitLab Self-hosted"))!
             }
         }
 
