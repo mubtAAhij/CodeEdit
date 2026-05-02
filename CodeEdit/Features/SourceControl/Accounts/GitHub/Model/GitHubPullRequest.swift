@@ -48,14 +48,14 @@ class GitHubPullRequest: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case url
-        case diffURL = "diff_url"
-        case patchURL = "patch_url"
-        case issueURL = "issue_url"
-        case commitsURL = "commits_url"
-        case reviewCommentsURL = "review_comments_url"
-        case commentsURL = "comments_url"
-        case statusesURL = "statuses_url"
-        case htmlURL = "html_url"
+        case diffURL = String(localized: "github.pr.field.diff.url", defaultValue: "diff_url", comment: "GitHub API field name for pull request diff URL")
+        case patchURL = String(localized: "github.pr.field.patch.url", defaultValue: "patch_url", comment: "GitHub API field name for pull request patch URL")
+        case issueURL = String(localized: "github.pr.field.issue.url", defaultValue: "issue_url", comment: "GitHub API field name for pull request issue URL")
+        case commitsURL = String(localized: "github.pr.field.commits.url", defaultValue: "commits_url", comment: "GitHub API field name for pull request commits URL")
+        case reviewCommentsURL = String(localized: "github.pr.field.review.comments.url", defaultValue: "review_comments_url", comment: "GitHub API field name for pull request review comments URL")
+        case commentsURL = String(localized: "github.pr.field.comments.url", defaultValue: "comments_url", comment: "GitHub API field name for pull request comments URL")
+        case statusesURL = String(localized: "github.pr.field.statuses.url", defaultValue: "statuses_url", comment: "GitHub API field name for pull request statuses URL")
+        case htmlURL = String(localized: "github.pr.field.html.url", defaultValue: "html_url", comment: "GitHub API field name for pull request HTML URL")
         case number
         case state
         case title
@@ -63,13 +63,13 @@ class GitHubPullRequest: Codable {
         case assignee
         case locked
         case user
-        case closedAt = "closed_at"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case mergedAt = "merged_at"
+        case closedAt = String(localized: "github.pr.field.closed.at", defaultValue: "closed_at", comment: "GitHub API field name for pull request closed date")
+        case createdAt = String(localized: "github.pr.field.created.at", defaultValue: "created_at", comment: "GitHub API field name for pull request created date")
+        case updatedAt = String(localized: "github.pr.field.updated.at", defaultValue: "updated_at", comment: "GitHub API field name for pull request updated date")
+        case mergedAt = String(localized: "github.pr.field.merged.at", defaultValue: "merged_at", comment: "GitHub API field name for pull request merged date")
         case head
         case base
-        case requestedReviewers = "requested_reviewers"
+        case requestedReviewers = String(localized: "github.pr.field.requested.reviewers", defaultValue: "requested_reviewers", comment: "GitHub API field name for pull request requested reviewers")
         case draft
     }
 
@@ -100,7 +100,7 @@ extension GitHubAccount {
         number: Int,
         completion: @escaping (_ response: Result<GitHubPullRequest, Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
-        let router = GitHubPullRequestRouter.readPullRequest(configuration, owner, repository, "\(number)")
+        let router = GitHubPullRequestRouter.readPullRequest(configuration, owner, repository, String(format: String(localized: "github.pr.number.format", defaultValue: "%d", comment: "Format string for pull request number"), number))
 
         return router.load(
             session,
