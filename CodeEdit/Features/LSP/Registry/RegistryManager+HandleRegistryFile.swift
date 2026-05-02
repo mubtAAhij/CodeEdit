@@ -28,14 +28,14 @@ extension RegistryManager {
             // Make sure the extensions folder exists first
             try FileManager.default.createDirectory(at: installPath, withIntermediateDirectories: true)
 
-            let tempZipURL = installPath.appending(path: "temp.zip")
-            let checksumDestination = installPath.appending(path: "checksums.txt")
+            let tempZipURL = installPath.appending(path: String(localized: "lsp.registry.temp.zip.filename", defaultValue: "temp.zip", comment: "LSP registry temporary zip filename"))
+            let checksumDestination = installPath.appending(path: String(localized: "lsp.registry.checksums.filename", defaultValue: "checksums.txt", comment: "LSP registry checksums filename"))
 
             // Delete existing zip data if it exists
             if FileManager.default.fileExists(atPath: tempZipURL.path) {
                 try FileManager.default.removeItem(at: tempZipURL)
             }
-            let registryJsonPath = installPath.appending(path: "registry.json").path
+            let registryJsonPath = installPath.appending(path: String(localized: "lsp.registry.json.filename", defaultValue: "registry.json", comment: "LSP registry JSON filename")).path
             if FileManager.default.fileExists(atPath: registryJsonPath) {
                 try FileManager.default.removeItem(atPath: registryJsonPath)
             }
@@ -93,7 +93,7 @@ extension RegistryManager {
 
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw RegistryManagerError.downloadFailed(
-                    url: url, error: NSError(domain: "Invalid response type", code: -1)
+                    url: url, error: NSError(domain: String(localized: "lsp.registry.error.invalid.response.type", defaultValue: "Invalid response type", comment: "LSP registry invalid response type error"), code: -1)
                 )
             }
             guard (200...299).contains(httpResponse.statusCode) else {
@@ -114,7 +114,7 @@ extension RegistryManager {
 
     /// Loads registry items from disk
     func loadItemsFromDisk() -> [RegistryItem]? {
-        let registryPath = installPath.appending(path: "registry.json")
+        let registryPath = installPath.appending(path: String(localized: "lsp.registry.json.filename", defaultValue: "registry.json", comment: "LSP registry JSON filename"))
         let fileManager = FileManager.default
 
         // Update the file every 24 hours
@@ -134,7 +134,7 @@ extension RegistryManager {
         do {
             let registryData = try Data(contentsOf: registryPath)
             let items = try JSONDecoder().decode([RegistryItem].self, from: registryData)
-            return items.filter { $0.categories.contains("LSP") }
+            return items.filter { $0.categories.contains(String(localized: "lsp.registry.category", defaultValue: "LSP", comment: "LSP registry category name")) }
         } catch {
             return nil
         }
