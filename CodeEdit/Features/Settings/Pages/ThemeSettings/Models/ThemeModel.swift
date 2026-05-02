@@ -26,26 +26,26 @@ final class ThemeModel: ObservableObject {
 
     /// The base folder url `~/Library/Application Support/CodeEdit/`
     private var baseURL: URL {
-        filemanager.homeDirectoryForCurrentUser.appending(path: "Library/Application Support/CodeEdit")
+        filemanager.homeDirectoryForCurrentUser.appending(path: String(localized: "theme.model.base.path", defaultValue: "Library/Application Support/CodeEdit", comment: "Base application support directory path for CodeEdit"))
     }
 
     var bundledThemesURL: URL? {
-        Bundle.main.resourceURL?.appending(path: "DefaultThemes", directoryHint: .isDirectory) ?? nil
+        Bundle.main.resourceURL?.appending(path: String(localized: "theme.model.bundled.themes.path", defaultValue: "DefaultThemes", comment: "Default bundled themes directory name"), directoryHint: .isDirectory) ?? nil
     }
 
     /// The URL of the `Themes` folder
     internal var themesURL: URL {
-        baseURL.appending(path: "Themes", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme.model.themes.path", defaultValue: "Themes", comment: "User themes directory name"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme.model.extensions.path", defaultValue: "Extensions", comment: "Extensions directory name"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
     internal var settingsURL: URL {
-        baseURL.appending(path: "settings.json", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "theme.model.settings.filename", defaultValue: "settings.json", comment: "Settings file name"), directoryHint: .isDirectory)
     }
 
     /// System color scheme
@@ -57,7 +57,7 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? "Broken"
+                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? String(localized: "theme.model.broken.theme.name", defaultValue: "Broken", comment: "Fallback name for broken theme")
             }
         }
     }
@@ -68,7 +68,7 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? "Broken"
+                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? String(localized: "theme.model.broken.theme.name.dark", defaultValue: "Broken", comment: "Fallback name for broken dark theme")
             }
         }
     }
@@ -136,6 +136,15 @@ final class ThemeModel: ObservableObject {
     enum ThemeSettingsAppearances: String, CaseIterable {
         case light = "Light Appearance"
         case dark = "Dark Appearance"
+
+        var displayName: String {
+            switch self {
+            case .light:
+                return String(localized: "theme.settings.appearance.light", defaultValue: "Light Appearance", comment: "Light appearance theme setting display name")
+            case .dark:
+                return String(localized: "theme.settings.appearance.dark", defaultValue: "Dark Appearance", comment: "Dark appearance theme setting display name")
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -157,23 +166,23 @@ final class ThemeModel: ObservableObject {
 
     func exportTheme(_ theme: Theme) {
         guard let themeFileURL = theme.fileURL else {
-            print("Theme file URL not found.")
+            print(String(localized: "theme.model.export.error.url.not.found", defaultValue: "Theme file URL not found.", comment: "Error message when theme file URL is not found"))
             return
         }
 
         let savePanel = NSSavePanel()
-        savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
+        savePanel.allowedContentTypes = [UTType(filenameExtension: String(localized: "theme.model.file.extension", defaultValue: "cetheme", comment: "CodeEdit theme file extension"))!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "theme.model.export.prompt", defaultValue: "Export", comment: "Export button prompt in save panel")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
             if response == .OK, let destinationURL = savePanel.url {
                 do {
                     try FileManager.default.copyItem(at: themeFileURL, to: destinationURL)
-                    print("Theme exported successfully to \(destinationURL.path)")
+                    print(String(format: String(localized: "theme.model.export.success", defaultValue: "Theme exported successfully to %@", comment: "Success message when theme is exported"), destinationURL.path))
                 } catch {
-                    print("Failed to export theme: \(error.localizedDescription)")
+                    print(String(format: String(localized: "theme.model.export.error.failed", defaultValue: "Failed to export theme: %@", comment: "Error message when theme export fails"), error.localizedDescription))
                 }
             }
         }
@@ -181,7 +190,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "theme.model.export.all.prompt", defaultValue: "Export", comment: "Export all button prompt in open panel")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false
@@ -193,13 +202,13 @@ final class ThemeModel: ObservableObject {
                     for theme in customThemes {
                         guard let sourceURL = theme.fileURL else { continue }
 
-                        let destinationURL = exportDirectory.appending(path: "\(theme.displayName).cetheme")
+                        let destinationURL = exportDirectory.appending(path: String(format: String(localized: "theme.model.export.all.filename.format", defaultValue: "%@.cetheme", comment: "Format for exported theme filename"), theme.displayName))
 
                         do {
                             try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
-                            print("Exported \(theme.displayName) to \(destinationURL.path)")
+                            print(String(format: String(localized: "theme.model.export.all.success", defaultValue: "Exported %@ to %@", comment: "Success message when theme is exported in batch"), theme.displayName, destinationURL.path))
                         } catch {
-                            print("Failed to export \(theme.displayName): \(error.localizedDescription)")
+                            print(String(format: String(localized: "theme.model.export.all.error.failed", defaultValue: "Failed to export %@: %@", comment: "Error message when batch theme export fails"), theme.displayName, error.localizedDescription))
                         }
                     }
                 }
