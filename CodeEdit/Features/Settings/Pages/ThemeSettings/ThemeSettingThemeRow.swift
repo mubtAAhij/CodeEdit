@@ -19,7 +19,7 @@ struct ThemeSettingsThemeRow: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "checkmark")
+            Image(systemName: String(localized: "settings.theme.row.checkmark-icon", defaultValue: "checkmark", comment: "Active theme indicator icon"))
                 .opacity(active ? 1 : 0)
                 .font(.system(size: 10.5, weight: .bold))
             VStack(alignment: .leading) {
@@ -33,33 +33,33 @@ struct ThemeSettingsThemeRow: View {
                 Button {
                     themeModel.activateTheme(theme)
                 } label: {
-                    Text("Choose")
+                    Text(String(localized: "settings.theme.row.choose", defaultValue: "Choose", comment: "Button to activate a theme"))
                 }
                 .buttonStyle(.bordered)
                 .opacity(isHovering ? 1 : 0)
             }
             ThemeSettingsColorPreview(theme)
             Menu {
-                Button("Details...") {
+                Button(String(localized: "settings.theme.row.details", defaultValue: "Details...", comment: "Menu item to show theme details")) {
                     themeModel.detailsTheme = theme
                     themeModel.detailsIsPresented = true
                 }
-                Button("Duplicate...") {
+                Button(String(localized: "settings.theme.row.duplicate", defaultValue: "Duplicate...", comment: "Menu item to duplicate a theme")) {
                     if let fileURL = theme.fileURL {
                         themeModel.duplicate(fileURL)
                     }
                 }
-                Button("Export...") {
+                Button(String(localized: "settings.theme.row.export", defaultValue: "Export...", comment: "Menu item to export a theme")) {
                     themeModel.exportTheme(theme)
                 }
                 .disabled(theme.isBundled)
                 Divider()
-                Button("Delete...") {
+                Button(String(localized: "settings.theme.row.delete", defaultValue: "Delete...", comment: "Menu item to delete a theme")) {
                     deleteConfirmationIsPresented = true
                 }
                 .disabled(theme.isBundled)
             } label: {
-                Image(systemName: "ellipsis.circle")
+                Image(systemName: String(localized: "settings.theme.row.menu-icon", defaultValue: "ellipsis.circle", comment: "Theme options menu icon"))
                     .font(.system(size: 16))
             }
             .buttonStyle(.icon)
@@ -69,17 +69,17 @@ struct ThemeSettingsThemeRow: View {
             isHovering = hovering
         }
         .alert(
-            Text("Are you sure you want to delete the theme “\(theme.displayName)”?"),
+            Text(String(format: String(localized: "settings.theme.row.delete-confirmation", defaultValue: "Are you sure you want to delete the theme \"%@\"?", comment: "Confirmation prompt for deleting a theme"), theme.displayName)),
             isPresented: $deleteConfirmationIsPresented
         ) {
-            Button("Delete Theme") {
+            Button(String(localized: "settings.theme.row.delete-theme-button", defaultValue: "Delete Theme", comment: "Button to confirm theme deletion")) {
                 themeModel.delete(theme)
             }
-            Button("Cancel") {
+            Button(String(localized: "settings.theme.row.cancel", defaultValue: "Cancel", comment: "Button to cancel theme deletion")) {
                 deleteConfirmationIsPresented = false
             }
         } message: {
-            Text("This action cannot be undone.")
+            Text(String(localized: "settings.theme.row.delete-warning", defaultValue: "This action cannot be undone.", comment: "Warning that theme deletion is permanent"))
         }
     }
 }
