@@ -11,7 +11,7 @@ struct CommitDetailsHeaderView: View {
     var commit: GitCommit
 
     private var defaultAvatar: some View {
-        Image(systemName: "person.crop.circle.fill")
+        Image(systemName: String(localized: "sourcecontrol.commit.avatar.icon", defaultValue: "person.crop.circle.fill", comment: "SF Symbol for default commit avatar"))
             .symbolRenderingMode(.hierarchical)
             .resizable()
             .foregroundColor(avatarColor)
@@ -19,27 +19,27 @@ struct CommitDetailsHeaderView: View {
     }
 
     private func commitDetails() -> String {
-        if commit.committerEmail == "noreply@github.com" {
+        if commit.committerEmail == String(localized: "sourcecontrol.commit.github.noreply.email", defaultValue: "noreply@github.com", comment: "GitHub no-reply email address") {
             return commit.message.trimmingCharacters(in: .whitespacesAndNewlines)
         } else if commit.authorEmail != commit.committerEmail {
             return commit.message.trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
-            return "\(commit.message)\n\n\(coAuthDetail())".trimmingCharacters(in: .whitespacesAndNewlines)
+            return String(format: String(localized: "sourcecontrol.commit.details.format", defaultValue: "%@\n\n%@", comment: "Commit details format with message and co-author"), commit.message, coAuthDetail()).trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 
     private func coAuthDetail() -> String {
-        if commit.committerEmail == "noreply@github.com" {
+        if commit.committerEmail == String(localized: "sourcecontrol.commit.github.noreply.email", defaultValue: "noreply@github.com", comment: "GitHub no-reply email address") {
             return ""
         } else if commit.authorEmail != commit.committerEmail {
-            return "Co-authored by: \(commit.committer)\n<\(commit.committerEmail)>"
+            return String(format: String(localized: "sourcecontrol.commit.coauthor.format", defaultValue: "Co-authored by: %@\n<%@>", comment: "Co-author format string"), commit.committer, commit.committerEmail)
         }
         return ""
     }
 
     private func generateAvatarHash() -> String {
         let hash = commit.authorEmail.md5(trim: true, caseSensitive: false)
-        return "\(hash)?d=404&s=64" // send 404 if no image available, image size 64x64 (32x32 @2x)
+        return String(format: String(localized: "sourcecontrol.commit.gravatar.hash.format", defaultValue: "%@?d=404&s=64", comment: "Gravatar hash format with query parameters"), hash) // send 404 if no image available, image size 64x64 (32x32 @2x)
     }
 
     private var avatarColor: Color {
@@ -64,7 +64,7 @@ struct CommitDetailsHeaderView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top) {
-                AsyncImage(url: URL(string: "https://www.gravatar.com/avatar/\(generateAvatarHash())")) { phase in
+                AsyncImage(url: URL(string: String(format: String(localized: "sourcecontrol.commit.gravatar.url.format", defaultValue: "https://www.gravatar.com/avatar/%@", comment: "Gravatar URL format"), generateAvatarHash()))) { phase in
                     if let image = phase.image {
                         image
                             .resizable()
