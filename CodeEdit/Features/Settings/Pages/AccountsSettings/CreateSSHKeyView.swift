@@ -16,6 +16,19 @@ struct CreateSSHKeyView: View {
         case ecdsa = "ECDSA"
         case rsa = "RSA"
         case dsa = "DSA"
+
+        var displayName: String {
+            switch self {
+            case .ed25519:
+                String(localized: "ssh-key-type.ed25519", defaultValue: "ED25519", comment: "SSH key type: ED25519")
+            case .ecdsa:
+                String(localized: "ssh-key-type.ecdsa", defaultValue: "ECDSA", comment: "SSH key type: ECDSA")
+            case .rsa:
+                String(localized: "ssh-key-type.rsa", defaultValue: "RSA", comment: "SSH key type: RSA")
+            case .dsa:
+                String(localized: "ssh-key-type.dsa", defaultValue: "DSA", comment: "SSH key type: DSA")
+            }
+        }
     }
 
     @State var selectedKeyType: KeyType = .ed25519
@@ -25,25 +38,25 @@ struct CreateSSHKeyView: View {
     var body: some View {
         VStack {
             Form {
-                Section("Create SSH key") {
-                    Picker("Key Type", selection: $selectedKeyType) {
-                        Text(KeyType.ed25519.rawValue)
+                Section(String(localized: "ssh-key.create-title", defaultValue: "Create SSH key", comment: "Title for SSH key creation section")) {
+                    Picker(String(localized: "ssh-key.key-type", defaultValue: "Key Type", comment: "Label for SSH key type picker"), selection: $selectedKeyType) {
+                        Text(KeyType.ed25519.displayName)
                             .tag(KeyType.ed25519)
-                        Text(KeyType.ecdsa.rawValue)
+                        Text(KeyType.ecdsa.displayName)
                             .tag(KeyType.ecdsa)
                         Divider()
                         Group {
-                            Text(KeyType.rsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.rsa.displayName) + Text(String(localized: "ssh-key.less-secure-suffix", defaultValue: " (less secure)", comment: "Suffix indicating less secure SSH key type")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.rsa)
                         Group {
-                            Text(KeyType.dsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.dsa.displayName) + Text(String(localized: "ssh-key.less-secure-suffix", defaultValue: " (less secure)", comment: "Suffix indicating less secure SSH key type")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.dsa)
                     }
-                    SecureField("Passphrase", text: $passphrase)
+                    SecureField(String(localized: "ssh-key.passphrase", defaultValue: "Passphrase", comment: "Label for SSH key passphrase field"), text: $passphrase)
                     if !passphrase.isEmpty {
-                        SecureField("Confirm Passphrase", text: $confirmPassphrase)
+                        SecureField(String(localized: "ssh-key.confirm-passphrase", defaultValue: "Confirm Passphrase", comment: "Label for confirm passphrase field"), text: $confirmPassphrase)
                     }
                 }
             }
@@ -52,10 +65,10 @@ struct CreateSSHKeyView: View {
             .scrollDisabled(true)
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "ssh-key.cancel", defaultValue: "Cancel", comment: "Cancel button for SSH key creation")) {
                     dismiss()
                 }
-                Button("Create") {
+                Button(String(localized: "ssh-key.create", defaultValue: "Create", comment: "Create button for SSH key creation")) {
                     // create the ssh key
                     dismiss()
                 }
