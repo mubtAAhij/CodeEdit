@@ -26,7 +26,7 @@ extension CEWorkspaceFileManager {
         var fileNumber = 0
         while fileManager.fileExists(atPath: folderUrl.path) {
             fileNumber += 1
-            folderUrl = folderUrl.deletingLastPathComponent().appending(path: "\(folderName)\(fileNumber)")
+            folderUrl = folderUrl.deletingLastPathComponent().appending(path: String(format: String(localized: "workspace.file.naming.pattern", defaultValue: "%@%ld", comment: "Pattern for folder naming with number suffix"), folderName, fileNumber))
         }
 
         // Create the folder
@@ -68,25 +68,25 @@ extension CEWorkspaceFileManager {
         // check the folder for other files, and see what the most common file extension is
         do {
             var fileExtension: String
-            if fileName.contains(".") {
+            if fileName.contains(String(localized: "workspace.file.extension.separator", defaultValue: ".", comment: "File extension separator character")) {
                 // If we already have a file extension in the name, don't add another one
                 fileExtension = ""
             } else {
                 fileExtension = useExtension ?? findCommonFileExtension(for: file)
 
                 // Don't add a . if the extension is empty, but add it if it's missing.
-                if !fileExtension.isEmpty && !fileExtension.starts(with: ".") {
-                    fileExtension = "." + fileExtension
+                if !fileExtension.isEmpty && !fileExtension.starts(with: String(localized: "workspace.file.extension.prefix", defaultValue: ".", comment: "Prefix for file extension")) {
+                    fileExtension = String(localized: "workspace.file.extension.prefix", defaultValue: ".", comment: "Prefix for file extension") + fileExtension
                 }
             }
 
-            var fileUrl = file.nearestFolder.appending(path: "\(fileName)\(fileExtension)")
+            var fileUrl = file.nearestFolder.appending(path: String(format: String(localized: "workspace.file.naming.with.extension", defaultValue: "%@%@", comment: "Pattern for file naming with extension"), fileName, fileExtension))
             // If a file/folder with the same name exists, add a number to the end.
             var fileNumber = 0
             while fileManager.fileExists(atPath: fileUrl.path) {
                 fileNumber += 1
                 fileUrl = fileUrl.deletingLastPathComponent()
-                    .appending(path: "\(fileName)\(fileNumber)\(fileExtension)")
+                    .appending(path: String(format: String(localized: "workspace.file.naming.numbered.with.extension", defaultValue: "%@%ld%@", comment: "Pattern for numbered file naming with extension"), fileName, fileNumber, fileExtension))
             }
 
             guard fileUrl.fileName.isValidFilename else {
@@ -131,7 +131,7 @@ extension CEWorkspaceFileManager {
         where !child.isFolder {
             // if the file extension was present before, add it now
             let childFileName = child.fileName(typeHidden: false)
-            if let index = childFileName.lastIndex(of: ".") {
+            if let index = childFileName.lastIndex(of: Character(String(localized: "workspace.file.extension.separator.search", defaultValue: ".", comment: "Character to search for file extension separator"))) {
                 let childFileExtension = ".\(childFileName.suffix(from: index).dropFirst())"
                 fileExtensions[childFileExtension] = (fileExtensions[childFileExtension] ?? 0) + 1
             } else {
@@ -139,7 +139,7 @@ extension CEWorkspaceFileManager {
             }
         }
 
-        return fileExtensions.max(by: { $0.value < $1.value })?.key ?? "txt"
+        return fileExtensions.max(by: { $0.value < $1.value })?.key ?? String(localized: "workspace.file.default.extension", defaultValue: "txt", comment: "Default file extension for new files")
     }
 
     /// This function deletes the item or folder from the current project by moving to Trash
@@ -169,12 +169,12 @@ extension CEWorkspaceFileManager {
         let fileName = file.name
 
         let deleteConfirmation = NSAlert()
-        deleteConfirmation.messageText = "Do you want to delete “\(fileName)”?"
-        deleteConfirmation.informativeText = "This item will be deleted immediately. You can't undo this action."
+        deleteConfirmation.messageText = String(format: String(localized: "workspace.delete.alert.message", defaultValue: "Do you want to delete \"%@\"?", comment: "Alert message asking to confirm file deletion"), fileName)
+        deleteConfirmation.informativeText = String(localized: "workspace.delete.alert.info", defaultValue: "This item will be deleted immediately. You can't undo this action.", comment: "Informative text for delete confirmation alert")
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.delete.button", defaultValue: "Delete", comment: "Button title for delete action"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.cancel.button", defaultValue: "Cancel", comment: "Button title for cancel action"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
             if fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -188,13 +188,13 @@ extension CEWorkspaceFileManager {
     ///   - confirmDelete: True to present an alert to confirm the delete.
     public func batchDelete(files: Set<CEWorkspaceFile>, confirmDelete: Bool = true) throws {
         let deleteConfirmation = NSAlert()
-        deleteConfirmation.messageText = "Are you sure you want to delete the \(files.count) selected items?"
+        deleteConfirmation.messageText = String(format: String(localized: "workspace.batch.delete.alert.message", defaultValue: "Are you sure you want to delete the %ld selected items?", comment: "Alert message asking to confirm batch deletion"), files.count)
         // swiftlint:disable:next line_length
-        deleteConfirmation.informativeText = "\(files.count) items will be deleted immediately. You cannot undo this action."
+        deleteConfirmation.informativeText = String(format: String(localized: "workspace.batch.delete.alert.info", defaultValue: "%ld items will be deleted immediately. You cannot undo this action.", comment: "Informative text for batch delete confirmation alert"), files.count)
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.delete.button", defaultValue: "Delete", comment: "Button title for delete action"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.cancel.button", defaultValue: "Cancel", comment: "Button title for cancel action"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn {
             for file in files where fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -225,10 +225,10 @@ extension CEWorkspaceFileManager {
         var fileUrl = file.url
         while fileManager.fileExists(atPath: fileUrl.path) {
             let previousName = fileUrl.lastPathComponent
-            let fileExtension = fileUrl.pathExtension.isEmpty ? "" : ".\(fileUrl.pathExtension)"
+            let fileExtension = fileUrl.pathExtension.isEmpty ? "" : String(format: String(localized: "workspace.file.extension.dot.prefix", defaultValue: ".%@", comment: "Dot prefix for file extension"), fileUrl.pathExtension)
             let fileName = fileExtension.isEmpty ? previousName :
             previousName.replacingOccurrences(of: fileExtension, with: "")
-            fileUrl = fileUrl.deletingLastPathComponent().appending(path: "\(fileName) copy\(fileExtension)")
+            fileUrl = fileUrl.deletingLastPathComponent().appending(path: String(format: String(localized: "workspace.duplicate.naming.pattern", defaultValue: "%@ copy%@", comment: "Pattern for duplicate file naming"), fileName, fileExtension))
         }
 
         if fileManager.fileExists(atPath: file.url.path) {
