@@ -19,7 +19,7 @@ struct HideSidebarToggleViewModifier: ViewModifier {
         content
             .introspect(.window, on: .macOS(.v13, .v14, .v15)) { window in
                 if let toolbar = window.toolbar {
-                    let sidebarItem = "com.apple.SwiftUI.navigationSplitView.toggleSidebar"
+                    let sidebarItem = String(localized: "toolbar.sidebar-toggle.id", defaultValue: "com.apple.SwiftUI.navigationSplitView.toggleSidebar", comment: "SwiftUI toolbar item identifier - technical constant, should not be localized")
                     let sidebarToggle = toolbar.items.first(where: { $0.itemIdentifier.rawValue == sidebarItem })
                     sidebarToggle?.view?.isHidden = true
                 }
