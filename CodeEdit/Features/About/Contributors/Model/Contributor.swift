@@ -33,7 +33,7 @@ struct Contributor: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case login, name, profile, contributions
-        case avatarURLString = "avatar_url"
+        case avatarURLString = String(localized: "contributor.json.avatar-url", defaultValue: "avatar_url", comment: "JSON CodingKey - technical constant, should not be localized")
     }
 
     enum Contribution: String, Codable {
