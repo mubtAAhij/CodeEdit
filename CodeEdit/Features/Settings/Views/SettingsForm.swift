@@ -28,7 +28,7 @@ struct SettingsForm<Content: View>: View {
                             GeometryReader {
                                 Color.clear.preference(
                                     key: ViewOffsetKey.self,
-                                    value: -$0.frame(in: .named("scroll")).origin.y
+                                    value: -$0.frame(in: .named(String(localized: "accessibility.scroll", defaultValue: "scroll", comment: "Accessibility identifier - technical constant, should not be localized"))).origin.y
                                 )
                             }
                         )
@@ -50,7 +50,7 @@ struct SettingsForm<Content: View>: View {
                 $0.scrollerInsets.top = 50
             }
             .formStyle(.grouped)
-            .coordinateSpace(name: "scroll")
+            .coordinateSpace(name: String(localized: "accessibility.scroll-2", defaultValue: "scroll", comment: "Accessibility identifier - technical constant, should not be localized"))
         }
         .safeAreaInset(edge: .top, spacing: -50) {
             EffectView(.menu)
