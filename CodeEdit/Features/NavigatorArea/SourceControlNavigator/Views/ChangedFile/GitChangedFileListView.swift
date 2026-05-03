@@ -73,7 +73,7 @@ struct GitChangedFileListView: View {
                 return FileIcon.iconColor(fileType: nil)
             }
         case .monochrome:
-            return Color("CoolGray")
+            return Color(String(localized: "color.cool-gray", defaultValue: "CoolGray", comment: "Asset catalog color name - technical identifier, should not be localized"))
         }
     }
 }
