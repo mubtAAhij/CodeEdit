@@ -22,15 +22,15 @@ class BitBucketRepositories: Codable {
     var scm: String?
 
     enum CodingKeys: String, CodingKey {
-        case id = "uuid"
+        case id = String(localized: "bitbucket.api.field.uuid", defaultValue: "uuid", comment: "Bitbucket API uuid field")
         case owner
         case name
-        case fullName = "full_name"
-        case isPrivate = "is_private"
-        case repositoryDescription = "description"
-        case gitURL = "git://"
-        case sshURL = "ssh://"
-        case cloneURL = "https://"
+        case fullName = String(localized: "bitbucket.api.field.full_name", defaultValue: "full_name", comment: "Bitbucket API full_name field")
+        case isPrivate = String(localized: "bitbucket.api.field.is_private", defaultValue: "is_private", comment: "Bitbucket API is_private field")
+        case repositoryDescription = String(localized: "bitbucket.api.field.description", defaultValue: "description", comment: "Bitbucket API description field")
+        case gitURL = String(localized: "bitbucket.api.field.git_url", defaultValue: "git://", comment: "Bitbucket API git URL field")
+        case sshURL = String(localized: "bitbucket.api.field.ssh_url", defaultValue: "ssh://", comment: "Bitbucket API ssh URL field")
+        case cloneURL = String(localized: "bitbucket.api.field.https_url", defaultValue: "https://", comment: "Bitbucket API https URL field")
         case size
         case scm
     }
