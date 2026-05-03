@@ -30,7 +30,7 @@ struct OptionMenuItemView: View {
 }
 
 #Preview {
-    OptionMenuItemView(label: "Test") {
-        print("test")
+    OptionMenuItemView(label: String(localized: "preview.test", defaultValue: "Test", comment: "SwiftUI preview placeholder - should not be localized")) {
+        print(String(localized: "preview.test-id", defaultValue: "test", comment: "SwiftUI preview placeholder - should not be localized"))
     }
 }
