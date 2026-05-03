@@ -86,7 +86,7 @@ extension LanguageServer {
             switch resolveDocumentSyncKind() {
             case .full:
                 guard let content = await getIsolatedDocumentContent(document) else {
-                    logger.error("Failed to get isolated document content")
+                    logger.error(String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Logger error message (developer-facing, not user-visible)"))
                     return
                 }
                 let changeEvent = TextDocumentContentChangeEvent(range: nil, rangeLength: nil, text: content.string)
