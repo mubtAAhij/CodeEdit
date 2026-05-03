@@ -32,10 +32,10 @@ struct TaskNotificationView: View {
 
                     loaderView(notification: notification)
                         .transition(.opacity)
-                        .id("Loader")
+                        .id(String(localized: "tasks.notification.loader_id", defaultValue: "Loader", comment: "View identifier for task loader"))
                 } else {
                     Text("")
-                        .id("Loader")
+                        .id(String(localized: "tasks.notification.loader_id", defaultValue: "Loader", comment: "View identifier for task loader"))
                 }
             }
             .opacity(activeState == .inactive ? 0.4 : 1.0)
@@ -71,7 +71,10 @@ struct TaskNotificationView: View {
             .frame(height: 16)
         } else {
             if taskNotificationHandler.notifications.count > 1 {
-                Text("\(taskNotificationHandler.notifications.count)")
+                Text(String(
+                    format: String(localized: "tasks.notification.count", defaultValue: "%d", comment: "Number of task notifications"),
+                    taskNotificationHandler.notifications.count
+                ))
                     .font(.caption)
                     .padding(5)
                     .background(
