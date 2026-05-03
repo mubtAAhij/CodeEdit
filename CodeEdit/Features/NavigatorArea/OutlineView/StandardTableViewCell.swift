@@ -207,7 +207,7 @@ class StandardTableViewCell: NSTableCellView {
                 location: 0,
                 length: stringValue.distance(
                     from: stringValue.startIndex,
-                    to: stringValue.lastIndex(of: ".") ?? stringValue.endIndex
+                    to: stringValue.lastIndex(of: String(localized: "tableviewcell.separator", defaultValue: ".", comment: "File extension separator character")) ?? stringValue.endIndex
                 )
             )
             selectText(self)
