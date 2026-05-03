@@ -26,12 +26,12 @@ final class AcknowledgementsViewModel: ObservableObject {
     func fetchDependencies() {
         self.acknowledgements.removeAll()
         do {
-            if let bundlePath = Bundle.main.path(forResource: "Package", ofType: "resolved") {
+            if let bundlePath = Bundle.main.path(forResource: String(localized: "acknowledgements.package_column", defaultValue: "Package", comment: "Package.resolved file name"), ofType: String(localized: "acknowledgements.resolved_suffix", defaultValue: "resolved", comment: "Package.resolved file suffix")) {
                 let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8)
                 let parsedJSON = try JSONDecoder().decode(AcknowledgementObject.self, from: jsonData!)
                 for dependency in parsedJSON.pins.sorted(by: { $0.identity < $1.identity })
                 where dependency.identity.range(
-                    of: "[Cc]ode[Ee]dit",
+                    of: String(localized: "acknowledgements.codeedit_regex", defaultValue: "[Cc]ode[Ee]dit", comment: "Regex pattern to match CodeEdit package name"),
                     options: .regularExpression,
                     range: nil,
                     locale: nil
@@ -40,7 +40,7 @@ final class AcknowledgementsViewModel: ObservableObject {
                         AcknowledgementDependency(
                             name: dependency.name,
                             repositoryLink: dependency.location,
-                            version: dependency.state.version ?? "-"
+                            version: dependency.state.version ?? String(localized: "acknowledgements.separator", defaultValue: "-", comment: "Package name separator character")
                         )
                     )
                 }
