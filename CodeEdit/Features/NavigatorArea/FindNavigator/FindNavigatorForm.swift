@@ -33,7 +33,7 @@ struct FindNavigatorForm: View {
     }
 
     private var chevron: some View {
-        Image(systemName: "chevron.compact.right")
+        Image(systemName: String(localized: "find_navigator.chevron.icon", defaultValue: "chevron.compact.right", comment: "System icon name for chevron"))
             .foregroundStyle(.tertiary)
             .imageScale(.large)
     }
@@ -62,7 +62,7 @@ struct FindNavigatorForm: View {
                     Spacer()
                 }
                 Spacer()
-                Text("Scoped")
+                Text(String(localized: "find_navigator.scoped.label", defaultValue: "Scoped", comment: "Label for scoped search toggle"))
                     .controlSize(.small)
                     .foregroundStyle(Color(nsColor: scoped ? .controlAccentColor : .controlTextColor))
                     .onTapGesture {
@@ -76,7 +76,7 @@ struct FindNavigatorForm: View {
                 text: $state.searchQuery,
                 axis: .vertical,
                 leadingAccessories: {
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: String(localized: "find_navigator.search.icon", defaultValue: "magnifyingglass", comment: "System icon name for search field"))
                         .padding(.leading, 8)
                         .foregroundStyle(.tertiary)
                         .font(.system(size: 12))
@@ -87,11 +87,11 @@ struct FindNavigatorForm: View {
                     Toggle(
                         isOn: $caseSensitive,
                         label: {
-                        Image(systemName: "textformat")
+                        Image(systemName: String(localized: "find_navigator.match_case.icon", defaultValue: "textformat", comment: "System icon name for match case toggle"))
                             .foregroundStyle(caseSensitive ? Color(.controlAccentColor) : Color(.secondaryLabelColor))
                         }
                     )
-                    .help("Match Case")
+                    .help(String(localized: "find_navigator.match_case.help", defaultValue: "Match Case", comment: "Help text for match case toggle"))
                     .onChange(of: caseSensitive) { _, newValue in
                         state.caseSensitive = newValue
                     }
@@ -116,11 +116,11 @@ struct FindNavigatorForm: View {
             }
             if selectedMode[0] == SearchModeModel.Replace {
                 PaneTextField(
-                    "With",
+                    String(localized: "find_navigator.replace.placeholder", defaultValue: "With", comment: "Placeholder for replace field"),
                     text: $state.replaceText,
                     axis: .vertical,
                     leadingAccessories: {
-                        Image(systemName: "arrow.2.squarepath")
+                        Image(systemName: String(localized: "find_navigator.replace.icon", defaultValue: "arrow.2.squarepath", comment: "System icon name for replace field"))
                             .padding(.leading, 8)
                             .foregroundStyle(.tertiary)
                             .font(.system(size: 12))
@@ -131,14 +131,14 @@ struct FindNavigatorForm: View {
                         Toggle(
                             isOn: $preserveCase,
                             label: {
-                                Text("AB")
+                                Text(String(localized: "find_navigator.preserve_case.label", defaultValue: "AB", comment: "Label for preserve case toggle"))
                                     .font(.system(size: 12, design: .rounded))
                                     .foregroundStyle(
                                         preserveCase ? Color(.controlAccentColor) : Color(.secondaryLabelColor)
                                     )
                             }
                         )
-                        .help("Preserve Case")
+                        .help(String(localized: "find_navigator.preserve_case.help", defaultValue: "Preserve Case", comment: "Help text for preserve case toggle"))
                     },
                     clearable: true,
                     hasValue: preserveCase
@@ -146,11 +146,11 @@ struct FindNavigatorForm: View {
             }
             if scoped {
                 PaneTextField(
-                    "Only in folders",
+                    String(localized: "find_navigator.include_folders.placeholder", defaultValue: "Only in folders", comment: "Placeholder for include folders field"),
                     text: $includesText,
                     axis: .vertical,
                     leadingAccessories: {
-                        Image(systemName: "folder.badge.plus")
+                        Image(systemName: String(localized: "find_navigator.include_folders.icon", defaultValue: "folder.badge.plus", comment: "System icon name for include folders field"))
                             .padding(.leading, 8)
                             .foregroundStyle(.tertiary)
                             .font(.system(size: 12))
@@ -161,23 +161,23 @@ struct FindNavigatorForm: View {
                         Toggle(
                             isOn: $scopedToOpenEditors,
                             label: {
-                                Image(systemName: "doc.plaintext")
+                                Image(systemName: String(localized: "find_navigator.open_editors.icon", defaultValue: "doc.plaintext", comment: "System icon name for open editors toggle"))
                                     .foregroundStyle(
                                         scopedToOpenEditors ? Color(.controlAccentColor) : Color(.secondaryLabelColor)
                                     )
                             }
                         )
-                        .help("Search only in Open Editors")
+                        .help(String(localized: "find_navigator.open_editors.help", defaultValue: "Search only in Open Editors", comment: "Help text for open editors toggle"))
                     },
                     clearable: true,
                     hasValue: scopedToOpenEditors
                 )
                 PaneTextField(
-                    "Excluding folders",
+                    String(localized: "find_navigator.exclude_folders.placeholder", defaultValue: "Excluding folders", comment: "Placeholder for exclude folders field"),
                     text: $excludesText,
                     axis: .vertical,
                     leadingAccessories: {
-                        Image(systemName: "folder.badge.minus")
+                        Image(systemName: String(localized: "find_navigator.exclude_folders.icon", defaultValue: "folder.badge.minus", comment: "System icon name for exclude folders field"))
                             .padding(.leading, 8)
                             .foregroundStyle(.tertiary)
                             .font(.system(size: 12))
@@ -188,13 +188,13 @@ struct FindNavigatorForm: View {
                         Toggle(
                             isOn: $excludeSettings,
                             label: {
-                                Image(systemName: "gearshape")
+                                Image(systemName: String(localized: "find_navigator.exclude_settings.icon", defaultValue: "gearshape", comment: "System icon name for exclude settings toggle"))
                                     .foregroundStyle(
                                         excludeSettings ? Color(.controlAccentColor) : Color(.secondaryLabelColor)
                                     )
                             }
                         )
-                        .help("Use Exclude Settings and Ignore Files")
+                        .help(String(localized: "find_navigator.exclude_settings.help", defaultValue: "Use Exclude Settings and Ignore Files", comment: "Help text for exclude settings toggle"))
                     },
                     clearable: true,
                     hasValue: excludeSettings
@@ -208,7 +208,7 @@ struct FindNavigatorForm: View {
                         print(Date().timeIntervalSince(startTime))
                     }
                 } label: {
-                    Text("Replace All")
+                    Text(String(localized: "find_navigator.replace_all.button", defaultValue: "Replace All", comment: "Button to replace all occurrences"))
                         .frame(maxWidth: .infinity)
                 }
             }
