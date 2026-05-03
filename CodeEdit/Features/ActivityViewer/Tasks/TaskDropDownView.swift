@@ -38,10 +38,10 @@ struct TaskDropDownView: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
-        .accessibilityIdentifier("TaskDropdown")
-        .accessibilityValue(taskManager.selectedTask?.name ?? "Create Tasks")
-        .accessibilityLabel("Active Task")
-        .accessibilityHint("Open the active task menu")
+        .accessibilityIdentifier(String(localized: "tasks.dropdown.identifier", defaultValue: "TaskDropdown", comment: "Task dropdown accessibility identifier"))
+        .accessibilityValue(taskManager.selectedTask?.name ?? String(localized: "tasks.create", defaultValue: "Create Tasks", comment: "Create tasks placeholder"))
+        .accessibilityLabel(String(localized: "tasks.active_task", defaultValue: "Active Task", comment: "Active task accessibility label"))
+        .accessibilityHint(String(localized: "tasks.dropdown.hint", defaultValue: "Open the active task menu", comment: "Task dropdown accessibility hint"))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
@@ -82,7 +82,7 @@ struct TaskDropDownView: View {
                         .fixedSize()
                 }
             } else {
-                Text("Create Tasks")
+                Text(String(localized: "tasks.create", defaultValue: "Create Tasks", comment: "Create tasks text"))
                     .frame(minWidth: 0)
             }
         }
@@ -120,10 +120,10 @@ struct TaskDropDownView: View {
             Divider()
                 .padding(.vertical, 5)
         }
-        OptionMenuItemView(label: "Add Task...") {
+        OptionMenuItemView(label: String(localized: "tasks.add", defaultValue: "Add Task...", comment: "Add task menu item")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
-        OptionMenuItemView(label: "Manage Tasks...") {
+        OptionMenuItemView(label: String(localized: "tasks.manage", defaultValue: "Manage Tasks...", comment: "Manage tasks menu item")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
     }
