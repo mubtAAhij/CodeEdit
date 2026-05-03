@@ -15,7 +15,7 @@ class RegexFormatter: Formatter {
         do {
             self.regex = try NSRegularExpression(pattern: pattern, options: [])
         } catch {
-            fatalError("Invalid regex pattern")
+            fatalError(String(localized: "regex.error.invalid-pattern", defaultValue: "Invalid regex pattern", comment: "User-visible error message for invalid regex pattern"))
         }
         self.replacementTemplate = replacementTemplate
         super.init()
