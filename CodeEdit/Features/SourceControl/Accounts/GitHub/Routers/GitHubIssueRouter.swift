@@ -51,51 +51,51 @@ enum GitHubIssueRouter: GitJSONPostRouter {
     var params: [String: Any] {
         switch self {
         case let .readAuthenticatedIssues(_, page, perPage, state):
-            return ["per_page": perPage, "page": page, "state": state.rawValue]
+            return [String(localized: "should_not_localize", defaultValue: "per_page", comment: "API parameter name - technical string"): perPage, "page": page, "state": state.rawValue]
         case .readIssue:
             return [:]
         case let .readIssues(_, _, _, page, perPage, state):
-            return ["per_page": perPage, "page": page, "state": state.rawValue]
+            return [String(localized: "should_not_localize", defaultValue: "per_page", comment: "API parameter name - technical string"): perPage, "page": page, "state": state.rawValue]
         case let .postIssue(_, _, _, title, body, assignee, labels):
-            var params: [String: Any] = ["title": title]
+            var params: [String: Any] = [String(localized: "should_not_localize", defaultValue: "title", comment: "API parameter name - technical string"): title]
             if let body {
-                params["body"] = body
+                params[String(localized: "should_not_localize", defaultValue: "body", comment: "API parameter name - technical string")] = body
             }
             if let assignee {
-                params["assignee"] = assignee
+                params[String(localized: "should_not_localize", defaultValue: "assignee", comment: "API parameter name - technical string")] = assignee
             }
             if !labels.isEmpty {
-                params["labels"] = labels
+                params[String(localized: "should_not_localize", defaultValue: "labels", comment: "API parameter name - technical string")] = labels
             }
             return params
         case let .patchIssue(_, _, _, _, title, body, assignee, state):
             var params: [String: String] = [:]
             if let title {
-                params["title"] = title
+                params[String(localized: "should_not_localize", defaultValue: "title", comment: "API parameter name - technical string")] = title
             }
             if let body {
-                params["body"] = body
+                params[String(localized: "should_not_localize", defaultValue: "body", comment: "API parameter name - technical string")] = body
             }
             if let assignee {
-                params["assignee"] = assignee
+                params[String(localized: "should_not_localize", defaultValue: "assignee", comment: "API parameter name - technical string")] = assignee
             }
             if let state {
-                params["state"] = state.rawValue
+                params[String(localized: "should_not_localize", defaultValue: "state", comment: "API parameter name - technical string")] = state.rawValue
             }
             return params
         case let .commentIssue(_, _, _, _, body):
-            return ["body": body]
+            return [String(localized: "should_not_localize", defaultValue: "body", comment: "API parameter name - technical string"): body]
         case let .readIssueComments(_, _, _, _, page, perPage):
-            return ["per_page": perPage, "page": page]
+            return [String(localized: "should_not_localize", defaultValue: "per_page", comment: "API parameter name - technical string"): perPage, "page": page]
         case let .patchIssueComment(_, _, _, _, body):
-            return ["body": body]
+            return [String(localized: "should_not_localize", defaultValue: "body", comment: "API parameter name - technical string"): body]
         }
     }
 
     var path: String {
         switch self {
         case .readAuthenticatedIssues:
-            return "issues"
+            return String(localized: "should_not_localize", defaultValue: "issues", comment: "API path segment - technical string")
         case let .readIssue(_, owner, repository, number):
             return "repos/\(owner)/\(repository)/issues/\(number)"
         case let .readIssues(_, owner, repository, _, _, _):
