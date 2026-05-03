@@ -23,14 +23,14 @@ class ShellClient {
     func generateProcessAndPipe(_ args: [String]) -> (Process, Pipe) {
         // Run in an 'interactive' login shell. Because we're passing -c here it won't actually be
         // interactive but it will source the user's zshrc file as well as the zshprofile.
-        var arguments = ["-lic"]
+        var arguments = [String(localized: "shell.arg.login-interactive", defaultValue: "-lic", comment: "Shell argument flag - technical constant, should not be localized")]
         arguments.append(contentsOf: args)
         let task = Process()
         let pipe = Pipe()
         task.standardOutput = pipe
         task.standardError = pipe
         task.arguments = arguments
-        task.executableURL = URL(fileURLWithPath: "/bin/zsh")
+        task.executableURL = URL(fileURLWithPath: String(localized: "shell.path.zsh", defaultValue: "/bin/zsh", comment: "File path to zsh shell - technical constant, should not be localized"))
         return (task, pipe)
     }
 
