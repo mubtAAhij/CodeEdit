@@ -33,7 +33,7 @@ struct NSTableViewWrapper<Content: View, Item: Identifiable & Hashable>: NSViewR
         let tableView = NonRespondingTableView()
         tableView.headerView = nil
 
-        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("column"))
+        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(String(localized: "table.column.identifier", defaultValue: "column", comment: "NSTableColumn identifier - technical constant, should not be localized")))
         column.width = tableView.frame.width
 
         tableView.addTableColumn(column)
