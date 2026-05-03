@@ -11,7 +11,7 @@ struct GitLabTokenConfiguration: GitRouterConfiguration {
     let provider = SourceControlAccount.Provider.gitlab
     var apiEndpoint: String?
     var accessToken: String?
-    let errorDomain: String? = "com.codeedit.models.accounts.gitlab"
+    let errorDomain: String? = String(localized: "gitlab.error_domain", defaultValue: "com.codeedit.models.accounts.gitlab", comment: "Error domain identifier - technical constant, not user-visible")
 
     init(_ token: String? = nil, url: String? = nil) {
         apiEndpoint = url ?? provider.apiURL?.absoluteString
@@ -23,7 +23,7 @@ struct GitLabPrivateTokenConfiguration: GitRouterConfiguration {
     let provider = SourceControlAccount.Provider.gitlab
     var apiEndpoint: String?
     var accessToken: String?
-    let errorDomain: String? = "com.codeedit.models.accounts.gitlab"
+    let errorDomain: String? = String(localized: "gitlab.error_domain", defaultValue: "com.codeedit.models.accounts.gitlab", comment: "Error domain identifier - technical constant, not user-visible")
 
     init(_ token: String? = nil, url: String? = nil) {
         apiEndpoint = url ?? provider.apiURL?.absoluteString
@@ -31,6 +31,6 @@ struct GitLabPrivateTokenConfiguration: GitRouterConfiguration {
     }
 
     var accessTokenFieldName: String {
-        "private_token"
+        String(localized: "gitlab.api.field.private_token", defaultValue: "private_token", comment: "GitLab API authentication field name - technical constant, not user-visible")
     }
 }
