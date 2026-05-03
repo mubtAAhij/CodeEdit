@@ -29,7 +29,7 @@ struct StatusBarView: View {
 
     var proxy: SplitViewProxy
 
-    static let statusbarID = "statusbarID"
+    static let statusbarID = String(localized: "status-bar.view.id", defaultValue: "statusbarID", comment: "Status bar identifier - technical constant, should not be localized")
 
     /// The actual status bar
     var body: some View {
