@@ -18,14 +18,14 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
             $0.id.uuidString == response.notification.request.identifier
         }) {
             // Focus CodeEdit and run action if action button was clicked
-            if response.actionIdentifier == "ACTION_BUTTON" ||
+            if response.actionIdentifier == String(localized: "notification.action_button_id", defaultValue: "ACTION_BUTTON", comment: "Notification action button identifier") ||
                response.actionIdentifier == UNNotificationDefaultActionIdentifier {
                 NSApp.activate(ignoringOtherApps: true)
                 notification.action()
             }
 
             // Remove the notification for both action and dismiss
-            if response.actionIdentifier == "ACTION_BUTTON" ||
+            if response.actionIdentifier == String(localized: "notification.action_button_id", defaultValue: "ACTION_BUTTON", comment: "Notification action button identifier") ||
                response.actionIdentifier == UNNotificationDefaultActionIdentifier ||
                response.actionIdentifier == UNNotificationDismissActionIdentifier {
                 dismissNotification(notification)
@@ -48,14 +48,14 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
 
         // Create action button
         let action = UNNotificationAction(
-            identifier: "ACTION_BUTTON",
-            title: "Action", // This will be replaced with actual button title
+            identifier: String(localized: "notification.action_button_id", defaultValue: "ACTION_BUTTON", comment: "Notification action button identifier"),
+            title: String(localized: "notification.action_button", defaultValue: "Action", comment: "Notification action button title"),
             options: .foreground
         )
 
         // Create category with action button
         let actionCategory = UNNotificationCategory(
-            identifier: "ACTIONABLE",
+            identifier: String(localized: "notification.actionable_category", defaultValue: "ACTIONABLE", comment: "Actionable notification category identifier"),
             actions: [action],
             intentIdentifiers: [],
             options: .customDismissAction
