@@ -92,13 +92,13 @@ class FileSystemTableViewCell: StandardTableViewCell {
             return
         }
 
-        if fileItem.url.isSymbolicLink { secondaryLabel.stringValue = "􀰞" }
+        if fileItem.url.isSymbolicLink { secondaryLabel.stringValue = String(localized: "file.symbolic_link_icon", defaultValue: "􀰞", comment: "Symbolic link icon") }
 
         guard let gitStatus = fileItem.gitStatus?.description else {
             return
         }
 
-        if gitStatus == "?" { secondaryLabel.stringValue += "A" } else {
+        if gitStatus == String(localized: "git.status.untracked_char", defaultValue: "?", comment: "Git untracked status character") { secondaryLabel.stringValue += "A" } else {
             secondaryLabel.stringValue += gitStatus
         }
     }
@@ -106,18 +106,12 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// *Not Implemented*
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        fatalError("""
-            init(frame: ) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        fatalError(String(localized: "file_cell.init_frame_error", defaultValue: "init(frame: ) isn't implemented on `OutlineTableViewCell`.\nPlease use `.init(frame: NSRect, item: FileSystemClient.FileItem?)", comment: "Fatal error for unsupported init(frame:)"))
     }
 
     /// *Not Implemented*
     required init?(coder: NSCoder) {
-        fatalError("""
-            init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        fatalError(String(localized: "file_cell.init_coder_error", defaultValue: "init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.\nPlease use `.init(frame: NSRect, item: FileSystemClient.FileItem?)", comment: "Fatal error for unsupported init(coder:)"))
     }
 
     /// Returns the font size for the current row height. Defaults to `13.0`
@@ -171,7 +165,7 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "common.dismiss", defaultValue: "Dismiss", comment: "Dismiss button"))
             alert.runModal()
         }
     }
