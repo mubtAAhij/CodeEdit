@@ -32,7 +32,7 @@ final class EditorJumpBarMenu: NSMenu, NSMenuDelegate {
 
     @available(*, unavailable)
     required init(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "error.jump-bar-menu.coder-init", defaultValue: "init(coder:) has not been implemented", comment: "Developer fatalError message - should not be localized"))
     }
 
     /// Only when menu item is highlighted then generate its submenu
@@ -91,7 +91,7 @@ final class JumpBarMenuItem: NSMenuItem {
 
     @available(*, unavailable)
     required init(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "error.jump-bar-menu.coder-init-2", defaultValue: "init(coder:) has not been implemented", comment: "Developer fatalError message - should not be localized"))
     }
 
     @objc
