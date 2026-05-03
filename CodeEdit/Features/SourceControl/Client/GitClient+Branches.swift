@@ -103,7 +103,7 @@ extension GitClient {
 
         do {
             let output = try await run(command)
-            if !output.contains("Switched to branch") && !output.contains("Switched to a new branch") {
+            if !output.contains(String(localized: "git.branch.switched_to_branch", defaultValue: "Switched to branch", comment: "Git output message for switching to existing branch")) && !output.contains(String(localized: "git.branch.switched_to_new_branch", defaultValue: "Switched to a new branch", comment: "Git output message for switching to new branch")) {
                 throw GitClientError.outputError(output)
             }
         } catch {
@@ -111,7 +111,7 @@ extension GitClient {
             // try to switch to local branch
             if let error = error as? GitClientError,
                branch.isRemote,
-               error.description.contains("already exists") {
+               error.description.contains(String(localized: "git.branch.already_exists", defaultValue: "already exists", comment: "Git error message fragment indicating branch already exists")) {
                 try await checkoutBranch(branch, forceLocal: true)
             } else {
                 logger.error("Failed to checkout branch: \(error)")
