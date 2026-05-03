@@ -11,7 +11,7 @@ import DequeModule
 import os
 
 class EditorManager: ObservableObject {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "EditorManager")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "dispatch.editor-manager", defaultValue: "EditorManager", comment: "DispatchQueue label - technical identifier, should not be localized"))
 
     /// The complete editor layout.
     @Published var editorLayout: EditorLayout
