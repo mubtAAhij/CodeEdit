@@ -23,16 +23,16 @@ class GitLabEvent: Codable {
 
     enum CodingKeys: String, CodingKey {
         case title
-        case projectID = "project_id"
-        case actionName = "action_name"
-        case targetID = "target_id"
-        case targetType = "target_type"
-        case authorID = "author_id"
+        case projectID = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
+        case actionName = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
+        case targetID = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
+        case targetType = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
+        case authorID = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
         case data
-        case targetTitle = "target_title"
+        case targetTitle = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
         case author
-        case authorUsername = "author_username"
-        case createdAt = "created_at"
+        case authorUsername = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
+        case createdAt = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - CodingKeys enum case raw value (JSON API field name)")
         case note
     }
 }
