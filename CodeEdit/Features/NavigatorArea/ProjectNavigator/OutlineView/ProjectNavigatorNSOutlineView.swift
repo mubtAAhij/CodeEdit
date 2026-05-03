@@ -13,7 +13,7 @@ final class ProjectNavigatorNSOutlineView: NSOutlineView, NSMenuItemValidation {
             return super.performKeyEquivalent(with: event)
         }
 
-        if event.charactersIgnoringModifiers == "v"
+        if event.charactersIgnoringModifiers == String(localized: "keyboard.key.v", defaultValue: "v", comment: "Keyboard character for paste detection - technical constant, should not be localized")
             && event.modifierFlags.intersection(.deviceIndependentFlagsMask) == .command {
             guard let menu = menu as? ProjectNavigatorMenu else {
                 return super.performKeyEquivalent(with: event)
