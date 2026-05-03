@@ -28,7 +28,7 @@ extension EditorManager {
             let state = try JSONDecoder().decode(EditorRestorationState.self, from: data)
 
             guard !state.groups.isEmpty else {
-                logger.warning("Empty Editor State found, restoring to clean editor state.")
+                logger.warning(String(localized: "editor.restoration.empty_state", defaultValue: "Empty Editor State found, restoring to clean editor state.", comment: "Logger warning for empty editor state"))
                 initCleanState()
                 return
             }
@@ -36,7 +36,7 @@ extension EditorManager {
             guard let activeEditor = state.groups.find(
                 editor: state.activeEditor
             ) ?? state.groups.findSomeEditor() else {
-                logger.warning("Editor state could not restore active editor.")
+                logger.warning(String(localized: "editor.restoration.no_active", defaultValue: "Editor state could not restore active editor.", comment: "Logger warning when active editor cannot be restored"))
                 initCleanState()
                 return
             }
