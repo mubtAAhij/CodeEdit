@@ -13,7 +13,7 @@ struct StatusBarLineEndSelector: View {
         Menu {
             // LF, CRLF
         } label: {
-            Text("LF")
+            Text(String(localized: "status-bar.line-end.lf", defaultValue: "LF", comment: "Line feed line ending selector label"))
         }
         .menuStyle(StatusBarMenuStyle())
         .onHover { isHovering($0) }
