@@ -17,14 +17,14 @@ final class StartTaskToolbarItem: NSToolbarItem {
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        super.init(itemIdentifier: NSToolbarItem.Identifier("StartTaskToolbarItem"))
+        super.init(itemIdentifier: NSToolbarItem.Identifier(String(localized: "tasks.toolbar.start_id", defaultValue: "StartTaskToolbarItem", comment: "Start task toolbar item identifier")))
 
-        image = NSImage(systemSymbolName: "play.fill", accessibilityDescription: nil)
+        image = NSImage(systemSymbolName: String(localized: "tasks.toolbar.play_icon", defaultValue: "play.fill", comment: "SF Symbol for play/start icon"), accessibilityDescription: nil)
         let config = NSImage.SymbolConfiguration(pointSize: 14, weight: .regular)
         image = image?.withSymbolConfiguration(config) ?? image
 
-        paletteLabel = "Start Task"
-        toolTip = "Run the selected task"
+        paletteLabel = String(localized: "tasks.toolbar.start_label", defaultValue: "Start Task", comment: "Start task toolbar item label")
+        toolTip = String(localized: "tasks.toolbar.start_tooltip", defaultValue: "Run the selected task", comment: "Start task tooltip")
         target = self
         action = #selector(startTask)
         isBordered = true
@@ -36,7 +36,7 @@ final class StartTaskToolbarItem: NSToolbarItem {
 
         taskManager.executeActiveTask()
         if utilityAreaCollapsed {
-            CommandManager.shared.executeCommand("open.drawer")
+            CommandManager.shared.executeCommand(String(localized: "tasks.toolbar.command.open_drawer", defaultValue: "open.drawer", comment: "Command to open utility area drawer"))
         }
         workspace?.utilityAreaModel?.selectedTab = .debugConsole
         taskManager.taskShowingOutput = taskManager.selectedTaskID
