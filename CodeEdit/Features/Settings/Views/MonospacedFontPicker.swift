@@ -17,14 +17,14 @@ struct MonospacedFontPicker: View {
     init(title: String, selectedFontName: Binding<String>) {
         self.title = title
         self._selectedFontName = selectedFontName
-        self.recentFonts = UserDefaults.standard.stringArray(forKey: "recentFonts") ?? []
+        self.recentFonts = UserDefaults.standard.stringArray(forKey: String(localized: "settings.font.recent_fonts_key", defaultValue: "recentFonts", comment: "UserDefaults key for recent fonts")) ?? []
     }
 
     var body: some View {
         Picker(selection: $selectedFontName, label: Text(title)) {
-            Text("System Font")
+            Text(String(localized: "settings.font.system_font", defaultValue: "System Font", comment: "System font label"))
                 .font(Font(NSFont.monospacedSystemFont(ofSize: 13.5, weight: .medium)))
-                .tag("SF Mono")
+                .tag(String(localized: "settings.font.sf_mono", defaultValue: "SF Mono", comment: "SF Mono font name"))
 
             if !recentFonts.isEmpty {
                 Divider()
@@ -58,12 +58,12 @@ struct MonospacedFontPicker: View {
                         .tag(fontFamilyName)
                     }
                 } label: {
-                    Text("Other fonts...")
+                    Text(String(localized: "settings.font.other_fonts", defaultValue: "Other fonts...", comment: "Other fonts menu label"))
                 }
             }
         }
         .onChange(of: selectedFontName) { _, _ in
-            if selectedFontName != "SF Mono" {
+            if selectedFontName != String(localized: "settings.font.sf_mono", defaultValue: "SF Mono", comment: "SF Mono font name") {
                 pushIntoRecentFonts(selectedFontName)
 
                 // remove the font to prevent ForEach conflict
@@ -84,7 +84,7 @@ extension MonospacedFontPicker {
         if recentFonts.count > 3 {
             recentFonts.removeLast()
         }
-        UserDefaults.standard.set(recentFonts, forKey: "recentFonts")
+        UserDefaults.standard.set(recentFonts, forKey: String(localized: "settings.font.recent_fonts_key", defaultValue: "recentFonts", comment: "UserDefaults key for recent fonts"))
     }
 
     private func getFonts() async {
@@ -115,7 +115,7 @@ extension MonospacedFontPicker {
             }
 
             // exclude default font
-            if fontFamilyName == "SF Mono" {
+            if fontFamilyName == String(localized: "settings.font.sf_mono", defaultValue: "SF Mono", comment: "SF Mono font name") {
                return false
             }
 
