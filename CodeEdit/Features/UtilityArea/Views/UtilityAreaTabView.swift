@@ -38,9 +38,7 @@ struct UtilityAreaTabView<Content: View, LeadingSidebar: View, TrailingSidebar: 
     init(
         model: UtilityAreaTabViewModel,
         @ViewBuilder content: @escaping (UtilityAreaTabViewModel) -> Content
-    ) where
-        LeadingSidebar == EmptyView,
-        TrailingSidebar == EmptyView {
+    ) where LeadingSidebar == EmptyView, TrailingSidebar == EmptyView {
         self.init(
             model: model,
             content: content,
