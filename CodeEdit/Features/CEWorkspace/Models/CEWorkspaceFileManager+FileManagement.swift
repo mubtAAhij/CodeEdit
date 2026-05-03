@@ -169,12 +169,12 @@ extension CEWorkspaceFileManager {
         let fileName = file.name
 
         let deleteConfirmation = NSAlert()
-        deleteConfirmation.messageText = "Do you want to delete “\(fileName)”?"
-        deleteConfirmation.informativeText = "This item will be deleted immediately. You can't undo this action."
+        deleteConfirmation.messageText = String(format: String(localized: "workspace.file.delete.confirm-single", defaultValue: "Do you want to delete \"%@\"?", comment: "Confirmation message when deleting a single file"), fileName)
+        deleteConfirmation.informativeText = String(localized: "workspace.file.delete.warning-single", defaultValue: "This item will be deleted immediately. You can't undo this action.", comment: "Warning message when deleting a single file")
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.file.delete.button", defaultValue: "Delete", comment: "Delete button title"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.file.delete.cancel", defaultValue: "Cancel", comment: "Cancel button title"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
             if fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -188,13 +188,13 @@ extension CEWorkspaceFileManager {
     ///   - confirmDelete: True to present an alert to confirm the delete.
     public func batchDelete(files: Set<CEWorkspaceFile>, confirmDelete: Bool = true) throws {
         let deleteConfirmation = NSAlert()
-        deleteConfirmation.messageText = "Are you sure you want to delete the \(files.count) selected items?"
+        deleteConfirmation.messageText = String(format: String(localized: "workspace.file.delete.confirm-multiple", defaultValue: "Are you sure you want to delete the %d selected items?", comment: "Confirmation message when deleting multiple files"), files.count)
         // swiftlint:disable:next line_length
-        deleteConfirmation.informativeText = "\(files.count) items will be deleted immediately. You cannot undo this action."
+        deleteConfirmation.informativeText = String(format: String(localized: "workspace.file.delete.warning-multiple", defaultValue: "%d items will be deleted immediately. You cannot undo this action.", comment: "Warning message when deleting multiple files"), files.count)
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.file.delete.button", defaultValue: "Delete", comment: "Delete button title"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "workspace.file.delete.cancel", defaultValue: "Cancel", comment: "Cancel button title"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn {
             for file in files where fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -228,7 +228,7 @@ extension CEWorkspaceFileManager {
             let fileExtension = fileUrl.pathExtension.isEmpty ? "" : ".\(fileUrl.pathExtension)"
             let fileName = fileExtension.isEmpty ? previousName :
             previousName.replacingOccurrences(of: fileExtension, with: "")
-            fileUrl = fileUrl.deletingLastPathComponent().appending(path: "\(fileName) copy\(fileExtension)")
+            fileUrl = fileUrl.deletingLastPathComponent().appending(path: String(format: String(localized: "workspace.file.duplicate.copy-suffix", defaultValue: "%@ copy%@", comment: "File name format when duplicating a file"), fileName, fileExtension))
         }
 
         if fileManager.fileExists(atPath: file.url.path) {
