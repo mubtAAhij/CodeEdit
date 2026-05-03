@@ -16,7 +16,7 @@ extension GitClient {
     func validate() async -> Bool {
         do {
             let output = try await run("rev-parse --is-inside-work-tree")
-            return output.trimmingCharacters(in: .whitespacesAndNewlines) == "true"
+            return output.trimmingCharacters(in: .whitespacesAndNewlines) == String(localized: "git.output.true", defaultValue: "true", comment: "Git command output literal - technical constant, should not be localized")
         } catch {
             return false
         }
