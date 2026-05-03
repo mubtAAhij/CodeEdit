@@ -16,7 +16,7 @@ struct NotificationPanelView: View {
     @FocusState private var isFocused: Bool
 
     // ID for the top anchor
-    private let topID = "top"
+    private let topID = String(localized: "notifications.scroll_anchor.top", defaultValue: "top", comment: "ScrollView anchor ID for top position")
 
     // Fixed width for notifications
     private let notificationWidth: CGFloat = 320 // 300 + 10 padding on each side
@@ -74,7 +74,7 @@ struct NotificationPanelView: View {
                                     GeometryReader {
                                         Color.clear.preference(
                                             key: ViewOffsetKey.self,
-                                            value: -$0.frame(in: .named("scroll")).origin.y
+                                            value: -$0.frame(in: .named(String(localized: "notifications.coordinate_space.scroll", defaultValue: "scroll", comment: "Coordinate space name for scroll tracking"))).origin.y
                                         )
                                     }
                                 )
@@ -99,7 +99,7 @@ struct NotificationPanelView: View {
                     .frame(maxWidth: notificationWidth, alignment: .trailing)
                     .frame(height: min(geometry.size.height, contentHeight))
                     .scrollDisabled(!hasOverflow)
-                    .coordinateSpace(name: "scroll")
+                    .coordinateSpace(name: String(localized: "notifications.coordinate_space.scroll", defaultValue: "scroll", comment: "Coordinate space name for scroll tracking"))
                     .onChange(of: isFocused) { _, newValue in
                         workspace.notificationPanel.handleFocusChange(isFocused: newValue)
                     }
