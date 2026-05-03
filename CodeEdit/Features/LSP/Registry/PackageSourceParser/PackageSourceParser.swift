@@ -11,18 +11,18 @@ import Foundation
 enum PackageSourceParser {
     static func parseGithubPackage(_ entry: RegistryItem) -> InstallationMethod {
         // Format: pkg:github/OWNER/REPO@COMMIT_HASH
-        let pkgPrefix = "pkg:github/"
+        let pkgPrefix = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Package URL scheme prefix (technical constant for parsing)")
         let sourceId = entry.source.id
         guard sourceId.hasPrefix(pkgPrefix) else { return .unknown }
 
         let pkgString = sourceId.dropFirst(pkgPrefix.count)
-        let packagePathVersion = pkgString.split(separator: "@", maxSplits: 1)
+        let packagePathVersion = pkgString.split(separator: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Delimiter character for package parsing"), maxSplits: 1)
         guard packagePathVersion.count >= 1 else { return .unknown }
 
         let packagePath = String(packagePathVersion[0])
-        let version = packagePathVersion.count > 1 ? String(packagePathVersion[1]) : "main"
+        let version = packagePathVersion.count > 1 ? String(packagePathVersion[1]) : String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Default git branch name (technical constant)")
 
-        let pathComponents = packagePath.split(separator: "/")
+        let pathComponents = packagePath.split(separator: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Path separator character"))
         guard pathComponents.count >= 2 else { return .unknown }
 
         let owner = String(pathComponents[0])
@@ -30,7 +30,7 @@ enum PackageSourceParser {
         let packageName = repo
         let repositoryUrl = "https://github.com/\(owner)/\(repo)"
 
-        let isCommitHash = version.range(of: "^[0-9a-f]{40}$", options: .regularExpression) != nil
+        let isCommitHash = version.range(of: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Regular expression for git commit hash validation"), options: .regularExpression) != nil
         let gitReference: PackageSource.GitReference = isCommitHash ? .revision(version) : .tag(version)
 
         // Is this going to be built from source or downloaded
@@ -72,7 +72,7 @@ enum PackageSourceParser {
 
         do {
             var registryInfo = try entry.toDictionary()
-            registryInfo["version"] = pkgSource.version
+            registryInfo[String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Dictionary key for registry info (technical constant)")] = pkgSource.version
             fileName = try RegistryItemTemplateParser.process(
                 template: fileName, with: registryInfo
             )
