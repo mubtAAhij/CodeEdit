@@ -1,0 +1,198 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "workspace.file.error.file-not-found": {
+      "comment": "Error message when a file cannot be found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File not found"
+          }
+        }
+      }
+    },
+    "workspace.file.error.file-not-indexed": {
+      "comment": "Error message when a file is not indexed in CodeEdit",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File not found in CodeEdit"
+          }
+        }
+      }
+    },
+    "workspace.file.error.origin-file-not-found": {
+      "comment": "Error message when the origin file for an operation cannot be found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to find origin file"
+          }
+        }
+      }
+    },
+    "workspace.file.error.destination-exists": {
+      "comment": "Error message when attempting to create or move a file to a location that already exists",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Destination already exists"
+          }
+        }
+      }
+    },
+    "workspace.file.error.invalid-file-name": {
+      "comment": "Error message when a file name is invalid",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid file name"
+          }
+        }
+      }
+    },
+    "workspace.file.error.reopen-workspace": {
+      "comment": "Recovery suggestion to reopen the workspace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reopen the workspace to reindex the file system."
+          }
+        }
+      }
+    },
+    "workspace.file.error.file-may-have-moved": {
+      "comment": "Recovery suggestion when a file may have moved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The file may have moved during the operation, try again."
+          }
+        }
+      }
+    },
+    "workspace.file.error.use-different-name": {
+      "comment": "Recovery suggestion when destination file exists",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use a different file name or remove the conflicting file."
+          }
+        }
+      }
+    },
+    "workspace.file.error.file-name-constraints": {
+      "comment": "Recovery suggestion explaining file name constraints",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File names must not contain the : character and be less than 256 characters."
+          }
+        }
+      }
+    },
+    "workspace.file.delete.confirm-single": {
+      "comment": "Confirmation message when deleting a single file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to delete"
+          }
+        }
+      }
+    },
+    "workspace.file.delete.warning-single": {
+      "comment": "Warning message when deleting a single file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This item will be deleted immediately. You can't undo this action."
+          }
+        }
+      }
+    },
+    "workspace.file.delete.button": {
+      "comment": "Delete button title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "workspace.file.delete.cancel": {
+      "comment": "Cancel button title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "workspace.file.delete.confirm-multiple": {
+      "comment": "Confirmation message when deleting multiple files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete the %d selected items?"
+          }
+        }
+      }
+    },
+    "workspace.file.delete.warning-multiple": {
+      "comment": "Warning message when deleting multiple files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d items will be deleted immediately. You cannot undo this action."
+          }
+        }
+      }
+    },
+    "workspace.file.duplicate.copy-suffix": {
+      "comment": "File name format when duplicating a file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ copy%@"
+          }
+        }
+      }
+    }
+  }
+}
