@@ -13,7 +13,7 @@ extension LanguageServer {
         do {
             let cacheKey = CacheKey(
                 uri: documentURI,
-                requestType: "diagnostics",
+                requestType: String(localized: "lsp.protocol.diagnostics", defaultValue: "diagnostics", comment: "LSP protocol key - technical constant, should not be localized"),
                 extraData: NoExtraData()
             )
             if let cachedResponse: DocumentDiagnosticReport = lspCache.get(
