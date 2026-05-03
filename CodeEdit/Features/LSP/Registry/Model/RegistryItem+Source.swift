@@ -28,8 +28,8 @@ extension RegistryItem {
                         return
                     } else if let simpleFile = try? container.decode([String: String].self),
                               simpleFile.count == 1,
-                              simpleFile.keys.contains("file"),
-                              let file = simpleFile["file"] {
+                              simpleFile.keys.contains(String(localized: "registry.source.type.file", defaultValue: "file", comment: "Registry item source type: file-based package")),
+                              let file = simpleFile[String(localized: "registry.source.type.file", defaultValue: "file", comment: "Registry item source type: file-based package")] {
                         self = .simpleFile(file)
                         return
                     }
@@ -45,7 +45,7 @@ extension RegistryItem {
                 case .multiple(let values):
                     try container.encode(values)
                 case .simpleFile(let file):
-                    try container.encode(["file": file])
+                    try container.encode([String(localized: "registry.source.type.file", defaultValue: "file", comment: "Registry item source type: file-based package"): file])
                 case .none:
                     try container.encodeNil()
                 }
@@ -156,7 +156,7 @@ extension RegistryItem {
                         Target.self,
                         DecodingError.Context(
                             codingPath: decoder.codingPath,
-                            debugDescription: "Invalid target format"
+                            debugDescription: String(localized: "registry.source.error.invalid_target_format", defaultValue: "Invalid target format", comment: "Error message when registry package target format is invalid")
                         )
                     )
                 }
@@ -176,19 +176,19 @@ extension RegistryItem {
                 switch self {
                 case .single(let value):
 #if arch(arm64)
-                    return value == "darwin" || value == "darwin_arm64" || value == "unix"
+                    return value == String(localized: "registry.source.platform.darwin", defaultValue: "darwin", comment: "Platform identifier for macOS/Darwin") || value == String(localized: "registry.source.platform.darwin_arm64", defaultValue: "darwin_arm64", comment: "Platform identifier for macOS/Darwin ARM64") || value == String(localized: "registry.source.platform.unix", defaultValue: "unix", comment: "Platform identifier for Unix systems")
 #else
-                    return value == "darwin" || value == "darwin_x64" || value == "unix"
+                    return value == String(localized: "registry.source.platform.darwin", defaultValue: "darwin", comment: "Platform identifier for macOS/Darwin") || value == String(localized: "registry.source.platform.darwin_x64", defaultValue: "darwin_x64", comment: "Platform identifier for macOS/Darwin x64") || value == String(localized: "registry.source.platform.unix", defaultValue: "unix", comment: "Platform identifier for Unix systems")
 #endif
                 case .multiple(let values):
 #if arch(arm64)
-                    return values.contains("darwin") ||
-                    values.contains("darwin_arm64") ||
-                    values.contains("unix")
+                    return values.contains(String(localized: "registry.source.platform.darwin", defaultValue: "darwin", comment: "Platform identifier for macOS/Darwin")) ||
+                    values.contains(String(localized: "registry.source.platform.darwin_arm64", defaultValue: "darwin_arm64", comment: "Platform identifier for macOS/Darwin ARM64")) ||
+                    values.contains(String(localized: "registry.source.platform.unix", defaultValue: "unix", comment: "Platform identifier for Unix systems"))
 #else
-                    return values.contains("darwin") ||
-                    values.contains("darwin_x64") ||
-                    values.contains("unix")
+                    return values.contains(String(localized: "registry.source.platform.darwin", defaultValue: "darwin", comment: "Platform identifier for macOS/Darwin")) ||
+                    values.contains(String(localized: "registry.source.platform.darwin_x64", defaultValue: "darwin_x64", comment: "Platform identifier for macOS/Darwin x64")) ||
+                    values.contains(String(localized: "registry.source.platform.unix", defaultValue: "unix", comment: "Platform identifier for Unix systems"))
 #endif
                 }
             }
