@@ -24,16 +24,16 @@ struct UtilityAreaOutputSourcePicker: View {
     @State private var languageServerClients: [LSPService.LanguageServerType] = []
 
     var body: some View {
-        Picker("Output Source", selection: $selectedSource) {
+        Picker(String(localized: "output.source_picker", defaultValue: "Output Source", comment: "Output source picker label"), selection: $selectedSource) {
             if selectedSource == nil {
-                Text("No Selected Output Source")
+                Text(String(localized: "output.no_selected", defaultValue: "No Selected Output Source", comment: "No output source selected"))
                     .italic()
                     .tag(Sources?.none)
                 Divider()
             }
 
             if languageServerClients.isEmpty {
-                Text("No Language Servers")
+                Text(String(localized: "output.no_language_servers", defaultValue: "No Language Servers", comment: "No language servers available"))
             } else {
                 ForEach(languageServerClients, id: \.languageId) { server in
                     Text(Sources.languageServer(server.logContainer).title)
@@ -44,7 +44,7 @@ struct UtilityAreaOutputSourcePicker: View {
             Divider()
 
             if extensionManager.extensions.isEmpty {
-                Text("No Extensions")
+                Text(String(localized: "output.no_extensions", defaultValue: "No Extensions", comment: "No extensions available"))
             } else {
                 ForEach(extensionManager.extensions) { extensionInfo in
                     Text(Sources.extensions(.init(extensionInfo: extensionInfo)).title)
