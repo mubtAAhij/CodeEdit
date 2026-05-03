@@ -25,7 +25,7 @@ struct EditorTabCloseButton: View {
 
     var body: some View {
         HStack(alignment: .center) {
-            Image(systemName: isDocumentEdited && !isHoveringTab ? "circlebadge.fill" : "xmark")
+            Image(systemName: isDocumentEdited && !isHoveringTab ? String(localized: "editor.tab.dot_icon", defaultValue: "circlebadge.fill", comment: "SF Symbol for modified dot") : String(localized: "editor.tab.close_icon", defaultValue: "xmark", comment: "SF Symbol for close icon"))
                 .font(
                     .system(
                         size: isDocumentEdited && !isHoveringTab ? 9.5 : 11.5,
@@ -71,7 +71,7 @@ struct EditorTabCloseButton: View {
             isHoveringClose = hover
         }
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Close"))
+        .accessibilityLabel(Text(String(localized: "common.close", defaultValue: "Close", comment: "Close button accessibility label")))
         // Only show when the mouse is hovering and there is no tab dragging.
         .opacity((isHoveringTab || isDocumentEdited == true) && !isDragging ? 1 : 0)
         .animation(.easeInOut(duration: 0.08), value: isHoveringTab)
@@ -114,11 +114,11 @@ struct EditorTabCloseButton: View {
     @Previewable @State var closeButtonGestureActive: Bool = false
     @Previewable @State var isHoveringClose: Bool = false
 
-    return EditorTabCloseButton(
+    EditorTabCloseButton(
         isActive: false,
         isHoveringTab: false,
         isDragging: false,
-        closeAction: { print("Close tab") },
+        closeAction: { print(String(localized: "editor.tab.close_action", defaultValue: "Close tab", comment: "Close tab debug message")) },
         closeButtonGestureActive: $closeButtonGestureActive,
         isHoveringClose: $isHoveringClose
     )
