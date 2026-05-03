@@ -36,14 +36,14 @@ final class CodeEditSplitViewController: NSSplitViewController {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "splitview.fatalerror.init_coder", defaultValue: "init(coder:) has not been implemented", comment: "Fatal error for unimplemented init method"))
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let windowRef else {
             // swiftlint:disable:next line_length
-            assertionFailure("No WindowRef found, not initialized properly or the window was dereferenced and the controller was not.")
+            assertionFailure(String(localized: "splitview.assertion.no_window", defaultValue: "No WindowRef found, not initialized properly or the window was dereferenced and the controller was not.", comment: "Assertion failure when window reference is missing"))
             return
         }
 
@@ -195,7 +195,7 @@ final class CodeEditSplitViewController: NSSplitViewController {
     /// Save the width of the inspector and navigator between sessions.
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         super.splitViewDidResizeSubviews(notification)
-        guard let resizedDivider = notification.userInfo?["NSSplitViewDividerIndex"] as? Int else {
+        guard let resizedDivider = notification.userInfo?[String(localized: "splitview.divider_index_key", defaultValue: "NSSplitViewDividerIndex", comment: "UserDefaults key for split view divider index")] as? Int else {
             return
         }
 
