@@ -40,7 +40,7 @@ struct SourceControlNavigatorHistoryView: View {
                 commitHistoryStatus = .ready
             }
         } catch {
-            sourceControlManager.logger.log("Failed to load commit history: \(error)")
+            sourceControlManager.logger.log(String(format: String(localized: "source_control.history.load_failed", defaultValue: "Failed to load commit history: %@", comment: "Failed to load commit history error"), String(describing: error)))
             await MainActor.run {
                 commitHistory = []
                 commitHistoryStatus = .error(error: error)
@@ -55,13 +55,13 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     ProgressView {
-                        Text("Loading History")
+                        Text(String(localized: "source_control.history.loading", defaultValue: "Loading History", comment: "Loading history progress message"))
                     }
                     Spacer()
                 }
             case .ready:
                 if commitHistory.isEmpty {
-                    CEContentUnavailableView("No History")
+                    CEContentUnavailableView(String(localized: "source_control.history.empty", defaultValue: "No History", comment: "No history message"))
                 } else {
                     GeometryReader { geometry in
                         ZStack {
@@ -89,16 +89,16 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     CEContentUnavailableView(
-                        "Error Loading History",
+                        String(localized: "source_control.history.error", defaultValue: "Error Loading History", comment: "Error loading history message"),
                         description: error.localizedDescription,
-                        systemImage: "exclamationmark.triangle"
+                        systemImage: String(localized: "source_control.history.error_icon", defaultValue: "exclamationmark.triangle", comment: "Error icon for history loading failure")
                     ) {
                         Button {
                             Task {
                                 await updateCommitHistory()
                             }
                         } label: {
-                            Text("Retry")
+                            Text(String(localized: "source_control.history.retry", defaultValue: "Retry", comment: "Retry button"))
                         }
                     }
                     Spacer()
