@@ -17,13 +17,13 @@ struct SourceControlNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             sourceControlMenu
             PaneTextField(
-                "Filter",
+                String(localized: "source_control.filter", defaultValue: "Filter", comment: "Filter text field placeholder"),
                 text: $text,
                 leadingAccessories: {
                     Image(
                         systemName: text.isEmpty
-                        ? "line.3.horizontal.decrease.circle"
-                        : "line.3.horizontal.decrease.circle.fill"
+                        ? String(localized: "source_control.filter.icon.empty", defaultValue: "line.3.horizontal.decrease.circle", comment: "Filter icon when empty")
+                        : String(localized: "source_control.filter.icon.filled", defaultValue: "line.3.horizontal.decrease.circle.fill", comment: "Filter icon when filled")
                     )
                     .foregroundStyle(
                         text.isEmpty
@@ -31,7 +31,7 @@ struct SourceControlNavigatorToolbarBottom: View {
                         : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help("Filter Changes Navigator")
+                    .help(String(localized: "source_control.filter.help", defaultValue: "Filter Changes Navigator", comment: "Filter changes help text"))
                 },
                 clearable: true
             )
@@ -47,14 +47,14 @@ struct SourceControlNavigatorToolbarBottom: View {
 
     private var sourceControlMenu: some View {
         Menu {
-            Button("Discard All Changes...") {
+            Button(String(localized: "source_control.discard_all", defaultValue: "Discard All Changes...", comment: "Discard all changes button")) {
                 if sourceControlManager.changedFiles.isEmpty {
                     sourceControlManager.noChangesToDiscardAlertIsPresented = true
                 } else {
                     sourceControlManager.discardAllAlertIsPresented = true
                 }
             }
-            Button("Stash Changes...") {
+            Button(String(localized: "source_control.stash_changes", defaultValue: "Stash Changes...", comment: "Stash changes button")) {
                 if sourceControlManager.changedFiles.isEmpty {
                     sourceControlManager.noChangesToStashAlertIsPresented = true
                 } else {
@@ -63,7 +63,7 @@ struct SourceControlNavigatorToolbarBottom: View {
             }
         } label: {}
         .background {
-            Image(systemName: "ellipsis.circle")
+            Image(systemName: String(localized: "source_control.menu.icon", defaultValue: "ellipsis.circle", comment: "Source control menu icon"))
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
