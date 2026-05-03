@@ -39,9 +39,9 @@ struct WelcomeSubtitleView: View {
     }
 
     private func copyInformation() {
-        var copyString = "\(Bundle.displayName): \(appVersion)\(appVersionPostfix) (\(appBuild))\n"
-        copyString.append("macOS: \(macOSVersion)\n")
-        if let xcodeVersion { copyString.append("Xcode: \(xcodeVersion)") }
+        var copyString = String(format: String(localized: "welcome.version_info.app_version", defaultValue: "%@: %@%@ (%@)\n", comment: "App version info line for clipboard"), Bundle.displayName, appVersion, appVersionPostfix, appBuild)
+        copyString.append(String(format: String(localized: "welcome.version_info.macos_version", defaultValue: "macOS: %@\n", comment: "macOS version info line for clipboard"), macOSVersion))
+        if let xcodeVersion { copyString.append(String(format: String(localized: "welcome.version_info.xcode_version", defaultValue: "Xcode: %@", comment: "Xcode version info line for clipboard"), xcodeVersion)) }
 
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -50,12 +50,12 @@ struct WelcomeSubtitleView: View {
 
     var body: some View {
         Text(String(
-            format: NSLocalizedString("Version %@%@ (%@)", comment: ""),
+            format: String(localized: "welcome.version_display", defaultValue: "Version %@%@ (%@)", comment: "Version display format"),
             appVersion, appVersionPostfix, appBuild
         ))
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help("Copy System Information to Clipboard")
+        .help(String(localized: "welcome.copy_system_info", defaultValue: "Copy System Information to Clipboard", comment: "Tooltip for copying system info"))
     }
 }
