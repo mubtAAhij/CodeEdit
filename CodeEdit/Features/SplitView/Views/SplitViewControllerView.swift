@@ -86,7 +86,7 @@ final class SplitViewController: NSSplitViewController {
         }
 
         required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
+            fatalError(String(localized: "error.split-view.coder-init", defaultValue: "init(coder:) has not been implemented", comment: "Developer fatalError message - should not be localized"))
         }
 
         override var dividerColor: NSColor {
@@ -122,7 +122,7 @@ final class SplitViewController: NSSplitViewController {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "error.split-view.coder-init-2", defaultValue: "init(coder:) has not been implemented", comment: "Developer fatalError message - should not be localized"))
     }
 
     override func loadView() {
