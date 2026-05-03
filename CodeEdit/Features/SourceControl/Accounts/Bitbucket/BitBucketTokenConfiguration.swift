@@ -13,13 +13,13 @@ struct BitBucketTokenConfiguration: GitRouterConfiguration {
     var accessToken: String?
     var refreshToken: String?
     var expirationDate: Date?
-    let errorDomain = "com.codeedit.models.accounts.bitbucket"
+    let errorDomain = String(localized: "bitbucket.error_domain", defaultValue: "com.codeedit.models.accounts.bitbucket", comment: "Error domain identifier for Bitbucket - technical constant")
 
     init(json: [String: AnyObject], url: String? = nil) {
         apiEndpoint = url ?? provider.apiURL?.absoluteString
-        accessToken = json["access_token"] as? String
-        refreshToken = json["refresh_token"] as? String
-        let expiresIn = json["expires_in"] as? Int
+        accessToken = json[String(localized: "bitbucket.oauth.access_token", defaultValue: "access_token", comment: "OAuth response key for access token - technical constant")] as? String
+        refreshToken = json[String(localized: "bitbucket.oauth.refresh_token", defaultValue: "refresh_token", comment: "OAuth response key for refresh token - technical constant")] as? String
+        let expiresIn = json[String(localized: "bitbucket.oauth.expires_in", defaultValue: "expires_in", comment: "OAuth response key for expiration time - technical constant")] as? Int
         let currentDate = Date()
         expirationDate = currentDate.addingTimeInterval(TimeInterval(expiresIn ?? 0))
     }
