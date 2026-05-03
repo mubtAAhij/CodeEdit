@@ -261,8 +261,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         Task { @MainActor in
             let task = TaskNotificationModel(
                 id: "appdelegate.terminate_language_servers",
-                title: "Stopping Language Servers",
-                message: "Stopping running language server processes...",
+                title: String(localized: "appdelegate.terminate_language_servers.title", defaultValue: "Stopping Language Servers", comment: "Title for notification when stopping language servers during app termination"),
+                message: String(localized: "appdelegate.terminate_language_servers.message", defaultValue: "Stopping running language server processes...", comment: "Message for notification when stopping language servers during app termination"),
                 isLoading: true
             )
 
@@ -290,8 +290,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private func terminateTasks() {
         let task = TaskNotificationModel(
             id: "appdelegate.terminate_tasks",
-            title: "Terminating Tasks",
-            message: "Interrupting all running tasks before quitting...",
+            title: String(localized: "appdelegate.terminate_tasks.title", defaultValue: "Terminating Tasks", comment: "Title for notification when terminating tasks during app termination"),
+            message: String(localized: "appdelegate.terminate_tasks.message", defaultValue: "Interrupting all running tasks before quitting...", comment: "Message for notification when terminating tasks during app termination"),
             isLoading: true
         )
 

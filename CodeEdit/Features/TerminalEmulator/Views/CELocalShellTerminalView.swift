@@ -83,7 +83,7 @@ class CELocalShellTerminalView: CETerminalView, TerminalViewDelegate, LocalProce
         let terminalSettings = Settings.shared.preferences.terminal
 
         var terminalEnvironment: [String] = Terminal.getEnvironmentVariables()
-        terminalEnvironment.append("TERM_PROGRAM=CodeEditApp_Terminal")
+        terminalEnvironment.append(String(localized: "terminal.env.term_program", defaultValue: "TERM_PROGRAM=CodeEditApp_Terminal", comment: "Environment variable for terminal program identifier"))
 
         guard let (shell, shellPath) = getShell(shell, userSetting: terminalSettings.shell) else {
             return
@@ -129,9 +129,9 @@ class CELocalShellTerminalView: CETerminalView, TerminalViewDelegate, LocalProce
             guard let type = Shell(rawValue: NSString(string: defaultShell).lastPathComponent) else { return nil }
             return (type, defaultShell)
         case .bash:
-            return (.bash, "/bin/bash")
+            return (.bash, String(localized: "terminal.shell.bash_path", defaultValue: "/bin/bash", comment: "Path to bash shell executable"))
         case .zsh:
-            return (.zsh, "/bin/zsh")
+            return (.zsh, String(localized: "terminal.shell.zsh_path", defaultValue: "/bin/zsh", comment: "Path to zsh shell executable"))
         }
     }
 

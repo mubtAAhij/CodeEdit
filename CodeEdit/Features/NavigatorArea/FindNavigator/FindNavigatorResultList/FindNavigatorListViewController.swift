@@ -35,8 +35,8 @@ final class FindNavigatorListViewController: NSViewController {
         self.outlineView.headerView = nil
         self.outlineView.lineBreakMode = .byTruncatingTail
 
-        let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
-        column.title = "Cell"
+        let column = NSTableColumn(identifier: .init(rawValue: String(localized: "findnavigator.column_id", defaultValue: "Cell", comment: "Table column identifier for find navigator")))
+        column.title = String(localized: "findnavigator.column_title", defaultValue: "Cell", comment: "Table column title for find navigator")
         outlineView.addTableColumn(column)
 
         self.scrollView.documentView = outlineView
@@ -50,7 +50,7 @@ final class FindNavigatorListViewController: NSViewController {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init?(coder: NSCoder) not implemented by FindNavigatorListViewController")
+        fatalError(String(localized: "findnavigator.fatalerror.init_coder", defaultValue: "init?(coder: NSCoder) not implemented by FindNavigatorListViewController", comment: "Fatal error message for unimplemented init method"))
     }
 
     override var acceptsFirstResponder: Bool { true }

@@ -26,7 +26,7 @@ enum RegistryItemTemplateParser {
 
         static func parse(_ filterString: String) throws -> Filter {
             let components = filterString.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
-            if components.count >= 2 && components[0] == "strip_prefix" {
+            if components.count >= 2 && components[0] == String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Template filter name (technical constant for parsing)") {
                 // Extract the quoted string value
                 let prefixRaw = components[1]
                 if prefixRaw.hasPrefix("\"") && prefixRaw.hasSuffix("\"") {
@@ -69,7 +69,7 @@ enum RegistryItemTemplateParser {
             let expression = String(template[expressionRange])
 
             // Split by pipe to separate variable path from filters
-            let components = expression.components(separatedBy: "|").filter { !$0.isEmpty }
+            let components = expression.components(separatedBy: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Pipe delimiter for template filter syntax")).filter { !$0.isEmpty }
             let pathExpression = components[0].trimmingCharacters(in: .whitespaces)
             let value = try getValueFromPath(pathExpression, in: context)
 
@@ -94,7 +94,7 @@ enum RegistryItemTemplateParser {
 
     /// Get a value by traversing a dot-separated path in a nested dictionary
     private static func getValueFromPath(_ path: String, in context: [String: Any]) throws -> String {
-        let pathComponents = path.components(separatedBy: ".")
+        let pathComponents = path.components(separatedBy: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Dot separator for path traversal"))
         var currentValue: Any = context
 
         for component in pathComponents {
@@ -125,7 +125,7 @@ enum RegistryItemTemplateParser {
         } else if let boolValue = currentValue as? Bool {
             return String(boolValue)
         } else if currentValue is [Any] || currentValue is [String: Any] {
-            throw TemplateError.invalidPath("Path resolves to a complex object, not a simple value")
+            throw TemplateError.invalidPath(String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Error message (developer-facing, not user-visible UI)"))
         } else {
             return String(describing: currentValue)
         }

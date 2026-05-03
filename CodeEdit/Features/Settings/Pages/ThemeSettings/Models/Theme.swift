@@ -20,6 +20,15 @@ struct Theme: Identifiable, Codable, Equatable, Hashable, Loopable {
         case metadataDescription = "description"
     }
 
+    var appearanceDisplayName: String {
+        switch appearance {
+        case .dark:
+            return String(localized: "theme.appearance.dark", defaultValue: "Dark", comment: "Dark theme appearance")
+        case .light:
+            return String(localized: "theme.appearance.light", defaultValue: "Light", comment: "Light theme appearance")
+        }
+    }
+
     static func == (lhs: Theme, rhs: Theme) -> Bool {
         lhs.id == rhs.id
     }
@@ -242,44 +251,44 @@ extension Theme {
         subscript(key: String) -> Attributes {
             get {
                 switch key {
-                case "text": return self.text
-                case "insertionPoint": return self.insertionPoint
-                case "invisibles": return self.invisibles
-                case "background": return self.background
-                case "lineHighlight": return self.lineHighlight
-                case "selection": return self.selection
-                case "keywords": return self.keywords
-                case "commands": return self.commands
-                case "types": return self.types
-                case "attributes": return self.attributes
-                case "variables": return self.variables
-                case "values": return self.values
-                case "numbers": return self.numbers
-                case "strings": return self.strings
-                case "characters": return self.characters
-                case "comments": return self.comments
-                default: fatalError("Invalid key")
+                case String(localized: "theme.editor.text", defaultValue: "text", comment: "Editor text property key"): return self.text
+                case String(localized: "theme.editor.insertion_point", defaultValue: "insertionPoint", comment: "Editor insertion point property key"): return self.insertionPoint
+                case String(localized: "theme.editor.invisibles", defaultValue: "invisibles", comment: "Editor invisibles property key"): return self.invisibles
+                case String(localized: "theme.editor.background", defaultValue: "background", comment: "Editor background property key"): return self.background
+                case String(localized: "theme.editor.line_highlight", defaultValue: "lineHighlight", comment: "Editor line highlight property key"): return self.lineHighlight
+                case String(localized: "theme.editor.selection", defaultValue: "selection", comment: "Editor selection property key"): return self.selection
+                case String(localized: "theme.editor.keywords", defaultValue: "keywords", comment: "Editor keywords property key"): return self.keywords
+                case String(localized: "theme.editor.commands", defaultValue: "commands", comment: "Editor commands property key"): return self.commands
+                case String(localized: "theme.editor.types", defaultValue: "types", comment: "Editor types property key"): return self.types
+                case String(localized: "theme.editor.attributes", defaultValue: "attributes", comment: "Editor attributes property key"): return self.attributes
+                case String(localized: "theme.editor.variables", defaultValue: "variables", comment: "Editor variables property key"): return self.variables
+                case String(localized: "theme.editor.values", defaultValue: "values", comment: "Editor values property key"): return self.values
+                case String(localized: "theme.editor.numbers", defaultValue: "numbers", comment: "Editor numbers property key"): return self.numbers
+                case String(localized: "theme.editor.strings", defaultValue: "strings", comment: "Editor strings property key"): return self.strings
+                case String(localized: "theme.editor.characters", defaultValue: "characters", comment: "Editor characters property key"): return self.characters
+                case String(localized: "theme.editor.comments", defaultValue: "comments", comment: "Editor comments property key"): return self.comments
+                default: fatalError(String(localized: "theme.error.invalid_key", defaultValue: "Invalid key", comment: "Invalid key error message"))
                 }
             }
             set {
                 switch key {
-                case "text": self.text = newValue
-                case "insertionPoint": self.insertionPoint = newValue
-                case "invisibles": self.invisibles = newValue
-                case "background": self.background = newValue
-                case "lineHighlight": self.lineHighlight = newValue
-                case "selection": self.selection = newValue
-                case "keywords": self.keywords = newValue
-                case "commands": self.commands = newValue
-                case "types": self.types = newValue
-                case "attributes": self.attributes = newValue
-                case "variables": self.variables = newValue
-                case "values": self.values = newValue
-                case "numbers": self.numbers = newValue
-                case "strings": self.strings = newValue
-                case "characters": self.characters = newValue
-                case "comments": self.comments = newValue
-                default: fatalError("Invalid key")
+                case String(localized: "theme.editor.text", defaultValue: "text", comment: "Editor text property key"): self.text = newValue
+                case String(localized: "theme.editor.insertion_point", defaultValue: "insertionPoint", comment: "Editor insertion point property key"): self.insertionPoint = newValue
+                case String(localized: "theme.editor.invisibles", defaultValue: "invisibles", comment: "Editor invisibles property key"): self.invisibles = newValue
+                case String(localized: "theme.editor.background", defaultValue: "background", comment: "Editor background property key"): self.background = newValue
+                case String(localized: "theme.editor.line_highlight", defaultValue: "lineHighlight", comment: "Editor line highlight property key"): self.lineHighlight = newValue
+                case String(localized: "theme.editor.selection", defaultValue: "selection", comment: "Editor selection property key"): self.selection = newValue
+                case String(localized: "theme.editor.keywords", defaultValue: "keywords", comment: "Editor keywords property key"): self.keywords = newValue
+                case String(localized: "theme.editor.commands", defaultValue: "commands", comment: "Editor commands property key"): self.commands = newValue
+                case String(localized: "theme.editor.types", defaultValue: "types", comment: "Editor types property key"): self.types = newValue
+                case String(localized: "theme.editor.attributes", defaultValue: "attributes", comment: "Editor attributes property key"): self.attributes = newValue
+                case String(localized: "theme.editor.variables", defaultValue: "variables", comment: "Editor variables property key"): self.variables = newValue
+                case String(localized: "theme.editor.values", defaultValue: "values", comment: "Editor values property key"): self.values = newValue
+                case String(localized: "theme.editor.numbers", defaultValue: "numbers", comment: "Editor numbers property key"): self.numbers = newValue
+                case String(localized: "theme.editor.strings", defaultValue: "strings", comment: "Editor strings property key"): self.strings = newValue
+                case String(localized: "theme.editor.characters", defaultValue: "characters", comment: "Editor characters property key"): self.characters = newValue
+                case String(localized: "theme.editor.comments", defaultValue: "comments", comment: "Editor comments property key"): self.comments = newValue
+                default: fatalError(String(localized: "theme.error.invalid_key", defaultValue: "Invalid key", comment: "Invalid key error message"))
                 }
             }
         }
@@ -379,54 +388,54 @@ extension Theme {
         subscript(key: String) -> Attributes {
             get {
                 switch key {
-                case "text": return self.text
-                case "boldText": return self.boldText
-                case "cursor": return self.cursor
-                case "background": return self.background
-                case "selection": return self.selection
-                case "black": return self.black
-                case "red": return self.red
-                case "green": return self.green
-                case "yellow": return self.yellow
-                case "blue": return self.blue
-                case "magenta": return self.magenta
-                case "cyan": return self.cyan
-                case "white": return self.white
-                case "brightBlack": return self.brightBlack
-                case "brightRed": return self.brightRed
-                case "brightGreen": return self.brightGreen
-                case "brightYellow": return self.brightYellow
-                case "brightBlue": return self.brightBlue
-                case "brightMagenta": return self.brightMagenta
-                case "brightCyan": return self.brightCyan
-                case "brightWhite": return self.brightWhite
-                default: fatalError("Invalid key")
+                case String(localized: "theme.terminal.text", defaultValue: "text", comment: "Terminal text property key"): return self.text
+                case String(localized: "theme.terminal.bold_text", defaultValue: "boldText", comment: "Terminal bold text property key"): return self.boldText
+                case String(localized: "theme.terminal.cursor", defaultValue: "cursor", comment: "Terminal cursor property key"): return self.cursor
+                case String(localized: "theme.terminal.background", defaultValue: "background", comment: "Terminal background property key"): return self.background
+                case String(localized: "theme.terminal.selection", defaultValue: "selection", comment: "Terminal selection property key"): return self.selection
+                case String(localized: "theme.terminal.black", defaultValue: "black", comment: "Terminal black color property key"): return self.black
+                case String(localized: "theme.terminal.red", defaultValue: "red", comment: "Terminal red color property key"): return self.red
+                case String(localized: "theme.terminal.green", defaultValue: "green", comment: "Terminal green color property key"): return self.green
+                case String(localized: "theme.terminal.yellow", defaultValue: "yellow", comment: "Terminal yellow color property key"): return self.yellow
+                case String(localized: "theme.terminal.blue", defaultValue: "blue", comment: "Terminal blue color property key"): return self.blue
+                case String(localized: "theme.terminal.magenta", defaultValue: "magenta", comment: "Terminal magenta color property key"): return self.magenta
+                case String(localized: "theme.terminal.cyan", defaultValue: "cyan", comment: "Terminal cyan color property key"): return self.cyan
+                case String(localized: "theme.terminal.white", defaultValue: "white", comment: "Terminal white color property key"): return self.white
+                case String(localized: "theme.terminal.bright_black", defaultValue: "brightBlack", comment: "Terminal bright black color property key"): return self.brightBlack
+                case String(localized: "theme.terminal.bright_red", defaultValue: "brightRed", comment: "Terminal bright red color property key"): return self.brightRed
+                case String(localized: "theme.terminal.bright_green", defaultValue: "brightGreen", comment: "Terminal bright green color property key"): return self.brightGreen
+                case String(localized: "theme.terminal.bright_yellow", defaultValue: "brightYellow", comment: "Terminal bright yellow color property key"): return self.brightYellow
+                case String(localized: "theme.terminal.bright_blue", defaultValue: "brightBlue", comment: "Terminal bright blue color property key"): return self.brightBlue
+                case String(localized: "theme.terminal.bright_magenta", defaultValue: "brightMagenta", comment: "Terminal bright magenta color property key"): return self.brightMagenta
+                case String(localized: "theme.terminal.bright_cyan", defaultValue: "brightCyan", comment: "Terminal bright cyan color property key"): return self.brightCyan
+                case String(localized: "theme.terminal.bright_white", defaultValue: "brightWhite", comment: "Terminal bright white color property key"): return self.brightWhite
+                default: fatalError(String(localized: "theme.error.invalid_key", defaultValue: "Invalid key", comment: "Invalid key error message"))
                 }
             }
             set {
                 switch key {
-                case "text": self.text = newValue
-                case "boldText": self.boldText = newValue
-                case "cursor": self.cursor = newValue
-                case "background": self.background = newValue
-                case "selection": self.selection = newValue
-                case "black": self.black = newValue
-                case "red": self.red = newValue
-                case "green": self.green = newValue
-                case "yellow": self.yellow = newValue
-                case "blue": self.blue = newValue
-                case "magenta": self.magenta = newValue
-                case "cyan": self.cyan = newValue
-                case "white": self.white = newValue
-                case "brightBlack": self.brightBlack = newValue
-                case "brightRed": self.brightRed = newValue
-                case "brightGreen": self.brightGreen = newValue
-                case "brightYellow": self.brightYellow = newValue
-                case "brightBlue": self.brightBlue = newValue
-                case "brightMagenta": self.brightMagenta = newValue
-                case "brightCyan": self.brightCyan = newValue
-                case "brightWhite": self.brightWhite = newValue
-                default: fatalError("Invalid key")
+                case String(localized: "theme.terminal.text", defaultValue: "text", comment: "Terminal text property key"): self.text = newValue
+                case String(localized: "theme.terminal.bold_text", defaultValue: "boldText", comment: "Terminal bold text property key"): self.boldText = newValue
+                case String(localized: "theme.terminal.cursor", defaultValue: "cursor", comment: "Terminal cursor property key"): self.cursor = newValue
+                case String(localized: "theme.terminal.background", defaultValue: "background", comment: "Terminal background property key"): self.background = newValue
+                case String(localized: "theme.terminal.selection", defaultValue: "selection", comment: "Terminal selection property key"): self.selection = newValue
+                case String(localized: "theme.terminal.black", defaultValue: "black", comment: "Terminal black color property key"): self.black = newValue
+                case String(localized: "theme.terminal.red", defaultValue: "red", comment: "Terminal red color property key"): self.red = newValue
+                case String(localized: "theme.terminal.green", defaultValue: "green", comment: "Terminal green color property key"): self.green = newValue
+                case String(localized: "theme.terminal.yellow", defaultValue: "yellow", comment: "Terminal yellow color property key"): self.yellow = newValue
+                case String(localized: "theme.terminal.blue", defaultValue: "blue", comment: "Terminal blue color property key"): self.blue = newValue
+                case String(localized: "theme.terminal.magenta", defaultValue: "magenta", comment: "Terminal magenta color property key"): self.magenta = newValue
+                case String(localized: "theme.terminal.cyan", defaultValue: "cyan", comment: "Terminal cyan color property key"): self.cyan = newValue
+                case String(localized: "theme.terminal.white", defaultValue: "white", comment: "Terminal white color property key"): self.white = newValue
+                case String(localized: "theme.terminal.bright_black", defaultValue: "brightBlack", comment: "Terminal bright black color property key"): self.brightBlack = newValue
+                case String(localized: "theme.terminal.bright_red", defaultValue: "brightRed", comment: "Terminal bright red color property key"): self.brightRed = newValue
+                case String(localized: "theme.terminal.bright_green", defaultValue: "brightGreen", comment: "Terminal bright green color property key"): self.brightGreen = newValue
+                case String(localized: "theme.terminal.bright_yellow", defaultValue: "brightYellow", comment: "Terminal bright yellow color property key"): self.brightYellow = newValue
+                case String(localized: "theme.terminal.bright_blue", defaultValue: "brightBlue", comment: "Terminal bright blue color property key"): self.brightBlue = newValue
+                case String(localized: "theme.terminal.bright_magenta", defaultValue: "brightMagenta", comment: "Terminal bright magenta color property key"): self.brightMagenta = newValue
+                case String(localized: "theme.terminal.bright_cyan", defaultValue: "brightCyan", comment: "Terminal bright cyan color property key"): self.brightCyan = newValue
+                case String(localized: "theme.terminal.bright_white", defaultValue: "brightWhite", comment: "Terminal bright white color property key"): self.brightWhite = newValue
+                default: fatalError(String(localized: "theme.error.invalid_key", defaultValue: "Invalid key", comment: "Invalid key error message"))
                 }
             }
         }

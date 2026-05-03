@@ -42,7 +42,7 @@ struct UpdatingWindowController: DynamicProperty {
         init() {
             windowCancellable = NSApp.publisher(for: \.keyWindow).receive(on: RunLoop.main).sink { [weak self] window in
                 // Fix an issue where NSMenuItems with custom views would trigger this callback.
-                guard window?.className != "NSPopupMenuWindow" else { return }
+                guard window?.className != String(localized: "window.popup-menu.classname", defaultValue: "NSPopupMenuWindow", comment: "AppKit class name - technical identifier, should not be localized") else { return }
                 self?.setNewController(window?.windowController as? CodeEditWindowController)
             }
         }

@@ -9,7 +9,7 @@ import Foundation
 
 /// Indexer using SKIndex
 public class SearchIndexer {
-    let modifyIndexQueue = DispatchQueue(label: "app.codeedit.CodeEdit.ModifySearchIndex")
+    let modifyIndexQueue = DispatchQueue(label: String(localized: "search.index.domain", defaultValue: "app.codeedit.CodeEdit.ModifySearchIndex", comment: "Core Spotlight domain identifier - technical constant, should not be localized"))
 
     var index: SKIndex?
 

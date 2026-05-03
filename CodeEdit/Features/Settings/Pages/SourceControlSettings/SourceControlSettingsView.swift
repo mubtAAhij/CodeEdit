@@ -11,7 +11,7 @@ struct SourceControlSettingsView: View {
     @AppSettings(\.sourceControl.general)
     var settings
 
-    @State var selectedTab: String = "general"
+    @State var selectedTab: String = String(localized: "source_control_settings.tab.general", defaultValue: "general", comment: "General tab identifier")
 
     var body: some View {
         SettingsForm {
@@ -20,8 +20,8 @@ struct SourceControlSettingsView: View {
             } footer: {
                 if settings.sourceControlIsEnabled {
                     Picker("", selection: $selectedTab) {
-                        Text("General").tag("general")
-                        Text("Git").tag("git")
+                        Text(String(localized: "source_control_settings.general", defaultValue: "General", comment: "General tab label")).tag(String(localized: "source_control_settings.tab.general", defaultValue: "general", comment: "General tab identifier"))
+                        Text(String(localized: "source_control_settings.git", defaultValue: "Git", comment: "Git tab label")).tag(String(localized: "source_control_settings.tab.git", defaultValue: "git", comment: "Git tab identifier"))
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
@@ -30,9 +30,9 @@ struct SourceControlSettingsView: View {
             }
             if settings.sourceControlIsEnabled {
                 switch selectedTab {
-                case "general":
+                case String(localized: "source_control_settings.tab.general", defaultValue: "general", comment: "General tab identifier"):
                     SourceControlGeneralView()
-                case "git":
+                case String(localized: "source_control_settings.tab.git", defaultValue: "git", comment: "Git tab identifier"):
                     SourceControlGitView()
                 default:
                     SourceControlGeneralView()
@@ -46,14 +46,11 @@ struct SourceControlSettingsView: View {
             isOn: $settings.sourceControlIsEnabled
         ) {
             Label {
-                Text("Source Control")
-                Text("""
-                 Back up your files, collaborate with others, and tag your releases. \
-                 [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)
-                 """)
+                Text(String(localized: "source_control_settings.title", defaultValue: "Source Control", comment: "Source Control settings title"))
+                Text(String(localized: "source_control_settings.description", defaultValue: "Back up your files, collaborate with others, and tag your releases. [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)", comment: "Source Control settings description"))
                 .font(.callout)
              } icon: {
-                FeatureIcon(symbol: "vault", color: Color(.systemBlue), size: 26)
+                FeatureIcon(symbol: String(localized: "source_control_settings.icon", defaultValue: "vault", comment: "Source Control icon"), color: Color(.systemBlue), size: 26)
             }
         }
         .controlSize(.large)

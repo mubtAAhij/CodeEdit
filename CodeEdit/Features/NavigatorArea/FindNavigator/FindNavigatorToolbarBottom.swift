@@ -13,13 +13,13 @@ struct FindNavigatorToolbarBottom: View {
     var body: some View {
         HStack(spacing: 2) {
             PaneTextField(
-                "Filter",
+                String(localized: "findnavigator.filter", defaultValue: "Filter", comment: "Filter text field placeholder"),
                 text: $text,
                 leadingAccessories: {
                     Image(
                         systemName: text.isEmpty
-                        ? "line.3.horizontal.decrease.circle"
-                        : "line.3.horizontal.decrease.circle.fill"
+                        ? String(localized: "findnavigator.filter_icon", defaultValue: "line.3.horizontal.decrease.circle", comment: "SF Symbol for filter icon empty")
+                        : String(localized: "findnavigator.filter_icon_filled", defaultValue: "line.3.horizontal.decrease.circle.fill", comment: "SF Symbol for filter icon filled")
                     )
                     .foregroundStyle(
                         text.isEmpty
@@ -27,7 +27,7 @@ struct FindNavigatorToolbarBottom: View {
                         : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help("Show results with matching text")
+                    .help(String(localized: "findnavigator.filter_help", defaultValue: "Show results with matching text", comment: "Help text for filter field"))
                 },
                 clearable: true
             )

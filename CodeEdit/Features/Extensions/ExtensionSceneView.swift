@@ -85,7 +85,7 @@ struct ExtensionSceneView: NSViewControllerRepresentable {
 
         func hostViewControllerWillDeactivate(_ viewController: EXHostViewController, error: Error?) {
             isOnline = false
-            print("Host will deactivate", error as Any)
+            print(String(localized: "extension.log.deactivate", defaultValue: "Host will deactivate", comment: "Logger info message - developer-facing, should not be localized"), error as Any)
         }
 
         func hostViewControllerDidActivate(_ viewController: EXHostViewController) {

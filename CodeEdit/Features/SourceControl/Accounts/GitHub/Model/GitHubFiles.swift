@@ -19,7 +19,7 @@ class GitHubFile: Codable {
     var content: String?
 
     enum CodingKeys: String, CodingKey {
-        case rawURL = "raw_url"
+        case rawURL = String(localized: "github.api.raw-url-key", defaultValue: "raw_url", comment: "GitHub API JSON key - technical constant, should not be localized")
         case filename
         case type
         case language

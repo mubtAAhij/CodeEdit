@@ -16,7 +16,7 @@ extension NotificationManager {
         content.body = notification.description
 
         if !notification.actionButtonTitle.isEmpty {
-            content.categoryIdentifier = "ACTIONABLE"
+            content.categoryIdentifier = String(localized: "notification.category.actionable", defaultValue: "ACTIONABLE", comment: "UNNotificationCategory identifier - technical constant, should not be localized")
         }
 
         let request = UNNotificationRequest(

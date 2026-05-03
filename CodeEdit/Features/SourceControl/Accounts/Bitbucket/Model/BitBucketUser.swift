@@ -16,8 +16,8 @@ class BitBucketUser: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case login = "username"
-        case name = "display_name"
+        case login = String(localized: "bitbucket.api.field.username", defaultValue: "username", comment: "Bitbucket API field name for username (CodingKey - NOT localized in code, technical constant)")
+        case name = String(localized: "bitbucket.api.field.display_name", defaultValue: "display_name", comment: "Bitbucket API field name for display name (CodingKey - NOT localized in code, technical constant)")
     }
 }
 
@@ -28,10 +28,10 @@ class BitBucketEmail: Codable {
     var email: String?
 
     enum CodingKeys: String, CodingKey {
-        case isPrimary = "is_primary"
-        case isConfirmed = "is_confirmed"
-        case type = "type"
-        case email = "email"
+        case isPrimary = String(localized: "bitbucket.api.field.is_primary", defaultValue: "is_primary", comment: "Bitbucket API field name for primary status (CodingKey - NOT localized in code, technical constant)")
+        case isConfirmed = String(localized: "bitbucket.api.field.is_confirmed", defaultValue: "is_confirmed", comment: "Bitbucket API field name for confirmed status (CodingKey - NOT localized in code, technical constant)")
+        case type = String(localized: "bitbucket.api.field.type", defaultValue: "type", comment: "Bitbucket API field name for type (CodingKey - NOT localized in code, technical constant)")
+        case email = String(localized: "bitbucket.api.field.email", defaultValue: "email", comment: "Bitbucket API field name for email (CodingKey - NOT localized in code, technical constant)")
     }
 }
 

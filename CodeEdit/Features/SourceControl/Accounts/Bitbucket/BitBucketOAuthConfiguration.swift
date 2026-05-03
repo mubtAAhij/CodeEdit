@@ -15,7 +15,7 @@ struct BitBucketOAuthConfiguration: GitRouterConfiguration {
     let secret: String
     let scopes: [String]
     let webEndpoint: String?
-    let errorDomain = "com.codeedit.models.accounts.bitbucket"
+    let errorDomain = String(localized: "bitbucket.error_domain", defaultValue: "com.codeedit.models.accounts.bitbucket", comment: "Bitbucket error domain")
 
     init(
         _ url: String? = nil,
@@ -36,7 +36,7 @@ struct BitBucketOAuthConfiguration: GitRouterConfiguration {
     }
 
     fileprivate func basicAuthenticationString() -> String {
-        let clientIDSecretString = [token, secret].joined(separator: ":")
+        let clientIDSecretString = [token, secret].joined(separator: String(localized: "bitbucket.auth.separator", defaultValue: ":", comment: "Auth separator colon"))
         let clientIDSecretData = clientIDSecretString.data(using: String.Encoding.utf8)
         let base64 = clientIDSecretData?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
         return "Basic \(base64 ?? "")"
@@ -44,7 +44,7 @@ struct BitBucketOAuthConfiguration: GitRouterConfiguration {
 
     func basicAuthConfig() -> URLSessionConfiguration {
         let config = URLSessionConfiguration.default
-        config.httpAdditionalHeaders = ["Authorization": basicAuthenticationString()]
+        config.httpAdditionalHeaders = [String(localized: "bitbucket.auth.header_name", defaultValue: "Authorization", comment: "Authorization header name"): basicAuthenticationString()]
         return config
     }
 
@@ -94,7 +94,7 @@ struct BitBucketOAuthConfiguration: GitRouterConfiguration {
     ) {
         let params = url.bitbucketURLParameters()
 
-        if let code = params["code"] {
+        if let code = params[String(localized: "bitbucket.oauth.code_param", defaultValue: "code", comment: "OAuth code parameter")] {
             authorize(session, code: code) { config in
                 completion(config)
             }
@@ -102,9 +102,9 @@ struct BitBucketOAuthConfiguration: GitRouterConfiguration {
     }
 
     func accessTokenFromResponse(_ response: String) -> String? {
-        let accessTokenParam = response.components(separatedBy: "&").first
+        let accessTokenParam = response.components(separatedBy: String(localized: "bitbucket.oauth.param_separator", defaultValue: "&", comment: "OAuth parameter separator")).first
         if let accessTokenParam {
-            return accessTokenParam.components(separatedBy: "=").last
+            return accessTokenParam.components(separatedBy: String(localized: "bitbucket.oauth.key_value_separator", defaultValue: "=", comment: "OAuth key-value separator")).last
         }
         return nil
     }

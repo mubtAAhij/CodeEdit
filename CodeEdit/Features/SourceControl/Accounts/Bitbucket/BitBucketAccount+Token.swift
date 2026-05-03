@@ -30,9 +30,9 @@ extension BitBucketAccount {
                     let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     if let responseJSON = responseJSON as? [String: AnyObject] {
                         if response.statusCode != 200 {
-                            let errorDescription = responseJSON["error_description"] as? String ?? ""
+                            let errorDescription = responseJSON[String(localized: "bitbucket.json.error-description", defaultValue: "error_description", comment: "Bitbucket API JSON key - technical constant, should not be localized")] as? String ?? ""
                             let error = NSError(
-                                domain: "com.codeedit.models.accounts.bitbucket",
+                                domain: String(localized: "bundle.bitbucket", defaultValue: "com.codeedit.models.accounts.bitbucket", comment: "Bundle identifier - technical constant, should not be localized"),
                                 code: response.statusCode,
                                 userInfo: [NSLocalizedDescriptionKey: errorDescription]
                             )

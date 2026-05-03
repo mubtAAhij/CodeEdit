@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OpenQuicklyPreviewView: View {
 
-    private let queue = DispatchQueue(label: "app.codeedit.CodeEdit.quickOpen.preview")
+    private let queue = DispatchQueue(label: String(localized: "uti.quick-open-preview", defaultValue: "app.codeedit.CodeEdit.quickOpen.preview", comment: "UTI identifier - technical constant, should not be localized"))
     private let item: CEWorkspaceFile
 
     @StateObject var editorInstance: EditorInstance
@@ -22,7 +22,7 @@ struct OpenQuicklyPreviewView: View {
         let doc = try? CodeFileDocument(
             for: item.url,
             withContentsOf: item.url,
-            ofType: item.contentType?.identifier ?? "public.source-code"
+            ofType: item.contentType?.identifier ?? String(localized: "uti.source-code", defaultValue: "public.source-code", comment: "UTI identifier - technical constant, should not be localized")
         )
         self._editorInstance = .init(wrappedValue: EditorInstance(workspace: nil, file: item))
         self._document = .init(wrappedValue: doc ?? .init())

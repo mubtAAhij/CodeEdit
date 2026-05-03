@@ -17,22 +17,22 @@ enum UtilityAreaTab: WorkspacePanelTab, CaseIterable {
     var title: String {
         switch self {
         case .terminal:
-            return "Terminal"
+            return String(localized: "utility.tab.terminal", defaultValue: "Terminal", comment: "Terminal utility tab title")
         case .debugConsole:
-            return "Debug Console"
+            return String(localized: "utility.tab.debug", defaultValue: "Debug Console", comment: "Debug console utility tab title")
         case .output:
-            return "Output"
+            return String(localized: "utility.tab.output", defaultValue: "Output", comment: "Output utility tab title")
         }
     }
 
     var systemImage: String {
         switch self {
         case .terminal:
-            return "terminal"
+            return String(localized: "utility.tab.terminal.icon", defaultValue: "terminal", comment: "SF Symbol for terminal icon")
         case .debugConsole:
-            return "ladybug"
+            return String(localized: "utility.tab.debug.icon", defaultValue: "ladybug", comment: "SF Symbol for debug icon")
         case .output:
-            return "list.bullet.indent"
+            return String(localized: "utility.tab.output.icon", defaultValue: "list.bullet.indent", comment: "SF Symbol for output icon")
         }
     }
 

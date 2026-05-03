@@ -52,8 +52,8 @@ struct LanguageServersView: View {
                     }
                 } header: {
                     Label(
-                        "Warning: Language server installation is experimental. Use at your own risk.",
-                        systemImage: "exclamationmark.triangle.fill"
+                        String(localized: "settings.extensions.lsp.warning", defaultValue: "Warning: Language server installation is experimental. Use at your own risk.", comment: "Language server installation warning"),
+                        systemImage: String(localized: "common.icon.warning_triangle", defaultValue: "exclamationmark.triangle.fill", comment: "SF Symbol for warning triangle icon")
                     )
                 }
             }
@@ -65,16 +65,12 @@ struct LanguageServersView: View {
     }
 
     private func getInfoString() -> AttributedString {
-        let string = "CodeEdit makes use of the Mason Registry for language server installation. To install a package, "
-        + "CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of "
-        + "the language server in Application Support.\n\n"
-        + "Language server installation is still experimental, there may be bugs and expect this flow "
-        + "to change over time."
+        let string = String(localized: "settings.extensions.lsp.info", defaultValue: "CodeEdit makes use of the Mason Registry for language server installation. To install a package, CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of the language server in Application Support.\n\nLanguage server installation is still experimental, there may be bugs and expect this flow to change over time.", comment: "Language server installation info text")
 
         var attrString = AttributedString(string)
 
-        if let linkRange = attrString.range(of: "Mason Registry") {
-            attrString[linkRange].link = URL(string: "https://mason-registry.dev/")
+        if let linkRange = attrString.range(of: String(localized: "settings.extensions.lsp.registry_name", defaultValue: "Mason Registry", comment: "Mason Registry name")) {
+            attrString[linkRange].link = URL(string: String(localized: "settings.extensions.lsp.registry_url", defaultValue: "https://mason-registry.dev/", comment: "Mason Registry URL"))
             attrString[linkRange].foregroundColor = NSColor.linkColor
         }
 

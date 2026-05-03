@@ -260,7 +260,7 @@ final class NotificationPanelViewModel: ObservableObject {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleNewNotificationAdded(_:)),
-            name: .init("NewNotificationAdded"),
+            name: .init(String(localized: "notification.name.added-2", defaultValue: "NewNotificationAdded", comment: "Notification name constant - technical identifier, should not be localized")),
             object: nil
         )
 
@@ -268,7 +268,7 @@ final class NotificationPanelViewModel: ObservableObject {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleNotificationRemoved(_:)),
-            name: .init("NotificationDismissed"),
+            name: .init(String(localized: "notification.name.dismissed-2", defaultValue: "NotificationDismissed", comment: "Notification name constant - technical identifier, should not be localized")),
             object: nil
         )
 

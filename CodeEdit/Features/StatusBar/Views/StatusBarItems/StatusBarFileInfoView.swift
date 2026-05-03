@@ -21,10 +21,13 @@ struct StatusBarFileInfoView: View {
         HStack(spacing: 15) {
 
             if let dimensions = statusBarViewModel.dimensions {
-                let width = dimensionsNumberStyle.format(dimensions.width)
-                let height = dimensionsNumberStyle.format(dimensions.height)
-
-                Text("\(width) × \(height)")
+                Text(
+                    String(
+                        format: String(localized: "status-bar.dimensions"),
+                        dimensions.width,
+                        dimensions.height
+                    )
+                )
             }
 
             if let fileSize = statusBarViewModel.fileSize {

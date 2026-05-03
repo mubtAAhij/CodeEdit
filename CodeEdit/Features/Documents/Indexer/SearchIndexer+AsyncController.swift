@@ -12,8 +12,8 @@ extension SearchIndexer {
     class AsyncManager {
         /// An instance of the SearchIndexer
         let index: SearchIndexer
-        private let addQueue = DispatchQueue(label: "app.codeedit.CodeEdit.AddFilesToIndex", attributes: .concurrent)
-        private let searchQueue = DispatchQueue(label: "app.codeedit.CodeEdit.SearchIndex", attributes: .concurrent)
+        private let addQueue = DispatchQueue(label: String(localized: "dispatch.add-files-to-index", defaultValue: "app.codeedit.CodeEdit.AddFilesToIndex", comment: "DispatchQueue label - technical constant, should not be localized"), attributes: .concurrent)
+        private let searchQueue = DispatchQueue(label: String(localized: "dispatch.search-index", defaultValue: "app.codeedit.CodeEdit.SearchIndex", comment: "DispatchQueue label - technical constant, should not be localized"), attributes: .concurrent)
 
         init(index: SearchIndexer) {
             self.index = index

@@ -21,11 +21,17 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     private var workspaceState: [String: Any] {
         get {
-            let key = "workspaceState-\(self.fileURL?.absoluteString ?? "")"
+            let key = String(
+                format: String(localized: "workspace.state_key", defaultValue: "workspaceState-%@", comment: "Workspace state user defaults key"),
+                self.fileURL?.absoluteString ?? ""
+            )
             return UserDefaults.standard.object(forKey: key) as? [String: Any] ?? [:]
         }
         set {
-            let key = "workspaceState-\(self.fileURL?.absoluteString ?? "")"
+            let key = String(
+                format: String(localized: "workspace.state_key", defaultValue: "workspaceState-%@", comment: "Workspace state user defaults key"),
+                self.fileURL?.absoluteString ?? ""
+            )
             UserDefaults.standard.set(newValue, forKey: key)
         }
     }
@@ -83,7 +89,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     // MARK: NSDocument
 
     private let ignoredFilesAndDirectory = [
-        ".DS_Store"
+        String(localized: "workspace.ignored_file.ds_store", defaultValue: ".DS_Store", comment: "macOS .DS_Store file name")
     ]
 
     override static var autosavesInPlace: Bool {
@@ -121,7 +127,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             window.center()
         }
 
-        window.setAccessibilityIdentifier("workspace")
+        window.setAccessibilityIdentifier(String(localized: "workspace.accessibility_id", defaultValue: "workspace", comment: "Workspace window accessibility identifier"))
         window.setAccessibilityDocument(self.fileURL?.absoluteString)
 
         self.addWindowController(windowController)
@@ -135,8 +141,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         // Ensure the URL ends with a "/" to prevent certain URL(filePath:relativeTo) initializers from
         // placing the file one directory above our workspace. This quick fix appends a "/" if needed.
         var url = url
-        if !url.absoluteString.hasSuffix("/") {
-            url = URL(filePath: url.absoluteURL.path(percentEncoded: false) + "/")
+        if !url.absoluteString.hasSuffix(String(localized: "workspace.url_separator", defaultValue: "/", comment: "URL path separator")) {
+            url = URL(filePath: url.absoluteURL.path(percentEncoded: false) + String(localized: "workspace.url_separator", defaultValue: "/", comment: "URL path separator"))
         }
 
         self.fileURL = url
@@ -258,10 +264,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         }
         // Invoke shouldCloseSelector at delegate
         let implementation = object.method(for: shouldCloseSelector)
-        let function = unsafeBitCast(
-            implementation,
-            to: (@convention(c)(Any, Selector, Any, Bool, UnsafeMutableRawPointer?) -> Void).self
-        )
+        typealias ClosureType = @convention(c) (Any, Selector, Any, Bool, UnsafeMutableRawPointer?) -> Void
+        let function = unsafeBitCast(implementation, to: ClosureType.self)
         let areAllOpenedCodeFilesClean = editorManager?.editorLayout.gatherOpenFiles()
             .compactMap(\.fileDocument)
             .allSatisfy { !$0.isDocumentEdited } ?? false

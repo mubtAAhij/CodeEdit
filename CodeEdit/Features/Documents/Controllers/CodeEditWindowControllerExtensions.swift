@@ -12,23 +12,23 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: "Quick Open",
-            title: "Quick Open",
-            id: "quick_open",
+            name: String(localized: "command.quick_open.name", defaultValue: "Quick Open", comment: "Command name for quick open"),
+            title: String(localized: "command.quick_open.title", defaultValue: "Quick Open", comment: "Command title for quick open"),
+            id: String(localized: "command.quick_open.id", defaultValue: "quick_open", comment: "Command identifier for quick open"),
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Navigator",
-            title: "Toggle Navigator",
-            id: "toggle_left_sidebar",
+            name: String(localized: "command.toggle_navigator.name", defaultValue: "Toggle Navigator", comment: "Command name for toggle navigator"),
+            title: String(localized: "command.toggle_navigator.title", defaultValue: "Toggle Navigator", comment: "Command title for toggle navigator"),
+            id: String(localized: "command.toggle_navigator.id", defaultValue: "toggle_left_sidebar", comment: "Command identifier for toggle navigator"),
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Inspector",
-            title: "Toggle Inspector",
-            id: "toggle_right_sidebar",
+            name: String(localized: "command.toggle_inspector.name", defaultValue: "Toggle Inspector", comment: "Command name for toggle inspector"),
+            title: String(localized: "command.toggle_inspector.title", defaultValue: "Toggle Inspector", comment: "Command title for toggle inspector"),
+            id: String(localized: "command.toggle_inspector.id", defaultValue: "toggle_right_sidebar", comment: "Command identifier for toggle inspector"),
             command: { [weak self] in self?.toggleLastPanel() }
         )
     }
@@ -105,7 +105,7 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle("Workspace Settings")
+            settingsWindow.setAccessibilityTitle(String(localized: "workspace_settings.accessibility_title", defaultValue: "Workspace Settings", comment: "Accessibility title for workspace settings window"))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }
@@ -113,14 +113,14 @@ extension CodeEditWindowController {
 }
 
 extension NSToolbarItem.Identifier {
-    static let toggleFirstSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ToggleFirstSidebarItem")
-    static let toggleLastSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ToggleLastSidebarItem")
-    static let stopTaskSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("StopTaskSidebarItem")
-    static let startTaskSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("StartTaskSidebarItem")
-    static let itemListTrackingSeparator = NSToolbarItem.Identifier("ItemListTrackingSeparator")
-    static let branchPicker: NSToolbarItem.Identifier = NSToolbarItem.Identifier("BranchPicker")
-    static let activityViewer: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ActivityViewer")
-    static let notificationItem = NSToolbarItem.Identifier("notificationItem")
+    static let toggleFirstSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier(String(localized: "toolbar.toggle_first_sidebar.identifier", defaultValue: "ToggleFirstSidebarItem", comment: "Toolbar identifier for toggle first sidebar"))
+    static let toggleLastSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier(String(localized: "toolbar.toggle_last_sidebar.identifier", defaultValue: "ToggleLastSidebarItem", comment: "Toolbar identifier for toggle last sidebar"))
+    static let stopTaskSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier(String(localized: "toolbar.stop_task.identifier", defaultValue: "StopTaskSidebarItem", comment: "Toolbar identifier for stop task"))
+    static let startTaskSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier(String(localized: "toolbar.start_task.identifier", defaultValue: "StartTaskSidebarItem", comment: "Toolbar identifier for start task"))
+    static let itemListTrackingSeparator = NSToolbarItem.Identifier(String(localized: "toolbar.item_list_separator.identifier", defaultValue: "ItemListTrackingSeparator", comment: "Toolbar identifier for item list separator"))
+    static let branchPicker: NSToolbarItem.Identifier = NSToolbarItem.Identifier(String(localized: "toolbar.branch_picker.identifier", defaultValue: "BranchPicker", comment: "Toolbar identifier for branch picker"))
+    static let activityViewer: NSToolbarItem.Identifier = NSToolbarItem.Identifier(String(localized: "toolbar.activity_viewer.identifier", defaultValue: "ActivityViewer", comment: "Toolbar identifier for activity viewer"))
+    static let notificationItem = NSToolbarItem.Identifier(String(localized: "toolbar.notification.identifier", defaultValue: "notificationItem", comment: "Toolbar identifier for notification"))
 
-    static let taskSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("TaskSidebarItem")
+    static let taskSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier(String(localized: "toolbar.task_sidebar.identifier", defaultValue: "TaskSidebarItem", comment: "Toolbar identifier for task sidebar"))
 }

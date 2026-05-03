@@ -117,11 +117,11 @@ struct UtilityAreaTerminalView: View {
                             )
                             .frame(height: max(0, constrainedHeight - 1))
                             .id(selectedTerminal.id)
-                            .accessibilityIdentifier("terminal")
+                            .accessibilityIdentifier(String(localized: "terminal.identifier", defaultValue: "terminal", comment: "Terminal accessibility identifier"))
                         }
                     }
                 } else {
-                    CEContentUnavailableView("No Selection")
+                    CEContentUnavailableView(String(localized: "terminal.no_selection", defaultValue: "No Selection", comment: "No terminal selection message"))
                 }
             }
             .padding(.horizontal, 10)
@@ -143,14 +143,14 @@ struct UtilityAreaTerminalView: View {
                     } label: {
                         Image(systemName: "trash")
                     }
-                    .help("Reset the terminal")
+                    .help(String(localized: "terminal.reset", defaultValue: "Reset the terminal", comment: "Reset terminal help text"))
                     .disabled(getSelectedTerminal() == nil)
                     Button {
                         // split terminal
                     } label: {
                         Image(systemName: "square.split.2x1")
                     }
-                    .help("Implementation Needed")
+                    .help(String(localized: "terminal.implementation_needed", defaultValue: "Implementation Needed", comment: "Implementation needed help text"))
                     .disabled(true)
                 }
             }

@@ -131,7 +131,7 @@ struct CommitListItemView: View {
                     }
                 }
 
-                Text("\(commit.message) \(commit.body)")
+                Text(String(format: String(localized: "source_control.commit.message_and_body", defaultValue: "%@ %@", comment: "Commit message and body"), commit.message, commit.body))
                     .font(.system(size: 11))
                     .lineLimit(2)
             }
@@ -156,17 +156,17 @@ struct CommitListItemView: View {
         .contentShape(Rectangle())
         .contextMenu {
             Group {
-                Button("Copy Commit Message") {
+                Button(String(localized: "source_control.commit.copy_commit_message", defaultValue: "Copy Commit Message", comment: "Menu item to copy commit message")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.message, forType: .string)
                 }
-                Button("Copy Identifier") {
+                Button(String(localized: "source_control.commit.copy_identifier", defaultValue: "Copy Identifier", comment: "Menu item to copy commit identifier")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.commitHash, forType: .string)
                 }
-                Button("Email \(commit.author)...") {
+                Button(String(format: String(localized: "source_control.commit.email_author", defaultValue: "Email %@...", comment: "Menu item to email commit author"), commit.author)) {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
                     service?.recipients = [commit.authorEmail]
                     service?.perform(withItems: [])
@@ -174,26 +174,26 @@ struct CommitListItemView: View {
                 Divider()
             }
             Group {
-                Button("Tag \(commit.hash)...") {}
+                Button(String(format: String(localized: "source_control.commit.tag", defaultValue: "Tag %@...", comment: "Menu item to tag commit"), commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("New Branch from \(commit.hash)...") {}
+                Button(String(format: String(localized: "source_control.commit.new_branch", defaultValue: "New Branch from %@...", comment: "Menu item to create new branch from commit"), commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("Cherry-Pick \(commit.hash)...") {}
+                Button(String(format: String(localized: "source_control.commit.cherry_pick", defaultValue: "Cherry-Pick %@...", comment: "Menu item to cherry-pick commit"), commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
             }
             Group {
                 Divider()
                 if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                    Button("View on \(commit.remoteString)...") {
+                    Button(String(format: String(localized: "source_control.commit.view_on_remote", defaultValue: "View on %@...", comment: "Menu item to view commit on remote"), commit.remoteString)) {
                         let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
                         openCommit(URL(string: commitURL)!)
                     }
                     Divider()
                 }
-                Button("Check Out \(commit.hash)...") {}
+                Button(String(format: String(localized: "source_control.commit.check_out", defaultValue: "Check Out %@...", comment: "Menu item to check out commit"), commit.hash)) {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
-                Button("History Editor Help") {}
+                Button(String(localized: "source_control.commit.history_editor_help", defaultValue: "History Editor Help", comment: "Menu item for history editor help")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
         }

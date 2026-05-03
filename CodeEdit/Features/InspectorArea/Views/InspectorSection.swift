@@ -33,8 +33,8 @@ struct InspectorSection<Content: View>: View {
 
 struct InspectorSection_Previews: PreviewProvider {
     static var previews: some View {
-        InspectorSection("Section Label") {
-            Text("Preview")
+        InspectorSection(String(localized: "inspector.preview.section-label-2", defaultValue: "Section Label", comment: "SwiftUI preview placeholder - should not be localized")) {
+            Text(String(localized: "inspector.preview.title-2", defaultValue: "Preview", comment: "SwiftUI preview placeholder - should not be localized"))
         }
     }
 }

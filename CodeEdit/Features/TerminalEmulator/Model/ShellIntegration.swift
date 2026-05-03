@@ -11,16 +11,16 @@ import os
 /// Provides a single function for setting up shell integrations.
 /// See ``ShellIntegration/setUpIntegration(for:environment:)``
 enum ShellIntegration {
-    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "ShellIntegration")
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "should_not_localize", defaultValue: "ShellIntegration", comment: ""))
 
     /// Variable constants used by setup scripts.
     enum Variables {
-        static let shellLogin = "CE_SHELL_LOGIN"
-        static let ceZDotDir = "CE_ZDOTDIR"
-        static let userZDotDir = "USER_ZDOTDIR"
-        static let zDotDir = "ZDOTDIR"
-        static let ceInjection = "CE_INJECTION"
-        static let disableHistory = "CE_DISABLE_HISTORY"
+        static let shellLogin = String(localized: "should_not_localize", defaultValue: "CE_SHELL_LOGIN", comment: "")
+        static let ceZDotDir = String(localized: "should_not_localize", defaultValue: "CE_ZDOTDIR", comment: "")
+        static let userZDotDir = String(localized: "should_not_localize", defaultValue: "USER_ZDOTDIR", comment: "")
+        static let zDotDir = String(localized: "should_not_localize", defaultValue: "ZDOTDIR", comment: "")
+        static let ceInjection = String(localized: "should_not_localize", defaultValue: "CE_INJECTION", comment: "")
+        static let disableHistory = String(localized: "should_not_localize", defaultValue: "CE_DISABLE_HISTORY", comment: "")
     }
 
     /// Errors for shell integration setup.
@@ -31,9 +31,9 @@ enum ShellIntegration {
         var localizedDescription: String {
             switch self {
             case .bashShellFileNotFound:
-                return "Failed to find bash injection file."
+                return String(localized: "shell_integration.error.bash_not_found", defaultValue: "Failed to find bash injection file.", comment: "Error message when bash injection file is not found")
             case .zshShellFileNotFound:
-                return "Failed to find zsh injection file."
+                return String(localized: "shell_integration.error.zsh_not_found", defaultValue: "Failed to find zsh injection file.", comment: "Error message when zsh injection file is not found")
             }
         }
     }
@@ -102,12 +102,12 @@ enum ShellIntegration {
     private static func bash(_ args: inout [String]) throws {
         // Inject our own bash script that will execute the user's init files, then install our pre/post exec functions.
         guard let scriptURL = Bundle.main.url(
-            forResource: "codeedit_shell_integration",
-            withExtension: "bash"
+            forResource: String(localized: "should_not_localize", defaultValue: "codeedit_shell_integration", comment: ""),
+            withExtension: String(localized: "should_not_localize", defaultValue: "bash", comment: "")
         ) else {
             throw Error.bashShellFileNotFound
         }
-        args.append(contentsOf: ["--init-file", scriptURL.path()])
+        args.append(contentsOf: [String(localized: "should_not_localize", defaultValue: "--init-file", comment: ""), scriptURL.path()])
     }
 
     /// Sets up the `zsh` shell integration.
@@ -129,17 +129,17 @@ enum ShellIntegration {
     ) throws {
         // All injection script URLs
         guard let profileScriptURL = Bundle.main.url(
-            forResource: "codeedit_shell_integration_profile",
-            withExtension: "zsh"
+            forResource: String(localized: "should_not_localize", defaultValue: "codeedit_shell_integration_profile", comment: ""),
+            withExtension: String(localized: "should_not_localize", defaultValue: "zsh", comment: "")
         ), let envScriptURL = Bundle.main.url(
-            forResource: "codeedit_shell_integration_env",
-            withExtension: "zsh"
+            forResource: String(localized: "should_not_localize", defaultValue: "codeedit_shell_integration_env", comment: ""),
+            withExtension: String(localized: "should_not_localize", defaultValue: "zsh", comment: "")
         ), let loginScriptURL = Bundle.main.url(
-            forResource: "codeedit_shell_integration_login",
-            withExtension: "zsh"
+            forResource: String(localized: "should_not_localize", defaultValue: "codeedit_shell_integration_login", comment: ""),
+            withExtension: String(localized: "should_not_localize", defaultValue: "zsh", comment: "")
         ), let rcScriptURL = Bundle.main.url(
-            forResource: "codeedit_shell_integration_rc",
-            withExtension: "zsh"
+            forResource: String(localized: "should_not_localize", defaultValue: "codeedit_shell_integration_rc", comment: ""),
+            withExtension: String(localized: "should_not_localize", defaultValue: "zsh", comment: "")
         ) else {
             throw Error.zshShellFileNotFound
         }
@@ -150,17 +150,17 @@ enum ShellIntegration {
 
         // Save any existing home dir. First getting a value from the environment.
         // Falling back to the user's home dir, then ~
-        let envZDotDir = environment.first(where: { $0.starts(with: "ZDOTDIR=") })?.trimmingPrefix("ZDOTDIR=")
-        let userZDotDir = (envZDotDir?.isEmpty ?? true) ? currentUser?.homeDir ?? "~" : String(envZDotDir ?? "")
+        let envZDotDir = environment.first(where: { $0.starts(with: String(localized: "should_not_localize", defaultValue: "ZDOTDIR=", comment: "")) })?.trimmingPrefix("ZDOTDIR=")
+        let userZDotDir = (envZDotDir?.isEmpty ?? true) ? currentUser?.homeDir ?? String(localized: "should_not_localize", defaultValue: "~", comment: "") : String(envZDotDir ?? "")
 
         environment.append("\(Variables.zDotDir)=\(tempDir.path())")
         environment.append("\(Variables.userZDotDir)=\(userZDotDir)")
 
         // Move all shell files to new temp dir
-        try copyFile(profileScriptURL, toDir: tempDir.appending(path: ".zprofile"))
-        try copyFile(envScriptURL, toDir: tempDir.appending(path: ".zshenv"))
-        try copyFile(loginScriptURL, toDir: tempDir.appending(path: ".zlogin"))
-        try copyFile(rcScriptURL, toDir: tempDir.appending(path: ".zshrc"))
+        try copyFile(profileScriptURL, toDir: tempDir.appending(path: String(localized: "should_not_localize", defaultValue: ".zprofile", comment: "")))
+        try copyFile(envScriptURL, toDir: tempDir.appending(path: String(localized: "should_not_localize", defaultValue: ".zshenv", comment: "")))
+        try copyFile(loginScriptURL, toDir: tempDir.appending(path: String(localized: "should_not_localize", defaultValue: ".zlogin", comment: "")))
+        try copyFile(rcScriptURL, toDir: tempDir.appending(path: String(localized: "should_not_localize", defaultValue: ".zshrc", comment: "")))
     }
 
     /// Helper function for safely copying files, removing existing ones if needed.
@@ -182,7 +182,7 @@ enum ShellIntegration {
     /// - Returns: The URL of the temporary directory.
     /// - Throws: Errors from `FileManager` operations.
     private static func makeTempDir(forShell shell: Shell, user: CurrentUser? = .getCurrentUser()) throws -> URL {
-        let username = user?.name ?? "unknown" // doesn't really matter but this is used later so might as well
+        let username = user?.name ?? String(localized: "should_not_localize", defaultValue: "unknown", comment: "") // doesn't really matter but this is used later so might as well
 
         // Create a temp directory to store our init files in.
         // The name of the directory is user-specific and shell-specific to avoid overlap.

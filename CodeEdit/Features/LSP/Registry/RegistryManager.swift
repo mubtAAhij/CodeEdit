@@ -14,16 +14,16 @@ import Combine
 final class RegistryManager: ObservableObject {
     static let shared = RegistryManager()
 
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "RegistryManager")
-    let installPath = Settings.shared.baseURL.appending(path: "Language Servers")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "registry.logger.category", defaultValue: "RegistryManager", comment: "Logger category for registry manager"))
+    let installPath = Settings.shared.baseURL.appending(path: String(localized: "registry.install_path", defaultValue: "Language Servers", comment: "Install path for language servers"))
 
     /// The URL of where the registry.json file will be downloaded from
     let registryURL = URL(
-        string: "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip"
+        string: String(localized: "registry.registry_url", defaultValue: "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip", comment: "URL for registry.json download")
     )!
     /// The URL of where the checksums.txt file will be downloaded from
     let checksumURL = URL(
-        string: "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt"
+        string: String(localized: "registry.checksum_url", defaultValue: "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt", comment: "URL for checksums.txt download")
     )!
 
     @Published var isDownloadingRegistry: Bool = false
@@ -86,9 +86,9 @@ final class RegistryManager: ObservableObject {
             name: .taskNotification,
             object: nil,
             userInfo: [
-                "id": packageName,
-                "action": "create",
-                "title": "Removing \(packageName)"
+                String(localized: "registry.notification.id_key", defaultValue: "id", comment: "Notification user info key for id"): packageName,
+                String(localized: "registry.notification.action_key", defaultValue: "action", comment: "Notification user info key for action"): String(localized: "registry.notification.action_create", defaultValue: "create", comment: "Notification action value for create"),
+                String(localized: "registry.notification.title_key", defaultValue: "title", comment: "Notification user info key for title"): String(format: String(localized: "registry.removing_package", defaultValue: "Removing %@", comment: "Message for removing package (package name)"), packageName)
             ]
         )
 
@@ -139,10 +139,10 @@ final class RegistryManager: ObservableObject {
             self?.runningInstall = operation
 
             // Add to activity viewer
-            let activityTitle = "\(operation.package.name)\("@" + (method.version ?? "latest"))"
+            let activityTitle = "\(operation.package.name)\("@" + (method.version ?? String(localized: "registry.version_latest", defaultValue: "latest", comment: "Latest version label")))"
             TaskNotificationHandler.postTask(
                 action: .create,
-                model: TaskNotificationModel(id: operation.package.name, title: "Installing \(activityTitle)")
+                model: TaskNotificationModel(id: operation.package.name, title: String(format: String(localized: "registry.installing_package", defaultValue: "Installing %@", comment: "Message for installing package (package title)"), activityTitle))
             )
 
             guard !Task.isCancelled else { return }
@@ -181,25 +181,25 @@ final class RegistryManager: ObservableObject {
     ) {
         if failed {
             NotificationManager.shared.post(
-                iconSymbol: "xmark.circle",
+                iconSymbol: String(localized: "registry.install_failed.icon", defaultValue: "xmark.circle", comment: "System icon name for failed installation"),
                 iconColor: .clear,
-                title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                title: String(format: String(localized: "registry.install_failed.title", defaultValue: "Could not install %@", comment: "Title for failed installation (package name)"), activityName),
+                description: String(localized: "registry.install_failed.description", defaultValue: "There was a problem during installation.", comment: "Description for failed installation"),
+                actionButtonTitle: String(localized: "registry.install_failed.button", defaultValue: "Done", comment: "Done button for failed installation"),
                 action: {},
             )
         } else {
             TaskNotificationHandler.postTask(
                 action: .update,
-                model: TaskNotificationModel(id: id, title: "Successfully installed \(activityName)", isLoading: false)
+                model: TaskNotificationModel(id: id, title: String(format: String(localized: "registry.install_success.title", defaultValue: "Successfully installed %@", comment: "Title for successful installation (package name)"), activityName), isLoading: false)
             )
             NotificationCenter.default.post(
                 name: .taskNotification,
                 object: nil,
                 userInfo: [
-                    "id": id,
-                    "action": "deleteWithDelay",
-                    "delay": 5.0,
+                    String(localized: "registry.notification.id_key", defaultValue: "id", comment: "Notification user info key for id"): id,
+                    String(localized: "registry.notification.action_key", defaultValue: "action", comment: "Notification user info key for action"): String(localized: "registry.notification.action_delete_with_delay", defaultValue: "deleteWithDelay", comment: "Notification action value for delete with delay"),
+                    String(localized: "registry.notification.delay_key", defaultValue: "delay", comment: "Notification user info key for delay"): 5.0,
                 ]
             )
         }

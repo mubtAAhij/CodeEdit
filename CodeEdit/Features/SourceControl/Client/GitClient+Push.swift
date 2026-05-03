@@ -16,7 +16,7 @@ extension GitClient {
         force: Bool? = false,
         tags: Bool? = false
     ) async throws {
-        var command = "push"
+        var command = String(localized: "git.command.push", defaultValue: "push", comment: "Git command - technical constant, should not be localized")
         if let remote, let branch {
             if setUpstream == true {
                 command += " --set-upstream"
@@ -32,7 +32,7 @@ extension GitClient {
 
         let output = try await self.run(command)
 
-        if output.contains("rejected") {
+        if output.contains(String(localized: "git.status.rejected", defaultValue: "rejected", comment: "Git push status keyword - technical constant, should not be localized")) {
             throw GitClientError.outputError(output)
         }
     }

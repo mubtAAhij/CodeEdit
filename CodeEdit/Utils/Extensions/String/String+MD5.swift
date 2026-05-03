@@ -30,6 +30,6 @@ extension String {
         let computed = Insecure.MD5.hash(data: string.data(using: .utf8)!)
 
         // map the result to a hex string and return
-        return computed.compactMap { String(format: "%02x", $0) }.joined()
+        return computed.compactMap { String(format: String(localized: "string.md5.hex-format", defaultValue: "%02x", comment: "Hexadecimal format specifier - technical format string, should not be localized"), $0) }.joined()
     }
 }

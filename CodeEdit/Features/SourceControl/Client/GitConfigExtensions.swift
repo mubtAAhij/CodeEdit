@@ -14,14 +14,14 @@ import Foundation
 extension Bool: GitConfigRepresentable {
     public init?(configValue: String) {
         switch configValue.lowercased() {
-        case "true": self = true
-        case "false": self = false
+        case String(localized: "git.config.bool.true", defaultValue: "true", comment: "Git config boolean true value"): self = true
+        case String(localized: "git.config.bool.false", defaultValue: "false", comment: "Git config boolean false value"): self = false
         default: return nil
         }
     }
 
     public var asConfigValue: String {
-        self ? "true" : "false"
+        self ? String(localized: "git.config.bool.true", defaultValue: "true", comment: "Git config boolean true value") : String(localized: "git.config.bool.false", defaultValue: "false", comment: "Git config boolean false value")
     }
 }
 
@@ -35,6 +35,6 @@ extension String: GitConfigRepresentable {
     }
 
     public var asConfigValue: String {
-        "\"\(self)\""
+        String(format: String(localized: "git.config.string.format", defaultValue: "\"%@\"", comment: "Git config string format with quotes"), self)
     }
 }

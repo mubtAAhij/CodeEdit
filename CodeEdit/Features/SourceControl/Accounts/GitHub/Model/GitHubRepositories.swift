@@ -59,8 +59,8 @@ extension GitHubAccount {
     func repositories(
         _ session: GitURLSession = URLSession.shared,
         owner: String? = nil,
-        page: String = "1",
-        perPage: String = "100",
+        page: String = String(localized: "github.pagination.default_page", defaultValue: "1", comment: "Default pagination page number"),
+        perPage: String = String(localized: "github.pagination.default_per_page", defaultValue: "100", comment: "Default number of repositories per page"),
         completion: @escaping (_ response: Result<[GitHubRepositories], Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
         let router = (owner != nil)

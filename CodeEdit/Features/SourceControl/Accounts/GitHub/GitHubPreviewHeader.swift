@@ -19,7 +19,7 @@ enum GitHubPreviewHeader {
     var header: GitHTTPHeader {
         switch self {
         case .reactions:
-            return GitHTTPHeader(headerField: "Accept", value: "application/vnd.github.squirrel-girl-preview")
+            return GitHTTPHeader(headerField: String(localized: "http.header.accept", defaultValue: "Accept", comment: "HTTP header name - technical constant, should not be localized"), value: String(localized: "mime.github-preview", defaultValue: "application/vnd.github.squirrel-girl-preview", comment: "GitHub API MIME type - technical constant, should not be localized"))
         }
     }
 }

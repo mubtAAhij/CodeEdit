@@ -26,7 +26,7 @@ struct TaskOutputActionsView: View {
                     .foregroundStyle(.green)
             }
             .buttonStyle(.icon)
-            .help("Run Task")
+            .help(String(localized: "task_output.run", defaultValue: "Run Task", comment: "Run task button tooltip"))
 
             Button {
                 taskManager.terminateTask(taskID: activeTask.task.id)
@@ -38,7 +38,7 @@ struct TaskOutputActionsView: View {
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
-            .help("Stop Task")
+            .help(String(localized: "task_output.stop", defaultValue: "Stop Task", comment: "Stop task button tooltip"))
 
             Button {
                 if activeTask.status == .stopped {
@@ -56,7 +56,7 @@ struct TaskOutputActionsView: View {
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
             .opacity(activeTask.status == .running || activeTask.status == .stopped ? 1 : 0.5)
-            .help(activeTask.status == .stopped ? "Resume Task" : "Suspend Task")
+            .help(activeTask.status == .stopped ? String(localized: "task_output.resume", defaultValue: "Resume Task", comment: "Resume task button tooltip") : String(localized: "task_output.suspend", defaultValue: "Suspend Task", comment: "Suspend task button tooltip"))
 
             Divider()
 
@@ -68,7 +68,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "text.append")
             }
             .buttonStyle(.icon)
-            .help("Scroll down to the bottom")
+            .help(String(localized: "task_output.scroll_bottom", defaultValue: "Scroll down to the bottom", comment: "Scroll to bottom button tooltip"))
 
             Button {
                 activeTask.clearOutput()
@@ -76,7 +76,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "trash")
             }
             .buttonStyle(.icon)
-            .help("Clear Output")
+            .help(String(localized: "task_output.clear", defaultValue: "Clear Output", comment: "Clear output button tooltip"))
         }
     }
 }

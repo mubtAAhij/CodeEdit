@@ -13,7 +13,7 @@ extension LanguageServer {
         do {
             let cacheKey = CacheKey(
                 uri: documentURI,
-                requestType: "completion",
+                requestType: String(localized: "lsp.protocol.completion", defaultValue: "completion", comment: "LSP protocol key - technical constant, should not be localized"),
                 extraData: position
             )
             if let cachedResponse: CompletionResponse = lspCache.get(key: cacheKey, as: CompletionResponse.self) {

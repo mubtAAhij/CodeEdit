@@ -131,7 +131,7 @@ final class NotificationManager: NSObject, ObservableObject {
         removeSystemNotification(notification)
 
         NotificationCenter.default.post(
-            name: .init("NotificationDismissed"),
+            name: .init(String(localized: "notification.name.dismissed", defaultValue: "NotificationDismissed", comment: "Notification name constant - technical identifier, should not be localized")),
             object: notification
         )
     }
@@ -183,7 +183,7 @@ final class NotificationManager: NSObject, ObservableObject {
 
             // Always notify workspaces of new notification
             NotificationCenter.default.post(
-                name: .init("NewNotificationAdded"),
+                name: .init(String(localized: "notification.name.added", defaultValue: "NewNotificationAdded", comment: "Notification name constant - technical identifier, should not be localized")),
                 object: notification
             )
 

@@ -81,7 +81,7 @@ enum FileIcon {
         case swift
         case ts
         case tsx
-        case txt = "text"
+        case txt = String(localized: "should_not_localize", defaultValue: "text", comment: "")
         case vue
         case wav
         case xcconfig
@@ -96,76 +96,76 @@ enum FileIcon {
     static func fileIcon(fileType: FileType?) -> String { // swiftlint:disable:this cyclomatic_complexity function_body_length line_length
         switch fileType {
         case .json, .yml, .resolved:
-            return "doc.json"
+            return String(localized: "should_not_localize", defaultValue: "doc.json", comment: "")
         case .lock:
-            return "lock.doc"
+            return String(localized: "should_not_localize", defaultValue: "lock.doc", comment: "")
         case .css:
-            return "curlybraces"
+            return String(localized: "should_not_localize", defaultValue: "curlybraces", comment: "")
         case .js, .mjs:
-            return "doc.javascript"
+            return String(localized: "should_not_localize", defaultValue: "doc.javascript", comment: "")
         case .jsx, .tsx:
-            return "atom"
+            return String(localized: "should_not_localize", defaultValue: "atom", comment: "")
         case .swift:
-            return "swift"
+            return String(localized: "should_not_localize", defaultValue: "swift", comment: "")
         case .env, .example:
-            return "gearshape.fill"
+            return String(localized: "should_not_localize", defaultValue: "gearshape.fill", comment: "")
         case .gitignore:
-            return "arrow.triangle.branch"
+            return String(localized: "should_not_localize", defaultValue: "arrow.triangle.branch", comment: "")
         case .pdf, .png, .jpg, .jpeg, .ico:
-            return "photo"
+            return String(localized: "should_not_localize", defaultValue: "photo", comment: "")
         case .svg:
-            return "square.fill.on.circle.fill"
+            return String(localized: "should_not_localize", defaultValue: "square.fill.on.circle.fill", comment: "")
         case .entitlements:
-            return "checkmark.seal"
+            return String(localized: "should_not_localize", defaultValue: "checkmark.seal", comment: "")
         case .plist:
-            return "tablecells"
+            return String(localized: "should_not_localize", defaultValue: "tablecells", comment: "")
         case .md, .txt:
-            return "doc.plaintext"
+            return String(localized: "should_not_localize", defaultValue: "doc.plaintext", comment: "")
         case .rtf:
-            return "doc.richtext"
+            return String(localized: "should_not_localize", defaultValue: "doc.richtext", comment: "")
         case .html:
-            return "chevron.left.forwardslash.chevron.right"
+            return String(localized: "should_not_localize", defaultValue: "chevron.left.forwardslash.chevron.right", comment: "")
         case .LICENSE:
-            return "key.fill"
+            return String(localized: "should_not_localize", defaultValue: "key.fill", comment: "")
         case .java:
-            return "cup.and.saucer"
+            return String(localized: "should_not_localize", defaultValue: "cup.and.saucer", comment: "")
         case .py:
-            return "doc.python"
+            return String(localized: "should_not_localize", defaultValue: "doc.python", comment: "")
         case .rb:
-            return "doc.ruby"
+            return String(localized: "should_not_localize", defaultValue: "doc.ruby", comment: "")
         case .strings:
-            return "text.quote"
+            return String(localized: "should_not_localize", defaultValue: "text.quote", comment: "")
         case .h:
-            return "h.square"
+            return String(localized: "should_not_localize", defaultValue: "h.square", comment: "")
         case .m:
-            return "m.square"
+            return String(localized: "should_not_localize", defaultValue: "m.square", comment: "")
         case .vue:
-            return "v.square"
+            return String(localized: "should_not_localize", defaultValue: "v.square", comment: "")
         case .go:
-            return "g.square"
+            return String(localized: "should_not_localize", defaultValue: "g.square", comment: "")
         case .sum:
-            return "s.square"
+            return String(localized: "should_not_localize", defaultValue: "s.square", comment: "")
         case .mod:
-            return "m.square"
+            return String(localized: "should_not_localize", defaultValue: "m.square", comment: "")
         case .bash, .sh, .Makefile, .zsh:
-            return "terminal"
+            return String(localized: "should_not_localize", defaultValue: "terminal", comment: "")
         case .rs:
-            return "r.square"
+            return String(localized: "should_not_localize", defaultValue: "r.square", comment: "")
         case .wav, .mp3, .aif, .mid:
-            return "speaker.wave.2"
+            return String(localized: "should_not_localize", defaultValue: "speaker.wave.2", comment: "")
         case .avi, .mp4, .mov:
-            return "film"
+            return String(localized: "should_not_localize", defaultValue: "film", comment: "")
         case .scpt:
-            return "applescript"
+            return String(localized: "should_not_localize", defaultValue: "applescript", comment: "")
         case .xcconfig:
-            return "gearshape.2"
+            return String(localized: "should_not_localize", defaultValue: "gearshape.2", comment: "")
         case .cetheme:
-            return "paintbrush"
+            return String(localized: "should_not_localize", defaultValue: "paintbrush", comment: "")
         case .adb, .clj, .cls, .cs, .d, .dart, .elm, .ex, .f95, .fs, .gs, .hs,
              .jl, .kt, .l, .lsp, .lua, .mk, .pas, .pl, .scm, .ss:
-            return "doc.plaintext"
+            return String(localized: "should_not_localize", defaultValue: "doc.plaintext", comment: "")
         default:
-            return "doc"
+            return String(localized: "should_not_localize", defaultValue: "doc", comment: "")
         }
     }
 

@@ -23,21 +23,21 @@ struct GitHubReview {
 extension GitHubReview: Codable {
     enum CodingKeys: String, CodingKey {
         case body
-        case commitID = "commit_id"
+        case commitID = String(localized: "github.api.field.commit_id", defaultValue: "commit_id", comment: "GitHub API commit_id field")
         case id
         case state
-        case submittedAt = "submitted_at"
+        case submittedAt = String(localized: "github.api.field.submitted_at", defaultValue: "submitted_at", comment: "GitHub API submitted_at field")
         case user
     }
 }
 
 extension GitHubReview {
     enum State: String, Codable, Equatable {
-        case approved = "APPROVED"
-        case changesRequested = "CHANGES_REQUESTED"
-        case comment = "COMMENTED"
-        case dismissed = "DISMISSED"
-        case pending = "PENDING"
+        case approved = String(localized: "github.review.state.approved", defaultValue: "APPROVED", comment: "GitHub review approved state")
+        case changesRequested = String(localized: "github.review.state.changes_requested", defaultValue: "CHANGES_REQUESTED", comment: "GitHub review changes requested state")
+        case comment = String(localized: "github.review.state.commented", defaultValue: "COMMENTED", comment: "GitHub review commented state")
+        case dismissed = String(localized: "github.review.state.dismissed", defaultValue: "DISMISSED", comment: "GitHub review dismissed state")
+        case pending = String(localized: "github.review.state.pending", defaultValue: "PENDING", comment: "GitHub review pending state")
     }
 }
 

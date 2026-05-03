@@ -25,17 +25,17 @@ class GitLabCommit: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case shortID = "short_id"
+        case shortID = String(localized: "should_not_localize", defaultValue: "short_id", comment: "CodingKey for JSON serialization - technical string")
         case title
-        case authorName = "author_name"
-        case authorEmail = "author_email"
-        case committerName = "committer_name"
-        case committerEmail = "committer_email"
-        case createdAt = "created_at"
+        case authorName = String(localized: "should_not_localize", defaultValue: "author_name", comment: "CodingKey for JSON serialization - technical string")
+        case authorEmail = String(localized: "should_not_localize", defaultValue: "author_email", comment: "CodingKey for JSON serialization - technical string")
+        case committerName = String(localized: "should_not_localize", defaultValue: "committer_name", comment: "CodingKey for JSON serialization - technical string")
+        case committerEmail = String(localized: "should_not_localize", defaultValue: "committer_email", comment: "CodingKey for JSON serialization - technical string")
+        case createdAt = String(localized: "should_not_localize", defaultValue: "created_at", comment: "CodingKey for JSON serialization - technical string")
         case message
-        case committedDate = "committed_date"
-        case authoredDate = "authored_date"
-        case parentIDs = "parent_ids"
+        case committedDate = String(localized: "should_not_localize", defaultValue: "committed_date", comment: "CodingKey for JSON serialization - technical string")
+        case authoredDate = String(localized: "should_not_localize", defaultValue: "authored_date", comment: "CodingKey for JSON serialization - technical string")
+        case parentIDs = String(localized: "should_not_localize", defaultValue: "parent_ids", comment: "CodingKey for JSON serialization - technical string")
         case stats
         case status
     }
@@ -65,13 +65,13 @@ class GitLabCommitDiff: Codable {
 
     enum CodingKeys: String, CodingKey {
         case diff
-        case newPath = "new_path"
-        case oldPath = "old_path"
-        case aMode = "a_mode"
-        case bMode = "b_mode"
-        case newFile = "new_file"
-        case renamedFile = "renamed_file"
-        case deletedFile = "deleted_file"
+        case newPath = String(localized: "should_not_localize", defaultValue: "new_path", comment: "CodingKey for JSON serialization - technical string")
+        case oldPath = String(localized: "should_not_localize", defaultValue: "old_path", comment: "CodingKey for JSON serialization - technical string")
+        case aMode = String(localized: "should_not_localize", defaultValue: "a_mode", comment: "CodingKey for JSON serialization - technical string")
+        case bMode = String(localized: "should_not_localize", defaultValue: "b_mode", comment: "CodingKey for JSON serialization - technical string")
+        case newFile = String(localized: "should_not_localize", defaultValue: "new_file", comment: "CodingKey for JSON serialization - technical string")
+        case renamedFile = String(localized: "should_not_localize", defaultValue: "renamed_file", comment: "CodingKey for JSON serialization - technical string")
+        case deletedFile = String(localized: "should_not_localize", defaultValue: "deleted_file", comment: "CodingKey for JSON serialization - technical string")
     }
 }
 
@@ -101,12 +101,12 @@ class GitLabCommitStatus: Codable {
 
     enum CodingKeys: String, CodingKey {
         case status
-        case createdAt = "created_at"
-        case startedAt = "started_at"
+        case createdAt = String(localized: "should_not_localize", defaultValue: "created_at", comment: "CodingKey for JSON serialization - technical string")
+        case startedAt = String(localized: "should_not_localize", defaultValue: "started_at", comment: "CodingKey for JSON serialization - technical string")
         case name
-        case allowFailure = "allow_failure"
+        case allowFailure = String(localized: "should_not_localize", defaultValue: "allow_failure", comment: "CodingKey for JSON serialization - technical string")
         case author
-        case statusDescription = "description"
+        case statusDescription = String(localized: "should_not_localize", defaultValue: "description", comment: "CodingKey for JSON serialization - technical string")
         case sha
         case targetURL = "target_url"
         case finishedAt = "finished_at"

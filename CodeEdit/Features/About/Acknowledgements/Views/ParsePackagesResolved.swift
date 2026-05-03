@@ -28,7 +28,7 @@ struct AcknowledgementPin: Codable {
     let state: AcknowledgementPackageState
 
     var name: String {
-        location.split(separator: "/").last?.replacingOccurrences(of: ".git", with: "") ?? identity
+        location.split(separator: String(localized: "path.separator", defaultValue: "/", comment: "Path separator - technical constant, should not be localized")).last?.replacingOccurrences(of: String(localized: "file.extension.git", defaultValue: ".git", comment: "Git file extension - technical constant, should not be localized"), with: "") ?? identity
     }
 }
 

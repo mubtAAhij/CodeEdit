@@ -15,9 +15,9 @@ enum Shell: String, CaseIterable {
     var url: String {
         switch self {
         case .bash:
-            "/bin/bash"
+            String(localized: "shell.bash.path", defaultValue: "/bin/bash", comment: "Bash shell path")
         case .zsh:
-            "/bin/zsh"
+            String(localized: "shell.zsh.path", defaultValue: "/bin/zsh", comment: "Zsh shell path")
         }
     }
 
@@ -31,9 +31,9 @@ enum Shell: String, CaseIterable {
     var defaultPath: String {
         switch self {
         case .bash:
-            "/bin/bash"
+            String(localized: "shell.bash.path", defaultValue: "/bin/bash", comment: "Bash shell path")
         case .zsh:
-            "/bin/zsh"
+            String(localized: "shell.zsh.path", defaultValue: "/bin/zsh", comment: "Zsh shell path")
         }
     }
 
@@ -48,11 +48,11 @@ enum Shell: String, CaseIterable {
         switch self {
         case .bash, .zsh:
             if interactive {
-                args.append("i")
+                args.append(String(localized: "shell.arg.interactive", defaultValue: "i", comment: "Interactive shell argument"))
             }
 
             if login {
-                args.append("l")
+                args.append(String(localized: "shell.arg.login", defaultValue: "l", comment: "Login shell argument"))
             }
         }
 

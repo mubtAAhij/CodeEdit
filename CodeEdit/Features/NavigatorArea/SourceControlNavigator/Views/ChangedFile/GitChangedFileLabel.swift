@@ -35,19 +35,19 @@ struct GitChangedFileLabel: View {
         GitChangedFileLabel(file: GitChangedFile(
             status: .modified,
             stagedStatus: .none,
-            fileURL: URL(filePath: "/Users/CodeEdit/app.jsx"),
+            fileURL: URL(filePath: String(localized: "preview.git.file_path", defaultValue: "/Users/CodeEdit/app.jsx", comment: "Preview file path")),
             originalFilename: nil
         ))
-        .environmentObject(SourceControlManager(workspaceURL: URL(filePath: "/Users/CodeEdit"), editorManager: .init()))
+        .environmentObject(SourceControlManager(workspaceURL: URL(filePath: String(localized: "preview.git.workspace_path", defaultValue: "/Users/CodeEdit", comment: "Preview workspace path")), editorManager: .init()))
         .environmentObject(WorkspaceDocument())
 
         GitChangedFileLabel(file: GitChangedFile(
             status: .none,
             stagedStatus: .renamed,
-            fileURL: URL(filePath: "/Users/CodeEdit/app.jsx"),
-            originalFilename: "app2.jsx"
+            fileURL: URL(filePath: String(localized: "preview.git.file_path", defaultValue: "/Users/CodeEdit/app.jsx", comment: "Preview file path")),
+            originalFilename: String(localized: "preview.git.original_filename", defaultValue: "app2.jsx", comment: "Preview original filename")
         ))
-        .environmentObject(SourceControlManager(workspaceURL: URL(filePath: "/Users/CodeEdit"), editorManager: .init()))
+        .environmentObject(SourceControlManager(workspaceURL: URL(filePath: String(localized: "preview.git.workspace_path", defaultValue: "/Users/CodeEdit", comment: "Preview workspace path")), editorManager: .init()))
         .environmentObject(WorkspaceDocument())
     }.padding()
 }

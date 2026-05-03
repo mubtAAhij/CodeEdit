@@ -46,7 +46,7 @@ extension Color {
     var hexString: String {
         let color = self.hex
 
-        return "#" + String(format: "%06x", color)
+        return "#" + String(format: String(localized: "color.hex.format-6", defaultValue: "%06x", comment: "Printf format for 6-digit hex color - technical constant, should not be localized"), color)
     }
 
     /// The alpha (opacity) component of the Color (0.0 - 1.0)
@@ -94,6 +94,6 @@ extension NSColor {
     var hexString: String {
         let color = self.hex
 
-        return "#" + String(format: "%06x", color)
+        return "#" + String(format: String(localized: "color.hex.format-6-dup", defaultValue: "%06x", comment: "Printf format for 6-digit hex color - technical constant, should not be localized"), color)
     }
 }

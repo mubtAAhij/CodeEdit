@@ -24,8 +24,8 @@ extension GitLabAccount {
      */
     func projects(
         _ session: GitURLSession = URLSession.shared,
-        page: String = "1",
-        perPage: String = "20",
+        page: String = String(localized: "gitlab.pagination.default_page", defaultValue: "1", comment: "Default pagination page number"),
+        perPage: String = String(localized: "gitlab.pagination.default_per_page", defaultValue: "20", comment: "Default number of items per page"),
         archived: Bool = false,
         visibility: GitLabVisibility = GitLabVisibility.all,
         orderBy: GitLabOrderBy = GitLabOrderBy.creationDate,
@@ -106,8 +106,8 @@ extension GitLabAccount {
      */
     func visibleProjects(
         _ session: GitURLSession = URLSession.shared,
-        page: String = "1",
-        perPage: String = "20",
+        page: String = String(localized: "gitlab.pagination.default_page", defaultValue: "1", comment: "Default pagination page number"),
+        perPage: String = String(localized: "gitlab.pagination.default_per_page", defaultValue: "20", comment: "Default number of items per page"),
         archived: Bool = false,
         visibility: GitLabVisibility = GitLabVisibility.all,
         orderBy: GitLabOrderBy = GitLabOrderBy.creationDate,
@@ -160,8 +160,8 @@ extension GitLabAccount {
      */
     func ownedProjects(
         _ session: GitURLSession = URLSession.shared,
-        page: String = "1",
-        perPage: String = "20",
+        page: String = String(localized: "gitlab.pagination.default_page", defaultValue: "1", comment: "Default pagination page number"),
+        perPage: String = String(localized: "gitlab.pagination.default_per_page", defaultValue: "20", comment: "Default number of items per page"),
         archived: Bool = false,
         visibility: GitLabVisibility = GitLabVisibility.all,
         orderBy: GitLabOrderBy = GitLabOrderBy.creationDate,
@@ -214,8 +214,8 @@ extension GitLabAccount {
      */
     func starredProjects(
         _ session: GitURLSession = URLSession.shared,
-        page: String = "1",
-        perPage: String = "20",
+        page: String = String(localized: "gitlab.pagination.default_page", defaultValue: "1", comment: "Default pagination page number"),
+        perPage: String = String(localized: "gitlab.pagination.default_per_page", defaultValue: "20", comment: "Default number of items per page"),
         archived: Bool = false,
         visibility: GitLabVisibility = GitLabVisibility.all,
         orderBy: GitLabOrderBy = GitLabOrderBy.creationDate,
@@ -268,8 +268,8 @@ extension GitLabAccount {
      */
     func allProjects(
         _ session: GitURLSession = URLSession.shared,
-        page: String = "1",
-        perPage: String = "20",
+        page: String = String(localized: "gitlab.pagination.default_page", defaultValue: "1", comment: "Default pagination page number"),
+        perPage: String = String(localized: "gitlab.pagination.default_per_page", defaultValue: "20", comment: "Default number of items per page"),
         archived: Bool = false,
         visibility: GitLabVisibility = GitLabVisibility.all,
         orderBy: GitLabOrderBy = GitLabOrderBy.creationDate,
@@ -316,8 +316,8 @@ extension GitLabAccount {
     func projectEvents(
         _ session: GitURLSession = URLSession.shared,
         id: String,
-        page: String = "1",
-        perPage: String = "20",
+        page: String = String(localized: "gitlab.pagination.default_page", defaultValue: "1", comment: "Default pagination page number"),
+        perPage: String = String(localized: "gitlab.pagination.default_per_page", defaultValue: "20", comment: "Default number of items per page"),
         completion: @escaping (_ response: Result<GitLabEvent, Error>) -> Void
     ) -> GitURLSessionDataTaskProtocol? {
         let router = GitLabProjectRouter.readProjectEvents(

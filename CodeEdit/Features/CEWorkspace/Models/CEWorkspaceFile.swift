@@ -48,7 +48,7 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
             return type
         } else {
             /// If  there's not, verifies every extension for a valid type.
-            let extensions = filename.dropFirst().components(separatedBy: ".").reversed()
+            let extensions = filename.dropFirst().components(separatedBy: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Dot separator for file extension parsing")).reversed()
 
             return extensions
                 .compactMap { FileIcon.FileType(rawValue: $0) }
@@ -223,7 +223,7 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
         if self.parent == nil {
             return "folder.fill.badge.gearshape"
         }
-        if self.name == ".codeedit" {
+        if self.name == String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Directory name constant (technical constant for folder identification)") {
             return "folder.fill.badge.gearshape"
         }
         return isEmptyFolder ? "folder" : "folder.fill"

@@ -32,7 +32,7 @@ struct ExtensionInfo: Identifiable, Hashable {
     }
 
     var version: String? {
-        bundle?.infoDictionary?["CFBundleShortVersionString"] as? String
+        bundle?.infoDictionary?[String(localized: "extension.info.version_key", defaultValue: "CFBundleShortVersionString", comment: "Bundle info dictionary key for version string")] as? String
     }
 
     func restart() {
@@ -97,11 +97,11 @@ extension ExtensionInfo {
 extension ExtensionInfo {
     /// Bundle identifier of parent app
     var parentBundleIdentifier: String {
-        endpoint.bundleIdentifier.split(separator: ".").dropLast().joined(separator: ".")
+        endpoint.bundleIdentifier.split(separator: String(localized: "extension.identifier.separator", defaultValue: ".", comment: "Bundle identifier separator character")).dropLast().joined(separator: ".")
     }
 
     var lastPathOfBundleIdentifier: String {
-        String(endpoint.bundleIdentifier.split(separator: ".").last!)
+        String(endpoint.bundleIdentifier.split(separator: String(localized: "extension.identifier.separator", defaultValue: ".", comment: "Bundle identifier separator character")).last!)
     }
 
     /// Icon of appex folder

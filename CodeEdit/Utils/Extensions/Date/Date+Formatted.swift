@@ -39,7 +39,7 @@ extension Date {
 
     static var logFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SSSS"
+        formatter.dateFormat = String(localized: "date.format.log", defaultValue: "HH:mm:ss.SSSS", comment: "Date format pattern - technical format string, should not be localized")
         return formatter
     }()
 

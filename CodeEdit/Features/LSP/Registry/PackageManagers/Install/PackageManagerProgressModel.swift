@@ -40,7 +40,7 @@ final class PackageManagerProgressModel: ObservableObject {
     func createDirectoryStructure(for packagePath: URL) throws {
         let decodedPath = packagePath.path(percentEncoded: false)
         if FileManager.default.fileExists(atPath: decodedPath) {
-            status("Removing existing installation.")
+            status(String(localized: "lsp.install.removing", defaultValue: "Removing existing installation.", comment: "Status message when removing existing installation"))
             try FileManager.default.removeItem(at: packagePath)
         }
 

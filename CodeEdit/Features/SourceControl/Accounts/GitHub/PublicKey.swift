@@ -62,14 +62,14 @@ enum GitHubPublicKeyRouter: GitJSONPostRouter {
     var path: String {
         switch self {
         case .postPublicKey:
-            return "user/keys"
+            return String(localized: "github.api.endpoint.user_keys", defaultValue: "user/keys", comment: "GitHub REST API endpoint path - technical constant, not user-visible")
         }
     }
 
     var params: [String: Any] {
         switch self {
         case let .postPublicKey(publicKey, title, _):
-            return ["title": title, "key": publicKey]
+            return [String(localized: "github.api.param.title", defaultValue: "title", comment: "JSON parameter key for GitHub API request - technical constant, not user-visible"): title, String(localized: "github.api.param.key", defaultValue: "key", comment: "JSON parameter key for GitHub API request - technical constant, not user-visible"): publicKey]
         }
     }
 }

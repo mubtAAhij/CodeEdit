@@ -68,23 +68,23 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         switch terminationStatus {
         case 0:
             output?.newline()
-            output?.sendOutputMessage("Finished running \(task.name).")
+            output?.sendOutputMessage(String(format: String(localized: "tasks.finished_running_message", defaultValue: "Finished running %@.", comment: "Message shown when task finishes successfully"), task.name))
             output?.newline()
 
             updateTaskStatus(to: .finished)
             updateTaskNotification(
-                title: "Finished Running \(task.name)",
+                title: String(format: String(localized: "tasks.finished_running_title", defaultValue: "Finished Running %@", comment: "Notification title when task finishes"), task.name),
                 message: "",
                 isLoading: false
             )
         case 2, 15: // SIGINT or SIGTERM
             output?.newline()
-            output?.sendOutputMessage("\(task.name) cancelled.")
+            output?.sendOutputMessage(String(format: String(localized: "tasks.cancelled_message", defaultValue: "%@ cancelled.", comment: "Message shown when task is cancelled"), task.name))
             output?.newline()
 
             updateTaskStatus(to: .notRunning)
             updateTaskNotification(
-                title: "\(task.name) cancelled",
+                title: String(format: String(localized: "tasks.cancelled_title", defaultValue: "%@ cancelled", comment: "Notification title when task is cancelled"), task.name),
                 message: "",
                 isLoading: false
             )
@@ -92,12 +92,12 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
             updateTaskStatus(to: .stopped)
         default:
             output?.newline()
-            output?.sendOutputMessage("Failed to run \(task.name)")
+            output?.sendOutputMessage(String(format: String(localized: "tasks.failed_message", defaultValue: "Failed to run %@", comment: "Message shown when task fails"), task.name))
             output?.newline()
 
             updateTaskStatus(to: .failed)
             updateTaskNotification(
-                title: "Failed Running \(task.name)",
+                title: String(format: String(localized: "tasks.failed_title", defaultValue: "Failed Running %@", comment: "Notification title when task fails"), task.name),
                 message: "",
                 isLoading: false
             )
@@ -150,8 +150,8 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         let userInfo: [String: Any] = [
             "id": taskId,
             "action": "createWithPriority",
-            "title": "Running \(self.task.name)",
-            "message": "Running your task: \(self.task.name).",
+            "title": String(format: String(localized: "tasks.running_title", defaultValue: "Running %@", comment: "Notification title when task is running"), self.task.name),
+            "message": String(format: String(localized: "tasks.running_message", defaultValue: "Running your task: %@.", comment: "Notification message when task is running"), self.task.name),
             "isLoading": true,
             "workspace": workspaceURL as Any
         ]

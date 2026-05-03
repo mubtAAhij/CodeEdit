@@ -18,8 +18,8 @@ struct GitHubComment: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, url, body, user
-        case htmlURL = "html_url"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
+        case htmlURL = String(localized: "github.api.codingkey.html_url", defaultValue: "html_url", comment: "CodingKey for GitHub API JSON field - technical constant, not user-visible")
+        case createdAt = String(localized: "github.api.codingkey.created_at", defaultValue: "created_at", comment: "CodingKey for GitHub API JSON field - technical constant, not user-visible")
+        case updatedAt = String(localized: "github.api.codingkey.updated_at", defaultValue: "updated_at", comment: "CodingKey for GitHub API JSON field - technical constant, not user-visible")
     }
 }

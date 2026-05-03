@@ -30,10 +30,10 @@ struct GitCheckoutBranchView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Checkout branch")
+                    Text(String(localized: "git.checkout.title", defaultValue: "Checkout branch", comment: "Git checkout branch dialog title"))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Select a branch to checkout")
+                    Text(String(localized: "git.checkout.instruction", defaultValue: "Select a branch to checkout", comment: "Instruction to select a branch"))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
@@ -41,17 +41,17 @@ struct GitCheckoutBranchView: View {
                     }
                     Picker("", selection: $viewModel.selectedBranch, content: {
                         ForEach(viewModel.branches, id: \.self) { branch in
-                            Text(branch.name.replacingOccurrences(of: "origin/", with: ""))
+                            Text(branch.name.replacingOccurrences(of: String(localized: "git.branch.origin_prefix", defaultValue: "origin/", comment: "Git origin branch prefix"), with: ""))
                                 .tag(branch as GitBranch?)
                         }
                     })
                     .labelsHidden()
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(localized: "common.cancel", defaultValue: "Cancel", comment: "Cancel button")) {
                             dismiss()
                         }
-                        Button("Checkout") {
+                        Button(String(localized: "git.checkout.button", defaultValue: "Checkout", comment: "Checkout button")) {
                             Task {
                                 await viewModel.checkoutBranch()
                                 await MainActor.run {

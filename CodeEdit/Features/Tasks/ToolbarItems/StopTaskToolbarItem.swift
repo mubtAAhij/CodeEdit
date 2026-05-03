@@ -25,14 +25,14 @@ final class StopTaskToolbarItem: NSToolbarItem {
         guard let taskManager = workspace.taskManager else { return nil }
 
         self.workspace = workspace
-        super.init(itemIdentifier: NSToolbarItem.Identifier("StopTaskToolbarItem"))
+        super.init(itemIdentifier: NSToolbarItem.Identifier(String(localized: "tasks.toolbar.stop_id", defaultValue: "StopTaskToolbarItem", comment: "Stop task toolbar item identifier")))
 
-        image = NSImage(systemSymbolName: "stop.fill", accessibilityDescription: nil)
+        image = NSImage(systemSymbolName: String(localized: "tasks.toolbar.stop_icon", defaultValue: "stop.fill", comment: "SF Symbol for stop task button"), accessibilityDescription: nil)
         let config = NSImage.SymbolConfiguration(pointSize: 14, weight: .regular)
         image = image?.withSymbolConfiguration(config) ?? image
 
-        paletteLabel = "Stop Task"
-        toolTip = "Stop the selected task"
+        paletteLabel = String(localized: "tasks.toolbar.stop_label", defaultValue: "Stop Task", comment: "Stop task toolbar palette label")
+        toolTip = String(localized: "tasks.toolbar.stop_tooltip", defaultValue: "Stop the selected task", comment: "Stop task toolbar tooltip")
         target = self
         isEnabled = false
         isBordered = true

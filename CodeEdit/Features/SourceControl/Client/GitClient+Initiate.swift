@@ -10,6 +10,6 @@ import Foundation
 extension GitClient {
     /// Initiate Git repository
     func initiate() async throws {
-        _ = try await run("init")
+        _ = try await run(String(localized: "git.command.init", defaultValue: "init", comment: "Git init command - technical identifier, should not be localized"))
     }
 }

@@ -20,7 +20,7 @@ extension String {
 
     /// Returns a new string, replacing all occurrences of `"` with `\"` if they aren't already escaped.
     func escapedQuotes() -> String {
-        escape(replacing: #"""#)
+        escape(replacing: #String(localized: "string.escape.quote_char", defaultValue: "\"", comment: "Quote character to escape")#)
     }
 
     func escape(replacing: Character) -> String {
@@ -37,12 +37,12 @@ extension String {
                 continue
             }
 
-            if let lastChar, lastChar == #"\"# {
+            if let lastChar, lastChar == #String(localized: "string.escape.backslash", defaultValue: "\\", comment: "Backslash escape character")# {
                 string.append(char)
                 continue
             }
 
-            string.append(#"\"#)
+            string.append(#String(localized: "string.escape.backslash", defaultValue: "\\", comment: "Backslash escape character")#)
             string.append(char)
         }
 

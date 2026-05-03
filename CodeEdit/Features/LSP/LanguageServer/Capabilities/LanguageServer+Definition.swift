@@ -13,7 +13,7 @@ extension LanguageServer {
         do {
             let cacheKey = CacheKey(
                 uri: documentURI,
-                requestType: "goToDefinition",
+                requestType: String(localized: "lsp.protocol.definition", defaultValue: "goToDefinition", comment: "LSP protocol key - technical constant, should not be localized"),
                 extraData: NoExtraData()
             )
             if let cachedResponse: DefinitionResponse = lspCache.get(key: cacheKey, as: DefinitionResponse.self) {

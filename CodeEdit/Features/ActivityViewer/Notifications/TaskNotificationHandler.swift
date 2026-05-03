@@ -224,13 +224,13 @@ final class TaskNotificationHandler: ObservableObject {
                 if let title = task["title"] as? String {
                     self.notifications[index].title = title
                 }
-                if let message = task["message"] as? String {
+                if let message = task[String(localized: "task_notification.key.message", defaultValue: "message", comment: "Dictionary key for task message")] as? String {
                     self.notifications[index].message = message
                 }
-                if let percentage = task["percentage"] as? Double {
+                if let percentage = task[String(localized: "task_notification.key.percentage", defaultValue: "percentage", comment: "Dictionary key for task percentage")] as? Double {
                     self.notifications[index].percentage = percentage
                 }
-                if let isLoading = task["isLoading"] as? Bool {
+                if let isLoading = task[String(localized: "task_notification.key.is_loading", defaultValue: "isLoading", comment: "Dictionary key for task loading state")] as? Bool {
                     self.notifications[index].isLoading = isLoading
                 }
             }
@@ -248,5 +248,5 @@ final class TaskNotificationHandler: ObservableObject {
 }
 
 extension Notification.Name {
-    static let taskNotification = Notification.Name("taskNotification")
+    static let taskNotification = Notification.Name(String(localized: "task_notification.name", defaultValue: "taskNotification", comment: "Notification name for task events"))
 }

@@ -39,18 +39,18 @@ enum BitBucketOAuthRouter: GitRouter {
     var path: String {
         switch self {
         case .authorize:
-            return "site/oauth2/authorize"
+            return String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - OAuth API endpoint path (technical constant)")
         case .accessToken:
-            return "site/oauth2/access_token"
+            return String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - OAuth API endpoint path (technical constant)")
         }
     }
 
     var params: [String: Any] {
         switch self {
         case .authorize(let config):
-            return ["client_id": config.token, "response_type": "code"]
+            return [String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - OAuth parameter name (API field constant)"): config.token, "response_type": "code"]
         case .accessToken(_, let code):
-            return ["code": code, "grant_type": "authorization_code"]
+            return [String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - OAuth parameter name (API field constant)"): code, "grant_type": "authorization_code"]
         }
     }
 

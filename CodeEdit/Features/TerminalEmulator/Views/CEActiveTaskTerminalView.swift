@@ -21,7 +21,7 @@ class CEActiveTaskTerminalView: CELocalShellTerminalView {
     }
 
     public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "terminal.task.init_coder_error", defaultValue: "init(coder:) has not been implemented", comment: "Fatal error for unsupported initializer"))
     }
 
     override func startProcess(
@@ -33,20 +33,23 @@ class CEActiveTaskTerminalView: CELocalShellTerminalView {
         let terminalSettings = Settings.shared.preferences.terminal
 
         var terminalEnvironment: [String] = Terminal.getEnvironmentVariables()
-        terminalEnvironment.append("TERM_PROGRAM=CodeEditApp_Terminal")
+        terminalEnvironment.append(String(localized: "terminal.task.env_program", defaultValue: "TERM_PROGRAM=CodeEditApp_Terminal", comment: "Terminal program environment variable"))
 
         guard let (shell, shellPath) = getShell(shell, userSetting: terminalSettings.shell) else {
             return
         }
-        let shellArgs = ["-lic", activeTask.task.command]
+        let shellArgs = [String(localized: "terminal.task.shell_flag", defaultValue: "-lic", comment: "Shell login interactive flag"), activeTask.task.command]
 
         terminalEnvironment.append(contentsOf: environment)
-        terminalEnvironment.append("\(ShellIntegration.Variables.disableHistory)=1")
+        terminalEnvironment.append(String(format: String(localized: "terminal.task.env_disable_history", defaultValue: "%@=1", comment: "Environment variable to disable shell history"), ShellIntegration.Variables.disableHistory))
         terminalEnvironment.append(
             contentsOf: activeTask.task.environmentVariables.map({ $0.key + "=" + $0.value })
         )
 
-        sendOutputMessage("Starting task: " + self.activeTask.task.name)
+        sendOutputMessage(String(
+            format: String(localized: "terminal.task.starting", defaultValue: "Starting task: %@", comment: "Task starting message"),
+            self.activeTask.task.name
+        ))
         sendOutputMessage(self.activeTask.task.command)
         newline()
 
@@ -73,7 +76,7 @@ class CEActiveTaskTerminalView: CELocalShellTerminalView {
         let start: [UInt8] = [0x1B, 0x5B, 0x37, 0x6D]
         let end: [UInt8] = [0x1B, 0x5B, 0x30, 0x6D]
         feed(byteArray: start[0..<start.count])
-        feed(text: " * ")
+        feed(text: String(localized: "terminal.task.marker", defaultValue: " * ", comment: "Terminal output marker"))
         feed(byteArray: end[0..<end.count])
         feed(text: " ")
     }

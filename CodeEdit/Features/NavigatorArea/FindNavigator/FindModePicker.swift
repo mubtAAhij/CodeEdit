@@ -83,7 +83,7 @@ struct FindModePicker: View {
     }
 
     private var chevron: some View {
-        Image(systemName: "chevron.compact.right")
+        Image(systemName: String(localized: "find.mode_picker.chevron_right", defaultValue: "chevron.compact.right", comment: "Chevron right icon"))
             .font(.system(size: 9, weight: activeState != .inactive ? .medium : .bold, design: .default))
             .foregroundStyle(.secondary)
             .scaleEffect(x: 1.30, y: 1.0, anchor: .center)
@@ -92,8 +92,8 @@ struct FindModePicker: View {
 
     private var chevronUpDown: some View {
         VStack(spacing: 1) {
-            Image(systemName: "chevron.up")
-            Image(systemName: "chevron.down")
+            Image(systemName: String(localized: "find.mode_picker.chevron_up", defaultValue: "chevron.up", comment: "Chevron up icon"))
+            Image(systemName: String(localized: "find.mode_picker.chevron_down", defaultValue: "chevron.down", comment: "Chevron down icon"))
         }
         .font(.system(size: 6, weight: .bold, design: .default))
         .padding(.top, 0.5)
@@ -148,7 +148,7 @@ struct FindModePicker: View {
                 cancellable = NotificationCenter.default
                     .publisher(for: NSMenu.didSendActionNotification, object: menu)
                     .sink { [weak self] notification in
-                        if let menuItem = notification.userInfo?["MenuItem"] as? NSMenuItem,
+                        if let menuItem = notification.userInfo?[String(localized: "find.mode_picker.menu_item_notification", defaultValue: "MenuItem", comment: "Menu item notification key")] as? NSMenuItem,
                            let selection = menuItem as? ItemType {
                             self?.parent.selection = selection
                         }
@@ -179,7 +179,7 @@ final class FindModeMenu: NSMenu, NSMenuDelegate {
 
     @available(*, unavailable)
     required init(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "find.mode_menu.init_coder_not_implemented", defaultValue: "init(coder:) has not been implemented", comment: "Init coder not implemented fatal error"))
     }
 }
 
@@ -200,7 +200,7 @@ final class FindModeMenuItem: NSMenuItem {
 
     @available(*, unavailable)
     required init(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(String(localized: "find.mode_menu_item.init_coder_not_implemented", defaultValue: "init(coder:) has not been implemented", comment: "Init coder not implemented fatal error"))
     }
 
     @objc

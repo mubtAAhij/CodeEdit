@@ -15,7 +15,7 @@ struct GitLabOAuthConfiguration: GitRouterConfiguration {
     let secret: String
     let redirectURI: String
     let webEndpoint: String?
-    let errorDomain = "com.codeedit.models.accounts.gitlab"
+    let errorDomain = String(localized: "gitlab.error_domain", defaultValue: "com.codeedit.models.accounts.gitlab", comment: "Error domain identifier - technical constant, not user-visible")
 
     init(
         _ url: String? = nil,
@@ -55,7 +55,7 @@ struct GitLabOAuthConfiguration: GitRouterConfiguration {
                                 with: data,
                                 options: .allowFragments
                             ) as? [String: Any]
-                            if let json, let accessToken = json["access_token"] as? String {
+                            if let json, let accessToken = json[String(localized: "gitlab.oauth.response.access_token", defaultValue: "access_token", comment: "JSON key for OAuth response - technical constant, not user-visible")] as? String {
                                 let config = GitLabTokenConfiguration(accessToken, url: self.apiEndpoint ?? "")
                                 completion(config)
                             }
@@ -74,7 +74,7 @@ struct GitLabOAuthConfiguration: GitRouterConfiguration {
         url: URL,
         completion: @escaping (_ config: GitLabTokenConfiguration) -> Void
     ) {
-        if let code = url.absoluteString.components(separatedBy: "=").last {
+        if let code = url.absoluteString.components(separatedBy: String(localized: "url.delimiter.equals", defaultValue: "=", comment: "URL component delimiter - technical character, not user-visible")).last {
             authorize(session, code: code) { (config) in
                 completion(config)
             }

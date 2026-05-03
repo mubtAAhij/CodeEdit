@@ -13,7 +13,7 @@ class SoftwareUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
     private var automaticallyChecksForUpdatesObservation: NSKeyValueObservation?
     private var lastUpdateCheckDateObservation: NSKeyValueObservation?
     private var appcastURL = URL(
-        string: "https://github.com/CodeEditApp/CodeEdit/releases/download/latest/appcast.xml"
+        string: String(localized: "updater.appcast_url", defaultValue: "https://github.com/CodeEditApp/CodeEdit/releases/download/latest/appcast.xml", comment: "Default appcast URL")
     )!
 
     @Published var automaticallyChecksForUpdates = false {
@@ -26,14 +26,14 @@ class SoftwareUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
 
     @Published var includePrereleaseVersions = true {
         didSet {
-            UserDefaults.standard.setValue(includePrereleaseVersions, forKey: "includePrereleaseVersions")
+            UserDefaults.standard.setValue(includePrereleaseVersions, forKey: String(localized: "updater.prerelease_key", defaultValue: "includePrereleaseVersions", comment: "UserDefaults key for prerelease versions"))
         }
     }
 
     private var feedURLTask: Task<(), Never>?
 
     private func setFeedURL() async {
-        let url = URL(string: "https://api.github.com/repos/CodeEditApp/CodeEdit/releases/latest")!
+        let url = URL(string: String(localized: "updater.github_api_url", defaultValue: "https://api.github.com/repos/CodeEditApp/CodeEdit/releases/latest", comment: "GitHub API URL for latest release"))!
         let request = URLRequest(url: url)
         guard let data = try? await URLSession.shared.data(for: request),
               let result = try? JSONDecoder().decode(GHAPIResult.self, from: data.0) else {
@@ -79,7 +79,7 @@ class SoftwareUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
             }
         )
 
-        includePrereleaseVersions = UserDefaults.standard.bool(forKey: "includePrereleaseVersions")
+        includePrereleaseVersions = UserDefaults.standard.bool(forKey: String(localized: "updater.prerelease_key", defaultValue: "includePrereleaseVersions", comment: "UserDefaults key for prerelease versions"))
     }
 
     deinit {
@@ -89,7 +89,7 @@ class SoftwareUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
     func allowedChannels(for updater: SPUUpdater) -> Set<String> {
         // TODO: Uncomment when production build is released. 
         // if includePrereleaseVersions {
-        return ["dev"]
+        return [String(localized: "updater.dev_channel", defaultValue: "dev", comment: "Development update channel")]
         // }
         // return []
     }
@@ -100,7 +100,7 @@ class SoftwareUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
 
     private struct GHAPIResult: Codable {
         enum CodingKeys: String, CodingKey {
-            case tagName = "tag_name"
+            case tagName = String(localized: "updater.tag_name_field", defaultValue: "tag_name", comment: "GitHub API tag_name field")
         }
 
         var tagName: String

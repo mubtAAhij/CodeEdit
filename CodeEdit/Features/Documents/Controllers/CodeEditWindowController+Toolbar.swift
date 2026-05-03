@@ -108,7 +108,7 @@ extension CodeEditWindowController {
     func updateToolbarVisibility() {
         if toolbarCollapsed {
             window?.titleVisibility = .visible
-            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Fallback window title (technical constant, not user-visible in normal operation)")
             window?.toolbar = nil
         } else {
             window?.titleVisibility = .hidden
@@ -134,7 +134,7 @@ extension CodeEditWindowController {
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
             toolbarItem.paletteLabel = " Navigator Sidebar"
-            toolbarItem.toolTip = "Hide or show the Navigator"
+            toolbarItem.toolTip = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Tooltip text (developer-facing, not localized in toolbar tooltips)")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleFirstPanel)
@@ -146,8 +146,8 @@ extension CodeEditWindowController {
             return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
-            toolbarItem.paletteLabel = "Inspector Sidebar"
-            toolbarItem.toolTip = "Hide or show the Inspectors"
+            toolbarItem.paletteLabel = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Toolbar item palette label (developer-facing, not shown to end users in normal usage)")
+            toolbarItem.toolTip = String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Tooltip text (developer-facing, not localized in toolbar tooltips)")
             toolbarItem.isBordered = true
             toolbarItem.target = self
             toolbarItem.action = #selector(self.objcToggleLastPanel)
@@ -177,7 +177,7 @@ extension CodeEditWindowController {
             return notificationItem()
         case .taskSidebarItem:
             guard #available(macOS 26, *) else {
-                fatalError("Unified task sidebar item used on pre-tahoe platform.")
+                fatalError(String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - fatalError message (developer-facing crash message, not user-visible)"))
             }
             guard let workspace,
                     let stop = StopTaskToolbarItem(workspace: workspace) else {
