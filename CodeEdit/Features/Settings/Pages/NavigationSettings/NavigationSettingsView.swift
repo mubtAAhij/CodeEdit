@@ -22,10 +22,10 @@ struct NavigationSettingsView: View {
 
 private extension NavigationSettingsView {
     private var navigationStyle: some View {
-        Picker("Navigation Style", selection: $settings.navigationStyle) {
-            Text("Open in Tabs")
+        Picker(String(localized: "settings.navigation.style", defaultValue: "Navigation Style", comment: "Navigation style picker label"), selection: $settings.navigationStyle) {
+            Text(String(localized: "settings.navigation.open_in_tabs", defaultValue: "Open in Tabs", comment: "Navigation style option"))
                 .tag(SettingsData.NavigationStyle.openInTabs)
-            Text("Open in Place")
+            Text(String(localized: "settings.navigation.open_in_place", defaultValue: "Open in Place", comment: "Navigation style option"))
                 .tag(SettingsData.NavigationStyle.openInPlace)
         }
     }
