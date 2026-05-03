@@ -18,8 +18,8 @@ enum GitTime {
      */
     static var rfc3339DateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = String(localized: "date.format.iso8601", defaultValue: "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", comment: "ISO 8601 date format string - technical constant, should not be localized")
+        formatter.locale = Locale(identifier: String(localized: "locale.posix", defaultValue: "en_US_POSIX", comment: "POSIX locale identifier - technical constant, should not be localized"))
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
     }()
