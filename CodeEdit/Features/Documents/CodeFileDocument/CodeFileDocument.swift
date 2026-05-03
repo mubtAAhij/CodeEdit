@@ -28,12 +28,12 @@ final class CodeFileDocument: NSDocument, ObservableObject {
         let cursorPositions: [CursorPosition]
     }
 
-    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "CodeFileDocument")
+    static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Logger category (developer-facing, not user-visible)"))
 
     /// Sent when the document is opened. The document will be sent in the notification's object.
-    static let didOpenNotification = Notification.Name(rawValue: "CodeFileDocument.didOpen")
+    static let didOpenNotification = Notification.Name(rawValue: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Notification name (technical constant for NotificationCenter)"))
     /// Sent when the document is closed. The document's `fileURL` will be sent in the notification's object.
-    static let didCloseNotification = Notification.Name(rawValue: "CodeFileDocument.didClose")
+    static let didCloseNotification = Notification.Name(rawValue: String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - Notification name (technical constant for NotificationCenter)"))
 
     /// The text content of the document, stored as a text storage
     ///
@@ -350,6 +350,6 @@ extension CodeFileDocument: LanguageServerDocument {
 private extension CodeFileDocument {
 
     static let fileTypeExtension: [String: String?] = [
-        "public.make-source": nil
+        String(localized: "SKIPPED", defaultValue: "SKIPPED", comment: "SKIPPED - UTType identifier (system file type constant)"): nil
     ]
 }
