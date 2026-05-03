@@ -47,7 +47,7 @@ extension ThemeModel {
 
             // get all URLs in users themes folder that end with `.cetheme`
             let userDefinedThemeFilenames = try filemanager.contentsOfDirectory(atPath: themesURL.path).filter {
-                $0.contains(".cetheme")
+                $0.contains(String(localized: "theme.file.extension.cetheme_with_dot", defaultValue: ".cetheme", comment: "CodeEdit theme file extension with dot"))
             }
             let userDefinedThemeURLs = userDefinedThemeFilenames.map {
                 themesURL.appending(path: $0)
@@ -55,7 +55,7 @@ extension ThemeModel {
 
             // get all bundled theme URLs
             let bundledThemeFilenames = try filemanager.contentsOfDirectory(atPath: bundledThemesURL.path).filter {
-                $0.contains(".cetheme")
+                $0.contains(String(localized: "theme.file.extension.cetheme_with_dot", defaultValue: ".cetheme", comment: "CodeEdit theme file extension with dot"))
             }
             let bundledThemeURLs = bundledThemeFilenames.map {
                 bundledThemesURL.appending(path: $0)
@@ -74,13 +74,13 @@ extension ThemeModel {
                     guard let terminalColors = try theme.terminal.allProperties() as? [String: Theme.Attributes],
                           let editorColors = try theme.editor.allProperties() as? [String: Theme.Attributes]
                     else {
-                        print("error")
+                        print(String(localized: "theme.load.error.properties", defaultValue: "error", comment: "Error message when theme properties cannot be loaded"))
                         // TODO: Throw a proper error
                         throw NSError() // swiftlint:disable:this discouraged_direct_init
                     }
 
                     // check if there are any overrides in `settings.json`
-                    if let overrides = prefs.theme.overrides[theme.name]?["terminal"] {
+                    if let overrides = prefs.theme.overrides[theme.name]?[String(localized: "theme.override.terminal", defaultValue: "terminal", comment: "Terminal theme override key")] {
                         terminalColors.forEach { (key, _) in
                             if let attributes = overrides[key] {
                                 theme.terminal[key] = attributes
@@ -88,7 +88,7 @@ extension ThemeModel {
                         }
                     }
 
-                    if let overrides = prefs.theme.overrides[theme.name]?["editor"] {
+                    if let overrides = prefs.theme.overrides[theme.name]?[String(localized: "theme.override.editor", defaultValue: "editor", comment: "Editor theme override key")] {
                         editorColors.forEach { (key, _) in
                             if let attributes = overrides[key] {
                                 theme.editor[key] = attributes
@@ -133,9 +133,9 @@ extension ThemeModel {
 
     func importTheme() {
         let openPanel = NSOpenPanel()
-        let allowedTypes = [UTType(filenameExtension: "cetheme")!]
+        let allowedTypes = [UTType(filenameExtension: String(localized: "theme.file.extension.cetheme", defaultValue: "cetheme", comment: "CodeEdit theme file extension"))!]
 
-        openPanel.prompt = "Import"
+        openPanel.prompt = String(localized: "theme.import.prompt", defaultValue: "Import", comment: "Open panel prompt for importing theme")
         openPanel.allowedContentTypes = allowedTypes
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = false
@@ -170,7 +170,7 @@ extension ThemeModel {
                 && !url.absoluteString.hasPrefix(themesURL.absoluteString)
 
             if isBundled {
-                newFileName = "\(fileName) \(iterator)"
+                newFileName = String(format: String(localized: "theme.duplicate.name_format", defaultValue: "%@ %d", comment: "Duplicate theme name format (name, number)"), fileName, iterator)
                 destinationFileURL = self.themesURL
                     .appending(path: newFileName)
                     .appendingPathExtension(fileExtension)
@@ -186,7 +186,7 @@ extension ThemeModel {
                 }
 
                 // Generate a new filename with an iterator
-                newFileName = "\(fileName) \(iterator)"
+                newFileName = String(format: String(localized: "theme.duplicate.name_format", defaultValue: "%@ %d", comment: "Duplicate theme name format (name, number)"), fileName, iterator)
                 destinationFileURL = self.themesURL
                     .appending(path: newFileName)
                     .appendingPathExtension(fileExtension)
@@ -201,7 +201,7 @@ extension ThemeModel {
 
             if let index = self.themes.firstIndex(where: { $0.fileURL == destinationFileURL }) {
                 self.themes[index].displayName = newFileName
-                self.themes[index].name = newFileName.lowercased().replacingOccurrences(of: " ", with: "-")
+                self.themes[index].name = newFileName.lowercased().replacingOccurrences(of: " ", with: String(localized: "theme.name.space_replacement", defaultValue: "-", comment: "Character to replace spaces in theme name"))
 
                 if isImporting != true {
                     self.themes[index].author = NSFullUserName()
@@ -216,7 +216,7 @@ extension ThemeModel {
                 self.detailsIsPresented = true
             }
         } catch {
-            print("Error adding theme: \(error.localizedDescription)")
+            print(String(format: String(localized: "theme.duplicate.error", defaultValue: "Error adding theme: %@", comment: "Error message when adding theme fails (error description)"), error.localizedDescription))
         }
     }
 
@@ -224,20 +224,20 @@ extension ThemeModel {
         do {
             guard let oldURL = theme.fileURL else {
                 throw NSError(
-                    domain: "ThemeModel",
+                    domain: String(localized: "theme.rename.error.domain", defaultValue: "ThemeModel", comment: "Error domain for theme model errors"),
                     code: 1,
-                    userInfo: [NSLocalizedDescriptionKey: "Theme file URL not found"]
+                    userInfo: [NSLocalizedDescriptionKey: String(localized: "theme.rename.error.url_not_found", defaultValue: "Theme file URL not found", comment: "Error message when theme file URL is not found during rename")]
                 )
             }
 
             var finalName = newName
-            var finalURL = themesURL.appending(path: finalName).appendingPathExtension("cetheme")
+            var finalURL = themesURL.appending(path: finalName).appendingPathExtension(String(localized: "theme.file.extension.cetheme", defaultValue: "cetheme", comment: "CodeEdit theme file extension"))
             var iterator = 1
 
             // Check for existing display names in themes
             while themes.contains(where: { theme != $0 && $0.displayName == finalName }) {
-                finalName = "\(newName) \(iterator)"
-                finalURL = themesURL.appending(path: finalName).appendingPathExtension("cetheme")
+                finalName = String(format: String(localized: "theme.duplicate.name_format", defaultValue: "%@ %d", comment: "Duplicate theme name format (name, number)"), newName, iterator)
+                finalURL = themesURL.appending(path: finalName).appendingPathExtension(String(localized: "theme.file.extension.cetheme", defaultValue: "cetheme", comment: "CodeEdit theme file extension"))
                 iterator += 1
             }
 
@@ -247,7 +247,7 @@ extension ThemeModel {
 
             try self.loadThemes()
         } catch {
-            print("Error renaming theme: \(error.localizedDescription)")
+            print(String(format: String(localized: "theme.rename.error", defaultValue: "Error renaming theme: %@", comment: "Error message when renaming theme fails (error description)"), error.localizedDescription))
         }
     }
 
@@ -263,7 +263,7 @@ extension ThemeModel {
                 try prettyJSON.write(to: fileURL, options: .atomic)
             }
         } catch {
-            print("Error saving theme: \(error.localizedDescription)")
+            print(String(format: String(localized: "theme.save.error", defaultValue: "Error saving theme: %@", comment: "Error message when saving theme fails (error description)"), error.localizedDescription))
         }
     }
 
