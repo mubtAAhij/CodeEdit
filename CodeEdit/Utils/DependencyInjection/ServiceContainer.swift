@@ -14,7 +14,7 @@ enum ServiceContainer {
     /// A dictionary storing the cached service instances.
     private static var cache: [ObjectIdentifier: Any] = [:]
     /// A dispatch queue used for synchronizing access to the factories and cache.
-    private static let queue = DispatchQueue(label: "ServiceContainerQueue")
+    private static let queue = DispatchQueue(label: String(localized: "dependency-injection.queue.label", defaultValue: "ServiceContainerQueue", comment: "Dispatch queue label - technical identifier, should not be localized"))
 
     /// Registers a factory closure for creating instances of a service type.
     ///
