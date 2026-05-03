@@ -191,6 +191,12 @@
             "state": "translated",
             "value": "No service of type %@ registered!"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡No hay ningún servicio de tipo %@ registrado!"
+          }
         }
       }
     },
@@ -221,6 +227,12 @@
             "state": "translated",
             "value": "No service of type %@ registered!"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡No hay ningún servicio de tipo %@ registrado!"
+          }
         }
       }
     },
@@ -247,6 +259,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d.%d.%d"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%d.%d.%d"
@@ -313,6 +331,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@%@"
@@ -545,6 +569,12 @@
             "state": "translated",
             "value": "repos/%@/%@/pulls/%d/reviews"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repos/%@/%@/pulls/%d/reviews"
+          }
         }
       }
     },
@@ -553,6 +583,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repos/%@/%@/git/refs/%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "repos/%@/%@/git/refs/%@"
@@ -659,6 +695,12 @@
             "state": "translated",
             "value": "requestDocumentColor: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestDocumentColor: Error %@"
+          }
         }
       }
     },
@@ -667,6 +709,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestDocumentHighlight Error: %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestDocumentHighlight Error: %@"
@@ -683,6 +731,12 @@
             "state": "translated",
             "value": "requestDocumentLinkResolve: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestDocumentLinkResolve: Error %@"
+          }
         }
       }
     },
@@ -691,6 +745,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestSymbols: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestSymbols: Error %@"
@@ -707,6 +767,12 @@
             "state": "translated",
             "value": "requestFoldingRange: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestFoldingRange: Error %@"
+          }
         }
       }
     },
@@ -715,6 +781,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestHover: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestHover: Error %@"
@@ -731,6 +803,12 @@
             "state": "translated",
             "value": "requestImplementation: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestImplementation: Error %@"
+          }
         }
       }
     },
@@ -739,6 +817,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestFindReferences: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestFindReferences: Error %@"
@@ -755,6 +839,12 @@
             "state": "translated",
             "value": "requestSelectionRange: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestSelectionRange: Error %@"
+          }
         }
       }
     },
@@ -767,6 +857,12 @@
             "state": "translated",
             "value": "requestInlayHint: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestInlayHint: Error %@"
+          }
         }
       }
     },
@@ -775,6 +871,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestTypeDefinition: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestTypeDefinition: Error %@"
@@ -917,6 +1019,12 @@
             "state": "translated",
             "value": "Duration: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración: %@"
+          }
         }
       }
     },
@@ -961,6 +1069,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WorkspacePanelTab-%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "WorkspacePanelTab-%@"
@@ -1193,6 +1307,12 @@
             "state": "translated",
             "value": "requestColorPresentation: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestColorPresentation: Error %@"
+          }
         }
       }
     },
@@ -1201,6 +1321,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestGoToDeclaration: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestGoToDeclaration: Error %@"
@@ -1573,6 +1699,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d × %d"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%d × %d"
@@ -2327,6 +2459,12 @@
             "state": "translated",
             "value": "%d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d"
+          }
         }
       }
     },
@@ -2609,6 +2747,12 @@
             "state": "translated",
             "value": "users/%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "usuarios/%@"
+          }
         }
       }
     },
@@ -2639,6 +2783,12 @@
             "state": "translated",
             "value": "requestPullDiagnostics: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestPullDiagnostics: Error %@"
+          }
         }
       }
     },
@@ -2647,6 +2797,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestInlayHint: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestInlayHint: Error %@"
@@ -2663,6 +2819,12 @@
             "state": "translated",
             "value": "requestInlayHintResolve: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestInlayHintResolve: Error %@"
+          }
         }
       }
     },
@@ -2671,6 +2833,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestPrepareRename: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestPrepareRename: Error %@"
@@ -2687,6 +2855,12 @@
             "state": "translated",
             "value": "requestRename: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestRename: Error %@"
+          }
         }
       }
     },
@@ -2695,6 +2869,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestSemanticTokens full: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestSemanticTokens full: Error %@"
@@ -2711,6 +2891,12 @@
             "state": "translated",
             "value": "requestSemanticTokens versioned: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestSemanticTokens versioned: Error %@"
+          }
         }
       }
     },
@@ -2719,6 +2905,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@-%@-%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@-%@-%@"
@@ -2735,6 +2927,12 @@
             "state": "translated",
             "value": "%@-%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@-%@"
+          }
         }
       }
     },
@@ -2747,6 +2945,12 @@
             "state": "translated",
             "value": "Language client not found for %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language client no encontrado para %@"
+          }
         }
       }
     },
@@ -2758,6 +2962,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Error from server %@: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error del servidor %@: %@"
           }
         }
       }
@@ -2969,6 +3179,12 @@
             "state": "translated",
             "value": "codeEditor_%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "codeEditor_%@"
+          }
         }
       }
     },
@@ -2980,6 +3196,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "extensionInstallation_%@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "instalaciónExtensión_%@"
           }
         }
       }
@@ -3046,6 +3268,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Unable to create connection: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo crear la conexión: %@"
           }
         }
       }
@@ -3149,6 +3377,12 @@
             "state": "translated",
             "value": "requestCompletion: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestCompletion: Error %@"
+          }
         }
       }
     },
@@ -3175,6 +3409,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestGoToDefinition: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestGoToDefinition: Error %@"
@@ -3281,6 +3521,12 @@
             "state": "translated",
             "value": "https://github.com/%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://github.com/%@"
+          }
         }
       }
     },
@@ -3307,6 +3553,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%d"
@@ -4025,6 +4277,12 @@
             "state": "translated",
             "value": "requestFormatting: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestFormatting: Error %@"
+          }
         }
       }
     },
@@ -4037,6 +4295,12 @@
             "state": "translated",
             "value": "requestRangeFormatting: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestRangeFormatting: Error %@"
+          }
         }
       }
     },
@@ -4045,6 +4309,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestOnTypeFormatting: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestOnTypeFormatting: Error %@"
@@ -4093,6 +4363,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@%@%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@%@%@"
@@ -4163,6 +4439,12 @@
             "state": "translated",
             "value": "Missing child view: imageView %@, textField: %@, label: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falta vista hija: imageView %@, textField: %@, label: %@"
+          }
         }
       }
     },
@@ -4207,6 +4489,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ProjectNavigatorTableViewCell-%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "ProjectNavigatorTableViewCell-%@"
@@ -4439,6 +4727,12 @@
             "state": "translated",
             "value": "Error opening file: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al abrir archivo: %@"
+          }
         }
       }
     },
@@ -4486,6 +4780,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Could not restore editor state from saved data: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo restaurar el estado del editor desde los datos guardados: %@"
           }
         }
       }
@@ -4553,6 +4853,12 @@
             "state": "translated",
             "value": "requestPrepareCallHierarchy: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestPrepareCallHierarchy: Error %@"
+          }
         }
       }
     },
@@ -4565,6 +4871,12 @@
             "state": "translated",
             "value": "requestCallHierarchyIncomingCalls: Error %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestCallHierarchyIncomingCalls: Error %@"
+          }
         }
       }
     },
@@ -4573,6 +4885,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "requestCallHierarchyOutgoingCalls: Error %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "requestCallHierarchyOutgoingCalls: Error %@"
@@ -4625,6 +4943,12 @@
             "state": "translated",
             "value": "cd %@ &&"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cd %@ &&"
+          }
         }
       }
     },
@@ -4633,6 +4957,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@%@"
@@ -4807,6 +5137,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\"%@\""
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "\"%@\""
@@ -5471,6 +5807,12 @@
             "state": "translated",
             "value": "Failed to set %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al establecer %@: %@"
+          }
         }
       }
     },
@@ -5915,6 +6257,12 @@
             "state": "translated",
             "value": "cd \"%@\" && %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cd \"%@\" && %@"
+          }
         }
       }
     },
@@ -5923,6 +6271,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@"
@@ -6077,6 +6431,12 @@
             "state": "translated",
             "value": "%d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d"
+          }
         }
       }
     },
@@ -6103,6 +6463,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%d"
@@ -6154,6 +6520,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Missing a workspace model: workspace=%@, navigator=%@, editorManager=%@, statusBarModel=%@, utilityAreaModel=%@, taskManager=%@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falta un modelo de espacio de trabajo: workspace=%@, navigator=%@, editorManager=%@, statusBarModel=%@, utilityAreaModel=%@, taskManager=%@"
           }
         }
       }
@@ -7079,6 +7451,12 @@
             "state": "translated",
             "value": "repositories/%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repositorios/%@"
+          }
         }
       }
     },
@@ -7108,6 +7486,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "repositories/%@/%@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repositorios/%@/%@"
           }
         }
       }
@@ -7567,6 +7951,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "workspaceState-%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "workspaceState-%@"
@@ -8321,6 +8711,12 @@
             "state": "translated",
             "value": "Extension - %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensión - %@"
+          }
         }
       }
     },
@@ -8329,6 +8725,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language Server - %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Language Server - %@"
@@ -8471,6 +8873,12 @@
             "state": "translated",
             "value": "Failed to discard changes for file (%@): %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al descartar cambios del archivo (%@): %@"
+          }
         }
       }
     },
@@ -8501,6 +8909,12 @@
             "state": "translated",
             "value": "Failed to discard changes: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al descartar cambios: %@"
+          }
         }
       }
     },
@@ -8513,6 +8927,12 @@
             "state": "translated",
             "value": "Error fetching git status: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al obtener git status: %@"
+          }
         }
       }
     },
@@ -8524,6 +8944,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Error committing changed files: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al hacer commit de los archivos modificados: %@"
           }
         }
       }
@@ -9040,6 +9466,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to load commit history: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al cargar el historial de commits: %@"
           }
         }
       }
@@ -9665,6 +10097,12 @@
             "state": "translated",
             "value": "%@%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@%@"
+          }
         }
       }
     },
@@ -9709,6 +10147,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@"
@@ -10679,6 +11123,12 @@
             "state": "translated",
             "value": "repos/%@/%@/pulls/%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repos/%@/%@/pulls/%@"
+          }
         }
       }
     },
@@ -10687,6 +11137,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repos/%@/%@/pulls"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "repos/%@/%@/pulls"
@@ -10739,6 +11195,12 @@
             "state": "translated",
             "value": "users/%@/repos"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "users/%@/repos"
+          }
         }
       }
     },
@@ -10765,6 +11227,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repos/%@/%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "repos/%@/%@"
@@ -11123,6 +11591,12 @@
             "state": "translated",
             "value": "Basic %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Básico %@"
+          }
         }
       }
     },
@@ -11383,6 +11857,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://github.com/CodeEditApp/CodeEdit/releases/download/%@/appcast.xml"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "https://github.com/CodeEditApp/CodeEdit/releases/download/%@/appcast.xml"
@@ -13217,6 +13697,12 @@
             "state": "translated",
             "value": "Failed to open document: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al abrir documento: %@"
+          }
         }
       }
     },
@@ -14164,6 +14650,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Are you sure you want to delete the theme \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar el tema \"%@\"?"
           }
         }
       }
@@ -15563,6 +16055,12 @@
             "state": "translated",
             "value": "%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
         }
       }
     },
@@ -16493,6 +16991,12 @@
             "state": "translated",
             "value": "%@: %@%@ (%@)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@%@ (%@)"
+          }
         }
       }
     },
@@ -16505,6 +17009,12 @@
             "state": "translated",
             "value": "macOS: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS: %@"
+          }
         }
       }
     },
@@ -16513,6 +17023,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode: %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Xcode: %@"
@@ -17627,6 +18143,12 @@
             "state": "translated",
             "value": "%@ %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
         }
       }
     },
@@ -17872,6 +18394,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "New Folder With Items %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carpeta Nueva con Elementos %d"
           }
         }
       }
@@ -19037,6 +19565,12 @@
             "state": "translated",
             "value": "Theme exported successfully to %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tema exportado exitosamente a %@"
+          }
         }
       }
     },
@@ -19049,6 +19583,12 @@
             "state": "translated",
             "value": "Failed to export theme: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al exportar tema: %@"
+          }
         }
       }
     },
@@ -19057,6 +19597,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@.cetheme"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@.cetheme"
@@ -19073,6 +19619,12 @@
             "state": "translated",
             "value": "Exported %@ to %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportado %@ a %@"
+          }
         }
       }
     },
@@ -19084,6 +19636,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to export %@: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al exportar %@: %@"
           }
         }
       }
@@ -19187,6 +19745,12 @@
             "state": "translated",
             "value": "%@ %d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
         }
       }
     },
@@ -19216,6 +19780,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Error adding theme: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al agregar tema: %@"
           }
         }
       }
@@ -19265,6 +19835,12 @@
             "state": "translated",
             "value": "Error renaming theme: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al renombrar el tema: %@"
+          }
         }
       }
     },
@@ -19276,6 +19852,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Error saving theme: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al guardar el tema: %@"
           }
         }
       }
@@ -19613,6 +20195,12 @@
             "state": "translated",
             "value": "Branch%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rama %@"
+          }
         }
       }
     },
@@ -19715,6 +20303,12 @@
             "state": "translated",
             "value": "StashEntry%d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "StashEntry%d"
+          }
         }
       }
     },
@@ -19799,6 +20393,12 @@
             "state": "translated",
             "value": "Remote%d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remoto%d"
+          }
         }
       }
     },
@@ -19825,6 +20425,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remote%@-Branch%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Remote%@-Branch%@"
@@ -21245,6 +21851,12 @@
             "state": "translated",
             "value": "%@%@%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@%@%@"
+          }
         }
       }
     },
@@ -21509,6 +22121,12 @@
             "state": "translated",
             "value": "**Description**\n\n%@\n\n**Steps to Reproduce**\n\n%@\n\n**What did you expect to happen?**\n\n%@\n\n**What actually happened?**\n\n%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Descripción**\n\n%@\n\n**Pasos para Reproducir**\n\n%@\n\n**¿Qué esperabas que sucediera?**\n\n%@\n\n**¿Qué sucedió en realidad?**\n\n%@"
+          }
         }
       }
     },
@@ -21607,6 +22225,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ %@"
@@ -22613,6 +23237,12 @@
             "state": "translated",
             "value": "Do you want to delete the branch \"%@\"?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar la rama \"%@\"?"
+          }
         }
       }
     },
@@ -22679,6 +23309,12 @@
             "state": "translated",
             "value": "Do you want to delete the stash \"%@\"?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar el stash \"%@\"?"
+          }
         }
       }
     },
@@ -22726,6 +23362,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Do you want to delete the remote \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar el remoto \"%@\"?"
           }
         }
       }
@@ -26569,6 +27211,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\"do shell script \"mkdir -p /usr/local/bin && ln -sf '%@' '%@'\"\""
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "\"do shell script \"mkdir -p /usr/local/bin && ln -sf '%@' '%@'\"\""
@@ -32723,6 +33371,12 @@
             "state": "translated",
             "value": "pull %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pull %@"
+          }
         }
       }
     },
@@ -33221,6 +33875,12 @@
             "state": "translated",
             "value": "%@=1"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@=1"
+          }
         }
       }
     },
@@ -33341,6 +34001,12 @@
             "state": "translated",
             "value": "%@\n\n%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@\n\n%@"
+          }
         }
       }
     },
@@ -33371,6 +34037,12 @@
             "state": "translated",
             "value": "%@?d=404&s=64"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@?d=404&s=64"
+          }
         }
       }
     },
@@ -33379,6 +34051,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://www.gravatar.com/avatar/%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "https://www.gravatar.com/avatar/%@"
@@ -33535,6 +34213,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "go mod init %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "go mod init %@"
