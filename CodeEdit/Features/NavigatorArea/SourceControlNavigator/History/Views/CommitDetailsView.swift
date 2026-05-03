@@ -30,10 +30,10 @@ struct CommitDetailsView: View {
                 Button {
                     commit = nil
                 } label: {
-                    Image(systemName: "chevron.backward")
+                    Image(systemName: String(localized: "sourcecontrol.history.back_icon", defaultValue: "chevron.backward", comment: "SF Symbol for back button in commit details"))
                 }
                 .buttonStyle(SidebarButtonStyle())
-                Text("Commit Details")
+                Text(String(localized: "sourcecontrol.history.commit_details", defaultValue: "Commit Details", comment: "Commit details view title"))
                     .font(.system(size: 13, weight: .bold))
             }
             .padding(10)
@@ -56,7 +56,7 @@ struct CommitDetailsView: View {
                     }
                     .environment(\.defaultMinListRowHeight, 22)
                 } else {
-                    CEContentUnavailableView("No Changes")
+                    CEContentUnavailableView(String(localized: "sourcecontrol.history.no_changes", defaultValue: "No Changes", comment: "Empty state when commit has no changes"))
                 }
             } else {
                 Spacer()
