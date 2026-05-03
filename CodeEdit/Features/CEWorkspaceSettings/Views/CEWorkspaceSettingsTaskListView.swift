@@ -18,7 +18,7 @@ struct CEWorkspaceSettingsTaskListView: View {
 
     var body: some View {
         if settings.tasks.isEmpty {
-            Text("No tasks")
+            Text(String(localized: "tasks.no_tasks", defaultValue: "No tasks", comment: "Empty state when no tasks configured"))
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         } else {
@@ -34,14 +34,14 @@ struct CEWorkspaceSettingsTaskListView: View {
                             self.selectedTaskID = task.id
                             self.showAddTaskSheet = true
                         } label: {
-                            Text("Edit")
+                            Text(String(localized: "common.edit", defaultValue: "Edit", comment: "Edit button"))
                         }
                         Button {
                             settings.tasks.removeAll { $0.id == task.id }
                             try? workspaceSettingsManager.savePreferences()
                             taskManager.deleteTask(taskID: task.id)
                         } label: {
-                            Text("Delete")
+                            Text(String(localized: "common.delete", defaultValue: "Delete", comment: "Delete button"))
                         }
                     }
             }
@@ -57,7 +57,7 @@ struct CEWorkspaceSettingsTaskListView: View {
                 Spacer()
                 Group {
                     Text(task.command)
-                    Image(systemName: "chevron.right")
+                    Image(systemName: String(localized: "tasks.chevron_icon", defaultValue: "chevron.right", comment: "SF Symbol for task chevron"))
                 }
                 .font(.system(.body, design: .monospaced))
             }
