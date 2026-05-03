@@ -183,7 +183,7 @@ struct EditorJumpBarComponent: View {
                 cancellable = NotificationCenter.default
                     .publisher(for: NSMenu.didSendActionNotification, object: menu)
                     .sink { [weak self] notification in
-                        if let menuItem = notification.userInfo?["MenuItem"] as? NSMenuItem,
+                        if let menuItem = notification.userInfo?[String(localized: "editor.jumpbar.menu_item_id", defaultValue: "MenuItem", comment: "Menu item identifier")] as? NSMenuItem,
                            let selection = menuItem as? ItemType {
                             self?.parent.selection = selection
                         }
