@@ -41,17 +41,17 @@ enum GitHubPullRequestRouter: GitJSONPostRouter {
             return [:]
         case let .readPullRequests(_, _, _, base, head, state, sort, direction):
             var parameters = [
-                "state": state.rawValue,
-                "sort": sort.rawValue,
-                "direction": direction.rawValue
+                String(localized: "github.api.param.state", defaultValue: "state", comment: "GitHub API state parameter"): state.rawValue,
+                String(localized: "github.api.param.sort", defaultValue: "sort", comment: "GitHub API sort parameter"): sort.rawValue,
+                String(localized: "github.api.param.direction", defaultValue: "direction", comment: "GitHub API direction parameter"): direction.rawValue
             ]
 
             if let base {
-                parameters["base"] = base
+                parameters[String(localized: "github.api.param.base", defaultValue: "base", comment: "GitHub API base parameter")] = base
             }
 
             if let head {
-                parameters["head"] = head
+                parameters[String(localized: "github.api.param.head", defaultValue: "head", comment: "GitHub API head parameter")] = head
             }
 
             return parameters
