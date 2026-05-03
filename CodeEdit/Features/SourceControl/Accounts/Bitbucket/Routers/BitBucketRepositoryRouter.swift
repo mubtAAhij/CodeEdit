@@ -32,7 +32,7 @@ enum BitBucketRepositoryRouter: GitRouter {
             if userName != nil {
                 return nextParameters as [String: Any]
             } else {
-                nextParameters["role"] = "member"
+                nextParameters[String(localized: "bitbucket.api.param.role", defaultValue: "role", comment: "API parameter key for role")] = String(localized: "bitbucket.api.role.member", defaultValue: "member", comment: "API role value for member")
                 return nextParameters as [String: Any]
             }
         case .readRepository:
@@ -44,12 +44,12 @@ enum BitBucketRepositoryRouter: GitRouter {
         switch self {
         case .readRepositories(_, let userName, _):
             if let userName {
-                return "repositories/\(userName)"
+                return String(format: String(localized: "bitbucket.api.path.user_repos", defaultValue: "repositories/%@", comment: "API path for user repositories"), userName)
             } else {
-                return "repositories"
+                return String(localized: "bitbucket.api.path.repos", defaultValue: "repositories", comment: "API path for repositories")
             }
         case let .readRepository(_, owner, name):
-            return "repositories/\(owner)/\(name)"
+            return String(format: String(localized: "bitbucket.api.path.repo", defaultValue: "repositories/%@/%@", comment: "API path for specific repository"), owner, name)
         }
     }
 }
