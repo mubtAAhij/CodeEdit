@@ -24,31 +24,30 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
-                "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
-                "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "settings.general.appearance", defaultValue: "Appearance", comment: "Label for appearance setting"),
+                String(localized: "settings.general.file-icon-style", defaultValue: "File Icon Style", comment: "Label for file icon style setting"),
+                String(localized: "settings.general.tab-bar-style", defaultValue: "Tab Bar Style", comment: "Label for tab bar style setting"),
+                String(localized: "settings.general.show-jump-bar", defaultValue: "Show Jump Bar", comment: "Toggle to show the jump bar"),
+                String(localized: "settings.general.dim-unfocused-editors", defaultValue: "Dim editors without focus", comment: "Toggle to dim editors that don't have focus"),
+                String(localized: "settings.general.navigator-tab-bar-position", defaultValue: "Navigator Tab Bar Position", comment: "Label for navigator tab bar position setting"),
+                String(localized: "settings.general.inspector-tab-bar-position", defaultValue: "Inspector Tab Bar Position", comment: "Label for inspector tab bar position setting"),
+                String(localized: "settings.general.show-issues", defaultValue: "Show Issues", comment: "Label for show issues setting"),
+                String(localized: "settings.general.show-live-issues", defaultValue: "Show Live Issues", comment: "Toggle to show live issues in the editor"),
+                String(localized: "settings.general.auto-save-changes", defaultValue: "Automatically save change to disk", comment: "Toggle to automatically save changes to disk"),
+                String(localized: "settings.general.auto-reveal-in-navigator", defaultValue: "Automatically reveal in project navigator", comment: "Toggle to automatically reveal files in project navigator"),
+                String(localized: "settings.general.reopen-behavior", defaultValue: "Reopen Behavior", comment: "Label for reopen behavior setting"),
+                String(localized: "settings.general.after-last-window-closed", defaultValue: "After the last window is closed", comment: "Label for behavior after last window closes"),
+                String(localized: "settings.general.file-extensions", defaultValue: "File Extensions", comment: "Label for file extensions visibility setting"),
+                String(localized: "settings.general.project-navigator-size", defaultValue: "Project Navigator Size", comment: "Label for project navigator size setting"),
+                String(localized: "settings.general.find-navigator-detail", defaultValue: "Find Navigator Detail", comment: "Label for find navigator detail setting"),
+                String(localized: "settings.general.issue-navigator-detail", defaultValue: "Issue Navigator Detail", comment: "Label for issue navigator detail setting"),
+                String(localized: "settings.general.open-with-codeedit", defaultValue: "Show \"Open With CodeEdit\" option in Finder", comment: "Toggle to show Open With CodeEdit in Finder context menu"),
+                String(localized: "settings.general.shell-command-label", defaultValue: "'codeedit' Shell command", comment: "Label for shell command setting"),
+                String(localized: "settings.general.dialog-warnings", defaultValue: "Dialog Warnings", comment: "Label for dialog warnings setting"),
+                String(localized: "settings.general.updates.check-for-updates", defaultValue: "Check for updates", comment: "Label for check for updates setting"),
+                String(localized: "settings.general.updates.auto-check", defaultValue: "Automatically check for app updates", comment: "Toggle to automatically check for app updates"),
+                String(localized: "settings.general.updates.include-prerelease", defaultValue: "Include pre-release versions", comment: "Toggle to include pre-release versions")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -309,9 +308,9 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "navigator-detail.one-line", defaultValue: "One Line", comment: "Navigator detail option for one line")
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(format: String(localized: "navigator-detail.up-to-lines", defaultValue: "Up to %d lines", comment: "Navigator detail option for multiple lines"), self.rawValue)
             }
         }
     }
