@@ -39,7 +39,7 @@ final class SearchSettingsModel: ObservableObject {
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "settings.search.extensions-folder", defaultValue: "Extensions", comment: "Extensions folder name in search settings"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
