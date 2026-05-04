@@ -11,6 +11,12 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
@@ -22,6 +28,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "No accounts"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay cuentas"
           }
         }
       }
@@ -35,6 +47,12 @@
             "state": "translated",
             "value": "Add Account..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar cuenta..."
+          }
         }
       }
     },
@@ -46,6 +64,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "This git client is currently not supported."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este cliente de git actualmente no es compatible."
           }
         }
       }
@@ -59,6 +83,12 @@
             "state": "translated",
             "value": "Close"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
         }
       }
     },
@@ -70,6 +100,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Accounts"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuentas"
           }
         }
       }
@@ -83,6 +119,12 @@
             "state": "translated",
             "value": "Delete Account..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta..."
+          }
         }
       }
     },
@@ -95,6 +137,12 @@
             "state": "translated",
             "value": "Developer"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desarrollador"
+          }
         }
       }
     },
@@ -103,6 +151,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language Server Protocol"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Language Server Protocol"
@@ -119,6 +173,12 @@
             "state": "translated",
             "value": "LSP Binaries"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binarios LSP"
+          }
         }
       }
     },
@@ -130,6 +190,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Internal Development Inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Inspector de Desarrollo Interno"
           }
         }
       }
@@ -143,6 +209,12 @@
             "state": "translated",
             "value": "Warning: Language server installation is experimental. Use at your own risk."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advertencia: La instalación de language server es experimental. Úsala bajo tu propio riesgo."
+          }
         }
       }
     },
@@ -154,6 +226,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "CodeEdit makes use of the Mason Registry for language server installation. To install a package, CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of the language server in Application Support.\n\nLanguage server installation is still experimental, there may be bugs and expect this flow to change over time."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit utiliza Mason Registry para la instalación de language servers. Para instalar un paquete, CodeEdit usa el gestor de paquetes indicado por Mason Registry e instala una copia del language server en Application Support.\n\nLa instalación de language servers aún es experimental, puede haber errores y este flujo puede cambiar con el tiempo."
           }
         }
       }
@@ -167,6 +245,12 @@
             "state": "translated",
             "value": "Language"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lenguaje"
+          }
         }
       }
     },
@@ -178,6 +262,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Language Server Path"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruta del Language Server"
           }
         }
       }
@@ -191,6 +281,12 @@
             "state": "translated",
             "value": "Add a language server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar un language server"
+          }
         }
       }
     },
@@ -202,6 +298,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Specify the absolute path to your LSP binary and its associated language."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Especifica la ruta absoluta a tu binario LSP y su language asociado."
           }
         }
       }
@@ -215,6 +317,12 @@
             "state": "translated",
             "value": "Specify the language and the absolute path to the language server binary."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Especifica el lenguaje y la ruta absoluta al binario del language server."
+          }
         }
       }
     },
@@ -223,6 +331,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language Servers"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Language Servers"
@@ -239,6 +353,12 @@
             "state": "translated",
             "value": "Linters"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Linters"
+          }
         }
       }
     },
@@ -250,6 +370,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Formatters"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formateadores"
           }
         }
       }
@@ -263,6 +389,12 @@
             "state": "translated",
             "value": "Debug Protocol"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protocolo de depuración"
+          }
         }
       }
     },
@@ -271,6 +403,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DAP"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "DAP"
@@ -287,6 +425,12 @@
             "state": "translated",
             "value": "File not found"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo no encontrado"
+          }
         }
       }
     },
@@ -298,6 +442,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "File not found in CodeEdit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo no encontrado en CodeEdit"
           }
         }
       }
@@ -311,6 +461,12 @@
             "state": "translated",
             "value": "Failed to find origin file"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al encontrar el archivo de origen"
+          }
         }
       }
     },
@@ -322,6 +478,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Destination already exists"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El destino ya existe"
           }
         }
       }
@@ -335,6 +497,12 @@
             "state": "translated",
             "value": "Invalid file name"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de archivo inválido"
+          }
         }
       }
     },
@@ -346,6 +514,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reopen the workspace to reindex the file system."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuelve a abrir el espacio de trabajo para reindexar el sistema de archivos."
           }
         }
       }
@@ -359,6 +533,12 @@
             "state": "translated",
             "value": "The file may have moved during the operation, try again."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo puede haberse movido durante la operación, intenta de nuevo."
+          }
         }
       }
     },
@@ -370,6 +550,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Use a different file name or remove the conflicting file."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa un nombre de archivo diferente o elimina el archivo en conflicto."
           }
         }
       }
@@ -383,6 +569,12 @@
             "state": "translated",
             "value": "File names must not contain the : character and be less than 256 characters."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los nombres de archivo no deben contener el carácter : y deben tener menos de 256 caracteres."
+          }
         }
       }
     },
@@ -394,6 +586,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Create SSH key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear clave SSH"
           }
         }
       }
@@ -407,6 +605,12 @@
             "state": "translated",
             "value": "Key Type"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de clave"
+          }
         }
       }
     },
@@ -418,6 +622,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "(less secure)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(menos seguro)"
           }
         }
       }
@@ -431,6 +641,12 @@
             "state": "translated",
             "value": "Passphrase"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase de contraseña"
+          }
         }
       }
     },
@@ -442,6 +658,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Confirm Passphrase"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmar frase de contraseña"
           }
         }
       }
@@ -455,6 +677,12 @@
             "state": "translated",
             "value": "Create"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear"
+          }
         }
       }
     },
@@ -466,6 +694,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Install using %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar usando %@"
           }
         }
       }
@@ -479,6 +713,12 @@
             "state": "translated",
             "value": "Show Less"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar menos"
+          }
         }
       }
     },
@@ -490,6 +730,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show More"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar más"
           }
         }
       }
@@ -503,6 +749,12 @@
             "state": "translated",
             "value": "Remove %@?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar %@?"
+          }
         }
       }
     },
@@ -514,6 +766,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Remove"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
           }
         }
       }
@@ -527,6 +785,12 @@
             "state": "translated",
             "value": "Are you sure you want to remove this language server? This action cannot be undone."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar este language server? Esta acción no se puede deshacer."
+          }
         }
       }
     },
@@ -538,6 +802,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Removal Failed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al eliminar"
           }
         }
       }
@@ -551,6 +821,12 @@
             "state": "translated",
             "value": "OK"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
+          }
         }
       }
     },
@@ -562,6 +838,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "An unknown error occurred"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocurrió un error desconocido"
           }
         }
       }
@@ -575,6 +857,12 @@
             "state": "translated",
             "value": "Retry"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reintentar"
+          }
         }
       }
     },
@@ -586,6 +874,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Install"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar"
           }
         }
       }
@@ -599,6 +893,12 @@
             "state": "translated",
             "value": "Confirm Step"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmar paso"
+          }
         }
       }
     },
@@ -610,6 +910,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Continue"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
           }
         }
       }
@@ -623,6 +929,12 @@
             "state": "translated",
             "value": "Installing Package"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando paquete"
+          }
         }
       }
     },
@@ -634,6 +946,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Homepage"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Página de inicio"
           }
         }
       }
@@ -647,6 +965,12 @@
             "state": "translated",
             "value": "Description"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descripción"
+          }
         }
       }
     },
@@ -658,6 +982,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Error Occurred"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocurrió un Error"
           }
         }
       }
@@ -671,6 +1001,12 @@
             "state": "translated",
             "value": "Step"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paso"
+          }
         }
       }
     },
@@ -682,6 +1018,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Successfully Installed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalado correctamente"
           }
         }
       }
@@ -695,6 +1037,12 @@
             "state": "translated",
             "value": "Install Method"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Método de instalación"
+          }
         }
       }
     },
@@ -706,6 +1054,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Package"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paquete"
           }
         }
       }
@@ -719,6 +1073,12 @@
             "state": "translated",
             "value": "Installer"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalador"
+          }
         }
       }
     },
@@ -730,6 +1090,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Unknown"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconocido"
           }
         }
       }
@@ -743,6 +1109,12 @@
             "state": "translated",
             "value": "Appearance"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apariencia"
+          }
         }
       }
     },
@@ -754,6 +1126,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "System"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistema"
           }
         }
       }
@@ -767,6 +1145,12 @@
             "state": "translated",
             "value": "Light"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro"
+          }
         }
       }
     },
@@ -778,6 +1162,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dark"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro"
           }
         }
       }
@@ -791,6 +1181,12 @@
             "state": "translated",
             "value": "Show Issues"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar problemas"
+          }
         }
       }
     },
@@ -802,6 +1198,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Inline"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en línea"
           }
         }
       }
@@ -815,6 +1217,12 @@
             "state": "translated",
             "value": "Show Minimized"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar minimizadas"
+          }
         }
       }
     },
@@ -826,6 +1234,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Live Issues"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar problemas en vivo"
           }
         }
       }
@@ -839,6 +1253,12 @@
             "state": "translated",
             "value": "Show Jump Bar"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar barra de navegación"
+          }
         }
       }
     },
@@ -850,6 +1270,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dim editors without focus"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atenuar editores sin foco"
           }
         }
       }
@@ -863,6 +1289,12 @@
             "state": "translated",
             "value": "File Extensions"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensiones de archivo"
+          }
         }
       }
     },
@@ -874,6 +1306,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hide all"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar todo"
           }
         }
       }
@@ -887,6 +1325,12 @@
             "state": "translated",
             "value": "Show all"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar todo"
+          }
         }
       }
     },
@@ -898,6 +1342,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show only"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar solo"
           }
         }
       }
@@ -911,6 +1361,12 @@
             "state": "translated",
             "value": "Hide only"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar solo"
+          }
         }
       }
     },
@@ -923,6 +1379,12 @@
             "state": "translated",
             "value": "File Icon Style"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de ícono de archivo"
+          }
         }
       }
     },
@@ -931,6 +1393,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Color"
@@ -947,6 +1415,12 @@
             "state": "translated",
             "value": "Monochrome"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monocromo"
+          }
         }
       }
     },
@@ -958,6 +1432,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Navigator Tab Bar Position"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posición de la barra de pestañas del navegador"
           }
         }
       }
@@ -971,6 +1451,12 @@
             "state": "translated",
             "value": "Top"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arriba"
+          }
         }
       }
     },
@@ -982,6 +1468,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Side"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lado"
           }
         }
       }
@@ -995,6 +1487,12 @@
             "state": "translated",
             "value": "Inspector Tab Bar Position"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posición de la Barra de Pestañas del Inspector"
+          }
         }
       }
     },
@@ -1006,6 +1504,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reopen Behavior"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comportamiento de reapertura"
           }
         }
       }
@@ -1019,6 +1523,12 @@
             "state": "translated",
             "value": "Welcome Screen"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantalla de bienvenida"
+          }
         }
       }
     },
@@ -1030,6 +1540,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open Panel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Panel"
           }
         }
       }
@@ -1043,6 +1559,12 @@
             "state": "translated",
             "value": "New Document"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo documento"
+          }
         }
       }
     },
@@ -1054,6 +1576,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "After the last window is closed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después de cerrar la última ventana"
           }
         }
       }
@@ -1067,6 +1595,12 @@
             "state": "translated",
             "value": "Do nothing"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hacer nada"
+          }
         }
       }
     },
@@ -1078,6 +1612,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Welcome Window"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar ventana de bienvenida"
           }
         }
       }
@@ -1091,6 +1631,12 @@
             "state": "translated",
             "value": "Quit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir"
+          }
         }
       }
     },
@@ -1102,6 +1648,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Project Navigator Size"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño del Navegador de Proyecto"
           }
         }
       }
@@ -1115,6 +1667,12 @@
             "state": "translated",
             "value": "Small"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pequeño"
+          }
         }
       }
     },
@@ -1126,6 +1684,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Medium"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medio"
           }
         }
       }
@@ -1139,6 +1703,12 @@
             "state": "translated",
             "value": "Large"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grande"
+          }
         }
       }
     },
@@ -1150,6 +1720,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Find Navigator Detail"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle del Navegador de Búsqueda"
           }
         }
       }
@@ -1163,6 +1739,12 @@
             "state": "translated",
             "value": "Issue Navigator Detail"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle del Navegador de Problemas"
+          }
         }
       }
     },
@@ -1174,6 +1756,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dialog Warnings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advertencias de diálogos"
           }
         }
       }
@@ -1187,6 +1775,12 @@
             "state": "translated",
             "value": "Reset \"Don't Ask Me\" Warnings"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer advertencias de \"No volver a preguntar\""
+          }
         }
       }
     },
@@ -1198,6 +1792,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "'codeedit' Shell command"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comando de shell \"codeedit\""
           }
         }
       }
@@ -1211,6 +1811,12 @@
             "state": "translated",
             "value": "Check Now"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar ahora"
+          }
         }
       }
     },
@@ -1222,6 +1828,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Check for updates"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones"
           }
         }
       }
@@ -1235,6 +1847,12 @@
             "state": "translated",
             "value": "Last checked: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última búsqueda: %@"
+          }
         }
       }
     },
@@ -1246,6 +1864,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatically check for app updates"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones de la app automáticamente"
           }
         }
       }
@@ -1259,6 +1883,12 @@
             "state": "translated",
             "value": "Include pre-release versions"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incluir versiones preliminares"
+          }
         }
       }
     },
@@ -1270,6 +1900,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatically save changes to disk"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar cambios en disco automáticamente"
           }
         }
       }
@@ -1283,6 +1919,12 @@
             "state": "translated",
             "value": "Never"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca"
+          }
         }
       }
     },
@@ -1294,6 +1936,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show \"Open With CodeEdit\" option in Finder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar opción \"Abrir con CodeEdit\" en Finder"
           }
         }
       }
@@ -1307,6 +1955,12 @@
             "state": "translated",
             "value": "Automatically reveal in project navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar automáticamente en el navegador de proyecto"
+          }
         }
       }
     },
@@ -1318,6 +1972,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tab Bar Style"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de la barra de pestañas"
           }
         }
       }
@@ -1331,6 +1991,12 @@
             "state": "translated",
             "value": "Automatically save change to disk"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar cambios en el disco automáticamente"
+          }
         }
       }
     },
@@ -1342,6 +2008,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "One Line"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una línea"
           }
         }
       }
@@ -1355,6 +2027,12 @@
             "state": "translated",
             "value": "Up to %d lines"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hasta %d líneas"
+          }
         }
       }
     },
@@ -1367,6 +2045,12 @@
             "state": "translated",
             "value": "Server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor"
+          }
         }
       }
     },
@@ -1375,6 +2059,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://git.example.com"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "https://git.example.com"
@@ -1391,6 +2081,12 @@
             "state": "translated",
             "value": "Username"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de usuario"
+          }
         }
       }
     },
@@ -1402,6 +2098,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Personal Access Token"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Token de acceso personal"
           }
         }
       }
@@ -1415,6 +2117,12 @@
             "state": "translated",
             "value": "Sign in to %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión en %@"
+          }
         }
       }
     },
@@ -1426,6 +2134,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ personal access tokens must have these scopes set:"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los tokens de acceso personal de %@ deben tener configurados estos alcances:"
           }
         }
       }
@@ -1439,6 +2153,12 @@
             "state": "translated",
             "value": "admin:public _key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "admin:clave _pública"
+          }
         }
       }
     },
@@ -1447,6 +2167,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "write:discussion"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "write:discussion"
@@ -1463,6 +2189,12 @@
             "state": "translated",
             "value": "repo"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repo"
+          }
         }
       }
     },
@@ -1474,6 +2206,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "user"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "usuario"
           }
         }
       }
@@ -1487,6 +2225,12 @@
             "state": "translated",
             "value": "Create a Password on %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear una contraseña en %@"
+          }
         }
       }
     },
@@ -1498,6 +2242,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Create a Token on %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear un token en %@"
           }
         }
       }
@@ -1511,6 +2261,12 @@
             "state": "translated",
             "value": "Sign In"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión"
+          }
         }
       }
     },
@@ -1522,6 +2278,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Unable to add account \\"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo agregar la cuenta \\"
           }
         }
       }
@@ -1535,6 +2297,12 @@
             "state": "translated",
             "value": "OK"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
+          }
         }
       }
     },
@@ -1546,6 +2314,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Account with the same username and provider already exists!"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Ya existe una cuenta con el mismo nombre de usuario y proveedor!"
           }
         }
       }
@@ -1559,6 +2333,12 @@
             "state": "translated",
             "value": "Authentication Failed"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de autenticación"
+          }
         }
       }
     },
@@ -1570,6 +2350,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "API Access Forbidden"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceso a la API prohibido"
           }
         }
       }
@@ -1583,6 +2369,12 @@
             "state": "translated",
             "value": "Unknown Error"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Desconocido"
+          }
         }
       }
     },
@@ -1594,6 +2386,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Account"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta"
           }
         }
       }
@@ -1607,6 +2405,12 @@
             "state": "translated",
             "value": "Description"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descripción"
+          }
         }
       }
     },
@@ -1615,6 +2419,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HTTPS"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "HTTPS"
@@ -1631,6 +2441,12 @@
             "state": "translated",
             "value": "SSH"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH"
+          }
         }
       }
     },
@@ -1642,6 +2458,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clone Using"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clonar usando"
           }
         }
       }
@@ -1655,6 +2477,12 @@
             "state": "translated",
             "value": "New repositories will be cloned from %@ using %@."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los nuevos repositorios se clonarán desde %@ usando %@."
+          }
         }
       }
     },
@@ -1666,6 +2494,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "SSH Key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave SSH"
           }
         }
       }
@@ -1679,6 +2513,12 @@
             "state": "translated",
             "value": "None"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguno"
+          }
         }
       }
     },
@@ -1690,6 +2530,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Create New..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear nuevo..."
           }
         }
       }
@@ -1703,6 +2549,12 @@
             "state": "translated",
             "value": "Choose..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir..."
+          }
         }
       }
     },
@@ -1714,6 +2566,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Are you sure you want to delete the account \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar la cuenta \"%@\"?"
           }
         }
       }
@@ -1727,6 +2585,12 @@
             "state": "translated",
             "value": "Deleting this account will remove it from CodeEdit."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al eliminar esta cuenta, se quitará de CodeEdit."
+          }
         }
       }
     },
@@ -1735,6 +2599,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Cloud"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "BitBucket Cloud"
@@ -1751,6 +2621,12 @@
             "state": "translated",
             "value": "BitBucket Server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Server"
+          }
         }
       }
     },
@@ -1759,6 +2635,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "GitHub"
@@ -1775,6 +2657,12 @@
             "state": "translated",
             "value": "GitHub Enterprise"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Enterprise"
+          }
         }
       }
     },
@@ -1783,6 +2671,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "GitLab"
@@ -1799,6 +2693,12 @@
             "state": "translated",
             "value": "GitLab Self-hosted"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab autohospedado"
+          }
         }
       }
     },
@@ -1810,6 +2710,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Do you want to delete \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar \"%@\"?"
           }
         }
       }
@@ -1823,6 +2729,12 @@
             "state": "translated",
             "value": "This item will be deleted immediately. You can't undo this action."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este elemento se eliminará inmediatamente. No puedes deshacer esta acción."
+          }
         }
       }
     },
@@ -1835,6 +2747,12 @@
             "state": "translated",
             "value": "Delete"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
         }
       }
     },
@@ -1846,6 +2764,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
           }
         }
       }
