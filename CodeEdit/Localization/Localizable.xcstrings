@@ -11,6 +11,12 @@
             "state": "translated",
             "value": "Application Support"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soporte de Aplicaciones"
+          }
         }
       }
     },
@@ -22,6 +28,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Settings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración"
           }
         }
       }
@@ -35,6 +47,12 @@
             "state": "translated",
             "value": "Themes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temas"
+          }
         }
       }
     },
@@ -46,6 +64,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Extensions"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensiones"
           }
         }
       }
@@ -59,6 +83,12 @@
             "state": "translated",
             "value": "Settings Location"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación de Configuración"
+          }
         }
       }
     },
@@ -70,6 +100,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Themes Location"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación de temas"
           }
         }
       }
@@ -83,6 +119,12 @@
             "state": "translated",
             "value": "Extensions Location"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación de extensiones"
+          }
         }
       }
     },
@@ -94,6 +136,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Navigation Style"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de navegación"
           }
         }
       }
@@ -107,6 +155,12 @@
             "state": "translated",
             "value": "Navigation Style"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de navegación"
+          }
         }
       }
     },
@@ -118,6 +172,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open in Tabs"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en pestañas"
           }
         }
       }
@@ -131,6 +191,12 @@
             "state": "translated",
             "value": "Open in Place"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Lugar"
+          }
         }
       }
     },
@@ -142,6 +208,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "File not found"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo no encontrado"
           }
         }
       }
@@ -155,6 +227,12 @@
             "state": "translated",
             "value": "File not found in CodeEdit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo no encontrado en CodeEdit"
+          }
         }
       }
     },
@@ -166,6 +244,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to find origin file"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al encontrar archivo de origen"
           }
         }
       }
@@ -179,6 +263,12 @@
             "state": "translated",
             "value": "Destination already exists"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El destino ya existe"
+          }
         }
       }
     },
@@ -190,6 +280,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invalid file name"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de archivo inválido"
           }
         }
       }
@@ -203,6 +299,12 @@
             "state": "translated",
             "value": "Reopen the workspace to reindex the file system."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuelve a abrir el espacio de trabajo para reindexar el sistema de archivos."
+          }
         }
       }
     },
@@ -214,6 +316,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "The file may have moved during the operation, try again."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es posible que el archivo se haya movido durante la operación, intenta de nuevo."
           }
         }
       }
@@ -227,6 +335,12 @@
             "state": "translated",
             "value": "Use a different file name or remove the conflicting file."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa un nombre de archivo diferente o elimina el archivo en conflicto."
+          }
         }
       }
     },
@@ -238,6 +352,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "File names must not contain the : character and be less than 256 characters."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los nombres de archivo no deben contener el carácter : y deben tener menos de 256 caracteres."
           }
         }
       }
@@ -251,6 +371,12 @@
             "state": "translated",
             "value": "Appearance"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apariencia"
+          }
         }
       }
     },
@@ -262,6 +388,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "System"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistema"
           }
         }
       }
@@ -275,6 +407,12 @@
             "state": "translated",
             "value": "Light"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro"
+          }
         }
       }
     },
@@ -286,6 +424,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dark"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro"
           }
         }
       }
@@ -299,6 +443,12 @@
             "state": "translated",
             "value": "Show Issues"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar problemas"
+          }
         }
       }
     },
@@ -310,6 +460,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Inline"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en línea"
           }
         }
       }
@@ -323,6 +479,12 @@
             "state": "translated",
             "value": "Show Minimized"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar minimizadas"
+          }
         }
       }
     },
@@ -334,6 +496,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Live Issues"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar problemas en vivo"
           }
         }
       }
@@ -347,6 +515,12 @@
             "state": "translated",
             "value": "Show Jump Bar"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar barra de navegación"
+          }
         }
       }
     },
@@ -358,6 +532,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dim editors without focus"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atenuar editores sin foco"
           }
         }
       }
@@ -371,6 +551,12 @@
             "state": "translated",
             "value": "File Extensions"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensiones de Archivo"
+          }
         }
       }
     },
@@ -382,6 +568,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hide all"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar todo"
           }
         }
       }
@@ -395,6 +587,12 @@
             "state": "translated",
             "value": "Show all"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar todo"
+          }
         }
       }
     },
@@ -406,6 +604,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show only"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar solo"
           }
         }
       }
@@ -419,6 +623,12 @@
             "state": "translated",
             "value": "Hide only"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar solamente"
+          }
         }
       }
     },
@@ -431,6 +641,12 @@
             "state": "translated",
             "value": "File Icon Style"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de ícono de archivo"
+          }
         }
       }
     },
@@ -439,6 +655,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Color"
@@ -455,6 +677,12 @@
             "state": "translated",
             "value": "Monochrome"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monocromático"
+          }
         }
       }
     },
@@ -466,6 +694,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Navigator Tab Bar Position"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posición de la barra de pestañas del navegador"
           }
         }
       }
@@ -479,6 +713,12 @@
             "state": "translated",
             "value": "Top"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superior"
+          }
         }
       }
     },
@@ -490,6 +730,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Side"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lado"
           }
         }
       }
@@ -503,6 +749,12 @@
             "state": "translated",
             "value": "Inspector Tab Bar Position"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posición de la barra de pestañas del inspector"
+          }
         }
       }
     },
@@ -514,6 +766,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reopen Behavior"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comportamiento al reabrir"
           }
         }
       }
@@ -527,6 +785,12 @@
             "state": "translated",
             "value": "Welcome Screen"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantalla de bienvenida"
+          }
         }
       }
     },
@@ -538,6 +802,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open Panel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Panel"
           }
         }
       }
@@ -551,6 +821,12 @@
             "state": "translated",
             "value": "New Document"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documento Nuevo"
+          }
         }
       }
     },
@@ -562,6 +838,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "After the last window is closed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después de cerrar la última ventana"
           }
         }
       }
@@ -575,6 +857,12 @@
             "state": "translated",
             "value": "Do nothing"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hacer nada"
+          }
         }
       }
     },
@@ -586,6 +874,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Welcome Window"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar ventana de bienvenida"
           }
         }
       }
@@ -599,6 +893,12 @@
             "state": "translated",
             "value": "Quit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir"
+          }
         }
       }
     },
@@ -610,6 +910,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Project Navigator Size"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño del Navegador de Proyecto"
           }
         }
       }
@@ -623,6 +929,12 @@
             "state": "translated",
             "value": "Small"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pequeño"
+          }
         }
       }
     },
@@ -634,6 +946,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Medium"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medio"
           }
         }
       }
@@ -647,6 +965,12 @@
             "state": "translated",
             "value": "Large"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grande"
+          }
         }
       }
     },
@@ -658,6 +982,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Find Navigator Detail"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle del Navegador de Búsqueda"
           }
         }
       }
@@ -671,6 +1001,12 @@
             "state": "translated",
             "value": "Issue Navigator Detail"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle del navegador de problemas"
+          }
         }
       }
     },
@@ -682,6 +1018,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dialog Warnings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advertencias de diálogo"
           }
         }
       }
@@ -695,6 +1037,12 @@
             "state": "translated",
             "value": "Reset \"Don't Ask Me\" Warnings"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer advertencias \"No volver a preguntar\""
+          }
         }
       }
     },
@@ -706,6 +1054,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "'codeedit' Shell Command"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comando de shell \"codeedit\""
           }
         }
       }
@@ -719,6 +1073,12 @@
             "state": "translated",
             "value": "Install"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar"
+          }
         }
       }
     },
@@ -730,6 +1090,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Check Now"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar ahora"
           }
         }
       }
@@ -743,6 +1109,12 @@
             "state": "translated",
             "value": "Check for updates"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones"
+          }
         }
       }
     },
@@ -754,6 +1126,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Last checked: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última búsqueda: %@"
           }
         }
       }
@@ -767,6 +1145,12 @@
             "state": "translated",
             "value": "Automatically check for app updates"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones de la app automáticamente"
+          }
         }
       }
     },
@@ -778,6 +1162,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Include pre-release versions"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incluir versiones preliminares"
           }
         }
       }
@@ -791,6 +1181,12 @@
             "state": "translated",
             "value": "Automatically save changes to disk"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar cambios en disco automáticamente"
+          }
         }
       }
     },
@@ -802,6 +1198,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Never"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca"
           }
         }
       }
@@ -815,6 +1217,12 @@
             "state": "translated",
             "value": "Show \"Open With CodeEdit\" option in Finder"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar opción \"Abrir con CodeEdit\" en Finder"
+          }
         }
       }
     },
@@ -826,6 +1234,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatically reveal in project navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar automáticamente en el navegador de proyecto"
           }
         }
       }
@@ -839,6 +1253,12 @@
             "state": "translated",
             "value": "Appearance"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apariencia"
+          }
         }
       }
     },
@@ -850,6 +1270,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "File Icon Style"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de ícono de archivo"
           }
         }
       }
@@ -863,6 +1289,12 @@
             "state": "translated",
             "value": "Tab Bar Style"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estilo de barra de pestañas"
+          }
         }
       }
     },
@@ -874,6 +1306,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Jump Bar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atenuar editores sin foco"
           }
         }
       }
@@ -887,6 +1325,12 @@
             "state": "translated",
             "value": "Dim editors without focus"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posición de la barra de pestañas del navegador"
+          }
         }
       }
     },
@@ -898,6 +1342,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Navigator Tab Bar Position"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posición de la barra de pestañas del inspector"
           }
         }
       }
@@ -911,6 +1361,12 @@
             "state": "translated",
             "value": "Inspector Tab Bar Position"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar problemas"
+          }
         }
       }
     },
@@ -922,6 +1378,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Issues"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar problemas en vivo"
           }
         }
       }
@@ -935,6 +1397,12 @@
             "state": "translated",
             "value": "Show Live Issues"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar automáticamente en el navegador de proyecto"
+          }
         }
       }
     },
@@ -946,6 +1414,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatically save change to disk"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar cambios en disco automáticamente"
           }
         }
       }
@@ -959,6 +1433,12 @@
             "state": "translated",
             "value": "Automatically reveal in project navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después de cerrar la última ventana"
+          }
         }
       }
     },
@@ -970,6 +1450,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reopen Behavior"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensiones de Archivo"
           }
         }
       }
@@ -983,6 +1469,12 @@
             "state": "translated",
             "value": "After the last window is closed"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño del Navegador de Proyecto"
+          }
         }
       }
     },
@@ -994,6 +1486,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "File Extensions"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle del Navegador de Búsqueda"
           }
         }
       }
@@ -1007,6 +1505,12 @@
             "state": "translated",
             "value": "Project Navigator Size"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalle del navegador de problemas"
+          }
         }
       }
     },
@@ -1018,6 +1522,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Find Navigator Detail"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Advertencias de diálogo"
           }
         }
       }
@@ -1031,6 +1541,12 @@
             "state": "translated",
             "value": "Check for updates"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones"
+          }
         }
       }
     },
@@ -1042,6 +1558,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatically check for app updates"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones de la app automáticamente"
           }
         }
       }
@@ -1055,6 +1577,12 @@
             "state": "translated",
             "value": "Include pre-release versions"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incluir versiones preliminares"
+          }
         }
       }
     },
@@ -1066,6 +1594,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "One Line"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una línea"
           }
         }
       }
@@ -1091,6 +1625,12 @@
             "state": "translated",
             "value": "This item will be deleted immediately. You can't undo this action."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este elemento se eliminará inmediatamente. No puedes deshacer esta acción."
+          }
         }
       }
     },
@@ -1102,6 +1642,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delete"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
           }
         }
       }
@@ -1115,6 +1661,12 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
@@ -1126,6 +1678,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Are you sure you want to delete the %d selected items?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar los %d elementos seleccionados?"
           }
         }
       }
@@ -1163,6 +1721,12 @@
             "state": "translated",
             "value": "Up to %d lines"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hasta %d líneas"
+          }
         }
       }
     },
@@ -1175,6 +1739,12 @@
             "state": "translated",
             "value": "Show \"Open With CodeEdit\" option in Finder"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar opción \"Abrir con CodeEdit\" en Finder"
+          }
         }
       }
     },
@@ -1186,6 +1756,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "'codeedit' Shell command"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comando de shell 'codeedit'"
           }
         }
       }
