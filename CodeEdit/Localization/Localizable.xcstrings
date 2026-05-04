@@ -1613,6 +1613,12 @@
             "state": "translated",
             "value": "Do you want to delete"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar"
+          }
         }
       }
     },
@@ -1697,6 +1703,12 @@
             "state": "translated",
             "value": "%d items will be deleted immediately. You cannot undo this action."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d elementos se eliminarán inmediatamente. No puedes deshacer esta acción."
+          }
         }
       }
     },
@@ -1708,6 +1720,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "copy"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "copia"
           }
         }
       }
