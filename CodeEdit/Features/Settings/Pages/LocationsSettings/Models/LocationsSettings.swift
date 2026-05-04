@@ -14,11 +14,10 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Settings Location",
-                "Themes Location",
-                "Extensions Location"
+                String(localized: "settings.locations.search.settings-location", defaultValue: "Settings Location", comment: "Search key for settings location"),
+                String(localized: "settings.locations.search.themes-location", defaultValue: "Themes Location", comment: "Search key for themes location"),
+                String(localized: "settings.locations.search.extensions-location", defaultValue: "Extensions Location", comment: "Search key for extensions location")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
     }
 }
