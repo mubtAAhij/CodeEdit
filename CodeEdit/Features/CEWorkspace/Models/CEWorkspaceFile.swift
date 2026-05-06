@@ -37,7 +37,9 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     var id: String
 
     /// Returns the file name (e.g.: `Package.swift`)
-    var name: String { url.lastPathComponent.trimmingCharacters(in: .whitespacesAndNewlines) }
+    var name: String {
+        url.lastPathComponent.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 
     /// Returns the extension of the file or an empty string if no extension is present.
     var type: FileIcon.FileType {
@@ -53,8 +55,8 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
             return extensions
                 .compactMap { FileIcon.FileType(rawValue: $0) }
                 .first
-            /// Returns .txt for invalid type.
-            ?? .txt
+                /// Returns .txt for invalid type.
+                ?? .txt
         }
     }
 
@@ -112,7 +114,9 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     var staged: Bool?
 
     /// Returns the `id` in ``EditorTabID`` enum form
-    var tabID: EditorTabID { .codeEditor(id) }
+    var tabID: EditorTabID {
+        .codeEditor(id)
+    }
 
     /// Returns a boolean that is true if the resource represented by this object is a directory.
     lazy var isFolder: Bool = {
@@ -123,18 +127,24 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     ///
     /// Does not indicate if this is a folder, see ``isFolder`` to first check if this object is also a directory.
     var isEmptyFolder: Bool {
-        (try? CEWorkspaceFile.fileManager.contentsOfDirectory(
-            at: resolvedURL,
-            includingPropertiesForKeys: nil,
-            options: .skipsSubdirectoryDescendants
-        ).isEmpty) ?? true
+        (try? CEWorkspaceFile.fileManager
+            .contentsOfDirectory(
+                at: resolvedURL,
+                includingPropertiesForKeys: nil,
+                options: .skipsSubdirectoryDescendants
+            )
+            .isEmpty) ?? true
     }
 
     /// Returns a boolean that is true if the file item is the root folder of the workspace.
-    var isRoot: Bool { parent == nil }
+    var isRoot: Bool {
+        parent == nil
+    }
 
     /// Returns a boolean that is true if the file item actually exists in the file system
-    var doesExist: Bool { CEWorkspaceFile.fileManager.fileExists(atPath: self.url.path) }
+    var doesExist: Bool {
+        CEWorkspaceFile.fileManager.fileExists(atPath: self.url.path)
+    }
 
     /// Returns a string describing a SFSymbol for the current ``CEWorkspaceFile``
     ///
@@ -255,11 +265,12 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     func validateFileName(for newName: String) -> Bool {
         // Name must be: new, nonempty, valid characters, and not exist in the filesystem.
         guard newName != labelFileName() &&
-                !newName.isEmpty &&
-                newName.isValidFilename &&
-                !FileManager.default.fileExists(
-                    atPath: self.url.deletingLastPathComponent().appending(path: newName).path
-                ) else {
+            !newName.isEmpty &&
+            newName.isValidFilename &&
+            !FileManager.default.fileExists(
+                atPath: self.url.deletingLastPathComponent().appending(path: newName).path
+            ) else
+        {
             return false
         }
 
@@ -292,8 +303,8 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     /// Nearest folder refers to the parent directory if this is a non-folder item, or itself if the item is a folder.
     var nearestFolder: URL {
         (self.isFolder ?
-                    self.url :
-                    self.url.deletingLastPathComponent())
+            self.url :
+            self.url.deletingLastPathComponent())
     }
 
     // MARK: Comparable
