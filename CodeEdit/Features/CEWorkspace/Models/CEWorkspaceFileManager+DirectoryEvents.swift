@@ -20,18 +20,24 @@ extension CEWorkspaceFileManager {
             for event in events {
                 // Event returns file/folder that was changed, but in tree we need to update it's parent
                 guard let parentUrl = URL(string: event.path, relativeTo: self.folderUrl)?.deletingLastPathComponent(),
-                      let parentFileItem = self.flattenedFileItems[parentUrl.path] else {
+                      let parentFileItem = self.flattenedFileItems[parentUrl.path] else
+                {
                     continue
                 }
 
                 switch event.eventType {
-                case .changeInDirectory, .itemChangedOwner, .itemModified:
+                case .changeInDirectory,
+                     .itemChangedOwner,
+                     .itemModified:
                     // Can be ignored for now, these I think not related to tree changes
                     continue
                 case .rootChanged:
                     // TODO: #1880 - Handle workspace root changing.
                     continue
-                case .itemCreated, .itemCloned, .itemRemoved, .itemRenamed:
+                case .itemCreated,
+                     .itemCloned,
+                     .itemRemoved,
+                     .itemRenamed:
                     do {
                         try self.rebuildFiles(fromItem: parentFileItem)
                     } catch {
@@ -46,7 +52,8 @@ extension CEWorkspaceFileManager {
             }
 
             if Settings.shared.preferences.sourceControl.general.sourceControlIsEnabled &&
-                Settings.shared.preferences.sourceControl.general.refreshStatusLocally {
+                Settings.shared.preferences.sourceControl.general.refreshStatusLocally
+            {
                 self.handleGitEvents(events: events)
             }
         }
@@ -139,7 +146,9 @@ extension CEWorkspaceFileManager {
     ///   - deep: Set to `true` if this should perform the rebuild recursively.
     func rebuildFiles(fromItem fileItem: CEWorkspaceFile, deep: Bool = false) throws {
         // Do not index directories that are not already loaded.
-        guard childrenMap[fileItem.id] != nil else { return }
+        guard childrenMap[fileItem.id] != nil else {
+            return
+        }
 
         // get the actual directory children
         let directoryContentsUrls = try fileManager.contentsOfDirectory(
@@ -151,7 +160,8 @@ extension CEWorkspaceFileManager {
         // Folders may or may not have slash at the end, this will normalize check
         let directoryContentsUrlsRelativePaths = directoryContentsUrls.map({ $0.relativePath })
         for (idx, oldURL) in (childrenMap[fileItem.id] ?? []).map({ URL(filePath: $0) }).enumerated().reversed()
-        where !directoryContentsUrlsRelativePaths.contains(oldURL.relativePath) {
+            where !directoryContentsUrlsRelativePaths.contains(oldURL.relativePath)
+        {
             flattenedFileItems.removeValue(forKey: oldURL.relativePath)
             childrenMap[fileItem.id]?.remove(at: idx)
         }
@@ -160,7 +170,10 @@ extension CEWorkspaceFileManager {
         for newContent in directoryContentsUrls {
             // if the child has already been indexed, continue to the next item.
             guard !ignoredFilesAndFolders.contains(newContent.lastPathComponent) &&
-                    !(childrenMap[fileItem.id]?.contains(newContent.relativePath) ?? true) else { continue }
+                !(childrenMap[fileItem.id]?.contains(newContent.relativePath) ?? true) else
+            {
+                continue
+            }
 
             if fileManager.fileExists(atPath: newContent.path) {
                 let newFileItem = createChild(newContent, forParent: fileItem)
