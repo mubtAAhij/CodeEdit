@@ -8,10 +8,8 @@
 import SwiftUI
 
 extension SettingsData {
-
     /// The general global setting
     struct GeneralSettings: Codable, Hashable, SearchableSettingsPage {
-
         /// The appearance of the app
         var appAppearance: Appearances = .system
 
@@ -24,31 +22,30 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
-                "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
-                "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "settings.general.search-key.appearance", defaultValue: "Appearance", comment: "Search key for appearance setting"),
+                String(localized: "settings.general.search-key.file-icon-style", defaultValue: "File Icon Style", comment: "Search key for file icon style setting"),
+                String(localized: "settings.general.search-key.tab-bar-style", defaultValue: "Tab Bar Style", comment: "Search key for tab bar style setting"),
+                String(localized: "settings.general.search-key.show-jump-bar", defaultValue: "Show Jump Bar", comment: "Search key for show jump bar setting"),
+                String(localized: "settings.general.search-key.dim-editors", defaultValue: "Dim editors without focus", comment: "Search key for dim editors setting"),
+                String(localized: "settings.general.search-key.navigator-position", defaultValue: "Navigator Tab Bar Position", comment: "Search key for navigator position setting"),
+                String(localized: "settings.general.search-key.inspector-position", defaultValue: "Inspector Tab Bar Position", comment: "Search key for inspector position setting"),
+                String(localized: "settings.general.search-key.show-issues", defaultValue: "Show Issues", comment: "Search key for show issues setting"),
+                String(localized: "settings.general.search-key.show-live-issues", defaultValue: "Show Live Issues", comment: "Search key for show live issues setting"),
+                String(localized: "settings.general.search-key.auto-save", defaultValue: "Automatically save change to disk", comment: "Search key for auto save setting"),
+                String(localized: "settings.general.search-key.auto-reveal", defaultValue: "Automatically reveal in project navigator", comment: "Search key for auto reveal setting"),
+                String(localized: "settings.general.search-key.reopen-behavior", defaultValue: "Reopen Behavior", comment: "Search key for reopen behavior setting"),
+                String(localized: "settings.general.search-key.after-close", defaultValue: "After the last window is closed", comment: "Search key for after close behavior setting"),
+                String(localized: "settings.general.search-key.file-extensions", defaultValue: "File Extensions", comment: "Search key for file extensions setting"),
+                String(localized: "settings.general.search-key.navigator-size", defaultValue: "Project Navigator Size", comment: "Search key for navigator size setting"),
+                String(localized: "settings.general.search-key.find-detail", defaultValue: "Find Navigator Detail", comment: "Search key for find navigator detail setting"),
+                String(localized: "settings.general.search-key.issue-detail", defaultValue: "Issue Navigator Detail", comment: "Search key for issue navigator detail setting"),
+                String(localized: "settings.general.search-key.open-with-codeedit", defaultValue: "Show \"Open With CodeEdit\" option in Finder", comment: "Search key for Open With CodeEdit setting"),
+                String(localized: "settings.general.search-key.shell-command", defaultValue: "'codeedit' Shell command", comment: "Search key for shell command setting"),
+                String(localized: "settings.general.search-key.dialog-warnings", defaultValue: "Dialog Warnings", comment: "Search key for dialog warnings setting"),
+                String(localized: "settings.general.search-key.check-updates", defaultValue: "Check for updates", comment: "Search key for check updates setting"),
+                String(localized: "settings.general.search-key.auto-check-updates", defaultValue: "Automatically check for app updates", comment: "Search key for auto check updates setting"),
+                String(localized: "settings.general.search-key.prerelease", defaultValue: "Include pre-release versions", comment: "Search key for prerelease versions setting"),
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -103,75 +100,75 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.appAppearance = try container.decodeIfPresent(
+            appAppearance = try container.decodeIfPresent(
                 Appearances.self,
                 forKey: .appAppearance
             ) ?? .system
-            self.showIssues = try container.decodeIfPresent(
+            showIssues = try container.decodeIfPresent(
                 Issues.self,
                 forKey: .showIssues
             ) ?? .inline
-            self.showLiveIssues = try container.decodeIfPresent(
+            showLiveIssues = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .showLiveIssues
             ) ?? true
-            self.showEditorJumpBar = try container.decodeIfPresent(
+            showEditorJumpBar = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .showEditorJumpBar
             ) ?? true
-            self.dimEditorsWithoutFocus = try container.decodeIfPresent(
+            dimEditorsWithoutFocus = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .dimEditorsWithoutFocus
             ) ?? false
-            self.fileExtensionsVisibility = try container.decodeIfPresent(
+            fileExtensionsVisibility = try container.decodeIfPresent(
                 FileExtensionsVisibility.self,
                 forKey: .fileExtensionsVisibility
             ) ?? .showAll
-            self.shownFileExtensions = try container.decodeIfPresent(
+            shownFileExtensions = try container.decodeIfPresent(
                 FileExtensions.self,
                 forKey: .shownFileExtensions
             ) ?? .default
-            self.hiddenFileExtensions = try container.decodeIfPresent(
+            hiddenFileExtensions = try container.decodeIfPresent(
                 FileExtensions.self,
                 forKey: .hiddenFileExtensions
             ) ?? .default
-            self.fileIconStyle = try container.decodeIfPresent(
+            fileIconStyle = try container.decodeIfPresent(
                 FileIconStyle.self,
                 forKey: .fileIconStyle
             ) ?? .color
-            self.navigatorTabBarPosition = try container.decodeIfPresent(
+            navigatorTabBarPosition = try container.decodeIfPresent(
                 SidebarTabBarPosition.self,
                 forKey: .navigatorTabBarPosition
             ) ?? .top
-            self.inspectorTabBarPosition = try container.decodeIfPresent(
+            inspectorTabBarPosition = try container.decodeIfPresent(
                 SidebarTabBarPosition.self,
                 forKey: .inspectorTabBarPosition
             ) ?? .top
-            self.reopenBehavior = try container.decodeIfPresent(
+            reopenBehavior = try container.decodeIfPresent(
                 ReopenBehavior.self,
                 forKey: .reopenBehavior
             ) ?? .welcome
-            self.reopenWindowAfterClose = try container.decodeIfPresent(
+            reopenWindowAfterClose = try container.decodeIfPresent(
                 ReopenWindowBehavior.self,
                 forKey: .reopenWindowAfterClose
             ) ?? .doNothing
-            self.projectNavigatorSize = try container.decodeIfPresent(
+            projectNavigatorSize = try container.decodeIfPresent(
                 ProjectNavigatorSize.self,
                 forKey: .projectNavigatorSize
             ) ?? .medium
-            self.findNavigatorDetail = try container.decodeIfPresent(
+            findNavigatorDetail = try container.decodeIfPresent(
                 NavigatorDetail.self,
                 forKey: .findNavigatorDetail
             ) ?? .upTo3
-            self.issueNavigatorDetail = try container.decodeIfPresent(
+            issueNavigatorDetail = try container.decodeIfPresent(
                 NavigatorDetail.self,
                 forKey: .issueNavigatorDetail
             ) ?? .upTo3
-            self.revealFileOnFocusChange = try container.decodeIfPresent(
+            revealFileOnFocusChange = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .revealFileOnFocusChange
             ) ?? false
-            self.isAutoSaveOn = try container.decodeIfPresent(
+            isAutoSaveOn = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .isAutoSaveOn
             ) ?? true
@@ -235,16 +232,17 @@ extension SettingsData {
             set {
                 extensions = newValue
                     .components(separatedBy: ",")
-                    .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) })
-                    .filter({ !$0.isEmpty || string.count < newValue.count })
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .filter { !$0.isEmpty || string.count < newValue.count }
             }
         }
 
         static var `default` = FileExtensions(extensions: [
             "c", "cc", "cpp", "h", "hpp", "m", "mm", "gif",
-            "icns", "jpeg", "jpg", "png", "tiff", "swift"
+            "icns", "jpeg", "jpg", "png", "tiff", "swift",
         ])
     }
+
     /// The style for file icons
     /// - **color**: File icons appear in their default colors
     /// - **monochrome**: File icons appear monochromatic
@@ -288,9 +286,9 @@ extension SettingsData {
         /// * `large`: 24
         var rowHeight: Double {
             switch self {
-            case .small: return 20
-            case .medium: return 22
-            case .large: return 24
+            case .small: 20
+            case .medium: 22
+            case .large: 24
             }
         }
     }
@@ -309,9 +307,12 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                String(localized: "settings.general.navigator-detail.one-line", defaultValue: "One Line", comment: "One line detail option")
             default:
-                return "Up to \(self.rawValue) lines"
+                String(
+                    format: String(localized: "settings.general.navigator-detail.up-to-lines", defaultValue: "Up to %lld lines", comment: "Multiple lines detail option with count"),
+                    Int64(rawValue)
+                )
             }
         }
     }
