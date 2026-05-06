@@ -1,6 +1,6 @@
 //
-//  FileIcon.swift
-//  
+//  CEWorkspaceFileIcon.swift
+//
 //
 //  Created by Nanashi Li on 2022/05/20.
 //
@@ -9,7 +9,6 @@ import SwiftUI
 
 // TODO: DOCS (Nanashi Li)
 enum FileIcon {
-
     // swiftlint:disable identifier_name
     enum FileType: String {
         case adb
@@ -96,76 +95,76 @@ enum FileIcon {
     static func fileIcon(fileType: FileType?) -> String { // swiftlint:disable:this cyclomatic_complexity function_body_length line_length
         switch fileType {
         case .json, .yml, .resolved:
-            return "doc.json"
+            "doc.json"
         case .lock:
-            return "lock.doc"
+            "lock.doc"
         case .css:
-            return "curlybraces"
+            "curlybraces"
         case .js, .mjs:
-            return "doc.javascript"
+            "doc.javascript"
         case .jsx, .tsx:
-            return "atom"
+            "atom"
         case .swift:
-            return "swift"
+            "swift"
         case .env, .example:
-            return "gearshape.fill"
+            "gearshape.fill"
         case .gitignore:
-            return "arrow.triangle.branch"
+            "arrow.triangle.branch"
         case .pdf, .png, .jpg, .jpeg, .ico:
-            return "photo"
+            "photo"
         case .svg:
-            return "square.fill.on.circle.fill"
+            "square.fill.on.circle.fill"
         case .entitlements:
-            return "checkmark.seal"
+            "checkmark.seal"
         case .plist:
-            return "tablecells"
+            "tablecells"
         case .md, .txt:
-            return "doc.plaintext"
+            "doc.plaintext"
         case .rtf:
-            return "doc.richtext"
+            "doc.richtext"
         case .html:
-            return "chevron.left.forwardslash.chevron.right"
+            "chevron.left.forwardslash.chevron.right"
         case .LICENSE:
-            return "key.fill"
+            "key.fill"
         case .java:
-            return "cup.and.saucer"
+            "cup.and.saucer"
         case .py:
-            return "doc.python"
+            "doc.python"
         case .rb:
-            return "doc.ruby"
+            "doc.ruby"
         case .strings:
-            return "text.quote"
+            "text.quote"
         case .h:
-            return "h.square"
+            "h.square"
         case .m:
-            return "m.square"
+            "m.square"
         case .vue:
-            return "v.square"
+            "v.square"
         case .go:
-            return "g.square"
+            "g.square"
         case .sum:
-            return "s.square"
+            "s.square"
         case .mod:
-            return "m.square"
+            "m.square"
         case .bash, .sh, .Makefile, .zsh:
-            return "terminal"
+            "terminal"
         case .rs:
-            return "r.square"
+            "r.square"
         case .wav, .mp3, .aif, .mid:
-            return "speaker.wave.2"
+            "speaker.wave.2"
         case .avi, .mp4, .mov:
-            return "film"
+            "film"
         case .scpt:
-            return "applescript"
+            "applescript"
         case .xcconfig:
-            return "gearshape.2"
+            "gearshape.2"
         case .cetheme:
-            return "paintbrush"
+            "paintbrush"
         case .adb, .clj, .cls, .cs, .d, .dart, .elm, .ex, .f95, .fs, .gs, .hs,
              .jl, .kt, .l, .lsp, .lua, .mk, .pas, .pl, .scm, .ss:
-            return "doc.plaintext"
+            "doc.plaintext"
         default:
-            return "doc"
+            "doc"
         }
     }
 
@@ -174,37 +173,37 @@ enum FileIcon {
     static func iconColor(fileType: FileType?) -> Color { // swiftlint:disable:this cyclomatic_complexity
         switch fileType {
         case .swift, .html:
-            return .orange
+            .orange
         case .java, .jpg, .png, .svg, .ts:
-            return .blue
+            .blue
         case .css:
-            return .teal
+            .teal
         case .js, .mjs, .py, .entitlements, .LICENSE:
-            return Color.amber
+            Color.amber
         case .json, .resolved, .rb, .strings, .yml:
-            return Color.scarlet
+            Color.scarlet
         case .jsx, .tsx:
-            return .cyan
+            .cyan
         case .plist, .xcconfig, .sh:
-            return Color.steel
+            Color.steel
         case .c, .cetheme:
-            return .purple
+            .purple
         case .vue:
-            return Color(red: 0.255, green: 0.722, blue: 0.514, opacity: 1.0)
+            Color(red: 0.255, green: 0.722, blue: 0.514, opacity: 1.0)
         case .h:
-            return Color(red: 0.667, green: 0.031, blue: 0.133, opacity: 1.0)
+            Color(red: 0.667, green: 0.031, blue: 0.133, opacity: 1.0)
         case .m:
-            return Color(red: 0.271, green: 0.106, blue: 0.525, opacity: 1.0)
+            Color(red: 0.271, green: 0.106, blue: 0.525, opacity: 1.0)
         case .go:
-            return Color(red: 0.02, green: 0.675, blue: 0.757, opacity: 1.0)
+            Color(red: 0.02, green: 0.675, blue: 0.757, opacity: 1.0)
         case .sum, .mod:
-            return Color(red: 0.925, green: 0.251, blue: 0.478, opacity: 1.0)
+            Color(red: 0.925, green: 0.251, blue: 0.478, opacity: 1.0)
         case .Makefile:
-            return Color(red: 0.937, green: 0.325, blue: 0.314, opacity: 1.0)
+            Color(red: 0.937, green: 0.325, blue: 0.314, opacity: 1.0)
         case .rs:
-            return .orange
+            .orange
         default:
-            return Color.steel
+            Color.steel
         }
     }
 }
