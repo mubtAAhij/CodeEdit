@@ -20,7 +20,7 @@ extension CEWorkspaceFile {
         using fileManager: CEWorkspaceFileManager
     ) -> [CEWorkspaceFile] {
         guard depth > 0 else { return [] }
-        guard self.isFolder else { return [self] }
+        guard isFolder else { return [self] }
         var childItems: [CEWorkspaceFile] = ignoringFolders ? [] : [self]
         fileManager.childrenOfFile(self)?.forEach { child in
             childItems.append(contentsOf: child.flattenedChildren(
@@ -45,7 +45,7 @@ extension CEWorkspaceFile {
         ignoringFolders: Bool,
         using fileManager: CEWorkspaceFileManager
     ) -> [CEWorkspaceFile] {
-        let topMostParent = self.getParent(withHeight: height)
+        let topMostParent = getParent(withHeight: height)
         return topMostParent.flattenedChildren(withDepth: height, ignoringFolders: ignoringFolders, using: fileManager)
     }
 
@@ -55,7 +55,7 @@ extension CEWorkspaceFile {
     /// - Returns: The found `FileSystemItem` object, This should always be a folder.
     private func getParent(withHeight height: Int) -> CEWorkspaceFile {
         var topmostParent = self
-        for _ in 0..<height {
+        for _ in 0 ..< height {
             guard let parent = topmostParent.parent else { break }
             topmostParent = parent
         }
@@ -63,31 +63,31 @@ extension CEWorkspaceFile {
         return topmostParent
     }
 
-#if DEBUG
-    /// Print a debug description of the file.
-    /// - Parameters:
-    ///   - tabCount: The number of tabs to tab the description over (for recursive calls)
-    ///   - fileManager: The file manager to use to find children.
-    /// - Returns: A string describing the file and it's children.
-    /// - Authors: Mattijs Eikelenboom, KaiTheRedNinja. *Moved from 7c27b1e*
-    func childrenDescription(tabCount: Int = 0, using fileManager: CEWorkspaceFileManager) -> String {
-        var myDetails = "\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "")"
-        myDetails += "\(url.path(percentEncoded: false))"
-        if !self.isFolder { // if im a file, just return the url
-            return myDetails
-        } else { // if im a folder, return the url and its children's details
-            var childDetails = "\(myDetails)"
-            if fileManager.hasLoadedChildrenFor(file: self) {
-                for child in fileManager.childrenOfFile(self) ?? [] {
-                    childDetails += "\n\(child.childrenDescription(tabCount: tabCount + 1, using: fileManager))"
+    #if DEBUG
+        /// Print a debug description of the file.
+        /// - Parameters:
+        ///   - tabCount: The number of tabs to tab the description over (for recursive calls)
+        ///   - fileManager: The file manager to use to find children.
+        /// - Returns: A string describing the file and it's children.
+        /// - Authors: Mattijs Eikelenboom, KaiTheRedNinja. *Moved from 7c27b1e*
+        func childrenDescription(tabCount: Int = 0, using fileManager: CEWorkspaceFileManager) -> String {
+            var myDetails = "\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "")"
+            myDetails += "\(url.path(percentEncoded: false))"
+            if !isFolder { // if im a file, just return the url
+                return myDetails
+            } else { // if im a folder, return the url and its children's details
+                var childDetails = "\(myDetails)"
+                if fileManager.hasLoadedChildrenFor(file: self) {
+                    for child in fileManager.childrenOfFile(self) ?? [] {
+                        childDetails += "\n\(child.childrenDescription(tabCount: tabCount + 1, using: fileManager))"
+                    }
+                } else {
+                    // Disabling for debug line.
+                    // swiftlint:disable:next line_length
+                    childDetails += "\n\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "") Children Not Loaded"
                 }
-            } else {
-                // Disabling for debug line.
-                // swiftlint:disable:next line_length
-                childDetails += "\n\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "") Children Not Loaded"
+                return childDetails
             }
-            return childDetails
         }
-    }
-#endif
+    #endif
 }

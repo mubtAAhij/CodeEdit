@@ -20,7 +20,8 @@ extension CEWorkspaceFileManager {
             for event in events {
                 // Event returns file/folder that was changed, but in tree we need to update it's parent
                 guard let parentUrl = URL(string: event.path, relativeTo: self.folderUrl)?.deletingLastPathComponent(),
-                      let parentFileItem = self.flattenedFileItems[parentUrl.path] else {
+                      let parentFileItem = self.flattenedFileItems[parentUrl.path]
+                else {
                     continue
                 }
 
@@ -45,8 +46,9 @@ extension CEWorkspaceFileManager {
                 self.notifyObservers(updatedItems: files)
             }
 
-            if Settings.shared.preferences.sourceControl.general.sourceControlIsEnabled &&
-                Settings.shared.preferences.sourceControl.general.refreshStatusLocally {
+            if Settings.shared.preferences.sourceControl.general.sourceControlIsEnabled,
+               Settings.shared.preferences.sourceControl.general.refreshStatusLocally
+            {
                 self.handleGitEvents(events: events)
             }
         }
@@ -54,7 +56,7 @@ extension CEWorkspaceFileManager {
 
     func handleGitEvents(events: [DirectoryEventStream.Event]) {
         // Changes excluding .git folder
-        let notGitChanges = events.filter({ !$0.path.contains(".git/") })
+        let notGitChanges = events.filter { !$0.path.contains(".git/") }
 
         // .git folder was changed
         let gitFolderChange = events.first(where: {
@@ -149,9 +151,10 @@ extension CEWorkspaceFileManager {
 
         // test for deleted children, and remove them from the index
         // Folders may or may not have slash at the end, this will normalize check
-        let directoryContentsUrlsRelativePaths = directoryContentsUrls.map({ $0.relativePath })
+        let directoryContentsUrlsRelativePaths = directoryContentsUrls.map(\.relativePath)
         for (idx, oldURL) in (childrenMap[fileItem.id] ?? []).map({ URL(filePath: $0) }).enumerated().reversed()
-        where !directoryContentsUrlsRelativePaths.contains(oldURL.relativePath) {
+            where !directoryContentsUrlsRelativePaths.contains(oldURL.relativePath)
+        {
             flattenedFileItems.removeValue(forKey: oldURL.relativePath)
             childrenMap[fileItem.id]?.remove(at: idx)
         }
@@ -159,8 +162,8 @@ extension CEWorkspaceFileManager {
         // test for new children, and index them
         for newContent in directoryContentsUrls {
             // if the child has already been indexed, continue to the next item.
-            guard !ignoredFilesAndFolders.contains(newContent.lastPathComponent) &&
-                    !(childrenMap[fileItem.id]?.contains(newContent.relativePath) ?? true) else { continue }
+            guard !ignoredFilesAndFolders.contains(newContent.lastPathComponent),
+                  !(childrenMap[fileItem.id]?.contains(newContent.relativePath) ?? true) else { continue }
 
             if fileManager.fileExists(atPath: newContent.path) {
                 let newFileItem = createChild(newContent, forParent: fileItem)
@@ -172,9 +175,9 @@ extension CEWorkspaceFileManager {
         childrenMap[fileItem.id] = childrenMap[fileItem.id]?
             .map { URL(filePath: $0) }
             .sortItems(foldersOnTop: true)
-            .map { $0.relativePath }
+            .map(\.relativePath)
 
-        if deep && childrenMap[fileItem.id] != nil {
+        if deep, childrenMap[fileItem.id] != nil {
             for child in (childrenMap[fileItem.id] ?? []).compactMap({ flattenedFileItems[$0] }) {
                 try rebuildFiles(fromItem: child)
             }
@@ -183,10 +186,10 @@ extension CEWorkspaceFileManager {
 
     /// Notify observers that an update occurred in the watched files.
     func notifyObservers(updatedItems: Set<CEWorkspaceFile>) {
-        observers.allObjects.reversed().forEach { delegate in
+        for delegate in observers.allObjects.reversed() {
             guard let delegate = delegate as? CEWorkspaceFileManagerObserver else {
                 observers.remove(delegate)
-                return
+                continue
             }
             delegate.fileManagerUpdated(updatedItems: updatedItems)
         }

@@ -1,14 +1,14 @@
 //
-//  FileItem.swift
+//  CEWorkspaceFile.swift
 //  CodeEdit
 //
 //  Created by Matthijs Eikelenboom on 07/02/2023.
 //
 
+import Combine
 import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
-import Combine
 
 /// An object containing all necessary information and actions for a specific file in the workspace
 ///
@@ -32,29 +32,30 @@ import Combine
 /// just makes a disconnected object and uses it for the preview. Then, when opening the file in the workspace it
 /// forces the file to be loaded and cached.
 final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, EditorTabRepresentable {
-
     /// The id of the ``CEWorkspaceFile``.
     var id: String
 
     /// Returns the file name (e.g.: `Package.swift`)
-    var name: String { url.lastPathComponent.trimmingCharacters(in: .whitespacesAndNewlines) }
+    var name: String {
+        url.lastPathComponent.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 
     /// Returns the extension of the file or an empty string if no extension is present.
     var type: FileIcon.FileType {
         let filename = url.fileName
 
-        /// First, check if there is a valid file extension.
+        // First, check if there is a valid file extension.
         if let type = FileIcon.FileType(rawValue: filename) {
             return type
         } else {
-            /// If  there's not, verifies every extension for a valid type.
+            // If  there's not, verifies every extension for a valid type.
             let extensions = filename.dropFirst().components(separatedBy: ".").reversed()
 
             return extensions
                 .compactMap { FileIcon.FileType(rawValue: $0) }
                 .first
-            /// Returns .txt for invalid type.
-            ?? .txt
+                // Returns .txt for invalid type.
+                ?? .txt
         }
     }
 
@@ -62,25 +63,23 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     let url: URL
 
     /// Returns the resolved symlink url of this object.
-    lazy var resolvedURL: URL = {
-        url.isSymbolicLink ? url.resolvingSymlinksInPath() : url
-    }()
+    lazy var resolvedURL: URL = url.isSymbolicLink ? url.resolvingSymlinksInPath() : url
 
     /// Return the icon of the file as `Image`
     var icon: Image {
         if let customImage = NSImage.symbol(named: systemImage) {
-            return Image(nsImage: customImage)
+            Image(nsImage: customImage)
         } else {
-            return Image(systemName: systemImage)
+            Image(systemName: systemImage)
         }
     }
 
     /// Return the icon of the file as `NSImage`
     var nsIcon: NSImage {
         if let customImage = NSImage.symbol(named: systemImage) {
-            return customImage
+            customImage
         } else {
-            return NSImage(systemSymbolName: systemImage, accessibilityDescription: systemImage)
+            NSImage(systemSymbolName: systemImage, accessibilityDescription: systemImage)
                 ?? NSImage(systemSymbolName: "doc", accessibilityDescription: "doc")!
         }
     }
@@ -112,12 +111,12 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     var staged: Bool?
 
     /// Returns the `id` in ``EditorTabID`` enum form
-    var tabID: EditorTabID { .codeEditor(id) }
+    var tabID: EditorTabID {
+        .codeEditor(id)
+    }
 
     /// Returns a boolean that is true if the resource represented by this object is a directory.
-    lazy var isFolder: Bool = {
-        resolvedURL.isFolder
-    }()
+    lazy var isFolder: Bool = resolvedURL.isFolder
 
     /// Returns a boolean that is true if the contents of the directory at this path are
     ///
@@ -131,10 +130,14 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     }
 
     /// Returns a boolean that is true if the file item is the root folder of the workspace.
-    var isRoot: Bool { parent == nil }
+    var isRoot: Bool {
+        parent == nil
+    }
 
     /// Returns a boolean that is true if the file item actually exists in the file system
-    var doesExist: Bool { CEWorkspaceFile.fileManager.fileExists(atPath: self.url.path) }
+    var doesExist: Bool {
+        CEWorkspaceFile.fileManager.fileExists(atPath: url.path)
+    }
 
     /// Returns a string describing a SFSymbol for the current ``CEWorkspaceFile``
     ///
@@ -145,10 +148,10 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     var systemImage: String {
         if isFolder {
             // item is a folder
-            return folderIcon()
+            folderIcon()
         } else {
             // item is a file
-            return FileIcon.fileIcon(fileType: type)
+            FileIcon.fileIcon(fileType: type)
         }
     }
 
@@ -172,7 +175,7 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     ) {
         self.id = id
         self.url = url
-        self.gitStatus = changeType
+        gitStatus = changeType
         self.staged = staged
     }
 
@@ -220,10 +223,10 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     /// If it is a `.codeedit` folder this will return `"folder.fill.badge.gearshape"`.
     /// If it has children this will return `"folder.fill"` otherwise `"folder"`.
     private func folderIcon() -> String {
-        if self.parent == nil {
+        if parent == nil {
             return "folder.fill.badge.gearshape"
         }
-        if self.name == ".codeedit" {
+        if name == ".codeedit" {
             return "folder.fill.badge.gearshape"
         }
         return isEmptyFolder ? "folder" : "folder.fill"
@@ -242,24 +245,25 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
         let prefs = Settings.shared.preferences.general
         switch prefs.fileExtensionsVisibility {
         case .hideAll:
-            return self.fileName(typeHidden: true)
+            return fileName(typeHidden: true)
         case .showAll:
-            return self.fileName(typeHidden: false)
+            return fileName(typeHidden: false)
         case .showOnly:
-            return self.fileName(typeHidden: !prefs.shownFileExtensions.extensions.contains(self.type.rawValue))
+            return fileName(typeHidden: !prefs.shownFileExtensions.extensions.contains(type.rawValue))
         case .hideOnly:
-            return self.fileName(typeHidden: prefs.hiddenFileExtensions.extensions.contains(self.type.rawValue))
+            return fileName(typeHidden: prefs.hiddenFileExtensions.extensions.contains(type.rawValue))
         }
     }
 
     func validateFileName(for newName: String) -> Bool {
         // Name must be: new, nonempty, valid characters, and not exist in the filesystem.
-        guard newName != labelFileName() &&
-                !newName.isEmpty &&
-                newName.isValidFilename &&
-                !FileManager.default.fileExists(
-                    atPath: self.url.deletingLastPathComponent().appending(path: newName).path
-                ) else {
+        guard newName != labelFileName(),
+              !newName.isEmpty,
+              newName.isValidFilename,
+              !FileManager.default.fileExists(
+                  atPath: url.deletingLastPathComponent().appending(path: newName).path
+              )
+        else {
             return false
         }
 
@@ -271,14 +275,16 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     func loadCodeFile() throws {
         let codeFile = try CodeFileDocument(contentsOf: resolvedURL, ofType: contentType?.identifier ?? "")
         CodeEditDocumentController.shared.addDocument(codeFile)
-        self.fileDocument = codeFile
+        fileDocument = codeFile
     }
 
     // MARK: Statics
+
     /// The default `FileManager` instance
     static let fileManager = FileManager.default
 
     // MARK: Intents
+
     /// Allows the user to view the file or folder in the finder application
     func showInFinder() {
         NSWorkspace.shared.activateFileViewerSelecting([url])
@@ -291,9 +297,9 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
 
     /// Nearest folder refers to the parent directory if this is a non-folder item, or itself if the item is a folder.
     var nearestFolder: URL {
-        (self.isFolder ?
-                    self.url :
-                    self.url.deletingLastPathComponent())
+        isFolder ?
+            url :
+            url.deletingLastPathComponent()
     }
 
     // MARK: Comparable
@@ -312,5 +318,4 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
         hasher.combine(url)
         hasher.combine(id)
     }
-
 }

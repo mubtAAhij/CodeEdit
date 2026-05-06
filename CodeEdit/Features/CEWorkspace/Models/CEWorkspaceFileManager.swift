@@ -1,13 +1,13 @@
 //
-//  FileSystemClient.swift
+//  CEWorkspaceFileManager.swift
 //  CodeEdit
 //
 //  Created by Matthijs Eikelenboom on 04/02/2023.
 //
 
+import AppKit
 import Combine
 import Foundation
-import AppKit
 import OSLog
 
 protocol CEWorkspaceFileManagerObserver: AnyObject {
@@ -67,12 +67,12 @@ final class CEWorkspaceFileManager {
         self.folderUrl = folderUrl
         self.ignoredFilesAndFolders = ignoredFilesAndFolders
 
-        self.workspaceItem = CEWorkspaceFile(url: folderUrl)
-        self.flattenedFileItems = [workspaceItem.id: workspaceItem]
+        workspaceItem = CEWorkspaceFile(url: folderUrl)
+        flattenedFileItems = [workspaceItem.id: workspaceItem]
         self.sourceControlManager = sourceControlManager
         self.fileManager = fileManager
 
-        self.loadChildrenForFile(self.workspaceItem)
+        loadChildrenForFile(workspaceItem)
 
         fsEventStream = DirectoryEventStream(directory: self.folderUrl.path) { [weak self] events in
             self?.fileSystemEventReceived(events: events)
@@ -86,7 +86,7 @@ final class CEWorkspaceFileManager {
     // MARK: - Public API
 
     /// A function that, given a file's path, returns a `FileItem` if it exists
-    /// within the scope of the `FileSystemClient`. 
+    /// within the scope of the `FileSystemClient`.
     /// - Parameters:
     ///   - path: The file's relative path.
     ///   - createIfNotFound: Set to true if the function should index any intermediate directories to find the file,
@@ -186,8 +186,8 @@ final class CEWorkspaceFileManager {
         )
         .compactMap {
             ignoredFilesAndFolders.contains($0.lastPathComponent) && (try? $0.checkResourceIsReachable()) ?? false
-            ? nil
-            : URL(filePath: $0.path(percentEncoded: false), relativeTo: folderUrl)
+                ? nil
+                : URL(filePath: $0.path(percentEncoded: false), relativeTo: folderUrl)
         }
         .sortItems(foldersOnTop: true)
     }
@@ -205,14 +205,14 @@ final class CEWorkspaceFileManager {
         return newFileItem
     }
 
-#if DEBUG
-    /// Determines if the file has had it's children loaded from disk.
-    /// - Parameter file: The file to check.
-    /// - Returns: True if the file's children have been cached.
-    func hasLoadedChildrenFor(file: CEWorkspaceFile) -> Bool {
-        childrenMap[file.id] != nil
-    }
-#endif
+    #if DEBUG
+        /// Determines if the file has had it's children loaded from disk.
+        /// - Parameter file: The file to check.
+        /// - Returns: True if the file's children have been cached.
+        func hasLoadedChildrenFor(file: CEWorkspaceFile) -> Bool {
+            childrenMap[file.id] != nil
+        }
+    #endif
 
     /// Run when the owner of the ``CEWorkspaceFileManager`` doesn't need it anymore.
     /// This de-inits most functions in the ``CEWorkspaceFileManager``, so that in case it isn't de-init'd it does not
