@@ -186,8 +186,8 @@ final class CEWorkspaceFileManager {
         )
         .compactMap {
             ignoredFilesAndFolders.contains($0.lastPathComponent) && (try? $0.checkResourceIsReachable()) ?? false
-            ? nil
-            : URL(filePath: $0.path(percentEncoded: false), relativeTo: folderUrl)
+                ? nil
+                : URL(filePath: $0.path(percentEncoded: false), relativeTo: folderUrl)
         }
         .sortItems(foldersOnTop: true)
     }
@@ -205,14 +205,14 @@ final class CEWorkspaceFileManager {
         return newFileItem
     }
 
-#if DEBUG
-    /// Determines if the file has had it's children loaded from disk.
-    /// - Parameter file: The file to check.
-    /// - Returns: True if the file's children have been cached.
-    func hasLoadedChildrenFor(file: CEWorkspaceFile) -> Bool {
-        childrenMap[file.id] != nil
-    }
-#endif
+    #if DEBUG
+        /// Determines if the file has had it's children loaded from disk.
+        /// - Parameter file: The file to check.
+        /// - Returns: True if the file's children have been cached.
+        func hasLoadedChildrenFor(file: CEWorkspaceFile) -> Bool {
+            childrenMap[file.id] != nil
+        }
+    #endif
 
     /// Run when the owner of the ``CEWorkspaceFileManager`` doesn't need it anymore.
     /// This de-inits most functions in the ``CEWorkspaceFileManager``, so that in case it isn't de-init'd it does not
