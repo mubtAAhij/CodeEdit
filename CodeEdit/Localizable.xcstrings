@@ -1465,7 +1465,7 @@
         "es-419": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d seleccionado"
+            "value": "%d seleccionados"
           },
           "variations": {
             "plural": {
@@ -2367,6 +2367,12 @@
             "state": "translated",
             "value": "Do you want to switch to"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres cambiar a"
+          }
         }
       }
     },
@@ -2378,6 +2384,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "All files in the local repository will switch from the current branch ("
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los archivos en el repositorio local cambiarán desde la rama actual ("
           }
         }
       }
@@ -2480,6 +2492,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%d Spaces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d espacios"
           }
         }
       }
@@ -3213,6 +3231,12 @@
             "state": "translated",
             "value": "Fetching changes for"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obteniendo cambios para"
+          }
         }
       }
     },
@@ -3764,6 +3788,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invalid response received: %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta inválida recibida: %d"
           }
         }
       }
@@ -5049,6 +5079,12 @@
             "state": "translated",
             "value": "%d selected ranges"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d rangos seleccionados"
+          }
         }
       }
     },
@@ -5060,6 +5096,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Char: %ld Len: %ld"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Car: %ld Long: %ld"
           }
         }
       }
@@ -5073,6 +5115,12 @@
             "state": "translated",
             "value": "%d lines"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d líneas"
+          }
         }
       }
     },
@@ -5084,6 +5132,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%ld characters"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%ld caracteres"
           }
         }
       }
@@ -5097,6 +5151,12 @@
             "state": "translated",
             "value": "Char: %ld Len: 0"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Car: %ld Long: 0"
+          }
         }
       }
     },
@@ -5108,6 +5168,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Line: %ld  Col: %ld"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Línea: %ld  Col: %ld"
           }
         }
       }
@@ -7341,6 +7407,12 @@
             "state": "translated",
             "value": "All files failed to update. (%d) errors occurred. Check logs for more information"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los archivos no se pudieron actualizar. Ocurrieron (%d) errores. Revisa los registros para más información"
+          }
         }
       }
     },
@@ -7989,6 +8061,12 @@
             "state": "translated",
             "value": "%d ahead"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d adelante"
+          }
         }
       }
     },
@@ -8000,6 +8078,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%d behind"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d detrás"
           }
         }
       }
@@ -8534,6 +8618,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Are you sure you want to delete the theme \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar el tema \"%@\"?"
           }
         }
       }
@@ -9698,6 +9788,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Successfully replaced terms across %d files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Términos reemplazados exitosamente en %d archivos"
           }
         }
       }
@@ -18549,6 +18645,12 @@
             "state": "translated",
             "value": "Duplicate"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicar"
+          }
         }
       }
     },
@@ -21807,6 +21909,12 @@
             "state": "translated",
             "value": "Unable to add account"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede agregar cuenta"
+          }
         }
       }
     },
@@ -22557,6 +22665,12 @@
             "state": "translated",
             "value": "Are you sure you want to delete the %d selected items?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar los %d elementos seleccionados?"
+          }
         }
       }
     },
@@ -22568,6 +22682,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%d items will be deleted immediately. You cannot undo this action."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d elementos se eliminarán de inmediato. No puedes deshacer esta acción."
           }
         }
       }
