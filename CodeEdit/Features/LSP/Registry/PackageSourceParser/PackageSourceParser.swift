@@ -11,18 +11,18 @@ import Foundation
 enum PackageSourceParser {
     static func parseGithubPackage(_ entry: RegistryItem) -> InstallationMethod {
         // Format: pkg:github/OWNER/REPO@COMMIT_HASH
-        let pkgPrefix = "pkg:github/"
+        let pkgPrefix = String(localized: "swift.preflight.literal.412534", defaultValue: "pkg:github/", comment: "")
         let sourceId = entry.source.id
         guard sourceId.hasPrefix(pkgPrefix) else { return .unknown }
 
         let pkgString = sourceId.dropFirst(pkgPrefix.count)
-        let packagePathVersion = pkgString.split(separator: "@", maxSplits: 1)
+        let packagePathVersion = pkgString.split(separator: String(localized: "swift.preflight.literal.412535", defaultValue: "@", comment: ""), maxSplits: 1)
         guard packagePathVersion.count >= 1 else { return .unknown }
 
         let packagePath = String(packagePathVersion[0])
-        let version = packagePathVersion.count > 1 ? String(packagePathVersion[1]) : "main"
+        let version = packagePathVersion.count > 1 ? String(packagePathVersion[1]) : String(localized: "swift.preflight.literal.412536", defaultValue: "main", comment: "")
 
-        let pathComponents = packagePath.split(separator: "/")
+        let pathComponents = packagePath.split(separator: String(localized: "swift.preflight.literal.412537", defaultValue: "/", comment: ""))
         guard pathComponents.count >= 2 else { return .unknown }
 
         let owner = String(pathComponents[0])
@@ -30,7 +30,7 @@ enum PackageSourceParser {
         let packageName = repo
         let repositoryUrl = "https://github.com/\(owner)/\(repo)"
 
-        let isCommitHash = version.range(of: "^[0-9a-f]{40}$", options: .regularExpression) != nil
+        let isCommitHash = version.range(of: String(localized: "swift.preflight.literal.412539", defaultValue: "^[0-9a-f]{40}$", comment: ""), options: .regularExpression) != nil
         let gitReference: PackageSource.GitReference = isCommitHash ? .revision(version) : .tag(version)
 
         // Is this going to be built from source or downloaded
@@ -72,7 +72,7 @@ enum PackageSourceParser {
 
         do {
             var registryInfo = try entry.toDictionary()
-            registryInfo["version"] = pkgSource.version
+            registryInfo[String(localized: "swift.preflight.literal.412540", defaultValue: "version", comment: "")] = pkgSource.version
             fileName = try RegistryItemTemplateParser.process(
                 template: fileName, with: registryInfo
             )
