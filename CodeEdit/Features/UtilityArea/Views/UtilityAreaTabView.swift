@@ -11,8 +11,8 @@ struct UtilityAreaTabView<Content: View, LeadingSidebar: View, TrailingSidebar: 
     @ObservedObject var model: UtilityAreaTabViewModel
 
     let content: (UtilityAreaTabViewModel) -> Content
-    let leadingSidebar: (UtilityAreaTabViewModel) -> LeadingSidebar?
-    let trailingSidebar: (UtilityAreaTabViewModel) -> TrailingSidebar?
+    let leadingSidebar: (UtilityAreaTabViewModel) -> LeadingSidebar
+    let trailingSidebar: (UtilityAreaTabViewModel) -> TrailingSidebar
 
     let hasLeadingSidebar: Bool
     let hasTrailingSidebar: Bool
