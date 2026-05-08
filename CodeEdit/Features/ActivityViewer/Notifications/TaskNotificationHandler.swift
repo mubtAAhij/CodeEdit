@@ -135,13 +135,13 @@ final class TaskNotificationHandler: ObservableObject {
     @MainActor
     static func postTask(toWorkspace: URL? = nil, action: Action, model: TaskNotificationModel) {
         NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: [
-            "id": model.id,
-            "title": model.title,
-            "message": model.message as Any,
-            "percentage": model.percentage as Any,
-            "isLoading": model.isLoading,
-            "action": action.rawValue,
-            "workspace": toWorkspace as Any
+            String(localized: "skip", defaultValue: "id", comment: "Dictionary key for notification userInfo"): model.id,
+            String(localized: "skip", defaultValue: "title", comment: "Dictionary key for notification userInfo"): model.title,
+            String(localized: "skip", defaultValue: "message", comment: "Dictionary key for notification userInfo"): model.message as Any,
+            String(localized: "skip", defaultValue: "percentage", comment: "Dictionary key for notification userInfo"): model.percentage as Any,
+            String(localized: "skip", defaultValue: "isLoading", comment: "Dictionary key for notification userInfo"): model.isLoading,
+            String(localized: "skip", defaultValue: "action", comment: "Dictionary key for notification userInfo"): action.rawValue,
+            String(localized: "skip", defaultValue: "workspace", comment: "Dictionary key for notification userInfo"): toWorkspace as Any
         ])
     }
 
@@ -167,12 +167,12 @@ final class TaskNotificationHandler: ObservableObject {
     /// - Parameter notification: The notification containing task information.
     private func handleNotification(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
-              let taskID = userInfo["id"] as? String,
-              let actionRaw = userInfo["action"] as? String,
+              let taskID = userInfo[String(localized: "skip", defaultValue: "id", comment: "Dictionary key for notification userInfo lookup")] as? String,
+              let actionRaw = userInfo[String(localized: "skip", defaultValue: "action", comment: "Dictionary key for notification userInfo lookup")] as? String,
               let action = Action(rawValue: actionRaw) else { return }
 
         // If a workspace is specified and doesn't match, don't do anything with this task.
-        if let workspaceURL = userInfo["workspace"] as? URL, workspaceURL != self.workspaceURL {
+        if let workspaceURL = userInfo[String(localized: "skip", defaultValue: "workspace", comment: "Dictionary key for notification userInfo lookup")] as? URL, workspaceURL != self.workspaceURL {
             return
         }
 
@@ -184,7 +184,7 @@ final class TaskNotificationHandler: ObservableObject {
         case .delete:
             deleteTask(taskID: taskID)
         case .deleteWithDelay:
-            if let delay = userInfo["delay"] as? Double {
+            if let delay = userInfo[String(localized: "skip", defaultValue: "delay", comment: "Dictionary key for notification userInfo lookup")] as? Double {
                 deleteTaskAfterDelay(taskID: taskID, delay: delay)
             }
         }
@@ -194,21 +194,21 @@ final class TaskNotificationHandler: ObservableObject {
     ///
     /// - Parameter task: A dictionary containing task information.
     private func createTask(task: [AnyHashable: Any]) {
-        guard let title = task["title"] as? String,
-              let id = task["id"] as? String,
-              let action = task["action"] as? String else {
+        guard let title = task[String(localized: "skip", defaultValue: "title", comment: "Dictionary key for task creation")] as? String,
+              let id = task[String(localized: "skip", defaultValue: "id", comment: "Dictionary key for task creation")] as? String,
+              let action = task[String(localized: "skip", defaultValue: "action", comment: "Dictionary key for task creation")] as? String else {
             return
         }
 
         let task = TaskNotificationModel(
             id: id,
             title: title,
-            message: task["message"] as? String,
-            percentage: task["percentage"] as? Double,
-            isLoading: task["isLoading"] as? Bool ?? false
+            message: task[String(localized: "skip", defaultValue: "message", comment: "Dictionary key for task property")] as? String,
+            percentage: task[String(localized: "skip", defaultValue: "percentage", comment: "Dictionary key for task property")] as? Double,
+            isLoading: task[String(localized: "skip", defaultValue: "isLoading", comment: "Dictionary key for task property")] as? Bool ?? false
         )
 
-        if action == "create" {
+        if action == String(localized: "skip", defaultValue: "create", comment: "Action type string comparison") {
             notifications.append(task)
         } else {
             notifications.insert(task, at: 0)
@@ -219,18 +219,18 @@ final class TaskNotificationHandler: ObservableObject {
     ///
     /// - Parameter task: A dictionary containing task information.
     private func updateTask(task: [AnyHashable: Any]) {
-        guard let taskID = task["id"] as? String else { return }
+        guard let taskID = task[String(localized: "skip", defaultValue: "id", comment: "Dictionary key for task update")] as? String else { return }
             if let index = self.notifications.firstIndex(where: { $0.id == taskID }) {
-                if let title = task["title"] as? String {
+                if let title = task[String(localized: "skip", defaultValue: "title", comment: "Dictionary key for task update")] as? String {
                     self.notifications[index].title = title
                 }
-                if let message = task["message"] as? String {
+                if let message = task[String(localized: "skip", defaultValue: "message", comment: "Dictionary key for task update")] as? String {
                     self.notifications[index].message = message
                 }
-                if let percentage = task["percentage"] as? Double {
+                if let percentage = task[String(localized: "skip", defaultValue: "percentage", comment: "Dictionary key for task update")] as? Double {
                     self.notifications[index].percentage = percentage
                 }
-                if let isLoading = task["isLoading"] as? Bool {
+                if let isLoading = task[String(localized: "skip", defaultValue: "isLoading", comment: "Dictionary key for task update")] as? Bool {
                     self.notifications[index].isLoading = isLoading
                 }
             }
@@ -248,5 +248,5 @@ final class TaskNotificationHandler: ObservableObject {
 }
 
 extension Notification.Name {
-    static let taskNotification = Notification.Name("taskNotification")
+    static let taskNotification = Notification.Name(String(localized: "skip", defaultValue: "taskNotification", comment: "Notification name identifier"))
 }
