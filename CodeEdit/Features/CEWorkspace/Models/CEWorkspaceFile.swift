@@ -48,7 +48,7 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
             return type
         } else {
             /// If  there's not, verifies every extension for a valid type.
-            let extensions = filename.dropFirst().components(separatedBy: ".").reversed()
+            let extensions = filename.dropFirst().components(separatedBy: String(localized: "swift.preflight.literal.411580", defaultValue: ".", comment: "")).reversed()
 
             return extensions
                 .compactMap { FileIcon.FileType(rawValue: $0) }
@@ -81,7 +81,7 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
             return customImage
         } else {
             return NSImage(systemSymbolName: systemImage, accessibilityDescription: systemImage)
-                ?? NSImage(systemSymbolName: "doc", accessibilityDescription: "doc")!
+                ?? NSImage(systemSymbolName: String(localized: "swift.preflight.literal.411581", defaultValue: String(localized: "swift.preflight.literal.411582", defaultValue: "doc", comment: ""), comment: ""), accessibilityDescription: "doc")!
         }
     }
 
@@ -221,12 +221,12 @@ final class CEWorkspaceFile: Codable, Comparable, Hashable, Identifiable, Editor
     /// If it has children this will return `"folder.fill"` otherwise `"folder"`.
     private func folderIcon() -> String {
         if self.parent == nil {
-            return "folder.fill.badge.gearshape"
+            return String(localized: "swift.preflight.literal.411583", defaultValue: "folder.fill.badge.gearshape", comment: "")
         }
-        if self.name == ".codeedit" {
-            return "folder.fill.badge.gearshape"
+        if self.name == String(localized: "swift.preflight.literal.411584", defaultValue: ".codeedit", comment: "") {
+            return String(localized: "swift.preflight.literal.411585", defaultValue: "folder.fill.badge.gearshape", comment: "")
         }
-        return isEmptyFolder ? "folder" : "folder.fill"
+        return isEmptyFolder ? String(localized: "swift.preflight.literal.411586", defaultValue: "folder", comment: "") : String(localized: "swift.preflight.literal.411587", defaultValue: "folder.fill", comment: "")
     }
 
     /// Returns the file name with optional extension (e.g.: `Package.swift`)
