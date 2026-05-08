@@ -30,10 +30,10 @@ struct SourceControlPullView: View {
                         canCreateBranch: false
                     )
                 } header: {
-                    Text("Pull remote changes from")
+                    Text(String(localized: "git.pull.header", defaultValue: "Pull remote changes from", comment: "Pull remote changes header"))
                 }
                 Section {
-                    Toggle("Rebase local changes onto upstream changes", isOn: $sourceControlManager.operationRebase)
+                    Toggle(String(localized: "git.pull.rebase", defaultValue: "Rebase local changes onto upstream changes", comment: "Rebase toggle"), isOn: $sourceControlManager.operationRebase)
                 }
             }
             .formStyle(.grouped)
@@ -53,7 +53,7 @@ struct SourceControlPullView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text("Pulling changes...")
+                        Text(String(localized: "git.pull.progress", defaultValue: "Pulling changes...", comment: "Pulling changes progress text"))
                             .font(.subheadline)
                     }
                 }
@@ -61,12 +61,12 @@ struct SourceControlPullView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "git.pull.cancel", defaultValue: "Cancel", comment: "Cancel pull button"))
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text("Pull")
+                    Text(String(localized: "git.pull.pull", defaultValue: "Pull", comment: "Pull button"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -96,7 +96,7 @@ struct SourceControlPullView: View {
                 }
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: "Failed to pull", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "git.pull.failed", defaultValue: "Failed to pull", comment: "Failed to pull error"), error: error)
             }
         }
     }

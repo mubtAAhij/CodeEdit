@@ -13,24 +13,23 @@ extension SettingsData {
 
         var searchKeys: [String] {
             [
-                "General",
-                "Enable source control",
-                "Refresh local status automatically",
-                "Fetch and refresh server status automatically",
-                "Add and remove files automatically",
-                "Select files to commit automatically",
-                "Show source control changes",
-                "Include upstream changes",
-                "Comparison view",
-                "Source control navigator",
-                "Default branch name",
-                "Git",
-                "Author Name",
-                "Author Email",
-                "Prefer to rebase when pulling",
-                "Show merge commits in per-file log"
+                String(localized: "settings.general", defaultValue: "General", comment: "Settings search key for general section"),
+                String(localized: "settings.source-control.enable", defaultValue: "Enable source control", comment: "Settings search key for enabling source control"),
+                String(localized: "settings.source-control.refresh-local", defaultValue: "Refresh local status automatically", comment: "Settings search key for automatic local status refresh"),
+                String(localized: "settings.source-control.fetch-server", defaultValue: "Fetch and refresh server status automatically", comment: "Settings search key for automatic server fetch"),
+                String(localized: "settings.source-control.add-remove-auto", defaultValue: "Add and remove files automatically", comment: "Settings search key for automatic file staging"),
+                String(localized: "settings.source-control.select-commit", defaultValue: "Select files to commit automatically", comment: "Settings search key for automatic commit file selection"),
+                String(localized: "settings.source-control.show-changes", defaultValue: "Show source control changes", comment: "Settings search key for showing changes"),
+                String(localized: "settings.source-control.upstream-changes", defaultValue: "Include upstream changes", comment: "Settings search key for upstream changes"),
+                String(localized: "settings.source-control.comparison-view", defaultValue: "Comparison view", comment: "Settings search key for comparison view"),
+                String(localized: "settings.source-control.navigator", defaultValue: "Source control navigator", comment: "Settings search key for source control navigator"),
+                String(localized: "settings.source-control.default-branch", defaultValue: "Default branch name", comment: "Settings search key for default branch name"),
+                String(localized: "settings.git", defaultValue: "Git", comment: "Settings search key for Git section"),
+                String(localized: "settings.git.author-name", defaultValue: "Author Name", comment: "Settings search key for Git author name"),
+                String(localized: "settings.git.author-email", defaultValue: "Author Email", comment: "Settings search key for Git author email"),
+                String(localized: "settings.git.rebase-pulling", defaultValue: "Prefer to rebase when pulling", comment: "Settings search key for rebase preference"),
+                String(localized: "settings.git.merge-commits-log", defaultValue: "Show merge commits in per-file log", comment: "Settings search key for merge commits in log")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// The general source control settings

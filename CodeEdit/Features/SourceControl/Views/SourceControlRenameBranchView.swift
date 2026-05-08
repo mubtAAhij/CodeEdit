@@ -22,11 +22,11 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent(String(localized: "git.branch.rename.from", defaultValue: "From", comment: "From branch label"), value: branch.name)
+                        TextField(String(localized: "git.branch.rename.to", defaultValue: "To", comment: "To branch field"), text: $name)
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text(String(localized: "git.branch.rename.header", defaultValue: "Rename branch", comment: "Rename branch header"))
+                        Text(String(localized: "git.branch.rename.description", defaultValue: "All uncommited changes will be preserved on the renamed branch.", comment: "Rename branch description"))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +38,13 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(localized: "git.branch.rename.cancel", defaultValue: "Cancel", comment: "Cancel rename button"))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text(String(localized: "git.branch.rename.rename", defaultValue: "Rename", comment: "Rename button"))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +67,7 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(localized: "git.branch.rename.failed", defaultValue: "Failed to create branch", comment: "Failed to create branch error"),
                     error: error
                 )
             }

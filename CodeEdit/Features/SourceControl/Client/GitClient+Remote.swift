@@ -12,7 +12,7 @@ extension GitClient {
     /// - Parameter name: Name for remote
     /// - Parameter location: URL string for remote location
     func getRemotes() async throws -> [GitRemote] {
-        let command = "remote -v"
+        let command = String(localized: "swift.preflight.literal.414243", defaultValue: "remote -v", comment: "")
         let output = try await run(command)
         let remotes = parseGitRemotes(from: output)
 
@@ -40,7 +40,7 @@ extension GitClient {
     /// - Throws: `GitClientError.outputError` if the underlying git command fails unexpectedly
     func getRemoteURL() async throws -> URL? {
         do {
-            let remote = try await run("ls-remote --get-url")
+            let remote = try await run(String(localized: "swift.preflight.literal.414246", defaultValue: "ls-remote --get-url", comment: ""))
             return URL(string: remote.trimmingCharacters(in: .whitespacesAndNewlines))
         } catch GitClientError.noRemoteConfigured {
             return nil
@@ -59,17 +59,17 @@ func parseGitRemotes(from output: String) -> [GitRemote] {
 
         let name = String(components[0])
         let location = String(components[1])
-        let type = components[2].contains("(fetch)") ? "fetch" : "push"
+        let type = components[2].contains(String(localized: "swift.preflight.literal.414247", defaultValue: "(fetch)", comment: "")) ? String(localized: "swift.preflight.literal.414248", defaultValue: "fetch", comment: "") : String(localized: "swift.preflight.literal.414249", defaultValue: "push", comment: "")
 
         if var remote = remotes[name] {
-            if type == "fetch" {
+            if type == String(localized: "swift.preflight.literal.414250", defaultValue: "fetch", comment: "") {
                 remote.fetch = location
             } else {
                 remote.push = location
             }
             remotes[name] = remote
         } else {
-            if type == "fetch" {
+            if type == String(localized: "swift.preflight.literal.414251", defaultValue: "fetch", comment: "") {
                 remotes[name] = (fetch: location, push: nil)
             } else {
                 remotes[name] = (fetch: nil, push: location)

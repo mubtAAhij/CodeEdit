@@ -23,16 +23,16 @@ class GitLabEvent: Codable {
 
     enum CodingKeys: String, CodingKey {
         case title
-        case projectID = "project_id"
-        case actionName = "action_name"
-        case targetID = "target_id"
-        case targetType = "target_type"
-        case authorID = "author_id"
+        case projectID = String(localized: "swift.preflight.literal.413976", defaultValue: "project_id", comment: "")
+        case actionName = String(localized: "swift.preflight.literal.413977", defaultValue: "action_name", comment: "")
+        case targetID = String(localized: "swift.preflight.literal.413978", defaultValue: "target_id", comment: "")
+        case targetType = String(localized: "swift.preflight.literal.413979", defaultValue: "target_type", comment: "")
+        case authorID = String(localized: "swift.preflight.literal.413980", defaultValue: "author_id", comment: "")
         case data
-        case targetTitle = "target_title"
+        case targetTitle = String(localized: "swift.preflight.literal.413981", defaultValue: "target_title", comment: "")
         case author
-        case authorUsername = "author_username"
-        case createdAt = "created_at"
+        case authorUsername = String(localized: "swift.preflight.literal.413982", defaultValue: "author_username", comment: "")
+        case createdAt = String(localized: "swift.preflight.literal.413983", defaultValue: "created_at", comment: "")
         case note
     }
 }

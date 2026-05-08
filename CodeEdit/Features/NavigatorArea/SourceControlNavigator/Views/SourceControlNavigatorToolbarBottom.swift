@@ -17,7 +17,7 @@ struct SourceControlNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             sourceControlMenu
             PaneTextField(
-                "Filter",
+                String(localized: "sourcecontrol.filter", defaultValue: "Filter", comment: "Filter field placeholder"),
                 text: $text,
                 leadingAccessories: {
                     Image(
@@ -31,7 +31,7 @@ struct SourceControlNavigatorToolbarBottom: View {
                         : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help("Filter Changes Navigator")
+                    .help(String(localized: "sourcecontrol.filter-navigator", defaultValue: "Filter Changes Navigator", comment: "Filter navigator tooltip"))
                 },
                 clearable: true
             )
@@ -47,14 +47,14 @@ struct SourceControlNavigatorToolbarBottom: View {
 
     private var sourceControlMenu: some View {
         Menu {
-            Button("Discard All Changes...") {
+            Button(String(localized: "sourcecontrol.discard-all", defaultValue: "Discard All Changes...", comment: "Discard all changes button")) {
                 if sourceControlManager.changedFiles.isEmpty {
                     sourceControlManager.noChangesToDiscardAlertIsPresented = true
                 } else {
                     sourceControlManager.discardAllAlertIsPresented = true
                 }
             }
-            Button("Stash Changes...") {
+            Button(String(localized: "sourcecontrol.stash-changes", defaultValue: "Stash Changes...", comment: "Stash changes button")) {
                 if sourceControlManager.changedFiles.isEmpty {
                     sourceControlManager.noChangesToStashAlertIsPresented = true
                 } else {

@@ -54,7 +54,7 @@ extension CEWorkspaceFileManager {
 
     func handleGitEvents(events: [DirectoryEventStream.Event]) {
         // Changes excluding .git folder
-        let notGitChanges = events.filter({ !$0.path.contains(".git/") })
+        let notGitChanges = events.filter({ !$0.path.contains(String(localized: "swift.preflight.literal.411625", defaultValue: ".git/", comment: "")) })
 
         // .git folder was changed
         let gitFolderChange = events.first(where: {

@@ -79,7 +79,7 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text("No output")
+                    Text(String(localized: "output.no-output", defaultValue: "No output", comment: "No output message"))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)

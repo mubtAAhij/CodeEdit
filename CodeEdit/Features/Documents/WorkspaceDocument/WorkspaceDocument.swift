@@ -260,7 +260,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         let implementation = object.method(for: shouldCloseSelector)
         let function = unsafeBitCast(
             implementation,
-            to: (@convention(c)(Any, Selector, Any, Bool, UnsafeMutableRawPointer?) -> Void).self
+            to: (@convention(c) (Any, Selector, Any, Bool, UnsafeMutableRawPointer?) -> Void).self
         )
         let areAllOpenedCodeFilesClean = editorManager?.editorLayout.gatherOpenFiles()
             .compactMap(\.fileDocument)

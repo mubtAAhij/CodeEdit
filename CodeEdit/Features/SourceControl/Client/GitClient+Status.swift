@@ -35,7 +35,7 @@ extension GitClient {
     /// - Returns: A ``GitClient/Status`` struct with information about the changed files in the repository.
     /// - Throws: Can throw ``GitClient/GitClientError`` errors if it finds unexpected output.
     func getStatus() async throws -> Status {
-        let output = try await run("status -z --porcelain=2 -u")
+        let output = try await run(String(localized: "swift.preflight.literal.414263", defaultValue: "status -z --porcelain=2 -u", comment: ""))
         return try parseStatusString(output)
     }
 
@@ -64,15 +64,15 @@ extension GitClient {
             index = nextIndex
 
             switch output[typeIndex] {
-            case "1": // Ordinary changes
+            case String(localized: "swift.preflight.literal.414264", defaultValue: "1", comment: ""): // Ordinary changes
                 status.changedFiles.append(try parseOrdinary(index: &index, output: output))
-            case "2": // Renamed or copied changes
+            case String(localized: "swift.preflight.literal.414265", defaultValue: "2", comment: ""): // Renamed or copied changes
                 status.changedFiles.append(try parseRenamed(index: &index, output: output))
-            case "u": // Unmerged changes
+            case String(localized: "swift.preflight.literal.414266", defaultValue: "u", comment: ""): // Unmerged changes
                 status.unmergedChanges.append(try parseUnmerged(index: &index, output: output))
-            case "?": // Untracked files
+            case String(localized: "swift.preflight.literal.414267", defaultValue: "?", comment: ""): // Untracked files
                 status.untrackedFiles.append(try parseUntracked(index: &index, output: output))
-            case "!", "#": // Ignored files or Header
+            case String(localized: "swift.preflight.literal.414268", defaultValue: "!", comment: ""), String(localized: "swift.preflight.literal.414269", defaultValue: "#", comment: ""): // Ignored files or Header
                 try substringToNextNull(from: &index, output: output) // move the index to the next line.
             default:
                 throw GitClientError.statusInvalidChangeType(output[typeIndex])
@@ -89,7 +89,7 @@ extension GitClient {
 
     /// Discard unstaged changes
     func discardAllChanges() async throws {
-        _ = try await run("restore .")
+        _ = try await run(String(localized: "swift.preflight.literal.414271", defaultValue: "restore .", comment: ""))
     }
 
     // MARK: - Parsing Helpers

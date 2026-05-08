@@ -62,7 +62,7 @@ final class Editor: ObservableObject, Identifiable {
     weak var parent: SplitViewData?
     weak var workspace: WorkspaceDocument?
 
-    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "Editor")
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "editor.category", defaultValue: "Editor", comment: "Editor logging category"))
 
     init() {
         self.tabs = []
@@ -218,7 +218,7 @@ final class Editor: ObservableObject, Identifiable {
             do {
                 try openFile(item: newItem)
             } catch {
-                logger.error("Error opening file: \(error)")
+                logger.error("Error opening file: \(String(describing: error))")
             }
 
             clearFuture()
@@ -259,7 +259,7 @@ final class Editor: ObservableObject, Identifiable {
         do {
             try openFile(item: item)
         } catch {
-            logger.error("Error opening file: \(error)")
+            logger.error("Error opening file: \(String(describing: error))")
         }
     }
 

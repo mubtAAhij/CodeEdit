@@ -121,7 +121,7 @@ struct UtilityAreaTerminalView: View {
                         }
                     }
                 } else {
-                    CEContentUnavailableView("No Selection")
+                    CEContentUnavailableView(String(localized: "terminal.no-selection", defaultValue: "No Selection", comment: "No terminal selection message"))
                 }
             }
             .padding(.horizontal, 10)
@@ -143,14 +143,14 @@ struct UtilityAreaTerminalView: View {
                     } label: {
                         Image(systemName: "trash")
                     }
-                    .help("Reset the terminal")
+                    .help(String(localized: "terminal.reset", defaultValue: "Reset the terminal", comment: "Reset terminal button help"))
                     .disabled(getSelectedTerminal() == nil)
                     Button {
                         // split terminal
                     } label: {
                         Image(systemName: "square.split.2x1")
                     }
-                    .help("Implementation Needed")
+                    .help(String(localized: "terminal.split.not-implemented", defaultValue: "Implementation Needed", comment: "Split terminal not implemented help"))
                     .disabled(true)
                 }
             }

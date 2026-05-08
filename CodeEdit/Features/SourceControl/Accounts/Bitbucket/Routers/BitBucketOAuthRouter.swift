@@ -39,18 +39,18 @@ enum BitBucketOAuthRouter: GitRouter {
     var path: String {
         switch self {
         case .authorize:
-            return "site/oauth2/authorize"
+            return String(localized: "swift.preflight.literal.413753", defaultValue: "site/oauth2/authorize", comment: "")
         case .accessToken:
-            return "site/oauth2/access_token"
+            return String(localized: "swift.preflight.literal.413754", defaultValue: "site/oauth2/access_token", comment: "")
         }
     }
 
     var params: [String: Any] {
         switch self {
         case .authorize(let config):
-            return ["client_id": config.token, "response_type": "code"]
+            return [String(localized: "swift.preflight.literal.413755", defaultValue: "client_id", comment: ""): config.token, String(localized: "swift.preflight.literal.413756", defaultValue: "response_type", comment: ""): String(localized: "swift.preflight.literal.413757", defaultValue: "code", comment: "")]
         case .accessToken(_, let code):
-            return ["code": code, "grant_type": "authorization_code"]
+            return [String(localized: "swift.preflight.literal.413758", defaultValue: "code", comment: ""): code, String(localized: "swift.preflight.literal.413759", defaultValue: "grant_type", comment: ""): String(localized: "swift.preflight.literal.413760", defaultValue: "authorization_code", comment: "")]
         }
     }
 
