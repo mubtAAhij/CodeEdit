@@ -25,17 +25,17 @@ class GitLabCommit: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case shortID = "short_id"
+        case shortID = String(localized: "skip", defaultValue: "short_id", comment: "CodingKey for JSON field")
         case title
-        case authorName = "author_name"
-        case authorEmail = "author_email"
-        case committerName = "committer_name"
-        case committerEmail = "committer_email"
-        case createdAt = "created_at"
+        case authorName = String(localized: "skip", defaultValue: "author_name", comment: "CodingKey for JSON field")
+        case authorEmail = String(localized: "skip", defaultValue: "author_email", comment: "CodingKey for JSON field")
+        case committerName = String(localized: "skip", defaultValue: "committer_name", comment: "CodingKey for JSON field")
+        case committerEmail = String(localized: "skip", defaultValue: "committer_email", comment: "CodingKey for JSON field")
+        case createdAt = String(localized: "skip", defaultValue: "created_at", comment: "CodingKey for JSON field")
         case message
-        case committedDate = "committed_date"
-        case authoredDate = "authored_date"
-        case parentIDs = "parent_ids"
+        case committedDate = String(localized: "skip", defaultValue: "committed_date", comment: "CodingKey for JSON field")
+        case authoredDate = String(localized: "skip", defaultValue: "authored_date", comment: "CodingKey for JSON field")
+        case parentIDs = String(localized: "skip", defaultValue: "parent_ids", comment: "CodingKey for JSON field")
         case stats
         case status
     }
@@ -65,13 +65,13 @@ class GitLabCommitDiff: Codable {
 
     enum CodingKeys: String, CodingKey {
         case diff
-        case newPath = "new_path"
-        case oldPath = "old_path"
-        case aMode = "a_mode"
-        case bMode = "b_mode"
-        case newFile = "new_file"
-        case renamedFile = "renamed_file"
-        case deletedFile = "deleted_file"
+        case newPath = String(localized: "skip", defaultValue: "new_path", comment: "CodingKey for JSON field")
+        case oldPath = String(localized: "skip", defaultValue: "old_path", comment: "CodingKey for JSON field")
+        case aMode = String(localized: "skip", defaultValue: "a_mode", comment: "CodingKey for JSON field")
+        case bMode = String(localized: "skip", defaultValue: "b_mode", comment: "CodingKey for JSON field")
+        case newFile = String(localized: "skip", defaultValue: "new_file", comment: "CodingKey for JSON field")
+        case renamedFile = String(localized: "skip", defaultValue: "renamed_file", comment: "CodingKey for JSON field")
+        case deletedFile = String(localized: "skip", defaultValue: "deleted_file", comment: "CodingKey for JSON field")
     }
 }
 
@@ -101,15 +101,15 @@ class GitLabCommitStatus: Codable {
 
     enum CodingKeys: String, CodingKey {
         case status
-        case createdAt = "created_at"
-        case startedAt = "started_at"
+        case createdAt = String(localized: "skip", defaultValue: "created_at", comment: "CodingKey for JSON field")
+        case startedAt = String(localized: "skip", defaultValue: "started_at", comment: "CodingKey for JSON field")
         case name
-        case allowFailure = "allow_failure"
+        case allowFailure = String(localized: "skip", defaultValue: "allow_failure", comment: "CodingKey for JSON field")
         case author
-        case statusDescription = "description"
+        case statusDescription = String(localized: "skip", defaultValue: "description", comment: "CodingKey for JSON field")
         case sha
-        case targetURL = "target_url"
-        case finishedAt = "finished_at"
+        case targetURL = String(localized: "skip", defaultValue: "target_url", comment: "CodingKey for JSON field")
+        case finishedAt = String(localized: "skip", defaultValue: "finished_at", comment: "CodingKey for JSON field")
         case id
         case ref
     }
