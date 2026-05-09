@@ -2279,6 +2279,12 @@
             "state": "translated",
             "value": "%d ahead"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d adelante"
+          }
         }
       }
     },
@@ -2290,6 +2296,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%d behind"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d atrás"
           }
         }
       }
@@ -2573,6 +2585,12 @@
             "state": "translated",
             "value": "%d results in %d files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d resultados en %d archivos"
+          }
         }
       }
     },
@@ -2674,6 +2692,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Successfully replaced terms across %d files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Términos reemplazados exitosamente en %d archivos"
           }
         }
       }
