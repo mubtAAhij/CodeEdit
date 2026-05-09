@@ -33,11 +33,11 @@ struct UtilityAreaTerminalSidebar: View {
         .listStyle(.automatic)
         .accentColor(.secondary)
         .contextMenu {
-            Button("New Terminal") {
+            Button(String(localized: "utility.terminal.new-terminal", defaultValue: "New Terminal", comment: "Menu item to create a new terminal")) {
                 utilityAreaViewModel.addTerminal(rootURL: workspace.fileURL)
             }
-            Menu("New Terminal With Profile") {
-                Button("Default") {
+            Menu(String(localized: "utility.terminal.new-with-profile", defaultValue: "New Terminal With Profile", comment: "Menu for creating terminal with specific shell profile")) {
+                Button(String(localized: "utility.terminal.profile-default", defaultValue: "Default", comment: "Default terminal profile option")) {
                     utilityAreaViewModel.addTerminal(rootURL: workspace.fileURL)
                 }
                 Divider()
@@ -71,7 +71,7 @@ struct UtilityAreaTerminalSidebar: View {
             Spacer()
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Terminals")
+        .accessibilityLabel(String(localized: "utility.terminal.sidebar-label", defaultValue: "Terminals", comment: "Accessibility label for terminals sidebar"))
         .accessibilityIdentifier("terminalsList")
     }
 }
