@@ -1217,6 +1217,12 @@
             "state": "translated",
             "value": "Invalid response received: %d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta inválida recibida: %d"
+          }
         }
       }
     },
@@ -1877,6 +1883,12 @@
             "state": "translated",
             "value": "%d results in %d files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d resultados en %d archivos"
+          }
         }
       }
     },
@@ -1978,6 +1990,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Successfully replaced terms across %d files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Términos reemplazados exitosamente en %d archivos"
           }
         }
       }
