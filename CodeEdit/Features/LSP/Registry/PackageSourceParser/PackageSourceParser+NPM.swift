@@ -62,9 +62,10 @@ extension PackageSourceParser {
         var packageName: String
         var version: String = "latest"
 
-        if packageVersion.contains("@") && !packageVersion.hasPrefix("@") {
+        let atChar = Character("@")
+        if packageVersion.contains(atChar) && !packageVersion.hasPrefix("@") {
             // Regular package with version: package@1.0.0
-            let parts = packageVersion.split(separator: "@", maxSplits: 1)
+            let parts = packageVersion.split(separator: atChar, maxSplits: 1)
             packageName = String(parts[0])
             if parts.count > 1 {
                 version = String(parts[1])
@@ -73,7 +74,7 @@ extension PackageSourceParser {
             // Scoped package: @org/package@1.0.0
             if let atIndex = packageVersion[
                 packageVersion.index(after: packageVersion.startIndex)...
-            ].firstIndex(of: "@") {
+            ].firstIndex(of: atChar) {
                 packageName = String(packageVersion[..<atIndex])
                 version = String(packageVersion[packageVersion.index(after: atIndex)...])
             } else {
