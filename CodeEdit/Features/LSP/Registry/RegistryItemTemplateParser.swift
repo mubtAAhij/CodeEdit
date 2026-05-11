@@ -108,10 +108,10 @@ enum RegistryItemTemplateParser {
                 if index >= 0 && index < array.count {
                     currentValue = array[index]
                 } else {
-                    throw TemplateError.invalidPath("Array index out of bounds: \(component)")
+                    throw TemplateError.invalidPath(String(format: String(localized: "registry-template-parser.array-index-error", defaultValue: "Array index out of bounds: %@", comment: "Error when array index is out of bounds"), component))
                 }
             } else {
-                throw TemplateError.invalidPath("Cannot access component: \(component)")
+                throw TemplateError.invalidPath(String(format: String(localized: "registry-template-parser.component-access-error", defaultValue: "Cannot access component: %@", comment: "Error when component cannot be accessed"), component))
             }
         }
 
@@ -125,7 +125,7 @@ enum RegistryItemTemplateParser {
         } else if let boolValue = currentValue as? Bool {
             return String(boolValue)
         } else if currentValue is [Any] || currentValue is [String: Any] {
-            throw TemplateError.invalidPath("Path resolves to a complex object, not a simple value")
+            throw TemplateError.invalidPath(String(localized: "registry-template-parser.complex-object-error", defaultValue: "Path resolves to a complex object, not a simple value", comment: "Error when path resolves to complex object"))
         } else {
             return String(describing: currentValue)
         }
