@@ -23,11 +23,11 @@ struct ProjectNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             addNewFileButton
             PaneTextField(
-                "Filter",
+                String(localized: "project-navigator.filter-placeholder", defaultValue: "Filter", comment: "Placeholder for filter text field"),
                 text: $workspace.navigatorFilter,
                 leadingAccessories: {
                     FilterDropDownIconButton(menu: {
-                        ForEach([(true, "Folders on top"), (false, "Alphabetically")], id: \.0) { value, title in
+                        ForEach([(true, String(localized: "project-navigator.sort-folders-on-top", defaultValue: "Folders on top", comment: "Sort option to show folders on top")), (false, String(localized: "project-navigator.sort-alphabetically", defaultValue: "Alphabetically", comment: "Sort option to sort alphabetically"))], id: \.0) { value, title in
                             Toggle(title, isOn: Binding(get: {
                                 workspace.sortFoldersOnTop == value
                             }, set: { _ in
@@ -44,18 +44,18 @@ struct ProjectNavigatorToolbarBottom: View {
                         ? Color(nsColor: .secondaryLabelColor)
                         : Color(nsColor: .controlAccentColor)
                     )
-                    .help("Show files with matching name")
+                    .help(String(localized: "project-navigator.filter-help", defaultValue: "Show files with matching name", comment: "Tooltip for filter button"))
                 },
                 trailingAccessories: {
                     HStack(spacing: 0) {
                         Toggle(isOn: $recentsFilter) {
-                            Image(systemName: "clock")
+                            Image(systemName: String(localized: "project-navigator.clock-icon", defaultValue: "clock", comment: "SF Symbol for clock icon"))
                         }
-                        .help("Show only recent files")
+                        .help(String(localized: "project-navigator.recent-files-help", defaultValue: "Show only recent files", comment: "Tooltip for recent files filter"))
                         Toggle(isOn: $workspace.sourceControlFilter) {
-                            Image(systemName: "plusminus.circle")
+                            Image(systemName: String(localized: "project-navigator.source-control-icon", defaultValue: "plusminus.circle", comment: "SF Symbol for source control icon"))
                         }
-                        .help("Show only files with source-control status")
+                        .help(String(localized: "project-navigator.source-control-help", defaultValue: "Show only files with source-control status", comment: "Tooltip for source control filter"))
                     }
                     .toggleStyle(.icon(font: .system(size: 14), size: CGSize(width: 18, height: 20)))
                     .padding(.trailing, 2.5)
@@ -98,12 +98,12 @@ struct ProjectNavigatorToolbarBottom: View {
 
     private var addNewFileButton: some View {
         Menu {
-            Button("Add File") {
+            Button(String(localized: "project-navigator.add-file", defaultValue: "Add File", comment: "Menu item to add a new file")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
                     if let newFile = try workspace.workspaceFileManager?.addFile(
-                        fileName: "untitled",
+                        fileName: String(localized: "project-navigator.new-file-name", defaultValue: "untitled", comment: "Default name for new file"),
                         toFile: rootFile
                     ) {
                         workspace.listenerModel.highlightedFileItem = newFile
@@ -111,38 +111,38 @@ struct ProjectNavigatorToolbarBottom: View {
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(localized: "project-navigator.alert-dismiss", defaultValue: "Dismiss", comment: "Alert button to dismiss"))
                     alert.runModal()
                 }
             }
 
-            Button("Add Folder") {
+            Button(String(localized: "project-navigator.add-folder", defaultValue: "Add Folder", comment: "Menu item to add a new folder")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
                     if let newFolder = try workspace.workspaceFileManager?.addFolder(
-                        folderName: "untitled",
+                        folderName: String(localized: "project-navigator.new-folder-name", defaultValue: "untitled", comment: "Default name for new folder"),
                         toFile: rootFile
                     ) {
                         workspace.listenerModel.highlightedFileItem = newFolder
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(localized: "project-navigator.alert-dismiss", defaultValue: "Dismiss", comment: "Alert button to dismiss"))
                     alert.runModal()
                 }
             }
         } label: {}
         .background {
-            Image(systemName: "plus")
+            Image(systemName: String(localized: "project-navigator.plus-icon", defaultValue: "plus", comment: "SF Symbol for plus icon"))
                 .accessibilityHidden(true)
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
         .frame(maxWidth: 18, alignment: .center)
         .opacity(activeState == .inactive ? 0.45 : 1)
-        .accessibilityLabel("Add Folder or File")
-        .accessibilityIdentifier("addButton")
+        .accessibilityLabel(String(localized: "project-navigator.add-button-label", defaultValue: "Add Folder or File", comment: "Accessibility label for add button"))
+        .accessibilityIdentifier(String(localized: "project-navigator.add-button-id", defaultValue: "addButton", comment: "Accessibility identifier for add button"))
     }
 
     /// We clear the text and remove the first responder which removes the cursor
@@ -152,7 +152,7 @@ struct ProjectNavigatorToolbarBottom: View {
             workspace.navigatorFilter = ""
             NSApp.keyWindow?.makeFirstResponder(nil)
         } label: {
-            Image(systemName: "xmark.circle.fill")
+            Image(systemName: String(localized: "project-navigator.clear-icon", defaultValue: "xmark.circle.fill", comment: "SF Symbol for clear filter icon"))
                 .symbolRenderingMode(.hierarchical)
         }
         .buttonStyle(.plain)
