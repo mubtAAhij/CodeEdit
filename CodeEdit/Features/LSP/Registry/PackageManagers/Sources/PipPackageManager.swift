@@ -72,13 +72,13 @@ final class PipPackageManager: PackageManagerProtocol {
     // MARK: - Initialize
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "pip-package-manager.initialize-step-name", defaultValue: "Initialize Directory Structure", comment: "Installation step name for initializing directory structure"), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
-            try await model.executeInDirectory(in: packagePath.path(percentEncoded: false), ["python -m venv venv"])
+            try await model.executeInDirectory(in: packagePath.path(percentEncoded: false), [String(localized: "pip-package-manager.venv-create-command", defaultValue: "python -m venv venv", comment: "Command to create Python virtual environment")])
 
             let requirementsPath = packagePath.appending(path: "requirements.txt")
             if !FileManager.default.fileExists(atPath: requirementsPath.path) {
-                try "# Package requirements\n".write(to: requirementsPath, atomically: true, encoding: .utf8)
+                try String(localized: "pip-package-manager.requirements-header", defaultValue: "# Package requirements\n", comment: "Header comment for requirements file").write(to: requirementsPath, atomically: true, encoding: .utf8)
             }
         }
     }
@@ -88,16 +88,15 @@ final class PipPackageManager: PackageManagerProtocol {
     func runPipInstall(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Install Package Using pip",
+            name: String(localized: "pip-package-manager.install-step-name", defaultValue: "Install Package Using pip", comment: "Installation step name for installing package using pip"),
             confirmation: .required(
-                message: "This requires the pip package \(source.pkgName)."
-                + "\nAllow CodeEdit to install this package?"
+                message: String(format: String(localized: "pip-package-manager.install-permission-prompt", defaultValue: "This requires the pip package %@.\nAllow CodeEdit to install this package?", comment: "Permission prompt for installing pip package"), source.pkgName)
             )
         ) { model in
-            var installArgs = [pipCommand, "install"]
+            var installArgs = [pipCommand, String(localized: "pip-package-manager.install-command", defaultValue: "install", comment: "Install subcommand for pip")]
 
-            if source.version.lowercased() != "latest" {
-                installArgs.append("\(source.pkgName)==\(source.version)")
+            if source.version.lowercased() != String(localized: "pip-package-manager.version-latest", defaultValue: "latest", comment: "Latest version keyword") {
+                installArgs.append(String(format: String(localized: "pip-package-manager.package-with-version", defaultValue: "%@==%@", comment: "Package with specific version format"), source.pkgName, source.version))
             } else {
                 installArgs.append(source.pkgName)
             }
@@ -105,7 +104,7 @@ final class PipPackageManager: PackageManagerProtocol {
             let extras = source.options["extra"]
             if let extras {
                 if let lastIndex = installArgs.indices.last {
-                    installArgs[lastIndex] += "[\(extras)]"
+                    installArgs[lastIndex] += String(format: String(localized: "pip-package-manager.package-extras-format", defaultValue: "[%@]", comment: "Format for package extras"), extras)
                 }
             }
 
@@ -119,14 +118,14 @@ final class PipPackageManager: PackageManagerProtocol {
     private func updateRequirements(in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Update requirements.txt",
+            name: String(localized: "pip-package-manager.update-requirements-step-name", defaultValue: "Update requirements.txt", comment: "Installation step name for updating requirements file"),
             confirmation: .none
         ) { model in
             let requirementsPath = packagePath.appending(path: "requirements.txt")
 
             let freezeOutput = try await model.executeInDirectory(
                 in: packagePath.path(percentEncoded: false),
-                ["\(pipCommand)", "freeze"]
+                [String(format: String(localized: "pip-package-manager.pip-command-format", defaultValue: "%@", comment: "Pip command format"), pipCommand), String(localized: "pip-package-manager.freeze-command", defaultValue: "freeze", comment: "Freeze subcommand for pip")]
             )
 
             await model.status("Writing requirements to requirements.txt")
@@ -140,17 +139,17 @@ final class PipPackageManager: PackageManagerProtocol {
     private func verifyInstallation(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "pip-package-manager.verify-step-name", defaultValue: "Verify Installation", comment: "Installation step name for verifying installation"),
             confirmation: .none
         ) { model in
             let output = try await model.executeInDirectory(
                 in: packagePath.path(percentEncoded: false),
-                ["\(pipCommand)", "list", "--format=freeze"]
+                [String(format: String(localized: "pip-package-manager.pip-command-verify", defaultValue: "%@", comment: "Pip command for verification"), pipCommand), String(localized: "pip-package-manager.list-command", defaultValue: "list", comment: "List subcommand for pip"), String(localized: "pip-package-manager.format-freeze-flag", defaultValue: "--format=freeze", comment: "Format flag for pip list")]
             )
 
             // Normalize package names for comparison
-            let normalizedPackageHyphen = source.pkgName.replacingOccurrences(of: "_", with: "-").lowercased()
-            let normalizedPackageUnderscore = source.pkgName.replacingOccurrences(of: "-", with: "_").lowercased()
+            let normalizedPackageHyphen = source.pkgName.replacingOccurrences(of: String(localized: "pip-package-manager.underscore-char", defaultValue: "_", comment: "Underscore character for replacement"), with: String(localized: "pip-package-manager.hyphen-char", defaultValue: "-", comment: "Hyphen character for replacement")).lowercased()
+            let normalizedPackageUnderscore = source.pkgName.replacingOccurrences(of: String(localized: "pip-package-manager.hyphen-char-2", defaultValue: "-", comment: "Hyphen character for replacement"), with: String(localized: "pip-package-manager.underscore-char-2", defaultValue: "_", comment: "Underscore character for replacement")).lowercased()
 
             // Check if the package name appears in requirements.txt
             let installedPackages = output.map { line in
@@ -161,7 +160,7 @@ final class PipPackageManager: PackageManagerProtocol {
             }
 
             guard packageFound else {
-                throw PackageManagerError.installationFailed("Package \(source.pkgName) not found in pip list")
+                throw PackageManagerError.installationFailed(String(format: String(localized: "pip-package-manager.error-package-not-found", defaultValue: "Package %@ not found in pip list", comment: "Error message when package not found in pip list"), source.pkgName))
             }
         }
     }

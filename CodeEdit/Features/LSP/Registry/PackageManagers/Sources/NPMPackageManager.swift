@@ -38,7 +38,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: String(localized: "npm-package-manager.npm-permission-prompt", defaultValue: "This package requires npm to install. Allow CodeEdit to run npm commands?", comment: "Permission prompt for running npm commands")
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -56,8 +56,8 @@ final class NPMPackageManager: PackageManagerProtocol {
     func getBinaryPath(for package: String) -> String {
         let binDirectory = installationDirectory
             .appending(path: package)
-            .appending(path: "node_modules")
-            .appending(path: ".bin")
+            .appending(path: String(localized: "npm-package-manager.node-modules-dir", defaultValue: "node_modules", comment: "Node modules directory name"))
+            .appending(path: String(localized: "npm-package-manager.bin-dir", defaultValue: ".bin", comment: "Binary directory name"))
         return binDirectory.appending(path: package).path
     }
 
@@ -65,13 +65,13 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "npm-package-manager.initialize-step-name", defaultValue: "Initialize Directory Structure", comment: "Installation step name for initializing directory structure"), confirmation: .none) { model in
             // Clean existing files
-            let pkgJson = packagePath.appending(path: "package.json")
+            let pkgJson = packagePath.appending(path: String(localized: "npm-package-manager.package-json-file", defaultValue: "package.json", comment: "NPM package.json file name"))
             if FileManager.default.fileExists(atPath: pkgJson.path) {
                 try FileManager.default.removeItem(at: pkgJson)
             }
-            let pkgLockJson = packagePath.appending(path: "package-lock.json")
+            let pkgLockJson = packagePath.appending(path: String(localized: "npm-package-manager.package-lock-json-file", defaultValue: "package-lock.json", comment: "NPM package-lock.json file name"))
             if FileManager.default.fileExists(atPath: pkgLockJson.path) {
                 try FileManager.default.removeItem(at: pkgLockJson)
             }
@@ -79,7 +79,7 @@ final class NPMPackageManager: PackageManagerProtocol {
             // Init npm directory with .npmrc file
             try await model.createDirectoryStructure(for: packagePath)
             _ = try await model.executeInDirectory(
-                in: packagePath.path, ["npm init --yes --scope=codeedit"]
+                in: packagePath.path, [String(localized: "npm-package-manager.npm-init-command", defaultValue: "npm init --yes --scope=codeedit", comment: "Command to initialize npm project")]
             )
 
             let npmrcPath = packagePath.appending(path: ".npmrc")
@@ -92,7 +92,7 @@ final class NPMPackageManager: PackageManagerProtocol {
     // MARK: - NPM Install
 
     func runNpmInstall(_ source: PackageSource, installDir installationDirectory: URL) -> PackageManagerInstallStep {
-        let qualifiedSourceName = "\(source.pkgName)@\(source.version)"
+        let qualifiedSourceName = String(format: String(localized: "npm-package-manager.qualified-package-name", defaultValue: "%@@%@", comment: "Qualified package name with version"), source.pkgName, source.version)
         let otherPackages = source.options["extraPackages"]?
             .split(separator: ",")
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
@@ -103,19 +103,18 @@ final class NPMPackageManager: PackageManagerProtocol {
         let plural = packageList.count > 1
         if plural, var last = packageList.last {
             // Oxford comma
-            last = "and " + last
+            last = String(localized: "npm-package-manager.list-and-prefix", defaultValue: "and ", comment: "Prefix for last item in list") + last
             packageList[packageList.count - 1] = last
         }
-        let packagesDescription = packageList.joined(separator: ", ")
+        let packagesDescription = packageList.joined(separator: String(localized: "npm-package-manager.list-separator", defaultValue: ", ", comment: "Separator for package list"))
 
-        let sSuffix = packageList.count > 1 ? "s" : ""
-        let suffix = plural ? "these packages" : "this package"
+        let sSuffix = packageList.count > 1 ? String(localized: "npm-package-manager.plural-suffix", defaultValue: "s", comment: "Plural suffix for packages") : ""
+        let suffix = plural ? String(localized: "npm-package-manager.these-packages", defaultValue: "these packages", comment: "Plural form for package reference") : String(localized: "npm-package-manager.this-package", defaultValue: "this package", comment: "Singular form for package reference")
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: String(localized: "npm-package-manager.install-step-name", defaultValue: "Install Package Using npm", comment: "Installation step name for installing package using npm"),
             confirmation: .required(
-                message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                message: String(format: String(localized: "npm-package-manager.install-permission-prompt", defaultValue: "This requires the npm package%@ %@.\nAllow CodeEdit to install %@?", comment: "Permission prompt for installing npm package"), sSuffix, packagesDescription, suffix)
             )
         ) { model in
             do {
@@ -150,10 +149,10 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "npm-package-manager.verify-step-name", defaultValue: "Verify Installation", comment: "Installation step name for verifying installation"),
             confirmation: .none
         ) { _ in
-            let packageJsonPath = packagePath.appending(path: "package.json").path
+            let packageJsonPath = packagePath.appending(path: String(localized: "npm-package-manager.package-json-file-verify", defaultValue: "package.json", comment: "NPM package.json file name for verification")).path
 
             // Verify package.json contains the installed package
             guard let packageJsonData = FileManager.default.contents(atPath: packageJsonPath),
@@ -161,25 +160,25 @@ final class NPMPackageManager: PackageManagerProtocol {
                   let packageDict = packageJson as? [String: Any],
                   let dependencies = packageDict["dependencies"] as? [String: String],
                   let installedVersion = dependencies[package] else {
-                throw PackageManagerError.installationFailed("Package not found in package.json")
+                throw PackageManagerError.installationFailed(String(localized: "npm-package-manager.error-package-not-in-json", defaultValue: "Package not found in package.json", comment: "Error message when package not found in package.json"))
             }
 
             // Verify installed version matches requested version
-            let normalizedInstalledVersion = installedVersion.trimmingCharacters(in: CharacterSet(charactersIn: "^~"))
-            let normalizedRequestedVersion = version.trimmingCharacters(in: CharacterSet(charactersIn: "^~"))
+            let normalizedInstalledVersion = installedVersion.trimmingCharacters(in: CharacterSet(charactersIn: String(localized: "npm-package-manager.version-prefix-chars-installed", defaultValue: "^~", comment: "Version prefix characters to trim from installed version")))
+            let normalizedRequestedVersion = version.trimmingCharacters(in: CharacterSet(charactersIn: String(localized: "npm-package-manager.version-prefix-chars-requested", defaultValue: "^~", comment: "Version prefix characters to trim from requested version")))
             if normalizedInstalledVersion != normalizedRequestedVersion &&
                 !installedVersion.contains(normalizedRequestedVersion) {
                 throw PackageManagerError.installationFailed(
-                    "Version mismatch: Expected \(version), but found \(installedVersion)"
+                    String(format: String(localized: "npm-package-manager.error-version-mismatch", defaultValue: "Version mismatch: Expected %@, but found %@", comment: "Error message for version mismatch"), version, installedVersion)
                 )
             }
 
             // Verify the package exists in node_modules
             let packageDirectory = packagePath
-                .appending(path: "node_modules")
+                .appending(path: String(localized: "npm-package-manager.node-modules-dir-verify", defaultValue: "node_modules", comment: "Node modules directory name for verification"))
                 .appending(path: package)
             guard FileManager.default.fileExists(atPath: packageDirectory.path) else {
-                throw PackageManagerError.installationFailed("Package not found in node_modules")
+                throw PackageManagerError.installationFailed(String(localized: "npm-package-manager.error-package-not-in-modules", defaultValue: "Package not found in node_modules", comment: "Error message when package not found in node_modules"))
             }
         }
     }
