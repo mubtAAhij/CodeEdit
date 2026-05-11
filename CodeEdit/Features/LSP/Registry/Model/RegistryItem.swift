@@ -73,7 +73,7 @@ struct RegistryItem: Codable {
         let data = try JSONEncoder().encode(self)
         let jsonObject = try JSONSerialization.jsonObject(with: data)
         guard let dictionary = jsonObject as? [String: Any] else {
-            throw NSError(domain: "ConversionError", code: 1)
+            throw NSError(domain: String(localized: "registry-item.conversion-error", defaultValue: "ConversionError", comment: "Error domain for conversion"), code: 1)
         }
         return dictionary
     }
