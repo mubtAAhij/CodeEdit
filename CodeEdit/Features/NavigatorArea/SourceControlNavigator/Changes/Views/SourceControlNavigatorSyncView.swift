@@ -16,7 +16,7 @@ struct SourceControlNavigatorSyncView: View {
             HStack {
                 if currentBranch.upstream == nil {
                     Label(title: {
-                        Text("No tracked branch for '\(sourceControlManager.currentBranch?.name ?? "")'")
+                        Text(String(format: String(localized: "source-control.sync.no-tracked-branch", defaultValue: "No tracked branch for '%@'", comment: "Label when branch has no upstream"), sourceControlManager.currentBranch?.name ?? ""))
                     }, icon: {
                         Image(symbol: "branch")
                             .foregroundStyle(.secondary)
@@ -40,7 +40,7 @@ struct SourceControlNavigatorSyncView: View {
                     Button {
                         sourceControlManager.pullSheetIsPresented = true
                     } label: {
-                        Text("Pull...")
+                        Text(String(localized: "source-control.sync.pull-ellipsis", defaultValue: "Pull...", comment: "Button to show pull dialog"))
                     }
                     .disabled(isLoading)
                 } else if sourceControlManager.numberOfUnsyncedCommits.ahead > 0
@@ -48,7 +48,7 @@ struct SourceControlNavigatorSyncView: View {
                     Button {
                         sourceControlManager.pushSheetIsPresented = true
                     } label: {
-                        Text("Push...")
+                        Text(String(localized: "source-control.sync.push-ellipsis", defaultValue: "Push...", comment: "Button to show push dialog"))
                     }
                     .disabled(isLoading)
                 }
@@ -62,7 +62,7 @@ struct SourceControlNavigatorSyncView: View {
             do {
                 try await sourceControlManager.pull()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to pull", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.sync.pull-failed", defaultValue: "Failed to pull", comment: "Error title when pull fails"), error: error)
             }
             self.isLoading = false
         }
@@ -74,7 +74,7 @@ struct SourceControlNavigatorSyncView: View {
             do {
                 try await sourceControlManager.push()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.sync.push-failed", defaultValue: "Failed to push", comment: "Error title when push fails"), error: error)
             }
             self.isLoading = false
         }
@@ -84,13 +84,14 @@ struct SourceControlNavigatorSyncView: View {
         var parts: [String] = []
 
         if let ahead = ahead, ahead > 0 {
-            parts.append("\(ahead) ahead")
+            parts.append(String(format: String(localized: "source-control.sync.ahead", defaultValue: "%lld ahead", comment: "Label showing commits ahead"), ahead))
         }
 
         if let behind = behind, behind > 0 {
-            parts.append("\(behind) behind")
+            parts.append(String(format: String(localized: "source-control.sync.behind", defaultValue: "%lld behind", comment: "Label showing commits behind"), behind))
         }
 
-        return parts.joined(separator: ", ")
+        let formatter = ListFormatter()
+        return formatter.string(from: parts) ?? parts.joined(separator: ", ")
     }
 }
