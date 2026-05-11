@@ -11,6 +11,12 @@
             "state": "translated",
             "value": "Step %d: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paso %d: %@"
+          }
         }
       }
     },
@@ -953,6 +959,12 @@
             "state": "translated",
             "value": "%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
         }
       }
     },
@@ -1253,6 +1265,12 @@
             "state": "translated",
             "value": "%d ahead"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d adelante"
+          }
         }
       }
     },
@@ -1264,6 +1282,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%d behind"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d detrás"
           }
         }
       }
@@ -1601,6 +1625,12 @@
             "state": "translated",
             "value": "%d results in %d files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d resultados en %d archivos"
+          }
         }
       }
     },
@@ -1702,6 +1732,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Successfully replaced terms across %d files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Términos reemplazados exitosamente en %d archivos"
           }
         }
       }
@@ -1891,6 +1927,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ %@"
@@ -2141,6 +2183,12 @@
             "state": "translated",
             "value": "New Folder With Items %d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Carpeta con Elementos %d"
+          }
         }
       }
     },
@@ -2167,6 +2215,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@\\@%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@\\@%@"
