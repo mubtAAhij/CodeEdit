@@ -15,15 +15,15 @@ final class RegistryManager: ObservableObject {
     static let shared = RegistryManager()
 
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "RegistryManager")
-    let installPath = Settings.shared.baseURL.appending(path: "Language Servers")
+    let installPath = Settings.shared.baseURL.appending(path: String(localized: "registry.install-path", defaultValue: "Language Servers", comment: "Directory name for language server installations"))
 
     /// The URL of where the registry.json file will be downloaded from
     let registryURL = URL(
-        string: "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip"
+        string: String(localized: "registry.url.registry", defaultValue: "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip", comment: "URL for downloading registry JSON file")
     )!
     /// The URL of where the checksums.txt file will be downloaded from
     let checksumURL = URL(
-        string: "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt"
+        string: String(localized: "registry.url.checksums", defaultValue: "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt", comment: "URL for downloading checksums file")
     )!
 
     @Published var isDownloadingRegistry: Bool = false
@@ -86,9 +86,9 @@ final class RegistryManager: ObservableObject {
             name: .taskNotification,
             object: nil,
             userInfo: [
-                "id": packageName,
-                "action": "create",
-                "title": "Removing \(packageName)"
+                String(localized: "registry.notification.key.id", defaultValue: "id", comment: "Notification key for ID"): packageName,
+                String(localized: "registry.notification.key.action", defaultValue: "action", comment: "Notification key for action"): String(localized: "registry.notification.action.create", defaultValue: "create", comment: "Notification action create"),
+                String(localized: "registry.notification.key.title", defaultValue: "title", comment: "Notification key for title"): String(format: String(localized: "registry.remove.title", defaultValue: "Removing %@", comment: "Title for removing package"), packageName)
             ]
         )
 
@@ -139,10 +139,10 @@ final class RegistryManager: ObservableObject {
             self?.runningInstall = operation
 
             // Add to activity viewer
-            let activityTitle = "\(operation.package.name)\("@" + (method.version ?? "latest"))"
+            let activityTitle = "\(operation.package.name)\(String(localized: "registry.install.version-separator", defaultValue: "@", comment: "Separator between package name and version") + (method.version ?? String(localized: "registry.install.version-latest", defaultValue: "latest", comment: "Label for latest version")))"
             TaskNotificationHandler.postTask(
                 action: .create,
-                model: TaskNotificationModel(id: operation.package.name, title: "Installing \(activityTitle)")
+                model: TaskNotificationModel(id: operation.package.name, title: String(format: String(localized: "registry.install.title", defaultValue: "Installing %@", comment: "Title for installing package"), activityTitle))
             )
 
             guard !Task.isCancelled else { return }
@@ -181,25 +181,25 @@ final class RegistryManager: ObservableObject {
     ) {
         if failed {
             NotificationManager.shared.post(
-                iconSymbol: "xmark.circle",
+                iconSymbol: String(localized: "registry.notification.icon.error", defaultValue: "xmark.circle", comment: "SF Symbol for error notification"),
                 iconColor: .clear,
-                title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                title: String(format: String(localized: "registry.install.error.title", defaultValue: "Could not install %@", comment: "Error title for failed installation"), activityName),
+                description: String(localized: "registry.install.error.description", defaultValue: "There was a problem during installation.", comment: "Error description for failed installation"),
+                actionButtonTitle: String(localized: "common.done", defaultValue: "Done", comment: "Done button title"),
                 action: {},
             )
         } else {
             TaskNotificationHandler.postTask(
                 action: .update,
-                model: TaskNotificationModel(id: id, title: "Successfully installed \(activityName)", isLoading: false)
+                model: TaskNotificationModel(id: id, title: String(format: String(localized: "registry.install.success.title", defaultValue: "Successfully installed %@", comment: "Success title for completed installation"), activityName), isLoading: false)
             )
             NotificationCenter.default.post(
                 name: .taskNotification,
                 object: nil,
                 userInfo: [
-                    "id": id,
-                    "action": "deleteWithDelay",
-                    "delay": 5.0,
+                    String(localized: "registry.notification.key.id", defaultValue: "id", comment: "Notification key for ID"): id,
+                    String(localized: "registry.notification.key.action", defaultValue: "action", comment: "Notification key for action"): String(localized: "registry.notification.action.delete-delay", defaultValue: "deleteWithDelay", comment: "Notification action delete with delay"),
+                    String(localized: "registry.notification.key.delay", defaultValue: "delay", comment: "Notification key for delay"): 5.0,
                 ]
             )
         }

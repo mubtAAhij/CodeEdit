@@ -1,0 +1,5580 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "package.manager.install.step": {
+      "comment": "Install step progress label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step %d: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paso %d: %@"
+          }
+        }
+      }
+    },
+    "source.control.no.changes": {
+      "comment": "Message when commit has no changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin cambios"
+          }
+        }
+      }
+    },
+    "navigator.area.label": {
+      "comment": "Accessibility label for navigator area",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegador"
+          }
+        }
+      }
+    },
+    "history.inspector.no.history": {
+      "comment": "Message when there is no commit history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No History"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin historial"
+          }
+        }
+      }
+    },
+    "inspector.area.label": {
+      "comment": "Accessibility label for inspector area",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inspector"
+          }
+        }
+      }
+    },
+    "inspector.no.selection": {
+      "comment": "Message when no file is selected in inspector",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin selección"
+          }
+        }
+      }
+    },
+    "find.navigator.indexing.progress": {
+      "comment": "Indexing progress percentage",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexing %d%%"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexando %d%%"
+          }
+        }
+      }
+    },
+    "find.navigator.indexing.help": {
+      "comment": "Help text explaining search indexing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexing current workspace files for search. Searches performed while indexing may return incomplete results."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexando archivos del espacio de trabajo actual para búsqueda. Las búsquedas realizadas durante la indexación pueden devolver resultados incompletos."
+          }
+        }
+      }
+    },
+    "alert.dismiss": {
+      "comment": "Dismiss alert button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dismiss"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar"
+          }
+        }
+      }
+    },
+    "source.control.no.remotes": {
+      "comment": "Message when there are no git remotes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No remotes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin remotos"
+          }
+        }
+      }
+    },
+    "source.control.add.remote": {
+      "comment": "Button to add a git remote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar"
+          }
+        }
+      }
+    },
+    "source.control.commit.details": {
+      "comment": "Title for commit details view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit Details"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalles del Commit"
+          }
+        }
+      }
+    },
+    "lsp.installation.unknown": {
+      "comment": "Unknown installation method",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconocido"
+          }
+        }
+      }
+    },
+    "lsp.installation.unsupported": {
+      "comment": "Unsupported package manager format",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Unsupported) %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(No compatible) %@"
+          }
+        }
+      }
+    },
+    "package.manager.removing.installation": {
+      "comment": "Status message for removing existing installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removing existing installation."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminando instalación existente."
+          }
+        }
+      }
+    },
+    "package.manager.creating.directory": {
+      "comment": "Status message for creating directory",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creating directory: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creando directorio: %@"
+          }
+        }
+      }
+    },
+    "find.navigator.filter": {
+      "comment": "Filter placeholder text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        }
+      }
+    },
+    "find.navigator.filter.help": {
+      "comment": "Help text for filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show results with matching text"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar resultados con texto coincidente"
+          }
+        }
+      }
+    },
+    "project.navigator.replace.file.message": {
+      "comment": "Alert message for file replacement",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A file or folder with the name %@ already exists in the destination folder. Do you want to replace it?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "        Un archivo o carpeta con el nombre %@ ya existe en la carpeta de destino. ¿Quieres reemplazarlo?\n"
+          }
+        }
+      }
+    },
+    "project.navigator.replace.file.warning": {
+      "comment": "Warning that file replacement cannot be undone",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This action is irreversible!"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Esta acción es irreversible!"
+          }
+        }
+      }
+    },
+    "project.navigator.replace": {
+      "comment": "Replace button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazar"
+          }
+        }
+      }
+    },
+    "alert.cancel": {
+      "comment": "Cancel button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "project.navigator.label": {
+      "comment": "Accessibility label for project navigator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegador de Proyecto"
+          }
+        }
+      }
+    },
+    "project.navigator.no.filter.results": {
+      "comment": "Message when project navigator filter has no results",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Filter Results"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay resultados del filtro"
+          }
+        }
+      }
+    },
+    "context.menu.view.in.finder": {
+      "comment": "Context menu item to view file in Finder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View in Finder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver en el Finder"
+          }
+        }
+      }
+    },
+    "context.menu.reveal.in.project.navigator": {
+      "comment": "Context menu item to reveal file in project navigator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal in Project Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Navegador de Proyecto"
+          }
+        }
+      }
+    },
+    "context.menu.open.in.new.tab": {
+      "comment": "Context menu item to open file in new tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in New Tab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Nueva Pestaña"
+          }
+        }
+      }
+    },
+    "context.menu.open.in.new.window": {
+      "comment": "Context menu item to open file in new window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in New Window"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Nueva Ventana"
+          }
+        }
+      }
+    },
+    "source.control.discard.changes": {
+      "comment": "Context menu item to discard changes in file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard Changes in %@..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar cambios en %@..."
+          }
+        }
+      }
+    },
+    "package.manager.error.unknown": {
+      "comment": "Unknown package manager error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown error occurred"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocurrió un error desconocido"
+          }
+        }
+      }
+    },
+    "package.manager.error.not.installed": {
+      "comment": "Package manager not installed error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The required package manager is not installed."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El gestor de paquetes requerido no está instalado."
+          }
+        }
+      }
+    },
+    "package.manager.error.initialization.failed": {
+      "comment": "Installation directory initialization failed error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installation directory initialization failed."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al inicializar el directorio de instalación."
+          }
+        }
+      }
+    },
+    "package.manager.error.installation.failed": {
+      "comment": "Package installation failed error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package installation failed."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al instalar el paquete."
+          }
+        }
+      }
+    },
+    "package.manager.error.invalid.configuration": {
+      "comment": "Invalid installation configuration error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The package registry contained an invalid installation configuration."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El registro de paquetes contenía una configuración de instalación inválida."
+          }
+        }
+      }
+    },
+    "source.control.loading.history": {
+      "comment": "Loading commit history message",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading History"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cargando historial"
+          }
+        }
+      }
+    },
+    "source.control.error.loading.history": {
+      "comment": "Error loading commit history message",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Loading History"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al cargar el historial"
+          }
+        }
+      }
+    },
+    "action.retry": {
+      "comment": "Retry button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reintentar"
+          }
+        }
+      }
+    },
+    "registry.manager.error.write.failed": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to write to file."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al escribir en el archivo."
+          }
+        }
+      }
+    },
+    "registry.manager.error.save.cache.failed": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to write to registry cache."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al escribir en la caché del registro."
+          }
+        }
+      }
+    },
+    "registry.manager.error.installation.running": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A package is already being installed."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya se está instalando un paquete."
+          }
+        }
+      }
+    },
+    "registry.manager.error.invalid.response": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid response received: %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta inválida recibida: %d"
+          }
+        }
+      }
+    },
+    "registry.manager.error.download.failed": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download for %@ error."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al descargar %@."
+          }
+        }
+      }
+    },
+    "registry.manager.error.max.retries": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum retries exceeded for url: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máximo de reintentos excedido para la URL: %@"
+          }
+        }
+      }
+    },
+    "source.control.navigator.repository": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repository"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repositorio"
+          }
+        }
+      }
+    },
+    "source.control.navigator.no.repository": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Repository"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin repositorio"
+          }
+        }
+      }
+    },
+    "source.control.navigator.not.git.repository": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This project is not a git repository."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este proyecto no es un repositorio de git."
+          }
+        }
+      }
+    },
+    "source.control.navigator.initialize": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicializar"
+          }
+        }
+      }
+    },
+    "commit.details.co-authored-by": {
+      "comment": "Co-author attribution in commit details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co-authored by: %@\n<%@>"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coautoría de: %@\n<%@>"
+          }
+        }
+      }
+    },
+    "source.control.navigator.filter": {
+      "comment": "Placeholder for source control filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrar"
+          }
+        }
+      }
+    },
+    "source.control.navigator.filter.help": {
+      "comment": "Help text for changes filter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter Changes Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrar Navegador de Cambios"
+          }
+        }
+      }
+    },
+    "source.control.navigator.discard-all-changes": {
+      "comment": "Menu item to discard all changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard All Changes..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar todos los cambios..."
+          }
+        }
+      }
+    },
+    "source.control.navigator.stash-changes": {
+      "comment": "Menu item to stash changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stash Changes..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar cambios en stash..."
+          }
+        }
+      }
+    },
+    "find.navigator.error-occurred": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An Error Occurred"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocurrió un error"
+          }
+        }
+      }
+    },
+    "find.navigator.error-message": {
+      "comment": "Error message display",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        }
+      }
+    },
+    "navigator.tab.project": {
+      "comment": "Project navigator tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proyecto"
+          }
+        }
+      }
+    },
+    "navigator.tab.source-control": {
+      "comment": "Source control navigator tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Control"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control de código fuente"
+          }
+        }
+      }
+    },
+    "navigator.tab.search": {
+      "comment": "Search navigator tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar"
+          }
+        }
+      }
+    },
+    "inspector.tab.file": {
+      "comment": "File inspector tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File Inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inspector de archivos"
+          }
+        }
+      }
+    },
+    "inspector.tab.history": {
+      "comment": "History inspector tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History Inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inspector de historial"
+          }
+        }
+      }
+    },
+    "inspector.tab.internal-development": {
+      "comment": "Internal development inspector tab title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Internal Development"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desarrollo Interno"
+          }
+        }
+      }
+    },
+    "internal.development.output.utility": {
+      "comment": "Section title for output utility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Output Utility"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilidad de Salida"
+          }
+        }
+      }
+    },
+    "internal.development.error.log": {
+      "comment": "Button to push error log",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Log"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registro de errores"
+          }
+        }
+      }
+    },
+    "internal.development.warning.log": {
+      "comment": "Button to push warning log",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning Log"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registro de advertencias"
+          }
+        }
+      }
+    },
+    "internal.development.info.log": {
+      "comment": "Button to push info log",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Info Log"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registro de información"
+          }
+        }
+      }
+    },
+    "internal.development.debug.log": {
+      "comment": "Button to push debug log",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debug Log"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registro de depuración"
+          }
+        }
+      }
+    },
+    "source.control.navigator.no.tracked.branch": {
+      "comment": "Message when branch has no upstream",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No tracked branch for '%@'"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay rama de seguimiento para '%@'"
+          }
+        }
+      }
+    },
+    "source.control.navigator.pull": {
+      "comment": "Button to pull changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pull..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pull..."
+          }
+        }
+      }
+    },
+    "source.control.navigator.push": {
+      "comment": "Button to push changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Push..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hacer push..."
+          }
+        }
+      }
+    },
+    "source.control.navigator.failed.pull": {
+      "comment": "Error title when pull fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to pull"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al hacer pull"
+          }
+        }
+      }
+    },
+    "source.control.navigator.failed.push": {
+      "comment": "Error title when push fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to push"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al hacer push"
+          }
+        }
+      }
+    },
+    "source.control.navigator.commits.ahead": {
+      "comment": "Number of commits ahead",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d ahead"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d adelante"
+          }
+        }
+      }
+    },
+    "source.control.navigator.commits.behind": {
+      "comment": "Number of commits behind",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d behind"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d detrás"
+          }
+        }
+      }
+    },
+    "package.manager.npm": {
+      "comment": "NPM package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NPM"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NPM"
+          }
+        }
+      }
+    },
+    "package.manager.cargo": {
+      "comment": "Cargo package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cargo"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cargo"
+          }
+        }
+      }
+    },
+    "package.manager.go": {
+      "comment": "Go package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ir"
+          }
+        }
+      }
+    },
+    "package.manager.pip": {
+      "comment": "Pip package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pip"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pip"
+          }
+        }
+      }
+    },
+    "package.manager.gem": {
+      "comment": "Gem package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gem"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gem"
+          }
+        }
+      }
+    },
+    "package.manager.nuget": {
+      "comment": "Nuget package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuget"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuget"
+          }
+        }
+      }
+    },
+    "package.manager.opam": {
+      "comment": "Opam package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opam"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opam"
+          }
+        }
+      }
+    },
+    "package.manager.composer": {
+      "comment": "Composer package manager",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compositor"
+          }
+        }
+      }
+    },
+    "package.manager.build-from-source": {
+      "comment": "Build from source option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build From Source"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilar desde el código fuente"
+          }
+        }
+      }
+    },
+    "package.manager.download-from-github": {
+      "comment": "Download from GitHub option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download From GitHub"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar desde GitHub"
+          }
+        }
+      }
+    },
+    "source.control.repository.switch": {
+      "comment": "Menu item to switch branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar..."
+          }
+        }
+      }
+    },
+    "source.control.repository.new-branch": {
+      "comment": "Menu item to create new branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Branch..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Rama..."
+          }
+        }
+      }
+    },
+    "source.control.repository.new-branch-from": {
+      "comment": "Menu item to create new branch from existing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Branch from \"%@\"..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Rama desde \"%@\"..."
+          }
+        }
+      }
+    },
+    "source.control.repository.rename-branch": {
+      "comment": "Menu item to rename branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename Branch..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renombrar rama..."
+          }
+        }
+      }
+    },
+    "source.control.repository.rename-branch-named": {
+      "comment": "Menu item to rename specific branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename \"%@\"..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renombrar \"%@\"..."
+          }
+        }
+      }
+    },
+    "source.control.repository.add-existing-remote": {
+      "comment": "Menu item to add existing remote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Existing Remote..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar remoto existente..."
+          }
+        }
+      }
+    },
+    "source.control.repository.apply-stashed-changes": {
+      "comment": "Menu item to apply stashed changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply Stashed Changes..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicar cambios guardados en stash..."
+          }
+        }
+      }
+    },
+    "source.control.repository.delete": {
+      "comment": "Menu item to delete",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar..."
+          }
+        }
+      }
+    },
+    "find.navigator.results": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d results in %d files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d resultados en %d archivos"
+          }
+        }
+      }
+    },
+    "find.navigator.searching": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Searching"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando"
+          }
+        }
+      }
+    },
+    "find.navigator.replacing": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replacing"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazando"
+          }
+        }
+      }
+    },
+    "find.navigator.no-results": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Results"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin resultados"
+          }
+        }
+      }
+    },
+    "find.navigator.no-results-for-query": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Results for \"%@\" in Project"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin resultados para \"%@\" en el proyecto"
+          }
+        }
+      }
+    },
+    "find.navigator.replaced": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replaced"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazado"
+          }
+        }
+      }
+    },
+    "find.navigator.replaced-description": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Successfully replaced terms across %d files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Términos reemplazados exitosamente en %d archivos"
+          }
+        }
+      }
+    },
+    "source.control.commit.message-placeholder": {
+      "comment": "Placeholder for commit message field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit message (required)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensaje de commit (requerido)"
+          }
+        }
+      }
+    },
+    "source.control.commit.details-placeholder": {
+      "comment": "Placeholder for commit details field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailed description"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descripción detallada"
+          }
+        }
+      }
+    },
+    "source.control.commit.amend": {
+      "comment": "Toggle to amend the previous commit",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amend"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enmendar"
+          }
+        }
+      }
+    },
+    "source.control.commit.unstage-all": {
+      "comment": "Button to unstage all files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unstage All"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar todo"
+          }
+        }
+      }
+    },
+    "source.control.commit.stage-all": {
+      "comment": "Button to stage all files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stage All"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparar todo"
+          }
+        }
+      }
+    },
+    "source.control.commit.committing": {
+      "comment": "Status message while committing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Committing..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haciendo commit..."
+          }
+        }
+      }
+    },
+    "source.control.commit.commit": {
+      "comment": "Button to commit changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit"
+          }
+        }
+      }
+    },
+    "source.control.commit.commit-and-push": {
+      "comment": "Button to commit and push changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit and Push..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit y Push..."
+          }
+        }
+      }
+    },
+    "source.control.commit.failed-to-commit": {
+      "comment": "Error alert title when commit fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to commit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al hacer commit"
+          }
+        }
+      }
+    },
+    "source.control.commit.failed-to-push": {
+      "comment": "Error alert title when push fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to push"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al hacer push"
+          }
+        }
+      }
+    },
+    "source.control.commit.message.body": {
+      "comment": "Commit message with body",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@"
+          }
+        }
+      }
+    },
+    "source.control.commit.copy-message": {
+      "comment": "Context menu item to copy commit message",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Commit Message"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar mensaje de commit"
+          }
+        }
+      }
+    },
+    "source.control.commit.copy-identifier": {
+      "comment": "Context menu item to copy commit identifier",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Identifier"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar identificador"
+          }
+        }
+      }
+    },
+    "source.control.commit.email-author": {
+      "comment": "Context menu item to email commit author",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Email %@..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar email a %@…"
+          }
+        }
+      }
+    },
+    "source.control.commit.tag-hash": {
+      "comment": "Context menu item to tag a commit hash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tag %@..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiquetar %@..."
+          }
+        }
+      }
+    },
+    "source.control.commit.branch-from-hash": {
+      "comment": "Context menu item to create new branch from commit hash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Branch from %@..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Rama desde %@..."
+          }
+        }
+      }
+    },
+    "source.control.commit.cherry-pick": {
+      "comment": "Context menu item to cherry-pick a commit hash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cherry-Pick %@..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cherry-Pick %@..."
+          }
+        }
+      }
+    },
+    "source.control.commit.view-remote": {
+      "comment": "Context menu item to view commit on remote service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View on %@..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver en %@..."
+          }
+        }
+      }
+    },
+    "source.control.commit.checkout-hash": {
+      "comment": "Context menu item to check out a commit hash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Out %@..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar a %@..."
+          }
+        }
+      }
+    },
+    "source.control.commit.history-help": {
+      "comment": "Context menu item for history editor help",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History Editor Help"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayuda del editor de historial"
+          }
+        }
+      }
+    },
+    "project.navigator.new-file.default-name": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "untitled"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sin título"
+          }
+        }
+      }
+    },
+    "common.dismiss": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dismiss"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar"
+          }
+        }
+      }
+    },
+    "project.navigator.new-folder.default-name": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "untitled"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sin título"
+          }
+        }
+      }
+    },
+    "project.navigator.new-folder-with-items.default-name": {
+      "comment": "Default name for new folder with selected items",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Folder With Items"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Carpeta con Elementos"
+          }
+        }
+      }
+    },
+    "project.navigator.new-folder-with-items.numbered-name": {
+      "comment": "Numbered folder name for folder with selected items",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Folder With Items %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Carpeta con Elementos %d"
+          }
+        }
+      }
+    },
+    "package.manager.cargo.initialize": {
+      "comment": "Step name for initializing directory structure",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize Directory Structure"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicializar estructura de directorios"
+          }
+        }
+      }
+    },
+    "package.manager.cargo.qualified-name": {
+      "comment": "Qualified package name with version",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@\\@%@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@\\@%@"
+          }
+        }
+      }
+    },
+    "package.manager.cargo.install": {
+      "comment": "Step name for installing cargo package",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Package Using cargo"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar paquete usando cargo"
+          }
+        }
+      }
+    },
+    "package.manager.cargo.install-confirm": {
+      "comment": "Confirmation message for cargo package installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This requires the cargo package %@.\nAllow CodeEdit to install this package?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto requiere el paquete de cargo %@.\n¿Permitir que CodeEdit instale este paquete?"
+          }
+        }
+      }
+    },
+    "source.control.repository.branches": {
+      "comment": "Label for branches group in source control",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branches"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ramas"
+          }
+        }
+      }
+    },
+    "source.control.repository.branch.current": {
+      "comment": "Indicator for current branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(current)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(actual)"
+          }
+        }
+      }
+    },
+    "source.control.repository.stashed-changes": {
+      "comment": "Label for stashed changes group in source control",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stashed Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambios en stash"
+          }
+        }
+      }
+    },
+    "source.control.repository.remotes": {
+      "comment": "Label for remotes group in source control",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remotes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remotos"
+          }
+        }
+      }
+    },
+    "project.navigator.filter.placeholder": {
+      "comment": "Placeholder text for project navigator filter field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrar"
+          }
+        }
+      }
+    },
+    "project.navigator.sort.folders-on-top": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folders on top"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carpetas primero"
+          }
+        }
+      }
+    },
+    "project.navigator.sort.alphabetically": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alphabetically"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alfabéticamente"
+          }
+        }
+      }
+    },
+    "project.navigator.filter.matching-name.help": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show files with matching name"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar archivos con nombre coincidente"
+          }
+        }
+      }
+    },
+    "project.navigator.filter.recent-files.help": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show only recent files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar solo archivos recientes"
+          }
+        }
+      }
+    },
+    "project.navigator.filter.source-control.help": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show only files with source-control status"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar solo archivos con estado de control de código fuente"
+          }
+        }
+      }
+    },
+    "project.navigator.add-file": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add File"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar archivo"
+          }
+        }
+      }
+    },
+    "project.navigator.add-folder": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Folder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar Carpeta"
+          }
+        }
+      }
+    },
+    "project.navigator.add-button.accessibility-label": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Folder or File"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar carpeta o archivo"
+          }
+        }
+      }
+    },
+    "find.navigator.scoped": {
+      "comment": "Button to toggle scoped search",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scoped"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con alcance"
+          }
+        }
+      }
+    },
+    "find.navigator.match-case": {
+      "comment": "Help text for case-sensitive search toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Match Case"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coincidir mayúsculas"
+          }
+        }
+      }
+    },
+    "find.navigator.replace.with": {
+      "comment": "Placeholder for replacement text field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con"
+          }
+        }
+      }
+    },
+    "find.navigator.replace.ab-indicator": {
+      "comment": "Label for preserve case toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AB"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AB"
+          }
+        }
+      }
+    },
+    "find.navigator.replace.preserve-case": {
+      "comment": "Help text for preserve case toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preserve Case"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preservar mayúsculas"
+          }
+        }
+      }
+    },
+    "find.navigator.scope.only-in-folders": {
+      "comment": "Placeholder for folder inclusion filter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only in folders"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo en carpetas"
+          }
+        }
+      }
+    },
+    "find.navigator.scope.open-editors": {
+      "comment": "Help text for open editors filter toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search only in Open Editors"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar solo en editores abiertos"
+          }
+        }
+      }
+    },
+    "find.navigator.scope.excluding-folders": {
+      "comment": "Placeholder for folder exclusion filter",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluding folders"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluyendo carpetas"
+          }
+        }
+      }
+    },
+    "find.navigator.scope.exclude-settings": {
+      "comment": "Help text for exclude settings toggle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Exclude Settings and Ignore Files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Configuración de Exclusión y Archivos de Ignorar"
+          }
+        }
+      }
+    },
+    "find.navigator.replace.replace-all": {
+      "comment": "Button to replace all search results",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace All"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazar todo"
+          }
+        }
+      }
+    },
+    "file.inspector.identity-and-type": {
+      "comment": "Section header for file identity and type",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identity and Type"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identidad y tipo"
+          }
+        }
+      }
+    },
+    "file.inspector.text-settings": {
+      "comment": "Section header for text settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text Settings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración de Texto"
+          }
+        }
+      }
+    },
+    "file.inspector.name": {
+      "comment": "Label for file name field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
+        }
+      }
+    },
+    "file.inspector.type": {
+      "comment": "Label for file type picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo"
+          }
+        }
+      }
+    },
+    "file.inspector.type.default-detected": {
+      "comment": "Option for auto-detected file type",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default - Detected"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Predeterminado - Detectado"
+          }
+        }
+      }
+    },
+    "file.inspector.location": {
+      "comment": "Label for file location",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Location"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación"
+          }
+        }
+      }
+    },
+    "file.inspector.location.choose": {
+      "comment": "Button to choose new file location",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionar..."
+          }
+        }
+      }
+    },
+    "file.inspector.indent-using": {
+      "comment": "Label for indent type picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indent using"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indentar usando"
+          }
+        }
+      }
+    },
+    "file.inspector.indent.spaces": {
+      "comment": "Indent using spaces option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaces"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacios"
+          }
+        }
+      }
+    },
+    "file.inspector.indent.tabs": {
+      "comment": "Indent using tabs option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabs"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabulaciones"
+          }
+        }
+      }
+    },
+    "file.inspector.widths": {
+      "comment": "Label for width settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widths"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anchos"
+          }
+        }
+      }
+    },
+    "file.inspector.width.tab": {
+      "comment": "Label for tab width setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab"
+          }
+        }
+      }
+    },
+    "file.inspector.width.tab.help": {
+      "comment": "Help text for tab width setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The visual width of tab characters"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El ancho visual de los caracteres de tabulación"
+          }
+        }
+      }
+    },
+    "file.inspector.width.indent": {
+      "comment": "Label for indent width setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indent"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sangría"
+          }
+        }
+      }
+    },
+    "file.inspector.width.indent.help": {
+      "comment": "Help text for indent width setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The number of spaces to insert when the tab key is pressed."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El número de espacios a insertar cuando se presiona la tecla de tabulación."
+          }
+        }
+      }
+    },
+    "file.inspector.wrap-lines": {
+      "comment": "Toggle for line wrapping",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap lines"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustar líneas"
+          }
+        }
+      }
+    },
+    "file.inspector.save-file": {
+      "comment": "Title for save file dialog",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save File"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar archivo"
+          }
+        }
+      }
+    },
+    "source.control.stash.apply.title": {
+      "comment": "Title for apply stash confirmation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to apply stashed changes?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres aplicar los cambios del stash?"
+          }
+        }
+      }
+    },
+    "source.control.stash.apply.uncommitted-changes": {
+      "comment": "Message when repository has uncommitted changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The local repository has uncommitted changes."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El repositorio local tiene cambios sin confirmar."
+          }
+        }
+      }
+    },
+    "source.control.stash.apply.button": {
+      "comment": "Button to apply stashed changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicar"
+          }
+        }
+      }
+    },
+    "source.control.stash.apply-and-delete.button": {
+      "comment": "Button to apply and delete stashed changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply and Delete"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicar y eliminar"
+          }
+        }
+      }
+    },
+    "common.cancel": {
+      "comment": "Cancel button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "common.okay": {
+      "comment": "Okay button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Okay"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
+          }
+        }
+      }
+    },
+    "source.control.stash.apply.message": {
+      "comment": "Message explaining stash apply action",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applying the stashed changes will restore modifications to files in your local repository."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicar los cambios del stash restaurará las modificaciones a los archivos en tu repositorio local."
+          }
+        }
+      }
+    },
+    "source.control.stash.apply.try-committing": {
+      "comment": "Suggestion when there are uncommitted changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try committing or discarding the changes."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intenta hacer commit o descartar los cambios."
+          }
+        }
+      }
+    },
+    "source.control.branch.delete.title": {
+      "comment": "Confirmation title for deleting branch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to delete the branch \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar la rama \"%@\"?"
+          }
+        }
+      }
+    },
+    "common.delete": {
+      "comment": "Delete button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        }
+      }
+    },
+    "source.control.delete.failed": {
+      "comment": "Error title when deletion fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to delete"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al eliminar"
+          }
+        }
+      }
+    },
+    "source.control.branch.delete.message": {
+      "comment": "Warning message for branch deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The branch will be removed from the repository. You can't undo this action."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La rama será eliminada del repositorio. No puedes deshacer esta acción."
+          }
+        }
+      }
+    },
+    "source.control.stash.delete.title": {
+      "comment": "Confirmation title for deleting stash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to delete the stash \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar el stash \"%@\"?"
+          }
+        }
+      }
+    },
+    "source.control.stash.delete.message": {
+      "comment": "Warning message for stash deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The stash will be removed from the repository. You can't undo this action."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El stash se eliminará del repositorio. No puedes deshacer esta acción."
+          }
+        }
+      }
+    },
+    "source.control.remote.delete.title": {
+      "comment": "Confirmation title for deleting remote",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to delete the remote \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar el remoto \"%@\"?"
+          }
+        }
+      }
+    },
+    "source.control.remote.delete.message": {
+      "comment": "Warning message for remote deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The remote will be removed from the repository. You can't undo this action."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El remoto se eliminará del repositorio. No puedes deshacer esta acción."
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.icon-type.symbol": {
+      "comment": "Icon type option for symbol",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Symbol"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Símbolo"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.icon-type.image": {
+      "comment": "Icon type option for image",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Image"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imagen"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.icon-type.text": {
+      "comment": "Icon type option for text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.icon-type.emoji": {
+      "comment": "Icon type option for emoji",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emoji"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emoji"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.action.view": {
+      "comment": "Default action button text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.title.default": {
+      "comment": "Default notification title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test Notification"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificación de prueba"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.description.default": {
+      "comment": "Default notification description",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is a test notification."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta es una notificación de prueba."
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.section": {
+      "comment": "Section header for notifications settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificaciones"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.delay": {
+      "comment": "Toggle for notification delay",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delay 5s"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retraso de 5 s"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.sticky": {
+      "comment": "Toggle for sticky notifications",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sticky"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fija"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.icon-type.picker": {
+      "comment": "Picker label for icon type",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon Type"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de ícono"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.symbol.picker": {
+      "comment": "Picker label for symbol selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Symbol"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Símbolo"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.random": {
+      "comment": "Option for random selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Random"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aleatorio"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.emoji.picker": {
+      "comment": "Picker label for emoji selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emoji"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emoji"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.text.picker": {
+      "comment": "Picker label for text selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.image.picker": {
+      "comment": "Picker label for image selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Image"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imagen"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.icon-color": {
+      "comment": "Picker label for icon color",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon Color"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color del ícono"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.title.label": {
+      "comment": "Label for notification title field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Title"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Título"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.description.label": {
+      "comment": "Label for notification description field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descripción"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.action-button.label": {
+      "comment": "Label for action button text field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action Button"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Botón de acción"
+          }
+        }
+      }
+    },
+    "internal.dev.notifications.add": {
+      "comment": "Button to add a test notification",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Notification"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar notificación"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.options": {
+      "comment": "Title for project navigator context menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Options"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opciones"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.init-coder-error": {
+      "comment": "Fatal error message for init(coder:)",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "init(coder:) has not been implemented"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "init(coder:) no ha sido implementado"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.show-in-finder": {
+      "comment": "Menu item to show file in Finder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show in Finder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Finder"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-in-tab": {
+      "comment": "Menu item to open file in tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Tab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en pestaña"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-in-new-window": {
+      "comment": "Menu item to open file in new window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in New Window"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Nueva Ventana"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-with-external-editor": {
+      "comment": "Menu item to open with external editor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open with External Editor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir con editor externo"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open As"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir como"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.copy-path": {
+      "comment": "Menu item to copy file path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Path"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar ruta"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.copy-relative-path": {
+      "comment": "Menu item to copy relative path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Relative Path"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar ruta relativa"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.show-file-inspector": {
+      "comment": "Menu item to show file inspector",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show File Inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar inspector de archivos"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.new-file": {
+      "comment": "Menu item to create new file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New File..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo Archivo..."
+          }
+        }
+      }
+    },
+    "project.navigator.menu.new-file-from-clipboard": {
+      "comment": "Menu item to create file from clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New File from Clipboard"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo Archivo desde Portapapeles"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.new-folder": {
+      "comment": "Menu item to create new folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Folder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Carpeta"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.rename": {
+      "comment": "Menu item to rename file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renombrar"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.move-to-trash": {
+      "comment": "Menu item to move file to trash",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move to Trash"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover a la papelera"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.delete-immediately": {
+      "comment": "Menu item to delete file immediately",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Immediately..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar inmediatamente..."
+          }
+        }
+      }
+    },
+    "project.navigator.menu.duplicate": {
+      "comment": "Menu item to duplicate file or folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicar %@"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.folder": {
+      "comment": "Folder type label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carpeta"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.file": {
+      "comment": "File type label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivo"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.sort-by-name": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort by Name"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordenar por nombre"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.sort-by-type": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort by Type"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordenar por tipo"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.source-control": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Control"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control de código fuente"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.new-folder-from-selection": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Folder from Selection"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Carpeta desde Selección"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.asset-catalog": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asset Catalog Document"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documento de catálogo de recursos"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.xib": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interface Builder XIB Document"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documento XIB de Interface Builder"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.xcode-project": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xcode Project"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proyecto de Xcode"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.source-control.commit": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit \"%@\"..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hacer commit de \"%@\"..."
+          }
+        }
+      }
+    },
+    "project.navigator.menu.source-control.discard": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard Changes..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar cambios..."
+          }
+        }
+      }
+    },
+    "project.navigator.menu.source-control.add": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Selected Files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar archivos seleccionados"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.source-control.mark-resolved": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mark Selected Files as Resolved"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar archivos seleccionados como resueltos"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.none": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "<None>"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguno"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.source-code": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Code"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código fuente"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.property-list": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Property List"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista de propiedades"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.ascii-property-list": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ASCII Property List"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista de propiedades ASCII"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.hex": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hex"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hex"
+          }
+        }
+      }
+    },
+    "project.navigator.menu.open-as.quick-look": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Look"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista rápida"
+          }
+        }
+      }
+    },
+    "golang.install.permission": {
+      "comment": "Confirmation message for running go commands",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This package requires go to install. Allow CodeEdit to run go commands?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este paquete requiere go para instalarse. ¿Permitir que CodeEdit ejecute comandos de go?"
+          }
+        }
+      }
+    },
+    "golang.initialize.title": {
+      "comment": "Title for directory initialization step",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize Directory Structure"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicializar estructura de directorio"
+          }
+        }
+      }
+    },
+    "golang.install.title": {
+      "comment": "Title for go package installation step",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Package Using go"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar paquete usando go"
+          }
+        }
+      }
+    },
+    "golang.install.confirmation": {
+      "comment": "Confirmation message for installing go package",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This requires installing the go package %@.\nAllow CodeEdit to install this package?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto requiere instalar el paquete de go %@.\n¿Permitir que CodeEdit instale este paquete?"
+          }
+        }
+      }
+    },
+    "golang.build.title": {
+      "comment": "Title for building from source step",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build From Source"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compilar desde código fuente"
+          }
+        }
+      }
+    },
+    "npm.install.permission": {
+      "comment": "Confirmation message for running npm commands",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This package requires npm to install. Allow CodeEdit to run npm commands?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este paquete requiere npm para instalarse. ¿Permitir que CodeEdit ejecute comandos de npm?"
+          }
+        }
+      }
+    },
+    "npm.initialize.title": {
+      "comment": "Title for directory initialization step",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize Directory Structure"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicializar estructura de directorios"
+          }
+        }
+      }
+    },
+    "npm.install.title": {
+      "comment": "Title for npm package installation step",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Package Using npm"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar paquete usando npm"
+          }
+        }
+      }
+    },
+    "npm.verify.title": {
+      "comment": "Title for verifying npm installation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verify Installation"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar instalación"
+          }
+        }
+      }
+    },
+    "npm.verify.error.not-found-json": {
+      "comment": "Error when package not found in package.json",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package not found in package.json"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paquete no encontrado en package.json"
+          }
+        }
+      }
+    },
+    "npm.verify.error.version-mismatch": {
+      "comment": "Error message for version mismatch",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version mismatch: Expected %@, but found %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discrepancia de versión: Se esperaba %@, pero se encontró %@"
+          }
+        }
+      }
+    },
+    "npm.verify.error.not-found-modules": {
+      "comment": "Error when package not found in node_modules",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package not found in node_modules"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paquete no encontrado en node_modules"
+          }
+        }
+      }
+    },
+    "pip.initialize.title": {
+      "comment": "Title for directory initialization step",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize Directory Structure"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicializar estructura de directorios"
+          }
+        }
+      }
+    },
+    "pip.install.title": {
+      "comment": "Title for pip package installation step",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install Package Using pip"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar paquete usando pip"
+          }
+        }
+      }
+    },
+    "pip.install.confirmation": {
+      "comment": "Confirmation message for installing pip package",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This requires the pip package %@.\nAllow CodeEdit to install this package?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto requiere el paquete de pip %@.\n¿Permitir que CodeEdit instale este paquete?"
+          }
+        }
+      }
+    },
+    "pip.update-requirements.title": {
+      "comment": "Title for updating requirements file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Update requirements.txt"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualizar requirements.txt"
+          }
+        }
+      }
+    },
+    "pip.update-requirements.status": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing requirements to requirements.txt"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribiendo requisitos en requirements.txt"
+          }
+        }
+      }
+    },
+    "pip.verify.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verify Installation"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar instalación"
+          }
+        }
+      }
+    },
+    "pip.verify.error.not-found": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Package %@ not found in pip list"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paquete %@ no encontrado en pip list"
+          }
+        }
+      }
+    },
+    "github.install.permission": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This package requires git to install. Allow CodeEdit to run git commands?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este paquete requiere git para instalarse. ¿Permitir que CodeEdit ejecute comandos de git?"
+          }
+        }
+      }
+    },
+    "github.install.version-check": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "git --version"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "git --version"
+          }
+        }
+      }
+    },
+    "github.install.version-pattern": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "git version"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "git version"
+          }
+        }
+      }
+    },
+    "github.binary.path": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bin"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bin"
+          }
+        }
+      }
+    },
+    "github.initialize.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initialize Directory Structure"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicializar estructura de directorio"
+          }
+        }
+      }
+    },
+    "github.download.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download Binary Executable"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar ejecutable binario"
+          }
+        }
+      }
+    },
+    "github.download.status": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Downloading %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargando %@"
+          }
+        }
+      }
+    },
+    "github.download.error.http": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HTTP error"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error HTTP"
+          }
+        }
+      }
+    },
+    "github.download.error.failed": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not download package"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo descargar el paquete"
+          }
+        }
+      }
+    },
+    "github.decompress.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decompress Binary Executable"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descomprimir binario ejecutable"
+          }
+        }
+      }
+    },
+    "github.decompress.ext.tar": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tar"
+          }
+        }
+      }
+    },
+    "github.decompress.ext.zip": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ".zip"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ".zip"
+          }
+        }
+      }
+    },
+    "github.decompress.status": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decompressing %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descomprimiendo %@"
+          }
+        }
+      }
+    },
+    "github.decompress.status.complete": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decompressed to '%@'"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descomprimido en '%@'"
+          }
+        }
+      }
+    },
+    "github.decompress.ext.tar-gz": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ".tar.gz"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ".tar.gz"
+          }
+        }
+      }
+    },
+    "github.decompress.status.tar": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decompressing %@ using `tar`"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descomprimiendo %@ usando `tar`"
+          }
+        }
+      }
+    },
+    "github.decompress.cmd.tar": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tar"
+          }
+        }
+      }
+    },
+    "github.decompress.cmd.tar-flags": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "-xzf"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "-xzf"
+          }
+        }
+      }
+    },
+    "github.decompress.ext.gz": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gz"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gz"
+          }
+        }
+      }
+    },
+    "github.decompress.status.gunzip": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decompressing %@ using `gunzip`"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descomprimiendo %@ usando `gunzip`"
+          }
+        }
+      }
+    },
+    "github.decompress.cmd.gunzip": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gunzip"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gunzip"
+          }
+        }
+      }
+    },
+    "github.decompress.cmd.gunzip-flags": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "-f"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "-f"
+          }
+        }
+      }
+    },
+    "github.git.cmd.git": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "git"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "git"
+          }
+        }
+      }
+    },
+    "github.git.cmd.clone": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "clone"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "clonar"
+          }
+        }
+      }
+    },
+    "github.git.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clone with Git"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clonar con Git"
+          }
+        }
+      }
+    },
+    "github.git.confirmation": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This step will run the following command to clone the package from source control:\n`%@`"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este paso ejecutará el siguiente comando para clonar el paquete desde el control de código fuente:\n`%@`"
+          }
+        }
+      }
+    },
+    "github.source.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Install From Source"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalar desde código fuente"
+          }
+        }
+      }
+    },
+    "github.source.confirmation": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This step will run the following to finish installing:\n`%@`"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este paso ejecutará lo siguiente para finalizar la instalación:\n`%@`"
+          }
+        }
+      }
+    },
+    "github.source.error.failed": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source build failed."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al compilar desde el código fuente."
+          }
+        }
+      }
+    },
+    "registry.install-path": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language Servers"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidores de lenguaje"
+          }
+        }
+      }
+    },
+    "registry.url.registry": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://github.com/mason-org/mason-registry/releases/latest/download/registry.json.zip"
+          }
+        }
+      }
+    },
+    "registry.url.checksums": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://github.com/mason-org/mason-registry/releases/latest/download/checksums.txt"
+          }
+        }
+      }
+    },
+    "registry.notification.key.id": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "id"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "id"
+          }
+        }
+      }
+    },
+    "registry.notification.key.action": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "action"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "acción"
+          }
+        }
+      }
+    },
+    "registry.notification.action.create": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "create"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "crear"
+          }
+        }
+      }
+    },
+    "registry.notification.key.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "title"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "título"
+          }
+        }
+      }
+    },
+    "registry.remove.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removing %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminando %@"
+          }
+        }
+      }
+    },
+    "registry.install.version-separator": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "@"
+          }
+        }
+      }
+    },
+    "registry.install.version-latest": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "latest"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "última"
+          }
+        }
+      }
+    },
+    "registry.install.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installing %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instalando %@"
+          }
+        }
+      }
+    },
+    "registry.notification.icon.error": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "xmark.circle"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "xmark.circle"
+          }
+        }
+      }
+    },
+    "registry.install.error.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not install %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo instalar %@"
+          }
+        }
+      }
+    },
+    "registry.install.error.description": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There was a problem during installation."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hubo un problema durante la instalación."
+          }
+        }
+      }
+    },
+    "common.done": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
+          }
+        }
+      }
+    },
+    "registry.install.success.title": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Successfully installed %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ se instaló correctamente"
+          }
+        }
+      }
+    },
+    "registry.notification.action.delete-delay": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "deleteWithDelay"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "eliminarConRetraso"
+          }
+        }
+      }
+    },
+    "registry.notification.key.delay": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "delay"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "retraso"
+          }
+        }
+      }
+    },
+    "history.popover.show.commit": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Commit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar commit"
+          }
+        }
+      }
+    },
+    "history.popover.open.code.review": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Code Review"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Code Review"
+          }
+        }
+      }
+    },
+    "history.popover.email.author": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Email %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar email a %@"
+          }
+        }
+      }
+    },
+    "source.control.navigator.changes": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambios"
+          }
+        }
+      }
+    },
+    "source.control.navigator.history": {
+      "comment": "Localized string",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial"
+          }
+        }
+      }
+    }
+  }
+}
