@@ -11,6 +11,12 @@
             "state": "translated",
             "value": "Step %d: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paso %d: %@"
+          }
         }
       }
     },
@@ -130,6 +136,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Indexing %d%%"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indexando %d%%"
           }
         }
       }
@@ -359,6 +371,12 @@
             "state": "translated",
             "value": "%@@%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@@%@"
+          }
         }
       }
     },
@@ -407,6 +425,12 @@
             "state": "translated",
             "value": "cd \"%@\" && %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cd \"%@\" && %@"
+          }
         }
       }
     },
@@ -415,6 +439,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@"
@@ -880,6 +910,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invalid response received: %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta inválida recibida: %d"
           }
         }
       }
@@ -1379,6 +1415,12 @@
             "state": "translated",
             "value": "Array index out of bounds: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Índice de array fuera de límites: %@"
+          }
         }
       }
     },
@@ -1390,6 +1432,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cannot access component: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede acceder al componente: %@"
           }
         }
       }
@@ -1528,6 +1576,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld ahead"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld adelante"
           }
         }
       }
@@ -1883,6 +1937,12 @@
             "state": "translated",
             "value": "%d results in %d files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d resultados en %d archivos"
+          }
         }
       }
     },
@@ -1985,6 +2045,12 @@
             "state": "translated",
             "value": "Successfully replaced terms across %d files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Términos reemplazados exitosamente en %d archivos"
+          }
         }
       }
     },
@@ -2011,6 +2077,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@"
@@ -2765,6 +2837,12 @@
             "state": "translated",
             "value": "New Folder With Items %d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Carpeta con Elementos %d"
+          }
         }
       }
     },
@@ -2791,6 +2869,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@@%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@@%@"
@@ -5201,6 +5285,12 @@
             "state": "translated",
             "value": "go mod init %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "go mod init %@"
+          }
         }
       }
     },
@@ -5263,6 +5353,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GOBIN=%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "GOBIN=%@"
@@ -5369,6 +5465,12 @@
             "state": "translated",
             "value": "bin/%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bin/%@"
+          }
         }
       }
     },
@@ -5377,6 +5479,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@/%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@/%@"
@@ -5461,6 +5569,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@@%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@@%@"
@@ -5675,6 +5789,12 @@
             "state": "translated",
             "value": "%@@%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@@%@"
+          }
         }
       }
     },
@@ -5704,6 +5824,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "This requires installing %@.\nAllow CodeEdit to install?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto requiere instalar %@.\n¿Permitir que CodeEdit lo instale?"
           }
         }
       }
@@ -6113,6 +6239,12 @@
             "state": "translated",
             "value": "%@==%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@==%@"
+          }
         }
       }
     },
@@ -6121,6 +6253,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[%@]"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "[%@]"
