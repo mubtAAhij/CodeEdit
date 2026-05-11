@@ -40,11 +40,11 @@ final class PackageManagerProgressModel: ObservableObject {
     func createDirectoryStructure(for packagePath: URL) throws {
         let decodedPath = packagePath.path(percentEncoded: false)
         if FileManager.default.fileExists(atPath: decodedPath) {
-            status("Removing existing installation.")
+            status(String(localized: "package-manager.removing-existing", defaultValue: "Removing existing installation.", comment: "Status message when removing existing installation"))
             try FileManager.default.removeItem(at: packagePath)
         }
 
-        status("Creating directory: \(decodedPath)")
+        status(String(format: String(localized: "package-manager.creating-directory", defaultValue: "Creating directory: %@", comment: "Status message when creating directory"), decodedPath))
         try FileManager.default.createDirectory(
             at: packagePath,
             withIntermediateDirectories: true,
@@ -55,14 +55,14 @@ final class PackageManagerProgressModel: ObservableObject {
     /// Executes commands in the specified directory
     @discardableResult
     func executeInDirectory(in packagePath: String, _ args: [String]) async throws -> [String] {
-        return try await runCommand("cd \"\(packagePath)\" && \(args.joined(separator: " "))")
+        return try await runCommand(String(format: String(localized: "package-manager.execute-command", defaultValue: "cd \"%@\" && %@", comment: "Command to execute in directory"), packagePath, args.joined(separator: " ")))
     }
 
     /// Runs a shell command and returns output
     @discardableResult
     func runCommand(_ command: String) async throws -> [String] {
         var output: [String] = []
-        status("\(command)")
+        status(String(format: String(localized: "package-manager.run-command", defaultValue: "%@", comment: "Status message showing command being run"), command))
         for try await line in shellClient.runAsync(command) {
             output.append(line)
             outputContinuation.yield(.output(line))

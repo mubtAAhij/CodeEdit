@@ -84,7 +84,7 @@ final class SemanticTokenStorage: GenericSemanticTokenStorage {
     /// - Parameter deltas: The deltas to apply.
     /// - Returns: Ranges invalidated by the applied deltas.
     func applyDelta(_ deltas: SemanticTokensDelta) -> [SemanticTokenRange] {
-        assert(state != nil, "State should be set before applying any deltas.")
+        assert(state != nil, String(localized: "lsp.semantic-tokens.state-error", defaultValue: "State should be set before applying any deltas.", comment: "Developer assertion message for semantic token storage"))
         guard var tokenData = state?.tokenData else { return [] }
         var invalidatedSet: [SemanticTokenRange] = []
 

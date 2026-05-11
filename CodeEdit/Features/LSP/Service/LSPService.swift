@@ -235,7 +235,7 @@ final class LSPService: ObservableObject {
             } catch {
                 let uri = document.languageServerURI
                 // swiftlint:disable:next line_length
-                self.logger.error("Failed to close document: \(uri ?? "<NO URI>", privacy: .private), language: \(lspLanguage.rawValue). Error \(error)")
+                self.logger.error("Failed to close document: \(uri ?? String(localized: "lsp-service.no-uri", defaultValue: "<NO URI>", comment: "Placeholder when URI is missing"), privacy: .private), language: \(lspLanguage.rawValue). Error \(error)")
             }
         }
     }

@@ -78,7 +78,7 @@ extension RegistryManager {
             case let .writeFailed(error):
                 logger.error("Failed to write files to disk: \(error.localizedDescription)")
             case .failedToSaveRegistryCache:
-                logger.error("Failed to read registry from cache after download and write.")
+                logger.error(String(localized: "registry-manager.failed-read-cache", defaultValue: "Failed to read registry from cache after download and write.", comment: "Error when reading registry cache fails"))
             }
         } else {
             logger.error("Unexpected registry error: \(error.localizedDescription)")
