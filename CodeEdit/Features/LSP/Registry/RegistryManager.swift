@@ -88,7 +88,7 @@ final class RegistryManager: ObservableObject {
             userInfo: [
                 "id": packageName,
                 "action": "create",
-                "title": "Removing \(packageName)"
+                "title": String(format: String(localized: "registry.removing", defaultValue: "Removing %@", comment: "Status message when removing a language server"), packageName)
             ]
         )
 
@@ -142,7 +142,7 @@ final class RegistryManager: ObservableObject {
             let activityTitle = "\(operation.package.name)\("@" + (method.version ?? "latest"))"
             TaskNotificationHandler.postTask(
                 action: .create,
-                model: TaskNotificationModel(id: operation.package.name, title: "Installing \(activityTitle)")
+                model: TaskNotificationModel(id: operation.package.name, title: String(format: String(localized: "registry.installing", defaultValue: "Installing %@", comment: "Status message when installing a language server"), activityTitle))
             )
 
             guard !Task.isCancelled else { return }
@@ -183,15 +183,15 @@ final class RegistryManager: ObservableObject {
             NotificationManager.shared.post(
                 iconSymbol: "xmark.circle",
                 iconColor: .clear,
-                title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                title: String(format: String(localized: "registry.install-failed.title", defaultValue: "Could not install %@", comment: "Error notification title when installation fails"), activityName),
+                description: String(localized: "registry.install-failed.message", defaultValue: "There was a problem during installation.", comment: "Error notification message when installation fails"),
+                actionButtonTitle: String(localized: "registry.install-failed.button", defaultValue: "Done", comment: "Dismiss button for installation error notification"),
                 action: {},
             )
         } else {
             TaskNotificationHandler.postTask(
                 action: .update,
-                model: TaskNotificationModel(id: id, title: "Successfully installed \(activityName)", isLoading: false)
+                model: TaskNotificationModel(id: id, title: String(format: String(localized: "registry.install-success", defaultValue: "Successfully installed %@", comment: "Success message when installation completes"), activityName), isLoading: false)
             )
             NotificationCenter.default.post(
                 name: .taskNotification,
