@@ -335,6 +335,12 @@
             "state": "translated",
             "value": "%@@%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@@%@"
+          }
         }
       }
     },
@@ -706,6 +712,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invalid response received: %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta inválida recibida: %d"
           }
         }
       }
@@ -1259,6 +1271,12 @@
             "state": "translated",
             "value": "%d ahead"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d adelante"
+          }
         }
       }
     },
@@ -1270,6 +1288,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%d behind"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d detrás"
           }
         }
       }
@@ -1571,6 +1595,12 @@
             "state": "translated",
             "value": "%d results in %d files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d resultados en %d archivos"
+          }
         }
       }
     },
@@ -1673,6 +1703,12 @@
             "state": "translated",
             "value": "Successfully replaced terms across %d files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se reemplazaron términos correctamente en %d archivos"
+          }
         }
       }
     },
@@ -1699,6 +1735,12 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@"
@@ -2110,6 +2152,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "New Folder With Items %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva Carpeta con Elementos %d"
           }
         }
       }
@@ -3059,6 +3107,12 @@
             "state": "translated",
             "value": "Do you want to delete the branch"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar la rama"
+          }
         }
       }
     },
@@ -3125,6 +3179,12 @@
             "state": "translated",
             "value": "Do you want to delete the stash"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar el stash?"
+          }
         }
       }
     },
@@ -3154,6 +3214,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Do you want to delete the remote"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres eliminar el remoto"
           }
         }
       }
@@ -4391,6 +4457,12 @@
             "state": "translated",
             "value": "This requires the npm packages %@.\nAllow CodeEdit to install these packages?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto requiere los paquetes de npm %@.\n¿Permitir que CodeEdit instale estos paquetes?"
+          }
         }
       }
     },
@@ -4402,6 +4474,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "This requires the npm package %@.\nAllow CodeEdit to install this package?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto requiere el paquete de npm %@.\n¿Permitir que CodeEdit instale este paquete?"
           }
         }
       }
