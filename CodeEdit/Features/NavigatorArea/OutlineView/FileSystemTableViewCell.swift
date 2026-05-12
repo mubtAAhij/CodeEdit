@@ -106,18 +106,20 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// *Not Implemented*
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        fatalError("""
-            init(frame: ) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        fatalError(String(
+            localized: "file-system.init-frame-not-implemented",
+            defaultValue: "init(frame: ) isn't implemented on `OutlineTableViewCell`.\nPlease use `.init(frame: NSRect, item: FileSystemClient.FileItem?)",
+            comment: "Fatal error message for unimplemented frame initializer"
+        ))
     }
 
     /// *Not Implemented*
     required init?(coder: NSCoder) {
-        fatalError("""
-            init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        fatalError(String(
+            localized: "file-system.init-coder-not-implemented",
+            defaultValue: "init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.\nPlease use `.init(frame: NSRect, item: FileSystemClient.FileItem?)",
+            comment: "Fatal error message for unimplemented coder initializer"
+        ))
     }
 
     /// Returns the font size for the current row height. Defaults to `13.0`
@@ -171,7 +173,7 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "file-system.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss file error alert"))
             alert.runModal()
         }
     }
