@@ -72,7 +72,14 @@ final class PipPackageManager: PackageManagerProtocol {
     // MARK: - Initialize
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(
+            name: String(
+                localized: "pip-package-manager.initialize-directory",
+                defaultValue: "Initialize Directory Structure",
+                comment: "Step name for initializing pip directory structure"
+            ),
+            confirmation: .none
+        ) { model in
             try await model.createDirectoryStructure(for: packagePath)
             try await model.executeInDirectory(in: packagePath.path(percentEncoded: false), ["python -m venv venv"])
 
@@ -88,10 +95,20 @@ final class PipPackageManager: PackageManagerProtocol {
     func runPipInstall(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Install Package Using pip",
+            name: String(
+                localized: "pip-package-manager.install-step",
+                defaultValue: "Install Package Using pip",
+                comment: "Step name for pip package installation"
+            ),
             confirmation: .required(
-                message: "This requires the pip package \(source.pkgName)."
-                + "\nAllow CodeEdit to install this package?"
+                message: String(
+                    format: String(
+                        localized: "pip-package-manager.install-confirmation",
+                        defaultValue: "This requires the pip package %@.\nAllow CodeEdit to install this package?",
+                        comment: "Confirmation message for installing a pip package"
+                    ),
+                    source.pkgName
+                )
             )
         ) { model in
             var installArgs = [pipCommand, "install"]
@@ -119,7 +136,11 @@ final class PipPackageManager: PackageManagerProtocol {
     private func updateRequirements(in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Update requirements.txt",
+            name: String(
+                localized: "pip-package-manager.update-requirements",
+                defaultValue: "Update requirements.txt",
+                comment: "Step name for updating requirements.txt file"
+            ),
             confirmation: .none
         ) { model in
             let requirementsPath = packagePath.appending(path: "requirements.txt")
@@ -129,7 +150,13 @@ final class PipPackageManager: PackageManagerProtocol {
                 ["\(pipCommand)", "freeze"]
             )
 
-            await model.status("Writing requirements to requirements.txt")
+            await model.status(
+                String(
+                    localized: "pip-package-manager.writing-requirements",
+                    defaultValue: "Writing requirements to requirements.txt",
+                    comment: "Status message while writing requirements to file"
+                )
+            )
             let requirementsContent = freezeOutput.joined(separator: "\n") + "\n"
             try requirementsContent.write(to: requirementsPath, atomically: true, encoding: .utf8)
         }
@@ -140,7 +167,11 @@ final class PipPackageManager: PackageManagerProtocol {
     private func verifyInstallation(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(
+                localized: "pip-package-manager.verify-installation",
+                defaultValue: "Verify Installation",
+                comment: "Step name for verifying pip package installation"
+            ),
             confirmation: .none
         ) { model in
             let output = try await model.executeInDirectory(
@@ -161,7 +192,16 @@ final class PipPackageManager: PackageManagerProtocol {
             }
 
             guard packageFound else {
-                throw PackageManagerError.installationFailed("Package \(source.pkgName) not found in pip list")
+                throw PackageManagerError.installationFailed(
+                    String(
+                        format: String(
+                            localized: "pip-package-manager.error.package-not-in-list",
+                            defaultValue: "Package %@ not found in pip list",
+                            comment: "Error message when package is not found in pip list"
+                        ),
+                        source.pkgName
+                    )
+                )
             }
         }
     }
