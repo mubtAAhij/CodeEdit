@@ -27,7 +27,7 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? "No Project found")
+        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "activity-viewer.scheme.no-project", defaultValue: "No Project found", comment: "Fallback text when no project is found"))
         : workspaceName
     }
 
@@ -52,8 +52,8 @@ struct SchemeDropDownView: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("SchemeDropdown")
         .accessibilityValue(workspaceDisplayName)
-        .accessibilityLabel("Active Scheme")
-        .accessibilityHint("Open the active scheme menu")
+        .accessibilityLabel(String(localized: "activity-viewer.scheme.label", defaultValue: "Active Scheme", comment: "Accessibility label for active scheme dropdown"))
+        .accessibilityHint(String(localized: "activity-viewer.scheme.hint", defaultValue: "Open the active scheme menu", comment: "Accessibility hint for scheme dropdown"))
         .accessibilityAction {
             isSchemePopOverPresented.toggle()
         }
@@ -141,12 +141,12 @@ struct SchemeDropDownView: View {
         Divider()
             .padding(.vertical, 5)
         Group {
-            OptionMenuItemView(label: "Add Folder...") {
+            OptionMenuItemView(label: String(localized: "activity-viewer.scheme.add-folder", defaultValue: "Add Folder...", comment: "Menu item to add a folder to the workspace")) {
                 // TODO: Implment Add Folder
                 print("NOT IMPLEMENTED")
             }
             .disabled(true)
-            OptionMenuItemView(label: "Workspace Settings...") {
+            OptionMenuItemView(label: String(localized: "activity-viewer.scheme.workspace-settings", defaultValue: "Workspace Settings...", comment: "Menu item to open workspace settings")) {
                 NSApp.sendAction(
                     #selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil
                 )
