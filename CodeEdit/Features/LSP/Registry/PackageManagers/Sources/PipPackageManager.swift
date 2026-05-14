@@ -72,7 +72,7 @@ final class PipPackageManager: PackageManagerProtocol {
     // MARK: - Initialize
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "lsp.package-manager.pip.initialize-directory", defaultValue: "Initialize Directory Structure", comment: "Step name for initializing pip package directory structure"), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
             try await model.executeInDirectory(in: packagePath.path(percentEncoded: false), ["python -m venv venv"])
 
@@ -88,10 +88,9 @@ final class PipPackageManager: PackageManagerProtocol {
     func runPipInstall(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Install Package Using pip",
+            name: String(localized: "lsp.package-manager.pip.install-package", defaultValue: "Install Package Using pip", comment: "Step name for installing pip package using pip command"),
             confirmation: .required(
-                message: "This requires the pip package \(source.pkgName)."
-                + "\nAllow CodeEdit to install this package?"
+                message: String(format: String(localized: "lsp.package-manager.pip.install-confirmation", defaultValue: "This requires the pip package %@.\nAllow CodeEdit to install this package?", comment: "Confirmation message asking user permission to install a specific pip package"), source.pkgName)
             )
         ) { model in
             var installArgs = [pipCommand, "install"]
@@ -119,7 +118,7 @@ final class PipPackageManager: PackageManagerProtocol {
     private func updateRequirements(in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Update requirements.txt",
+            name: String(localized: "lsp.package-manager.pip.update-requirements", defaultValue: "Update requirements.txt", comment: "Step name for updating requirements.txt file with installed packages"),
             confirmation: .none
         ) { model in
             let requirementsPath = packagePath.appending(path: "requirements.txt")
@@ -129,7 +128,7 @@ final class PipPackageManager: PackageManagerProtocol {
                 ["\(pipCommand)", "freeze"]
             )
 
-            await model.status("Writing requirements to requirements.txt")
+            await model.status(String(localized: "lsp.package-manager.pip.writing-requirements", defaultValue: "Writing requirements to requirements.txt", comment: "Status message while writing requirements.txt file"))
             let requirementsContent = freezeOutput.joined(separator: "\n") + "\n"
             try requirementsContent.write(to: requirementsPath, atomically: true, encoding: .utf8)
         }
@@ -140,7 +139,7 @@ final class PipPackageManager: PackageManagerProtocol {
     private func verifyInstallation(_ source: PackageSource, in packagePath: URL) -> PackageManagerInstallStep {
         let pipCommand = getPipCommand(in: packagePath)
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "lsp.package-manager.pip.verify-installation", defaultValue: "Verify Installation", comment: "Step name for verifying pip package installation"),
             confirmation: .none
         ) { model in
             let output = try await model.executeInDirectory(
@@ -161,7 +160,9 @@ final class PipPackageManager: PackageManagerProtocol {
             }
 
             guard packageFound else {
-                throw PackageManagerError.installationFailed("Package \(source.pkgName) not found in pip list")
+                throw PackageManagerError.installationFailed(
+                    String(format: String(localized: "lsp.package-manager.pip.error.package-not-found", defaultValue: "Package %@ not found in pip list", comment: "Error message when package is not found in pip list after installation"), source.pkgName)
+                )
             }
         }
     }
