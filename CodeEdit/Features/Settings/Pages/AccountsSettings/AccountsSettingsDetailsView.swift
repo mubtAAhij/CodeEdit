@@ -54,30 +54,29 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent("Account") {
+                LabeledContent(String(localized: "settings.accounts.details.account-label", defaultValue: "Account", comment: "Label for account name field")) {
                     Text(currentAccount.name)
                 }
-                TextField("Description", text: $currentAccount.description)
+                TextField(String(localized: "settings.accounts.details.description-label", defaultValue: "Description", comment: "Label for account description field"), text: $currentAccount.description)
                 if currentAccount.provider.baseURL == nil {
-                    TextField("Server", text: $currentAccount.serverURL)
+                    TextField(String(localized: "settings.accounts.details.server-label", defaultValue: "Server", comment: "Label for server URL field"), text: $currentAccount.serverURL)
                 }
             }
 
             Section {
                 Picker(selection: $currentAccount.urlProtocol) {
-                    Text("HTTPS")
+                    Text(currentAccount.urlProtocol == .https ? currentAccount.urlProtocol.displayName : String(localized: "settings.accounts.details.protocol-https", defaultValue: "HTTPS", comment: "HTTPS protocol option"))
                         .tag(SourceControlAccount.URLProtocol.https)
-                    Text("SSH")
+                    Text(currentAccount.urlProtocol == .ssh ? currentAccount.urlProtocol.displayName : String(localized: "settings.accounts.details.protocol-ssh", defaultValue: "SSH", comment: "SSH protocol option"))
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text("Clone Using")
-                    Text("New repositories will be cloned from \(currentAccount.provider.name)"
-                         + " using \(currentAccount.urlProtocol.rawValue).")
+                    Text(String(localized: "settings.accounts.details.clone-using-label", defaultValue: "Clone Using", comment: "Label for clone protocol picker"))
+                    Text(String(format: String(localized: "settings.accounts.details.clone-description", defaultValue: "New repositories will be cloned from %@ using %@.", comment: "Description explaining which protocol will be used for cloning"), currentAccount.provider.name, currentAccount.urlProtocol.displayName))
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker("SSH Key", selection: $currentAccount.sshKey) {
-                        Text("None")
+                    Picker(String(localized: "settings.accounts.details.ssh-key-label", defaultValue: "SSH Key", comment: "Label for SSH key picker"), selection: $currentAccount.sshKey) {
+                        Text(String(localized: "settings.accounts.details.ssh-key-none", defaultValue: "None", comment: "Option for no SSH key selected"))
                             .tag("")
                         Divider()
                         if let sshPath = FileManager.default.homeDirectoryForCurrentUser.appending(
@@ -99,9 +98,9 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text("Create New...")
+                        Text(String(localized: "settings.accounts.details.ssh-key-create-new", defaultValue: "Create New...", comment: "Option to create a new SSH key"))
                             .tag("CREATE_NEW")
-                        Text("Choose...")
+                        Text(String(localized: "settings.accounts.details.ssh-key-choose", defaultValue: "Choose...", comment: "Option to choose an existing SSH key file"))
                             .tag("CHOOSE")
                     }
                     .onReceive([currentAccount.sshKey].publisher.first()) { value in
@@ -122,24 +121,24 @@ struct AccountsSettingsDetailsView: View {
                 }
             } footer: {
                 HStack {
-                    Button("Delete Account...") {
+                    Button(String(localized: "settings.accounts.details.delete-button", defaultValue: "Delete Account...", comment: "Button to delete an account")) {
                         deleteConfirmationIsPresented.toggle()
                     }
                     .alert(
-                        Text("Are you sure you want to delete the account “\(account.description)”?"),
+                        Text(String(format: String(localized: "settings.accounts.details.delete-confirmation", defaultValue: "Are you sure you want to delete the account \"%@\"?", comment: "Confirmation message asking if user wants to delete the account"), account.description)),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button("OK") {
+                        Button(String(localized: "settings.accounts.details.delete-ok", defaultValue: "OK", comment: "OK button in delete confirmation dialog")) {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()
                         }
-                        Button("Cancel") {
+                        Button(String(localized: "settings.accounts.details.delete-cancel", defaultValue: "Cancel", comment: "Cancel button in delete confirmation dialog")) {
                             // Handle the cancel, dismiss the alert
                             deleteConfirmationIsPresented.toggle()
                         }
                     } message: {
-                        Text("Deleting this account will remove it from CodeEdit.")
+                        Text(String(localized: "settings.accounts.details.delete-message", defaultValue: "Deleting this account will remove it from CodeEdit.", comment: "Message explaining what happens when account is deleted"))
                     }
 
                     Spacer()
