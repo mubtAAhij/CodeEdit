@@ -18,17 +18,17 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
+            String(localized: "registry-manager.error.installation-running", defaultValue: "A package is already being installed.", comment: "Error message when a package installation is already in progress")
         case .invalidResponse(let statusCode):
-            "Invalid response received: \(statusCode)"
+            String(format: String(localized: "registry-manager.error.invalid-response", defaultValue: "Invalid response received: %d", comment: "Error message when an invalid HTTP response is received"), statusCode)
         case .downloadFailed(let url, _):
-            "Download for \(url) error."
+            String(format: String(localized: "registry-manager.error.download-failed", defaultValue: "Download for %@ error.", comment: "Error message when a download fails"), url.absoluteString)
         case .maxRetriesExceeded(let url, _):
-            "Maximum retries exceeded for url: \(url)"
+            String(format: String(localized: "registry-manager.error.max-retries", defaultValue: "Maximum retries exceeded for url: %@", comment: "Error message when maximum retry attempts are exceeded"), url.absoluteString)
         case .writeFailed:
-            "Failed to write to file."
+            String(localized: "registry-manager.error.write-failed", defaultValue: "Failed to write to file.", comment: "Error message when writing to a file fails")
         case .failedToSaveRegistryCache:
-            "Failed to write to registry cache."
+            String(localized: "registry-manager.error.cache-write-failed", defaultValue: "Failed to write to registry cache.", comment: "Error message when writing to registry cache fails")
         }
     }
 
