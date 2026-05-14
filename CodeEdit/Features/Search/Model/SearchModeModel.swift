@@ -9,56 +9,66 @@ import Foundation
 
 // TODO: DOCS (Ziyuan Zhao)
 struct SearchModeModel: Hashable {
+    let id: String
     let title: String
     let children: [SearchModeModel]
     let needSelectionHighlight: Bool
 
-    static let Containing = SearchModeModel(title: "Containing", children: [], needSelectionHighlight: false)
+    static let Containing = SearchModeModel(id: "containing", title: String(localized: "search.mode.containing", defaultValue: "Containing", comment: "Search mode: text containing the query"), children: [], needSelectionHighlight: false)
     static let MatchingWord = SearchModeModel(
-        title: "Matching Word",
+        id: "matchingWord",
+        title: String(localized: "search.mode.matching-word", defaultValue: "Matching Word", comment: "Search mode: text matching whole words"),
         children: [],
         needSelectionHighlight: true
     )
     static let StartingWith = SearchModeModel(
-        title: "Starting With",
+        id: "startingWith",
+        title: String(localized: "search.mode.starting-with", defaultValue: "Starting With", comment: "Search mode: text starting with the query"),
         children: [],
         needSelectionHighlight: true
     )
-    static let EndingWith = SearchModeModel(title: "Ending With", children: [], needSelectionHighlight: true)
+    static let EndingWith = SearchModeModel(id: "endingWith", title: String(localized: "search.mode.ending-with", defaultValue: "Ending With", comment: "Search mode: text ending with the query"), children: [], needSelectionHighlight: true)
 
     static let Text = SearchModeModel(
-        title: "Text",
+        id: "text",
+        title: String(localized: "search.mode.text", defaultValue: "Text", comment: "Search mode category: text-based search"),
         children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
         needSelectionHighlight: false
     )
     static let References = SearchModeModel(
-        title: "References",
+        id: "references",
+        title: String(localized: "search.mode.references", defaultValue: "References", comment: "Search mode: find symbol references in code"),
         children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
         needSelectionHighlight: true
     )
     static let Definitions = SearchModeModel(
-        title: "Definitions",
+        id: "definitions",
+        title: String(localized: "search.mode.definitions", defaultValue: "Definitions", comment: "Search mode: find symbol definitions in code"),
         children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
         needSelectionHighlight: true
     )
     static let RegularExpression = SearchModeModel(
-        title: "Regular Expression",
+        id: "regularExpression",
+        title: String(localized: "search.mode.regular-expression", defaultValue: "Regular Expression", comment: "Search mode: search using regular expression patterns"),
         children: [],
         needSelectionHighlight: true
     )
     static let CallHierarchy = SearchModeModel(
-        title: "Call Hierarchy",
+        id: "callHierarchy",
+        title: String(localized: "search.mode.call-hierarchy", defaultValue: "Call Hierarchy", comment: "Search mode: view function call hierarchy"),
         children: [],
         needSelectionHighlight: true
     )
 
     static let Find = SearchModeModel(
-        title: "Find",
+        id: "find",
+        title: String(localized: "search.mode.find", defaultValue: "Find", comment: "Search mode category: find operations"),
         children: [.Text, .References, .Definitions, .RegularExpression, .CallHierarchy],
         needSelectionHighlight: false
     )
     static let Replace = SearchModeModel(
-        title: "Replace",
+        id: "replace",
+        title: String(localized: "search.mode.replace", defaultValue: "Replace", comment: "Search mode category: find and replace operations"),
         children: [.Text, .RegularExpression],
         needSelectionHighlight: true
     )
@@ -77,7 +87,7 @@ struct SearchModeModel: Hashable {
 
 extension SearchModeModel: Equatable {
     static func == (lhs: SearchModeModel, rhs: SearchModeModel) -> Bool {
-        lhs.title == rhs.title
+        lhs.id == rhs.id
             && lhs.children == rhs.children
             && lhs.needSelectionHighlight == rhs.needSelectionHighlight
     }
