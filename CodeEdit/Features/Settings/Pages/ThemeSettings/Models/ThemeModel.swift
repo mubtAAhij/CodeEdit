@@ -164,7 +164,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "settings.theme.export-prompt", defaultValue: "Export", comment: "Prompt text for theme export save panel")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +181,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "settings.theme.export-all-prompt", defaultValue: "Export", comment: "Prompt text for export all themes directory picker")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false
