@@ -77,7 +77,7 @@ enum InstallationMethod: Equatable {
         case .npm, .cargo, .golang, .pip, .sourceBuild, .github:
             return packageManagerType.userDescription
         case .nuget, .opam, .gem, .composer:
-            return "(Unsupported) \(packageManagerType.userDescription)"
+            return String(format: String(localized: "lsp.installer.unsupported", defaultValue: "(Unsupported) %@", comment: "Unsupported package manager type"), packageManagerType.userDescription)
         }
     }
 

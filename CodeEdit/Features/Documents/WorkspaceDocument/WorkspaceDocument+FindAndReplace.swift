@@ -59,21 +59,19 @@ extension WorkspaceDocument.SearchState {
         // Display the replacing results to the user
         if updatedFilesCount == 0 && errorCount == 0 {
             // No results where found
-            await setStatus(.failed(errorMessage: "No files in the workspace matched: \(query)"))
+            await setStatus(.failed(errorMessage: String(localized: "find-replace.no-files-matched", defaultValue: "No files in the workspace matched: %@", comment: "Error message when no files match the search query"), query))
         } else if updatedFilesCount == 0 && errorCount > 0 {
             // All files failed to updated
             await setStatus(
                 .failed(
-                    errorMessage: "All files failed to update. (\(errorCount)) " +
-                    "errors occurred. Check logs for more information"
+                    errorMessage: String(format: String(localized: "find-replace.all-files-failed", defaultValue: "All files failed to update. (%d) errors occurred. Check logs for more information", comment: "Error message when all files fail to update during find and replace"), errorCount)
                 )
             )
         } else if updatedFilesCount > 0 && errorCount > 0 {
             // Some files updated successfully, some failed
             await setStatus(
                 .failed(
-                    errorMessage: "\(updatedFilesCount) successfully updated, " +
-                    "\(errorCount) errors occurred. Please check logs for more information."
+                    errorMessage: String(format: String(localized: "find-replace.partial-success", defaultValue: "%d successfully updated, %d errors occurred. Please check logs for more information.", comment: "Status message when some files updated successfully and some failed"), updatedFilesCount, errorCount)
                 )
             )
         } else {
@@ -128,10 +126,10 @@ extension WorkspaceDocument.SearchState {
     ) {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
-            alert.messageText = "Error"
-            alert.informativeText = "An error occurred while reading file contents of: \(file)"
+            alert.messageText = String(localized: "find-replace.error", defaultValue: "Error", comment: "Error alert title for find and replace")
+            alert.informativeText = String(format: String(localized: "find-replace.read-error", defaultValue: "An error occurred while reading file contents of: %@", comment: "Error message when reading file contents fails"), file.path)
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "find-replace.ok", defaultValue: "OK", comment: "OK button for error alert"))
             alert.runModal()
 
             return
@@ -156,10 +154,10 @@ extension WorkspaceDocument.SearchState {
             try updatedContent.write(to: file, atomically: true, encoding: .utf8)
         } catch {
             let alert = NSAlert()
-            alert.messageText = "Error"
-            alert.informativeText = "An error occurred while writing to: \(error.localizedDescription)"
+            alert.messageText = String(localized: "find-replace.error", defaultValue: "Error", comment: "Error alert title for find and replace")
+            alert.informativeText = String(format: String(localized: "find-replace.write-error", defaultValue: "An error occurred while writing to: %@", comment: "Error message when writing to file fails"), error.localizedDescription)
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "find-replace.ok", defaultValue: "OK", comment: "OK button for error alert"))
             alert.runModal()
         }
     }

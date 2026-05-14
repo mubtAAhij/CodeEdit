@@ -48,10 +48,10 @@ struct CodeEditApp: App {
             AboutWindow(
                 subtitleView: { AboutSubtitleView() },
                 actions: {
-                    AboutButton(title: "Contributors", destination: {
+                    AboutButton(title: String(localized: "about.contributors.title", defaultValue: "Contributors", comment: "Contributors button in about window"), destination: {
                         ContributorsView()
                     })
-                    AboutButton(title: "Acknowledgements", destination: {
+                    AboutButton(title: String(localized: "about.acknowledgements.title", defaultValue: "Acknowledgements", comment: "Acknowledgements button in about window"), destination: {
                         AcknowledgementsView()
                     })
                 },
