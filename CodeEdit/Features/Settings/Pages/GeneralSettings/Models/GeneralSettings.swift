@@ -24,31 +24,30 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
-                "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
-                "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(localized: "settings.general.search-key.appearance", defaultValue: "Appearance", comment: "General settings search key for appearance"),
+                String(localized: "settings.general.search-key.file-icon-style", defaultValue: "File Icon Style", comment: "General settings search key for file icon style"),
+                String(localized: "settings.general.search-key.tab-bar-style", defaultValue: "Tab Bar Style", comment: "General settings search key for tab bar style"),
+                String(localized: "settings.general.search-key.show-jump-bar", defaultValue: "Show Jump Bar", comment: "General settings search key for show jump bar"),
+                String(localized: "settings.general.search-key.dim-editors-without-focus", defaultValue: "Dim editors without focus", comment: "General settings search key for dim editors without focus"),
+                String(localized: "settings.general.search-key.navigator-tab-bar-position", defaultValue: "Navigator Tab Bar Position", comment: "General settings search key for navigator tab bar position"),
+                String(localized: "settings.general.search-key.inspector-tab-bar-position", defaultValue: "Inspector Tab Bar Position", comment: "General settings search key for inspector tab bar position"),
+                String(localized: "settings.general.search-key.show-issues", defaultValue: "Show Issues", comment: "General settings search key for show issues"),
+                String(localized: "settings.general.search-key.show-live-issues", defaultValue: "Show Live Issues", comment: "General settings search key for show live issues"),
+                String(localized: "settings.general.search-key.automatically-save", defaultValue: "Automatically save change to disk", comment: "General settings search key for automatically save"),
+                String(localized: "settings.general.search-key.automatically-reveal", defaultValue: "Automatically reveal in project navigator", comment: "General settings search key for automatically reveal"),
+                String(localized: "settings.general.search-key.reopen-behavior", defaultValue: "Reopen Behavior", comment: "General settings search key for reopen behavior"),
+                String(localized: "settings.general.search-key.after-last-window-closed", defaultValue: "After the last window is closed", comment: "General settings search key for after last window closed"),
+                String(localized: "settings.general.search-key.file-extensions", defaultValue: "File Extensions", comment: "General settings search key for file extensions"),
+                String(localized: "settings.general.search-key.project-navigator-size", defaultValue: "Project Navigator Size", comment: "General settings search key for project navigator size"),
+                String(localized: "settings.general.search-key.find-navigator-detail", defaultValue: "Find Navigator Detail", comment: "General settings search key for find navigator detail"),
+                String(localized: "settings.general.search-key.issue-navigator-detail", defaultValue: "Issue Navigator Detail", comment: "General settings search key for issue navigator detail"),
+                String(localized: "settings.general.search-key.open-with-codeedit", defaultValue: "Show \"Open With CodeEdit\" option in Finder", comment: "General settings search key for open with CodeEdit option"),
+                String(localized: "settings.general.search-key.shell-command", defaultValue: "'codeedit' Shell command", comment: "General settings search key for shell command"),
+                String(localized: "settings.general.search-key.dialog-warnings", defaultValue: "Dialog Warnings", comment: "General settings search key for dialog warnings"),
+                String(localized: "settings.general.search-key.check-for-updates", defaultValue: "Check for updates", comment: "General settings search key for check for updates"),
+                String(localized: "settings.general.search-key.automatically-check-updates", defaultValue: "Automatically check for app updates", comment: "General settings search key for automatically check updates"),
+                String(localized: "settings.general.search-key.include-prerelease", defaultValue: "Include pre-release versions", comment: "General settings search key for include pre-release versions")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// Show editor jump bar
@@ -309,9 +308,9 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(localized: "settings.general.navigator-detail.one-line", defaultValue: "One Line", comment: "Navigator detail option for one line")
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(format: String(localized: "settings.general.navigator-detail.up-to-n-lines-short", defaultValue: "Up to %d lines", comment: "Navigator detail option for up to N lines"), self.rawValue)
             }
         }
     }
