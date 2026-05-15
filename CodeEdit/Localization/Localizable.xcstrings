@@ -1325,6 +1325,12 @@
             "state": "translated",
             "value": "Extension - %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensión - %@"
+          }
         }
       }
     },
@@ -1336,6 +1342,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Language Server - %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor de Lenguaje - %@"
           }
         }
       }
@@ -2554,6 +2566,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Are you sure you want to delete the theme \"%@\"?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar el tema \"%@\"?"
           }
         }
       }
@@ -8651,6 +8669,12 @@
             "state": "translated",
             "value": "Show Jump Bar"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Jump Bar"
+          }
         }
       }
     },
@@ -8699,6 +8723,12 @@
             "state": "translated",
             "value": "Hide Navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar Navegador"
+          }
         }
       }
     },
@@ -8728,6 +8758,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hide Inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar Inspector"
           }
         }
       }
@@ -8759,6 +8795,12 @@
             "state": "translated",
             "value": "Hide Utility Area"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar Área de Utilidades"
+          }
         }
       }
     },
@@ -8789,6 +8831,12 @@
             "state": "translated",
             "value": "Hide Toolbar"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar barra de herramientas"
+          }
         }
       }
     },
@@ -8818,6 +8866,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hide Interface"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar interfaz"
           }
         }
       }
@@ -10342,6 +10396,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Up to %d lines"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hasta %d líneas"
           }
         }
       }
