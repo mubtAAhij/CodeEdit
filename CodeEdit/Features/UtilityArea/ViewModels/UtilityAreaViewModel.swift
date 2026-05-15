@@ -113,7 +113,7 @@ class UtilityAreaViewModel: ObservableObject {
             UtilityAreaTerminal(
                 id: id,
                 url: rootURL ?? URL(filePath: "~/"),
-                title: shell?.rawValue ?? "terminal",
+                title: shell?.rawValue ?? String(localized: "utility-area.terminal.default-title", defaultValue: "terminal", comment: "Default terminal title"),
                 shell: shell
             )
         )
@@ -141,7 +141,7 @@ class UtilityAreaViewModel: ObservableObject {
         terminals[index] = UtilityAreaTerminal(
             id: id,
             url: url,
-            title: shell?.rawValue ?? "terminal",
+            title: shell?.rawValue ?? String(localized: "utility-area.terminal.default-title", defaultValue: "terminal", comment: "Default terminal title"),
             shell: shell
         )
         TerminalCache.shared.removeCachedView(replacing)
