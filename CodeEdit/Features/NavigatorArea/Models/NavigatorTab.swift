@@ -29,20 +29,26 @@ enum NavigatorTab: WorkspacePanelTab {
     }
 
     var id: String {
-        if case .uiExtension(let endpoint, let data) = self {
+        switch self {
+        case .project:
+            return "project"
+        case .sourceControl:
+            return "sourceControl"
+        case .search:
+            return "search"
+        case .uiExtension(let endpoint, let data):
             return endpoint.bundleIdentifier + data.sceneID
         }
-        return title
     }
 
     var title: String {
         switch self {
         case .project:
-            return "Project"
+            return String(localized: "navigator.project", defaultValue: "Project", comment: "Title for project navigator tab")
         case .sourceControl:
-            return "Source Control"
+            return String(localized: "navigator.source-control", defaultValue: "Source Control", comment: "Title for source control navigator tab")
         case .search:
-            return "Search"
+            return String(localized: "navigator.search", defaultValue: "Search", comment: "Title for search navigator tab")
         case .uiExtension(_, let data):
             return data.help ?? data.sceneID
         }
