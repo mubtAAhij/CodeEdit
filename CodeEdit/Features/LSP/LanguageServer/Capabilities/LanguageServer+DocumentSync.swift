@@ -86,7 +86,7 @@ extension LanguageServer {
             switch resolveDocumentSyncKind() {
             case .full:
                 guard let content = await getIsolatedDocumentContent(document) else {
-                    logger.error("Failed to get isolated document content")
+                    logger.error(String(localized: "swift.preflight.literal.435985", defaultValue: "Failed to get isolated document content", comment: ""))
                     return
                 }
                 let changeEvent = TextDocumentContentChangeEvent(range: nil, rangeLength: nil, text: content.string)
