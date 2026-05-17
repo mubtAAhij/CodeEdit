@@ -16,8 +16,8 @@ class BitBucketUser: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case login = "username"
-        case name = "display_name"
+        case login = String(localized: "swift.preflight.literal.437500", defaultValue: "username", comment: "")
+        case name = String(localized: "swift.preflight.literal.437501", defaultValue: "display_name", comment: "")
     }
 }
 
@@ -28,10 +28,10 @@ class BitBucketEmail: Codable {
     var email: String?
 
     enum CodingKeys: String, CodingKey {
-        case isPrimary = "is_primary"
-        case isConfirmed = "is_confirmed"
-        case type = "type"
-        case email = "email"
+        case isPrimary = String(localized: "swift.preflight.literal.437502", defaultValue: "is_primary", comment: "")
+        case isConfirmed = String(localized: "swift.preflight.literal.437503", defaultValue: "is_confirmed", comment: "")
+        case type = String(localized: "swift.preflight.literal.437504", defaultValue: "type", comment: "")
+        case email = String(localized: "swift.preflight.literal.437505", defaultValue: "email", comment: "")
     }
 }
 
