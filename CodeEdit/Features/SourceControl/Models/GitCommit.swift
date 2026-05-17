@@ -63,6 +63,6 @@ struct GitCommit: Equatable, Hashable, Identifiable {
                 return "GitLab"
             }
         }
-        return "Remote"
+        return String(localized: "git-commit.remote-fallback", defaultValue: "Remote", comment: "Fallback display name for unknown Git hosting service")
     }
 }
