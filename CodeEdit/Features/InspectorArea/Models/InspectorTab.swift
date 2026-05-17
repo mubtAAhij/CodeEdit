@@ -29,20 +29,26 @@ enum InspectorTab: WorkspacePanelTab {
     }
 
     var id: String {
-        if case .uiExtension(let endpoint, let data) = self {
+        switch self {
+        case .file:
+            return "file"
+        case .gitHistory:
+            return "gitHistory"
+        case .internalDevelopment:
+            return "internalDevelopment"
+        case .uiExtension(let endpoint, let data):
             return endpoint.bundleIdentifier + data.sceneID
         }
-        return title
     }
 
     var title: String {
         switch self {
         case .file:
-            return "File Inspector"
+            return String(localized: "inspector.file", defaultValue: "File Inspector", comment: "Title for file inspector tab")
         case .gitHistory:
-            return "History Inspector"
+            return String(localized: "inspector.history", defaultValue: "History Inspector", comment: "Title for history inspector tab")
         case .internalDevelopment:
-            return "Internal Development"
+            return String(localized: "inspector.internal-development", defaultValue: "Internal Development", comment: "Title for internal development inspector tab")
         case .uiExtension(_, let data):
             return data.help ?? data.sceneID
         }
