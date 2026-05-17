@@ -29,7 +29,7 @@ struct HistoryInspectorView: View {
             if model.sourceControlManager != nil {
                 VStack {
                     if model.commitHistory.isEmpty {
-                        CEContentUnavailableView("No History")
+                        CEContentUnavailableView(String(localized: "history_inspector.empty_state", defaultValue: "No History", comment: "Empty state for history inspector"))
                     } else {
                         List(selection: $selection) {
                             ForEach(model.commitHistory) { commit in
