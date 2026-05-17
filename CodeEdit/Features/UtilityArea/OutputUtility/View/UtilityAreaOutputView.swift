@@ -17,11 +17,11 @@ struct UtilityAreaOutputView: View {
         var title: String {
             switch self {
             case .extensions(let source):
-                "Extension - \(source.extensionInfo.name)"
+                String(format: String(localized: "utility-area.output.extension-source", defaultValue: "Extension - %@", comment: "Format string for extension output source"), source.extensionInfo.name)
             case .languageServer(let source):
-                "Language Server - \(source.id)"
+                String(format: String(localized: "utility-area.output.language-server-source", defaultValue: "Language Server - %@", comment: "Format string for language server output source"), source.id)
             case .devOutput:
-                "Internal Development Output"
+                String(localized: "utility-area.output.dev-output", defaultValue: "Internal Development Output", comment: "Title for internal development output source")
             }
         }
 
@@ -79,14 +79,14 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text("No output")
+                    Text(String(localized: "utility-area.output.no-output", defaultValue: "No output", comment: "Message when no output source is selected"))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)
                         .paneToolbar {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                             Spacer()
-                            UtilityAreaFilterTextField(title: "Filter", text: $filterText)
+                            UtilityAreaFilterTextField(title: String(localized: "utility-area.output.filter-title", defaultValue: "Filter", comment: "Title for output filter field"), text: $filterText)
                                 .frame(maxWidth: 175)
                             Button { } label: {
                                 Image(systemName: "trash")
