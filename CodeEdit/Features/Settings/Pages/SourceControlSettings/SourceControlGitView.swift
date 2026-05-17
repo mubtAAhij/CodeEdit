@@ -26,11 +26,11 @@ struct SourceControlGitView: View {
                 gitAuthorName
                 gitEmail
             } header: {
-                Text("Git Configuration")
-                Text("""
+                Text(String(localized: "settings.source-control.git.configuration.title", defaultValue: "Git Configuration", comment: "Section header for Git configuration settings"))
+                Text(String(localized: "settings.source-control.git.configuration.description", defaultValue: """
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/git-config)
-                """)
+                """, comment: "Description text for Git configuration section"))
             }
             Section {
                 defaultBranchName
@@ -43,12 +43,12 @@ struct SourceControlGitView: View {
             Section {
                 IgnoredFilesListView()
             } header: {
-                Text("Ignored Files")
-                Text("""
+                Text(String(localized: "settings.source-control.git.ignored-files.title", defaultValue: "Ignored Files", comment: "Section header for Git ignored files settings"))
+                Text(String(localized: "settings.source-control.git.ignored-files.description", defaultValue: """
                 Patterns for files and folders that Git should ignore and not track. \
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/gitignore)
-                """)
+                """, comment: "Description text for Git ignored files section"))
             }
             Section {
                 gitIgnoreEditor
@@ -71,7 +71,7 @@ struct SourceControlGitView: View {
 
 private extension SourceControlGitView {
     private var gitAuthorName: some View {
-        TextField("Author Name", text: $authorName)
+        TextField(String(localized: "settings.source-control.git.author-name", defaultValue: "Author Name", comment: "TextField label for Git author name"), text: $authorName)
             .onChange(of: authorName) { _, newValue in
                 if hasAppeared {
                     Limiter.debounce(id: "authorNameDebouncer", duration: 0.5) {
@@ -84,7 +84,7 @@ private extension SourceControlGitView {
     }
 
     private var gitEmail: some View {
-        TextField("Author Email", text: $authorEmail)
+        TextField(String(localized: "settings.source-control.git.author-email", defaultValue: "Author Email", comment: "TextField label for Git author email"), text: $authorEmail)
             .onChange(of: authorEmail) { _, newValue in
                 if hasAppeared {
                     Limiter.debounce(id: "authorEmailDebouncer", duration: 0.5) {
@@ -98,8 +98,8 @@ private extension SourceControlGitView {
 
     private var defaultBranchName: some View {
         TextField(text: $defaultBranch) {
-            Text("Default branch name")
-            Text("Cannot contain spaces, backslashes, or other symbols")
+            Text(String(localized: "settings.source-control.git.default-branch-name", defaultValue: "Default branch name", comment: "TextField label for Git default branch name"))
+            Text(String(localized: "settings.source-control.git.default-branch-name.hint", defaultValue: "Cannot contain spaces, backslashes, or other symbols", comment: "Hint text for default branch name restrictions"))
         }
         .onChange(of: defaultBranch) { _, newValue in
             if hasAppeared {
@@ -114,7 +114,7 @@ private extension SourceControlGitView {
 
     private var preferToRebaseWhenPulling: some View {
         Toggle(
-            "Prefer to rebase when pulling",
+            String(localized: "settings.source-control.git.prefer-rebase-when-pulling", defaultValue: "Prefer to rebase when pulling", comment: "Toggle label for preferring rebase when pulling"),
             isOn: $preferRebaseWhenPulling
         )
         .onChange(of: preferRebaseWhenPulling) { _, newValue in
@@ -130,29 +130,29 @@ private extension SourceControlGitView {
 
     private var showMergeCommitsInPerFileLog: some View {
         Toggle(
-            "Show merge commits in per-file log",
+            String(localized: "settings.source-control.git.show-merge-commits-per-file", defaultValue: "Show merge commits in per-file log", comment: "Toggle label for showing merge commits in per-file log"),
             isOn: $git.showMergeCommitsPerFileLog
         )
     }
 
     private var gitConfigEditor: some View {
         HStack {
-            Text("Git configuration is stored in \"~/.gitconfig\".")
+            Text(String(localized: "settings.source-control.git.config-file-location", defaultValue: "Git configuration is stored in \"~/.gitconfig\".", comment: "Information about where Git configuration is stored"))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitConfigFile)
+            Button(String(localized: "settings.source-control.git.open-config-in-editor", defaultValue: "Open in Editor...", comment: "Button label to open Git config file in editor"), action: openGitConfigFile)
         }
         .frame(maxWidth: .infinity)
     }
 
     private var gitIgnoreEditor: some View {
         HStack {
-            Text("Ignored file patterns are stored in \"\(resolvedGitIgnorePath)\".")
+            Text(String(format: String(localized: "settings.source-control.git.ignore-file-location", defaultValue: "Ignored file patterns are stored in \"%@\".", comment: "Information about where Git ignore file is stored"), resolvedGitIgnorePath))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitIgnoreFile)
+            Button(String(localized: "settings.source-control.git.open-ignore-in-editor", defaultValue: "Open in Editor...", comment: "Button label to open Git ignore file in editor"), action: openGitIgnoreFile)
         }
         .frame(maxWidth: .infinity)
         .onAppear {
