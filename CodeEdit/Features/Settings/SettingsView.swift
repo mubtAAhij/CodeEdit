@@ -114,7 +114,7 @@ struct SettingsView: View {
         for item in pages where item.name == page.name {
             if item.isSetting && item.settingName.lowercased().contains(lowercasedSearchText) {
                 returnedPages.append(item)
-            } else if item.name.rawValue.contains(lowercasedSearchText) && !item.isSetting {
+            } else if item.name.localizedName.contains(lowercasedSearchText) && !item.isSetting {
                 foundPage = true
             }
         }
@@ -137,7 +137,7 @@ struct SettingsView: View {
                             .padding(.leading, 22)
                     }
                 }
-            } else if page.name.rawValue.lowercased().contains(searchText.lowercased()) && !page.isSetting {
+            } else if page.name.localizedName.lowercased().contains(searchText.lowercased()) && !page.isSetting {
                 SettingsPageView(page, searchText: searchText)
             }
         } else if !page.isSetting {
@@ -154,7 +154,7 @@ struct SettingsView: View {
             /// Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
             if #unavailable(macOS 26.0) {
                 List { }
-                    .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                    .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.search-prompt", defaultValue: "Search", comment: "Search prompt in settings sidebar"))
                     .scrollDisabled(true)
                     .frame(height: 30)
                 List(selection: $selectedPage) {
@@ -174,7 +174,7 @@ struct SettingsView: View {
                     }
                 }
                 .toolbar(removing: .sidebarToggle)
-                .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.search-prompt-macos26", defaultValue: "Search", comment: "Search prompt in settings sidebar for macOS 26"))
                 .navigationSplitViewColumnWidth(215)
             }
         } detail: {
@@ -203,7 +203,7 @@ struct SettingsView: View {
                 case .developer:
                     DeveloperSettingsView()
                 default:
-                    Text("Implementation Needed").frame(alignment: .center)
+                    Text(String(localized: "settings.implementation-needed", defaultValue: "Implementation Needed", comment: "Placeholder text for unimplemented settings pages")).frame(alignment: .center)
                 }
             }
             .navigationSplitViewColumnWidth(500)
@@ -212,7 +212,7 @@ struct SettingsView: View {
             }
         }
         .hideSidebarToggle()
-        .navigationTitle(selectedPage.name.rawValue)
+        .navigationTitle(selectedPage.name.localizedName)
         .toolbar {
             /// macOS 26 automatically adjusts the leading padding for navigationTitle
             if #unavailable(macOS 26.0) {

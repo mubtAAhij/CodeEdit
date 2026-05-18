@@ -34,7 +34,7 @@ struct EditCETaskView: View {
                         NSAlert(error: error).runModal()
                     }
                 } label: {
-                    Text("Delete")
+                    Text(String(localized: "workspace-settings.task.delete", defaultValue: "Delete", comment: "Delete button for workspace task"))
                         .foregroundStyle(.red)
                         .frame(minWidth: 56)
                 }
@@ -49,7 +49,7 @@ struct EditCETaskView: View {
                         NSAlert(error: error).runModal()
                     }
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "workspace-settings.task.done", defaultValue: "Done", comment: "Done button for workspace task"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)

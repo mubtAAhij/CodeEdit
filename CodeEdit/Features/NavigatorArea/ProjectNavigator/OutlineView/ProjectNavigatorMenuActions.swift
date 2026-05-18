@@ -93,7 +93,7 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss error alert"))
             alert.runModal()
         }
     }
@@ -134,7 +134,7 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss error alert"))
             alert.runModal()
         }
     }
@@ -150,7 +150,7 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss error alert"))
             alert.runModal()
         }
     }
@@ -164,11 +164,11 @@ extension ProjectNavigatorMenu {
         guard let parent = selectedItems.first?.parent else { return }
 
         /// Get 'New Folder' name.
-        var newFolderURL = parent.url.appendingPathComponent("New Folder With Items", conformingTo: .folder)
+        var newFolderURL = parent.url.appendingPathComponent(String(localized: "project-navigator.new-folder-with-items", defaultValue: "New Folder With Items", comment: "Default name for new folder created from selection"), conformingTo: .folder)
         var folderNumber = 0
         while workspaceFileManager.fileManager.fileExists(atPath: newFolderURL.path) {
             folderNumber += 1
-            newFolderURL = parent.url.appending(path: "New Folder With Items \(folderNumber)")
+            newFolderURL = parent.url.appending(path: String(format: String(localized: "project-navigator.new-folder-with-items-numbered", defaultValue: "New Folder With Items %d", comment: "Default name for numbered new folder created from selection"), folderNumber))
         }
 
         do {
@@ -177,7 +177,7 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss error alert"))
             alert.runModal()
         }
 
@@ -201,7 +201,7 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss error alert"))
             alert.runModal()
         }
     }
@@ -228,7 +228,7 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss error alert"))
             alert.runModal()
         }
     }
@@ -243,7 +243,7 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.alert.dismiss", defaultValue: "Dismiss", comment: "Button to dismiss error alert"))
             alert.runModal()
         }
     }

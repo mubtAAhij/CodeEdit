@@ -17,11 +17,11 @@ struct UtilityAreaOutputView: View {
         var title: String {
             switch self {
             case .extensions(let source):
-                "Extension - \(source.extensionInfo.name)"
+                String(format: String(localized: "utility-area.output.extension", defaultValue: "Extension - %@", comment: "Output source title for extension"), source.extensionInfo.name)
             case .languageServer(let source):
-                "Language Server - \(source.id)"
+                String(format: String(localized: "utility-area.output.language-server", defaultValue: "Language Server - %@", comment: "Output source title for language server"), source.id)
             case .devOutput:
-                "Internal Development Output"
+                String(localized: "utility-area.output.dev-output", defaultValue: "Internal Development Output", comment: "Output source title for internal development")
             }
         }
 
@@ -79,14 +79,14 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text("No output")
+                    Text(String(localized: "utility-area.output.no-output", defaultValue: "No output", comment: "Message when there is no output to display"))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)
                         .paneToolbar {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                             Spacer()
-                            UtilityAreaFilterTextField(title: "Filter", text: $filterText)
+                            UtilityAreaFilterTextField(title: String(localized: "utility-area.output.filter", defaultValue: "Filter", comment: "Filter field placeholder in output utility area"), text: $filterText)
                                 .frame(maxWidth: 175)
                             Button { } label: {
                                 Image(systemName: "trash")

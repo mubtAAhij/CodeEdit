@@ -38,7 +38,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: String(localized: "package-manager.npm.permission.npm-commands", defaultValue: "This package requires npm to install. Allow CodeEdit to run npm commands?", comment: "Permission prompt for running npm commands")
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -65,7 +65,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "package-manager.npm.step.initialize", defaultValue: "Initialize Directory Structure", comment: "Installation step title for initializing npm directory structure"), confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -97,26 +97,19 @@ final class NPMPackageManager: PackageManagerProtocol {
             .split(separator: ",")
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
 
-        var packageList = ([qualifiedSourceName] + otherPackages)
+        let packageList = ([qualifiedSourceName] + otherPackages)
+        let packagesDescription = ListFormatter().string(from: packageList) ?? packageList.joined(separator: ", ")
 
-        // FIXME: This will break with localization. Use real Foundation APIs for pluralizing lists.
-        let plural = packageList.count > 1
-        if plural, var last = packageList.last {
-            // Oxford comma
-            last = "and " + last
-            packageList[packageList.count - 1] = last
+        let message: String
+        if packageList.count > 1 {
+            message = String(format: String(localized: "package-manager.npm.permission.install-packages-plural", defaultValue: "This requires the npm packages %@.\nAllow CodeEdit to install these packages?", comment: "Permission prompt for installing multiple npm packages with package list"), packagesDescription)
+        } else {
+            message = String(format: String(localized: "package-manager.npm.permission.install-package-singular", defaultValue: "This requires the npm package %@.\nAllow CodeEdit to install this package?", comment: "Permission prompt for installing a single npm package with package name"), packagesDescription)
         }
-        let packagesDescription = packageList.joined(separator: ", ")
-
-        let sSuffix = packageList.count > 1 ? "s" : ""
-        let suffix = plural ? "these packages" : "this package"
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
-            confirmation: .required(
-                message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
-            )
+            name: String(localized: "package-manager.npm.step.install", defaultValue: "Install Package Using npm", comment: "Installation step title for installing npm package"),
+            confirmation: .required(message: message)
         ) { model in
             do {
                 var installArgs = ["npm", "install", qualifiedSourceName]
@@ -150,7 +143,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "package-manager.npm.step.verify", defaultValue: "Verify Installation", comment: "Installation step title for verifying npm package installation"),
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path
@@ -161,7 +154,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                   let packageDict = packageJson as? [String: Any],
                   let dependencies = packageDict["dependencies"] as? [String: String],
                   let installedVersion = dependencies[package] else {
-                throw PackageManagerError.installationFailed("Package not found in package.json")
+                throw PackageManagerError.installationFailed(String(localized: "package-manager.npm.error.package-not-in-json", defaultValue: "Package not found in package.json", comment: "Error message when package is not found in package.json after installation"))
             }
 
             // Verify installed version matches requested version
@@ -170,7 +163,7 @@ final class NPMPackageManager: PackageManagerProtocol {
             if normalizedInstalledVersion != normalizedRequestedVersion &&
                 !installedVersion.contains(normalizedRequestedVersion) {
                 throw PackageManagerError.installationFailed(
-                    "Version mismatch: Expected \(version), but found \(installedVersion)"
+                    String(format: String(localized: "package-manager.npm.error.version-mismatch", defaultValue: "Version mismatch: Expected %@, but found %@", comment: "Error message when installed package version does not match requested version"), version, installedVersion)
                 )
             }
 
@@ -179,7 +172,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                 .appending(path: "node_modules")
                 .appending(path: package)
             guard FileManager.default.fileExists(atPath: packageDirectory.path) else {
-                throw PackageManagerError.installationFailed("Package not found in node_modules")
+                throw PackageManagerError.installationFailed(String(localized: "package-manager.npm.error.package-not-in-modules", defaultValue: "Package not found in node_modules", comment: "Error message when package is not found in node_modules directory after installation"))
             }
         }
     }

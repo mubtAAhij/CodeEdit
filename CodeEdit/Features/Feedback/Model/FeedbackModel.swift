@@ -27,22 +27,22 @@ public class FeedbackModel: ObservableObject {
     @Published var feedbackTypeListSelection: FeedbackType.ID = "none"
 
     @Published var feedbackTypeList = [
-        FeedbackType(name: "Choose...", id: "none"),
-        FeedbackType(name: "Incorrect/Unexpected Behaviour", id: "behaviour"),
-        FeedbackType(name: "Application Crash", id: "crash"),
-        FeedbackType(name: "Application Slow/Unresponsive", id: "unresponsive"),
-        FeedbackType(name: "Suggestion", id: "suggestions"),
-        FeedbackType(name: "Other", id: "other")
+        FeedbackType(name: String(localized: "feedback.type.choose", defaultValue: "Choose...", comment: "Placeholder for feedback type selection"), id: "none"),
+        FeedbackType(name: String(localized: "feedback.type.behaviour-display", defaultValue: "Incorrect/Unexpected Behaviour", comment: "Feedback type for unexpected behavior"), id: "behaviour"),
+        FeedbackType(name: String(localized: "feedback.type.crash-display", defaultValue: "Application Crash", comment: "Feedback type for app crashes"), id: "crash"),
+        FeedbackType(name: String(localized: "feedback.type.unresponsive", defaultValue: "Application Slow/Unresponsive", comment: "Feedback type for performance issues"), id: "unresponsive"),
+        FeedbackType(name: String(localized: "feedback.type.suggestion", defaultValue: "Suggestion", comment: "Feedback type for suggestions"), id: "suggestions"),
+        FeedbackType(name: String(localized: "feedback.type.other-display", defaultValue: "Other", comment: "Feedback type for other issues"), id: "other")
     ]
 
     @Published var issueAreaList = [
-        FeedbackIssueArea(name: "Please select the problem area", id: "none"),
-        FeedbackIssueArea(name: "Project Navigator", id: "projectNavigator"),
-        FeedbackIssueArea(name: "Extensions", id: "extensions"),
-        FeedbackIssueArea(name: "Git", id: "git"),
-        FeedbackIssueArea(name: "Debugger", id: "debugger"),
-        FeedbackIssueArea(name: "Editor", id: "editor"),
-        FeedbackIssueArea(name: "Other", id: "other")
+        FeedbackIssueArea(name: String(localized: "feedback.issue-area.choose", defaultValue: "Please select the problem area", comment: "Placeholder for issue area selection"), id: "none"),
+        FeedbackIssueArea(name: String(localized: "feedback.issue-area.project-navigator", defaultValue: "Project Navigator", comment: "Issue area for project navigator"), id: "projectNavigator"),
+        FeedbackIssueArea(name: String(localized: "feedback.issue-area.extensions", defaultValue: "Extensions", comment: "Issue area for extensions"), id: "extensions"),
+        FeedbackIssueArea(name: String(localized: "feedback.issue-area.git", defaultValue: "Git", comment: "Issue area for Git functionality"), id: "git"),
+        FeedbackIssueArea(name: String(localized: "feedback.issue-area.debugger", defaultValue: "Debugger", comment: "Issue area for debugger"), id: "debugger"),
+        FeedbackIssueArea(name: String(localized: "feedback.issue-area.editor", defaultValue: "Editor", comment: "Issue area for code editor"), id: "editor"),
+        FeedbackIssueArea(name: String(localized: "feedback.issue-area.other", defaultValue: "Other", comment: "Issue area for other problems"), id: "other")
     ]
 
     /// Gets the ID of the selected issue type and then
@@ -80,7 +80,7 @@ public class FeedbackModel: ObservableObject {
         case "other":
             return "📬"
         default:
-            return "Other"
+            return String(localized: "feedback.type-title.other", defaultValue: "Other", comment: "Default feedback type title")
         }
     }
 
@@ -112,22 +112,28 @@ public class FeedbackModel: ObservableObject {
         expectation: String?,
         actuallyHappened: String?
     ) -> String {
-        """
-        **Description**
+        let descriptionHeader = String(localized: "feedback.issue-body.description", defaultValue: "**Description**", comment: "Markdown header for issue description")
+        let stepsHeader = String(localized: "feedback.issue-body.steps", defaultValue: "**Steps to Reproduce**", comment: "Markdown header for reproduction steps")
+        let expectationHeader = String(localized: "feedback.issue-body.expectation", defaultValue: "**What did you expect to happen?**", comment: "Markdown header for expected behavior")
+        let actualHeader = String(localized: "feedback.issue-body.actual", defaultValue: "**What actually happened?**", comment: "Markdown header for actual behavior")
+        let notApplicable = String(localized: "feedback.issue-body.not-applicable", defaultValue: "N/A", comment: "Not applicable placeholder")
+
+        return """
+        \(descriptionHeader)
 
         \(description)
 
-        **Steps to Reproduce**
+        \(stepsHeader)
 
-        \(steps ?? "N/A")
+        \(steps ?? notApplicable)
 
-        **What did you expect to happen?**
+        \(expectationHeader)
 
-        \(expectation ?? "N/A")
+        \(expectation ?? notApplicable)
 
-        **What actually happened?**
+        \(actualHeader)
 
-        \(actuallyHappened ?? "N/A")
+        \(actuallyHappened ?? notApplicable)
         """
     }
 
