@@ -9,17 +9,17 @@ import SwiftUI
 
 struct InternalDevelopmentOutputView: View {
     var body: some View {
-        Section("Output Utility") {
-            Button("Error Log") {
+        Section(String(localized: "internal-development.output.section-header", defaultValue: "Output Utility", comment: "Output utility section header")) {
+            Button(String(localized: "internal-development.output.error-log", defaultValue: "Error Log", comment: "Error log button")) {
                 pushLog(.error)
             }
-            Button("Warning Log") {
+            Button(String(localized: "internal-development.output.warning-log", defaultValue: "Warning Log", comment: "Warning log button")) {
                 pushLog(.warning)
             }
-            Button("Info Log") {
+            Button(String(localized: "internal-development.output.info-log", defaultValue: "Info Log", comment: "Info log button")) {
                 pushLog(.info)
             }
-            Button("Debug Log") {
+            Button(String(localized: "internal-development.output.debug-log", defaultValue: "Debug Log", comment: "Debug log button")) {
                 pushLog(.debug)
             }
         }
@@ -31,7 +31,7 @@ struct InternalDevelopmentOutputView: View {
             .init(
                 message: randomString(),
                 subsystem: "internal.development",
-                category: "Logs",
+                category: String(localized: "internal-development.output.category", defaultValue: "Logs", comment: "Logs category"),
                 level: level
             )
         )
