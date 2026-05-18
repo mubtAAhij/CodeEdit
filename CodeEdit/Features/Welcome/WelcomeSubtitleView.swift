@@ -50,12 +50,12 @@ struct WelcomeSubtitleView: View {
 
     var body: some View {
         Text(String(
-            format: NSLocalizedString("Version %@%@ (%@)", comment: ""),
+            format: String(localized: "welcome.version-info", defaultValue: "Version %@%@ (%@)", comment: "Welcome screen version info format"),
             appVersion, appVersionPostfix, appBuild
         ))
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help("Copy System Information to Clipboard")
+        .help(String(localized: "welcome.copy-system-info", defaultValue: "Copy System Information to Clipboard", comment: "Help text to copy system information"))
     }
 }
