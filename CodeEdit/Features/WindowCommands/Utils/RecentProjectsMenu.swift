@@ -13,10 +13,7 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
 
     // MARK: - Menu construction
 
-    private let menuTitle = NSLocalizedString(
-        "Open Recent",
-        comment: "Open Recent menu title"
-    )
+    private let menuTitle = String(localized: "recent-projects.menu-title", defaultValue: "Open Recent", comment: "Open Recent menu title")
 
     private lazy var menu: NSMenu = {
         let menu = NSMenu(title: menuTitle)
