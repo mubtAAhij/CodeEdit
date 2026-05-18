@@ -15,13 +15,13 @@ struct SourceControlGeneralView: View {
 
     var body: some View {
         Group {
-            Section("Source Control") {
+            Section(String(localized: "source-control.settings.section-title", defaultValue: "Source Control", comment: "Section header for source control settings")) {
                 refreshLocalStatusAuto
                 fetchRefreshStatusAuto
                 addRemoveFilesAuto
                 selectFilesToCommitAuto
             }
-            Section("Text Editing") {
+            Section(String(localized: "source-control.settings.text-editing-section", defaultValue: "Text Editing", comment: "Section header for text editing settings")) {
                 showSourceControlChanges
                 includeUpstreamChanges
             }
@@ -36,42 +36,42 @@ struct SourceControlGeneralView: View {
 private extension SourceControlGeneralView {
     private var refreshLocalStatusAuto: some View {
         Toggle(
-            "Refresh local status automatically",
+            String(localized: "source-control.settings.refresh-local-status", defaultValue: "Refresh local status automatically", comment: "Toggle label for automatically refreshing local status"),
             isOn: $settings.refreshStatusLocally
         )
     }
 
     private var fetchRefreshStatusAuto: some View {
         Toggle(
-            "Fetch and refresh server status automatically",
+            String(localized: "source-control.settings.fetch-refresh-server-status", defaultValue: "Fetch and refresh server status automatically", comment: "Toggle label for automatically fetching and refreshing server status"),
             isOn: $settings.fetchRefreshServerStatus
         )
     }
 
     private var addRemoveFilesAuto: some View {
         Toggle(
-            "Add and remove files automatically",
+            String(localized: "source-control.settings.add-remove-files-auto", defaultValue: "Add and remove files automatically", comment: "Toggle label for automatically adding and removing files"),
             isOn: $settings.addRemoveAutomatically
         )
     }
 
     private var selectFilesToCommitAuto: some View {
         Toggle(
-            "Select files to commit automatically",
+            String(localized: "source-control.settings.select-files-to-commit-auto", defaultValue: "Select files to commit automatically", comment: "Toggle label for automatically selecting files to commit"),
             isOn: $settings.selectFilesToCommit
         )
     }
 
     private var showSourceControlChanges: some View {
         Toggle(
-            "Show source control changes",
+            String(localized: "source-control.settings.show-source-control-changes", defaultValue: "Show source control changes", comment: "Toggle label for showing source control changes"),
             isOn: $settings.showSourceControlChanges
         )
     }
 
     private var includeUpstreamChanges: some View {
         Toggle(
-            "Include upstream changes",
+            String(localized: "source-control.settings.include-upstream-changes", defaultValue: "Include upstream changes", comment: "Toggle label for including upstream changes"),
             isOn: $settings.includeUpstreamChanges
         )
         .disabled(!settings.showSourceControlChanges)
@@ -79,24 +79,24 @@ private extension SourceControlGeneralView {
 
     private var comparisonView: some View {
         Picker(
-            "Comparison view",
+            String(localized: "source-control.settings.comparison-view", defaultValue: "Comparison view", comment: "Picker label for comparison view layout"),
             selection: $settings.revisionComparisonLayout
         ) {
-            Text("Local Revision on Left Side")
+            Text(String(localized: "source-control.settings.local-revision-left", defaultValue: "Local Revision on Left Side", comment: "Option for local revision on left side"))
                 .tag(SettingsData.RevisionComparisonLayout.localLeft)
-            Text("Local Revision on Right Side")
+            Text(String(localized: "source-control.settings.local-revision-right", defaultValue: "Local Revision on Right Side", comment: "Option for local revision on right side"))
                 .tag(SettingsData.RevisionComparisonLayout.localRight)
         }
     }
 
     private var sourceControlNavigator: some View {
         Picker(
-            "Source control navigator",
+            String(localized: "source-control.settings.navigator-label", defaultValue: "Source control navigator", comment: "Picker label for source control navigator sort order"),
             selection: $settings.controlNavigatorOrder
         ) {
-            Text("Sort by Name")
+            Text(String(localized: "source-control.settings.sort-by-name", defaultValue: "Sort by Name", comment: "Option to sort by name"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByName)
-            Text("Sort by Date")
+            Text(String(localized: "source-control.settings.sort-by-date", defaultValue: "Sort by Date", comment: "Option to sort by date"))
                 .tag(SettingsData.ControlNavigatorOrder.sortByDate)
         }
     }
