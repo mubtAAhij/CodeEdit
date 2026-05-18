@@ -136,6 +136,15 @@ final class ThemeModel: ObservableObject {
     enum ThemeSettingsAppearances: String, CaseIterable {
         case light = "Light Appearance"
         case dark = "Dark Appearance"
+
+        var localizedString: String {
+            switch self {
+            case .light:
+                return String(localized: "theme.appearance.light", defaultValue: "Light Appearance", comment: "Label for light theme appearance option")
+            case .dark:
+                return String(localized: "theme.appearance.dark", defaultValue: "Dark Appearance", comment: "Label for dark theme appearance option")
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
