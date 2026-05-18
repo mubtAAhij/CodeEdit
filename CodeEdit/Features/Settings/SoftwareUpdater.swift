@@ -87,7 +87,7 @@ class SoftwareUpdater: NSObject, ObservableObject, SPUUpdaterDelegate {
     }
 
     func allowedChannels(for updater: SPUUpdater) -> Set<String> {
-        // TODO: Uncomment when production build is released. 
+        // TODO: Uncomment when production build is released.
         // if includePrereleaseVersions {
         return ["dev"]
         // }

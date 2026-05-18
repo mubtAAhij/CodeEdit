@@ -46,7 +46,7 @@ class CEActiveTaskTerminalView: CELocalShellTerminalView {
             contentsOf: activeTask.task.environmentVariables.map({ $0.key + "=" + $0.value })
         )
 
-        sendOutputMessage("Starting task: " + self.activeTask.task.name)
+        sendOutputMessage(String(format: String(localized: "terminal.task.starting", defaultValue: "Starting task: %@", comment: "Message shown when a task starts running"), self.activeTask.task.name))
         sendOutputMessage(self.activeTask.task.command)
         newline()
 

@@ -156,7 +156,7 @@ extension RegistryItem {
                         Target.self,
                         DecodingError.Context(
                             codingPath: decoder.codingPath,
-                            debugDescription: "Invalid target format"
+                            debugDescription: String(localized: "registry.source.error.invalid-target-format", defaultValue: "Invalid target format", comment: "Error description for invalid target format in registry source")
                         )
                     )
                 }
@@ -209,7 +209,7 @@ extension RegistryItem {
                         BinContainer.self,
                         DecodingError.Context(
                             codingPath: decoder.codingPath,
-                            debugDescription: "Invalid bin format"
+                            debugDescription: String(localized: "registry.source.error.invalid-bin-format", defaultValue: "Invalid bin format", comment: "Error description for invalid bin format in registry source")
                         )
                     )
                 }

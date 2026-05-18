@@ -134,8 +134,17 @@ final class ThemeModel: ObservableObject {
     }
 
     enum ThemeSettingsAppearances: String, CaseIterable {
-        case light = "Light Appearance"
-        case dark = "Dark Appearance"
+        case light = "light-appearance"
+        case dark = "dark-appearance"
+
+        var displayName: String {
+            switch self {
+            case .light:
+                return String(localized: "settings.theme.appearance.light", defaultValue: "Light Appearance", comment: "Label for light appearance theme setting")
+            case .dark:
+                return String(localized: "settings.theme.appearance.dark", defaultValue: "Dark Appearance", comment: "Label for dark appearance theme setting")
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +173,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "settings.theme.export-prompt", defaultValue: "Export", comment: "Button label for exporting theme in save panel")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +190,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "settings.theme.export-prompt", defaultValue: "Export", comment: "Button label for exporting theme in save panel")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false

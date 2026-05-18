@@ -12,22 +12,22 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: "Quick Open",
-            title: "Quick Open",
+            name: String(localized: "command-palette.quick-open.name", defaultValue: "Quick Open", comment: "Command palette name for Quick Open"),
+            title: String(localized: "command-palette.quick-open.title", defaultValue: "Quick Open", comment: "Command palette title for Quick Open"),
             id: "quick_open",
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Navigator",
-            title: "Toggle Navigator",
+            name: String(localized: "command-palette.toggle-navigator.name", defaultValue: "Toggle Navigator", comment: "Command palette name for Toggle Navigator"),
+            title: String(localized: "command-palette.toggle-navigator.title", defaultValue: "Toggle Navigator", comment: "Command palette title for Toggle Navigator"),
             id: "toggle_left_sidebar",
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: "Toggle Inspector",
-            title: "Toggle Inspector",
+            name: String(localized: "command-palette.toggle-inspector.name", defaultValue: "Toggle Inspector", comment: "Command palette name for Toggle Inspector"),
+            title: String(localized: "command-palette.toggle-inspector.title", defaultValue: "Toggle Inspector", comment: "Command palette title for Toggle Inspector"),
             id: "toggle_right_sidebar",
             command: { [weak self] in self?.toggleLastPanel() }
         )
@@ -105,7 +105,7 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle("Workspace Settings")
+            settingsWindow.setAccessibilityTitle(String(localized: "workspace-settings.accessibility-title", defaultValue: "Workspace Settings", comment: "Accessibility title for workspace settings window"))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }

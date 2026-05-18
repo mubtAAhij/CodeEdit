@@ -13,7 +13,7 @@ extension GitClient {
     /// - Parameters:
     ///   - message: Commit message
     func commit(message: String, details: String?) async throws {
-        let message = message.replacingOccurrences(of: #"""#, with: #"\""#)
+        let message = message.replacingOccurrences(of: #"\""#, with: #"\""#)
         let command: String
 
         if let msgDetails = details {

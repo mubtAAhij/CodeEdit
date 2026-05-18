@@ -29,7 +29,7 @@ class GitConfigClient {
     ///   - global: Whether to apply the command globally or locally.
     /// - Returns: The command output as a string.
     private func runConfigCommand(_ command: String, global: Bool) async throws -> String {
-        var fullCommand = "git config"
+        var fullCommand = String(localized: "swift.preflight.literal.437988", defaultValue: "git config", comment: "")
 
         if global {
             fullCommand += " --global"

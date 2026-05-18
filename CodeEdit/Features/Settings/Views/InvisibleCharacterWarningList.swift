@@ -33,9 +33,9 @@ struct InvisibleCharacterWarningList: View {
                     }
                 }
             ),
-            keyColumnName: "Unicode Character Code",
-            valueColumnName: "Notes",
-            newItemInstruction: "Add A Character As A Hexidecimal Unicode Value",
+            keyColumnName: String(localized: "settings.invisible-chars.unicode-code", defaultValue: "Unicode Character Code", comment: "Column header for unicode character code"),
+            valueColumnName: String(localized: "settings.invisible-chars.notes", defaultValue: "Notes", comment: "Column header for character notes"),
+            newItemInstruction: String(localized: "settings.invisible-chars.add-instruction", defaultValue: "Add A Character As A Hexidecimal Unicode Value", comment: "Instruction for adding a new invisible character"),
             actionBarTrailing: {
                 Button {
                     // Add defaults without removing user's data. We do still override notes here.
@@ -46,7 +46,7 @@ struct InvisibleCharacterWarningList: View {
                         }
                     )
                 } label: {
-                    Text("Restore Defaults")
+                    Text(String(localized: "settings.invisible-chars.restore-defaults", defaultValue: "Restore Defaults", comment: "Button to restore default invisible characters"))
                 }
                 .buttonStyle(PlainButtonStyle())
                 .font(.system(size: 11, weight: .medium))
@@ -58,7 +58,7 @@ struct InvisibleCharacterWarningList: View {
         .frame(minHeight: 96, maxHeight: .infinity)
         .overlay {
             if items.isEmpty {
-                Text("No warning characters")
+                Text(String(localized: "settings.invisible-chars.no-warning-chars", defaultValue: "No warning characters", comment: "Message when no warning characters are configured"))
                     .foregroundStyle(Color(.secondaryLabelColor))
             }
         }

@@ -16,7 +16,7 @@ extension GitClient {
         force: Bool? = false,
         tags: Bool? = false
     ) async throws {
-        var command = "push"
+        var command = String(localized: "swift.preflight.literal.437940", defaultValue: "push", comment: "")
         if let remote, let branch {
             if setUpstream == true {
                 command += " --set-upstream"
@@ -32,7 +32,7 @@ extension GitClient {
 
         let output = try await self.run(command)
 
-        if output.contains("rejected") {
+        if output.contains(String(localized: "swift.preflight.literal.437945", defaultValue: "rejected", comment: "")) {
             throw GitClientError.outputError(output)
         }
     }
