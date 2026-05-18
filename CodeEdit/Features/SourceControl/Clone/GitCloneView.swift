@@ -36,7 +36,7 @@ struct GitCloneView: View {
                     Text(String(localized: "git.clone.title", defaultValue: "Clone a Repository", comment: "Title for git clone dialog"))
                         .bold()
                         .padding(.bottom, 2)
-                    Text(String(localized: "git.clone.prompt", defaultValue: "Enter a git repository URL:", comment: "Prompt for entering git repository URL"))
+                    Text(String(localized: "git.clone.url-prompt", defaultValue: "Enter a git repository URL:", comment: "Prompt for entering git repository URL"))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
