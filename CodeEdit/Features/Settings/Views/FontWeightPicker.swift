@@ -24,21 +24,21 @@ struct FontWeightPicker: View {
     ]
 
     var weightNames: [NSFont.Weight: String] = [
-        .ultraLight: "Ultra Light",
-        .thin: "Thin",
-        .light: "Light",
-        .regular: "Regular",
-        .medium: "Medium",
-        .semibold: "Semi Bold",
-        .bold: "Bold",
-        .heavy: "Heavy",
-        .black: "Black"
+        .ultraLight: String(localized: "font-weight.ultra-light", defaultValue: "Ultra Light", comment: "Font weight name for ultra light weight"),
+        .thin: String(localized: "font-weight.thin", defaultValue: "Thin", comment: "Font weight name for thin weight"),
+        .light: String(localized: "font-weight.light", defaultValue: "Light", comment: "Font weight name for light weight"),
+        .regular: String(localized: "font-weight.regular", defaultValue: "Regular", comment: "Font weight name for regular weight"),
+        .medium: String(localized: "font-weight.medium", defaultValue: "Medium", comment: "Font weight name for medium weight"),
+        .semibold: String(localized: "font-weight.semi-bold", defaultValue: "Semi Bold", comment: "Font weight name for semi bold weight"),
+        .bold: String(localized: "font-weight.bold", defaultValue: "Bold", comment: "Font weight name for bold weight"),
+        .heavy: String(localized: "font-weight.heavy", defaultValue: "Heavy", comment: "Font weight name for heavy weight"),
+        .black: String(localized: "font-weight.black", defaultValue: "Black", comment: "Font weight name for black weight")
     ]
 
     var body: some View {
-        Picker(label ?? "Font Weight", selection: $selection) {
+        Picker(label ?? String(localized: "font-weight.picker-label", defaultValue: "Font Weight", comment: "Label for font weight picker"), selection: $selection) {
             ForEach(fontWeights, id: \.self) { weight in
-                Text(weightNames[weight] ?? "Unknown")
+                Text(weightNames[weight] ?? String(localized: "font-weight.unknown", defaultValue: "Unknown", comment: "Fallback text for unknown font weight"))
                     .tag(weight)
             }
         }
