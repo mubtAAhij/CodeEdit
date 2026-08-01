@@ -135,7 +135,7 @@ extension ThemeModel {
         let openPanel = NSOpenPanel()
         let allowedTypes = [UTType(filenameExtension: "cetheme")!]
 
-        openPanel.prompt = "Import"
+        openPanel.prompt = String(localized: "theme.model.import-prompt", defaultValue: "Import", comment: "Prompt for theme import dialog")
         openPanel.allowedContentTypes = allowedTypes
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = false
@@ -170,7 +170,7 @@ extension ThemeModel {
                 && !url.absoluteString.hasPrefix(themesURL.absoluteString)
 
             if isBundled {
-                newFileName = "\(fileName) \(iterator)"
+                newFileName = String(format: String(localized: "theme.model.duplicate-name-format", defaultValue: "%@ %d", comment: "Format for duplicated theme name with counter"), fileName, iterator)
                 destinationFileURL = self.themesURL
                     .appending(path: newFileName)
                     .appendingPathExtension(fileExtension)
@@ -186,7 +186,7 @@ extension ThemeModel {
                 }
 
                 // Generate a new filename with an iterator
-                newFileName = "\(fileName) \(iterator)"
+                newFileName = String(format: String(localized: "theme.model.duplicate-name-format", defaultValue: "%@ %d", comment: "Format for duplicated theme name with counter"), fileName, iterator)
                 destinationFileURL = self.themesURL
                     .appending(path: newFileName)
                     .appendingPathExtension(fileExtension)
@@ -226,7 +226,7 @@ extension ThemeModel {
                 throw NSError(
                     domain: "ThemeModel",
                     code: 1,
-                    userInfo: [NSLocalizedDescriptionKey: "Theme file URL not found"]
+                    userInfo: [NSLocalizedDescriptionKey: String(localized: "theme.model.error.url-not-found", defaultValue: "Theme file URL not found", comment: "Error message when theme file URL is not found")]
                 )
             }
 
@@ -236,7 +236,7 @@ extension ThemeModel {
 
             // Check for existing display names in themes
             while themes.contains(where: { theme != $0 && $0.displayName == finalName }) {
-                finalName = "\(newName) \(iterator)"
+                finalName = String(format: String(localized: "theme.model.duplicate-name-format", defaultValue: "%@ %d", comment: "Format for duplicated theme name with counter"), newName, iterator)
                 finalURL = themesURL.appending(path: finalName).appendingPathExtension("cetheme")
                 iterator += 1
             }
