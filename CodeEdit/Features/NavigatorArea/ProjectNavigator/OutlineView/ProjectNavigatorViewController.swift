@@ -117,7 +117,7 @@ final class ProjectNavigatorViewController: NSViewController {
         }
 
         /// "No Filter Results" label.
-        noResultsLabel = NSTextField(labelWithString: "No Filter Results")
+        noResultsLabel = NSTextField(labelWithString: String(localized: "project-navigator.no-filter-results", defaultValue: "No Filter Results", comment: "Label shown when project navigator filter has no results"))
         noResultsLabel.isHidden = true
         noResultsLabel.font = NSFont.systemFont(ofSize: 16)
         noResultsLabel.textColor = NSColor.secondaryLabelColor
