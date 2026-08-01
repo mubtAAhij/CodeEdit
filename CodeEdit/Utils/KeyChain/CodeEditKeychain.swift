@@ -280,7 +280,7 @@ class CodeEditKeychain {
 
     /// Returns the key with currently set prefix.
     func keyWithPrefix(_ key: String) -> String {
-        "\(keyPrefix)\(key)"
+        return keyPrefix + key
     }
 
     func addAccessGroupWhenPresent(_ items: [String: Any]) -> [String: Any] {
