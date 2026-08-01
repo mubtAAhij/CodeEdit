@@ -21,13 +21,13 @@ internal struct StatusBarToggleUtilityAreaButton: View {
         }
         .buttonStyle(.icon)
         .keyboardShortcut("Y", modifiers: [.command, .shift])
-        .help(utilityAreaViewModel.isCollapsed ? "Show the Utility area" : "Hide the Utility area")
+        .help(utilityAreaViewModel.isCollapsed ? String(localized: "status-bar.utility-area.show", defaultValue: "Show the Utility area", comment: "Help text to show utility area") : String(localized: "status-bar.utility-area.hide", defaultValue: "Hide the Utility area", comment: "Help text to hide utility area"))
         .onHover { isHovering($0) }
         .onChange(of: controlActiveState) { _, newValue in
             if newValue == .key {
                 CommandManager.shared.addCommand(
-                    name: "Toggle Utility Area",
-                    title: "Toggle Utility Area",
+                    name: String(localized: "status-bar.utility-area.toggle", defaultValue: "Toggle Utility Area", comment: "Command name to toggle utility area"),
+                    title: String(localized: "status-bar.utility-area.toggle.title", defaultValue: "Toggle Utility Area", comment: "Command title to toggle utility area"),
                     id: "open.drawer",
                     command: { [weak utilityAreaViewModel] in utilityAreaViewModel?.togglePanel() }
                 )
@@ -35,8 +35,8 @@ internal struct StatusBarToggleUtilityAreaButton: View {
         }
         .onAppear {
             CommandManager.shared.addCommand(
-                name: "Toggle Utility Area",
-                title: "Toggle Utility Area",
+                name: String(localized: "status-bar.utility-area.toggle.name", defaultValue: "Toggle Utility Area", comment: "Command name for toggle utility area on appear"),
+                title: String(localized: "status-bar.utility-area.toggle.appear-title", defaultValue: "Toggle Utility Area", comment: "Command title for toggle utility area on appear"),
                 id: "open.drawer",
                 command: { [weak utilityAreaViewModel] in utilityAreaViewModel?.togglePanel() }
             )
