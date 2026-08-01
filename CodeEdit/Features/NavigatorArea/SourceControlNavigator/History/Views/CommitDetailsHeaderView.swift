@@ -24,7 +24,7 @@ struct CommitDetailsHeaderView: View {
         } else if commit.authorEmail != commit.committerEmail {
             return commit.message.trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
-            return "\(commit.message)\n\n\(coAuthDetail())".trimmingCharacters(in: .whitespacesAndNewlines)
+            return String(format: String(localized: "source-control.commit.details-with-coauthor", defaultValue: "%@\n\n%@", comment: "Commit details with co-author information"), commit.message, coAuthDetail()).trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 
@@ -32,14 +32,14 @@ struct CommitDetailsHeaderView: View {
         if commit.committerEmail == "noreply@github.com" {
             return ""
         } else if commit.authorEmail != commit.committerEmail {
-            return "Co-authored by: \(commit.committer)\n<\(commit.committerEmail)>"
+            return String(format: String(localized: "source-control.commit.coauthored-by", defaultValue: "Co-authored by: %@\n<%@>", comment: "Co-author attribution in commit details"), commit.committer, commit.committerEmail)
         }
         return ""
     }
 
     private func generateAvatarHash() -> String {
         let hash = commit.authorEmail.md5(trim: true, caseSensitive: false)
-        return "\(hash)?d=404&s=64" // send 404 if no image available, image size 64x64 (32x32 @2x)
+        return "\(hash)?d=404&s=64"
     }
 
     private var avatarColor: Color {

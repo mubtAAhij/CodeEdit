@@ -125,7 +125,7 @@ enum RegistryItemTemplateParser {
         } else if let boolValue = currentValue as? Bool {
             return String(boolValue)
         } else if currentValue is [Any] || currentValue is [String: Any] {
-            throw TemplateError.invalidPath("Path resolves to a complex object, not a simple value")
+            throw TemplateError.invalidPath(String(localized: "Path resolves to a complex object, not a simple value", defaultValue: "Path resolves to a complex object, not a simple value", comment: "Error message for template parser complex object"))
         } else {
             return String(describing: currentValue)
         }

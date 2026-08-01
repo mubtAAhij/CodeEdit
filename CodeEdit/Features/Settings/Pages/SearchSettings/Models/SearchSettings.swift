@@ -16,7 +16,6 @@ extension SettingsData {
                 "Ignore Glob Patterns",
                 "Ignore Patterns"
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// List of Glob Patterns that determine which files or directories to ignore

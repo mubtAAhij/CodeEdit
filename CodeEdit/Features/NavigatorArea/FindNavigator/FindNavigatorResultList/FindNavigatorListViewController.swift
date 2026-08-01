@@ -36,7 +36,7 @@ final class FindNavigatorListViewController: NSViewController {
         self.outlineView.lineBreakMode = .byTruncatingTail
 
         let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
-        column.title = "Cell"
+        column.title = String(localized: "find-navigator.results-column", defaultValue: "Cell", comment: "Table column title for find results")
         outlineView.addTableColumn(column)
 
         self.scrollView.documentView = outlineView

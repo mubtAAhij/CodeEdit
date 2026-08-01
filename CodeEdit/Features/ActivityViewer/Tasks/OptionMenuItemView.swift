@@ -30,7 +30,7 @@ struct OptionMenuItemView: View {
 }
 
 #Preview {
-    OptionMenuItemView(label: "Test") {
+    OptionMenuItemView(label: String(localized: "activity-viewer.option-menu.test-label", defaultValue: "Test", comment: "Test label for option menu item preview")) {
         print("test")
     }
 }

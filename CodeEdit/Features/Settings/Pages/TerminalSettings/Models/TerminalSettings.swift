@@ -16,15 +16,14 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Shell",
-                "Use \"Option\" key as \"Meta\"",
-                "Use text editor font",
-                "Font",
-                "Font Size",
-                "Terminal Cursor Style",
-                "Blink Cursor"
+                String(localized: "terminal.settings.search.shell", defaultValue: "Shell", comment: "Search key for shell setting"),
+                String(localized: "terminal.settings.search.option-as-meta", defaultValue: "Use \"Option\" key as \"Meta\"", comment: "Search key for Option key as Meta setting"),
+                String(localized: "terminal.settings.search.use-editor-font", defaultValue: "Use text editor font", comment: "Search key for using text editor font"),
+                String(localized: "terminal.settings.search.font", defaultValue: "Font", comment: "Search key for font setting"),
+                String(localized: "terminal.settings.search.font-size", defaultValue: "Font Size", comment: "Search key for font size setting"),
+                String(localized: "terminal.settings.search.cursor-style", defaultValue: "Terminal Cursor Style", comment: "Search key for cursor style setting"),
+                String(localized: "terminal.settings.search.blink-cursor", defaultValue: "Blink Cursor", comment: "Search key for blink cursor setting")
             ]
-            .map { NSLocalizedString($0, comment: "") }
         }
 
         /// If true terminal will use editor theme.
@@ -102,7 +101,7 @@ extension SettingsData {
         var size: Double = 12
 
         /// The name of the custom font
-        var name: String = "SF Mono"
+        var name: String = String(localized: "terminal.settings.font.sf-mono", defaultValue: "SF Mono", comment: "Default terminal font name")
 
         /// The weight of the custom font
         var weight: NSFont.Weight = .medium

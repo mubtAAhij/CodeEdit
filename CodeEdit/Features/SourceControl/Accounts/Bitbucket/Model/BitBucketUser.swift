@@ -30,8 +30,8 @@ class BitBucketEmail: Codable {
     enum CodingKeys: String, CodingKey {
         case isPrimary = "is_primary"
         case isConfirmed = "is_confirmed"
-        case type = "type"
-        case email = "email"
+        case type
+        case email
     }
 }
 

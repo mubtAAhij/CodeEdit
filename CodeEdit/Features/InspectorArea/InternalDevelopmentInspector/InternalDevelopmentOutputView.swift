@@ -9,17 +9,17 @@ import SwiftUI
 
 struct InternalDevelopmentOutputView: View {
     var body: some View {
-        Section("Output Utility") {
-            Button("Error Log") {
+        Section(String(localized: "internal-dev.output-utility", defaultValue: "Output Utility", comment: "Section header for output utility")) {
+            Button(String(localized: "internal-dev.error-log", defaultValue: "Error Log", comment: "Button to push error log")) {
                 pushLog(.error)
             }
-            Button("Warning Log") {
+            Button(String(localized: "internal-dev.warning-log", defaultValue: "Warning Log", comment: "Button to push warning log")) {
                 pushLog(.warning)
             }
-            Button("Info Log") {
+            Button(String(localized: "internal-dev.info-log", defaultValue: "Info Log", comment: "Button to push info log")) {
                 pushLog(.info)
             }
-            Button("Debug Log") {
+            Button(String(localized: "internal-dev.debug-log", defaultValue: "Debug Log", comment: "Button to push debug log")) {
                 pushLog(.debug)
             }
         }
@@ -38,13 +38,7 @@ struct InternalDevelopmentOutputView: View {
     }
 
     func randomString() -> String {
-        let strings = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie, dui et consectetur"
-        + "porttitor, orci lectus fermentum augue, eu faucibus lectus nisl id velit. Suspendisse in mi nunc. Aliquam"
-        + "non dolor eu eros mollis euismod. Praesent mollis mauris at ex dapibus ornare. Ut imperdiet"
-        + "finibus lacus ut aliquam. Vivamus semper, mauris in condimentum volutpat, quam erat eleifend ligula,"
-        + "nec tincidunt sem ante et ex. Sed dui magna, placerat quis orci at, bibendum molestie massa. Maecenas"
-        + "velit nunc, vehicula eu venenatis vel, tincidunt id purus. Morbi eu dignissim arcu, sed ornare odio."
-        + "Nam vestibulum tempus nibh id finibus.").split(separator: " ")
+        let strings = (String(localized: "internal-dev.lorem-ipsum", defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce molestie, dui et consecteturporttitor, orci lectus fermentum augue, eu faucibus lectus nisl id velit. Suspendisse in mi nunc. Aliquamnon dolor eu eros mollis euismod. Praesent mollis mauris at ex dapibus ornare. Ut imperdietfinibus lacus ut aliquam. Vivamus semper, mauris in condimentum volutpat, quam erat eleifend ligula,nec tincidunt sem ante et ex. Sed dui magna, placerat quis orci at, bibendum molestie massa. Maecenasvelit nunc, vehicula eu venenatis vel, tincidunt id purus. Morbi eu dignissim arcu, sed ornare odio.Nam vestibulum tempus nibh id finibus.", comment: "Lorem ipsum placeholder text for random log messages")).split(separator: " ")
         let count = Int.random(in: 0..<25)
         return (0..<count).compactMap { _ in
             strings.randomElement()
