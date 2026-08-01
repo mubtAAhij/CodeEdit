@@ -36,8 +36,8 @@ struct AcknowledgementRowView: View {
 struct AcknowledgementsRowView_Previews: PreviewProvider {
     static var previews: some View {
         AcknowledgementRowView(acknowledgement: AcknowledgementDependency(
-            name: "Test",
-            repositoryLink: "https://www.test.com/",
+            name: String(localized: "Test", defaultValue: "Test", comment: "SwiftUI Preview sample text"),
+            repositoryLink: String(localized: "https://www.test.com/", defaultValue: "https://www.test.com/", comment: "SwiftUI Preview sample URL"),
             version: "-"
         ))
     }
