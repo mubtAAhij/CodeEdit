@@ -16,20 +16,20 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text(String(localized: "task-form.name.label", defaultValue: "Name", comment: "Label for task name field"))
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
-                    Text("My Mac")
+                .accessibilityLabel(String(localized: "task-form.name.accessibility", defaultValue: "Task Name", comment: "Accessibility label for task name field"))
+                Picker(String(localized: "task-form.target.label", defaultValue: "Target", comment: "Label for target picker"), selection: $task.target) {
+                    Text(String(localized: "task-form.target.my-mac", defaultValue: "My Mac", comment: "Target option for local Mac"))
                         .tag("My Mac")
 
-                    Text("SSH")
+                    Text(String(localized: "task-form.target.ssh", defaultValue: "SSH", comment: "Target option for SSH"))
                         .tag("SSH")
 
-                    Text("Docker")
+                    Text(String(localized: "task-form.target.docker", defaultValue: "Docker", comment: "Target option for Docker"))
                         .tag("Docker")
 
-                    Text("Docker Compose")
+                    Text(String(localized: "task-form.target.docker-compose", defaultValue: "Docker Compose", comment: "Target option for Docker Compose"))
                         .tag("Docker Compose")
                 }
                 .disabled(true)
@@ -37,11 +37,11 @@ struct CETaskFormView: View {
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text(String(localized: "task-form.command.label", defaultValue: "Task", comment: "Label for task command field"))
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "task-form.command.accessibility", defaultValue: "Task Command", comment: "Accessibility label for task command field"))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text(String(localized: "task-form.working-directory.label", defaultValue: "Working Directory", comment: "Label for working directory field"))
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text(String(localized: "task-form.env-variables.empty", defaultValue: "No environment variables", comment: "Empty state message for environment variables"))
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -68,19 +68,21 @@ struct CETaskFormView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .accessibilityLabel(String(localized: "task-form.env-variables.add", defaultValue: "Add environment variable", comment: "Accessibility label for add environment variable button"))
                     Divider()
                     Button {
                         removeSelectedEnv()
                     } label: {
                         Image(systemName: "minus")
                     }
+                    .accessibilityLabel(String(localized: "task-form.env-variables.remove", defaultValue: "Remove environment variable", comment: "Accessibility label for remove environment variable button"))
                     .disabled(selectedEnvID == nil)
                 }
                 .onDeleteCommand {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text(String(localized: "task-form.env-variables.header", defaultValue: "Environment Variables", comment: "Header for environment variables section"))
             }
         }
         .formStyle(.grouped)
