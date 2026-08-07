@@ -30,17 +30,17 @@ struct ThemeSettingsThemeToken: View {
             HStack(spacing: 20) {
                 HStack(spacing: 8) {
                     Toggle(isOn: $bold) {
-                        Image(systemName: "bold")
+                        Image(systemName: String(localized: "settings.theme.token.search-key.bold", defaultValue: "bold", comment: "Search keyword for bold font style token"))
                     }
                     .toggleStyle(.icon)
-                    .help("Bold")
+                    .help(String(localized: "settings.theme.token.display.bold", defaultValue: "Bold", comment: "Display name for bold font style token"))
                     Divider()
                         .fixedSize()
                     Toggle(isOn: $italic) {
-                        Image(systemName: "italic")
+                        Image(systemName: String(localized: "settings.theme.token.search-key.italic", defaultValue: "italic", comment: "Search keyword for italic font style token"))
                     }
                     .toggleStyle(.icon)
-                    .help("Italic")
+                    .help(String(localized: "settings.theme.token.display.italic", defaultValue: "Italic", comment: "Display name for italic font style token"))
                 }
                 .opacity(isHovering || bold || italic ? 1 : 0)
 
