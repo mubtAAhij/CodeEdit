@@ -1,4 +1,4 @@
-name: Swift Strings Extraction (Quetzal)
+name: Swift Strings Extraction (Quetzal Azure)
 
 on:
   workflow_dispatch:
@@ -16,29 +16,24 @@ on:
         required: false
         default: 'main'
         type: string
-      gcs_bucket:
-        description: 'GCS bucket for skip list'
+      azure_storage_account:
+        description: 'Azure Storage account for skip list'
         required: true
         type: string
-      gcs_path:
-        description: 'GCS path for skip list'
+      azure_container:
+        description: 'Azure Blob container for skip list'
         required: true
         type: string
-      gcp_project_id:
-        description: 'GCP Project ID'
+      azure_blob_path:
+        description: 'Azure Blob path for skip list JSON'
         required: true
         type: string
-      gcp_region:
-        description: 'GCP Region'
-        required: false
-        default: 'us-west1'
-        type: string
-      gcp_wif_provider:
-        description: 'GCP Workload Identity Provider (for OIDC auth)'
+      azure_upload_sas:
+        description: 'Path-scoped write SAS for the skip-list blob (short-lived)'
         required: true
         type: string
-      gcp_sa_email:
-        description: 'GCP Service Account Email (for OIDC auth)'
+      api_base_url:
+        description: 'Quetzal API base URL for status callbacks'
         required: true
         type: string
       job_id:
@@ -70,18 +65,17 @@ jobs:
     runs-on: macos-latest
     permissions:
       contents: read
-      id-token: write
     env:
-      GCP_PROJECT_ID: ${{ inputs.gcp_project_id }}
-      GCP_REGION: ${{ inputs.gcp_region }}
-      GCS_BUCKET: ${{ inputs.gcs_bucket }}
-      GCS_PATH: ${{ inputs.gcs_path }}
+      AZURE_STORAGE_ACCOUNT: ${{ inputs.azure_storage_account }}
+      AZURE_CONTAINER: ${{ inputs.azure_container }}
+      AZURE_BLOB_PATH: ${{ inputs.azure_blob_path }}
+      AZURE_UPLOAD_SAS: ${{ inputs.azure_upload_sas }}
       PROJECT_ID: ${{ inputs.project_id }}
       INTEGRATION_ID: ${{ inputs.integration_id }}
       BRANCH: ${{ inputs.branch }}
       JOB_ID: ${{ inputs.job_id }}
       API_KEY: ${{ inputs.api_key }}
-      API_BASE_URL: https://api.getquetzal.com
+      API_BASE_URL: ${{ inputs.api_base_url }}
 
     steps:
       - name: Send workflow started status
@@ -754,42 +748,33 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
-      - name: Set up gcloud auth
-        uses: google-github-actions/auth@v2
-        with:
-          workload_identity_provider: ${{ inputs.gcp_wif_provider }}
-          service_account: ${{ inputs.gcp_sa_email }}
-        continue-on-error: true
-
-      - name: Install gcloud
-        uses: google-github-actions/setup-gcloud@v2
-        continue-on-error: true
-
-      - name: Upload skip list to GCS
+      - name: Upload skip list to Azure Blob
         run: |
-          # Check if gcloud auth worked, if not, try using gsutil with service account key if available
-          if command -v gsutil &> /dev/null; then
-            gsutil cp skip-list.json "gs://$GCS_BUCKET/$GCS_PATH" || {
-              echo "⚠️  Failed to upload skip list using gsutil. This may be due to missing GCP authentication secrets."
-              echo "⚠️  Skip list will not be available, but workflow will continue."
-              exit 0
-            }
-            echo "Skip list uploaded to: gs://$GCS_BUCKET/$GCS_PATH"
-            
-            # Send upload status
+          if [ ! -f skip-list.json ] || [ ! -s skip-list.json ]; then
+            echo "⚠️  skip-list.json missing or empty; skipping Azure Blob upload"
+            exit 0
+          fi
+          BLOB_URL="https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER}/${AZURE_BLOB_PATH}?${AZURE_UPLOAD_SAS}"
+          HTTP_CODE=$(curl -sS -o /tmp/azure-blob-upload-body.txt -w "%{http_code}" -X PUT "$BLOB_URL" \
+            -H "x-ms-blob-type: BlockBlob" \
+            -H "Content-Type: application/json" \
+            --data-binary @skip-list.json || echo "000")
+          if [ "$HTTP_CODE" = "201" ] || [ "$HTTP_CODE" = "200" ]; then
+            echo "Skip list uploaded to Azure Blob: https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER}/${AZURE_BLOB_PATH}"
             if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
+              PAYLOAD=$(jq -n \
+                --arg jobId "$JOB_ID" \
+                '{jobId: $jobId, status: "workflow_build_completed", extractionStatus: "extracting", progress: ({"message": "Skip list uploaded to Azure Blob", "step": "upload"} | tostring)}')
               curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
                 -H "Content-Type: application/json" \
                 -H "api-key: $API_KEY" \
-                -d "{
-                  \"jobId\": \"$JOB_ID\",
-                  \"status\": \"workflow_build_completed\",
-                  \"extractionStatus\": \"extracting\",
-                  \"progress\": \"{\\\"message\\\": \\\"Skip list uploaded to GCS\\\", \\\"step\\\": \\\"upload\\\"}\"
-                }" || echo "⚠️  Failed to send status update (upload completed)"
+                -d "$PAYLOAD" || echo "⚠️  Failed to send status update (upload completed)"
             fi
           else
-            echo "⚠️  gsutil not available. Skip list upload skipped."
+            echo "⚠️  Azure Blob upload failed with HTTP $HTTP_CODE"
+            cat /tmp/azure-blob-upload-body.txt 2>/dev/null || true
+            echo "⚠️  Skip list will not be available, but workflow will continue."
+            exit 0
           fi
 
       - name: Notify completion
