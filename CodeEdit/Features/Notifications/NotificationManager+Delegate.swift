@@ -49,7 +49,7 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
         // Create action button
         let action = UNNotificationAction(
             identifier: "ACTION_BUTTON",
-            title: "Action", // This will be replaced with actual button title
+            title: String(localized: "notifications.delegate.action-button-title", defaultValue: "Action", comment: "Default action title shown in user notification responses"), // This will be replaced with actual button title
             options: .foreground
         )
 

@@ -37,7 +37,7 @@ struct WorkspacePanelView<Tab: WorkspacePanelTab, ViewModel: ObservableObject>: 
             if let selection = selectedTab {
                 selection
             } else {
-                CEContentUnavailableView("No Selection")
+                CEContentUnavailableView(String(localized: "codeedit-ui.workspace-panel.no-selection-title", defaultValue: "No Selection", comment: "Placeholder title when no workspace panel tab is selected"))
             }
         }
         .safeAreaInset(edge: .leading, spacing: 0) {

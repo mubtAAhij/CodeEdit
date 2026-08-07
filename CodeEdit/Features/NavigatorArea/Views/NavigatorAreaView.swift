@@ -42,6 +42,6 @@ struct NavigatorAreaView: View {
         )
         .environmentObject(workspace)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("navigator")
+        .accessibilityLabel(String(localized: "navigator-area.view.identifier.navigator", defaultValue: "navigator", comment: "Identifier string used for navigator area view"))
     }
 }
