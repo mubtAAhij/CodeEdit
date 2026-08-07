@@ -26,7 +26,7 @@ struct ThemeSettingsView: View {
             SettingsForm {
                 Section {
                     HStack(spacing: 10) {
-                        SearchField("Search", text: $themeSearchQuery)
+                        SearchField(String(localized: "settings.theme.search.placeholder", defaultValue: "Search", comment: "Placeholder text for theme search field"), text: $themeSearchQuery)
 
                         Button {
                             // As discussed, the expected behavior is to duplicate the selected theme.
@@ -39,25 +39,25 @@ struct ThemeSettingsView: View {
                             Image(systemName: "plus")
                         }
                         .disabled(themeModel.selectedTheme == nil)
-                        .help("Create a new Theme")
+                        .help(String(localized: "settings.theme.toolbar.create-theme.tooltip", defaultValue: "Create a new Theme", comment: "Tooltip text for button creating a new theme"))
 
                         MenuWithButtonStyle(systemImage: "ellipsis", menu: {
                             Group {
                                 Button {
                                     themeModel.importTheme()
                                 } label: {
-                                    Text("Import Theme...")
+                                    Text(String(localized: "settings.theme.menu.import-theme", defaultValue: "Import Theme...", comment: "Menu item title to import a custom theme"))
                                 }
                                 Button {
                                     themeModel.exportAllCustomThemes()
                                 } label: {
-                                    Text("Export All Custom Themes...")
+                                    Text(String(localized: "settings.theme.menu.export-all-custom-themes", defaultValue: "Export All Custom Themes...", comment: "Menu item title to export all custom themes"))
                                 }
                                 .disabled(themeModel.themes.filter { !$0.isBundled }.isEmpty)
                             }
                         })
                         .padding(.horizontal, 5)
-                        .help("Import or Export Custom Themes")
+                        .help(String(localized: "settings.theme.menu.import-export.help", defaultValue: "Import or Export Custom Themes", comment: "Help text for theme import and export actions"))
                     }
                 }
                 if themeSearchQuery.isEmpty {
@@ -85,7 +85,7 @@ struct ThemeSettingsView: View {
                 } footer: {
                     HStack {
                         Spacer()
-                        Button("Import...") {
+                        Button(String(localized: "settings.theme.button.import", defaultValue: "Import...", comment: "Button title to start theme import")) {
                             themeModel.importTheme()
                         }
                     }
@@ -157,12 +157,12 @@ private extension ThemeSettingsView {
     }
 
     private var alwaysUseDarkTerminalAppearance: some View {
-        Toggle("Always use dark terminal appearance", isOn: $useDarkTerminalAppearance)
+        Toggle(String(localized: "settings.theme.preview.always-use-dark-terminal-appearance", defaultValue: "Always use dark terminal appearance", comment: "Option label for always using dark terminal appearance"), isOn: $useDarkTerminalAppearance)
     }
 
     private var changeThemeOnSystemAppearance: some View {
         Toggle(
-            "Automatically change theme based on system appearance",
+            String(localized: "settings.theme.preview.automatic-with-system-appearance", defaultValue: "Automatically change theme based on system appearance", comment: "Option label for automatic theme changes based on system appearance"),
             isOn: $settings.matchAppearance
         )
         .onChange(of: settings.matchAppearance) { _, value in
