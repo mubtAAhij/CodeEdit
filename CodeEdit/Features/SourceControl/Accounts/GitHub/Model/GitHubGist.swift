@@ -40,7 +40,7 @@ class GitHubGist: Codable {
         case commentsURL = "comments_url"
         case htmlURL = "html_url"
         case files
-        case publicGist = "public"
+        case publicGist = String(localized: "source-control.github.gist.coding-key.public", defaultValue: "public", comment: "JSON coding key for gist visibility field")
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case description
