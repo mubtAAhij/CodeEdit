@@ -1,0 +1,738 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "utils.shell-client.default-shell-path": {
+      "comment": "Default shell executable path used for launching shell client",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "/bin/zsh"
+          }
+        }
+      }
+    },
+    "utils.url.lsp-uri.file-scheme-prefix": {
+      "comment": "URI scheme prefix for file URLs in LSP conversion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "file://"
+          }
+        }
+      }
+    },
+    "utils.string.sha256.hex-byte-format": {
+      "comment": "Hex format specifier for SHA256 byte encoding",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%02x"
+          }
+        }
+      }
+    },
+    "utils.string.md5.hex-byte-format": {
+      "comment": "Hex format specifier for MD5 byte encoding",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%02x"
+          }
+        }
+      }
+    },
+    "utils.string.escaped.wrap-in-quotes": {
+      "comment": "Format wrapping escaped string content in double quotes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\"%@\""
+          }
+        }
+      }
+    },
+    "utils.date.formatted.time-pattern-hhmmss-ssss": {
+      "comment": "Date formatter pattern for hours minutes seconds and fractional seconds",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HH:mm:ss.SSSS"
+          }
+        }
+      }
+    },
+    "utils.dependency-injection.service-container.queue-label": {
+      "comment": "Dispatch queue label used by service container internals",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ServiceContainerQueue"
+          }
+        }
+      }
+    },
+    "localization.example.hello-world": {
+      "comment": "Example localized greeting text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hello, world!"
+          }
+        }
+      }
+    },
+    "features.window-commands.window-controller.popup-window-class-name": {
+      "comment": "Window class name identifier used for popup menu window detection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NSPopupMenuWindow"
+          }
+        }
+      }
+    },
+    "welcome.new-file.button.title": {
+      "comment": "Title for the welcome screen button that creates a new file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create New File..."
+          }
+        }
+      }
+    },
+    "welcome.git-clone.button.title": {
+      "comment": "Title for the welcome screen button that clones a Git repository",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clone Git Repository..."
+          }
+        }
+      }
+    },
+    "terminal-emulator.view.title": {
+      "comment": "Title shown for the terminal emulator view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminal Emulator"
+          }
+        }
+      }
+    },
+    "features.status-bar.view.identifier-statusbar-id": {
+      "comment": "Identifier string used for status bar view lookup",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "statusbarID"
+          }
+        }
+      }
+    },
+    "features.status-bar.line-end-selector.option-lf": {
+      "comment": "Line ending selector option label for LF",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LF"
+          }
+        }
+      }
+    },
+    "features.status-bar.encoding-selector.option-utf-8": {
+      "comment": "Encoding selector option label for UTF-8",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UTF 8"
+          }
+        }
+      }
+    },
+    "navigator-area.view.identifier.navigator": {
+      "comment": "Identifier string used for navigator area view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "navigator"
+          }
+        }
+      }
+    },
+    "notifications.delegate.action-button-title": {
+      "comment": "Default action title shown in user notification responses",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action"
+          }
+        }
+      }
+    },
+    "open-quickly.table.column.identifier": {
+      "comment": "NSTableColumn identifier string for open quickly table",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "column"
+          }
+        }
+      }
+    },
+    "settings.accounts.selection.cancel-button-title": {
+      "comment": "Cancel button title in account selection view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.navigation.style.title": {
+      "comment": "Title for navigation style setting",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigation Style"
+          }
+        }
+      }
+    },
+    "settings.source-control.ignored-files.empty-state": {
+      "comment": "Empty state message when there are no ignored source control files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No ignored files"
+          }
+        }
+      }
+    },
+    "settings.window.title": {
+      "comment": "Title of the settings window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "source-control.bitbucket.router.oauth-token-endpoint": {
+      "comment": "Bitbucket OAuth token endpoint path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "site/oauth2/access_token"
+          }
+        }
+      }
+    },
+    "source-control.github.gist.coding-key.public": {
+      "comment": "JSON coding key for gist visibility field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "public"
+          }
+        }
+      }
+    },
+    "source-control.gitlab.commit.coding-key.description": {
+      "comment": "JSON coding key for GitLab commit description field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "description"
+          }
+        }
+      }
+    },
+    "source-control.gitlab.router.user-endpoint": {
+      "comment": "GitLab API endpoint path component for current user",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "user"
+          }
+        }
+      }
+    },
+    "source-control.git-client.command.fetch": {
+      "comment": "Git command name for fetching remote changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fetch"
+          }
+        }
+      }
+    },
+    "source-control.git-client.command.init": {
+      "comment": "Git command name for repository initialization",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "init"
+          }
+        }
+      }
+    },
+    "source-control.manager.alert.ok-button-title": {
+      "comment": "Confirmation button title in source control alerts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "navigator-area.source-control.changes.empty-state-title": {
+      "comment": "Empty state title when there are no source control changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Changes"
+          }
+        }
+      }
+    },
+    "navigator-area.source-control.changed-file.color.cool-gray": {
+      "comment": "Named color asset identifier used for changed file list styling",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CoolGray"
+          }
+        }
+      }
+    },
+    "activity-viewer.tasks.option-menu-item.test-title": {
+      "comment": "Title of the test option in activity viewer task options menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test"
+          }
+        }
+      }
+    },
+    "codeedit-ui.workspace-panel.no-selection-title": {
+      "comment": "Placeholder title when no workspace panel tab is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        }
+      }
+    },
+    "documents.codeedit-window-controller.no-window-found-error": {
+      "comment": "Error message when no window is available for controller content setup",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No window found for this controller. Cannot set up content."
+          }
+        }
+      }
+    },
+    "editor.jump-bar.no-selection-title": {
+      "comment": "Placeholder title shown in editor jump bar when nothing is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        }
+      }
+    },
+    "editor.model.editor.display-name": {
+      "comment": "Default display name for editor model",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor"
+          }
+        }
+      }
+    },
+    "editor.image-file-view.cannot-preview-image": {
+      "comment": "Message shown when image preview cannot be displayed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cannot preview image"
+          }
+        }
+      }
+    },
+    "editor.non-text-file-view.cannot-retrieve-url": {
+      "comment": "Error message when URL for opened non-text file cannot be retrieved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cannot retrieve URL to the file you opened."
+          }
+        }
+      }
+    },
+    "feedback.window.title": {
+      "comment": "Title of the feedback window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feedback for CodeEdit"
+          }
+        }
+      }
+    },
+    "inspector-area.history.no-history-title": {
+      "comment": "Placeholder title shown in history inspector when there is no history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No History"
+          }
+        }
+      }
+    },
+    "inspector-area.view.identifier.inspector": {
+      "comment": "Identifier string for inspector area view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "inspector"
+          }
+        }
+      }
+    },
+    "inspector-area.no-selection.title": {
+      "comment": "Placeholder title shown when nothing is selected in inspector area",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Selection"
+          }
+        }
+      }
+    },
+    "lsp.semantic-tokens.storage.state-required-before-deltas": {
+      "comment": "Precondition failure message when semantic token deltas are applied before initial state",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "State should be set before applying any deltas."
+          }
+        }
+      }
+    },
+    "about.acknowledgements.view.title": {
+      "comment": "Title of the acknowledgements view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledgements"
+          }
+        }
+      }
+    },
+    "about.acknowledgements.parse-packages-resolved.git-suffix": {
+      "comment": "Git repository suffix used when normalizing package URLs",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ".git"
+          }
+        }
+      }
+    },
+    "activity-viewer.title": {
+      "comment": "Title of the activity viewer panel",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity Viewer"
+          }
+        }
+      }
+    },
+    "utility-area.view-model.terminal-tab-id": {
+      "comment": "Identifier string for terminal tab in utility area view model",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "terminal"
+          }
+        }
+      }
+    },
+    "utility-area.view-model.terminal-panel-id": {
+      "comment": "Identifier string for terminal panel in utility area view model",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "terminal"
+          }
+        }
+      }
+    },
+    "utility-area.view.title": {
+      "comment": "Display title for utility area panel",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utility Area"
+          }
+        }
+      }
+    },
+    "utility-area.view.identifier.utility-area": {
+      "comment": "Identifier string for utility area view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UtilityArea"
+          }
+        }
+      }
+    },
+    "welcome.open-file-or-folder.button.title": {
+      "comment": "Title for welcome screen button to open a file or folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open File or Folder..."
+          }
+        }
+      }
+    },
+    "window-commands.extensions.menu.title": {
+      "comment": "Title of extensions command menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "window-commands.extensions.open-window.title": {
+      "comment": "Menu item title to open the extensions window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Extensions Window"
+          }
+        }
+      }
+    },
+    "window-commands.fixes.open-recent.title": {
+      "comment": "Title of open recent submenu in command fixes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        }
+      }
+    },
+    "window-commands.fixes.open-window-action.identifier": {
+      "comment": "Identifier used for open window action command fix",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OpenWindowAction"
+          }
+        }
+      }
+    },
+    "utils.color.hex.format.lowercase-six-digit": {
+      "comment": "Hex format specifier for six-digit lowercase color values",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%06x"
+          }
+        }
+      }
+    },
+    "utils.color.hex.cgcolor.format.lowercase-six-digit": {
+      "comment": "Hex format specifier for six-digit lowercase CGColor values",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%06x"
+          }
+        }
+      }
+    },
+    "utils.int.hex-string.prefix": {
+      "comment": "Hexadecimal prefix used when parsing integer strings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0x"
+          }
+        }
+      }
+    },
+    "utils.int.hex-string.output-prefix": {
+      "comment": "Hexadecimal prefix used when formatting integer strings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0x"
+          }
+        }
+      }
+    },
+    "workspace.refresh-git-data.error": {
+      "comment": "Error message shown when git data refresh fails in workspace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error refreshing Git data"
+          }
+        }
+      }
+    },
+    "workspace.area.identifier": {
+      "comment": "Accessibility identifier for workspace area view",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "workspace area"
+          }
+        }
+      }
+    }
+  }
+}
