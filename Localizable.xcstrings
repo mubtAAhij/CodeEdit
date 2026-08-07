@@ -1,0 +1,852 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "settings.theme.row.action.choose": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir"
+          }
+        }
+      }
+    },
+    "settings.theme.row.action.details": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalles..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.action.duplicate": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicar..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.action.export": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.action.delete": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.title": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Theme"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar tema"
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.cancel": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.warning": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This action cannot be undone."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta acción no se puede deshacer."
+          }
+        }
+      }
+    },
+    "settings.theme.token.search-key.bold": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bold"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bold"
+          }
+        }
+      }
+    },
+    "settings.theme.token.display.bold": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negrita"
+          }
+        }
+      }
+    },
+    "settings.theme.token.search-key.italic": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "italic"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cursiva"
+          }
+        }
+      }
+    },
+    "settings.theme.token.display.italic": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursiva"
+          }
+        }
+      }
+    },
+    "settings.theme.search.placeholder": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar"
+          }
+        }
+      }
+    },
+    "settings.theme.toolbar.create-theme.tooltip": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a new Theme"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear nuevo tema"
+          }
+        }
+      }
+    },
+    "settings.theme.menu.import-theme": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import Theme..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar tema..."
+          }
+        }
+      }
+    },
+    "settings.theme.menu.export-all-custom-themes": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export All Custom Themes..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar todos los temas personalizados..."
+          }
+        }
+      }
+    },
+    "settings.theme.menu.import-export.help": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import or Export Custom Themes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar o exportar temas personalizados"
+          }
+        }
+      }
+    },
+    "settings.theme.button.import": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar..."
+          }
+        }
+      }
+    },
+    "settings.theme.preview.always-use-dark-terminal-appearance": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always use dark terminal appearance"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar siempre apariencia oscura de terminal"
+          }
+        }
+      }
+    },
+    "settings.theme.preview.automatic-with-system-appearance": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically change theme based on system appearance"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar el tema automáticamente según la apariencia del sistema"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.import.panel.title": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.error.theme-file-url-not-found": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theme file URL not found"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL del archivo de tema no encontrada"
+          }
+        }
+      }
+    },
+    "settings.theme.details.name": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
+        }
+      }
+    },
+    "settings.theme.details.author": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Author"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autor"
+          }
+        }
+      }
+    },
+    "settings.theme.details.type": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo"
+          }
+        }
+      }
+    },
+    "settings.theme.details.appearance.light": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro"
+          }
+        }
+      }
+    },
+    "settings.theme.details.appearance.dark": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro"
+          }
+        }
+      }
+    },
+    "settings.theme.details.editor.text": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
+        }
+      }
+    },
+    "settings.theme.details.terminal.text": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
+        }
+      }
+    },
+    "settings.theme.details.editor.cursor": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursor"
+          }
+        }
+      }
+    },
+    "settings.theme.details.editor.invisibles": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invisibles"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invisibles"
+          }
+        }
+      }
+    },
+    "settings.theme.details.editor.background": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Background"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fondo"
+          }
+        }
+      }
+    },
+    "settings.theme.details.terminal.background": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Background"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fondo"
+          }
+        }
+      }
+    },
+    "settings.theme.details.editor.current-line": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current Line"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Línea actual"
+          }
+        }
+      }
+    },
+    "settings.theme.details.editor.selection": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selection"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selección"
+          }
+        }
+      }
+    },
+    "settings.theme.details.tokens.section": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tokens"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tokens"
+          }
+        }
+      }
+    },
+    "settings.theme.details.tokens.keywords": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keywords"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palabras clave"
+          }
+        }
+      }
+    },
+    "settings.theme.details.tokens.commands": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commands"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comandos"
+          }
+        }
+      }
+    },
+    "settings.theme.details.tokens.types": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Types"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipos"
+          }
+        }
+      }
+    },
+    "settings.theme.details.tokens.attributes": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attributes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atributos"
+          }
+        }
+      }
+    },
+    "settings.theme.details.tokens.variables": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variables"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variables"
+          }
+        }
+      }
+    },
+    "settings.theme.details.tokens.values": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Values"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valores"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.duplicate-name.with-iterator": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.export-name.with-iterator": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.rename.with-iterator": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        }
+      }
+    },
+    "settings.theme.preview.use-theme-background": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use theme background"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar fondo del tema"
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.message": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete the theme “%@”?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar el tema \"%@\"?"
+          }
+        }
+      }
+    }
+  }
+}
