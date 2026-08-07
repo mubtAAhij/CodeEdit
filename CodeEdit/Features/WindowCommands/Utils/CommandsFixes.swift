@@ -22,11 +22,11 @@ extension NSMenuItem {
 
         fixAlternate(newValue)
 
-        if self.title == "Open Recent" {
+        if self.title == String(localized: "window-commands.fixes.open-recent.title", defaultValue: "Open Recent", comment: "Title of open recent submenu in command fixes") {
             self.submenu = FileCommands.recentProjectsMenu.makeMenu()
         }
 
-        if self.title == "OpenWindowAction" || self.title.isEmpty {
+        if self.title == String(localized: "window-commands.fixes.open-window-action.identifier", defaultValue: "OpenWindowAction", comment: "Identifier used for open window action command fix") || self.title.isEmpty {
             self.isHidden = true
             self.allowsKeyEquivalentWhenHidden = true
         }
