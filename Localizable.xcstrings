@@ -3,7 +3,7 @@
   "sourceLanguage": "en",
   "strings": {
     "settings.theme.row.action.choose": {
-      "comment": "Context menu action to choose a theme",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -11,11 +11,17 @@
             "state": "translated",
             "value": "Choose"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir"
+          }
         }
       }
     },
     "settings.theme.row.action.details": {
-      "comment": "Context menu action to open theme details",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -23,11 +29,17 @@
             "state": "translated",
             "value": "Details..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalles..."
+          }
         }
       }
     },
     "settings.theme.row.action.duplicate": {
-      "comment": "Context menu action to duplicate a theme",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -35,11 +47,17 @@
             "state": "translated",
             "value": "Duplicate..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicar..."
+          }
         }
       }
     },
     "settings.theme.row.action.export": {
-      "comment": "Context menu action to export a theme",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -47,11 +65,17 @@
             "state": "translated",
             "value": "Export..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar..."
+          }
         }
       }
     },
     "settings.theme.row.action.delete": {
-      "comment": "Context menu action to delete a theme",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -59,11 +83,17 @@
             "state": "translated",
             "value": "Delete..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar..."
+          }
         }
       }
     },
     "settings.theme.row.delete.confirmation.title": {
-      "comment": "Title of delete theme confirmation dialog",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -71,11 +101,17 @@
             "state": "translated",
             "value": "Delete Theme"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar tema"
+          }
         }
       }
     },
     "settings.theme.row.delete.confirmation.cancel": {
-      "comment": "Cancel button title in delete theme confirmation dialog",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -83,11 +119,17 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
     "settings.theme.row.delete.confirmation.warning": {
-      "comment": "Warning text in delete theme confirmation dialog",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -95,14 +137,26 @@
             "state": "translated",
             "value": "This action cannot be undone."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta acción no se puede deshacer."
+          }
         }
       }
     },
     "settings.theme.token.search-key.bold": {
-      "comment": "Search keyword for bold font style token",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bold"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "bold"
@@ -111,7 +165,7 @@
       }
     },
     "settings.theme.token.display.bold": {
-      "comment": "Display name for bold font style token",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -119,11 +173,17 @@
             "state": "translated",
             "value": "Bold"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negrita"
+          }
         }
       }
     },
     "settings.theme.token.search-key.italic": {
-      "comment": "Search keyword for italic font style token",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -131,11 +191,17 @@
             "state": "translated",
             "value": "italic"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cursiva"
+          }
         }
       }
     },
     "settings.theme.token.display.italic": {
-      "comment": "Display name for italic font style token",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeToken.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -143,11 +209,17 @@
             "state": "translated",
             "value": "Italic"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursiva"
+          }
         }
       }
     },
     "settings.theme.search.placeholder": {
-      "comment": "Placeholder text for theme search field",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -155,11 +227,17 @@
             "state": "translated",
             "value": "Search"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar"
+          }
         }
       }
     },
     "settings.theme.toolbar.create-theme.tooltip": {
-      "comment": "Tooltip text for button creating a new theme",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -167,11 +245,17 @@
             "state": "translated",
             "value": "Create a new Theme"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear nuevo tema"
+          }
         }
       }
     },
     "settings.theme.menu.import-theme": {
-      "comment": "Menu item title to import a custom theme",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -179,11 +263,17 @@
             "state": "translated",
             "value": "Import Theme..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar tema..."
+          }
         }
       }
     },
     "settings.theme.menu.export-all-custom-themes": {
-      "comment": "Menu item title to export all custom themes",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -191,11 +281,17 @@
             "state": "translated",
             "value": "Export All Custom Themes..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exportar todos los temas personalizados..."
+          }
         }
       }
     },
     "settings.theme.menu.import-export.help": {
-      "comment": "Help text for theme import and export actions",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -203,11 +299,17 @@
             "state": "translated",
             "value": "Import or Export Custom Themes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar o exportar temas personalizados"
+          }
         }
       }
     },
     "settings.theme.button.import": {
-      "comment": "Button title to start theme import",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -215,11 +317,17 @@
             "state": "translated",
             "value": "Import..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar..."
+          }
         }
       }
     },
     "settings.theme.preview.always-use-dark-terminal-appearance": {
-      "comment": "Option label for always using dark terminal appearance",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -227,11 +335,17 @@
             "state": "translated",
             "value": "Always use dark terminal appearance"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar siempre apariencia oscura de terminal"
+          }
         }
       }
     },
     "settings.theme.preview.automatic-with-system-appearance": {
-      "comment": "Option label for automatic theme changes based on system appearance",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -239,11 +353,17 @@
             "state": "translated",
             "value": "Automatically change theme based on system appearance"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar el tema automáticamente según la apariencia del sistema"
+          }
         }
       }
     },
     "settings.theme.crud.import.panel.title": {
-      "comment": "Title for the import file panel",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -251,11 +371,17 @@
             "state": "translated",
             "value": "Import"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar"
+          }
         }
       }
     },
     "settings.theme.crud.error.theme-file-url-not-found": {
-      "comment": "Error shown when theme file URL cannot be resolved",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -263,11 +389,17 @@
             "state": "translated",
             "value": "Theme file URL not found"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL del archivo de tema no encontrada"
+          }
         }
       }
     },
     "settings.theme.details.name": {
-      "comment": "Label for theme name in theme details",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -275,11 +407,17 @@
             "state": "translated",
             "value": "Name"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
         }
       }
     },
     "settings.theme.details.author": {
-      "comment": "Label for theme author in theme details",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -287,11 +425,17 @@
             "state": "translated",
             "value": "Author"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autor"
+          }
         }
       }
     },
     "settings.theme.details.type": {
-      "comment": "Label for theme appearance type in theme details",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -299,11 +443,17 @@
             "state": "translated",
             "value": "Type"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo"
+          }
         }
       }
     },
     "settings.theme.details.appearance.light": {
-      "comment": "Display value for light appearance type",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -311,11 +461,17 @@
             "state": "translated",
             "value": "Light"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro"
+          }
         }
       }
     },
     "settings.theme.details.appearance.dark": {
-      "comment": "Display value for dark appearance type",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -323,23 +479,35 @@
             "state": "translated",
             "value": "Dark"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro"
+          }
         }
       }
     },
     "settings.theme.details.editor.text": {
-      "comment": "Editor color row label for text",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Text"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
           }
         }
       }
     },
     "settings.theme.details.terminal.text": {
-      "comment": "Terminal color row label for text",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -347,14 +515,26 @@
             "state": "translated",
             "value": "Text"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texto"
+          }
         }
       }
     },
     "settings.theme.details.editor.cursor": {
-      "comment": "Editor color row label for cursor",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursor"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Cursor"
@@ -363,10 +543,16 @@
       }
     },
     "settings.theme.details.editor.invisibles": {
-      "comment": "Editor color row label for invisible characters",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invisibles"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Invisibles"
@@ -375,19 +561,25 @@
       }
     },
     "settings.theme.details.editor.background": {
-      "comment": "Editor color row label for background",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Background"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fondo"
           }
         }
       }
     },
     "settings.theme.details.terminal.background": {
-      "comment": "Terminal color row label for background",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -395,11 +587,17 @@
             "state": "translated",
             "value": "Background"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fondo"
+          }
         }
       }
     },
     "settings.theme.details.editor.current-line": {
-      "comment": "Editor color row label for current line highlight",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -407,11 +605,17 @@
             "state": "translated",
             "value": "Current Line"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Línea actual"
+          }
         }
       }
     },
     "settings.theme.details.editor.selection": {
-      "comment": "Editor color row label for selection",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -419,14 +623,26 @@
             "state": "translated",
             "value": "Selection"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selección"
+          }
         }
       }
     },
     "settings.theme.details.tokens.section": {
-      "comment": "Section header for syntax token colors",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tokens"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Tokens"
@@ -435,7 +651,7 @@
       }
     },
     "settings.theme.details.tokens.keywords": {
-      "comment": "Syntax token label for keywords",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -443,11 +659,17 @@
             "state": "translated",
             "value": "Keywords"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palabras clave"
+          }
         }
       }
     },
     "settings.theme.details.tokens.commands": {
-      "comment": "Syntax token label for commands",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -455,11 +677,17 @@
             "state": "translated",
             "value": "Commands"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comandos"
+          }
         }
       }
     },
     "settings.theme.details.tokens.types": {
-      "comment": "Syntax token label for types",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -467,11 +695,17 @@
             "state": "translated",
             "value": "Types"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipos"
+          }
         }
       }
     },
     "settings.theme.details.tokens.attributes": {
-      "comment": "Syntax token label for attributes",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -479,14 +713,26 @@
             "state": "translated",
             "value": "Attributes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atributos"
+          }
         }
       }
     },
     "settings.theme.details.tokens.variables": {
-      "comment": "Syntax token label for variables",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variables"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Variables"
@@ -495,13 +741,109 @@
       }
     },
     "settings.theme.details.tokens.values": {
-      "comment": "Syntax token label for values",
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsThemeDetails.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Values"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valores"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.duplicate-name.with-iterator": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.export-name.with-iterator": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.rename.with-iterator": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/Models/ThemeModel+CRUD.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %d"
+          }
+        }
+      }
+    },
+    "settings.theme.preview.use-theme-background": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use theme background"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar fondo del tema"
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.message": {
+      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingThemeRow.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete the theme “%@”?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar el tema \"%@\"?"
           }
         }
       }
