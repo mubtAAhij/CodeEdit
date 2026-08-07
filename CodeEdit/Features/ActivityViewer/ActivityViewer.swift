@@ -63,7 +63,7 @@ struct ActivityViewer: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Activity Viewer")
+        .accessibilityLabel(String(localized: "activity-viewer.title", defaultValue: "Activity Viewer", comment: "Title of the activity viewer panel"))
     }
 
     @ViewBuilder private var content: some View {
