@@ -1,0 +1,390 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "settings.theme.row.menu.choose": {
+      "comment": "Context menu action title to choose a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose"
+          }
+        }
+      }
+    },
+    "settings.theme.row.menu.details": {
+      "comment": "Context menu action title to view theme details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.menu.duplicate": {
+      "comment": "Context menu action title to duplicate a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.menu.export": {
+      "comment": "Context menu action title to export a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.menu.delete": {
+      "comment": "Context menu action title to delete a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete..."
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.title": {
+      "comment": "Confirmation dialog title for theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Theme"
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.cancel": {
+      "comment": "Confirmation dialog cancel button title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.theme.row.delete.confirmation.warning": {
+      "comment": "Confirmation dialog warning text for irreversible theme deletion",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This action cannot be undone."
+          }
+        }
+      }
+    },
+    "settings.theme.token.bold.raw": {
+      "comment": "Lowercase token name for bold text style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bold"
+          }
+        }
+      }
+    },
+    "settings.theme.token.bold.title": {
+      "comment": "Display title for bold text style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
+          }
+        }
+      }
+    },
+    "settings.theme.token.italic.raw": {
+      "comment": "Lowercase token name for italic text style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "italic"
+          }
+        }
+      }
+    },
+    "settings.theme.token.italic.title": {
+      "comment": "Display title for italic text style option",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
+          }
+        }
+      }
+    },
+    "settings.theme.search.placeholder": {
+      "comment": "Search field placeholder in theme settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search"
+          }
+        }
+      }
+    },
+    "settings.theme.toolbar.add.help": {
+      "comment": "Help text for add theme toolbar button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a new Theme"
+          }
+        }
+      }
+    },
+    "settings.theme.menu.import-theme": {
+      "comment": "Menu item title to import a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import Theme..."
+          }
+        }
+      }
+    },
+    "settings.theme.menu.export-all-custom-themes": {
+      "comment": "Menu item title to export all custom themes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export All Custom Themes..."
+          }
+        }
+      }
+    },
+    "settings.theme.menu.import-export-custom-themes.help": {
+      "comment": "Help text for import/export custom themes menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import or Export Custom Themes"
+          }
+        }
+      }
+    },
+    "settings.theme.empty-state.import": {
+      "comment": "Button title to import themes in empty state",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import..."
+          }
+        }
+      }
+    },
+    "settings.theme.option.always-use-dark-terminal-appearance": {
+      "comment": "Toggle title to force dark terminal appearance",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always use dark terminal appearance"
+          }
+        }
+      }
+    },
+    "settings.theme.option.auto-change-by-system-appearance": {
+      "comment": "Toggle title to automatically change theme by system appearance",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically change theme based on system appearance"
+          }
+        }
+      }
+    },
+    "settings.theme.file-extension.dot-cetheme": {
+      "comment": "Theme file extension including leading dot",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ".cetheme"
+          }
+        }
+      }
+    },
+    "settings.theme.file-extension.cetheme": {
+      "comment": "Theme file extension without leading dot",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cetheme"
+          }
+        }
+      }
+    },
+    "settings.theme.import.button-title": {
+      "comment": "Import panel confirm button title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import"
+          }
+        }
+      }
+    },
+    "settings.theme.crud.error.theme-file-url-not-found": {
+      "comment": "Error message when a theme file URL cannot be resolved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theme file URL not found"
+          }
+        }
+      }
+    },
+    "settings.theme.path.library-application-support-codeedit": {
+      "comment": "Relative application support path for CodeEdit themes storage",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Library/Application Support/CodeEdit"
+          }
+        }
+      }
+    },
+    "settings.theme.directory.default-themes": {
+      "comment": "Default themes directory name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DefaultThemes"
+          }
+        }
+      }
+    },
+    "settings.theme.directory.themes": {
+      "comment": "Custom themes directory name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Themes"
+          }
+        }
+      }
+    },
+    "settings.theme.directory.extensions": {
+      "comment": "Theme extensions directory name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "settings.theme.status.broken": {
+      "comment": "Theme status label shown for invalid or unreadable themes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broken"
+          }
+        }
+      }
+    },
+    "settings.theme.appearance.light": {
+      "comment": "Label for light appearance variant of a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light Appearance"
+          }
+        }
+      }
+    },
+    "settings.theme.appearance.dark": {
+      "comment": "Label for dark appearance variant of a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark Appearance"
+          }
+        }
+      }
+    },
+    "settings.theme.export.button-title": {
+      "comment": "Save panel confirm button title for exporting a theme",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export"
+          }
+        }
+      }
+    }
+  }
+}
