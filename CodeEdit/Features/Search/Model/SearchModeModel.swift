@@ -69,16 +69,10 @@ struct SearchModeModel: Hashable {
         .References,
         .Definitions,
         .RegularExpression,
-        .CallHierarchy
+        .CallHierarchy,
     ]
     static let ReplaceModes: [SearchModeModel] = [.Text, .RegularExpression]
     static let SearchModes: [SearchModeModel] = [.Find, .Replace]
 }
 
-extension SearchModeModel: Equatable {
-    static func == (lhs: SearchModeModel, rhs: SearchModeModel) -> Bool {
-        lhs.title == rhs.title
-            && lhs.children == rhs.children
-            && lhs.needSelectionHighlight == rhs.needSelectionHighlight
-    }
-}
+extension SearchModeModel: Equatable {}
