@@ -39,7 +39,7 @@ struct EditorJumpBarView: View {
     ) {
         self.file = file ?? nil
         self.shouldShowTabBar = shouldShowTabBar
-        self._codeFile = codeFile
+        _codeFile = codeFile
         self.tappedOpenFile = tappedOpenFile
     }
 
@@ -64,8 +64,8 @@ struct EditorJumpBarView: View {
                             .font(.system(size: 11, weight: .regular))
                             .foregroundColor(
                                 activeState != .inactive
-                                ? isActiveEditor ? .primary : .secondary
-                                : Color(nsColor: .tertiaryLabelColor)
+                                    ? isActiveEditor ? .primary : .secondary
+                                    : Color(nsColor: .tertiaryLabelColor)
                             )
                             .frame(maxHeight: .infinity)
                     } else {
@@ -77,7 +77,6 @@ struct EditorJumpBarView: View {
                                 isTruncated: fileItems.first == fileItem ? $firstCrumbWidth : $crumbWidth
                             )
                         }
-
                     }
                 }
                 .background(
@@ -138,7 +137,7 @@ struct EditorJumpBarView: View {
 
         if textWidth >= containerWidth {
             let scale = max(0, min(1, containerWidth / textWidth))
-            betweenWidth = floor((minWidth + (maxWidth - minWidth) * pow(scale, exponent)))
+            betweenWidth = floor(minWidth + (maxWidth - minWidth) * pow(scale, exponent))
             if betweenWidth < snapThreshold {
                 betweenWidth = minWidth
             }
