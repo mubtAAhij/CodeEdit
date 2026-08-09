@@ -1,5 +1,5 @@
 //
-//  SourceControlFetchView.swift
+//  SourceControlSwitchView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 7/9/24.
@@ -27,7 +27,7 @@ struct SourceControlSwitchView: View {
                         .font(.headline)
                     Text(
                         "All files in the local repository will switch from the current branch " +
-                        "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
+                            "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
                     )
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
