@@ -16,8 +16,8 @@ struct MonospacedFontPicker: View {
 
     init(title: String, selectedFontName: Binding<String>) {
         self.title = title
-        self._selectedFontName = selectedFontName
-        self.recentFonts = UserDefaults.standard.stringArray(forKey: "recentFonts") ?? []
+        _selectedFontName = selectedFontName
+        recentFonts = UserDefaults.standard.stringArray(forKey: "recentFonts") ?? []
     }
 
     var body: some View {
@@ -111,40 +111,40 @@ extension MonospacedFontPicker {
         return availableFontFamilies.filter { fontFamilyName in
             // exclude the font if it is in recentFonts to prevent ForEach conflict
             if recentFonts.contains(fontFamilyName) {
-               return false
+                return false
             }
 
             // exclude default font
             if fontFamilyName == "SF Mono" {
-               return false
+                return false
             }
 
             // include the font which is fixedPitch
             // include the font which numberOfGlyphs is greater than 26
             if let font = NSFont(name: fontFamilyName, size: 14) {
-               return font.isFixedPitch && font.numberOfGlyphs > 26
+                return font.isFixedPitch && font.numberOfGlyphs > 26
             } else {
-               return false
+                return false
             }
         }
-   }
+    }
 
-   private func getOtherFontFamilyNames() -> [String] {
-       let availableFontFamilies = NSFontManager.shared.availableFontFamilies
+    private func getOtherFontFamilyNames() -> [String] {
+        let availableFontFamilies = NSFontManager.shared.availableFontFamilies
 
-       return availableFontFamilies.filter { fontFamilyName in
-           // exclude the font if it is in recentFonts to prevent ForEach conflict
-           if recentFonts.contains(fontFamilyName) {
-               return false
-           }
+        return availableFontFamilies.filter { fontFamilyName in
+            // exclude the font if it is in recentFonts to prevent ForEach conflict
+            if recentFonts.contains(fontFamilyName) {
+                return false
+            }
 
-           // include the font which is NOT fixedPitch
-           // include the font which numberOfGlyphs is greater than 26
-           if let font = NSFont(name: fontFamilyName, size: 14) {
-               return !font.isFixedPitch && font.numberOfGlyphs > 26
-           } else {
-               return false
-           }
-       }
-   }
+            // include the font which is NOT fixedPitch
+            // include the font which numberOfGlyphs is greater than 26
+            if let font = NSFont(name: fontFamilyName, size: 14) {
+                return !font.isFixedPitch && font.numberOfGlyphs > 26
+            } else {
+                return false
+            }
+        }
+    }
 }
