@@ -9,7 +9,6 @@ import SwiftUI
 import WelcomeWindow
 
 struct OpenFileOrFolderButton: View {
-
     @Environment(\.openWindow)
     private var openWindow
 
