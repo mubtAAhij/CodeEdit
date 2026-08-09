@@ -25,7 +25,7 @@ struct UtilityAreaTerminalSidebar: View {
                 .tag(terminal.id)
                 .listRowSeparator(.hidden)
             }
-            .onMove { [weak utilityAreaViewModel] (source, destination) in
+            .onMove { [weak utilityAreaViewModel] source, destination in
                 utilityAreaViewModel?.reorderTerminals(from: source, to: destination)
             }
         }
