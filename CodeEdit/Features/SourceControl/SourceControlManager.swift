@@ -1,12 +1,12 @@
 //
-//  SourceControlModel.swift
+//  SourceControlManager.swift
 //  CodeEdit
 //
 //  Created by Nanashi Li on 2022/05/20.
 //
 
-import Foundation
 import AppKit
+import Foundation
 import OSLog
 
 /// This class is used to perform git functions such as fetch, pull, add/remove of changes, commit, push, etc.
@@ -46,20 +46,20 @@ final class SourceControlManager: ObservableObject {
     /// Is the push sheet presented
     @Published var pushSheetIsPresented: Bool = false {
         didSet {
-            self.operationBranch = nil
-            self.operationRebase = false
-            self.operationForce = false
-            self.operationIncludeTags = false
+            operationBranch = nil
+            operationRebase = false
+            operationForce = false
+            operationIncludeTags = false
         }
     }
 
     /// Is the pull sheet presented
     @Published var pullSheetIsPresented: Bool = false {
         didSet {
-            self.operationBranch = nil
-            self.operationRebase = false
-            self.operationForce = false
-            self.operationIncludeTags = false
+            operationBranch = nil
+            operationRebase = false
+            operationForce = false
+            operationIncludeTags = false
         }
     }
 
