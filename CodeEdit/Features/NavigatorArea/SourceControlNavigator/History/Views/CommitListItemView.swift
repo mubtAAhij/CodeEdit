@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CommitListItemView: View {
-
     var commit: GitCommit
     var showRef: Bool
     var width: CGFloat
@@ -51,7 +50,7 @@ struct CommitListItemView: View {
     init(commit: GitCommit, showRef: Bool) {
         self.commit = commit
         self.showRef = showRef
-        self.width = 0
+        width = 0
     }
 
     init(commit: GitCommit, showRef: Bool, width: CGFloat) {
