@@ -24,7 +24,7 @@ struct StatusBarIndentSelector: View {
             Divider()
 
             Picker(String(localized: "status-bar.indent.tab-width", defaultValue: "Tab Width", comment: "Submenu title for selecting tab width"), selection: $defaultTabWidth) {
-                ForEach(2..<9) { index in
+                ForEach(2 ..< 9) { index in
                     Text("\(index) Spaces")
                         .tag(index)
                 }
