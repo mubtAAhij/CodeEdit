@@ -36,8 +36,8 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
         toolbar.displayMode = .labelOnly
-        self.window?.toolbarStyle = .unifiedCompact
-        self.window?.toolbar = toolbar
+        window?.toolbarStyle = .unifiedCompact
+        window?.toolbar = toolbar
     }
 
     func closeAnimated() {
