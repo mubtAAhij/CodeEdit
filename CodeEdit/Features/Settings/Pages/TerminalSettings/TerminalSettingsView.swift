@@ -38,7 +38,7 @@ struct TerminalSettingsView: View {
 }
 
 private extension TerminalSettingsView {
-    @ViewBuilder private var shellSelector: some View {
+    private var shellSelector: some View {
         Picker(String(localized: "terminal.settings.shell", defaultValue: "Shell", comment: "Label for terminal shell selection setting"), selection: $settings.shell) {
             Text(String(localized: "terminal.settings.shell.system-default", defaultValue: "System Default", comment: "Option for using the system default shell"))
                 .tag(SettingsData.TerminalShell.system)
@@ -73,7 +73,7 @@ private extension TerminalSettingsView {
         Toggle(String(localized: "terminal.settings.use-text-editor-font", defaultValue: "Use text editor font", comment: "Toggle label for using the editor font in terminal"), isOn: $settings.useTextEditorFont)
     }
 
-    @ViewBuilder private var fontSelector: some View {
+    private var fontSelector: some View {
         MonospacedFontPicker(title: String(localized: "terminal.settings.font", defaultValue: "Font", comment: "Label for terminal font selection"), selectedFontName: $settings.font.name)
     }
 
@@ -81,20 +81,20 @@ private extension TerminalSettingsView {
         Stepper(
             String(localized: "terminal.settings.font-size", defaultValue: "Font Size", comment: "Label for terminal font size setting"),
             value: $settings.font.size,
-            in: 1...288,
+            in: 1 ... 288,
             step: 1,
             format: .number
         )
     }
 
-    @ViewBuilder private var fontWeightSelector: some View {
+    private var fontWeightSelector: some View {
         FontWeightPicker(selection: $settings.font.weight)
     }
 
-    @ViewBuilder private var injectionOptions: some View {
+    private var injectionOptions: some View {
         VStack {
             Toggle(String(localized: "terminal.settings.shell-integration", defaultValue: "Shell Integration", comment: "Section title for terminal shell integration settings"), isOn: $settings.useShellIntegration)
-            // swiftlint:disable:next line_length
+                // swiftlint:disable:next line_length
                 .help(String(localized: "terminal.settings.shell-integration.description", defaultValue: "CodeEdit supports integrating with common shells such as Bash and Zsh. This enables features like terminal title detection.", comment: "Description text explaining shell integration support"))
             if !settings.useShellIntegration {
                 HStack {
@@ -110,10 +110,8 @@ private extension TerminalSettingsView {
     @ViewBuilder private var useLoginShell: some View {
         if settings.useShellIntegration {
             Toggle(String(localized: "terminal.settings.use-login-shell", defaultValue: "Use Login Shell", comment: "Toggle label for using a login shell in terminal"), isOn: $settings.useLoginShell)
-            // swiftlint:disable:next line_length
+                // swiftlint:disable:next line_length
                 .help(String(localized: "terminal.settings.use-login-shell.description", defaultValue: "Whether or not to use a login shell when starting a terminal session. By default, a login shell is used used similar to Terminal.app.", comment: "Help text describing login shell behavior"))
-        } else {
-            EmptyView()
         }
     }
 }
