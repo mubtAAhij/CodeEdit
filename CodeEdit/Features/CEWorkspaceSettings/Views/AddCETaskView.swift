@@ -15,8 +15,9 @@ struct AddCETaskView: View {
     @StateObject var newTask: CETask
 
     init() {
-        self._newTask = StateObject(wrappedValue: CETask(target: String(localized: "workspace-settings.add-task.my-mac", defaultValue: "My Mac", comment: "Default run destination shown in add task form")))
+        _newTask = StateObject(wrappedValue: CETask(target: String(localized: "workspace-settings.add-task.my-mac", defaultValue: "My Mac", comment: "Default run destination shown in add task form")))
     }
+
     var body: some View {
         VStack(spacing: 0) {
             CETaskFormView(task: newTask)
@@ -44,7 +45,6 @@ struct AddCETaskView: View {
         }
         .accessibilityIdentifier("AddTaskView")
     }
-
 }
 
 #Preview {
