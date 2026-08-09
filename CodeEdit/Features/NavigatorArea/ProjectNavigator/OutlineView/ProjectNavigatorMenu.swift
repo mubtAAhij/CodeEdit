@@ -1,5 +1,5 @@
 //
-//  OutlineMenu.swift
+//  ProjectNavigatorMenu.swift
 //  CodeEdit
 //
 //  Created by Lukas Pistrol on 07.04.22.
@@ -10,7 +10,6 @@ import UniformTypeIdentifiers
 
 /// A subclass of `NSMenu` implementing the contextual menu for the project navigator
 final class ProjectNavigatorMenu: NSMenu {
-
     /// The item to show the contextual menu for
     var item: CEWorkspaceFile?
 
@@ -72,13 +71,13 @@ final class ProjectNavigatorMenu: NSMenu {
         let rename = menuItem(String(localized: "project-navigator.menu.rename", defaultValue: "Rename", comment: "Menu item to rename the selected item."), action: #selector(renameFile))
 
         let trash = menuItem(String(localized: "project-navigator.menu.move-to-trash", defaultValue: "Move to Trash", comment: "Menu item to move selected item to Trash."), action:
-                                item.url != workspace?.workspaceFileManager?.folderUrl
-                              ? #selector(trash) : nil)
+            item.url != workspace?.workspaceFileManager?.folderUrl
+                ? #selector(trash) : nil)
 
         // trash has to be the previous menu item for delete.isAlternate to work correctly
         let delete = menuItem(String(localized: "project-navigator.menu.delete-immediately", defaultValue: "Delete Immediately...", comment: "Menu item to permanently delete selected item immediately."), action:
-                                item.url != workspace?.workspaceFileManager?.folderUrl
-                              ? #selector(delete) : nil)
+            item.url != workspace?.workspaceFileManager?.folderUrl
+                ? #selector(delete) : nil)
         delete.keyEquivalentModifierMask = .option
         delete.isAlternate = true
 
@@ -107,7 +106,7 @@ final class ProjectNavigatorMenu: NSMenu {
             NSMenuItem.separator(),
             newFile,
             newFileFromClipboard,
-            newFolder
+            newFolder,
         ]
 
         if canCreateFolderFromSelection() {
@@ -211,30 +210,30 @@ final class ProjectNavigatorMenu: NSMenu {
     }
 }
 
-extension NSMenuItem {
-    fileprivate static func none() -> NSMenuItem {
+private extension NSMenuItem {
+    static func none() -> NSMenuItem {
         let item = NSMenuItem(title: "<None>", action: nil, keyEquivalent: "")
         item.isEnabled = false
         return item
     }
 
-    fileprivate static func sourceCode() -> NSMenuItem {
+    static func sourceCode() -> NSMenuItem {
         NSMenuItem(title: "Source Code", action: nil, keyEquivalent: "")
     }
 
-    fileprivate static func propertyList() -> NSMenuItem {
+    static func propertyList() -> NSMenuItem {
         NSMenuItem(title: "Property List", action: nil, keyEquivalent: "")
     }
 
-    fileprivate static func asciiPropertyList() -> NSMenuItem {
+    static func asciiPropertyList() -> NSMenuItem {
         NSMenuItem(title: "ASCII Property List", action: nil, keyEquivalent: "")
     }
 
-    fileprivate static func hex() -> NSMenuItem {
+    static func hex() -> NSMenuItem {
         NSMenuItem(title: "Hex", action: nil, keyEquivalent: "")
     }
 
-    fileprivate static func quickLook() -> NSMenuItem {
+    static func quickLook() -> NSMenuItem {
         NSMenuItem(title: "Quick Look", action: nil, keyEquivalent: "")
     }
 }
