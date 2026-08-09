@@ -22,7 +22,7 @@ class GitClient {
 
         var description: String {
             switch self {
-            case .outputError(let string): string
+            case let .outputError(string): string
             case .notGitRepository: String(localized: "source-control.git-client.error.not-a-git-repository", defaultValue: "Not a git repository", comment: "Error message when current directory is not a git repository")
             case .failedToDecodeURL: String(localized: "source-control.git-client.error.failed-to-decode-url", defaultValue: "Failed to decode URL", comment: "Error message when a URL cannot be decoded in git client")
             case .noRemoteConfigured: String(localized: "source-control.git-client.error.no-remote-configured", defaultValue: "No remote configured", comment: "Error message when repository has no configured remote")
@@ -35,15 +35,15 @@ class GitClient {
 
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "GitClient")
 
-    internal let directoryURL: URL
-    internal let shellClient: ShellClient
+    let directoryURL: URL
+    let shellClient: ShellClient
 
     private let configClient: GitConfigClient
 
     init(directoryURL: URL, shellClient: ShellClient) {
         self.directoryURL = directoryURL
         self.shellClient = shellClient
-        self.configClient = GitConfigClient(projectURL: directoryURL, shellClient: shellClient)
+        configClient = GitConfigClient(projectURL: directoryURL, shellClient: shellClient)
     }
 
     func getConfig<T: GitConfigRepresentable>(key: String) async throws -> T? {
@@ -56,24 +56,24 @@ class GitClient {
 
     /// Runs a git command, it will prepend the command with `cd <directoryURL>;git`,
     /// If you need to run "git checkout", pass "checkout" as the command parameter
-    internal func run(_ command: String) async throws -> String {
+    func run(_ command: String) async throws -> String {
         let output = try shellClient.run(generateCommand(command))
         return try processCommonErrors(output)
     }
 
-    internal typealias LiveCommandStream = AsyncThrowingMapSequence<AsyncThrowingStream<String, Error>, String>
+    typealias LiveCommandStream = AsyncThrowingMapSequence<AsyncThrowingStream<String, Error>, String>
 
     /// Runs a git command in same way as `run`, but returns a async stream of the output
-    internal func runLive(_ command: String) -> LiveCommandStream {
+    func runLive(_ command: String) -> LiveCommandStream {
         return runLive(customCommand: generateCommand(command))
     }
 
     /// Here you can run a custom command, this is needed for git clone
-    internal func runLive(customCommand: String) -> LiveCommandStream {
+    func runLive(customCommand: String) -> LiveCommandStream {
         return shellClient
             .runAsync(customCommand)
             .map { output in
-                return try self.processCommonErrors(output)
+                try self.processCommonErrors(output)
             }
     }
 
