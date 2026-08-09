@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StatusBarEncodingSelector: View {
-
     var body: some View {
         Menu {
             // UTF 8, ASCII, ...
