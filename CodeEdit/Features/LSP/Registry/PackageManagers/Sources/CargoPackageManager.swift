@@ -48,7 +48,7 @@ final class CargoPackageManager: PackageManagerProtocol {
     }
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "lsp.registry.cargo.initialize-directory-structure", defaultValue: "Initialize Directory Structure", comment: "Progress step title for preparing cargo package installation directory"), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
         }
     }
@@ -57,7 +57,7 @@ final class CargoPackageManager: PackageManagerProtocol {
         let qualifiedPackageName = "\(source.pkgName)@\(source.version)"
 
         return PackageManagerInstallStep(
-            name: "Install Package Using cargo",
+            name: String(localized: "lsp.registry.cargo.install-package-using-cargo", defaultValue: "Install Package Using cargo", comment: "Progress step title for installing a package via cargo"),
             confirmation: .required(
                 message: "This requires the cargo package \(qualifiedPackageName)."
                 + "\nAllow CodeEdit to install this package?"
