@@ -63,6 +63,6 @@ struct GitCommit: Equatable, Hashable, Identifiable {
                 return "GitLab"
             }
         }
-        return "Remote"
+        return String(localized: "source-control.git-commit.remote", defaultValue: "Remote", comment: "Label for remote commit source")
     }
 }
