@@ -10,7 +10,7 @@ import UserNotifications
 
 extension NotificationManager: UNUserNotificationCenterDelegate {
     func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
+        _: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
@@ -19,15 +19,17 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
         }) {
             // Focus CodeEdit and run action if action button was clicked
             if response.actionIdentifier == "ACTION_BUTTON" ||
-               response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+                response.actionIdentifier == UNNotificationDefaultActionIdentifier
+            {
                 NSApp.activate(ignoringOtherApps: true)
                 notification.action()
             }
 
             // Remove the notification for both action and dismiss
             if response.actionIdentifier == "ACTION_BUTTON" ||
-               response.actionIdentifier == UNNotificationDefaultActionIdentifier ||
-               response.actionIdentifier == UNNotificationDismissActionIdentifier {
+                response.actionIdentifier == UNNotificationDefaultActionIdentifier ||
+                response.actionIdentifier == UNNotificationDismissActionIdentifier
+            {
                 dismissNotification(notification)
             }
         }
@@ -36,8 +38,8 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
     }
 
     func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
+        _: UNUserNotificationCenter,
+        willPresent _: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
         completionHandler([.banner, .sound])
