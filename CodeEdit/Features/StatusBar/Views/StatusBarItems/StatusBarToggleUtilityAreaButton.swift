@@ -21,7 +21,7 @@ internal struct StatusBarToggleUtilityAreaButton: View {
         }
         .buttonStyle(.icon)
         .keyboardShortcut("Y", modifiers: [.command, .shift])
-        .help(utilityAreaViewModel.isCollapsed ? "Show the Utility area" : "Hide the Utility area")
+        .help(utilityAreaViewModel.isCollapsed ? String(localized: "status-bar.toggle-utility-area.show", defaultValue: "Show the Utility area", comment: "Accessibility help text when utility area is currently hidden") : String(localized: "status-bar.toggle-utility-area.hide", defaultValue: "Hide the Utility area", comment: "Accessibility help text when utility area is currently shown"))
         .onHover { isHovering($0) }
         .onChange(of: controlActiveState) { _, newValue in
             if newValue == .key {
