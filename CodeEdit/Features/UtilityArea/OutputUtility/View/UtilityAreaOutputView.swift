@@ -5,8 +5,8 @@
 //  Created by Austin Condiff on 5/25/23.
 //
 
-import SwiftUI
 import LogStream
+import SwiftUI
 
 struct UtilityAreaOutputView: View {
     enum Sources: Hashable {
@@ -16,16 +16,16 @@ struct UtilityAreaOutputView: View {
 
         var title: String {
             switch self {
-            case .extensions(let source):
+            case let .extensions(source):
                 "Extension - \(source.extensionInfo.name)"
-            case .languageServer(let source):
+            case let .languageServer(source):
                 "Language Server - \(source.id)"
             case .devOutput:
                 String(localized: "utility-area.output.source.internal-development", defaultValue: "Internal Development Output", comment: "Output source label for internal development output")
             }
         }
 
-        public static func == (_ lhs: Sources, _ rhs: Sources) -> Bool {
+        static func == (_ lhs: Sources, _ rhs: Sources) -> Bool {
             switch (lhs, rhs) {
             case let (.extensions(lhs), .extensions(rhs)):
                 return lhs.id == rhs.id
@@ -40,10 +40,10 @@ struct UtilityAreaOutputView: View {
 
         func hash(into hasher: inout Hasher) {
             switch self {
-            case .extensions(let source):
+            case let .extensions(source):
                 hasher.combine(0)
                 hasher.combine(source.id)
-            case .languageServer(let source):
+            case let .languageServer(source):
                 hasher.combine(1)
                 hasher.combine(source.id)
             case .devOutput:
@@ -62,11 +62,11 @@ struct UtilityAreaOutputView: View {
             Group {
                 if let selectedSource {
                     switch selectedSource {
-                    case .extensions(let source):
+                    case let .extensions(source):
                         UtilityAreaOutputLogList(source: source, filterText: $filterText) {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                         }
-                    case .languageServer(let source):
+                    case let .languageServer(source):
                         UtilityAreaOutputLogList(source: source, filterText: $filterText) {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                         }
@@ -88,7 +88,7 @@ struct UtilityAreaOutputView: View {
                             Spacer()
                             UtilityAreaFilterTextField(title: String(localized: "utility-area.output.filter", defaultValue: "Filter", comment: "Filter field label in output utility view"), text: $filterText)
                                 .frame(maxWidth: 175)
-                            Button { } label: {
+                            Button {} label: {
                                 Image(systemName: "trash")
                             }
                             .disabled(true)
