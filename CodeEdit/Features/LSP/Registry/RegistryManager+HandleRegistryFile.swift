@@ -15,8 +15,8 @@ extension RegistryManager {
 
         let registryData, checksumData: Data
         do {
-            async let zipDataTask = download(from: self.registryURL)
-            async let checksumsTask = download(from: self.checksumURL)
+            async let zipDataTask = download(from: registryURL)
+            async let checksumsTask = download(from: checksumURL)
 
             (registryData, checksumData) = try await (zipDataTask, checksumsTask)
         } catch {
@@ -64,12 +64,12 @@ extension RegistryManager {
     }
 
     func handleUpdateError(_ error: Error) {
-        self.downloadError = error
+        downloadError = error
         if let regError = error as? RegistryManagerError {
             switch regError {
             case .installationRunning:
                 return // Shouldn't need to handle
-            case .invalidResponse(let statusCode):
+            case let .invalidResponse(statusCode):
                 logger.error("Invalid response received: \(statusCode)")
             case let .downloadFailed(url, error):
                 logger.error("Download failed for \(url.absoluteString): \(error.localizedDescription)")
@@ -96,7 +96,7 @@ extension RegistryManager {
                     url: url, error: NSError(domain: String(localized: "lsp.registry.handle-file.invalid-response-type", defaultValue: "Invalid response type", comment: "Error message when registry response cannot be decoded to expected type"), code: -1)
                 )
             }
-            guard (200...299).contains(httpResponse.statusCode) else {
+            guard (200 ... 299).contains(httpResponse.statusCode) else {
                 throw RegistryManagerError.invalidResponse(statusCode: httpResponse.statusCode)
             }
 
@@ -120,7 +120,8 @@ extension RegistryManager {
         // Update the file every 24 hours
         let needsUpdate = !fileManager.fileExists(atPath: registryPath.path) || {
             guard let attributes = try? fileManager.attributesOfItem(atPath: registryPath.path),
-                  let modificationDate = attributes[.modificationDate] as? Date else {
+                  let modificationDate = attributes[.modificationDate] as? Date
+            else {
                 return true
             }
             let hoursSinceLastUpdate = Date().timeIntervalSince(modificationDate) / 3600
