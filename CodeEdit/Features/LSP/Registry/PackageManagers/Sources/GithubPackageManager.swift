@@ -52,7 +52,7 @@ final class GithubPackageManager: PackageManagerProtocol {
             PackageManagerInstallStep(
                 name: "",
                 confirmation: .required(
-                    message: "This package requires git to install. Allow CodeEdit to run git commands?"
+                    message: String(localized: "lsp.package-manager.github.git-install-permission-message", defaultValue: "This package requires git to install. Allow CodeEdit to run git commands?", comment: "Prompt asking permission to run git commands for package installation")
                 )
             ) { model in
                 let versionOutput = try await model.runCommand("git --version")
@@ -99,7 +99,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Download Binary Executable",
+            name: String(localized: "lsp.package-manager.github.download-binary-executable", defaultValue: "Download Binary Executable", comment: "Progress step title for downloading a binary executable"),
             confirmation: .none
         ) { model in
             do {
@@ -112,7 +112,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                       (200...299).contains(httpResponse.statusCode) else {
                     throw RegistryManagerError.downloadFailed(
                         url: url,
-                        error: NSError(domain: "HTTP error", code: (response as? HTTPURLResponse)?.statusCode ?? -1)
+                        error: NSError(domain: String(localized: "lsp.package-manager.github.error.http", defaultValue: "HTTP error", comment: "Error title for HTTP request failure during package download"), code: (response as? HTTPURLResponse)?.statusCode ?? -1)
                     )
                 }
 
@@ -128,7 +128,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                 if !FileManager.default.fileExists(atPath: packagePath.path) {
                     throw RegistryManagerError.downloadFailed(
                         url: url,
-                        error: NSError(domain: "Could not download package", code: -1)
+                        error: NSError(domain: String(localized: "lsp.package-manager.github.error.could-not-download-package", defaultValue: "Could not download package", comment: "Error message when package download fails"), code: -1)
                     )
                 }
             } catch {
@@ -153,7 +153,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         installDir installationDirectory: URL
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Decompress Binary Executable",
+            name: String(localized: "lsp.package-manager.github.decompress-binary-executable", defaultValue: "Decompress Binary Executable", comment: "Progress step title for decompressing a binary executable"),
             confirmation: .none,
         ) { model in
             let fileName = url.lastPathComponent
@@ -206,7 +206,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         let command = ["git", "clone", repoURL]
 
         return PackageManagerInstallStep(
-            name: "Clone with Git",
+            name: String(localized: "lsp.package-manager.github.clone-with-git", defaultValue: "Clone with Git", comment: "Progress step title for cloning package source with git"),
             // swiftlint:disable:next line_length
             confirmation: .required(message: "This step will run the following command to clone the package from source control:\n`\(command.joined(separator: " "))`")
         ) { model in
@@ -223,7 +223,7 @@ final class GithubPackageManager: PackageManagerProtocol {
         command: String
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Install From Source",
+            name: String(localized: "lsp.package-manager.github.install-from-source", defaultValue: "Install From Source", comment: "Progress step title for installing package from source"),
             confirmation: .required(message: "This step will run the following to finish installing:\n`\(command)`")
         ) { model in
             do {
@@ -231,7 +231,7 @@ final class GithubPackageManager: PackageManagerProtocol {
                 let repoPath = installPath.appending(path: source.pkgName, directoryHint: .isDirectory)
                 _ = try await model.executeInDirectory(in: repoPath.path, [command])
             } catch {
-                throw PackageManagerError.installationFailed("Source build failed.")
+                throw PackageManagerError.installationFailed(String(localized: "lsp.package-manager.github.error.source-build-failed", defaultValue: "Source build failed.", comment: "Error message when building package from source fails"))
             }
         }
     }
