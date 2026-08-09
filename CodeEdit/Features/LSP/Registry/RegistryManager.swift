@@ -1,14 +1,14 @@
 //
-//  Registry.swift
+//  RegistryManager.swift
 //  CodeEdit
 //
 //  Created by Abe Malla on 1/29/25.
 //
 
-import OSLog
-import Foundation
-import ZIPFoundation
 import Combine
+import Foundation
+import OSLog
+import ZIPFoundation
 
 @MainActor
 final class RegistryManager: ObservableObject {
@@ -43,7 +43,7 @@ final class RegistryManager: ObservableObject {
     /// Timer to clear expired cache
     private var cleanupTimer: Timer?
     /// Public access to registry items with cache management
-    @Published public private(set) var registryItems: [RegistryItem] = []
+    @Published private(set) var registryItems: [RegistryItem] = []
 
     @AppSettings(\.languageServers.installedLanguageServers)
     var installedLanguageServers: [String: SettingsData.InstalledLanguageServer]
@@ -88,7 +88,7 @@ final class RegistryManager: ObservableObject {
             userInfo: [
                 "id": packageName,
                 "action": "create",
-                "title": "Removing \(packageName)"
+                "title": "Removing \(packageName)",
             ]
         )
 
@@ -104,12 +104,13 @@ final class RegistryManager: ObservableObject {
 
     // MARK: - Install
 
-    public func installOperation(package: RegistryItem) throws -> PackageManagerInstallOperation {
+    func installOperation(package: RegistryItem) throws -> PackageManagerInstallOperation {
         guard !isInstalling else {
             throw RegistryManagerError.installationRunning
         }
         guard let method = package.installMethod,
-              let manager = method.packageManager(installPath: installPath) else {
+              let manager = method.packageManager(installPath: installPath)
+        else {
             throw PackageManagerError.invalidConfiguration
         }
         let installSteps = try manager.install(method: method)
@@ -117,7 +118,7 @@ final class RegistryManager: ObservableObject {
     }
 
     /// Starts the actual installation process for a package
-    public func startInstallation(operation installOperation: PackageManagerInstallOperation) throws {
+    func startInstallation(operation installOperation: PackageManagerInstallOperation) throws {
         guard !isInstalling else {
             throw RegistryManagerError.installationRunning
         }
@@ -166,7 +167,7 @@ final class RegistryManager: ObservableObject {
     // MARK: - Cancel Install
 
     /// Cancel the currently running installation
-    public func cancelInstallation() {
+    func cancelInstallation() {
         runningInstall?.cancel()
         installTask?.cancel()
         installTask = nil
@@ -186,7 +187,7 @@ final class RegistryManager: ObservableObject {
                 title: "Could not install \(activityName)",
                 description: String(localized: "lsp.registry.installation-failed.message", defaultValue: "There was a problem during installation.", comment: "Alert message shown when package installation fails"),
                 actionButtonTitle: String(localized: "lsp.registry.installation-failed.done", defaultValue: "Done", comment: "Button title to dismiss installation failure alert"),
-                action: {},
+                action: {}
             )
         } else {
             TaskNotificationHandler.postTask(
@@ -238,7 +239,7 @@ private final class CachedRegistry {
 
     init(items: [RegistryItem]) {
         self.items = items
-        self.timestamp = Date()
+        timestamp = Date()
     }
 
     var isExpired: Bool {
