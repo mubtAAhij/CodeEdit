@@ -5,8 +5,8 @@
 //  Created by Khan Winter on 8/8/25.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 /// This model is injected into each ``PackageManagerInstallStep`` when executing a ``PackageManagerInstallOperation``.
 /// A single model is used for each step. Output is collected by the ``PackageManagerInstallOperation``.
@@ -28,7 +28,7 @@ final class PackageManagerProgressModel: ObservableObject {
 
     init(shellClient: ShellClient) {
         self.shellClient = shellClient
-        self.progress = Progress(totalUnitCount: 1)
+        progress = Progress(totalUnitCount: 1)
         (outputStream, outputContinuation) = AsyncStream<OutputItem>.makeStream()
     }
 
