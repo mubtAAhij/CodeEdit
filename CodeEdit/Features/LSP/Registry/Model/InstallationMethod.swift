@@ -20,9 +20,9 @@ enum InstallationMethod: Equatable {
 
     var packageName: String? {
         switch self {
-        case .standardPackage(let source),
-             .sourceBuild(let source, _),
-             .binaryDownload(let source, _):
+        case let .standardPackage(source),
+             let .sourceBuild(source, _),
+             let .binaryDownload(source, _):
             return source.pkgName
         case .unknown:
             return nil
@@ -31,9 +31,9 @@ enum InstallationMethod: Equatable {
 
     var version: String? {
         switch self {
-        case .standardPackage(let source),
-             .sourceBuild(let source, _),
-             .binaryDownload(let source, _):
+        case let .standardPackage(source),
+             let .sourceBuild(source, _),
+             let .binaryDownload(source, _):
             return source.version
         case .unknown:
             return nil
@@ -42,9 +42,9 @@ enum InstallationMethod: Equatable {
 
     var packageManagerType: PackageManagerType? {
         switch self {
-        case .standardPackage(let source),
-             .sourceBuild(let source, _),
-             .binaryDownload(let source, _):
+        case let .standardPackage(source),
+             let .sourceBuild(source, _),
+             let .binaryDownload(source, _):
             return source.type
         case .unknown:
             return nil
