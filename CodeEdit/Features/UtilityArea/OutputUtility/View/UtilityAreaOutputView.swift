@@ -21,7 +21,7 @@ struct UtilityAreaOutputView: View {
             case .languageServer(let source):
                 "Language Server - \(source.id)"
             case .devOutput:
-                "Internal Development Output"
+                String(localized: "utility-area.output.source.internal-development", defaultValue: "Internal Development Output", comment: "Output source label for internal development output")
             }
         }
 
@@ -79,14 +79,14 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text("No output")
+                    Text(String(localized: "utility-area.output.empty", defaultValue: "No output", comment: "Empty state text when output view has no content"))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)
                         .paneToolbar {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                             Spacer()
-                            UtilityAreaFilterTextField(title: "Filter", text: $filterText)
+                            UtilityAreaFilterTextField(title: String(localized: "utility-area.output.filter", defaultValue: "Filter", comment: "Filter field label in output utility view"), text: $filterText)
                                 .frame(maxWidth: 175)
                             Button { } label: {
                                 Image(systemName: "trash")
