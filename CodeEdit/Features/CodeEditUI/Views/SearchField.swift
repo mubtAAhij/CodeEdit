@@ -13,7 +13,7 @@ struct SearchField: NSViewRepresentable {
 
     init(_ placeholder: String, text: Binding<String>) {
         self.placeholder = placeholder
-        self._text = text
+        _text = text
     }
 
     func makeNSView(context: Context) -> NSSearchField {
@@ -23,7 +23,7 @@ struct SearchField: NSViewRepresentable {
         return searchField
     }
 
-    func updateNSView(_ nsView: NSSearchField, context: Context) {
+    func updateNSView(_ nsView: NSSearchField, context _: Context) {
         nsView.stringValue = text
     }
 
