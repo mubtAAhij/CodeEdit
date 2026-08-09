@@ -5,8 +5,8 @@
 //  Created by Albert Vinizhanau on 10/17/23.
 //
 
-import Foundation
 import AppKit
+import Foundation
 
 class GitCloneViewModel: ObservableObject {
     @Published var repoUrlStr = ""
@@ -31,6 +31,7 @@ class GitCloneViewModel: ObservableObject {
         }
         return false
     }
+
     /// Check if Git is installed
     /// - Returns: True if Git is found by running "which git" command
     func isGitInstalled() -> Bool {
@@ -52,7 +53,7 @@ class GitCloneViewModel: ObservableObject {
     func checkClipboard() {
         if let url = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) {
             if isValidUrl(url: url) {
-                self.repoUrlStr = url
+                repoUrlStr = url
             }
         }
     }
@@ -110,7 +111,7 @@ class GitCloneViewModel: ObservableObject {
 
         gitClient = GitClient(directoryURL: localPath, shellClient: .live())
 
-        self.cloningTask = Task(priority: .background) {
+        cloningTask = Task(priority: .background) {
             await processCloning(
                 remoteUrl: remoteUrl,
                 localPath: localPath,
@@ -173,7 +174,7 @@ class GitCloneViewModel: ObservableObject {
 
     @MainActor
     private func setIsCloning(_ newValue: Bool) {
-        self.isCloning = newValue
+        isCloning = newValue
     }
 
     private func getPath(saveName: String) -> URL? {
@@ -187,7 +188,8 @@ class GitCloneViewModel: ObservableObject {
         dialog.title = "Clone a Repository"
 
         guard dialog.runModal() == NSApplication.ModalResponse.OK,
-              let result = dialog.url else {
+              let result = dialog.url
+        else {
             return nil
         }
 
