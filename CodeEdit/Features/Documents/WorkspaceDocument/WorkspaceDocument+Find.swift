@@ -16,7 +16,7 @@ extension WorkspaceDocument.SearchState {
     ///
     /// - Returns: A modified search term according to the specified search mode.
     func getSearchTerm(_ query: String) -> String {
-        let newQuery = stripSpecialCharacters(from: (caseSensitive ? query : query.lowercased()))
+        let newQuery = stripSpecialCharacters(from: caseSensitive ? query : query.lowercased())
         guard let mode = selectedMode.third else {
             return newQuery
         }
@@ -150,7 +150,7 @@ extension WorkspaceDocument.SearchState {
     ///   - newResult: The `SearchResultModel` to be appended to the temporary search results.
     @MainActor
     func appendNewResultsToTempResults(newResult: SearchResultModel) {
-        self.tempSearchResults.append(newResult)
+        tempSearchResults.append(newResult)
     }
 
     /// Sets the search results by updating various properties on the main thread.
@@ -160,11 +160,11 @@ extension WorkspaceDocument.SearchState {
     /// display or use the final search results.
     @MainActor
     func setSearchResults() {
-        self.searchResult = self.tempSearchResults.sorted { $0.score > $1.score }
-        self.searchResultsCount = self.tempSearchResults.map { $0.lineMatches.count }.reduce(0, +)
-        self.searchResultsFileCount = self.tempSearchResults.count
-        self.findNavigatorStatus = .found
-        self.tempSearchResults = []
+        searchResult = tempSearchResults.sorted { $0.score > $1.score }
+        searchResultsCount = tempSearchResults.map { $0.lineMatches.count }.reduce(0, +)
+        searchResultsFileCount = tempSearchResults.count
+        findNavigatorStatus = .found
+        tempSearchResults = []
     }
 
     /// Evaluates a search query within the content of a file and updates
@@ -284,7 +284,7 @@ extension WorkspaceDocument.SearchState {
         ) ?? fileContent.startIndex
 
         let preRangeEnd = matchRange.upperBound
-        let preRange = preRangeStart..<preRangeEnd
+        let preRange = preRangeStart ..< preRangeEnd
 
         let preLineWithNewLines = fileContent[preRange]
         // Clip the range of the preview to the last occurrence of a new line
@@ -314,7 +314,7 @@ extension WorkspaceDocument.SearchState {
         ) ?? preLine.endIndex
         let keywordUpperBound = preLine.endIndex
 
-        return keywordLowerBound..<keywordUpperBound
+        return keywordLowerBound ..< keywordUpperBound
     }
 
     /// Extracts the line following a matching occurrence within a file.
@@ -337,7 +337,7 @@ extension WorkspaceDocument.SearchState {
             limitedBy: fileContent.endIndex
         ) ?? fileContent.endIndex
 
-        let postRange = postRangeStart..<postRangeEnd
+        let postRange = postRangeStart ..< postRangeEnd
         let postLineWithNewLines = fileContent[postRange]
 
         let firstNewLineIndexInPostLine = postLineWithNewLines.firstIndex(of: "\n") ?? postLineWithNewLines.endIndex
