@@ -5,13 +5,13 @@
 //  Created by Lukas Pistrol on 24.03.22.
 //
 
-import SwiftUI
 import SwiftTerm
+import SwiftUI
 
 extension TerminalEmulatorView {
     final class Coordinator: NSObject, CELocalShellTerminalViewDelegate {
         private let terminalID: UUID
-        public var onTitleChange: (_ title: String) -> Void
+        var onTitleChange: (_ title: String) -> Void
 
         var mode: TerminalMode
 
@@ -22,11 +22,11 @@ extension TerminalEmulatorView {
             super.init()
         }
 
-        func hostCurrentDirectoryUpdate(source: TerminalView, directory: String?) {}
+        func hostCurrentDirectoryUpdate(source _: TerminalView, directory _: String?) {}
 
-        func sizeChanged(source: CETerminalView, newCols: Int, newRows: Int) {}
+        func sizeChanged(source _: CETerminalView, newCols _: Int, newRows _: Int) {}
 
-        func setTerminalTitle(source: CETerminalView, title: String) {
+        func setTerminalTitle(source _: CETerminalView, title: String) {
             onTitleChange(title)
         }
 
