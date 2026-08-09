@@ -23,7 +23,7 @@ struct UtilityAreaTerminalTab: View {
             get: {
                 self.terminal.title
             }, set: {
-                if $0.trimmingCharacters(in: .whitespaces) == "" && !isFocused {
+                if $0.trimmingCharacters(in: .whitespaces) == "", !isFocused {
                     self.terminal.title = self.terminal.terminalTitle
                     self.terminal.customTitle = false
                 } else {
