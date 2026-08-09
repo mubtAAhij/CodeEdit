@@ -9,12 +9,11 @@ import Foundation
 
 extension SettingsData {
     struct SearchSettings: Codable, Hashable, SearchableSettingsPage {
-
         /// The search keys
         var searchKeys: [String] {
             [
                 String(localized: "settings.search.ignore-glob-patterns", defaultValue: "Ignore Glob Patterns", comment: "Search setting label for glob patterns to ignore"),
-                String(localized: "settings.search.ignore-patterns", defaultValue: "Ignore Patterns", comment: "Search setting label for ignore patterns")
+                String(localized: "settings.search.ignore-patterns", defaultValue: "Ignore Patterns", comment: "Search setting label for ignore patterns"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -29,7 +28,7 @@ extension SettingsData {
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.ignoreGlobPatterns = try container.decodeIfPresent(
+            ignoreGlobPatterns = try container.decodeIfPresent(
                 [GlobPattern].self,
                 forKey: .ignoreGlobPatterns
             ) ?? []
