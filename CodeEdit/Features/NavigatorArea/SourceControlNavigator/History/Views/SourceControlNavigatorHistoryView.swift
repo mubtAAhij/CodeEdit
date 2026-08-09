@@ -5,8 +5,8 @@
 //  Created by Austin Condiff on 12/27/2023.
 //
 
-import SwiftUI
 import CodeEditSymbols
+import SwiftUI
 
 struct SourceControlNavigatorHistoryView: View {
     enum Status {
@@ -24,7 +24,7 @@ struct SourceControlNavigatorHistoryView: View {
     @State var commitHistory: [GitCommit] = []
 
     @State var selection: GitCommit?
-    @State private var width: CGFloat = CGFloat.zero
+    @State private var width: CGFloat = .zero
 
     func updateCommitHistory() async {
         do {
@@ -85,7 +85,7 @@ struct SourceControlNavigatorHistoryView: View {
                         }
                     }
                 }
-            case .error(let error):
+            case let .error(error):
                 VStack {
                     Spacer()
                     CEContentUnavailableView(
