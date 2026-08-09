@@ -14,7 +14,7 @@ final class GithubPackageManager: PackageManagerProtocol {
 
     init(installationDirectory: URL) {
         self.installationDirectory = installationDirectory
-        self.shellClient = .live()
+        shellClient = .live()
     }
 
     // MARK: - PackageManagerProtocol
@@ -26,14 +26,14 @@ final class GithubPackageManager: PackageManagerProtocol {
             return [
                 initialize(in: packagePath),
                 downloadBinary(source, url: url, installDir: installationDirectory),
-                decompressBinary(source, url: url, installDir: installationDirectory)
+                decompressBinary(source, url: url, installDir: installationDirectory),
             ]
         case let .sourceBuild(source, command):
             let packagePath = installationDirectory.appending(path: source.entryName)
-            return [
+            return try [
                 initialize(in: packagePath),
-                try gitClone(source, installDir: installationDirectory),
-                installFromSource(source, installDir: installationDirectory, command: command)
+                gitClone(source, installDir: installationDirectory),
+                installFromSource(source, installDir: installationDirectory, command: command),
             ]
         case .standardPackage, .unknown:
             throw PackageManagerError.invalidConfiguration
@@ -109,7 +109,8 @@ final class GithubPackageManager: PackageManagerProtocol {
                 let (tempURL, response) = try await URLSession.shared.download(for: request)
 
                 guard let httpResponse = response as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
+                      (200 ... 299).contains(httpResponse.statusCode)
+                else {
                     throw RegistryManagerError.downloadFailed(
                         url: url,
                         error: NSError(domain: String(localized: "lsp.package-manager.github.error.http", defaultValue: "HTTP error", comment: "Error title for HTTP request failure during package download"), code: (response as? HTTPURLResponse)?.statusCode ?? -1)
@@ -141,7 +142,6 @@ final class GithubPackageManager: PackageManagerProtocol {
                     error: error
                 )
             }
-
         }
     }
 
@@ -154,7 +154,7 @@ final class GithubPackageManager: PackageManagerProtocol {
     ) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: String(localized: "lsp.package-manager.github.decompress-binary-executable", defaultValue: "Decompress Binary Executable", comment: "Progress step title for decompressing a binary executable"),
-            confirmation: .none,
+            confirmation: .none
         ) { model in
             let fileName = url.lastPathComponent
             let downloadPath = installationDirectory.appending(path: source.entryName)
