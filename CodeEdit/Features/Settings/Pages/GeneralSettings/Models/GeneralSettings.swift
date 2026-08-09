@@ -8,10 +8,8 @@
 import SwiftUI
 
 extension SettingsData {
-
     /// The general global setting
     struct GeneralSettings: Codable, Hashable, SearchableSettingsPage {
-
         /// The appearance of the app
         var appAppearance: Appearances = .system
 
@@ -46,7 +44,7 @@ extension SettingsData {
                 String(localized: "general.settings.search.dialog-warnings", defaultValue: "Dialog Warnings", comment: "Search keyword for dialog warnings setting"),
                 String(localized: "general.settings.search.check-for-updates", defaultValue: "Check for updates", comment: "Search keyword for check for updates setting"),
                 String(localized: "general.settings.search.automatically-check-for-app-updates", defaultValue: "Automatically check for app updates", comment: "Search keyword for automatic app update checks"),
-                String(localized: "general.settings.search.include-pre-release-versions", defaultValue: "Include pre-release versions", comment: "Search keyword for including pre-release versions in updates")
+                String(localized: "general.settings.search.include-pre-release-versions", defaultValue: "Include pre-release versions", comment: "Search keyword for including pre-release versions in updates"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -103,75 +101,75 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.appAppearance = try container.decodeIfPresent(
+            appAppearance = try container.decodeIfPresent(
                 Appearances.self,
                 forKey: .appAppearance
             ) ?? .system
-            self.showIssues = try container.decodeIfPresent(
+            showIssues = try container.decodeIfPresent(
                 Issues.self,
                 forKey: .showIssues
             ) ?? .inline
-            self.showLiveIssues = try container.decodeIfPresent(
+            showLiveIssues = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .showLiveIssues
             ) ?? true
-            self.showEditorJumpBar = try container.decodeIfPresent(
+            showEditorJumpBar = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .showEditorJumpBar
             ) ?? true
-            self.dimEditorsWithoutFocus = try container.decodeIfPresent(
+            dimEditorsWithoutFocus = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .dimEditorsWithoutFocus
             ) ?? false
-            self.fileExtensionsVisibility = try container.decodeIfPresent(
+            fileExtensionsVisibility = try container.decodeIfPresent(
                 FileExtensionsVisibility.self,
                 forKey: .fileExtensionsVisibility
             ) ?? .showAll
-            self.shownFileExtensions = try container.decodeIfPresent(
+            shownFileExtensions = try container.decodeIfPresent(
                 FileExtensions.self,
                 forKey: .shownFileExtensions
             ) ?? .default
-            self.hiddenFileExtensions = try container.decodeIfPresent(
+            hiddenFileExtensions = try container.decodeIfPresent(
                 FileExtensions.self,
                 forKey: .hiddenFileExtensions
             ) ?? .default
-            self.fileIconStyle = try container.decodeIfPresent(
+            fileIconStyle = try container.decodeIfPresent(
                 FileIconStyle.self,
                 forKey: .fileIconStyle
             ) ?? .color
-            self.navigatorTabBarPosition = try container.decodeIfPresent(
+            navigatorTabBarPosition = try container.decodeIfPresent(
                 SidebarTabBarPosition.self,
                 forKey: .navigatorTabBarPosition
             ) ?? .top
-            self.inspectorTabBarPosition = try container.decodeIfPresent(
+            inspectorTabBarPosition = try container.decodeIfPresent(
                 SidebarTabBarPosition.self,
                 forKey: .inspectorTabBarPosition
             ) ?? .top
-            self.reopenBehavior = try container.decodeIfPresent(
+            reopenBehavior = try container.decodeIfPresent(
                 ReopenBehavior.self,
                 forKey: .reopenBehavior
             ) ?? .welcome
-            self.reopenWindowAfterClose = try container.decodeIfPresent(
+            reopenWindowAfterClose = try container.decodeIfPresent(
                 ReopenWindowBehavior.self,
                 forKey: .reopenWindowAfterClose
             ) ?? .doNothing
-            self.projectNavigatorSize = try container.decodeIfPresent(
+            projectNavigatorSize = try container.decodeIfPresent(
                 ProjectNavigatorSize.self,
                 forKey: .projectNavigatorSize
             ) ?? .medium
-            self.findNavigatorDetail = try container.decodeIfPresent(
+            findNavigatorDetail = try container.decodeIfPresent(
                 NavigatorDetail.self,
                 forKey: .findNavigatorDetail
             ) ?? .upTo3
-            self.issueNavigatorDetail = try container.decodeIfPresent(
+            issueNavigatorDetail = try container.decodeIfPresent(
                 NavigatorDetail.self,
                 forKey: .issueNavigatorDetail
             ) ?? .upTo3
-            self.revealFileOnFocusChange = try container.decodeIfPresent(
+            revealFileOnFocusChange = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .revealFileOnFocusChange
             ) ?? false
-            self.isAutoSaveOn = try container.decodeIfPresent(
+            isAutoSaveOn = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .isAutoSaveOn
             ) ?? true
@@ -235,16 +233,17 @@ extension SettingsData {
             set {
                 extensions = newValue
                     .components(separatedBy: ",")
-                    .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) })
-                    .filter({ !$0.isEmpty || string.count < newValue.count })
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .filter { !$0.isEmpty || string.count < newValue.count }
             }
         }
 
         static var `default` = FileExtensions(extensions: [
             "c", "cc", "cpp", "h", "hpp", "m", "mm", "gif",
-            "icns", "jpeg", "jpg", "png", "tiff", "swift"
+            "icns", "jpeg", "jpg", "png", "tiff", "swift",
         ])
     }
+
     /// The style for file icons
     /// - **color**: File icons appear in their default colors
     /// - **monochrome**: File icons appear monochromatic
@@ -311,7 +310,7 @@ extension SettingsData {
             case .upTo1:
                 return String(localized: "general_settings.preview_lines.one_line", defaultValue: "One Line", comment: "Label for one-line preview option")
             default:
-                return "Up to \(self.rawValue) lines"
+                return "Up to \(rawValue) lines"
             }
         }
     }
