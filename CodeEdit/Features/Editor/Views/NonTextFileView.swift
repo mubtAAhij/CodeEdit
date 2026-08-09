@@ -13,14 +13,12 @@ import SwiftUI
 /// NonTextFileView(fileDocument)
 /// ```
 struct NonTextFileView: View {
-
     /// The file document you wish to open.
     let fileDocument: CodeFileDocument
 
     var body: some View {
         Group {
             if let fileURL = fileDocument.fileURL {
-
                 if let utType = fileDocument.utType {
                     if utType.conforms(to: .image) {
                         ImageFileView(fileURL)
