@@ -31,7 +31,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                     text: $message,
                     axis: .vertical
                 )
-                .lineLimit(1...3)
+                .lineLimit(1 ... 3)
                 .safeAreaInset(edge: .bottom, spacing: 0) {
                     if showDetails {
                         VStack {
@@ -42,8 +42,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                             )
                             .textFieldStyle(.plain)
                             .controlSize(.small)
-                            .lineLimit(3...5)
-
+                            .lineLimit(3 ... 5)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal, 8)
@@ -119,8 +118,8 @@ struct SourceControlNavigatorChangesCommitView: View {
                     }
                     .disabled(
                         message.isEmpty ||
-                        !anyFilesStaged ||
-                        isCommiting
+                            !anyFilesStaged ||
+                            isCommiting
                     )
                 }
                 .padding(.top, 8)
