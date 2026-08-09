@@ -72,7 +72,7 @@ struct NotificationBannerView: View {
                                 .black,
                                 .black,
                                 !notification.isSticky && isHovering ? .clear : .black,
-                                !notification.isSticky && isHovering ? .clear : .black
+                                !notification.isSticky && isHovering ? .clear : .black,
                             ]
                         ),
                         startPoint: .leading,
