@@ -26,8 +26,8 @@ struct WorkspacePanelView<Tab: WorkspacePanelTab, ViewModel: ObservableObject>: 
         darkDivider: Bool = false
     ) {
         self.viewModel = viewModel
-        self._selectedTab = selectedTab
-        self._tabItems = tabItems
+        _selectedTab = selectedTab
+        _tabItems = tabItems
         self.sidebarPosition = sidebarPosition
         self.darkDivider = darkDivider
     }
