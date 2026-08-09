@@ -66,9 +66,9 @@ struct SourceControlNavigatorTabs: View {
         } else {
             CEContentUnavailableView(
                 String(localized: "source-control.navigator.no-repository.title", defaultValue: "No Repository", comment: "Empty state title when workspace is not a git repository"),
-                 description: String(localized: "source-control.navigator.no-repository.message", defaultValue: "This project is not a git repository.", comment: "Empty state message when workspace is not a git repository"),
-                 systemImage: "externaldrive.fill",
-                 actions: {
+                description: String(localized: "source-control.navigator.no-repository.message", defaultValue: "This project is not a git repository.", comment: "Empty state message when workspace is not a git repository"),
+                systemImage: "externaldrive.fill",
+                actions: {
                     Button(String(localized: "source-control.navigator.no-repository.initialize", defaultValue: "Initialize", comment: "Button title to initialize repository in source control navigator")) {
                         Task {
                             try await sourceControlManager.initiate()
