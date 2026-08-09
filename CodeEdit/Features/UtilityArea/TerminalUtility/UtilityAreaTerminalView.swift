@@ -1,12 +1,12 @@
 //
-//  UtilityAreaTerminal.swift
+//  UtilityAreaTerminalView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 5/25/23.
 //
 
-import SwiftUI
 import Cocoa
+import SwiftUI
 
 struct UtilityAreaTerminalView: View {
     @AppSettings(\.theme.matchAppearance)
@@ -46,7 +46,8 @@ struct UtilityAreaTerminalView: View {
         if let selectedTheme = matchAppearance && darkAppearance
             ? themeModel.selectedDarkTheme
             : themeModel.selectedTheme,
-           let index = themeModel.themes.firstIndex(of: selectedTheme) {
+            let index = themeModel.themes.firstIndex(of: selectedTheme)
+        {
             return NSColor(themeModel.themes[index].terminal.background.swiftColor)
         }
         return .windowBackgroundColor
