@@ -151,9 +151,9 @@ struct ThemeSettingsThemeDetails: View {
                         .padding(-10)
                         .colorScheme(
                             theme.appearance == .dark
-                            ? .dark
-                            : theme.appearance == .light
-                            ? .light : colorScheme
+                                ? .dark
+                                : theme.appearance == .light
+                                ? .light : colorScheme
                         )
                     }
                 }
