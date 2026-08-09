@@ -32,8 +32,8 @@ struct CECircularProgressView: View {
                         .stroke(Color.accentColor, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                         .rotationEffect(
                             previousValue ?
-                                .degrees(isAnimating ?  0 : -360)
-                            : .degrees(isAnimating ? 360 : 0)
+                                .degrees(isAnimating ? 0 : -360)
+                                : .degrees(isAnimating ? 360 : 0)
                         )
                         .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false), value: isAnimating)
                         .onAppear {
@@ -43,7 +43,7 @@ struct CECircularProgressView: View {
                 }
             }
             .rotationEffect(.degrees(-90))
-            .padding(lineWidth/2)
+            .padding(lineWidth / 2)
             .overlay {
                 if currentTaskCount > 1 {
                     Text("\(currentTaskCount)")
