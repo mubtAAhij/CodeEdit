@@ -44,7 +44,8 @@ struct UtilityAreaDebugView: View {
                 HStack { Spacer() }
 
                 if let taskShowingOutput = taskManager.taskShowingOutput,
-                   let activeTask = taskManager.activeTasks[taskShowingOutput] {
+                   let activeTask = taskManager.activeTasks[taskShowingOutput]
+                {
                     GeometryReader { geometry in
                         let containerHeight = geometry.size.height
                         let totalFontHeight = fontTotalHeight(nsFont: font).rounded(.up)
@@ -83,10 +84,10 @@ struct UtilityAreaDebugView: View {
                     }
                     .colorScheme(
                         utilityAreaViewModel.selectedTerminals.isEmpty
-                        ? colorScheme
-                        : matchAppearance && darkAppearance
-                        ? themeModel.selectedDarkTheme?.appearance == .dark ? .dark : .light
-                        : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
+                            ? colorScheme
+                            : matchAppearance && darkAppearance
+                            ? themeModel.selectedDarkTheme?.appearance == .dark ? .dark : .light
+                            : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
                     )
                 } else {
                     CEContentUnavailableView(String(localized: "utility-area.debug.no-task-selected", defaultValue: "No Task Selected", comment: "Placeholder text when no debug task is selected"))
@@ -135,7 +136,8 @@ struct UtilityAreaDebugView: View {
         if let selectedTheme = matchAppearance && darkAppearance
             ? themeModel.selectedDarkTheme
             : themeModel.selectedTheme,
-           let index = themeModel.themes.firstIndex(of: selectedTheme) {
+            let index = themeModel.themes.firstIndex(of: selectedTheme)
+        {
             return NSColor(themeModel.themes[index].terminal.background.swiftColor)
         }
         return .windowBackgroundColor
