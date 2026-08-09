@@ -16,7 +16,7 @@ struct SourceControlNavigatorChangesView: View {
 
     var hasUnsyncedCommits: Bool {
         sourceControlManager.numberOfUnsyncedCommits.ahead > 0
-        || sourceControlManager.numberOfUnsyncedCommits.behind > 0
+            || sourceControlManager.numberOfUnsyncedCommits.behind > 0
     }
 
     var hasCurrentBranch: Bool {
