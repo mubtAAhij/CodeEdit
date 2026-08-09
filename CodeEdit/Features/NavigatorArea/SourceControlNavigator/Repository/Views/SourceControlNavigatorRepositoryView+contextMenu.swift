@@ -1,5 +1,5 @@
 //
-//  SourceControlNavigatorRepositoriesView+contextMenu.swift
+//  SourceControlNavigatorRepositoryView+contextMenu.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 11/29/23.
@@ -32,17 +32,17 @@ extension SourceControlNavigatorRepositoryView {
         Divider()
         Button(
             item.branch == nil && item.id != String(localized: "source-control.repository.context-menu.branches-group", defaultValue: "BranchesGroup", comment: "Command group title in source control repository context menu")
-            ? String(localized: "source-control.repository.context-menu.new-branch", defaultValue: "New Branch...", comment: "Context menu action to create a new branch")
-            : "New Branch from \"\(branch.name)\"..."
+                ? String(localized: "source-control.repository.context-menu.new-branch", defaultValue: "New Branch...", comment: "Context menu action to create a new branch")
+                : "New Branch from \"\(branch.name)\"..."
         ) {
             showNewBranch = true
-            fromBranch =  item.branch
+            fromBranch = item.branch
         }
         .disabled(item.branch == nil && item.id != "BranchesGroup")
         Button(
             item.branch == nil
-            ? String(localized: "source-control.repository.context-menu.rename-branch", defaultValue: "Rename Branch...", comment: "Context menu action to rename the selected branch")
-            : "Rename \"\(branch.name)\"..."
+                ? String(localized: "source-control.repository.context-menu.rename-branch", defaultValue: "Rename Branch...", comment: "Context menu action to rename the selected branch")
+                : "Rename \"\(branch.name)\"..."
         ) {
             showRenameBranch = true
             fromBranch = item.branch
@@ -65,10 +65,10 @@ extension SourceControlNavigatorRepositoryView {
         }
         .disabled(
             (item.branch == nil
-             || item.branch?.isLocal == false
-             || sourceControlManager.currentBranch == item.branch)
-            && item.stashEntry == nil
-            && item.remote == nil
+                || item.branch?.isLocal == false
+                || sourceControlManager.currentBranch == item.branch)
+                && item.stashEntry == nil
+                && item.remote == nil
         )
     }
 }
