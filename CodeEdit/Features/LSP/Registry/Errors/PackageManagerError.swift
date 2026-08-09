@@ -35,9 +35,9 @@ enum PackageManagerError: Error, LocalizedError {
             nil
         case .packageManagerNotInstalled:
             nil
-        case .initializationFailed(let string):
+        case let .initializationFailed(string):
             string
-        case .installationFailed(let string):
+        case let .installationFailed(string):
             string
         case .invalidConfiguration:
             nil
