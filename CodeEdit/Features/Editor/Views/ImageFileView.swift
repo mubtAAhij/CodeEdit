@@ -19,7 +19,6 @@ import SwiftUI
 ///
 /// If the preview image cannot be created, it shows a  *"Cannot preview image"* text.
 struct ImageFileView: View {
-
     /// URL of the image you want to preview.
     private let imageURL: URL
 
@@ -29,8 +28,8 @@ struct ImageFileView: View {
 
     var body: some View {
         if let nsImage = NSImage(contentsOf: imageURL),
-           let imageReps = nsImage.representations.first {
-
+           let imageReps = nsImage.representations.first
+        {
             let pixelWidth = CGFloat(imageReps.pixelsWide)
             let pixelHeight = CGFloat(imageReps.pixelsHigh)
 
@@ -41,7 +40,6 @@ struct ImageFileView: View {
                             maxWidth: min(pixelWidth, proxy.size.width, nsImage.size.width),
                             maxHeight: min(pixelHeight, proxy.size.height, nsImage.size.height)
                         )
-
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height)
             }
@@ -49,5 +47,4 @@ struct ImageFileView: View {
             Text(String(localized: "editor.image-file.cannot-preview", defaultValue: "Cannot preview image", comment: "Message shown when image preview cannot be generated"))
         }
     }
-
 }
