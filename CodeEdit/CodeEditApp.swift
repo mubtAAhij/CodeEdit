@@ -5,16 +5,16 @@
 //  Created by Wouter Hennen on 11/03/2023.
 //
 
+import AboutWindow
 import SwiftUI
 import WelcomeWindow
-import AboutWindow
 
 @main
 struct CodeEditApp: App {
     @NSApplicationDelegateAdaptor var appdelegate: AppDelegate
     @ObservedObject var settings = Settings.shared
 
-    let updater: SoftwareUpdater = SoftwareUpdater()
+    let updater: SoftwareUpdater = .init()
 
     init() {
         // Register singleton services before anything else
