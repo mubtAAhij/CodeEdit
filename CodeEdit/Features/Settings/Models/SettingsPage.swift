@@ -36,7 +36,7 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
         case developer = String(localized: "settings.page.developer", defaultValue: "Developer", comment: "Settings page title for developer preferences")
     }
 
-    let id: UUID = UUID()
+    let id: UUID = .init()
 
     let name: Name
     let baseColor: Color?
@@ -45,6 +45,7 @@ struct SettingsPage: Hashable, Equatable, Identifiable {
     var nameString: LocalizedStringKey {
         LocalizedStringKey(name.rawValue)
     }
+
     let icon: IconResource?
 
     /// Default initializer
