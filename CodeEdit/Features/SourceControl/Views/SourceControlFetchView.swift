@@ -27,7 +27,7 @@ struct SourceControlFetchView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Fetching changes for “\(projectName)”...")
                         .font(.headline)
-                    Text("CodeEdit is fetching changes and updating the status of files in the local repository.")
+                    Text(String(localized: "source-control.fetch.progress-description", defaultValue: "CodeEdit is fetching changes and updating the status of files in the local repository.", comment: "Description shown while fetching source control changes"))
                         .font(.subheadline)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -40,14 +40,14 @@ struct SourceControlFetchView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .controlSize(.small)
-                    Text("Fetching changes...")
+                    Text(String(localized: "source-control.fetch.fetching-changes", defaultValue: "Fetching changes...", comment: "Short status label while fetching source control changes"))
                         .font(.subheadline)
                 }
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "source-control.fetch.cancel", defaultValue: "Cancel", comment: "Cancel button title in source control fetch view"))
                         .frame(minWidth: 48)
                 }
             }
@@ -60,7 +60,7 @@ struct SourceControlFetchView: View {
                 try await sourceControlManager.fetch()
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to fetch changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.fetch.failed-to-fetch-changes", defaultValue: "Failed to fetch changes", comment: "Error message when fetching source control changes fails"), error: error)
             }
         }
     }
