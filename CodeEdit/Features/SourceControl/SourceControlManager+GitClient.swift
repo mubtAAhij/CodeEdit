@@ -19,7 +19,7 @@ extension SourceControlManager {
     /// Fetch from remote
     func fetch() async throws {
         try await gitClient.fetchFromRemote()
-        await self.refreshNumberOfUnsyncedCommits()
+        await refreshNumberOfUnsyncedCommits()
     }
 
     /// Refresh current branch
@@ -125,7 +125,7 @@ extension SourceControlManager {
     /// Set changed files on main actor
     @MainActor
     private func setChangedFiles(_ files: [GitChangedFile]) {
-        self.changedFiles = files
+        changedFiles = files
     }
 
     /// Refresh git status for files in project navigator
@@ -148,7 +148,8 @@ extension SourceControlManager {
         }
 
         for (_, file) in fileManager.flattenedFileItems
-        where !updatedStatusFor.contains(file) && file.gitStatus != nil {
+            where !updatedStatusFor.contains(file) && file.gitStatus != nil
+        {
             file.gitStatus = nil
             updatedStatusFor.insert(file)
         }
@@ -192,8 +193,8 @@ extension SourceControlManager {
     func commit(message: String, details: String? = nil) async throws {
         try await gitClient.commit(message: message, details: details)
 
-        await self.refreshAllChangedFiles()
-        await self.refreshNumberOfUnsyncedCommits()
+        await refreshAllChangedFiles()
+        await refreshNumberOfUnsyncedCommits()
     }
 
     /// Adds the given URLs to the staged changes.
@@ -230,7 +231,7 @@ extension SourceControlManager {
             self.remotes = remotes
         }
         if !remotes.isEmpty {
-            try await self.refreshAllRemotesBranches()
+            try await refreshAllRemotesBranches()
         }
     }
 
@@ -249,7 +250,6 @@ extension SourceControlManager {
                 remotes[index].branches = branches
             }
         }
-
     }
 
     /// Get branches for a specific remote
@@ -268,7 +268,7 @@ extension SourceControlManager {
     func pull(remote: String? = nil, branch: String? = nil, rebase: Bool = false) async throws {
         try await gitClient.pullFromRemote(remote: remote, branch: branch, rebase: rebase)
 
-        await self.refreshNumberOfUnsyncedCommits()
+        await refreshNumberOfUnsyncedCommits()
     }
 
     /// Push changes to remote
@@ -290,7 +290,7 @@ extension SourceControlManager {
         )
 
         await refreshCurrentBranch()
-        await self.refreshNumberOfUnsyncedCommits()
+        await refreshNumberOfUnsyncedCommits()
     }
 
     /// Initiate repository
