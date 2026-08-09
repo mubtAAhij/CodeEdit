@@ -21,7 +21,7 @@ struct HistoryInspectorView: View {
     /// Initialize with GitClient
     /// - Parameter gitClient: a GitClient
     init() {
-        self.model = .init()
+        model = .init()
     }
 
     var body: some View {
