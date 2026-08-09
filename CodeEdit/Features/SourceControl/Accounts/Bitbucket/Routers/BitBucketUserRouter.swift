@@ -13,8 +13,8 @@ enum BitBucketUserRouter: GitRouter {
 
     var configuration: GitRouterConfiguration? {
         switch self {
-        case .readAuthenticatedUser(let config): return config
-        case .readEmails(let config): return config
+        case let .readAuthenticatedUser(config): return config
+        case let .readEmails(config): return config
         }
     }
 
