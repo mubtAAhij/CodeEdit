@@ -8,7 +8,9 @@
 import SwiftUI
 
 enum UtilityAreaTab: WorkspacePanelTab, CaseIterable {
-    var id: Self { self }
+    var id: Self {
+        self
+    }
 
     case terminal
     case debugConsole
