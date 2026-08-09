@@ -12,7 +12,7 @@ enum GitLabUserRouter: GitRouter {
 
     var configuration: GitRouterConfiguration? {
         switch self {
-        case .readAuthenticatedUser(let config): return config
+        case let .readAuthenticatedUser(config): return config
         }
     }
 
