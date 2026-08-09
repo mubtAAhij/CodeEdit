@@ -8,7 +8,6 @@
 import SwiftUI
 
 public class FeedbackModel: ObservableObject {
-
     public static let shared: FeedbackModel = .init()
 
     private let keychain = CodeEditKeychain()
@@ -32,7 +31,7 @@ public class FeedbackModel: ObservableObject {
         FeedbackType(name: String(localized: "feedback.problem-area.application-crash.title", defaultValue: "Application Crash", comment: "Title for feedback category about application crashes."), id: String(localized: "feedback.problem-area.application-crash.slug", defaultValue: "crash", comment: "Short keyword for application crash feedback category.")),
         FeedbackType(name: String(localized: "feedback.problem-area.application-slow-unresponsive.title", defaultValue: "Application Slow/Unresponsive", comment: "Title for feedback category about slow or unresponsive application behavior."), id: String(localized: "feedback.problem-area.application-slow-unresponsive.slug", defaultValue: "unresponsive", comment: "Short keyword for slow or unresponsive application feedback category.")),
         FeedbackType(name: String(localized: "feedback.problem-area.suggestion.title", defaultValue: "Suggestion", comment: "Title for feedback category suggesting improvements."), id: "suggestions"),
-        FeedbackType(name: String(localized: "feedback.problem-area.other.title", defaultValue: "Other", comment: "Title for feedback category for uncategorized issues."), id: "other")
+        FeedbackType(name: String(localized: "feedback.problem-area.other.title", defaultValue: "Other", comment: "Title for feedback category for uncategorized issues."), id: "other"),
     ]
 
     @Published var issueAreaList = [
@@ -42,7 +41,7 @@ public class FeedbackModel: ObservableObject {
         FeedbackIssueArea(name: String(localized: "feedback.problem-area.git", defaultValue: "Git", comment: "Problem area option for Git issues."), id: "git"),
         FeedbackIssueArea(name: String(localized: "feedback.problem-area.debugger", defaultValue: "Debugger", comment: "Problem area option for debugger issues."), id: "debugger"),
         FeedbackIssueArea(name: String(localized: "feedback.problem-area.editor", defaultValue: "Editor", comment: "Problem area option for editor issues."), id: "editor"),
-        FeedbackIssueArea(name: String(localized: "feedback.problem-area.category.other", defaultValue: "Other", comment: "Problem area option for uncategorized issues."), id: "other")
+        FeedbackIssueArea(name: String(localized: "feedback.problem-area.category.other", defaultValue: "Other", comment: "Problem area option for uncategorized issues."), id: "other"),
     ]
 
     /// Gets the ID of the selected issue type and then
@@ -156,13 +155,13 @@ public class FeedbackModel: ObservableObject {
             labels: [getFeedbackTypeLabel(), getIssueLabel()]
         ) { response in
             switch response {
-            case .success(let issue):
+            case let .success(issue):
                 if Settings[\.sourceControl].general.openFeedbackInBrowser {
                     self.openIssueURL(issue.htmlURL ?? URL(string: "https://github.com/CodeEditApp/CodeEdit/issues")!)
                 }
                 self.isSubmitted.toggle()
                 print(issue)
-            case .failure(let error):
+            case let .failure(error):
                 self.failedToSubmit.toggle()
                 print(error)
             }
