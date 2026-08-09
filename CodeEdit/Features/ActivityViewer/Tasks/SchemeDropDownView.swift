@@ -27,8 +27,8 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "scheme_dropdown.no_project_found", defaultValue: "No Project found", comment: "Empty state text shown when no project is available for scheme dropdown"))
-        : workspaceName
+            ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "scheme_dropdown.no_project_found", defaultValue: "No Project found", comment: "Empty state text shown when no project is available for scheme dropdown"))
+            : workspaceName
     }
 
     var body: some View {
@@ -60,7 +60,7 @@ struct SchemeDropDownView: View {
     }
 
     @available(macOS 26, *)
-    @ViewBuilder private var tahoe: some View {
+    private var tahoe: some View {
         HStack(spacing: 4) {
             label
             chevron
@@ -84,7 +84,7 @@ struct SchemeDropDownView: View {
         }
     }
 
-    @ViewBuilder private var seqouia: some View {
+    private var seqouia: some View {
         label
             .padding(.trailing, 11.5)
             .padding(.horizontal, 2.5)
@@ -106,7 +106,7 @@ struct SchemeDropDownView: View {
             }
     }
 
-    @ViewBuilder private var label: some View {
+    private var label: some View {
         HStack(spacing: 6) {
             Image(systemName: "folder.badge.gearshape")
                 .imageScale(.medium)
@@ -117,7 +117,7 @@ struct SchemeDropDownView: View {
         .font(.subheadline)
     }
 
-    @ViewBuilder private var chevron: some View {
+    private var chevron: some View {
         Image(systemName: "chevron.compact.right")
             .font(.system(size: 9, weight: .medium, design: .default))
             .foregroundStyle(.secondary)
@@ -125,7 +125,7 @@ struct SchemeDropDownView: View {
             .imageScale(.large)
     }
 
-    @ViewBuilder private var chevronDown: some View {
+    private var chevronDown: some View {
         VStack(spacing: 1) {
             Image(systemName: "chevron.down")
         }
