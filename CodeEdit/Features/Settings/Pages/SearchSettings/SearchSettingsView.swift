@@ -16,7 +16,7 @@ struct SearchSettingsView: View {
                 Text(String(localized: "settings.search.exclude.title", defaultValue: "Exclude", comment: "Title for exclude patterns section in search settings"))
                 Text(
                     "Add glob patterns to exclude matching files and folders from searches and open quickly. " +
-                    "This will inherit glob patterns from the Exclude from Project setting."
+                        "This will inherit glob patterns from the Exclude from Project setting."
                 )
             }
         }
