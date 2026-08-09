@@ -52,7 +52,6 @@ struct CommitDetailsView: View {
                                 .listRowSeparator(.hidden)
                                 .padding(.vertical, -1)
                         }
-
                     }
                     .environment(\.defaultMinListRowHeight, 22)
                 } else {
@@ -104,7 +103,6 @@ struct SidebarButtonStyle: ButtonStyle {
                             .padding(1)
                     )
                     .opacity(activeState != .inactive ? 1 : 0.3)
-
             )
             .onHover { hover in
                 isHovering = hover
