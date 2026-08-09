@@ -1,5 +1,5 @@
 //
-//  TextEditingPreferences.swift
+//  TextEditingSettings.swift
 //  CodeEditModules/Settings
 //
 //  Created by Nanashi Li on 2022/04/08.
@@ -9,10 +9,8 @@ import AppKit
 import Foundation
 
 extension SettingsData {
-
     /// The global settings for text editing
     struct TextEditingSettings: Codable, Hashable, SearchableSettingsPage {
-
         var searchKeys: [String] {
             var keys = [
                 String(localized: "settings.text-editing.prefer-indent-using", defaultValue: "Prefer Indent Using", comment: "Label for preferred indentation method setting"),
@@ -33,7 +31,7 @@ extension SettingsData {
                 String(localized: "settings.text-editing.reformat-at-column", defaultValue: "Reformat at Column", comment: "Label for editor reformat column setting"),
                 String(localized: "settings.text-editing.show-reformatting-guide", defaultValue: "Show Reformatting Guide", comment: "Toggle label for showing reformatting guide in editor"),
                 String(localized: "settings.text-editing.invisibles", defaultValue: "Invisibles", comment: "Label for invisible character display setting"),
-                String(localized: "settings.text-editing.warning-characters", defaultValue: "Warning Characters", comment: "Label for warning characters display setting")
+                String(localized: "settings.text-editing.warning-characters", defaultValue: "Warning Characters", comment: "Label for warning characters display setting"),
             ]
             if #available(macOS 14.0, *) {
                 keys.append(String(localized: "settings.text-editing.system-cursor", defaultValue: "System Cursor", comment: "Label for using system cursor style in editor"))
@@ -46,7 +44,7 @@ extension SettingsData {
 
         /// The behavior of a `tab` keypress. If `.tab`, will insert a tab character. If `.spaces` will insert
         /// `.spaceCount` spaces instead.
-        var indentOption: IndentOption = IndentOption(indentType: .spaces, spaceCount: 4)
+        var indentOption: IndentOption = .init(indentType: .spaces, spaceCount: 4)
 
         /// The font to use in editor.
         var font: EditorFont = .init()
@@ -71,7 +69,7 @@ extension SettingsData {
         var letterSpacing: Double = 1.0
 
         /// The behavior of bracket pair highlights.
-        var bracketEmphasis: BracketPairEmphasis = BracketPairEmphasis()
+        var bracketEmphasis: BracketPairEmphasis = .init()
 
         /// Use the system cursor for the source editor.
         var useSystemCursor: Bool = true
@@ -98,70 +96,70 @@ extension SettingsData {
 
         /// Default initializer
         init() {
-            self.populateCommands()
+            populateCommands()
         }
 
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws { // swiftlint:disable:this function_body_length
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.defaultTabWidth = try container.decodeIfPresent(Int.self, forKey: .defaultTabWidth) ?? 4
-            self.indentOption = try container.decodeIfPresent(
+            defaultTabWidth = try container.decodeIfPresent(Int.self, forKey: .defaultTabWidth) ?? 4
+            indentOption = try container.decodeIfPresent(
                 IndentOption.self,
                 forKey: .indentOption
             ) ?? IndentOption(indentType: .spaces, spaceCount: 4)
-            self.font = try container.decodeIfPresent(EditorFont.self, forKey: .font) ?? .init()
-            self.enableTypeOverCompletion = try container.decodeIfPresent(
+            font = try container.decodeIfPresent(EditorFont.self, forKey: .font) ?? .init()
+            enableTypeOverCompletion = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .enableTypeOverCompletion
             ) ?? true
-            self.autocompleteBraces = try container.decodeIfPresent(
+            autocompleteBraces = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .autocompleteBraces
             ) ?? true
-            self.wrapLinesToEditorWidth = try container.decodeIfPresent(
+            wrapLinesToEditorWidth = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .wrapLinesToEditorWidth
             ) ?? true
-            self.overscroll = try container.decodeIfPresent(
+            overscroll = try container.decodeIfPresent(
                 OverscrollOption.self,
                 forKey: .overscroll
             ) ?? .medium
-            self.lineHeightMultiple = try container.decodeIfPresent(
+            lineHeightMultiple = try container.decodeIfPresent(
                 Double.self,
                 forKey: .lineHeightMultiple
             ) ?? 1.2
-            self.letterSpacing = try container.decodeIfPresent(
+            letterSpacing = try container.decodeIfPresent(
                 Double.self,
                 forKey: .letterSpacing
             ) ?? 1
-            self.bracketEmphasis = try container.decodeIfPresent(
+            bracketEmphasis = try container.decodeIfPresent(
                 BracketPairEmphasis.self,
                 forKey: .bracketEmphasis
             ) ?? BracketPairEmphasis()
             if #available(macOS 14, *) {
-                self.useSystemCursor = try container.decodeIfPresent(Bool.self, forKey: .useSystemCursor) ?? true
+                useSystemCursor = try container.decodeIfPresent(Bool.self, forKey: .useSystemCursor) ?? true
             } else {
-                self.useSystemCursor = false
+                useSystemCursor = false
             }
 
-            self.showGutter = try container.decodeIfPresent(Bool.self, forKey: .showGutter) ?? true
-            self.showMinimap = try container.decodeIfPresent(Bool.self, forKey: .showMinimap) ?? true
-            self.showFoldingRibbon = try container.decodeIfPresent(Bool.self, forKey: .showFoldingRibbon) ?? true
-            self.reformatAtColumn = try container.decodeIfPresent(Int.self, forKey: .reformatAtColumn) ?? 80
-            self.showReformattingGuide = try container.decodeIfPresent(
+            showGutter = try container.decodeIfPresent(Bool.self, forKey: .showGutter) ?? true
+            showMinimap = try container.decodeIfPresent(Bool.self, forKey: .showMinimap) ?? true
+            showFoldingRibbon = try container.decodeIfPresent(Bool.self, forKey: .showFoldingRibbon) ?? true
+            reformatAtColumn = try container.decodeIfPresent(Int.self, forKey: .reformatAtColumn) ?? 80
+            showReformattingGuide = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .showReformattingGuide
             ) ?? false
-            self.invisibleCharacters = try container.decodeIfPresent(
+            invisibleCharacters = try container.decodeIfPresent(
                 InvisibleCharactersConfig.self,
                 forKey: .invisibleCharacters
             ) ?? .default
-            self.warningCharacters = try container.decodeIfPresent(
+            warningCharacters = try container.decodeIfPresent(
                 WarningCharacters.self,
                 forKey: .warningCharacters
             ) ?? .default
 
-            self.populateCommands()
+            populateCommands()
         }
 
         /// Adds toggle-able preferences to the command palette via shared `CommandManager`
@@ -214,8 +212,8 @@ extension SettingsData {
 
         struct IndentOption: Codable, Hashable {
             var indentType: IndentType
-            // Kept even when `indentType` is `.tab` to retain the user's
-            // settings when changing `indentType`.
+            /// Kept even when `indentType` is `.tab` to retain the user's
+            /// settings when changing `indentType`.
             var spaceCount: Int = 4
 
             enum IndentType: String, Codable {
@@ -229,7 +227,7 @@ extension SettingsData {
             var highlightType: HighlightType = .flash
             var useCustomColor: Bool = false
             /// The color to use for the highlight.
-            var color: Theme.Attributes = Theme.Attributes(color: "FFFFFF", bold: false, italic: false)
+            var color: Theme.Attributes = .init(color: "FFFFFF", bold: false, italic: false)
 
             enum HighlightType: String, Codable {
                 case disabled
@@ -256,14 +254,12 @@ extension SettingsData {
         }
 
         struct InvisibleCharactersConfig: Equatable, Hashable, Codable {
-            static var `default`: InvisibleCharactersConfig = {
-                InvisibleCharactersConfig(
-                    enabled: false,
-                    showSpaces: true,
-                    showTabs: true,
-                    showLineEndings: true
-                )
-            }()
+            static var `default`: InvisibleCharactersConfig = .init(
+                enabled: false,
+                showSpaces: true,
+                showTabs: true,
+                showLineEndings: true
+            )
 
             var enabled: Bool
 
@@ -282,7 +278,7 @@ extension SettingsData {
         }
 
         struct WarningCharacters: Equatable, Hashable, Codable {
-            static let `default`: WarningCharacters = WarningCharacters(enabled: true, characters: [
+            static let `default`: WarningCharacters = .init(enabled: true, characters: [
                 0x0003: String(localized: "settings.text-editing.warning-characters.end-of-text", defaultValue: "End of text", comment: "Label for end-of-text invisible warning character"),
 
                 0x00A0: String(localized: "settings.text-editing.warning-characters.non-breaking-space", defaultValue: "Non-breaking space", comment: "Label for non-breaking space warning character"),
@@ -299,7 +295,7 @@ extension SettingsData {
                 0x201C: String(localized: "settings.text-editing.warning-characters.left-double-quote", defaultValue: "Left double quote", comment: "Label for left double quote warning character"),
                 0x201D: String(localized: "settings.text-editing.warning-characters.right-double-quote", defaultValue: "Right double quote", comment: "Label for right double quote warning character"),
 
-                0x037E: String(localized: "settings.text-editing.warning-characters.greek-question-mark", defaultValue: "Greek Question Mark", comment: "Label for greek question mark warning character")
+                0x037E: String(localized: "settings.text-editing.warning-characters.greek-question-mark", defaultValue: "Greek Question Mark", comment: "Label for greek question mark warning character"),
             ])
 
             var enabled: Bool
@@ -323,9 +319,9 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.size = try container.decodeIfPresent(Double.self, forKey: .size) ?? size
-            self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? name
-            self.weight = try container.decodeIfPresent(NSFont.Weight.self, forKey: .weight) ?? weight
+            size = try container.decodeIfPresent(Double.self, forKey: .size) ?? size
+            name = try container.decodeIfPresent(String.self, forKey: .name) ?? name
+            weight = try container.decodeIfPresent(NSFont.Weight.self, forKey: .weight) ?? weight
         }
 
         /// Returns an NSFont representation of the current configuration.
