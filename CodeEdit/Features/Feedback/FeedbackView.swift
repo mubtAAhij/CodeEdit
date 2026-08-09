@@ -160,8 +160,8 @@ struct FeedbackView: View {
                     }
                 }
                 TextEditor(text: $feedbackModel.issueDescription)
-                           .frame(minHeight: 127, alignment: .leading)
-                           .border(Color(NSColor.separatorColor))
+                    .frame(minHeight: 127, alignment: .leading)
+                    .border(Color(NSColor.separatorColor))
                 Text(String(localized: "feedback.view.description.example.crash-autocomplete-popup", defaultValue: "Example: CodeEdit crashes when the autocomplete popup appears on screen.", comment: "Example text for issue description field."))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
@@ -171,8 +171,8 @@ struct FeedbackView: View {
             VStack(alignment: .leading) {
                 Text(String(localized: "feedback.view.repro-steps.prompt", defaultValue: "Please list the steps you took to reproduce the issue:", comment: "Prompt asking user for issue reproduction steps."))
                 TextEditor(text: $feedbackModel.stepsReproduceDescription)
-                           .frame(minHeight: 60, alignment: .leading)
-                           .border(Color(NSColor.separatorColor))
+                    .frame(minHeight: 60, alignment: .leading)
+                    .border(Color(NSColor.separatorColor))
                 Text(String(localized: "feedback.view.repro-steps.example.label", defaultValue: "Example:", comment: "Label introducing reproduction steps example."))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
@@ -188,8 +188,8 @@ struct FeedbackView: View {
             VStack(alignment: .leading) {
                 Text(String(localized: "feedback.view.expected-result.prompt", defaultValue: "What did you expect to happen?", comment: "Prompt asking expected behavior."))
                 TextEditor(text: $feedbackModel.expectationDescription)
-                           .frame(minHeight: 60, alignment: .leading)
-                           .border(Color(NSColor.separatorColor))
+                    .frame(minHeight: 60, alignment: .leading)
+                    .border(Color(NSColor.separatorColor))
                 Text(String(localized: "feedback.view.expected-result.example", defaultValue: "Example: I expected autocomplete to show me a list of headers.", comment: "Example text for expected behavior field."))
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
@@ -199,8 +199,8 @@ struct FeedbackView: View {
             VStack(alignment: .leading) {
                 Text(String(localized: "feedback.view.actual-result.prompt", defaultValue: "What actually happened?", comment: "Prompt asking actual observed behavior."))
                 TextEditor(text: $feedbackModel.whatHappenedDescription)
-                           .frame(minHeight: 60, alignment: .leading)
-                           .border(Color(NSColor.separatorColor))
+                    .frame(minHeight: 60, alignment: .leading)
+                    .border(Color(NSColor.separatorColor))
                 // swiftlint:disable:next line_length
                 Text(String(localized: "feedback.example.description", defaultValue: "Example: The autocomplete window flickered on screen and CodeEdit crashed. See attached crashlog.", comment: "Example text shown in feedback form to illustrate issue description"))
                     .font(.system(size: 10))
