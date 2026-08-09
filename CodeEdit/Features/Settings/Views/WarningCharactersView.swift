@@ -24,8 +24,8 @@ struct WarningCharactersView: View {
                     Text(String(localized: "settings.warning-characters.title", defaultValue: "Warning Characters", comment: "Title for warning characters configuration view"))
                     Text(
                         "CodeEdit can help identify invisible or ambiguous characters, such as zero-width spaces," +
-                        " directional quotes, and more. These will appear with a red block highlighting them." +
-                        " You can disable characters or add more here."
+                            " directional quotes, and more. These will appear with a red block highlighting them." +
+                            " You can disable characters or add more here."
                     )
                 }
             }
