@@ -5,9 +5,9 @@
 //  Created by Aleksi Puttonen on 23.3.2022.
 //
 
-import SwiftUI
-import Foundation
 import Combine
+import Foundation
+import SwiftUI
 
 struct GitCloneView: View {
     @Environment(\.dismiss)
@@ -72,7 +72,7 @@ struct GitCloneView: View {
         }
     }
 
-    @ViewBuilder private var cloningSheet: some View {
+    private var cloningSheet: some View {
         NavigationStack {
             VStack {
                 ProgressView(
@@ -102,8 +102,8 @@ struct GitCloneView: View {
             guard let gitClient = viewModel.gitClient else { return }
 
             Task {
-                let branches = ((try? await  gitClient.getBranches()) ?? [])
-                    .filter({ $0.isRemote })
+                let branches = ((try? await gitClient.getBranches()) ?? [])
+                    .filter { $0.isRemote }
                 if branches.count > 1 {
                     openBranchView(localPath)
                     return
