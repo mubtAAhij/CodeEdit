@@ -170,11 +170,11 @@ extension CEWorkspaceFileManager {
 
         let deleteConfirmation = NSAlert()
         deleteConfirmation.messageText = "Do you want to delete “\(fileName)”?"
-        deleteConfirmation.informativeText = "This item will be deleted immediately. You can't undo this action."
+        deleteConfirmation.informativeText = String(localized: "file_management.delete.warning_message", defaultValue: "This item will be deleted immediately. You can't undo this action.", comment: "Warning message for immediate single-item deletion")
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.delete.confirmation-button", defaultValue: "Delete", comment: "Delete button title in single-item deletion confirmation alert"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.delete.cancel-button", defaultValue: "Cancel", comment: "Cancel button title in single-item deletion confirmation alert"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
             if fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -192,9 +192,9 @@ extension CEWorkspaceFileManager {
         // swiftlint:disable:next line_length
         deleteConfirmation.informativeText = "\(files.count) items will be deleted immediately. You cannot undo this action."
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.batch-delete.confirmation-button", defaultValue: "Delete", comment: "Delete button title in batch deletion confirmation alert"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.batch-delete.cancel-button", defaultValue: "Cancel", comment: "Cancel button title in batch deletion confirmation alert"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn {
             for file in files where fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
