@@ -43,7 +43,7 @@ struct FindNavigatorView: View {
                             self.foundFilesCount
                         )
                     )
-                        .font(.system(size: 10))
+                    .font(.system(size: 10))
                 }
 
                 Divider()
@@ -64,8 +64,8 @@ struct FindNavigatorView: View {
                             comment: "Status text shown while search is in progress"
                         )
                     )
-                        .foregroundStyle(.tertiary)
-                        .font(.title3)
+                    .foregroundStyle(.tertiary)
+                    .font(.title3)
                 }
                 .frame(maxHeight: .infinity)
             case .replacing:
@@ -80,8 +80,8 @@ struct FindNavigatorView: View {
                             comment: "Status text shown while replacement is in progress"
                         )
                     )
-                        .foregroundStyle(.tertiary)
-                        .font(.title3)
+                    .foregroundStyle(.tertiary)
+                    .font(.title3)
                 }
                 .frame(maxHeight: .infinity)
             case .found:
@@ -105,7 +105,7 @@ struct FindNavigatorView: View {
                 } else {
                     FindNavigatorResultList()
                 }
-            case .replaced(let updatedFiles):
+            case let .replaced(updatedFiles):
                 CEContentUnavailableView(
                     String(
                         localized: "find_navigator.replaced",
@@ -122,7 +122,7 @@ struct FindNavigatorView: View {
                     ),
                     systemImage: "checkmark.circle.fill"
                 )
-            case .failed(let errorMessage):
+            case let .failed(errorMessage):
                 CEContentUnavailableView(
                     String(
                         localized: "find_navigator.error_occurred",
