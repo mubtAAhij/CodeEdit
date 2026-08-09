@@ -184,8 +184,8 @@ final class RegistryManager: ObservableObject {
                 iconSymbol: "xmark.circle",
                 iconColor: .clear,
                 title: "Could not install \(activityName)",
-                description: "There was a problem during installation.",
-                actionButtonTitle: "Done",
+                description: String(localized: "lsp.registry.installation-failed.message", defaultValue: "There was a problem during installation.", comment: "Alert message shown when package installation fails"),
+                actionButtonTitle: String(localized: "lsp.registry.installation-failed.done", defaultValue: "Done", comment: "Button title to dismiss installation failure alert"),
                 action: {},
             )
         } else {
