@@ -5,8 +5,8 @@
 //  Created by Austin Condiff on 8/3/24.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct StopTaskToolbarButton: View {
     @Environment(\.controlActiveState)
@@ -23,19 +23,19 @@ struct StopTaskToolbarButton: View {
     var body: some View {
         HStack {
             if let currentSelectedStatus, currentSelectedStatus == .running {
-                    Button {
-                        taskManager.terminateActiveTask()
-                    } label: {
-                        Label(String(localized: "tasks.toolbar-button.stop", defaultValue: "Stop", comment: "Button label to stop task"), systemImage: "stop.fill")
-                            .labelStyle(.iconOnly)
-                            .opacity(activeState == .inactive ? 0.5 : 1.0)
-                            .font(.system(size: 15, weight: .regular))
-                            .help(String(localized: "tasks.toolbar-button.stop.help", defaultValue: "Stop selected task", comment: "Accessibility/help text for stop task button"))
-                            .frame(width: 28)
-                            .offset(y: 1.5)
-                    }
-                    .frame(height: 22)
-                    .transition(.opacity.combined(with: .move(edge: .trailing)))
+                Button {
+                    taskManager.terminateActiveTask()
+                } label: {
+                    Label(String(localized: "tasks.toolbar-button.stop", defaultValue: "Stop", comment: "Button label to stop task"), systemImage: "stop.fill")
+                        .labelStyle(.iconOnly)
+                        .opacity(activeState == .inactive ? 0.5 : 1.0)
+                        .font(.system(size: 15, weight: .regular))
+                        .help(String(localized: "tasks.toolbar-button.stop.help", defaultValue: "Stop selected task", comment: "Accessibility/help text for stop task button"))
+                        .frame(width: 28)
+                        .offset(y: 1.5)
+                }
+                .frame(height: 22)
+                .transition(.opacity.combined(with: .move(edge: .trailing)))
             }
         }
         .frame(width: 38, height: 22)
