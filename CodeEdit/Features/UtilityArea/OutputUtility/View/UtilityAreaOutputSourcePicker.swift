@@ -20,7 +20,7 @@ struct UtilityAreaOutputSourcePicker: View {
     @ObservedObject var extensionManager = ExtensionManager.shared
 
     @Service var lspService: LSPService
-    @State private var updater: UUID = UUID()
+    @State private var updater: UUID = .init()
     @State private var languageServerClients: [LSPService.LanguageServerType] = []
 
     var body: some View {
@@ -75,7 +75,7 @@ struct UtilityAreaOutputSourcePicker: View {
 
     func updateLanguageServers(_ clients: [LSPService.ClientKey: LSPService.LanguageServerType]) {
         languageServerClients = clients
-            .compactMap { (key, value) in
+            .compactMap { key, value in
                 if key.workspacePath == workspace.fileURL?.absolutePath {
                     return value
                 }
