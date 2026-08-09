@@ -26,7 +26,8 @@ struct SourceControlNavigatorChangesList: View {
             forSelectionType: GitChangedFile.self,
             menu: { selectedFiles in
                 if selectedFiles.count == 1,
-                   let file = selectedFiles.first {
+                   let file = selectedFiles.first
+                {
                     Group {
                         Button(String(localized: "source-control.changes-list.view-in-finder", defaultValue: "View in Finder", comment: "Context menu action to reveal selected file in Finder")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
@@ -58,14 +59,16 @@ struct SourceControlNavigatorChangesList: View {
             // double-click action
             primaryAction: { selectedFiles in
                 if selectedFiles.count == 1,
-                   let file = selectedFiles.first {
+                   let file = selectedFiles.first
+                {
                     openGitFile(file)
                 }
             }
         )
         .onChange(of: selection) { _, newSelection in
             if newSelection.count == 1,
-               let file = newSelection.first {
+               let file = newSelection.first
+            {
                 openGitFile(file)
             }
         }
