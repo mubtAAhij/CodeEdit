@@ -23,11 +23,11 @@ struct ProjectNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             addNewFileButton
             PaneTextField(
-                "Filter",
+                String(localized: "project_navigator.filter", defaultValue: "Filter", comment: "Label for project navigator filter menu"),
                 text: $workspace.navigatorFilter,
                 leadingAccessories: {
                     FilterDropDownIconButton(menu: {
-                        ForEach([(true, "Folders on top"), (false, "Alphabetically")], id: \.0) { value, title in
+                        ForEach([(true, String(localized: "project_navigator.sort.folders_on_top", defaultValue: "Folders on top", comment: "Sort option to show folders before files in project navigator")), (false, String(localized: "project_navigator.sort.alphabetically", defaultValue: "Alphabetically", comment: "Sort option to order items alphabetically in project navigator"))], id: \.0) { value, title in
                             Toggle(title, isOn: Binding(get: {
                                 workspace.sortFoldersOnTop == value
                             }, set: { _ in
@@ -44,18 +44,18 @@ struct ProjectNavigatorToolbarBottom: View {
                         ? Color(nsColor: .secondaryLabelColor)
                         : Color(nsColor: .controlAccentColor)
                     )
-                    .help("Show files with matching name")
+                    .help(String(localized: "project_navigator.filter.matching_name", defaultValue: "Show files with matching name", comment: "Filter option to show only files with names matching the query"))
                 },
                 trailingAccessories: {
                     HStack(spacing: 0) {
                         Toggle(isOn: $recentsFilter) {
                             Image(systemName: "clock")
                         }
-                        .help("Show only recent files")
+                        .help(String(localized: "project_navigator.filter.recent_files", defaultValue: "Show only recent files", comment: "Filter option to show only recently opened files"))
                         Toggle(isOn: $workspace.sourceControlFilter) {
                             Image(systemName: "plusminus.circle")
                         }
-                        .help("Show only files with source-control status")
+                        .help(String(localized: "project_navigator.filter.source_control_status", defaultValue: "Show only files with source-control status", comment: "Filter option to show only files that have source control status"))
                     }
                     .toggleStyle(.icon(font: .system(size: 14), size: CGSize(width: 18, height: 20)))
                     .padding(.trailing, 2.5)
@@ -98,12 +98,12 @@ struct ProjectNavigatorToolbarBottom: View {
 
     private var addNewFileButton: some View {
         Menu {
-            Button("Add File") {
+            Button(String(localized: "project_navigator.add_file", defaultValue: "Add File", comment: "Action title to add a new file from project navigator")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
                     if let newFile = try workspace.workspaceFileManager?.addFile(
-                        fileName: "untitled",
+                        fileName: String(localized: "project_navigator.new_file.default_name", defaultValue: "untitled", comment: "Default filename placeholder for new file creation"),
                         toFile: rootFile
                     ) {
                         workspace.listenerModel.highlightedFileItem = newFile
@@ -111,24 +111,24 @@ struct ProjectNavigatorToolbarBottom: View {
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(localized: "project_navigator.dismiss", defaultValue: "Dismiss", comment: "Button title to dismiss the add file popover"))
                     alert.runModal()
                 }
             }
 
-            Button("Add Folder") {
+            Button(String(localized: "project_navigator.add_folder", defaultValue: "Add Folder", comment: "Action title to add a new folder from project navigator")) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
                     if let newFolder = try workspace.workspaceFileManager?.addFolder(
-                        folderName: "untitled",
+                        folderName: String(localized: "project_navigator.add_folder.default_name", defaultValue: "untitled", comment: "Default name placeholder for newly created folder in project navigator"),
                         toFile: rootFile
                     ) {
                         workspace.listenerModel.highlightedFileItem = newFolder
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(localized: "project_navigator.add_folder.dismiss", defaultValue: "Dismiss", comment: "Button title to dismiss add folder prompt"))
                     alert.runModal()
                 }
             }
@@ -141,7 +141,7 @@ struct ProjectNavigatorToolbarBottom: View {
         .menuIndicator(.hidden)
         .frame(maxWidth: 18, alignment: .center)
         .opacity(activeState == .inactive ? 0.45 : 1)
-        .accessibilityLabel("Add Folder or File")
+        .accessibilityLabel(String(localized: "project_navigator.add_folder_or_file", defaultValue: "Add Folder or File", comment: "Action title to add a folder or file from project navigator toolbar"))
         .accessibilityIdentifier("addButton")
     }
 
