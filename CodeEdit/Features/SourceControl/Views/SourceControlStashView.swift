@@ -1,5 +1,5 @@
 //
-//  SourceControlAddRemoteView.swift
+//  SourceControlStashView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 11/17/23.
@@ -21,26 +21,28 @@ struct SourceControlStashView: View {
                 Section {
                     TextField("", text: $message, prompt: Text(String(localized: "source_control.stash.message.optional", defaultValue: "Message (optional)", comment: "Placeholder label for optional stash message input")), axis: .vertical)
                         .labelsHidden()
-                        .lineLimit(3...3)
+                        .lineLimit(3 ... 3)
                         .contentShape(Rectangle())
                         .frame(height: 48)
                 } header: {
                     Text(String(localized: "source_control.stash.title", defaultValue: "Stash Changes", comment: "Title for stash changes view"))
                     Group {
                         if sourceControlManager.pullSheetIsPresented
-                            || sourceControlManager.switchToBranch != nil {
+                            || sourceControlManager.switchToBranch != nil
+                        {
                             Text("Your local repository has uncommitted changes that need to be stashed " +
-                                 "before you can continue. Enter a description for your changes.")
+                                "before you can continue. Enter a description for your changes.")
                         } else {
                             Text("Enter a description for your stashed changes so you can reference them later. " +
-                                 "Stashes will appear in the Source Control navigator for your repository.")
+                                "Stashes will appear in the Source Control navigator for your repository.")
                         }
                     }
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                 }
                 if sourceControlManager.pullSheetIsPresented
-                    || sourceControlManager.switchToBranch != nil {
+                    || sourceControlManager.switchToBranch != nil
+                {
                     Section {
                         Toggle(String(localized: "source_control.stash.apply-after-operation", defaultValue: "Apply stash after operation", comment: "Toggle label to reapply stash after selected operation"), isOn: $applyStashAfterOperation)
                     }
@@ -62,15 +64,15 @@ struct SourceControlStashView: View {
                 Button {
                     submit()
                 } label: {
-                        Text(
-                            sourceControlManager.pullSheetIsPresented
+                    Text(
+                        sourceControlManager.pullSheetIsPresented
                             ? String(localized: "source_control.stash.and-pull", defaultValue: "Stash and Pull", comment: "Primary action button to stash changes and then pull")
                             : sourceControlManager.switchToBranch != nil
                             ? String(localized: "source_control.stash.and-switch", defaultValue: "Stash and Switch", comment: "Primary action button to stash changes and then switch branch")
                             : String(localized: "source_control.stash.action", defaultValue: "Stash", comment: "Primary action button to stash changes")
-                        )
-                        .frame(minWidth: 56)
-                    }
+                    )
+                    .frame(minWidth: 56)
+                }
                 .buttonStyle(.borderedProminent)
             }
             .padding(.horizontal, 20)
@@ -86,7 +88,8 @@ struct SourceControlStashView: View {
                 message = ""
 
                 if sourceControlManager.pullSheetIsPresented
-                    || sourceControlManager.switchToBranch != nil {
+                    || sourceControlManager.switchToBranch != nil
+                {
                     if sourceControlManager.pullSheetIsPresented {
                         try await sourceControlManager.pull(
                             remote: sourceControlManager.operationRemote?.name,
