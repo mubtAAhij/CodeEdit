@@ -64,7 +64,7 @@ struct CETaskFormView: View {
                 }
                 .actionBar {
                     Button {
-                          self.task.environmentVariables.append(CETask.EnvironmentVariable())
+                        self.task.environmentVariables.append(CETask.EnvironmentVariable())
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -93,7 +93,7 @@ struct CETaskFormView: View {
     }
 
     func removeEnv(id: UUID) {
-        self.task.environmentVariables.removeAll(where: {
+        task.environmentVariables.removeAll(where: {
             $0.id == id
         })
     }
