@@ -5,8 +5,8 @@
 //  Created by Nanashi Li on 2022/05/20.
 //
 
-import SwiftUI
 import CodeEditSymbols
+import SwiftUI
 
 struct SourceControlNavigatorRepositoryView: View {
     @Environment(\.controlActiveState)
@@ -63,7 +63,8 @@ struct SourceControlNavigatorRepositoryView: View {
                 if !items.isEmpty,
                    items.count == 1,
                    let item = findItem(by: items.first ?? "", in: outlineGroupData),
-                   let branch = item.branch ?? sourceControlManager.currentBranch {
+                   let branch = item.branch ?? sourceControlManager.currentBranch
+                {
                     contextMenu(for: item, branch: branch)
                 }
             }
@@ -80,8 +81,8 @@ struct SourceControlNavigatorRepositoryView: View {
         }
         .alert(
             sourceControlManager.changedFiles.isEmpty
-            ? String(localized: "source-control.navigator.repository.alert.apply-stash.title", defaultValue: "Do you want to apply stashed changes?", comment: "Alert title asking whether to apply stashed changes")
-            : String(localized: "source-control.navigator.repository.alert.apply-stash-uncommitted.message", defaultValue: "The local repository has uncommitted changes.", comment: "Alert message indicating uncommitted changes exist"),
+                ? String(localized: "source-control.navigator.repository.alert.apply-stash.title", defaultValue: "Do you want to apply stashed changes?", comment: "Alert title asking whether to apply stashed changes")
+                : String(localized: "source-control.navigator.repository.alert.apply-stash-uncommitted.message", defaultValue: "The local repository has uncommitted changes.", comment: "Alert message indicating uncommitted changes exist"),
             isPresented: $applyStashedChangesIsPresented
         ) {
             if sourceControlManager.changedFiles.isEmpty {
@@ -110,8 +111,8 @@ struct SourceControlNavigatorRepositoryView: View {
             }
         } message: {
             sourceControlManager.changedFiles.isEmpty
-            ? Text(String(localized: "source-control.navigator.repository.alert.apply-stash.description", defaultValue: "Applying the stashed changes will restore modifications to files in your local repository.", comment: "Alert explanation of applying stashed changes"))
-            : Text(String(localized: "source-control.navigator.repository.alert.apply-stash.suggestion", defaultValue: "Try committing or discarding the changes.", comment: "Alert suggestion to commit or discard local changes"))
+                ? Text(String(localized: "source-control.navigator.repository.alert.apply-stash.description", defaultValue: "Applying the stashed changes will restore modifications to files in your local repository.", comment: "Alert explanation of applying stashed changes"))
+                : Text(String(localized: "source-control.navigator.repository.alert.apply-stash.suggestion", defaultValue: "Try committing or discarding the changes.", comment: "Alert suggestion to commit or discard local changes"))
         }
         .confirmationDialog(
             "Do you want to delete the branch “\(branchToDelete?.name ?? "")”?",
