@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HistoryPopoverView: View {
-
     private var commit: GitCommit
 
     init(commit: GitCommit) {
@@ -42,7 +41,6 @@ struct HistoryPopoverView: View {
     }
 
     private struct ActionButton: View {
-
         private var title: String
         private var image: String
         private var action: () -> Void
@@ -54,7 +52,7 @@ struct HistoryPopoverView: View {
 
         init(_ title: String, systemImage: String, action: @escaping () -> Void) {
             self.title = title
-            self.image = systemImage
+            image = systemImage
             self.action = action
         }
 
