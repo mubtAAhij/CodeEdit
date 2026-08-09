@@ -4,8 +4,8 @@
 //
 //  Created by Nanashi Li on 2022/03/24.
 //
-import SwiftUI
 import CodeEditLanguages
+import SwiftUI
 
 struct FileInspectorView: View {
     @EnvironmentObject private var workspace: WorkspaceDocument
@@ -98,7 +98,8 @@ struct FileInspectorView: View {
                                     file: file,
                                     to: destinationURL
                                 ),
-                                   !newItem.isFolder {
+                                    !newItem.isFolder
+                                {
                                     editorManager.editorLayout.closeAllTabs(of: file)
                                     editorManager.openTab(item: newItem)
                                 }
@@ -115,7 +116,7 @@ struct FileInspectorView: View {
         }
     }
 
-    @ViewBuilder private var fileType: some View {
+    private var fileType: some View {
         Picker(
             String(localized: "file-inspector.label.type", defaultValue: "Type", comment: "Label for file type picker"),
             selection: $language
@@ -144,7 +145,8 @@ struct FileInspectorView: View {
                         DispatchQueue.main.async { [weak workspace] in
                             do {
                                 guard let newItem = try workspace?.workspaceFileManager?.move(file: file, to: newURL),
-                                      !newItem.isFolder else {
+                                      !newItem.isFolder
+                                else {
                                     return
                                 }
                                 editorManager.editorLayout.closeAllTabs(of: file)
@@ -186,7 +188,7 @@ struct FileInspectorView: View {
                             get: { Double(defaultTabWidth) },
                             set: { defaultTabWidth = Int($0) }
                         ),
-                        in: 1...16,
+                        in: 1 ... 16,
                         step: 1,
                         format: .number
                     )
@@ -203,7 +205,7 @@ struct FileInspectorView: View {
                             get: { Double(indentOption.spaceCount) },
                             set: { indentOption.spaceCount = Int($0) }
                         ),
-                        in: 1...10,
+                        in: 1 ... 10,
                         step: 1,
                         format: .number
                     )
