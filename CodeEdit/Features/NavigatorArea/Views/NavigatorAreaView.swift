@@ -10,7 +10,7 @@ import SwiftUI
 struct NavigatorAreaView: View {
     @ObservedObject private var workspace: WorkspaceDocument
     @ObservedObject private var extensionManager = ExtensionManager.shared
-    @ObservedObject public var viewModel: NavigatorAreaViewModel
+    @ObservedObject var viewModel: NavigatorAreaViewModel
 
     @AppSettings(\.general.navigatorTabBarPosition)
     var sidebarPosition: SettingsData.SidebarTabBarPosition
@@ -21,16 +21,16 @@ struct NavigatorAreaView: View {
 
         viewModel.tabItems = [.project, .sourceControl, .search] +
             extensionManager
-                .extensions
-                .map { ext in
-                    ext.availableFeatures.compactMap {
-                        if case .sidebarItem(let data) = $0, data.kind == .navigator {
-                            return NavigatorTab.uiExtension(endpoint: ext.endpoint, data: data)
-                        }
-                        return nil
+            .extensions
+            .map { ext in
+                ext.availableFeatures.compactMap {
+                    if case let .sidebarItem(data) = $0, data.kind == .navigator {
+                        return NavigatorTab.uiExtension(endpoint: ext.endpoint, data: data)
                     }
+                    return nil
                 }
-                .joined()
+            }
+            .joined()
     }
 
     var body: some View {
