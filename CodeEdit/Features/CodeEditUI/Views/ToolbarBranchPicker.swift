@@ -5,9 +5,9 @@
 //  Created by Lukas Pistrol on 21.04.22.
 //
 
-import SwiftUI
 import CodeEditSymbols
 import Combine
+import SwiftUI
 
 /// A view that pops up a branch picker.
 struct ToolbarBranchPicker: View {
@@ -27,7 +27,7 @@ struct ToolbarBranchPicker: View {
         workspaceFileManager: CEWorkspaceFileManager?
     ) {
         self.workspaceFileManager = workspaceFileManager
-        self.sourceControlManager = workspaceFileManager?.sourceControlManager
+        sourceControlManager = workspaceFileManager?.sourceControlManager
     }
 
     var body: some View {
@@ -70,7 +70,7 @@ struct ToolbarBranchPicker: View {
         .onHover { active in
             isHovering = active
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { (_) in
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
             if self.currentBranch != nil {
                 Task {
                     await sourceControlManager?.refreshCurrentBranch()
@@ -78,8 +78,8 @@ struct ToolbarBranchPicker: View {
             }
         }
         .onReceive(
-            self.sourceControlManager?.$currentBranch.eraseToAnyPublisher() ??
-            Empty().eraseToAnyPublisher()
+            sourceControlManager?.$currentBranch.eraseToAnyPublisher() ??
+                Empty().eraseToAnyPublisher()
         ) { branch in
             self.currentBranch = branch
         }
@@ -120,7 +120,7 @@ struct ToolbarBranchPicker: View {
                 }
 
                 let branches = sourceControlManager.orderedLocalBranches
-                    .filter({ $0 != sourceControlManager.currentBranch })
+                    .filter { $0 != sourceControlManager.currentBranch }
                 let branchesGroups = branches.reduce(into: [String: GitBranchesGroup]()) { result, branch in
                     guard let branchPrefix = branch.name.components(separatedBy: "/").first else {
                         return
