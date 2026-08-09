@@ -5,8 +5,8 @@
 //  Created by Albert Vinizhanau on 10/20/23.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 extension GitClient {
     struct CloneProgress {
@@ -43,7 +43,7 @@ extension GitClient {
     ) -> AsyncThrowingMapSequence<LiveCommandStream, CloneProgress> {
         let command = "clone \(remoteUrl.absoluteString) \(localPath.relativePath.escapedDirectory()) --progress"
 
-        return self.runLive(command)
+        return runLive(command)
             .map { line in
                 // Inspired by VS Code https://github.com/microsoft/vscode/blob/main/extensions/git/src/git.ts
                 // Parsing git clone output (for patterns look at cloneMatchTypes) and calculating total progress
@@ -94,7 +94,8 @@ extension GitClient {
 
         if let match,
            let range = Range(match.range(at: 1), in: line),
-           let progress = Int(line[range]) {
+           let progress = Int(line[range])
+        {
             return baseProgress + Double(progress) * multiplier
         }
         return nil
