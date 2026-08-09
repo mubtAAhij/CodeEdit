@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-internal struct StatusBarToggleUtilityAreaButton: View {
+struct StatusBarToggleUtilityAreaButton: View {
     @Environment(\.controlActiveState)
     var controlActiveState
 
     @EnvironmentObject private var utilityAreaViewModel: UtilityAreaViewModel
 
-    internal var body: some View {
+    var body: some View {
         Button {
             utilityAreaViewModel.togglePanel()
         } label: {
