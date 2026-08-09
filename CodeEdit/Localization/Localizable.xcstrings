@@ -3767,6 +3767,7 @@
     "settings.developer.show-internal-development-inspector": {
       "comment": "CodeEdit/Features/Settings/Pages/DeveloperSettings/Models/DeveloperSettings.swift",
       "extractionState": "manual",
+      "shouldTranslate": false,
       "localizations": {
         "en": {
           "stringUnit": {
