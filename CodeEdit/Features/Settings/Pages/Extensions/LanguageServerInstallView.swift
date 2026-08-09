@@ -38,7 +38,7 @@ struct LanguageServerInstallView: View {
         }
     }
 
-    @ViewBuilder private var formContent: some View {
+    private var formContent: some View {
         Form {
             packageInfoSection
             errorSection
@@ -52,7 +52,7 @@ struct LanguageServerInstallView: View {
         .formStyle(.grouped)
     }
 
-    @ViewBuilder private var footer: some View {
+    private var footer: some View {
         HStack {
             Spacer()
             switch operation.runningState {
@@ -96,7 +96,7 @@ struct LanguageServerInstallView: View {
         .padding()
     }
 
-    @ViewBuilder private var packageInfoSection: some View {
+    private var packageInfoSection: some View {
         Section {
             LabeledContent(String(localized: "settings.extensions.language-server-install.installing-package", defaultValue: "Installing Package", comment: "Status text shown while package is installing"), value: operation.package.sanitizedName)
             LabeledContent(String(localized: "settings.extensions.language-server-install.homepage", defaultValue: "Homepage", comment: "Label for package homepage field")) {
@@ -145,7 +145,7 @@ struct LanguageServerInstallView: View {
         }
     }
 
-    @ViewBuilder private var progressSection: some View {
+    private var progressSection: some View {
         Section {
             LabeledContent(String(localized: "settings.extensions.language-server-install.step", defaultValue: "Step", comment: "Label for installation progress step")) {
                 if registryManager.installedLanguageServers[operation.package.name] != nil {
@@ -166,7 +166,7 @@ struct LanguageServerInstallView: View {
         }
     }
 
-    @ViewBuilder private var outputSection: some View {
+    private var outputSection: some View {
         Section {
             ScrollViewReader { proxy in
                 ScrollView {
@@ -212,7 +212,7 @@ struct LanguageServerInstallView: View {
         .frame(height: 200)
     }
 
-    @ViewBuilder private var notInstalledSection: some View {
+    private var notInstalledSection: some View {
         Section {
             if let method = operation.package.installMethod {
                 LabeledContent(String(localized: "settings.extensions.language-server-install.install-method", defaultValue: "Install Method", comment: "Label for chosen language server install method"), value: method.installerDescription)
