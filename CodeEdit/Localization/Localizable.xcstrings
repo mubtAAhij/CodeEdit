@@ -10653,24 +10653,6 @@
         }
       }
     },
-    "settings.developer.show_internal_development_inspector": {
-      "comment": "CodeEdit/Features/Settings/Pages/DeveloperSettings/DeveloperSettingsView.swift",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Show Internal Development Inspector"
-          }
-        },
-        "es-419": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostrar Inspector de Desarrollo Interno"
-          }
-        }
-      }
-    },
     "settings.developer.language_server.language": {
       "comment": "CodeEdit/Features/Settings/Pages/DeveloperSettings/DeveloperSettingsView.swift",
       "extractionState": "manual",
