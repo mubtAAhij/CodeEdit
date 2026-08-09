@@ -125,7 +125,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         @ViewBuilder newItemHeader: @escaping () -> Header = { EmptyView() },
         @ViewBuilder actionBarTrailing: @escaping () -> ActionBarView = { EmptyView() }
     ) {
-        self._items = items
+        _items = items
         self.validKeys = validKeys
         self.keyColumnName = keyColumnName
         self.valueColumnName = valueColumnName
@@ -208,7 +208,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         }
     }
 
-    private func updateTableItems(_ newValue: [String: String]) {
+    private func updateTableItems(_: [String: String]) {
         tableItems = items
             .sorted { $0.key < $1.key }
             .map { KeyValueItem(key: $0.key, value: $0.value) }
@@ -216,7 +216,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
 
     private func removeItem() {
         removeItem(selection)
-        self.selection.removeAll()
+        selection.removeAll()
     }
 
     private func removeItem(_ selection: Set<UUID>) {
