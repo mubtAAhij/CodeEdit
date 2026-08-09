@@ -38,7 +38,7 @@ struct GlobPatternList: View {
             }
             .onDelete { indexSet in
                 let patternIDs = indexSet.compactMap { patterns[$0].id }
-                    removePatterns(Set(patternIDs))
+                removePatterns(Set(patternIDs))
             }
         }
         .frame(minHeight: 96)
