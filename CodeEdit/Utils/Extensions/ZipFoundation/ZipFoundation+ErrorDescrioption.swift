@@ -28,11 +28,11 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
         case .invalidEntrySize:
             String(localized: "zip-foundation.error.invalid-entry-size", defaultValue: "Invalid entry size.", comment: "Error description for invalid zip entry size")
         case .invalidLocalHeaderDataOffset,
-                .invalidLocalHeaderSize,
-                .invalidCentralDirectoryOffset,
-                .invalidCentralDirectorySize,
-                .invalidCentralDirectoryEntryCount,
-                .missingEndOfCentralDirectoryRecord:
+             .invalidLocalHeaderSize,
+             .invalidCentralDirectoryOffset,
+             .invalidCentralDirectorySize,
+             .invalidCentralDirectoryEntryCount,
+             .missingEndOfCentralDirectoryRecord:
             String(localized: "zip-foundation.archive-utility.error.invalid-file-detected", defaultValue: "Invalid file detected.", comment: "Archive utility error when an invalid file is detected")
         case .uncontainedSymlink:
             String(localized: "zip-foundation.archive-utility.error.uncontained-symlink-detected", defaultValue: "Uncontained symlink detected.", comment: "Archive utility error when an unsafe symlink is detected")
