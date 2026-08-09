@@ -48,7 +48,7 @@ struct CEWorkspaceSettingsTaskListView: View {
         }
     }
 
-    // Every task as to be observed individually
+    /// Every task as to be observed individually
     private struct TaskTile: View {
         @ObservedObject var task: CETask
         var body: some View {
