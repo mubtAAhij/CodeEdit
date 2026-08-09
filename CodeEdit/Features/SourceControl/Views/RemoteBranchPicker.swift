@@ -78,22 +78,23 @@ struct RemoteBranchPicker: View {
 
     private func updateRemote() {
         if let currentBranch = sourceControlManager.currentBranch, let upstream = currentBranch.upstream {
-            self.remote = sourceControlManager.remotes.first(where: { upstream.starts(with: $0.name) })
+            remote = sourceControlManager.remotes.first(where: { upstream.starts(with: $0.name) })
         } else {
-            self.remote = sourceControlManager.remotes.first
+            remote = sourceControlManager.remotes.first
         }
     }
 
     private func updateBranch() {
         if shouldCreateBranch {
-            self.branch = sourceControlManager.currentBranch
+            branch = sourceControlManager.currentBranch
         } else if let currentBranch = sourceControlManager.currentBranch,
-            let upstream = currentBranch.upstream,
-            let remote = self.remote,
-            let branchIndex = remote.branches.firstIndex(where: { upstream.contains($0.name) }) {
-            self.branch = remote.branches[branchIndex]
+                  let upstream = currentBranch.upstream,
+                  let remote = remote,
+                  let branchIndex = remote.branches.firstIndex(where: { upstream.contains($0.name) })
+        {
+            branch = remote.branches[branchIndex]
         } else {
-            self.branch = remote?.branches.first
+            branch = remote?.branches.first
         }
     }
 }
