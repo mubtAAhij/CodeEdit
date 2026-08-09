@@ -13,12 +13,12 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Language Servers",
-                "LSP Binaries",
-                "Linters",
-                "Formatters",
-                "Debug Protocol",
-                "DAP",
+                String(localized: "settings.extensions.language-servers", defaultValue: "Language Servers", comment: "Settings section title for language servers"),
+                String(localized: "settings.extensions.lsp-binaries", defaultValue: "LSP Binaries", comment: "Settings item title for language server binary paths"),
+                String(localized: "settings.extensions.linters", defaultValue: "Linters", comment: "Settings item title for linter configuration"),
+                String(localized: "settings.extensions.formatters", defaultValue: "Formatters", comment: "Settings item title for formatter configuration"),
+                String(localized: "settings.extensions.debug-protocol", defaultValue: "Debug Protocol", comment: "Settings item title for debug protocol configuration"),
+                String(localized: "settings.extensions.dap", defaultValue: "DAP", comment: "Settings item title for debug adapter protocol configuration"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
