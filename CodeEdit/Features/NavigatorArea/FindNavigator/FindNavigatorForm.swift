@@ -1,5 +1,5 @@
 //
-//  SearchModeSelector.swift
+//  FindNavigatorForm.swift
 //  CodeEdit
 //
 //  Created by Ziyuan Zhao on 2022/3/21.
@@ -42,7 +42,7 @@ struct FindNavigatorForm: View {
         VStack {
             HStack {
                 HStack(spacing: 0) {
-                    ForEach(0..<selectedMode.count, id: \.self) { index in
+                    ForEach(0 ..< selectedMode.count, id: \.self) { index in
                         FindModePicker(
                             modes: getMenuList(index),
                             selection: Binding(
@@ -56,7 +56,7 @@ struct FindNavigatorForm: View {
                             onSelect: { searchMode in
                                 onSelectMenuItem(index, searchMode: searchMode)
                             },
-                            isLastItem: index == selectedMode.count-1
+                            isLastItem: index == selectedMode.count - 1
                         )
                     }
                     Spacer()
@@ -87,8 +87,8 @@ struct FindNavigatorForm: View {
                     Toggle(
                         isOn: $caseSensitive,
                         label: {
-                        Image(systemName: "textformat")
-                            .foregroundStyle(caseSensitive ? Color(.controlAccentColor) : Color(.secondaryLabelColor))
+                            Image(systemName: "textformat")
+                                .foregroundStyle(caseSensitive ? Color(.controlAccentColor) : Color(.secondaryLabelColor))
                         }
                     )
                     .help(String(localized: "find-navigator.form.match-case", defaultValue: "Match Case", comment: "Toggle label for case-sensitive search in find navigator"))
@@ -219,7 +219,7 @@ struct FindNavigatorForm: View {
                 state.shouldFocusSearchField = false
             }
         }
-        .lineLimit(1...5)
+        .lineLimit(1 ... 5)
     }
 }
 
@@ -233,9 +233,9 @@ extension FindNavigatorForm {
 
         switch index {
         case 0:
-                newSelectedMode.append(searchMode)
-                self.updateSelectedMode(searchMode, searchModel: &newSelectedMode)
-                self.selectedMode = newSelectedMode
+            newSelectedMode.append(searchMode)
+            updateSelectedMode(searchMode, searchModel: &newSelectedMode)
+            selectedMode = newSelectedMode
         case 1:
             if let firstMode = selectedMode.first {
                 newSelectedMode.append(contentsOf: [firstMode, searchMode])
@@ -247,12 +247,12 @@ extension FindNavigatorForm {
                     }
                 }
             }
-            self.selectedMode = newSelectedMode
+            selectedMode = newSelectedMode
         case 2:
             if let firstMode = selectedMode.first, let secondMode = selectedMode.second {
                 newSelectedMode.append(contentsOf: [firstMode, secondMode, searchMode])
             }
-            self.selectedMode = newSelectedMode
+            selectedMode = newSelectedMode
         default:
             return
         }
