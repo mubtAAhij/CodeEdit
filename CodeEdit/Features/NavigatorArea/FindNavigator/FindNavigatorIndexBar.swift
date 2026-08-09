@@ -30,7 +30,7 @@ struct FindNavigatorIndexBar: View {
                         }
                     }
                     // swiftlint:disable:next line_length
-                    .help("Indexing current workspace files for search. Searches performed while indexing may return incomplete results.")
+                    .help(String(localized: "navigator.find.indexing.message", defaultValue: "Indexing current workspace files for search. Searches performed while indexing may return incomplete results.", comment: "Message explaining indexing status and possible incomplete search results"))
                 }
                 .transition(.asymmetric(insertion: .identity, removal: .move(edge: .top).combined(with: .opacity)))
             }
