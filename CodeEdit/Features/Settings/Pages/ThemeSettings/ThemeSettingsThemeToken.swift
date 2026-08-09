@@ -19,10 +19,10 @@ struct ThemeSettingsThemeToken: View {
 
     init(_ label: String, color: Binding<Color>, bold: Binding<Bool>, italic: Binding<Bool>) {
         self.label = label
-        self._color = color
-        self._bold = bold
-        self._italic = italic
-        self._selectedColor = State(initialValue: color.wrappedValue)
+        _color = color
+        _bold = bold
+        _italic = italic
+        _selectedColor = State(initialValue: color.wrappedValue)
     }
 
     var body: some View {
@@ -44,7 +44,7 @@ struct ThemeSettingsThemeToken: View {
                 }
                 .opacity(isHovering || bold || italic ? 1 : 0)
 
-                ColorPicker(selection: $selectedColor, supportsOpacity: false) { }
+                ColorPicker(selection: $selectedColor, supportsOpacity: false) {}
                     .labelsHidden()
             }
         } label: {
