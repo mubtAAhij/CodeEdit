@@ -72,7 +72,7 @@ enum InstallationMethod: Equatable {
     }
 
     var installerDescription: String {
-        guard let packageManagerType else { return "Unknown" }
+        guard let packageManagerType else { return String(localized: "lsp.registry.installation-method.unknown", defaultValue: "Unknown", comment: "Fallback installation method label when type is unknown") }
         switch packageManagerType {
         case .npm, .cargo, .golang, .pip, .sourceBuild, .github:
             return packageManagerType.userDescription
