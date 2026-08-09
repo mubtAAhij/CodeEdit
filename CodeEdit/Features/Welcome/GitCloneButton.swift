@@ -9,7 +9,6 @@ import SwiftUI
 import WelcomeWindow
 
 struct GitCloneButton: View {
-
     @State private var showGitClone = false
     @State private var showCheckoutBranchItem: URL?
 
