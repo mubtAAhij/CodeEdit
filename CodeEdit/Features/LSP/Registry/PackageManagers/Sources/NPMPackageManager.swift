@@ -14,13 +14,13 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     init(installationDirectory: URL) {
         self.installationDirectory = installationDirectory
-        self.shellClient = .live()
+        shellClient = .live()
     }
 
     // MARK: - PackageManagerProtocol
 
     func install(method installationMethod: InstallationMethod) throws -> [PackageManagerInstallStep] {
-        guard case .standardPackage(let source) = installationMethod else {
+        guard case let .standardPackage(source) = installationMethod else {
             throw PackageManagerError.invalidConfiguration
         }
 
@@ -28,13 +28,12 @@ final class NPMPackageManager: PackageManagerProtocol {
         return [
             initialize(in: packagePath),
             runNpmInstall(source, installDir: packagePath),
-            verifyInstallation(source, installDir: packagePath)
+            verifyInstallation(source, installDir: packagePath),
         ]
-
     }
 
     /// Checks if npm is installed
-    func isInstalled(method installationMethod: InstallationMethod) -> PackageManagerInstallStep {
+    func isInstalled(method _: InstallationMethod) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
@@ -115,7 +114,7 @@ final class NPMPackageManager: PackageManagerProtocol {
             name: String(localized: "lsp.package-managers.npm.install-package.title", defaultValue: "Install Package Using npm", comment: "Confirmation dialog title for installing language server packages with npm"),
             confirmation: .required(
                 message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                    + "\nAllow CodeEdit to install \(suffix)?"
             )
         ) { model in
             do {
@@ -160,7 +159,8 @@ final class NPMPackageManager: PackageManagerProtocol {
                   let packageJson = try? JSONSerialization.jsonObject(with: packageJsonData, options: []),
                   let packageDict = packageJson as? [String: Any],
                   let dependencies = packageDict["dependencies"] as? [String: String],
-                  let installedVersion = dependencies[package] else {
+                  let installedVersion = dependencies[package]
+            else {
                 throw PackageManagerError.installationFailed(String(localized: "lsp.package-managers.npm.package-not-found", defaultValue: "Package not found in package.json", comment: "Error message when required npm package entry is missing from package.json"))
             }
 
@@ -168,7 +168,8 @@ final class NPMPackageManager: PackageManagerProtocol {
             let normalizedInstalledVersion = installedVersion.trimmingCharacters(in: CharacterSet(charactersIn: "^~"))
             let normalizedRequestedVersion = version.trimmingCharacters(in: CharacterSet(charactersIn: "^~"))
             if normalizedInstalledVersion != normalizedRequestedVersion &&
-                !installedVersion.contains(normalizedRequestedVersion) {
+                !installedVersion.contains(normalizedRequestedVersion)
+            {
                 throw PackageManagerError.installationFailed(
                     "Version mismatch: Expected \(version), but found \(installedVersion)"
                 )
