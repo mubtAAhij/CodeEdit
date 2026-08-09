@@ -38,13 +38,13 @@ struct ProjectNavigatorToolbarBottom: View {
                             }))
                         }
                     }, isOn: !workspace.navigatorFilter.isEmpty)
-                    .padding(.leading, 4)
-                    .foregroundStyle(
-                        workspace.navigatorFilter.isEmpty
-                        ? Color(nsColor: .secondaryLabelColor)
-                        : Color(nsColor: .controlAccentColor)
-                    )
-                    .help(String(localized: "project_navigator.filter.matching_name", defaultValue: "Show files with matching name", comment: "Filter option to show only files with names matching the query"))
+                        .padding(.leading, 4)
+                        .foregroundStyle(
+                            workspace.navigatorFilter.isEmpty
+                                ? Color(nsColor: .secondaryLabelColor)
+                                : Color(nsColor: .controlAccentColor)
+                        )
+                        .help(String(localized: "project_navigator.filter.matching_name", defaultValue: "Show files with matching name", comment: "Filter option to show only files with names matching the query"))
                 },
                 trailingAccessories: {
                     HStack(spacing: 0) {
@@ -88,8 +88,7 @@ struct ProjectNavigatorToolbarBottom: View {
                 var pathComponents = activeTabFileURL.pathComponents
                 pathComponents.removeLast()
 
-                let fileURL = NSURL.fileURL(withPathComponents: pathComponents)! as URL
-                return fileURL
+                return NSURL.fileURL(withPathComponents: pathComponents)! as URL
             }
         }
 
@@ -133,16 +132,16 @@ struct ProjectNavigatorToolbarBottom: View {
                 }
             }
         } label: {}
-        .background {
-            Image(systemName: "plus")
-                .accessibilityHidden(true)
-        }
-        .menuStyle(.borderlessButton)
-        .menuIndicator(.hidden)
-        .frame(maxWidth: 18, alignment: .center)
-        .opacity(activeState == .inactive ? 0.45 : 1)
-        .accessibilityLabel(String(localized: "project_navigator.add_folder_or_file", defaultValue: "Add Folder or File", comment: "Action title to add a folder or file from project navigator toolbar"))
-        .accessibilityIdentifier("addButton")
+            .background {
+                Image(systemName: "plus")
+                    .accessibilityHidden(true)
+            }
+            .menuStyle(.borderlessButton)
+            .menuIndicator(.hidden)
+            .frame(maxWidth: 18, alignment: .center)
+            .opacity(activeState == .inactive ? 0.45 : 1)
+            .accessibilityLabel(String(localized: "project_navigator.add_folder_or_file", defaultValue: "Add Folder or File", comment: "Action title to add a folder or file from project navigator toolbar"))
+            .accessibilityIdentifier("addButton")
     }
 
     /// We clear the text and remove the first responder which removes the cursor
