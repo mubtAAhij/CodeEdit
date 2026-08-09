@@ -5,8 +5,8 @@
 //  Created by Abe Malla on 5/16/24.
 //
 
-import SwiftUI
 import LanguageServerProtocol
+import SwiftUI
 
 /// A view that implements the Developer settings section
 struct DeveloperSettingsView: View {
