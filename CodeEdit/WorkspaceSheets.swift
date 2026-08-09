@@ -14,15 +14,17 @@ struct WorkspaceSheets: View {
         EmptyView()
             .sheet(isPresented: Binding<Bool>(
                 get: { sourceControlManager.pushSheetIsPresented &&
-                       !sourceControlManager.addExistingRemoteSheetIsPresented },
+                    !sourceControlManager.addExistingRemoteSheetIsPresented
+                },
                 set: { sourceControlManager.pushSheetIsPresented = $0 }
             )) {
                 SourceControlPushView()
             }
             .sheet(isPresented: Binding<Bool>(
                 get: { sourceControlManager.pullSheetIsPresented &&
-                       !sourceControlManager.addExistingRemoteSheetIsPresented &&
-                       !sourceControlManager.stashSheetIsPresented },
+                    !sourceControlManager.addExistingRemoteSheetIsPresented &&
+                    !sourceControlManager.stashSheetIsPresented
+                },
                 set: { sourceControlManager.pullSheetIsPresented = $0 }
             )) {
                 if sourceControlManager.addExistingRemoteSheetIsPresented == true {
@@ -43,9 +45,9 @@ struct WorkspaceSheets: View {
             .sheet(item: Binding<GitBranch?>(
                 get: {
                     sourceControlManager.switchToBranch != nil
-                    && sourceControlManager.stashSheetIsPresented
-                    ? nil
-                    : sourceControlManager.switchToBranch
+                        && sourceControlManager.stashSheetIsPresented
+                        ? nil
+                        : sourceControlManager.switchToBranch
                 },
                 set: { sourceControlManager.switchToBranch = $0 }
             )) { branch in
