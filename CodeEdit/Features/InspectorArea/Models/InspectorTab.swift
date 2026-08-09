@@ -5,9 +5,9 @@
 //  Created by Wouter Hennen on 02/06/2023.
 //
 
-import SwiftUI
 import CodeEditKit
 import ExtensionFoundation
+import SwiftUI
 
 enum InspectorTab: WorkspacePanelTab {
     case file
@@ -23,13 +23,13 @@ enum InspectorTab: WorkspacePanelTab {
             return "clock"
         case .internalDevelopment:
             return "hammer"
-        case .uiExtension(_, let data):
+        case let .uiExtension(_, data):
             return data.icon ?? "e.square"
         }
     }
 
     var id: String {
-        if case .uiExtension(let endpoint, let data) = self {
+        if case let .uiExtension(endpoint, data) = self {
             return endpoint.bundleIdentifier + data.sceneID
         }
         return title
@@ -43,7 +43,7 @@ enum InspectorTab: WorkspacePanelTab {
             return String(localized: "inspector_tab.history_inspector", defaultValue: "History Inspector", comment: "Title for history inspector tab")
         case .internalDevelopment:
             return String(localized: "inspector_tab.internal_development", defaultValue: "Internal Development", comment: "Title for internal development inspector tab")
-        case .uiExtension(_, let data):
+        case let .uiExtension(_, data):
             return data.help ?? data.sceneID
         }
     }
