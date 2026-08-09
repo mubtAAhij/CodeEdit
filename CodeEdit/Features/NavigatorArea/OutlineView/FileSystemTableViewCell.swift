@@ -98,7 +98,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
             return
         }
 
-        if gitStatus == "?" { secondaryLabel.stringValue += "A" } else {
+        if gitStatus == String(localized: "navigator.file-system.status.unknown", defaultValue: "?", comment: "Status marker for unknown source control state") { secondaryLabel.stringValue += String(localized: "navigator.file-system.status.added", defaultValue: "A", comment: "Status marker for added file in source control") } else {
             secondaryLabel.stringValue += gitStatus
         }
     }
@@ -171,7 +171,7 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "navigator.file-system.dismiss", defaultValue: "Dismiss", comment: "Dismiss button title in file system table view alert"))
             alert.runModal()
         }
     }
