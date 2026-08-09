@@ -22,14 +22,14 @@ struct GeneralSettingsView: View {
     @State private var openInCodeEdit: Bool = true
 
     init() {
-        guard let defaults = UserDefaults.init(
+        guard let defaults = UserDefaults(
             suiteName: "app.codeedit.CodeEdit.shared"
         ) else {
             print("Failed to get/init shared defaults")
             return
         }
 
-        self.openInCodeEdit = defaults.bool(forKey: "enableOpenInCE")
+        openInCodeEdit = defaults.bool(forKey: "enableOpenInCE")
     }
 
     var body: some View {
@@ -62,7 +62,6 @@ struct GeneralSettingsView: View {
                 openInCodeEditToggle
                 shellCommand
                 dialogWarnings
-
             }
             Section {
                 updateChecker
@@ -129,12 +128,12 @@ private extension GeneralSettingsView {
             if case .showOnly = settings.fileExtensionsVisibility {
                 TextField("", text: $settings.shownFileExtensions.string, axis: .vertical)
                     .labelsHidden()
-                    .lineLimit(1...3)
+                    .lineLimit(1 ... 3)
             }
             if case .hideOnly = settings.fileExtensionsVisibility {
                 TextField("", text: $settings.hiddenFileExtensions.string, axis: .vertical)
                     .labelsHidden()
-                    .lineLimit(1...3)
+                    .lineLimit(1 ... 3)
             }
         }
     }
@@ -228,8 +227,7 @@ private extension GeneralSettingsView {
     // TODO: Implement reset for Don't Ask Me warnings Button and remove disabled modifier
     var dialogWarnings: some View {
         LabeledContent(String(localized: "settings.general.dialog-warnings", defaultValue: "Dialog Warnings", comment: "Section label for dialog warning preferences")) {
-            Button(action: {
-            }, label: {
+            Button(action: {}, label: {
                 Text("Reset \"Don't Ask Me\" Warnings")
             })
             .buttonStyle(.bordered)
@@ -289,7 +287,6 @@ private extension GeneralSettingsView {
             } label: {
                 Text(String(localized: "settings.general.update-checker.check-for-updates", defaultValue: "Check for updates", comment: "Section label for update checking settings"))
                 Text("Last checked: \(lastUpdatedString)")
-
             }
         }
     }
@@ -327,7 +324,7 @@ private extension GeneralSettingsView {
             "osascript",
             "-e",
             "\"do shell script \\\"mkdir -p /usr/local/bin && ln -sf \'\(commandPath)\' \'\(destinationPath)\'\\\"\"",
-            "with administrator privileges"
+            "with administrator privileges",
         ]
 
         let cmdStr = cmd.joined(separator: " ")
@@ -351,7 +348,7 @@ private extension GeneralSettingsView {
     var openInCodeEditToggle: some View {
         Toggle(String(localized: "settings.general.finder-integration.show-open-with-codeedit", defaultValue: "Show “Open With CodeEdit” option in Finder", comment: "Toggle label to show Open With CodeEdit Finder context menu integration"), isOn: $openInCodeEdit)
             .onChange(of: openInCodeEdit) { _, newValue in
-                guard let defaults = UserDefaults.init(
+                guard let defaults = UserDefaults(
                     suiteName: "app.codeedit.CodeEdit.shared"
                 ) else {
                     print("Failed to get/init shared defaults")
