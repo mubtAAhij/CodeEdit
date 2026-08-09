@@ -5,10 +5,10 @@
 //  Created by Wouter Hennen on 16/02/2023.
 //
 
+import AppKit
+import DequeModule
 import Foundation
 import OrderedCollections
-import DequeModule
-import AppKit
 import OSLog
 
 final class Editor: ObservableObject, Identifiable {
@@ -30,7 +30,7 @@ final class Editor: ObservableObject, Identifiable {
                 // Selected file was removed
                 if let selectedTab, change.contains(selectedTab) {
                     if let oldIndex = oldValue.firstIndex(of: selectedTab), oldIndex - 1 < tabs.count, !tabs.isEmpty {
-                        setSelectedTab(tabs[max(0, oldIndex-1)].file)
+                        setSelectedTab(tabs[max(0, oldIndex - 1)].file)
                     } else {
                         setSelectedTab(nil)
                     }
@@ -65,10 +65,10 @@ final class Editor: ObservableObject, Identifiable {
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: String(localized: "editor.title", defaultValue: "Editor", comment: "Default title for editor area"))
 
     init() {
-        self.tabs = []
-        self.temporaryTab = nil
-        self.parent = nil
-        self.workspace = nil
+        tabs = []
+        temporaryTab = nil
+        parent = nil
+        workspace = nil
     }
 
     init(
@@ -84,7 +84,7 @@ final class Editor: ObservableObject, Identifiable {
         if workspace != nil {
             files.forEach { openTab(file: $0) }
         } else {
-            self.tabs = OrderedSet(files.map { EditorInstance(workspace: workspace, file: $0) })
+            tabs = OrderedSet(files.map { EditorInstance(workspace: workspace, file: $0) })
         }
         self.selectedTab = selectedTab ?? (files.isEmpty ? nil : Tab(workspace: workspace, file: files.first!))
         self.temporaryTab = temporaryTab
@@ -97,7 +97,7 @@ final class Editor: ObservableObject, Identifiable {
         parent: SplitViewData? = nil,
         workspace: WorkspaceDocument? = nil
     ) {
-        self.tabs = []
+        tabs = []
         self.parent = parent
         self.workspace = workspace
         files.forEach { openTab(file: $0.file) }
@@ -122,10 +122,10 @@ final class Editor: ObservableObject, Identifiable {
             selectedTab = nil
             return
         }
-        guard let tab = self.tabs.first(where: { $0.file == file }) else {
+        guard let tab = tabs.first(where: { $0.file == file }) else {
             return
         }
-        self.selectedTab = tab
+        selectedTab = tab
         if tab.file.fileDocument == nil {
             do { // Ignore this error for simpler API usage.
                 try openFile(item: tab)
@@ -225,7 +225,7 @@ final class Editor: ObservableObject, Identifiable {
             addToHistory(newItem)
             tabs.remove(tab)
             tabs.insert(newItem, at: index)
-            self.selectedTab = newItem
+            selectedTab = newItem
             temporaryTab = newItem
         } else {
             // If we couldn't find the current temporary tab (invalid state) we should still do *something*
@@ -311,7 +311,7 @@ final class Editor: ObservableObject, Identifiable {
     ///       `contextInfo` must be `UnsafeMutablePointer<Bool>`.
     @objc
     func document(
-        _ document: NSDocument,
+        _: NSDocument,
         shouldClose: Bool,
         contextInfo: UnsafeMutableRawPointer
     ) {
