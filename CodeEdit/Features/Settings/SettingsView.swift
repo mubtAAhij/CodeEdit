@@ -151,9 +151,9 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationSplitView {
-            /// Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
+            // Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
             if #unavailable(macOS 26.0) {
-                List { }
+                List {}
                     .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.sidebar.search", defaultValue: "Search", comment: "Settings sidebar item title for Search page"))
                     .scrollDisabled(true)
                     .frame(height: 30)
@@ -214,15 +214,13 @@ struct SettingsView: View {
         .hideSidebarToggle()
         .navigationTitle(selectedPage.name.rawValue)
         .toolbar {
-            /// macOS 26 automatically adjusts the leading padding for navigationTitle
+            // macOS 26 automatically adjusts the leading padding for navigationTitle
             if #unavailable(macOS 26.0) {
                 ToolbarItem(placement: .navigation) {
                     if !model.backButtonVisible {
                         Rectangle()
                             .frame(width: 10)
                             .opacity(0)
-                    } else {
-                        EmptyView()
                     }
                 }
             }
@@ -263,7 +261,7 @@ class SettingsViewModel: ObservableObject {
     func removeKeyDownMonitor() {
         if let eventMonitor = keyDownEventMonitor {
             NSEvent.removeMonitor(eventMonitor)
-            self.keyDownEventMonitor = nil
+            keyDownEventMonitor = nil
         }
     }
 
