@@ -23,10 +23,10 @@ class GitClient {
         var description: String {
             switch self {
             case .outputError(let string): string
-            case .notGitRepository: "Not a git repository"
-            case .failedToDecodeURL: "Failed to decode URL"
-            case .noRemoteConfigured: "No remote configured"
-            case .statusParseEarlyEnd: "Invalid status, found end of string too early"
+            case .notGitRepository: String(localized: "source-control.git-client.error.not-a-git-repository", defaultValue: "Not a git repository", comment: "Error message when current directory is not a git repository")
+            case .failedToDecodeURL: String(localized: "source-control.git-client.error.failed-to-decode-url", defaultValue: "Failed to decode URL", comment: "Error message when a URL cannot be decoded in git client")
+            case .noRemoteConfigured: String(localized: "source-control.git-client.error.no-remote-configured", defaultValue: "No remote configured", comment: "Error message when repository has no configured remote")
+            case .statusParseEarlyEnd: String(localized: "source-control.git-client.error.invalid-status-end-of-string", defaultValue: "Invalid status, found end of string too early", comment: "Error message when parsing git status encounters unexpected end of string")
             case let .invalidStatus(char): "Invalid status received: \(char)"
             case let .statusInvalidChangeType(char): "Status invalid change type: \(char)"
             }
