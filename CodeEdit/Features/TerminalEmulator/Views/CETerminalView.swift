@@ -5,10 +5,10 @@
 //  Created by Khan Winter on 7/11/25.
 //
 
-import SwiftTerm
 import AppKit
+import SwiftTerm
 
-/// # Please see dev note in ``CELocalShellTerminalView``!
+// # Please see dev note in ``CELocalShellTerminalView``!
 
 class CETerminalView: TerminalView {
     override func setFrameSize(_ newSize: NSSize) {
@@ -29,7 +29,7 @@ class CETerminalView: TerminalView {
     }
 
     @objc
-    override open func copy(_ sender: Any) {
+    override open func copy(_: Any) {
         let range = selectedPositions()
         let text = terminal.getText(start: range.start, end: range.end)
         let pasteboard = NSPasteboard.general
@@ -62,8 +62,6 @@ class CETerminalView: TerminalView {
 
     override open func accessibilitySelectedText() -> String? {
         let range = selectedPositions()
-        let text = terminal.getText(start: range.start, end: range.end)
-        return text
+        return terminal.getText(start: range.start, end: range.end)
     }
-
 }
