@@ -35,12 +35,26 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Themes` folder
     internal var themesURL: URL {
-        baseURL.appending(path: "Themes", directoryHint: .isDirectory)
+        baseURL.appending(
+            path: String(
+                localized: "settings.theme-model.folder-name.themes",
+                defaultValue: "Themes",
+                comment: "Themes directory name under CodeEdit application support"
+            ),
+            directoryHint: .isDirectory
+        )
     }
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(
+            path: String(
+                localized: "settings.theme-model.folder-name.extensions",
+                defaultValue: "Extensions",
+                comment: "Extensions directory name under CodeEdit application support"
+            ),
+            directoryHint: .isDirectory
+        )
     }
 
     /// The URL of the `settings.json` file
@@ -57,7 +71,11 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? "Broken"
+                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? String(
+                        localized: "settings.theme-model.theme-name.broken.light-fallback",
+                        defaultValue: "Broken",
+                        comment: "Fallback light theme name when selected theme is missing"
+                    )
             }
         }
     }
@@ -68,7 +86,11 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? "Broken"
+                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? String(
+                        localized: "settings.theme-model.theme-name.broken.dark-fallback",
+                        defaultValue: "Broken",
+                        comment: "Fallback dark theme name when selected theme is missing"
+                    )
             }
         }
     }
@@ -136,6 +158,23 @@ final class ThemeModel: ObservableObject {
     enum ThemeSettingsAppearances: String, CaseIterable {
         case light = "Light Appearance"
         case dark = "Dark Appearance"
+
+        var title: String {
+            switch self {
+            case .light:
+                String(
+                    localized: "settings.theme-model.appearance.light",
+                    defaultValue: "Light Appearance",
+                    comment: "Theme appearance option for light mode"
+                )
+            case .dark:
+                String(
+                    localized: "settings.theme-model.appearance.dark",
+                    defaultValue: "Dark Appearance",
+                    comment: "Theme appearance option for dark mode"
+                )
+            }
+        }
     }
 
     func getThemeActive(_ theme: Theme) -> Bool {
@@ -164,7 +203,11 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(
+            localized: "settings.theme-model.export.save-panel.prompt",
+            defaultValue: "Export",
+            comment: "Save panel confirmation button title when exporting a theme"
+        )
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +224,11 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(
+                localized: "settings.theme-model.export.open-panel.prompt",
+                defaultValue: "Export",
+                comment: "Open panel confirmation button title when exporting all custom themes"
+            )
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false
