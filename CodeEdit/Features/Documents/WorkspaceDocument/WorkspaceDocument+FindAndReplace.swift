@@ -5,8 +5,8 @@
 //  Created by Tommy Ludwig on 02.01.24.
 //
 
-import Foundation
 import AppKit
+import Foundation
 
 extension WorkspaceDocument.SearchState {
     /// Performs a search and replace operation in a collection of files based on the provided query.
@@ -23,7 +23,7 @@ extension WorkspaceDocument.SearchState {
         let searchQuery = getSearchTerm(query)
         guard let indexer = indexer else { return }
 
-        var errorCount: Int = 0, updatedFilesCount: Int = 0
+        var errorCount = 0, updatedFilesCount = 0
         let asyncController = SearchIndexer.AsyncManager(index: indexer)
 
         let searchStream = await asyncController.search(query: searchQuery, 20)
@@ -57,23 +57,23 @@ extension WorkspaceDocument.SearchState {
         }
 
         // Display the replacing results to the user
-        if updatedFilesCount == 0 && errorCount == 0 {
+        if updatedFilesCount == 0, errorCount == 0 {
             // No results where found
             await setStatus(.failed(errorMessage: "No files in the workspace matched: \(query)"))
-        } else if updatedFilesCount == 0 && errorCount > 0 {
+        } else if updatedFilesCount == 0, errorCount > 0 {
             // All files failed to updated
             await setStatus(
                 .failed(
                     errorMessage: "All files failed to update. (\(errorCount)) " +
-                    "errors occurred. Check logs for more information"
+                        "errors occurred. Check logs for more information"
                 )
             )
-        } else if updatedFilesCount > 0 && errorCount > 0 {
+        } else if updatedFilesCount > 0, errorCount > 0 {
             // Some files updated successfully, some failed
             await setStatus(
                 .failed(
                     errorMessage: "\(updatedFilesCount) successfully updated, " +
-                    "\(errorCount) errors occurred. Please check logs for more information."
+                        "\(errorCount) errors occurred. Please check logs for more information."
                 )
             )
         } else {
@@ -101,7 +101,7 @@ extension WorkspaceDocument.SearchState {
         let updatedContent = fileContent.replacingOccurrences(
             of: query,
             with: replacingTerm,
-            options: self.replaceOptions
+            options: replaceOptions
         )
 
         try updatedContent.write(to: fileURL, atomically: true, encoding: .utf8)
