@@ -48,15 +48,14 @@ struct SourceControlSettingsView: View {
             Label {
                 Text(String(localized: "settings.source-control.title", defaultValue: "Source Control", comment: "Title for source control settings page"))
                 Text("""
-                 Back up your files, collaborate with others, and tag your releases. \
-                 [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)
-                 """)
+                Back up your files, collaborate with others, and tag your releases. \
+                [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)
+                """)
                 .font(.callout)
-             } icon: {
+            } icon: {
                 FeatureIcon(symbol: "vault", color: Color(.systemBlue), size: 26)
             }
         }
         .controlSize(.large)
     }
-
 }
