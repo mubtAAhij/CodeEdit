@@ -14,7 +14,7 @@ class CETask: ObservableObject, Identifiable, Hashable, Codable {
     @Published var target: String = ""
     @Published var workingDirectory: String = ""
     @Published var command: String = ""
-    @Published var environmentVariables: [EnvironmentVariable]  = []
+    @Published var environmentVariables: [EnvironmentVariable] = []
 
     init(
         name: String = "",
@@ -36,7 +36,7 @@ class CETask: ObservableObject, Identifiable, Hashable, Codable {
 
     var isInvalid: Bool {
         name.isEmpty ||
-        command.isEmpty
+            command.isEmpty
     }
 
     /// Ensures that the shell navigates to the correct folder, and then executes the specified command.
@@ -96,7 +96,7 @@ class CETask: ObservableObject, Identifiable, Hashable, Codable {
         if !name.isEmpty {
             try container.encode(name, forKey: .name)
         }
-        if !target.isEmpty && target != String(localized: "workspace-settings.task.run-destination.my-mac", defaultValue: "My Mac", comment: "Default run destination for tasks") {
+        if !target.isEmpty, target != String(localized: "workspace-settings.task.run-destination.my-mac", defaultValue: "My Mac", comment: "Default run destination for tasks") {
             try container.encode(target, forKey: .target)
         }
 
@@ -122,11 +122,11 @@ class CETask: ObservableObject, Identifiable, Hashable, Codable {
 extension CETask {
     static func == (lhs: CETask, rhs: CETask) -> Bool {
         return lhs.id == rhs.id &&
-        lhs.name == rhs.name &&
-        lhs.target == rhs.target &&
-        lhs.workingDirectory == rhs.workingDirectory &&
-        lhs.command == rhs.command &&
-        lhs.environmentVariables == rhs.environmentVariables
+            lhs.name == rhs.name &&
+            lhs.target == rhs.target &&
+            lhs.workingDirectory == rhs.workingDirectory &&
+            lhs.command == rhs.command &&
+            lhs.environmentVariables == rhs.environmentVariables
     }
 
     func hash(into hasher: inout Hasher) {
