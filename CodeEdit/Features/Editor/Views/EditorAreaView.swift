@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 16/02/2023.
 //
 
-import SwiftUI
 import CodeEditTextView
+import SwiftUI
 import UniformTypeIdentifiers
 
 struct EditorAreaView: View {
@@ -35,19 +35,19 @@ struct EditorAreaView: View {
 
     init(editor: Editor, focus: FocusState<Editor?>.Binding) {
         self.editor = editor
-        self._focus = focus
+        _focus = focus
         if let file = editor.selectedTab?.file.fileDocument {
-            self.codeFile = { [weak file] in file }
+            codeFile = { [weak file] in file }
         }
     }
 
     var body: some View {
         var shouldShowTabBar: Bool {
             return navigationStyle == .openInTabs
-            || editorManager.flattenedEditors.contains { editor in
-                (editor.temporaryTab == nil && !editor.tabs.isEmpty)
-                || (editor.temporaryTab != nil && editor.tabs.count > 1)
-            }
+                || editorManager.flattenedEditors.contains { editor in
+                    (editor.temporaryTab == nil && !editor.tabs.isEmpty)
+                        || (editor.temporaryTab != nil && editor.tabs.count > 1)
+                }
         }
 
         var editorInsetAmount: Double {
@@ -204,7 +204,8 @@ struct EditorAreaView: View {
         for provider in providers {
             provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, _ in
                 guard let data = item as? Data,
-                      let url = URL(dataRepresentation: data, relativeTo: nil) else {
+                      let url = URL(dataRepresentation: data, relativeTo: nil)
+                else {
                     return
                 }
 
