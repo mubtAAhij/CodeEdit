@@ -78,7 +78,7 @@ extension RegistryManager {
             case let .writeFailed(error):
                 logger.error("Failed to write files to disk: \(error.localizedDescription)")
             case .failedToSaveRegistryCache:
-                logger.error("Failed to read registry from cache after download and write.")
+                logger.error(String(localized: "lsp.registry.handle-file.failed-read-cache-after-write", defaultValue: "Failed to read registry from cache after download and write.", comment: "Error message when reading registry cache fails after successful download/write"))
             }
         } else {
             logger.error("Unexpected registry error: \(error.localizedDescription)")
@@ -93,7 +93,7 @@ extension RegistryManager {
 
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw RegistryManagerError.downloadFailed(
-                    url: url, error: NSError(domain: "Invalid response type", code: -1)
+                    url: url, error: NSError(domain: String(localized: "lsp.registry.handle-file.invalid-response-type", defaultValue: "Invalid response type", comment: "Error message when registry response cannot be decoded to expected type"), code: -1)
                 )
             }
             guard (200...299).contains(httpResponse.statusCode) else {
