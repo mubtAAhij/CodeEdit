@@ -22,7 +22,7 @@ struct OpenQuicklyView: View {
         onClose: @escaping () -> Void,
         openFile: @escaping (CEWorkspaceFile) -> Void
     ) {
-        self.openQuicklyViewModel = state
+        openQuicklyViewModel = state
         self.onClose = onClose
         self.openFile = openFile
     }
