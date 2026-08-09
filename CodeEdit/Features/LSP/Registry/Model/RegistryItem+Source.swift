@@ -29,7 +29,8 @@ extension RegistryItem {
                     } else if let simpleFile = try? container.decode([String: String].self),
                               simpleFile.count == 1,
                               simpleFile.keys.contains("file"),
-                              let file = simpleFile["file"] {
+                              let file = simpleFile["file"]
+                    {
                         self = .simpleFile(file)
                         return
                     }
@@ -40,11 +41,11 @@ extension RegistryItem {
             func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
-                case .single(let value):
+                case let .single(value):
                     try container.encode(value)
-                case .multiple(let values):
+                case let .multiple(values):
                     try container.encode(values)
-                case .simpleFile(let file):
+                case let .simpleFile(file):
                     try container.encode(["file": file])
                 case .none:
                     try container.encodeNil()
@@ -53,17 +54,17 @@ extension RegistryItem {
 
             func getDarwinFileName() -> String? {
                 switch self {
-                case .single(let asset):
+                case let .single(asset):
                     if asset.target.isDarwinTarget() {
                         return asset.file
                     }
 
-                case .multiple(let assets):
+                case let .multiple(assets):
                     for asset in assets where asset.target.isDarwinTarget() {
                         return asset.file
                     }
 
-                case .simpleFile(let fileName):
+                case let .simpleFile(fileName):
                     return fileName
 
                 case .none:
@@ -94,9 +95,9 @@ extension RegistryItem {
             func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
-                case .single(let value):
+                case let .single(value):
                     try container.encode(value)
-                case .multiple(let values):
+                case let .multiple(values):
                     try container.encode(values)
                 case .none:
                     try container.encodeNil()
@@ -105,9 +106,9 @@ extension RegistryItem {
 
             func getUnixBuildCommand() -> String? {
                 switch self {
-                case .single(let build):
+                case let .single(build):
                     return build.run
-                case .multiple(let builds):
+                case let .multiple(builds):
                     for build in builds {
                         guard let target = build.target else { continue }
                         if target.isDarwinTarget() {
@@ -135,9 +136,9 @@ extension RegistryItem {
 
             init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                self.target = try container.decode(Target.self, forKey: .target)
-                self.file = try container.decodeIfPresent(String.self, forKey: .file)
-                self.bin = try container.decodeIfPresent(BinContainer.self, forKey: .bin)
+                target = try container.decode(Target.self, forKey: .target)
+                file = try container.decodeIfPresent(String.self, forKey: .file)
+                bin = try container.decodeIfPresent(BinContainer.self, forKey: .bin)
             }
         }
 
@@ -165,31 +166,31 @@ extension RegistryItem {
             func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
-                case .single(let value):
+                case let .single(value):
                     try container.encode(value)
-                case .multiple(let values):
+                case let .multiple(values):
                     try container.encode(values)
                 }
             }
 
             func isDarwinTarget() -> Bool {
                 switch self {
-                case .single(let value):
-#if arch(arm64)
-                    return value == "darwin" || value == "darwin_arm64" || value == "unix"
-#else
-                    return value == "darwin" || value == "darwin_x64" || value == "unix"
-#endif
-                case .multiple(let values):
-#if arch(arm64)
-                    return values.contains("darwin") ||
-                    values.contains("darwin_arm64") ||
-                    values.contains("unix")
-#else
-                    return values.contains("darwin") ||
-                    values.contains("darwin_x64") ||
-                    values.contains("unix")
-#endif
+                case let .single(value):
+                    #if arch(arm64)
+                        return value == "darwin" || value == "darwin_arm64" || value == "unix"
+                    #else
+                        return value == "darwin" || value == "darwin_x64" || value == "unix"
+                    #endif
+                case let .multiple(values):
+                    #if arch(arm64)
+                        return values.contains("darwin") ||
+                            values.contains("darwin_arm64") ||
+                            values.contains("unix")
+                    #else
+                        return values.contains("darwin") ||
+                            values.contains("darwin_x64") ||
+                            values.contains("unix")
+                    #endif
                 }
             }
         }
@@ -218,9 +219,9 @@ extension RegistryItem {
             func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
-                case .single(let value):
+                case let .single(value):
                     try container.encode(value)
-                case .multiple(let values):
+                case let .multiple(values):
                     try container.encode(values)
                 }
             }
