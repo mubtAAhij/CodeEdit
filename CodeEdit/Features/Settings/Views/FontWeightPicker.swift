@@ -20,7 +20,7 @@ struct FontWeightPicker: View {
         .semibold,
         .bold,
         .heavy,
-        .black
+        .black,
     ]
 
     var weightNames: [NSFont.Weight: String] = [
@@ -32,7 +32,7 @@ struct FontWeightPicker: View {
         .semibold: String(localized: "font_weight.semi_bold", defaultValue: "Semi Bold", comment: "Font weight option label for semi bold weight"),
         .bold: String(localized: "font_weight.bold", defaultValue: "Bold", comment: "Font weight option label for bold weight"),
         .heavy: String(localized: "font_weight.heavy", defaultValue: "Heavy", comment: "Font weight option label for heavy weight"),
-        .black: String(localized: "font_weight.black", defaultValue: "Black", comment: "Font weight option label for black weight")
+        .black: String(localized: "font_weight.black", defaultValue: "Black", comment: "Font weight option label for black weight"),
     ]
 
     var body: some View {
