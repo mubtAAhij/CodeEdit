@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StatusBarLineEndSelector: View {
-
     var body: some View {
         Menu {
             // LF, CRLF
