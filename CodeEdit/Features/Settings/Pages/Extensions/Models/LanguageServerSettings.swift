@@ -9,7 +9,6 @@ import Foundation
 
 extension SettingsData {
     struct LanguageServerSettings: Codable, Hashable, SearchableSettingsPage {
-
         /// The search keys
         var searchKeys: [String] {
             [
@@ -28,13 +27,13 @@ extension SettingsData {
 
         /// Default initializer
         init() {
-            self.installedLanguageServers = [:]
+            installedLanguageServers = [:]
         }
 
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.installedLanguageServers = try container.decodeIfPresent(
+            installedLanguageServers = try container.decodeIfPresent(
                 [String: InstalledLanguageServer].self,
                 forKey: .installedLanguageServers
             ) ?? [:]
