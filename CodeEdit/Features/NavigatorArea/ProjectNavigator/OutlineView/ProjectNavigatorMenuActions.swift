@@ -11,14 +11,14 @@ import SwiftUI
 extension ProjectNavigatorMenu {
     /// - Returns: the currently selected `CEWorkspaceFile` items in the outline view.
     func selectedItems() -> Set<CEWorkspaceFile> {
-        /// Selected items...
+        // Selected items...
         let selectedItems = Set(sender.outlineView.selectedRowIndexes.compactMap {
             sender.outlineView.item(atRow: $0) as? CEWorkspaceFile
         })
 
-        /// Item that the user brought up the menu with...
+        // Item that the user brought up the menu with...
         if let menuItem = sender.outlineView.item(atRow: sender.outlineView.clickedRow) as? CEWorkspaceFile {
-            /// If the item is not in the set, just like in Xcode, only modify that item.
+            // If the item is not in the set, just like in Xcode, only modify that item.
             if !selectedItems.contains(menuItem) {
                 return Set([menuItem])
             }
@@ -49,24 +49,24 @@ extension ProjectNavigatorMenu {
     /// Action that opens the item, identical to clicking it.
     @objc
     func openInTab() {
-        /// Sort the selected items first by their parent and then by name.
-        let sortedItems = selectedItems().sorted { (item1, item2) -> Bool in
-            /// Get the parents of both items.
+        // Sort the selected items first by their parent and then by name.
+        let sortedItems = selectedItems().sorted { item1, item2 -> Bool in
+            // Get the parents of both items.
             let parent1 = sender.outlineView.parent(forItem: item1) as? CEWorkspaceFile
             let parent2 = sender.outlineView.parent(forItem: item2) as? CEWorkspaceFile
 
-            /// Compare by parent.
+            // Compare by parent.
             if parent1 != parent2 {
-                /// If the parents are different, use their row position in the outline view.
+                // If the parents are different, use their row position in the outline view.
                 return sender.outlineView.row(forItem: parent1) < sender.outlineView.row(forItem: parent2)
             } else {
-                /// If both items have the same parent, sort them by name.
+                // If both items have the same parent, sort them by name.
                 return item1.name < item2.name
             }
         }
 
-        /// Open the items in order.
-        sortedItems.forEach { item in
+        // Open the items in order.
+        for item in sortedItems {
             workspace?.editorManager?.openTab(item: item)
         }
     }
@@ -74,7 +74,7 @@ extension ProjectNavigatorMenu {
     /// Action that opens in an external editor
     @objc
     func openWithExternalEditor() {
-        /// Using  `Process` to open all of the selected files at the same time.
+        // Using  `Process` to open all of the selected files at the same time.
         let process = Process()
         process.launchPath = "/usr/bin/open"
         process.arguments = selectedItems().map { $0.url.absoluteString }
@@ -105,10 +105,11 @@ extension ProjectNavigatorMenu {
         let row = sender.outlineView.row(forItem: newFile)
         guard row > 0,
               let cell = sender.outlineView.view(
-                atColumn: 0,
-                row: row,
-                makeIfNecessary: false
-              ) as? ProjectNavigatorTableViewCell else {
+                  atColumn: 0,
+                  row: row,
+                  makeIfNecessary: false
+              ) as? ProjectNavigatorTableViewCell
+        else {
             return
         }
         sender.outlineView.window?.makeFirstResponder(cell.textField)
@@ -127,7 +128,8 @@ extension ProjectNavigatorMenu {
                     fileName: String(localized: "project-navigator.menu-actions.new-folder.default-name", defaultValue: "untitled", comment: "Default placeholder name for a newly created folder in project navigator"),
                     toFile: item,
                     contents: clipBoardContent
-                ) {
+                )
+            {
                 workspace?.listenerModel.highlightedFileItem = newFile
                 workspace?.editorManager?.openTab(item: newFile)
                 renameFile()
@@ -163,7 +165,7 @@ extension ProjectNavigatorMenu {
         let selectedItems = selectedItems()
         guard let parent = selectedItems.first?.parent else { return }
 
-        /// Get 'New Folder' name.
+        // Get 'New Folder' name.
         var newFolderURL = parent.url.appendingPathComponent("New Folder With Items", conformingTo: .folder)
         var folderNumber = 0
         while workspaceFileManager.fileManager.fileExists(atPath: newFolderURL.path) {
@@ -220,7 +222,7 @@ extension ProjectNavigatorMenu {
             }
 
             withAnimation {
-                selectedItems.forEach { item in
+                for item in selectedItems {
                     sender.editor?.closeTab(file: item)
                 }
             }
@@ -270,8 +272,9 @@ extension ProjectNavigatorMenu {
 
             // Find common prefix length
             var prefixCount = 0
-            while prefixCount < min(destinationComponents.count, baseComponents.count)
-                    && destinationComponents[prefixCount] == baseComponents[prefixCount] {
+            while prefixCount < min(destinationComponents.count, baseComponents.count),
+                  destinationComponents[prefixCount] == baseComponents[prefixCount]
+            {
                 prefixCount += 1
             }
             // Build the relative path
