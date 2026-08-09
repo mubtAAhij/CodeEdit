@@ -32,7 +32,7 @@ struct SourceControlNewBranchView: View {
                         Text(String(localized: "source-control.new-branch.title", defaultValue: "Create a new branch", comment: "Title for create new branch sheet"))
                         Text(
                             "Create a branch from the current branch and switch to it. " +
-                            "All uncommited changes will be preserved on the new branch. "
+                                "All uncommited changes will be preserved on the new branch. "
                         )
                     }
                 }
