@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 13/03/2023.
 //
 
-import SwiftUI
 import Sparkle
+import SwiftUI
 
 struct MainCommands: Commands {
     @Environment(\.openWindow)
