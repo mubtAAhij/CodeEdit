@@ -48,7 +48,7 @@ struct TaskDropDownView: View {
     }
 
     @available(macOS 26, *)
-    @ViewBuilder private var tahoe: some View {
+    private var tahoe: some View {
         HStack(spacing: 4) {
             label
             chevronIcon
@@ -62,7 +62,7 @@ struct TaskDropDownView: View {
         }
     }
 
-    @ViewBuilder private var seqouia: some View {
+    private var seqouia: some View {
         label
             .opacity(activeState == .inactive ? 0.4 : 1.0)
             .padding(.trailing, 11.5)
@@ -71,7 +71,7 @@ struct TaskDropDownView: View {
             .background(backgroundColor)
     }
 
-    @ViewBuilder private var label: some View {
+    private var label: some View {
         Group {
             if let selectedTask = taskManager.selectedTask {
                 if let selectedActiveTask = taskManager.activeTasks[selectedTask.id] {
@@ -89,7 +89,7 @@ struct TaskDropDownView: View {
         .font(.subheadline)
     }
 
-    @ViewBuilder private var backgroundColor: some View {
+    private var backgroundColor: some View {
         Color(nsColor: colorScheme == .dark ? .white : .black)
             .opacity(isHoveringTasks || isTaskPopOverPresented ? 0.05 : 0)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
@@ -103,7 +103,7 @@ struct TaskDropDownView: View {
             )
     }
 
-    @ViewBuilder private var chevronIcon: some View {
+    private var chevronIcon: some View {
         Image(systemName: "chevron.down")
             .font(.system(size: 8, weight: .bold, design: .default))
             .padding(.top, 0.5)
