@@ -18,9 +18,9 @@ struct InternalDevelopmentNotificationsView: View {
     @State private var delay: Bool = false
     @State private var sticky: Bool = false
     @State private var selectedIconType: IconType = .symbol
-    @State private var actionButtonText: String = String(localized: "inspector.internal-development.notifications.icon-type.view", defaultValue: "View", comment: "Picker option for custom view notification icon type.")
-    @State private var notificationTitle: String = String(localized: "inspector.internal-development.notifications.test.title", defaultValue: "Test Notification", comment: "Title used for internal test notification.")
-    @State private var notificationDescription: String = String(localized: "inspector.internal-development.notifications.test.message", defaultValue: "This is a test notification.", comment: "Body text used for internal test notification.")
+    @State private var actionButtonText: String = .init(localized: "inspector.internal-development.notifications.icon-type.view", defaultValue: "View", comment: "Picker option for custom view notification icon type.")
+    @State private var notificationTitle: String = .init(localized: "inspector.internal-development.notifications.test.title", defaultValue: "Test Notification", comment: "Title used for internal test notification.")
+    @State private var notificationDescription: String = .init(localized: "inspector.internal-development.notifications.test.message", defaultValue: "This is a test notification.", comment: "Body text used for internal test notification.")
 
     // Icon selection states
     @State private var selectedSymbol: String?
@@ -35,23 +35,23 @@ struct InternalDevelopmentNotificationsView: View {
         "bubble.left.fill", "envelope.fill", "phone.fill", "megaphone.fill",
         "clock.fill", "calendar", "flag.fill", "bookmark.fill", "bolt.fill",
         "shield.lefthalf.fill", "gift.fill", "heart.fill", "star.fill",
-        "curlybraces"
+        "curlybraces",
     ]
 
     private let availableEmojis = [
         "🔔", "🚨", "⚠️", "👋", "😍", "😎", "😘", "😜", "😝", "😀", "😁",
-        "😂", "🤣", "😃", "😄", "😅", "😆", "😇", "😉", "😊", "😋", "😌"
+        "😂", "🤣", "😃", "😄", "😅", "😆", "😇", "😉", "😊", "😋", "😌",
     ]
 
     private let availableImages = [
-        "GitHubIcon", "BitBucketIcon", "GitLabIcon"
+        "GitHubIcon", "BitBucketIcon", "GitLabIcon",
     ]
 
     private let availableColors: [(String, Color)] = [
         ("Red", .red), ("Orange", .orange), ("Yellow", .yellow),
         ("Green", .green), ("Mint", .mint), ("Cyan", .cyan),
         ("Teal", .teal), ("Blue", .blue), ("Indigo", .indigo),
-        ("Purple", .purple), ("Pink", .pink), ("Gray", .gray)
+        ("Purple", .purple), ("Pink", .pink), ("Gray", .gray),
     ]
 
     var body: some View {
@@ -119,7 +119,7 @@ struct InternalDevelopmentNotificationsView: View {
 
             TextField(String(localized: "inspector.internal-development.notifications.fields.title", defaultValue: "Title", comment: "Label for notification title input field."), text: $notificationTitle)
             TextField(String(localized: "inspector.internal-development.notifications.fields.description", defaultValue: "Description", comment: "Label for notification description input field."), text: $notificationDescription, axis: .vertical)
-                .lineLimit(1...5)
+                .lineLimit(1 ... 5)
             TextField(String(localized: "inspector.internal-development.notifications.fields.action-button", defaultValue: "Action Button", comment: "Label for notification action button input field."), text: $actionButtonText)
 
             Button(String(localized: "inspector.internal-development.notifications.actions.add-notification", defaultValue: "Add Notification", comment: "Button title to create a notification from internal development inspector.")) {
