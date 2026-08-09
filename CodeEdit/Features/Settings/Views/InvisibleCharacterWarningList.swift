@@ -25,7 +25,8 @@ struct InvisibleCharacterWarningList: View {
                 set: { dict in
                     items = dict.reduce(into: [UInt16: String]()) { dict, keyVal in
                         guard let intFromHex = UInt(hexString: String(keyVal.key.trimmingPrefix("U+"))),
-                              intFromHex < UInt16.max else {
+                              intFromHex < UInt16.max
+                        else {
                             return
                         }
                         let charCode = UInt16(intFromHex)
