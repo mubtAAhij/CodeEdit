@@ -9,7 +9,6 @@ import SwiftUI
 import WelcomeWindow
 
 struct NewFileButton: View {
-
     var dismissWindow: () -> Void
 
     var body: some View {
