@@ -5,9 +5,9 @@
 //  Created by Lukas Pistrol on 22.03.22.
 //
 
-import SwiftUI
-import Combine
 import CodeEditSourceEditor
+import Combine
+import SwiftUI
 
 struct StatusBarCursorPositionLabel: View {
     @EnvironmentObject private var utilityAreaViewModel: UtilityAreaViewModel
