@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 24/03/2023.
 //
 
-import SwiftUI
 import CodeEditKit
+import SwiftUI
 
 struct ExtensionCommands: Commands {
     @FocusedObject var manager: ExtensionManager?
