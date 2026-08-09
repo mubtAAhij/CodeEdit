@@ -52,7 +52,7 @@ struct LanguageServersView: View {
                     }
                 } header: {
                     Label(
-                        "Warning: Language server installation is experimental. Use at your own risk.",
+                        String(localized: "settings.extensions.language-servers.experimental-warning", defaultValue: "Warning: Language server installation is experimental. Use at your own risk.", comment: "Warning text about experimental language server installation"),
                         systemImage: "exclamationmark.triangle.fill"
                     )
                 }
