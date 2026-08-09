@@ -1,5 +1,5 @@
 //
-//  CommandPaletteView.swift
+//  QuickActionsView.swift
 //  CodeEdit
 //
 //  Created by Alex Sinelnikov on 24.05.2022.
@@ -9,7 +9,6 @@ import SwiftUI
 
 /// Quick actions view
 struct QuickActionsView: View {
-
     @Environment(\.colorScheme)
     private var colorScheme: ColorScheme
 
