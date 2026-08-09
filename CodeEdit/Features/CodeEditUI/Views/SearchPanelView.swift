@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & Hashable>: View {
-    @ViewBuilder let rowViewBuilder: ((Option) -> RowView)
+    @ViewBuilder let rowViewBuilder: (Option) -> RowView
     @ViewBuilder let previewViewBuilder: ((Option) -> PreviewView)?
 
     @Binding var options: [Option]
@@ -21,8 +21,8 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
     let title: String
     let image: Image
     let hasPreview: Bool
-    let onRowClick: ((Option) -> Void)
-    let onClose: (() -> Void)
+    let onRowClick: (Option) -> Void
+    let onClose: () -> Void
     let alwaysShowOptions: Bool
     let optionRowHeight: CGFloat
 
@@ -40,13 +40,13 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
     ) {
         self.title = title
         self.image = image
-        self._options = options
-        self._text = text
-        self.rowViewBuilder = content
-        self.previewViewBuilder = preview
+        _options = options
+        _text = text
+        rowViewBuilder = content
+        previewViewBuilder = preview
         self.onRowClick = onRowClick
         self.onClose = onClose
-        self.hasPreview = preview != nil
+        hasPreview = preview != nil
         self.alwaysShowOptions = alwaysShowOptions
         self.optionRowHeight = optionRowHeight
     }
@@ -155,7 +155,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                 return
             }
             if let selection, let index = options.firstIndex(of: selection) {
-                self.selection = options[index-1]
+                self.selection = options[index - 1]
             } else {
                 selection = options.first
             }
@@ -168,8 +168,7 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                 return
             }
             if let selection, let index = options.firstIndex(of: selection) {
-
-                self.selection = options[index+1]
+                self.selection = options[index + 1]
             } else {
                 selection = options.first
             }
