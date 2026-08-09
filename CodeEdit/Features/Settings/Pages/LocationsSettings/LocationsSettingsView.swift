@@ -1,5 +1,5 @@
 //
-//  LocationSettingsView.swift
+//  LocationsSettingsView.swift
 //  CodeEdit
 //
 //  Created by Raymond Vleeshouwer on 02/04/23.
@@ -22,7 +22,7 @@ struct LocationsSettingsView: View {
 }
 
 private extension LocationsSettingsView {
-    @ViewBuilder private var applicationSupportLocation: some View {
+    private var applicationSupportLocation: some View {
         ExternalLink(destination: Settings.shared.baseURL) {
             Text(String(localized: "settings.locations.application-support", defaultValue: "Application Support", comment: "Section title for application support locations"))
             Text(Settings.shared.baseURL.path)
