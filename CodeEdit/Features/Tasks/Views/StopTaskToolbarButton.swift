@@ -5,8 +5,8 @@
 //  Created by Austin Condiff on 8/3/24.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct StopTaskToolbarButton: View {
     @Environment(\.controlActiveState)
@@ -23,19 +23,19 @@ struct StopTaskToolbarButton: View {
     var body: some View {
         HStack {
             if let currentSelectedStatus, currentSelectedStatus == .running {
-                    Button {
-                        taskManager.terminateActiveTask()
-                    } label: {
-                        Label(String(localized: "tasks.stop-button.title", defaultValue: "Stop", comment: "Stop task button title"), systemImage: "stop.fill")
-                            .labelStyle(.iconOnly)
-                            .opacity(activeState == .inactive ? 0.5 : 1.0)
-                            .font(.system(size: 15, weight: .regular))
-                            .help(String(localized: "tasks.stop-button.help", defaultValue: "Stop selected task", comment: "Help text for stop selected task button"))
-                            .frame(width: 28)
-                            .offset(y: 1.5)
-                    }
-                    .frame(height: 22)
-                    .transition(.opacity.combined(with: .move(edge: .trailing)))
+                Button {
+                    taskManager.terminateActiveTask()
+                } label: {
+                    Label(String(localized: "tasks.stop-button.title", defaultValue: "Stop", comment: "Stop task button title"), systemImage: "stop.fill")
+                        .labelStyle(.iconOnly)
+                        .opacity(activeState == .inactive ? 0.5 : 1.0)
+                        .font(.system(size: 15, weight: .regular))
+                        .help(String(localized: "tasks.stop-button.help", defaultValue: "Stop selected task", comment: "Help text for stop selected task button"))
+                        .frame(width: 28)
+                        .offset(y: 1.5)
+                }
+                .frame(height: 22)
+                .transition(.opacity.combined(with: .move(edge: .trailing)))
             }
         }
         .frame(width: 38, height: 22)
