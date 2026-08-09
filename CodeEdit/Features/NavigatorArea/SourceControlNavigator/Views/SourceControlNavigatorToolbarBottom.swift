@@ -22,13 +22,13 @@ struct SourceControlNavigatorToolbarBottom: View {
                 leadingAccessories: {
                     Image(
                         systemName: text.isEmpty
-                        ? "line.3.horizontal.decrease.circle"
-                        : "line.3.horizontal.decrease.circle.fill"
+                            ? "line.3.horizontal.decrease.circle"
+                            : "line.3.horizontal.decrease.circle.fill"
                     )
                     .foregroundStyle(
                         text.isEmpty
-                        ? Color(nsColor: .secondaryLabelColor)
-                        : Color(nsColor: .controlAccentColor)
+                            ? Color(nsColor: .secondaryLabelColor)
+                            : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
                     .help(String(localized: "source-control.navigator.toolbar.filter-changes-navigator", defaultValue: "Filter Changes Navigator", comment: "Accessibility label for filtering changes navigator results"))
@@ -62,11 +62,11 @@ struct SourceControlNavigatorToolbarBottom: View {
                 }
             }
         } label: {}
-        .background {
-            Image(systemName: "ellipsis.circle")
-        }
-        .menuStyle(.borderlessButton)
-        .menuIndicator(.hidden)
-        .frame(maxWidth: 18, alignment: .center)
+            .background {
+                Image(systemName: "ellipsis.circle")
+            }
+            .menuStyle(.borderlessButton)
+            .menuIndicator(.hidden)
+            .frame(maxWidth: 18, alignment: .center)
     }
 }
