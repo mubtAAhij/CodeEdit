@@ -1,12 +1,12 @@
 //
-//  OutlintViewController+OutlineTableViewCellDelegate.swift
+//  ProjectNavigatorViewController+OutlineTableViewCellDelegate.swift
 //  CodeEdit
 //
 //  Created by Ziyuan Zhao on 2023/2/5.
 //
 
-import Foundation
 import AppKit
+import Foundation
 
 // MARK: - OutlineTableViewCellDelegate
 
@@ -14,7 +14,8 @@ extension ProjectNavigatorViewController: OutlineTableViewCellDelegate {
     func moveFile(file: CEWorkspaceFile, to destination: URL) {
         do {
             guard let newFile = try workspace?.workspaceFileManager?.move(file: file, to: destination),
-                  !newFile.isFolder else {
+                  !newFile.isFolder
+            else {
                 return
             }
             outlineView.reloadItem(file.parent, reloadChildren: true)
