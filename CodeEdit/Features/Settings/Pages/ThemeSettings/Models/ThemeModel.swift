@@ -34,7 +34,7 @@ final class ThemeModel: ObservableObject {
     }
 
     /// The URL of the `Themes` folder
-    internal var themesURL: URL {
+    var themesURL: URL {
         baseURL.appending(
             path: String(
                 localized: "settings.theme-model.folder-name.themes",
@@ -46,7 +46,7 @@ final class ThemeModel: ObservableObject {
     }
 
     /// The URL of the `Extensions` folder
-    internal var extensionsURL: URL {
+    var extensionsURL: URL {
         baseURL.appending(
             path: String(
                 localized: "settings.theme-model.folder-name.extensions",
@@ -58,7 +58,7 @@ final class ThemeModel: ObservableObject {
     }
 
     /// The URL of the `settings.json` file
-    internal var settingsURL: URL {
+    var settingsURL: URL {
         baseURL.appending(path: "settings.json", directoryHint: .isDirectory)
     }
 
@@ -135,18 +135,19 @@ final class ThemeModel: ObservableObject {
 
     /// This function stores  'dark' and 'light' themes into `ThemePreferences` if user happens to select a theme
     func updateAppearanceTheme() {
-        if self.selectedTheme?.appearance == .dark {
-            self.selectedDarkTheme = self.selectedTheme
-        } else if self.selectedTheme?.appearance == .light {
-            self.selectedLightTheme = self.selectedTheme
+        if selectedTheme?.appearance == .dark {
+            selectedDarkTheme = selectedTheme
+        } else if selectedTheme?.appearance == .light {
+            selectedLightTheme = selectedTheme
         }
     }
 
     func cancelDetails(_ theme: Theme) {
         if let index = themes.firstIndex(where: { $0.fileURL == theme.fileURL }),
-        let detailsTheme = self.detailsTheme {
-            self.themes[index] = detailsTheme
-            self.save(self.themes[index])
+           let detailsTheme = detailsTheme
+        {
+            themes[index] = detailsTheme
+            save(themes[index])
         }
     }
 
@@ -223,33 +224,33 @@ final class ThemeModel: ObservableObject {
     }
 
     func exportAllCustomThemes() {
-            let openPanel = NSOpenPanel()
-            openPanel.prompt = String(
-                localized: "settings.theme-model.export.open-panel.prompt",
-                defaultValue: "Export",
-                comment: "Open panel confirmation button title when exporting all custom themes"
-            )
-            openPanel.canChooseFiles = false
-            openPanel.canChooseDirectories = true
-            openPanel.allowsMultipleSelection = false
+        let openPanel = NSOpenPanel()
+        openPanel.prompt = String(
+            localized: "settings.theme-model.export.open-panel.prompt",
+            defaultValue: "Export",
+            comment: "Open panel confirmation button title when exporting all custom themes"
+        )
+        openPanel.canChooseFiles = false
+        openPanel.canChooseDirectories = true
+        openPanel.allowsMultipleSelection = false
 
-            openPanel.begin { result in
-                if result == .OK, let exportDirectory = openPanel.url {
-                    let customThemes = self.themes.filter { !$0.isBundled }
+        openPanel.begin { result in
+            if result == .OK, let exportDirectory = openPanel.url {
+                let customThemes = self.themes.filter { !$0.isBundled }
 
-                    for theme in customThemes {
-                        guard let sourceURL = theme.fileURL else { continue }
+                for theme in customThemes {
+                    guard let sourceURL = theme.fileURL else { continue }
 
-                        let destinationURL = exportDirectory.appending(path: "\(theme.displayName).cetheme")
+                    let destinationURL = exportDirectory.appending(path: "\(theme.displayName).cetheme")
 
-                        do {
-                            try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
-                            print("Exported \(theme.displayName) to \(destinationURL.path)")
-                        } catch {
-                            print("Failed to export \(theme.displayName): \(error.localizedDescription)")
-                        }
+                    do {
+                        try FileManager.default.copyItem(at: sourceURL, to: destinationURL)
+                        print("Exported \(theme.displayName) to \(destinationURL.path)")
+                    } catch {
+                        print("Failed to export \(theme.displayName): \(error.localizedDescription)")
                     }
                 }
             }
         }
+    }
 }
