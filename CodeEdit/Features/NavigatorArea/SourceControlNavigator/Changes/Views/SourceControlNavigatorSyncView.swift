@@ -44,7 +44,8 @@ struct SourceControlNavigatorSyncView: View {
                     }
                     .disabled(isLoading)
                 } else if sourceControlManager.numberOfUnsyncedCommits.ahead > 0
-                    || currentBranch.upstream == nil {
+                    || currentBranch.upstream == nil
+                {
                     Button {
                         sourceControlManager.pushSheetIsPresented = true
                     } label: {
