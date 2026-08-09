@@ -22,6 +22,7 @@ struct GitCheckoutBranchView: View {
         _viewModel = .init(wrappedValue: GitCheckoutBranchViewModel(repoPath: repoLocalPath))
         self.openDocument = openDocument
     }
+
     var body: some View {
         VStack(spacing: 8) {
             HStack {
@@ -37,8 +38,8 @@ struct GitCheckoutBranchView: View {
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
-                        context[.trailing]
-                    }
+                            context[.trailing]
+                        }
                     Picker("", selection: $viewModel.selectedBranch, content: {
                         ForEach(viewModel.branches, id: \.self) { branch in
                             Text(branch.name.replacingOccurrences(of: "origin/", with: ""))
