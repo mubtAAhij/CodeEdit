@@ -27,7 +27,7 @@ struct SourceControlFetchView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Fetching changes for “\(projectName)”...")
                         .font(.headline)
-                    Text("CodeEdit is fetching changes and updating the status of files in the local repository.")
+                    Text(String(localized: "source-control.fetch.description", defaultValue: "CodeEdit is fetching changes and updating the status of files in the local repository.", comment: "Description shown while fetch operation is in progress."))
                         .font(.subheadline)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -40,14 +40,14 @@ struct SourceControlFetchView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .controlSize(.small)
-                    Text("Fetching changes...")
+                    Text(String(localized: "source-control.fetch.progress", defaultValue: "Fetching changes...", comment: "Inline progress label for source control fetch operation."))
                         .font(.subheadline)
                 }
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "source-control.fetch.cancel", defaultValue: "Cancel", comment: "Button title to cancel source control fetch operation."))
                         .frame(minWidth: 48)
                 }
             }
@@ -60,7 +60,7 @@ struct SourceControlFetchView: View {
                 try await sourceControlManager.fetch()
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to fetch changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.fetch.failed", defaultValue: "Failed to fetch changes", comment: "Error title shown when source control fetch fails."), error: error)
             }
         }
     }
