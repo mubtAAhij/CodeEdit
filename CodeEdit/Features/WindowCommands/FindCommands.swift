@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FindCommands: Commands {
-
     @FirstResponder var responder
 
     static let selector = #selector(NSTextView.performFindPanelAction(_:))
