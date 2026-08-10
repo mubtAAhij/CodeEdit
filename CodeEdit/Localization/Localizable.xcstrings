@@ -17816,24 +17816,6 @@
         }
       }
     },
-    "settings.theme.use_theme_background": {
-      "comment": "CodeEdit/Features/Settings/Pages/ThemeSettings/ThemeSettingsView.swift",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Use theme background"
-          }
-        },
-        "es-419": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usar fondo del tema"
-          }
-        }
-      }
-    },
     "settings_location": {
       "comment": "CodeEdit/Features/Settings/Pages/LocationsSettings/Models/LocationsSettings.swift",
       "extractionState": "manual",
