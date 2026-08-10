@@ -35,12 +35,12 @@ final class ThemeModel: ObservableObject {
 
     /// The URL of the `Themes` folder
     internal var themesURL: URL {
-        baseURL.appending(path: "Themes", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "settings.theme.themes", defaultValue: "Themes", comment: "Theme settings section title for built-in themes."), directoryHint: .isDirectory)
     }
 
     /// The URL of the `Extensions` folder
     internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+        baseURL.appending(path: String(localized: "settings.theme.extensions", defaultValue: "Extensions", comment: "Theme settings section title for extension themes."), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
@@ -164,7 +164,7 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(localized: "settings.theme.export-action", defaultValue: "Export", comment: "Action label for exporting a selected theme.")
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +181,7 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(localized: "settings.theme.export-button", defaultValue: "Export", comment: "Button label for confirming theme export.")
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false
