@@ -1,5 +1,5 @@
 //
-//  AccountsSettingsDetailView.swift
+//  AccountsSettingsDetailsView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 4/6/23.
@@ -32,7 +32,8 @@ struct AccountsSettingsDetailsView: View {
 
     func isPrivateSSHKey(_ contents: String) -> Bool {
         if contents.starts(with: "-----BEGIN OPENSSH PRIVATE KEY-----\n") &&
-           contents.hasSuffix("\n-----END OPENSSH PRIVATE KEY-----\n") {
+            contents.hasSuffix("\n-----END OPENSSH PRIVATE KEY-----\n")
+        {
             return true
         } else {
             return false
@@ -72,7 +73,7 @@ struct AccountsSettingsDetailsView: View {
                 } label: {
                     Text(String(localized: "settings.accounts.details.clone-using", defaultValue: "Clone Using", comment: "Title for clone protocol selection section"))
                     Text("New repositories will be cloned from \(currentAccount.provider.name)"
-                         + " using \(currentAccount.urlProtocol.rawValue).")
+                        + " using \(currentAccount.urlProtocol.rawValue).")
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
