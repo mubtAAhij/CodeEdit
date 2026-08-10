@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AboutSubtitleView: View {
-
     @State private var didCopyVersion = false
     @State private var isHoveringVersion = false
 
@@ -20,6 +19,7 @@ struct AboutSubtitleView: View {
                 comment: "Fallback app version text in About subtitle"
             )
     }
+
     private var appBuild: String {
         Bundle.buildString
             ?? String(
@@ -28,7 +28,10 @@ struct AboutSubtitleView: View {
                 comment: "Fallback app build text in About subtitle"
             )
     }
-    private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
+
+    private var appVersionPostfix: String {
+        Bundle.versionPostfix ?? ""
+    }
 
     var body: some View {
         Text(
@@ -43,50 +46,50 @@ struct AboutSubtitleView: View {
                 appBuild
             )
         )
-            .textSelection(.disabled)
-            .onTapGesture {
-                // Create a string suitable for pasting into a bug report
-                let macOSVersion = ProcessInfo.processInfo.operatingSystemVersion.semverString
-                NSPasteboard.general.clearContents()
-                NSPasteboard.general.setString(
-                    String(
-                        format: String(
-                            localized: "about.subtitle.copied-summary",
-                            defaultValue: "CodeEdit: %@ (%@)\nmacOS: %@",
-                            comment: "Copied version summary in About subtitle"
-                        ),
-                        appVersion,
-                        appBuild,
-                        macOSVersion
+        .textSelection(.disabled)
+        .onTapGesture {
+            // Create a string suitable for pasting into a bug report
+            let macOSVersion = ProcessInfo.processInfo.operatingSystemVersion.semverString
+            NSPasteboard.general.clearContents()
+            NSPasteboard.general.setString(
+                String(
+                    format: String(
+                        localized: "about.subtitle.copied-summary",
+                        defaultValue: "CodeEdit: %@ (%@)\nmacOS: %@",
+                        comment: "Copied version summary in About subtitle"
                     ),
-                    forType: .string
-                )
-                didCopyVersion.toggle()
-            }
-            .background(alignment: .leading) {
-                if isHoveringVersion {
-                    if #available(macOS 14.0, *) {
-                        Image(systemName: "document.on.document.fill")
-                            .font(.caption)
-                            .offset(x: -16, y: 0)
-                            .transition(.opacity)
-                            .symbolEffect(
-                                .bounce.down.wholeSymbol,
-                                options: .nonRepeating.speed(1.8),
-                                value: didCopyVersion
-                            )
-                    } else {
-                        Image(systemName: "document.on.document.fill")
-                            .font(.caption)
-                            .offset(x: -16, y: 0)
-                            .transition(.opacity)
-                    }
+                    appVersion,
+                    appBuild,
+                    macOSVersion
+                ),
+                forType: .string
+            )
+            didCopyVersion.toggle()
+        }
+        .background(alignment: .leading) {
+            if isHoveringVersion {
+                if #available(macOS 14.0, *) {
+                    Image(systemName: "document.on.document.fill")
+                        .font(.caption)
+                        .offset(x: -16, y: 0)
+                        .transition(.opacity)
+                        .symbolEffect(
+                            .bounce.down.wholeSymbol,
+                            options: .nonRepeating.speed(1.8),
+                            value: didCopyVersion
+                        )
+                } else {
+                    Image(systemName: "document.on.document.fill")
+                        .font(.caption)
+                        .offset(x: -16, y: 0)
+                        .transition(.opacity)
                 }
             }
-            .onHover { hovering in
-                withAnimation(.easeInOut(duration: 0.1)) {
-                    isHoveringVersion = hovering
-                }
+        }
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.1)) {
+                isHoveringVersion = hovering
             }
+        }
     }
 }
