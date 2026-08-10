@@ -1,5 +1,5 @@
 //
-//  AccoundSelectionView.swift
+//  AccountSelectionView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 4/5/23.
@@ -42,7 +42,7 @@ struct AccountSelectionView: View {
                             Text(
                                 String(localized: "settings.accounts.selection.cancel", defaultValue: "Cancel", comment: "Cancel button title in account selection popover")
                             )
-                                .padding(.horizontal)
+                            .padding(.horizontal)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
