@@ -12,8 +12,8 @@ struct AboutSubtitleView: View {
     @State private var didCopyVersion = false
     @State private var isHoveringVersion = false
 
-    private var appVersion: String { Bundle.versionString ?? "No Version" }
-    private var appBuild: String { Bundle.buildString ?? "No Build" }
+    private var appVersion: String { Bundle.versionString ?? String(localized: "about.subtitle.no-version", defaultValue: "No Version", comment: "Fallback text when app version is unavailable") }
+    private var appBuild: String { Bundle.buildString ?? String(localized: "about.subtitle.no-build", defaultValue: "No Build", comment: "Fallback text when app build number is unavailable") }
     private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
 
     var body: some View {
