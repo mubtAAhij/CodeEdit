@@ -5,8 +5,8 @@
 //  Created by Lukas Pistrol on 19.01.23.
 //
 
-import SwiftUI
 import AboutWindow
+import SwiftUI
 
 struct ContributorsView: View {
     @StateObject var model = ContributorsViewModel()
@@ -38,7 +38,7 @@ class ContributorsViewModel: ObservableObject {
         do {
             let data = try Data(contentsOf: url)
             let root = try JSONDecoder().decode(ContributorsRoot.self, from: data)
-            self.contributors = root.contributors
+            contributors = root.contributors
         } catch {
             print(error)
         }
