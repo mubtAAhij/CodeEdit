@@ -96,14 +96,29 @@ struct InternalDevelopmentNotificationsView: View {
                         Label("Random", systemImage: "dice").tag(nil as String?)
                         Divider()
                         ForEach(availableImages, id: \.self) { image in
-                            Text(image).tag(image as String?)
+                            Text(
+                                image == "GitHubIcon"
+                                    ? String(
+                                        localized: "internal-development.notifications.image-option.github-icon",
+                                        defaultValue: "GitHubIcon",
+                                        comment: "Image icon option label in internal development notifications"
+                                    )
+                                    : image
+                            ).tag(image as String?)
                         }
                     }
                 }
 
                 if selectedIconType == .symbol || selectedIconType == .text || selectedIconType == .emoji {
                     Picker("Icon Color", selection: $selectedColor) {
-                        Label("Random", systemImage: "dice").tag(nil as Color?)
+                        Label(
+                            String(
+                                localized: "internal-development.notifications.icon-color.random",
+                                defaultValue: "Random",
+                                comment: "Random icon color option in internal development notifications"
+                            ),
+                            systemImage: "dice"
+                        ).tag(nil as Color?)
                         Divider()
                         ForEach(availableColors, id: \.0) { name, color in
                             HStack {
@@ -117,12 +132,40 @@ struct InternalDevelopmentNotificationsView: View {
                 }
             }
 
-            TextField("Title", text: $notificationTitle)
-            TextField("Description", text: $notificationDescription, axis: .vertical)
+            TextField(
+                String(
+                    localized: "internal-development.notifications.title-field",
+                    defaultValue: "Title",
+                    comment: "Title text field label in internal development notifications"
+                ),
+                text: $notificationTitle
+            )
+            TextField(
+                String(
+                    localized: "internal-development.notifications.description-field",
+                    defaultValue: "Description",
+                    comment: "Description text field label in internal development notifications"
+                ),
+                text: $notificationDescription,
+                axis: .vertical
+            )
                 .lineLimit(1...5)
-            TextField("Action Button", text: $actionButtonText)
+            TextField(
+                String(
+                    localized: "internal-development.notifications.action-button-field",
+                    defaultValue: "Action Button",
+                    comment: "Action button text field label in internal development notifications"
+                ),
+                text: $actionButtonText
+            )
 
-            Button("Add Notification") {
+            Button(
+                String(
+                    localized: "internal-development.notifications.add-notification",
+                    defaultValue: "Add Notification",
+                    comment: "Button title to post a test notification"
+                )
+            ) {
                 let action = {
                     switch selectedIconType {
                     case .symbol:
