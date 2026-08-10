@@ -195,11 +195,11 @@ extension SettingsData {
                 }
             )
 
-            mgr.addCommand(name: String(localized: "settings.text_editing.commands.toggle_minimap.title", defaultValue: String(localized: "settings.text_editing.commands.toggle_minimap.name", defaultValue: "Toggle Minimap", comment: "Command display name to toggle minimap visibility"), comment: "Command title to toggle minimap visibility"), title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
+            mgr.addCommand(name: String(localized: "settings.text_editing.commands.toggle_minimap.title", defaultValue: "Toggle Minimap", comment: "Command title to toggle minimap visibility"), title: "Toggle Minimap", id: "prefs.text_editing.toggle_minimap") {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 
-            mgr.addCommand(name: String(localized: "settings.text_editing.commands.toggle_gutter.title", defaultValue: String(localized: "settings.text_editing.commands.toggle_gutter.name", defaultValue: "Toggle Gutter", comment: "Command display name to toggle gutter visibility"), comment: "Command title to toggle gutter visibility"), title: "Toggle Gutter", id: "prefs.text_editing.toggle_gutter") {
+            mgr.addCommand(name: String(localized: "settings.text_editing.commands.toggle_gutter.title", defaultValue: "Toggle Gutter", comment: "Command title to toggle gutter visibility"), title: "Toggle Gutter", id: "prefs.text_editing.toggle_gutter") {
                 Settings[\.textEditing].showGutter.toggle()
             }
 
