@@ -15,7 +15,7 @@ struct EditorHistoryMenus: View {
         Group {
             Menu {
                 ForEach(
-                    Array(editor.history.dropFirst(editor.historyOffset+1).enumerated()),
+                    Array(editor.history.dropFirst(editor.historyOffset + 1).enumerated()),
                     id: \.offset
                 ) { index, file in
                     Button {
