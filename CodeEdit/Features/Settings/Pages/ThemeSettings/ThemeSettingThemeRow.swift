@@ -33,28 +33,28 @@ struct ThemeSettingsThemeRow: View {
                 Button {
                     themeModel.activateTheme(theme)
                 } label: {
-                    Text("Choose")
+                    Text(String(localized: "settings.theme.row.choose", defaultValue: "Choose", comment: "Context menu action to choose the selected theme"))
                 }
                 .buttonStyle(.bordered)
                 .opacity(isHovering ? 1 : 0)
             }
             ThemeSettingsColorPreview(theme)
             Menu {
-                Button("Details...") {
+                Button(String(localized: "settings.theme.row.details", defaultValue: "Details...", comment: "Context menu action to open theme details")) {
                     themeModel.detailsTheme = theme
                     themeModel.detailsIsPresented = true
                 }
-                Button("Duplicate...") {
+                Button(String(localized: "settings.theme.row.duplicate", defaultValue: "Duplicate...", comment: "Context menu action to duplicate a theme")) {
                     if let fileURL = theme.fileURL {
                         themeModel.duplicate(fileURL)
                     }
                 }
-                Button("Export...") {
+                Button(String(localized: "settings.theme.row.export", defaultValue: "Export...", comment: "Context menu action to export a theme")) {
                     themeModel.exportTheme(theme)
                 }
                 .disabled(theme.isBundled)
                 Divider()
-                Button("Delete...") {
+                Button(String(localized: "settings.theme.row.delete", defaultValue: "Delete...", comment: "Context menu action to delete a theme")) {
                     deleteConfirmationIsPresented = true
                 }
                 .disabled(theme.isBundled)
@@ -72,14 +72,14 @@ struct ThemeSettingsThemeRow: View {
             Text("Are you sure you want to delete the theme “\(theme.displayName)”?"),
             isPresented: $deleteConfirmationIsPresented
         ) {
-            Button("Delete Theme") {
+            Button(String(localized: "settings.theme.row.delete_theme", defaultValue: "Delete Theme", comment: "Alert button title to confirm deleting a theme")) {
                 themeModel.delete(theme)
             }
-            Button("Cancel") {
+            Button(String(localized: "settings.theme.row.cancel", defaultValue: "Cancel", comment: "Alert button title to cancel theme deletion")) {
                 deleteConfirmationIsPresented = false
             }
         } message: {
-            Text("This action cannot be undone.")
+            Text(String(localized: "settings.theme.row.delete.warning", defaultValue: "This action cannot be undone.", comment: "Warning text in theme deletion confirmation alert"))
         }
     }
 }
