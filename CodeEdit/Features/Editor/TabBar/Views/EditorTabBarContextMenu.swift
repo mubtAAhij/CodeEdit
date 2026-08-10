@@ -5,8 +5,8 @@
 //  Created by Khan Winter on 6/4/22.
 //
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 extension View {
     func tabBarContextMenu(item: CEWorkspaceFile, isTemporary: Bool) -> some View {
@@ -46,7 +46,7 @@ struct EditorTabBarContextMenu: ViewModifier {
 
                 Button(String(localized: "editor.tab-bar.context-menu.close-other-tabs", defaultValue: "Close Other Tabs", comment: "Context menu action to close tabs except the selected tab")) {
                     withAnimation {
-                        tabs.tabs.map({ $0.file }).forEach { file in
+                        for file in tabs.tabs.map({ $0.file }) {
                             if file != item {
                                 tabs.closeTab(file: file)
                             }
@@ -57,8 +57,8 @@ struct EditorTabBarContextMenu: ViewModifier {
                 Button(String(localized: "editor.tab-bar.context-menu.close-tabs-to-the-right", defaultValue: "Close Tabs to the Right", comment: "Context menu action to close tabs to the right of the selected tab")) {
                     withAnimation {
                         if let index = tabs.tabs.firstIndex(where: { $0.file == item }), index + 1 < tabs.tabs.count {
-                            tabs.tabs[(index + 1)...].forEach {
-                                tabs.closeTab(file: $0.file)
+                            for tab in tabs.tabs[(index + 1)...] {
+                                tabs.closeTab(file: tab.file)
                             }
                         }
                     }
@@ -68,8 +68,8 @@ struct EditorTabBarContextMenu: ViewModifier {
 
                 Button(String(localized: "editor.tab-bar.context-menu.close-all", defaultValue: "Close All", comment: "Context menu action to close all tabs")) {
                     withAnimation {
-                        tabs.tabs.forEach {
-                            tabs.closeTab(file: $0.file)
+                        for tab in tabs.tabs {
+                            tabs.closeTab(file: tab.file)
                         }
                     }
                 }
@@ -104,10 +104,8 @@ struct EditorTabBarContextMenu: ViewModifier {
                     workspace.listenerModel.highlightedFileItem = item
                 }
 
-                Button(String(localized: "editor.tab-bar.context-menu.open-in-new-window", defaultValue: "Open in New Window", comment: "Context menu action to open the file in a new window")) {
-
-                }
-                .disabled(true)
+                Button(String(localized: "editor.tab-bar.context-menu.open-in-new-window", defaultValue: "Open in New Window", comment: "Context menu action to open the file in a new window")) {}
+                    .disabled(true)
             }
 
             Divider()
@@ -154,8 +152,9 @@ struct EditorTabBarContextMenu: ViewModifier {
 
         // Find common prefix length
         var prefixCount = 0
-        while prefixCount < min(destinationComponents.count, baseComponents.count)
-                && destinationComponents[prefixCount] == baseComponents[prefixCount] {
+        while prefixCount < min(destinationComponents.count, baseComponents.count),
+              destinationComponents[prefixCount] == baseComponents[prefixCount]
+        {
             prefixCount += 1
         }
         // Build the relative path
