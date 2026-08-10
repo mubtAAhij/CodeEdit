@@ -12,7 +12,13 @@ struct ContributorsView: View {
     @StateObject var model = ContributorsViewModel()
 
     var body: some View {
-        AboutDetailView(title: String(localized: "about.contributors.title", defaultValue: "Contributors", comment: "Title of the contributors section in the About window")) {
+        AboutDetailView(
+            title: String(
+                localized: "about.contributors.title",
+                defaultValue: "Contributors",
+                comment: "Title of the contributors section in the About window"
+            )
+        ) {
             LazyVStack(spacing: 0) {
                 ForEach(model.contributors) { contributor in
                     ContributorRowView(contributor: contributor)
