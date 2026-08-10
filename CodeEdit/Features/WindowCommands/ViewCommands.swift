@@ -139,13 +139,37 @@ extension ViewCommands {
             .disabled(windowController == nil)
             .keyboardShortcut("y", modifiers: [.shift, .command])
 
-            Button("\(toolbarCollapsed ? "Show" : "Hide") Toolbar") {
+            Button(
+                toolbarCollapsed
+                    ? String(
+                        localized: "viewcommands.show-toolbar",
+                        defaultValue: "Show Toolbar",
+                        comment: "View menu command to show the toolbar"
+                    )
+                    : String(
+                        localized: "viewcommands.hide-toolbar",
+                        defaultValue: "Hide Toolbar",
+                        comment: "View menu command to hide the toolbar"
+                    )
+            ) {
                 windowController?.toggleToolbar()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("t", modifiers: [.option, .command])
 
-            Button("\(isInterfaceHidden ? "Show" : "Hide") Interface") {
+            Button(
+                isInterfaceHidden
+                    ? String(
+                        localized: "viewcommands.show-interface",
+                        defaultValue: "Show Interface",
+                        comment: "View menu command to show the interface"
+                    )
+                    : String(
+                        localized: "viewcommands.hide-interface",
+                        defaultValue: "Hide Interface",
+                        comment: "View menu command to hide the interface"
+                    )
+            ) {
                 windowController?.toggleInterface(shouldHide: !isInterfaceHidden)
             }
             .disabled(windowController == nil)
@@ -159,7 +183,12 @@ extension ViewCommands {
         @ObservedObject var model: NavigatorAreaViewModel
 
         var body: some View {
-            Menu("Navigators", content: {
+            Menu(
+                String(
+                    localized: "viewcommands.navigators",
+                    defaultValue: "Navigators",
+                    comment: "Title for the navigators submenu in the View menu"
+                ), content: {
                 ForEach(Array(model.tabItems.prefix(9).enumerated()), id: \.element) { index, tab in
                     Button(tab.title) {
                         model.setNavigatorTab(tab: tab)
