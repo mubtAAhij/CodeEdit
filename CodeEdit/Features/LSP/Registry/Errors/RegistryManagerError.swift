@@ -18,17 +18,17 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
+            String(localized: "lsp.registry.error.installation-running", defaultValue: "A package is already being installed.", comment: "Error shown when another package installation is already in progress")
         case .invalidResponse(let statusCode):
-            "Invalid response received: \(statusCode)"
+            String(format: String(localized: "lsp.registry.error.invalid-response", defaultValue: "Invalid response received: %d", comment: "Error shown when registry returns an invalid HTTP status code"), statusCode)
         case .downloadFailed(let url, _):
-            "Download for \(url) error."
+            String(format: String(localized: "lsp.registry.error.download-failed", defaultValue: "Download for %@ error.", comment: "Error shown when package download fails"), url.absoluteString)
         case .maxRetriesExceeded(let url, _):
-            "Maximum retries exceeded for url: \(url)"
+            String(format: String(localized: "lsp.registry.error.max-retries-exceeded", defaultValue: "Maximum retries exceeded for url: %@", comment: "Error shown when retry limit is reached for a package URL"), url.absoluteString)
         case .writeFailed:
-            "Failed to write to file."
+            String(localized: "lsp.registry.error.write-failed", defaultValue: "Failed to write to file.", comment: "Error shown when writing a downloaded file fails")
         case .failedToSaveRegistryCache:
-            "Failed to write to registry cache."
+            String(localized: "lsp.registry.error.failed-to-save-cache", defaultValue: "Failed to write to registry cache.", comment: "Error shown when writing the registry cache fails")
         }
     }
 
