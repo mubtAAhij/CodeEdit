@@ -42,13 +42,13 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "source-control.switch.cancel", defaultValue: "Cancel", comment: "Button title to cancel branch switch operation."))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Switch")
+                    Text(String(localized: "source-control.switch.confirm", defaultValue: "Switch", comment: "Button title to confirm branch switch operation."))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -70,7 +70,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.switch.failed-to-checkout", defaultValue: "Failed to checkout", comment: "Error title shown when switching branch checkout fails."), error: error)
             }
         }
     }
