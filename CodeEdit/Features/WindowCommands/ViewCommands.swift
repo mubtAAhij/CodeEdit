@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 13/03/2023.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ViewCommands: Commands {
     @AppSettings(\.textEditing.font.size)
@@ -69,10 +69,8 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button("Customize Toolbar...") {
-
-            }
-            .disabled(true)
+            Button("Customize Toolbar...") {}
+                .disabled(true)
 
             Divider()
 
@@ -189,13 +187,14 @@ extension ViewCommands {
                     defaultValue: "Navigators",
                     comment: "Title for the navigators submenu in the View menu"
                 ), content: {
-                ForEach(Array(model.tabItems.prefix(9).enumerated()), id: \.element) { index, tab in
-                    Button(tab.title) {
-                        model.setNavigatorTab(tab: tab)
+                    ForEach(Array(model.tabItems.prefix(9).enumerated()), id: \.element) { index, tab in
+                        Button(tab.title) {
+                            model.setNavigatorTab(tab: tab)
+                        }
+                        .keyboardShortcut(KeyEquivalent(Character(String(index + 1))))
                     }
-                    .keyboardShortcut(KeyEquivalent(Character(String(index + 1))))
                 }
-            })
+            )
         }
     }
 }
