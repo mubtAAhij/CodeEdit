@@ -61,7 +61,7 @@ struct EditorTabBarTrailingAccessories: View {
                         ),
                         isOn: $showMinimap
                     )
-                        .keyboardShortcut("M", modifiers: [.command, .shift, .control])
+                    .keyboardShortcut("M", modifiers: [.command, .shift, .control])
                     Divider()
                     Toggle(
                         String(
