@@ -128,10 +128,10 @@ extension WorkspaceDocument.SearchState {
     ) {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
-            alert.messageText = "Error"
+            alert.messageText = String(localized: "documents.workspace.find-replace.error-title", defaultValue: "Error", comment: "Alert title for find and replace file read/write errors")
             alert.informativeText = "An error occurred while reading file contents of: \(file)"
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "documents.workspace.find-replace.alert-ok", defaultValue: "OK", comment: "Confirmation button title in find and replace alerts"))
             alert.runModal()
 
             return
@@ -156,10 +156,10 @@ extension WorkspaceDocument.SearchState {
             try updatedContent.write(to: file, atomically: true, encoding: .utf8)
         } catch {
             let alert = NSAlert()
-            alert.messageText = "Error"
+            alert.messageText = String(localized: "documents.workspace.find-replace.error-title", defaultValue: "Error", comment: "Alert title for find and replace file write errors")
             alert.informativeText = "An error occurred while writing to: \(error.localizedDescription)"
             alert.alertStyle = .critical
-            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: String(localized: "documents.workspace.find-replace.alert-ok", defaultValue: "OK", comment: "Confirmation button title in find and replace alerts"))
             alert.runModal()
         }
     }
