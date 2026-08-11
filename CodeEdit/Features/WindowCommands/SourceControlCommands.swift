@@ -46,7 +46,7 @@ struct SourceControlCommands: Commands {
                     } else {
                         Task {
                             do {
-                                try await sourceControlManager.add(sourceControlManager.changedFiles.map { $0.fileURL })
+                                try await sourceControlManager.add(sourceControlManager.changedFiles.map(\.fileURL))
                             } catch {
                                 await sourceControlManager.showAlertForError(
                                     title: String(localized: "window.source-control.failed-to-stage-changes", defaultValue: "Failed To Stage Changes", comment: "Error alert title when staging changes fails"),
@@ -65,7 +65,7 @@ struct SourceControlCommands: Commands {
                         Task {
                             do {
                                 try await sourceControlManager.reset(
-                                    sourceControlManager.changedFiles.map { $0.fileURL }
+                                    sourceControlManager.changedFiles.map(\.fileURL)
                                 )
                             } catch {
                                 await sourceControlManager.showAlertForError(
