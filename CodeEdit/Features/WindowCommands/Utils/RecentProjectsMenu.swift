@@ -10,7 +10,6 @@ import WelcomeWindow
 
 @MainActor
 final class RecentProjectsMenu: NSObject, NSMenuDelegate {
-
     // MARK: - Menu construction
 
     private let menuTitle = NSLocalizedString(
@@ -20,7 +19,7 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
 
     private lazy var menu: NSMenu = {
         let menu = NSMenu(title: menuTitle)
-        menu.delegate = self           // <- make the menu ask us for updates
+        menu.delegate = self // <- make the menu ask us for updates
         return menu
     }()
 
@@ -31,11 +30,11 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
     }
 
     /// Called automatically right before the menu gets displayed.
-    func menuNeedsUpdate(_ menu: NSMenu) {
+    func menuNeedsUpdate(_: NSMenu) {
         rebuildMenu()
     }
 
-    // Rebuilds the whole “Open Recent” menu.
+    /// Rebuilds the whole “Open Recent” menu.
     private func rebuildMenu() {
         menu.removeAllItems()
 
@@ -134,7 +133,7 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
     }
 
     @objc
-    private func clearMenuItemClicked(_ sender: NSMenuItem) {
+    private func clearMenuItemClicked(_: NSMenuItem) {
         RecentsStore.clearList()
         rebuildMenu()
     }
