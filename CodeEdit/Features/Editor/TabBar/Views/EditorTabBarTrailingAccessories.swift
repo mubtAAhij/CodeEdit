@@ -97,11 +97,10 @@ struct EditorTabBarTrailingAccessories: View {
     }
 
     func split(edge: Edge) {
-        let newEditor: Editor
-        if let tab = editor.selectedTab {
-            newEditor = .init(files: [tab], temporaryTab: tab, workspace: workspace)
+        let newEditor: Editor = if let tab = editor.selectedTab {
+            .init(files: [tab], temporaryTab: tab, workspace: workspace)
         } else {
-            newEditor = .init()
+            .init()
         }
         splitEditor(edge, newEditor)
         editorManager.updateCachedFlattenedEditors = true
