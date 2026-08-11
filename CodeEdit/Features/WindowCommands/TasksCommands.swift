@@ -5,8 +5,8 @@
 //  Created by Khan Winter on 7/8/25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct TasksCommands: Commands {
     @UpdatingWindowController var windowController: CodeEditWindowController?
@@ -21,7 +21,7 @@ struct TasksCommands: Commands {
 
     var body: some Commands {
         CommandMenu(String(localized: "window.commands.tasks.menu-title", defaultValue: "Tasks", comment: "Top-level Tasks command menu title")) {
-            let selectedTaskName: String = if let selectedTask = taskManager?.selectedTask {
+            let selectedTaskName = if let selectedTask = taskManager?.selectedTask {
                 "\"" + selectedTask.name + "\""
             } else {
                 String(localized: "window.commands.tasks.no-selected-task", defaultValue: "(No Selected Task)", comment: "Placeholder title when no task is selected")
