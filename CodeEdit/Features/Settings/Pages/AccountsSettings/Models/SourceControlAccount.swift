@@ -21,8 +21,8 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     var isTokenValid: Bool
 
     enum URLProtocol: String, Codable, CaseIterable {
-        case https = "HTTPS"
-        case ssh = "SSH"
+        case https = String(localized: "settings.accounts.connection-type.https", defaultValue: "HTTPS", comment: "Connection type label for HTTPS protocol")
+        case ssh = String(localized: "settings.accounts.connection-type.ssh", defaultValue: "SSH", comment: "Connection type label for SSH protocol")
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -53,17 +53,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "settings.accounts.provider.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "Provider display name for BitBucket Cloud")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "settings.accounts.provider.bitbucket-server", defaultValue: "BitBucket Server", comment: "Provider display name for BitBucket Server")
             case .github:
-                return "GitHub"
+                return String(localized: "settings.accounts.provider.github", defaultValue: "GitHub", comment: "Provider display name for GitHub")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "settings.accounts.provider.github-enterprise", defaultValue: "GitHub Enterprise", comment: "Provider display name for GitHub Enterprise")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "settings.accounts.provider.gitlab", defaultValue: "GitLab", comment: "Provider display name for GitLab")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "settings.accounts.provider.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "Provider display name for self-hosted GitLab")
             }
         }
 
