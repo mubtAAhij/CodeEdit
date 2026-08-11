@@ -33,8 +33,8 @@ struct EditorTabBarLeadingAccessories: View {
                 EditorTabBarAccessoryIcon(
                     icon: .init(
                         systemName: editorManager.isFocusingActiveEditor
-                        ? "arrow.down.forward.and.arrow.up.backward"
-                        : "arrow.up.left.and.arrow.down.right"
+                            ? "arrow.down.forward.and.arrow.up.backward"
+                            : "arrow.up.left.and.arrow.down.right"
                     ),
                     isActive: editorManager.isFocusingActiveEditor,
                     action: {
@@ -43,8 +43,8 @@ struct EditorTabBarLeadingAccessories: View {
                 )
                 .help(
                     editorManager.isFocusingActiveEditor
-                    ? String(localized: "editor.tab-bar.leading.unfocus-this-editor", defaultValue: "Unfocus this Editor", comment: "Tooltip to unfocus the current editor tab")
-                    : String(localized: "editor.tab-bar.leading.focus-this-editor", defaultValue: "Focus this Editor", comment: "Tooltip to focus the current editor tab")
+                        ? String(localized: "editor.tab-bar.leading.unfocus-this-editor", defaultValue: "Unfocus this Editor", comment: "Tooltip to unfocus the current editor tab")
+                        : String(localized: "editor.tab-bar.leading.focus-this-editor", defaultValue: "Focus this Editor", comment: "Tooltip to focus the current editor tab")
                 )
 
                 Divider()
