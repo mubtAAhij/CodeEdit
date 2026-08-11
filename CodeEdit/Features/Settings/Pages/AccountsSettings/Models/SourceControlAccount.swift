@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SourceControlAccount: Codable, Identifiable, Hashable {
-
     var id: String
     var name: String
     var description: String
