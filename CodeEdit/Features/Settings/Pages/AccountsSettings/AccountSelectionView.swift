@@ -1,5 +1,5 @@
 //
-//  AccoundSelectionView.swift
+//  AccountSelectionView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 4/5/23.
@@ -39,7 +39,7 @@ struct AccountSelectionView: View {
                         Button {
                             dismiss()
                         } label: {
-                        Text(String(localized: "settings.accounts.selection.cancel", defaultValue: "Cancel", comment: "Button title to cancel account selection"))
+                            Text(String(localized: "settings.accounts.selection.cancel", defaultValue: "Cancel", comment: "Button title to cancel account selection"))
                                 .padding(.horizontal)
                         }
                         .buttonStyle(.borderedProminent)
