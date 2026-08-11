@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 13/03/2023.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ViewCommands: Commands {
     @AppSettings(\.textEditing.font.size)
@@ -69,10 +69,8 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button(String(localized: "window.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "Command title to open toolbar customization")) {
-
-            }
-            .disabled(true)
+            Button(String(localized: "window.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "Command title to open toolbar customization")) {}
+                .disabled(true)
 
             Divider()
 
@@ -117,7 +115,7 @@ extension ViewCommands {
         }
 
         var isInterfaceHidden: Bool {
-            return windowController?.isInterfaceStillHidden() ?? false
+            windowController?.isInterfaceStillHidden() ?? false
         }
 
         var body: some View {
