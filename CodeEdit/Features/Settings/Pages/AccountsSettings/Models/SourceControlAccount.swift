@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SourceControlAccount: Codable, Identifiable, Hashable {
-
     var id: String
     var name: String
     var description: String
@@ -117,8 +116,10 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
             case .bitbucketCloud:
                 return URL(string: "https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/")!
             case .bitbucketServer:
-                return URL(string:
-                    "https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html")!
+                return URL(
+                    string:
+                    "https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html"
+                )!
             case .github:
                 return URL(string: "https://github.com/settings/tokens/new")!
             case .githubEnterprise:
