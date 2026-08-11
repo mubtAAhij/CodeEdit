@@ -20,8 +20,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     var isTokenValid: Bool
 
     enum URLProtocol: String, Codable, CaseIterable {
-        case https = String(localized: "settings.accounts.connection-type.https", defaultValue: "HTTPS", comment: "Connection type label for HTTPS protocol")
-        case ssh = String(localized: "settings.accounts.connection-type.ssh", defaultValue: "SSH", comment: "Connection type label for SSH protocol")
+        case https = "https"
+        case ssh = "ssh"
+
+        var localizedName: String {
+            switch self {
+            case .https:
+                return String(localized: "settings.accounts.connection-type.https", defaultValue: "HTTPS", comment: "Connection type label for HTTPS protocol")
+            case .ssh:
+                return String(localized: "settings.accounts.connection-type.ssh", defaultValue: "SSH", comment: "Connection type label for SSH protocol")
+            }
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
