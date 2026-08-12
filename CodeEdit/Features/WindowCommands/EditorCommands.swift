@@ -16,14 +16,14 @@ struct EditorCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Editor") {
-            Menu("Structure") {
-                Button("Move line up") {
+        CommandMenu(String(localized: "window-commands.editor.menu-title", defaultValue: "Editor", comment: "Title of Editor command menu")) {
+            Menu(String(localized: "window-commands.editor.structure", defaultValue: "Structure", comment: "Command title for opening structure menu item")) {
+                Button(String(localized: "window-commands.editor.move-line-up", defaultValue: "Move line up", comment: "Command title for moving current line up")) {
                     editor?.selectedTab?.rangeTranslator.moveLinesUp()
                 }
                 .keyboardShortcut("[", modifiers: [.command, .option])
 
-                Button("Move line down") {
+                Button(String(localized: "window-commands.editor.move-line-down", defaultValue: "Move line down", comment: "Command title for moving current line down")) {
                     editor?.selectedTab?.rangeTranslator.moveLinesDown()
                 }
                 .keyboardShortcut("]", modifiers: [.command, .option])
