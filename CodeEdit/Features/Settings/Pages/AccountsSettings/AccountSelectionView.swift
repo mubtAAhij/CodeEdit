@@ -1,5 +1,5 @@
 //
-//  AccoundSelectionView.swift
+//  AccountSelectionView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 4/5/23.
@@ -46,7 +46,7 @@ struct AccountSelectionView: View {
                                     comment: "Button title to dismiss account provider selection"
                                 )
                             )
-                                .padding(.horizontal)
+                            .padding(.horizontal)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
