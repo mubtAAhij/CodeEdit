@@ -5,8 +5,8 @@
 //  Created by Giorgi Tchelidze on 08.06.25.
 //
 
-import SwiftUI
 import AboutWindow
+import SwiftUI
 
 struct AboutFooterView: View {
     var body: some View {
@@ -20,7 +20,7 @@ struct AboutFooterView: View {
                             comment: "Link title for the project license in the About footer"
                         )
                     )
-                        .underline()
+                    .underline()
                 }
             },
             secondaryView: {
