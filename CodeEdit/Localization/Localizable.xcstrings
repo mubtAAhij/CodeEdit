@@ -1,0 +1,2058 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "about.footer.mit-license": {
+      "comment": "Link title for the project license in the About footer",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT License"
+          }
+        }
+      }
+    },
+    "about.acknowledgements.title": {
+      "comment": "Title for the acknowledgements section in the About window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledgements"
+          }
+        }
+      }
+    },
+    "about.contributors.title": {
+      "comment": "Title for the contributors section in the About window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contributors"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.tab.close-button.accessibility-label": {
+      "comment": "Accessibility label for the editor tab close button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.history.navigate-back.help": {
+      "comment": "Help tooltip for the navigate back history button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate back"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.history.navigate-forward.help": {
+      "comment": "Help tooltip for the navigate forward history button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate forward"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.accessibility-label": {
+      "comment": "Accessibility label for the editor tab bar",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Bar"
+          }
+        }
+      }
+    },
+    "settings.accounts.account-selection.cancel": {
+      "comment": "Button title to dismiss account provider selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "window-commands.recent-projects-menu.open-recent": {
+      "comment": "Open Recent menu title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        }
+      }
+    },
+    "window-commands.commands-fixes.open-recent": {
+      "comment": "Open Recent menu title in command fixes helper",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        }
+      }
+    },
+    "window-commands.extensions.title": {
+      "comment": "Title of the Extensions command menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        }
+      }
+    },
+    "window-commands.extensions.open-window": {
+      "comment": "Menu item to open the extensions management window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Extensions Window"
+          }
+        }
+      }
+    },
+    "window-commands.window.welcome-to-codeedit": {
+      "comment": "Menu item title to open the welcome window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.window.about-codeedit": {
+      "comment": "Menu item title to open the About window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.window.manage-extensions": {
+      "comment": "Menu item title to open the extensions window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Extensions"
+          }
+        }
+      }
+    },
+    "window-commands.main.about-codeedit": {
+      "comment": "Main app command to open the About window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.main.check-for-updates": {
+      "comment": "Main app command to check for available updates",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for updates..."
+          }
+        }
+      }
+    },
+    "window-commands.main.settings": {
+      "comment": "Main app command to open settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings..."
+          }
+        }
+      }
+    },
+    "editor.tab-bar.leading-accessories.close-this-editor": {
+      "comment": "Tooltip for closing the active editor from tab bar leading accessories",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close this Editor"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.leading-accessories.unfocus-this-editor": {
+      "comment": "Tooltip for unfocusing the active split editor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unfocus this Editor"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.leading-accessories.focus-this-editor": {
+      "comment": "Tooltip for focusing this split editor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus this Editor"
+          }
+        }
+      }
+    },
+    "settings.accounts.no-accounts": {
+      "comment": "Empty state text when no source control accounts are configured",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No accounts"
+          }
+        }
+      }
+    },
+    "settings.accounts.add-account": {
+      "comment": "Button title to add a new source control account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account..."
+          }
+        }
+      }
+    },
+    "settings.accounts.unsupported-git-client.message": {
+      "comment": "Alert message shown when selected git provider is unsupported",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This git client is currently not supported."
+          }
+        }
+      }
+    },
+    "settings.accounts.unsupported-git-client.close": {
+      "comment": "Button title to dismiss unsupported git client alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "settings.accounts.title": {
+      "comment": "Title for the accounts settings page",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accounts"
+          }
+        }
+      }
+    },
+    "settings.accounts.delete-account": {
+      "comment": "Command title to delete the selected account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Account..."
+          }
+        }
+      }
+    },
+    "window-commands.editor.menu-title": {
+      "comment": "Title of the Editor command menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor"
+          }
+        }
+      }
+    },
+    "window-commands.editor.structure.menu-title": {
+      "comment": "Title of the Structure submenu under Editor commands",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Structure"
+          }
+        }
+      }
+    },
+    "window-commands.editor.structure.move-line-up": {
+      "comment": "Menu item to move the current line up",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move line up"
+          }
+        }
+      }
+    },
+    "window-commands.editor.structure.move-line-down": {
+      "comment": "Menu item to move the current line down",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move line down"
+          }
+        }
+      }
+    },
+    "window-commands.help.whats-new-in-codeedit": {
+      "comment": "Help menu item title to open What's New page",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What's New in CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.help.release-notes": {
+      "comment": "Help menu item title to open release notes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Release Notes"
+          }
+        }
+      }
+    },
+    "window-commands.help.report-an-issue": {
+      "comment": "Help menu item title to open issue reporting page",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report an Issue"
+          }
+        }
+      }
+    },
+    "about.subtitle.no-version": {
+      "comment": "Fallback text when app version is unavailable in About subtitle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Version"
+          }
+        }
+      }
+    },
+    "about.subtitle.no-build": {
+      "comment": "Fallback text when app build number is unavailable in About subtitle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Build"
+          }
+        }
+      }
+    },
+    "about.subtitle.version-line": {
+      "comment": "About subtitle line showing app version, optional postfix, and build number",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@%@ (%@)"
+          }
+        }
+      }
+    },
+    "about.subtitle.copy-details": {
+      "comment": "Multiline details copied from About subtitle with app and macOS versions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit: %@ (%@)\nmacOS: %@"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.show-minimap": {
+      "comment": "Menu item title to toggle minimap visibility in editor tab bar accessories",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.wrap-lines": {
+      "comment": "Menu item title to toggle line wrapping in editor tab bar accessories",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap Lines"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.split-vertically": {
+      "comment": "Menu item title to split the editor vertically",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Vertically"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.split-horizontally": {
+      "comment": "Menu item title to split the editor horizontally",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Horizontally"
+          }
+        }
+      }
+    },
+    "window-commands.find.menu-title": {
+      "comment": "Title of the Find command menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find"
+          }
+        }
+      }
+    },
+    "window-commands.find.find": {
+      "comment": "Menu item title to open the find interface",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find..."
+          }
+        }
+      }
+    },
+    "window-commands.find.find-and-replace": {
+      "comment": "Menu item title to open find and replace interface",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find and Replace..."
+          }
+        }
+      }
+    },
+    "window-commands.find.find-next": {
+      "comment": "Menu item title to find next match",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Next"
+          }
+        }
+      }
+    },
+    "window-commands.find.find-previous": {
+      "comment": "Menu item title to find previous match",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Previous"
+          }
+        }
+      }
+    },
+    "window-commands.find.use-selection-for-find": {
+      "comment": "Menu item title to use current selection as find query",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Selection for Find"
+          }
+        }
+      }
+    },
+    "window-commands.find.jump-to-selection": {
+      "comment": "Menu item title to jump to current selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jump to Selection"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.provider.bitbucket-cloud": {
+      "comment": "Display name for BitBucket Cloud provider in source control account settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Cloud"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.provider.bitbucket-server": {
+      "comment": "Display name for BitBucket Server provider in source control account settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Server"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.provider.github": {
+      "comment": "Display name for GitHub provider in source control account settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.provider.github-enterprise": {
+      "comment": "Display name for GitHub Enterprise provider in source control account settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Enterprise"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.provider.gitlab": {
+      "comment": "Display name for GitLab provider in source control account settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.provider.gitlab-self-hosted": {
+      "comment": "Display name for self-hosted GitLab provider in source control account settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab Self-hosted"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.menu-title": {
+      "comment": "Title of the Tasks command menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasks"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.no-selected-task": {
+      "comment": "Disabled menu item shown when no task is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(No Selected Task)"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.run-selected-task": {
+      "comment": "Menu item title to run the selected task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run %@"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.stop-selected-task": {
+      "comment": "Menu item title to stop the selected task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop %@"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.show-selected-task-output": {
+      "comment": "Menu item title to show output for the selected task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show %@ Output"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.create-tasks": {
+      "comment": "Menu item title to create task configuration",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Tasks"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.choose-task": {
+      "comment": "Menu item title to choose a task",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Task..."
+          }
+        }
+      }
+    },
+    "window-commands.tasks.manage-tasks": {
+      "comment": "Menu item title to open task management",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Tasks..."
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.title": {
+      "comment": "Title for the create SSH key form",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create SSH key"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.key-type": {
+      "comment": "Label for SSH key type picker",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key Type"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.less-secure-suffix.ed25519": {
+      "comment": "Suffix appended to SSH key option indicating reduced security",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(less secure)"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.less-secure-suffix.rsa": {
+      "comment": "Suffix appended to SSH key option indicating reduced security",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(less secure)"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.passphrase": {
+      "comment": "Label for SSH key passphrase field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passphrase"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.confirm-passphrase": {
+      "comment": "Label for SSH key passphrase confirmation field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm Passphrase"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.cancel": {
+      "comment": "Button title to cancel SSH key creation",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.create": {
+      "comment": "Button title to create SSH key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.menu-title": {
+      "comment": "Title of the Navigate command menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.reveal-in-project-navigator": {
+      "comment": "Menu item to reveal current file in project navigator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal in Project Navigator"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.reveal-changes-in-navigator": {
+      "comment": "Menu item to reveal changed files in navigator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal Changes in Navigator"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.open-in-next-editor": {
+      "comment": "Menu item to open current file in next editor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Next Editor"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.open-in": {
+      "comment": "Menu item to choose where to open current file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in..."
+          }
+        }
+      }
+    },
+    "window-commands.navigate.show-previous-tab": {
+      "comment": "Menu item to switch to previous tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Previous Tab"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.show-next-tab": {
+      "comment": "Menu item to switch to next tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Next Tab"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.go-forward": {
+      "comment": "Menu item to navigate forward in history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go Forward"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.go-back": {
+      "comment": "Menu item to navigate backward in history",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go Back"
+          }
+        }
+      }
+    },
+    "window-commands.file.new": {
+      "comment": "File menu section title for new file actions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New"
+          }
+        }
+      }
+    },
+    "window-commands.file.open": {
+      "comment": "File menu item to open files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open..."
+          }
+        }
+      }
+    },
+    "window-commands.file.open-recent": {
+      "comment": "File menu item to open recent files submenu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        }
+      }
+    },
+    "window-commands.file.open-quickly": {
+      "comment": "File menu item to open file quickly",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Quickly"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-tab": {
+      "comment": "File menu item to close active tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Tab"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-editor": {
+      "comment": "File menu item to close active editor",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Editor"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-window": {
+      "comment": "File menu item to close window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Window"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-workspace": {
+      "comment": "File menu item to close workspace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Workspace"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-terminal": {
+      "comment": "File menu item to close terminal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Terminal"
+          }
+        }
+      }
+    },
+    "window-commands.file.workspace-settings": {
+      "comment": "File menu item to open workspace settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workspace Settings"
+          }
+        }
+      }
+    },
+    "window-commands.file.save": {
+      "comment": "File menu item to save current document",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.menu-title": {
+      "comment": "Title of the Source Control command menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Control"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.commit": {
+      "comment": "Source Control menu item to open commit flow",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.push": {
+      "comment": "Source Control menu item to push changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Push..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.pull": {
+      "comment": "Source Control menu item to pull changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pull..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.fetch-changes": {
+      "comment": "Source Control menu item to fetch repository changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetch Changes"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.stage-all-changes": {
+      "comment": "Source Control menu item to stage all changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stage All Changes"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.failed-to-stage-changes": {
+      "comment": "Alert title shown when staging all changes fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed To Stage Changes"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.unstage-all-changes": {
+      "comment": "Source Control menu item to unstage all changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unstage All Changes"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.failed-to-unstage-changes": {
+      "comment": "Alert title shown when unstaging all changes fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed To Unstage Changes"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.cherry-pick": {
+      "comment": "Source Control menu item to cherry-pick commits",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cherry-Pick..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.stash-changes": {
+      "comment": "Source Control menu item to stash local changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stash Changes..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.discard-all-changes": {
+      "comment": "Source Control menu item to discard all local changes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard All Changes..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.add-existing-remote": {
+      "comment": "Source Control menu item to add an existing remote repository",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Exisiting Remote..."
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-tab": {
+      "comment": "Context menu item to close the selected editor tab",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Tab"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-other-tabs": {
+      "comment": "Context menu item to close all tabs except selected one",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Other Tabs"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-tabs-to-the-right": {
+      "comment": "Context menu item to close tabs on the right side",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Tabs to the Right"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-all": {
+      "comment": "Context menu item to close all tabs",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close All"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.keep-open": {
+      "comment": "Context menu item to keep selected tab open",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep Open"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.copy-path": {
+      "comment": "Context menu item to copy full file path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Path"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.copy-relative-path": {
+      "comment": "Context menu item to copy file path relative to workspace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Relative Path"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.show-in-finder": {
+      "comment": "Context menu item to reveal file in Finder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show in Finder"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.reveal-in-project-navigator": {
+      "comment": "Context menu item to reveal file in project navigator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal in Project Navigator"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.open-in-new-window": {
+      "comment": "Context menu item to open file in a new window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in New Window"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-up": {
+      "comment": "Context menu item to split editor upward",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Up"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-down": {
+      "comment": "Context menu item to split editor downward",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Down"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-left": {
+      "comment": "Context menu item to split editor to the left",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Left"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-right": {
+      "comment": "Context menu item to split editor to the right",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Right"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.account": {
+      "comment": "Section header for account details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.description": {
+      "comment": "Field label for account description",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.server": {
+      "comment": "Field label for account server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.protocol.https": {
+      "comment": "Protocol option label for HTTPS",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HTTPS"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.protocol.ssh": {
+      "comment": "Protocol option label for SSH",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.clone-using": {
+      "comment": "Field label for clone protocol selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clone Using"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.clone-using.description": {
+      "comment": "Explanatory text describing provider and protocol used for cloning",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New repositories will be cloned from %@ using %@."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key": {
+      "comment": "Field label for SSH key selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH Key"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key.none": {
+      "comment": "Default SSH key option when no key is selected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key.create-new": {
+      "comment": "Menu action to create a new SSH key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create New..."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key.choose": {
+      "comment": "Menu action to choose an existing SSH key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose..."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account": {
+      "comment": "Button title to delete the selected account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Account..."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.confirmation": {
+      "comment": "Confirmation prompt shown before deleting an account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete the account “%@”?"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.confirm": {
+      "comment": "Confirmation button title in delete account alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.cancel": {
+      "comment": "Cancel button title in delete account alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.message": {
+      "comment": "Alert message explaining delete account consequences",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleting this account will remove it from CodeEdit."
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.server": {
+      "comment": "Label for account server URL field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.server.placeholder": {
+      "comment": "Placeholder text showing server URL format for sign-in",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://git.example.com"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.username": {
+      "comment": "Label for account username field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Username"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.personal-access-token": {
+      "comment": "Label for personal access token field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personal Access Token"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.title": {
+      "comment": "Title for account sign-in section with provider name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in to %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.required-scopes": {
+      "comment": "Instruction introducing required provider access token scopes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ personal access tokens must have these scopes set:"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.scope.admin-public-key": {
+      "comment": "Required provider scope token shown in sign-in instructions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "admin:public _key"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.scope.write-discussion": {
+      "comment": "Required provider scope token shown in sign-in instructions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "write:discussion"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.scope.repo": {
+      "comment": "Required provider scope token shown in sign-in instructions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repo"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.scope.user": {
+      "comment": "Required provider scope token shown in sign-in instructions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "user"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.create-password": {
+      "comment": "Action title to open provider password creation page",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a Password on %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.create-token": {
+      "comment": "Action title to open provider token creation page",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a Token on %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.cancel": {
+      "comment": "Button title to cancel account sign-in",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.submit": {
+      "comment": "Button title to submit account sign-in",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign In"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.error.unable-to-add-account": {
+      "comment": "Error title shown when adding account fails for username",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to add account “%@”"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.error.ok": {
+      "comment": "Confirmation button title for sign-in error alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.error.duplicate-account": {
+      "comment": "Error message for duplicate account and provider combination",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account with the same username and provider already exists!"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.error.authentication-failed": {
+      "comment": "Error message for failed authentication status",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication Failed"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.error.api-access-forbidden": {
+      "comment": "Error message for forbidden API access status",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API Access Forbidden"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.error.unknown": {
+      "comment": "Error message for unknown account sign-in failures",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown Error"
+          }
+        }
+      }
+    },
+    "window-commands.view.toolbar.visibility": {
+      "comment": "Menu item title to toggle toolbar visibility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Toolbar"
+          }
+        }
+      }
+    },
+    "window-commands.view.visibility.show": {
+      "comment": "Verb used in visibility toggle menu labels",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        }
+      }
+    },
+    "window-commands.view.visibility.hide": {
+      "comment": "Verb used in visibility toggle menu labels",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide"
+          }
+        }
+      }
+    },
+    "window-commands.view.interface.visibility": {
+      "comment": "Menu item title to toggle full interface visibility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Interface"
+          }
+        }
+      }
+    },
+    "window-commands.view.navigators.menu-title": {
+      "comment": "Title of the Navigators submenu in View menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigators"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-command-palette": {
+      "comment": "Menu item title to open the command palette",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Command Palette"
+          }
+        }
+      }
+    },
+    "window-commands.view.open-search-navigator": {
+      "comment": "Menu item title to open search navigator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Search Navigator"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size.menu-title": {
+      "comment": "Title for the font size submenu in View menu",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size.increase": {
+      "comment": "Menu item to increase editor font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Increase"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size.decrease": {
+      "comment": "Menu item to decrease editor font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decrease"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size.reset": {
+      "comment": "Menu item to reset editor font size",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        }
+      }
+    },
+    "window-commands.view.customize-toolbar": {
+      "comment": "Menu item to customize window toolbar",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize Toolbar..."
+          }
+        }
+      }
+    },
+    "window-commands.view.jump-bar.visibility": {
+      "comment": "Menu item title to toggle jump bar visibility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Jump Bar"
+          }
+        }
+      }
+    },
+    "window-commands.view.dim-editors-without-focus": {
+      "comment": "Menu item title to toggle dimming unfocused editors",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dim editors without focus"
+          }
+        }
+      }
+    },
+    "window-commands.view.navigator.visibility": {
+      "comment": "Menu item title to toggle navigator visibility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Navigator"
+          }
+        }
+      }
+    },
+    "window-commands.view.inspector.visibility": {
+      "comment": "Menu item title to toggle inspector visibility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Inspector"
+          }
+        }
+      }
+    },
+    "window-commands.view.utility-area.visibility": {
+      "comment": "Menu item title to toggle utility area visibility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Utility Area"
+          }
+        }
+      }
+    }
+  }
+}
