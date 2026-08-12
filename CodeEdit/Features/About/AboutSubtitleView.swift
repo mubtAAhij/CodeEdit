@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct AboutSubtitleView: View {
-
     @State private var didCopyVersion = false
     @State private var isHoveringVersion = false
 
-    private var appVersion: String { Bundle.versionString ?? String(localized: "about.subtitle.no-version", defaultValue: "No Version", comment: "Fallback text when app version is unavailable in About subtitle") }
-    private var appBuild: String { Bundle.buildString ?? String(localized: "about.subtitle.no-build", defaultValue: "No Build", comment: "Fallback text when app build number is unavailable in About subtitle") }
-    private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
+    private var appVersion: String {
+        Bundle.versionString ?? String(localized: "about.subtitle.no-version", defaultValue: "No Version", comment: "Fallback text when app version is unavailable in About subtitle")
+    }
+
+    private var appBuild: String {
+        Bundle.buildString ?? String(localized: "about.subtitle.no-build", defaultValue: "No Build", comment: "Fallback text when app build number is unavailable in About subtitle")
+    }
+
+    private var appVersionPostfix: String {
+        Bundle.versionPostfix ?? ""
+    }
 
     var body: some View {
         Text(String(format: String(localized: "about.subtitle.version-line", defaultValue: "Version %@%@ (%@)", comment: "About subtitle line showing app version, optional postfix, and build number"), "\(appVersion)", "\(appVersionPostfix)", "\(appBuild)"))
