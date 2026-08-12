@@ -3,10 +3,16 @@
   "sourceLanguage": "en",
   "strings": {
     "about.footer.mit-license": {
-      "comment": "Link title for the project license in the About footer",
+      "comment": "CodeEdit/Features/About/AboutFooterView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT License"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "MIT License"
@@ -15,7 +21,7 @@
       }
     },
     "about.acknowledgements.title": {
-      "comment": "Title for the acknowledgements section in the About window",
+      "comment": "CodeEdit/Features/About/Acknowledgements/Views/AcknowledgementsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -23,11 +29,17 @@
             "state": "translated",
             "value": "Acknowledgements"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agradecimientos"
+          }
         }
       }
     },
     "about.contributors.title": {
-      "comment": "Title for the contributors section in the About window",
+      "comment": "CodeEdit/Features/About/Contributors/ContributorsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -35,11 +47,17 @@
             "state": "translated",
             "value": "Contributors"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colaboradores"
+          }
         }
       }
     },
     "editor.tab-bar.tab.close-button.accessibility-label": {
-      "comment": "Accessibility label for the editor tab close button",
+      "comment": "CodeEdit/Features/Editor/TabBar/Tabs/Tab/EditorTabCloseButton.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -47,11 +65,17 @@
             "state": "translated",
             "value": "Close"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
         }
       }
     },
     "editor.tab-bar.history.navigate-back.help": {
-      "comment": "Help tooltip for the navigate back history button",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorHistoryMenus.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -59,11 +83,17 @@
             "state": "translated",
             "value": "Navigate back"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegar hacia atrás"
+          }
         }
       }
     },
     "editor.tab-bar.history.navigate-forward.help": {
-      "comment": "Help tooltip for the navigate forward history button",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorHistoryMenus.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -71,11 +101,17 @@
             "state": "translated",
             "value": "Navigate forward"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegar hacia adelante"
+          }
         }
       }
     },
     "editor.tab-bar.accessibility-label": {
-      "comment": "Accessibility label for the editor tab bar",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -83,11 +119,17 @@
             "state": "translated",
             "value": "Tab Bar"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra de pestañas"
+          }
         }
       }
     },
     "settings.accounts.account-selection.cancel": {
-      "comment": "Button title to dismiss account provider selection",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountSelectionView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -95,23 +137,35 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
     "window-commands.recent-projects-menu.open-recent": {
-      "comment": "Open Recent menu title",
+      "comment": "CodeEdit/Features/WindowCommands/Utils/RecentProjectsMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Open Recent"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir recientes"
           }
         }
       }
     },
     "window-commands.commands-fixes.open-recent": {
-      "comment": "Open Recent menu title in command fixes helper",
+      "comment": "CodeEdit/Features/WindowCommands/Utils/CommandsFixes.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -119,11 +173,17 @@
             "state": "translated",
             "value": "Open Recent"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir recientes"
+          }
         }
       }
     },
     "window-commands.extensions.title": {
-      "comment": "Title of the Extensions command menu",
+      "comment": "CodeEdit/Features/WindowCommands/ExtensionCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -131,11 +191,17 @@
             "state": "translated",
             "value": "Extensions"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensiones"
+          }
         }
       }
     },
     "window-commands.extensions.open-window": {
-      "comment": "Menu item to open the extensions management window",
+      "comment": "CodeEdit/Features/WindowCommands/ExtensionCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -143,11 +209,17 @@
             "state": "translated",
             "value": "Open Extensions Window"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Ventana de Extensiones"
+          }
         }
       }
     },
     "window-commands.window.welcome-to-codeedit": {
-      "comment": "Menu item title to open the welcome window",
+      "comment": "CodeEdit/Features/WindowCommands/WindowCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -155,11 +227,17 @@
             "state": "translated",
             "value": "Welcome to CodeEdit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienvenido a CodeEdit"
+          }
         }
       }
     },
     "window-commands.window.about-codeedit": {
-      "comment": "Menu item title to open the About window",
+      "comment": "CodeEdit/Features/WindowCommands/WindowCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -167,11 +245,17 @@
             "state": "translated",
             "value": "About CodeEdit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de CodeEdit"
+          }
         }
       }
     },
     "window-commands.window.manage-extensions": {
-      "comment": "Menu item title to open the extensions window",
+      "comment": "CodeEdit/Features/WindowCommands/WindowCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -179,11 +263,17 @@
             "state": "translated",
             "value": "Manage Extensions"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Administrar extensiones"
+          }
         }
       }
     },
     "window-commands.main.about-codeedit": {
-      "comment": "Main app command to open the About window",
+      "comment": "CodeEdit/Features/WindowCommands/MainCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -191,11 +281,17 @@
             "state": "translated",
             "value": "About CodeEdit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de CodeEdit"
+          }
         }
       }
     },
     "window-commands.main.check-for-updates": {
-      "comment": "Main app command to check for available updates",
+      "comment": "CodeEdit/Features/WindowCommands/MainCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -203,11 +299,17 @@
             "state": "translated",
             "value": "Check for updates..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones..."
+          }
         }
       }
     },
     "window-commands.main.settings": {
-      "comment": "Main app command to open settings",
+      "comment": "CodeEdit/Features/WindowCommands/MainCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -215,11 +317,17 @@
             "state": "translated",
             "value": "Settings..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración..."
+          }
         }
       }
     },
     "editor.tab-bar.leading-accessories.close-this-editor": {
-      "comment": "Tooltip for closing the active editor from tab bar leading accessories",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarLeadingAccessories.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -227,11 +335,17 @@
             "state": "translated",
             "value": "Close this Editor"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar este editor"
+          }
         }
       }
     },
     "editor.tab-bar.leading-accessories.unfocus-this-editor": {
-      "comment": "Tooltip for unfocusing the active split editor",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarLeadingAccessories.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -239,11 +353,17 @@
             "state": "translated",
             "value": "Unfocus this Editor"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desenfocar este editor"
+          }
         }
       }
     },
     "editor.tab-bar.leading-accessories.focus-this-editor": {
-      "comment": "Tooltip for focusing this split editor",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarLeadingAccessories.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -251,11 +371,17 @@
             "state": "translated",
             "value": "Focus this Editor"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enfocar este editor"
+          }
         }
       }
     },
     "settings.accounts.no-accounts": {
-      "comment": "Empty state text when no source control accounts are configured",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -263,11 +389,17 @@
             "state": "translated",
             "value": "No accounts"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin cuentas"
+          }
         }
       }
     },
     "settings.accounts.add-account": {
-      "comment": "Button title to add a new source control account",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -275,11 +407,17 @@
             "state": "translated",
             "value": "Add Account..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar cuenta..."
+          }
         }
       }
     },
     "settings.accounts.unsupported-git-client.message": {
-      "comment": "Alert message shown when selected git provider is unsupported",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -287,11 +425,17 @@
             "state": "translated",
             "value": "This git client is currently not supported."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este cliente de git actualmente no es compatible."
+          }
         }
       }
     },
     "settings.accounts.unsupported-git-client.close": {
-      "comment": "Button title to dismiss unsupported git client alert",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -299,11 +443,17 @@
             "state": "translated",
             "value": "Close"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
         }
       }
     },
     "settings.accounts.title": {
-      "comment": "Title for the accounts settings page",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/AccountsSettings.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -311,11 +461,17 @@
             "state": "translated",
             "value": "Accounts"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuentas"
+          }
         }
       }
     },
     "settings.accounts.delete-account": {
-      "comment": "Command title to delete the selected account",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/AccountsSettings.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -323,14 +479,26 @@
             "state": "translated",
             "value": "Delete Account..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta..."
+          }
         }
       }
     },
     "window-commands.editor.menu-title": {
-      "comment": "Title of the Editor command menu",
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Editor"
@@ -339,7 +507,7 @@
       }
     },
     "window-commands.editor.structure.menu-title": {
-      "comment": "Title of the Structure submenu under Editor commands",
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -347,11 +515,17 @@
             "state": "translated",
             "value": "Structure"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estructura"
+          }
         }
       }
     },
     "window-commands.editor.structure.move-line-up": {
-      "comment": "Menu item to move the current line up",
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -359,11 +533,17 @@
             "state": "translated",
             "value": "Move line up"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover línea arriba"
+          }
         }
       }
     },
     "window-commands.editor.structure.move-line-down": {
-      "comment": "Menu item to move the current line down",
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -371,11 +551,17 @@
             "state": "translated",
             "value": "Move line down"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover línea abajo"
+          }
         }
       }
     },
     "window-commands.help.whats-new-in-codeedit": {
-      "comment": "Help menu item title to open What's New page",
+      "comment": "CodeEdit/Features/WindowCommands/HelpCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -383,11 +569,17 @@
             "state": "translated",
             "value": "What's New in CodeEdit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novedades en CodeEdit"
+          }
         }
       }
     },
     "window-commands.help.release-notes": {
-      "comment": "Help menu item title to open release notes",
+      "comment": "CodeEdit/Features/WindowCommands/HelpCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -395,11 +587,17 @@
             "state": "translated",
             "value": "Release Notes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notas de la versión"
+          }
         }
       }
     },
     "window-commands.help.report-an-issue": {
-      "comment": "Help menu item title to open issue reporting page",
+      "comment": "CodeEdit/Features/WindowCommands/HelpCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -407,11 +605,17 @@
             "state": "translated",
             "value": "Report an Issue"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar un problema"
+          }
         }
       }
     },
     "about.subtitle.no-version": {
-      "comment": "Fallback text when app version is unavailable in About subtitle",
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -419,11 +623,17 @@
             "state": "translated",
             "value": "No Version"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin versión"
+          }
         }
       }
     },
     "about.subtitle.no-build": {
-      "comment": "Fallback text when app build number is unavailable in About subtitle",
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -431,11 +641,17 @@
             "state": "translated",
             "value": "No Build"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin build"
+          }
         }
       }
     },
     "about.subtitle.version-line": {
-      "comment": "About subtitle line showing app version, optional postfix, and build number",
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -443,14 +659,26 @@
             "state": "translated",
             "value": "Version %@%@ (%@)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %@%@ (%@)"
+          }
         }
       }
     },
     "about.subtitle.copy-details": {
-      "comment": "Multiline details copied from About subtitle with app and macOS versions",
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit: %@ (%@)\nmacOS: %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "CodeEdit: %@ (%@)\nmacOS: %@"
@@ -459,7 +687,7 @@
       }
     },
     "editor.tab-bar.trailing-accessories.show-minimap": {
-      "comment": "Menu item title to toggle minimap visibility in editor tab bar accessories",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -467,11 +695,17 @@
             "state": "translated",
             "value": "Show Minimap"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar minimapa"
+          }
         }
       }
     },
     "editor.tab-bar.trailing-accessories.wrap-lines": {
-      "comment": "Menu item title to toggle line wrapping in editor tab bar accessories",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -479,11 +713,17 @@
             "state": "translated",
             "value": "Wrap Lines"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustar líneas"
+          }
         }
       }
     },
     "editor.tab-bar.trailing-accessories.split-vertically": {
-      "comment": "Menu item title to split the editor vertically",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -491,11 +731,17 @@
             "state": "translated",
             "value": "Split Vertically"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir verticalmente"
+          }
         }
       }
     },
     "editor.tab-bar.trailing-accessories.split-horizontally": {
-      "comment": "Menu item title to split the editor horizontally",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -503,11 +749,17 @@
             "state": "translated",
             "value": "Split Horizontally"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir horizontalmente"
+          }
         }
       }
     },
     "window-commands.find.menu-title": {
-      "comment": "Title of the Find command menu",
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -515,11 +767,17 @@
             "state": "translated",
             "value": "Find"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar"
+          }
         }
       }
     },
     "window-commands.find.find": {
-      "comment": "Menu item title to open the find interface",
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -527,11 +785,17 @@
             "state": "translated",
             "value": "Find..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar..."
+          }
         }
       }
     },
     "window-commands.find.find-and-replace": {
-      "comment": "Menu item title to open find and replace interface",
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -539,11 +803,17 @@
             "state": "translated",
             "value": "Find and Replace..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar y reemplazar..."
+          }
         }
       }
     },
     "window-commands.find.find-next": {
-      "comment": "Menu item title to find next match",
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -551,11 +821,17 @@
             "state": "translated",
             "value": "Find Next"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar siguiente"
+          }
         }
       }
     },
     "window-commands.find.find-previous": {
-      "comment": "Menu item title to find previous match",
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -563,11 +839,17 @@
             "state": "translated",
             "value": "Find Previous"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar anterior"
+          }
         }
       }
     },
     "window-commands.find.use-selection-for-find": {
-      "comment": "Menu item title to use current selection as find query",
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -575,11 +857,17 @@
             "state": "translated",
             "value": "Use Selection for Find"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar selección para buscar"
+          }
         }
       }
     },
     "window-commands.find.jump-to-selection": {
-      "comment": "Menu item title to jump to current selection",
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -587,11 +875,17 @@
             "state": "translated",
             "value": "Jump to Selection"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ir a la selección"
+          }
         }
       }
     },
     "settings.accounts.source-control-account.provider.bitbucket-cloud": {
-      "comment": "Display name for BitBucket Cloud provider in source control account settings",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -599,11 +893,17 @@
             "state": "translated",
             "value": "BitBucket Cloud"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitbucket Cloud"
+          }
         }
       }
     },
     "settings.accounts.source-control-account.provider.bitbucket-server": {
-      "comment": "Display name for BitBucket Server provider in source control account settings",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -611,14 +911,26 @@
             "state": "translated",
             "value": "BitBucket Server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitbucket Server"
+          }
         }
       }
     },
     "settings.accounts.source-control-account.provider.github": {
-      "comment": "Display name for GitHub provider in source control account settings",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "GitHub"
@@ -627,10 +939,16 @@
       }
     },
     "settings.accounts.source-control-account.provider.github-enterprise": {
-      "comment": "Display name for GitHub Enterprise provider in source control account settings",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Enterprise"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "GitHub Enterprise"
@@ -639,10 +957,16 @@
       }
     },
     "settings.accounts.source-control-account.provider.gitlab": {
-      "comment": "Display name for GitLab provider in source control account settings",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "GitLab"
@@ -651,7 +975,7 @@
       }
     },
     "settings.accounts.source-control-account.provider.gitlab-self-hosted": {
-      "comment": "Display name for self-hosted GitLab provider in source control account settings",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -659,11 +983,17 @@
             "state": "translated",
             "value": "GitLab Self-hosted"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab autohospedado"
+          }
         }
       }
     },
     "window-commands.tasks.menu-title": {
-      "comment": "Title of the Tasks command menu",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -671,11 +1001,17 @@
             "state": "translated",
             "value": "Tasks"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tareas"
+          }
         }
       }
     },
     "window-commands.tasks.no-selected-task": {
-      "comment": "Disabled menu item shown when no task is selected",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -683,11 +1019,17 @@
             "state": "translated",
             "value": "(No Selected Task)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Ninguna tarea seleccionada)"
+          }
         }
       }
     },
     "window-commands.tasks.run-selected-task": {
-      "comment": "Menu item title to run the selected task",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -695,11 +1037,17 @@
             "state": "translated",
             "value": "Run %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecutar %@"
+          }
         }
       }
     },
     "window-commands.tasks.stop-selected-task": {
-      "comment": "Menu item title to stop the selected task",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -707,11 +1055,17 @@
             "state": "translated",
             "value": "Stop %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener %@"
+          }
         }
       }
     },
     "window-commands.tasks.show-selected-task-output": {
-      "comment": "Menu item title to show output for the selected task",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -719,11 +1073,17 @@
             "state": "translated",
             "value": "Show %@ Output"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar salida de %@"
+          }
         }
       }
     },
     "window-commands.tasks.create-tasks": {
-      "comment": "Menu item title to create task configuration",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -731,11 +1091,17 @@
             "state": "translated",
             "value": "Create Tasks"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear tareas"
+          }
         }
       }
     },
     "window-commands.tasks.choose-task": {
-      "comment": "Menu item title to choose a task",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -743,11 +1109,17 @@
             "state": "translated",
             "value": "Choose Task..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir Tarea..."
+          }
         }
       }
     },
     "window-commands.tasks.manage-tasks": {
-      "comment": "Menu item title to open task management",
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -755,11 +1127,17 @@
             "state": "translated",
             "value": "Manage Tasks..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Administrar tareas..."
+          }
         }
       }
     },
     "settings.accounts.create-ssh-key.title": {
-      "comment": "Title for the create SSH key form",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -767,11 +1145,17 @@
             "state": "translated",
             "value": "Create SSH key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear clave SSH"
+          }
         }
       }
     },
     "settings.accounts.create-ssh-key.key-type": {
-      "comment": "Label for SSH key type picker",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -779,23 +1163,35 @@
             "state": "translated",
             "value": "Key Type"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de clave"
+          }
         }
       }
     },
     "settings.accounts.create-ssh-key.less-secure-suffix.ed25519": {
-      "comment": "Suffix appended to SSH key option indicating reduced security",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "(less secure)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(menos seguro)"
           }
         }
       }
     },
     "settings.accounts.create-ssh-key.less-secure-suffix.rsa": {
-      "comment": "Suffix appended to SSH key option indicating reduced security",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -803,11 +1199,17 @@
             "state": "translated",
             "value": "(less secure)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(menos seguro)"
+          }
         }
       }
     },
     "settings.accounts.create-ssh-key.passphrase": {
-      "comment": "Label for SSH key passphrase field",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -815,11 +1217,17 @@
             "state": "translated",
             "value": "Passphrase"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase de contraseña"
+          }
         }
       }
     },
     "settings.accounts.create-ssh-key.confirm-passphrase": {
-      "comment": "Label for SSH key passphrase confirmation field",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -827,11 +1235,17 @@
             "state": "translated",
             "value": "Confirm Passphrase"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmar frase de contraseña"
+          }
         }
       }
     },
     "settings.accounts.create-ssh-key.cancel": {
-      "comment": "Button title to cancel SSH key creation",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -839,11 +1253,17 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
     "settings.accounts.create-ssh-key.create": {
-      "comment": "Button title to create SSH key",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -851,11 +1271,17 @@
             "state": "translated",
             "value": "Create"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear"
+          }
         }
       }
     },
     "window-commands.navigate.menu-title": {
-      "comment": "Title of the Navigate command menu",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -863,11 +1289,17 @@
             "state": "translated",
             "value": "Navigate"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegar"
+          }
         }
       }
     },
     "window-commands.navigate.reveal-in-project-navigator": {
-      "comment": "Menu item to reveal current file in project navigator",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -875,11 +1307,17 @@
             "state": "translated",
             "value": "Reveal in Project Navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Navegador de Proyecto"
+          }
         }
       }
     },
     "window-commands.navigate.reveal-changes-in-navigator": {
-      "comment": "Menu item to reveal changed files in navigator",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -887,11 +1325,17 @@
             "state": "translated",
             "value": "Reveal Changes in Navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Cambios en el Navegador"
+          }
         }
       }
     },
     "window-commands.navigate.open-in-next-editor": {
-      "comment": "Menu item to open current file in next editor",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -899,11 +1343,17 @@
             "state": "translated",
             "value": "Open in Next Editor"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en el Siguiente Editor"
+          }
         }
       }
     },
     "window-commands.navigate.open-in": {
-      "comment": "Menu item to choose where to open current file",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -911,11 +1361,17 @@
             "state": "translated",
             "value": "Open in..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir con..."
+          }
         }
       }
     },
     "window-commands.navigate.show-previous-tab": {
-      "comment": "Menu item to switch to previous tab",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -923,11 +1379,17 @@
             "state": "translated",
             "value": "Show Previous Tab"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar pestaña anterior"
+          }
         }
       }
     },
     "window-commands.navigate.show-next-tab": {
-      "comment": "Menu item to switch to next tab",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -935,11 +1397,17 @@
             "state": "translated",
             "value": "Show Next Tab"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar pestaña siguiente"
+          }
         }
       }
     },
     "window-commands.navigate.go-forward": {
-      "comment": "Menu item to navigate forward in history",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -947,11 +1415,17 @@
             "state": "translated",
             "value": "Go Forward"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ir adelante"
+          }
         }
       }
     },
     "window-commands.navigate.go-back": {
-      "comment": "Menu item to navigate backward in history",
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -959,11 +1433,17 @@
             "state": "translated",
             "value": "Go Back"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volver"
+          }
         }
       }
     },
     "window-commands.file.new": {
-      "comment": "File menu section title for new file actions",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -971,11 +1451,17 @@
             "state": "translated",
             "value": "New"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo"
+          }
         }
       }
     },
     "window-commands.file.open": {
-      "comment": "File menu item to open files",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -983,11 +1469,17 @@
             "state": "translated",
             "value": "Open..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir..."
+          }
         }
       }
     },
     "window-commands.file.open-recent": {
-      "comment": "File menu item to open recent files submenu",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -995,11 +1487,17 @@
             "state": "translated",
             "value": "Open Recent"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Recientes"
+          }
         }
       }
     },
     "window-commands.file.open-quickly": {
-      "comment": "File menu item to open file quickly",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1007,11 +1505,17 @@
             "state": "translated",
             "value": "Open Quickly"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Rápidamente"
+          }
         }
       }
     },
     "window-commands.file.close-tab": {
-      "comment": "File menu item to close active tab",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1019,11 +1523,17 @@
             "state": "translated",
             "value": "Close Tab"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar pestaña"
+          }
         }
       }
     },
     "window-commands.file.close-editor": {
-      "comment": "File menu item to close active editor",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1031,11 +1541,17 @@
             "state": "translated",
             "value": "Close Editor"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar editor"
+          }
         }
       }
     },
     "window-commands.file.close-window": {
-      "comment": "File menu item to close window",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1043,11 +1559,17 @@
             "state": "translated",
             "value": "Close Window"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar ventana"
+          }
         }
       }
     },
     "window-commands.file.close-workspace": {
-      "comment": "File menu item to close workspace",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1055,11 +1577,17 @@
             "state": "translated",
             "value": "Close Workspace"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar espacio de trabajo"
+          }
         }
       }
     },
     "window-commands.file.close-terminal": {
-      "comment": "File menu item to close terminal",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1067,11 +1595,17 @@
             "state": "translated",
             "value": "Close Terminal"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar Terminal"
+          }
         }
       }
     },
     "window-commands.file.workspace-settings": {
-      "comment": "File menu item to open workspace settings",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1079,11 +1613,17 @@
             "state": "translated",
             "value": "Workspace Settings"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración del Espacio de Trabajo"
+          }
         }
       }
     },
     "window-commands.file.save": {
-      "comment": "File menu item to save current document",
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1091,11 +1631,17 @@
             "state": "translated",
             "value": "Save"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
         }
       }
     },
     "window-commands.source-control.menu-title": {
-      "comment": "Title of the Source Control command menu",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1103,14 +1649,26 @@
             "state": "translated",
             "value": "Source Control"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control de código fuente"
+          }
         }
       }
     },
     "window-commands.source-control.commit": {
-      "comment": "Source Control menu item to open commit flow",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit..."
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Commit..."
@@ -1119,10 +1677,16 @@
       }
     },
     "window-commands.source-control.push": {
-      "comment": "Source Control menu item to push changes",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Push..."
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Push..."
@@ -1131,7 +1695,7 @@
       }
     },
     "window-commands.source-control.pull": {
-      "comment": "Source Control menu item to pull changes",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1139,11 +1703,17 @@
             "state": "translated",
             "value": "Pull..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traer..."
+          }
         }
       }
     },
     "window-commands.source-control.fetch-changes": {
-      "comment": "Source Control menu item to fetch repository changes",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1151,11 +1721,17 @@
             "state": "translated",
             "value": "Fetch Changes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traer cambios"
+          }
         }
       }
     },
     "window-commands.source-control.stage-all-changes": {
-      "comment": "Source Control menu item to stage all changes",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1163,11 +1739,17 @@
             "state": "translated",
             "value": "Stage All Changes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparar Todos los Cambios"
+          }
         }
       }
     },
     "window-commands.source-control.failed-to-stage-changes": {
-      "comment": "Alert title shown when staging all changes fails",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1175,11 +1757,17 @@
             "state": "translated",
             "value": "Failed To Stage Changes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al preparar cambios"
+          }
         }
       }
     },
     "window-commands.source-control.unstage-all-changes": {
-      "comment": "Source Control menu item to unstage all changes",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1187,11 +1775,17 @@
             "state": "translated",
             "value": "Unstage All Changes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar Todos los Cambios del Área de Stage"
+          }
         }
       }
     },
     "window-commands.source-control.failed-to-unstage-changes": {
-      "comment": "Alert title shown when unstaging all changes fails",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1199,14 +1793,26 @@
             "state": "translated",
             "value": "Failed To Unstage Changes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al Quitar Cambios del Stage"
+          }
         }
       }
     },
     "window-commands.source-control.cherry-pick": {
-      "comment": "Source Control menu item to cherry-pick commits",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cherry-Pick..."
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Cherry-Pick..."
@@ -1215,7 +1821,7 @@
       }
     },
     "window-commands.source-control.stash-changes": {
-      "comment": "Source Control menu item to stash local changes",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1223,11 +1829,17 @@
             "state": "translated",
             "value": "Stash Changes..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar cambios en stash..."
+          }
         }
       }
     },
     "window-commands.source-control.discard-all-changes": {
-      "comment": "Source Control menu item to discard all local changes",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1235,11 +1847,17 @@
             "state": "translated",
             "value": "Discard All Changes..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar Todos los Cambios..."
+          }
         }
       }
     },
     "window-commands.source-control.add-existing-remote": {
-      "comment": "Source Control menu item to add an existing remote repository",
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1247,11 +1865,17 @@
             "state": "translated",
             "value": "Add Exisiting Remote..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar remoto existente..."
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.close-tab": {
-      "comment": "Context menu item to close the selected editor tab",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1259,11 +1883,17 @@
             "state": "translated",
             "value": "Close Tab"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar pestaña"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.close-other-tabs": {
-      "comment": "Context menu item to close all tabs except selected one",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1271,11 +1901,17 @@
             "state": "translated",
             "value": "Close Other Tabs"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar otras pestañas"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.close-tabs-to-the-right": {
-      "comment": "Context menu item to close tabs on the right side",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1283,11 +1919,17 @@
             "state": "translated",
             "value": "Close Tabs to the Right"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar pestañas a la derecha"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.close-all": {
-      "comment": "Context menu item to close all tabs",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1295,11 +1937,17 @@
             "state": "translated",
             "value": "Close All"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar todo"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.keep-open": {
-      "comment": "Context menu item to keep selected tab open",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1307,11 +1955,17 @@
             "state": "translated",
             "value": "Keep Open"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantener Abierto"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.copy-path": {
-      "comment": "Context menu item to copy full file path",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1319,11 +1973,17 @@
             "state": "translated",
             "value": "Copy Path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar ruta"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.copy-relative-path": {
-      "comment": "Context menu item to copy file path relative to workspace",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1331,11 +1991,17 @@
             "state": "translated",
             "value": "Copy Relative Path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar ruta relativa"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.show-in-finder": {
-      "comment": "Context menu item to reveal file in Finder",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1343,11 +2009,17 @@
             "state": "translated",
             "value": "Show in Finder"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en Finder"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.reveal-in-project-navigator": {
-      "comment": "Context menu item to reveal file in project navigator",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1355,11 +2027,17 @@
             "state": "translated",
             "value": "Reveal in Project Navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Navegador de Proyecto"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.open-in-new-window": {
-      "comment": "Context menu item to open file in a new window",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1367,11 +2045,17 @@
             "state": "translated",
             "value": "Open in New Window"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Nueva Ventana"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.split-up": {
-      "comment": "Context menu item to split editor upward",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1379,11 +2063,17 @@
             "state": "translated",
             "value": "Split Up"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.split-down": {
-      "comment": "Context menu item to split editor downward",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1391,11 +2081,17 @@
             "state": "translated",
             "value": "Split Down"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir abajo"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.split-left": {
-      "comment": "Context menu item to split editor to the left",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1403,11 +2099,17 @@
             "state": "translated",
             "value": "Split Left"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir a la izquierda"
+          }
         }
       }
     },
     "editor.tab-bar.context-menu.split-right": {
-      "comment": "Context menu item to split editor to the right",
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1415,11 +2117,17 @@
             "state": "translated",
             "value": "Split Right"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir a la derecha"
+          }
         }
       }
     },
     "settings.accounts.details.account": {
-      "comment": "Section header for account details",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1427,11 +2135,17 @@
             "state": "translated",
             "value": "Account"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta"
+          }
         }
       }
     },
     "settings.accounts.details.description": {
-      "comment": "Field label for account description",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1439,11 +2153,17 @@
             "state": "translated",
             "value": "Description"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descripción"
+          }
         }
       }
     },
     "settings.accounts.details.server": {
-      "comment": "Field label for account server",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1451,14 +2171,26 @@
             "state": "translated",
             "value": "Server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor"
+          }
         }
       }
     },
     "settings.accounts.details.protocol.https": {
-      "comment": "Protocol option label for HTTPS",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HTTPS"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "HTTPS"
@@ -1467,10 +2199,16 @@
       }
     },
     "settings.accounts.details.protocol.ssh": {
-      "comment": "Protocol option label for SSH",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "SSH"
@@ -1479,7 +2217,7 @@
       }
     },
     "settings.accounts.details.clone-using": {
-      "comment": "Field label for clone protocol selection",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1487,11 +2225,17 @@
             "state": "translated",
             "value": "Clone Using"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clonar usando"
+          }
         }
       }
     },
     "settings.accounts.details.clone-using.description": {
-      "comment": "Explanatory text describing provider and protocol used for cloning",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1499,11 +2243,17 @@
             "state": "translated",
             "value": "New repositories will be cloned from %@ using %@."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los nuevos repositorios se clonarán desde %@ usando %@."
+          }
         }
       }
     },
     "settings.accounts.details.ssh-key": {
-      "comment": "Field label for SSH key selection",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1511,11 +2261,17 @@
             "state": "translated",
             "value": "SSH Key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave SSH"
+          }
         }
       }
     },
     "settings.accounts.details.ssh-key.none": {
-      "comment": "Default SSH key option when no key is selected",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1523,11 +2279,17 @@
             "state": "translated",
             "value": "None"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguno"
+          }
         }
       }
     },
     "settings.accounts.details.ssh-key.create-new": {
-      "comment": "Menu action to create a new SSH key",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1535,11 +2297,17 @@
             "state": "translated",
             "value": "Create New..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear nuevo..."
+          }
         }
       }
     },
     "settings.accounts.details.ssh-key.choose": {
-      "comment": "Menu action to choose an existing SSH key",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1547,11 +2315,17 @@
             "state": "translated",
             "value": "Choose..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir..."
+          }
         }
       }
     },
     "settings.accounts.details.delete-account": {
-      "comment": "Button title to delete the selected account",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1559,11 +2333,17 @@
             "state": "translated",
             "value": "Delete Account..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta..."
+          }
         }
       }
     },
     "settings.accounts.details.delete-account.confirmation": {
-      "comment": "Confirmation prompt shown before deleting an account",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1571,11 +2351,17 @@
             "state": "translated",
             "value": "Are you sure you want to delete the account “%@”?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar la cuenta \"%@\"?"
+          }
         }
       }
     },
     "settings.accounts.details.delete-account.confirm": {
-      "comment": "Confirmation button title in delete account alert",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1583,11 +2369,17 @@
             "state": "translated",
             "value": "OK"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
+          }
         }
       }
     },
     "settings.accounts.details.delete-account.cancel": {
-      "comment": "Cancel button title in delete account alert",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1595,11 +2387,17 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
     "settings.accounts.details.delete-account.message": {
-      "comment": "Alert message explaining delete account consequences",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1607,11 +2405,17 @@
             "state": "translated",
             "value": "Deleting this account will remove it from CodeEdit."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar esta cuenta la quitará de CodeEdit."
+          }
         }
       }
     },
     "settings.accounts.signin.server": {
-      "comment": "Label for account server URL field",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1619,11 +2423,17 @@
             "state": "translated",
             "value": "Server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor"
+          }
         }
       }
     },
     "settings.accounts.signin.server.placeholder": {
-      "comment": "Placeholder text showing server URL format for sign-in",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1631,11 +2441,17 @@
             "state": "translated",
             "value": "https://git.example.com"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "https://git.ejemplo.com"
+          }
         }
       }
     },
     "settings.accounts.signin.username": {
-      "comment": "Label for account username field",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1643,11 +2459,17 @@
             "state": "translated",
             "value": "Username"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de usuario"
+          }
         }
       }
     },
     "settings.accounts.signin.personal-access-token": {
-      "comment": "Label for personal access token field",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1655,11 +2477,17 @@
             "state": "translated",
             "value": "Personal Access Token"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Token de acceso personal"
+          }
         }
       }
     },
     "settings.accounts.signin.title": {
-      "comment": "Title for account sign-in section with provider name",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1667,11 +2495,17 @@
             "state": "translated",
             "value": "Sign in to %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión en %@"
+          }
         }
       }
     },
     "settings.accounts.signin.required-scopes": {
-      "comment": "Instruction introducing required provider access token scopes",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1679,11 +2513,17 @@
             "state": "translated",
             "value": "%@ personal access tokens must have these scopes set:"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los tokens de acceso personal de %@ deben tener estos alcances configurados:"
+          }
         }
       }
     },
     "settings.accounts.signin.scope.admin-public-key": {
-      "comment": "Required provider scope token shown in sign-in instructions",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1691,11 +2531,17 @@
             "state": "translated",
             "value": "admin:public _key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "admin:clave _pública"
+          }
         }
       }
     },
     "settings.accounts.signin.scope.write-discussion": {
-      "comment": "Required provider scope token shown in sign-in instructions",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1703,14 +2549,26 @@
             "state": "translated",
             "value": "write:discussion"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "escritura:discusión"
+          }
         }
       }
     },
     "settings.accounts.signin.scope.repo": {
-      "comment": "Required provider scope token shown in sign-in instructions",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "repo"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "repo"
@@ -1719,7 +2577,7 @@
       }
     },
     "settings.accounts.signin.scope.user": {
-      "comment": "Required provider scope token shown in sign-in instructions",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1727,11 +2585,17 @@
             "state": "translated",
             "value": "user"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "usuario"
+          }
         }
       }
     },
     "settings.accounts.signin.create-password": {
-      "comment": "Action title to open provider password creation page",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1739,11 +2603,17 @@
             "state": "translated",
             "value": "Create a Password on %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear una contraseña en %@"
+          }
         }
       }
     },
     "settings.accounts.signin.create-token": {
-      "comment": "Action title to open provider token creation page",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1751,11 +2621,17 @@
             "state": "translated",
             "value": "Create a Token on %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear un token en %@"
+          }
         }
       }
     },
     "settings.accounts.signin.cancel": {
-      "comment": "Button title to cancel account sign-in",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1763,11 +2639,17 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
     "settings.accounts.signin.submit": {
-      "comment": "Button title to submit account sign-in",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1775,11 +2657,17 @@
             "state": "translated",
             "value": "Sign In"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión"
+          }
         }
       }
     },
     "settings.accounts.signin.error.unable-to-add-account": {
-      "comment": "Error title shown when adding account fails for username",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1787,14 +2675,26 @@
             "state": "translated",
             "value": "Unable to add account “%@”"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo agregar la cuenta \"%@\""
+          }
         }
       }
     },
     "settings.accounts.signin.error.ok": {
-      "comment": "Confirmation button title for sign-in error alert",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "OK"
@@ -1803,7 +2703,7 @@
       }
     },
     "settings.accounts.signin.error.duplicate-account": {
-      "comment": "Error message for duplicate account and provider combination",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1811,11 +2711,17 @@
             "state": "translated",
             "value": "Account with the same username and provider already exists!"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Ya existe una cuenta con el mismo nombre de usuario y proveedor!"
+          }
         }
       }
     },
     "settings.accounts.signin.error.authentication-failed": {
-      "comment": "Error message for failed authentication status",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1823,11 +2729,17 @@
             "state": "translated",
             "value": "Authentication Failed"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autenticación Fallida"
+          }
         }
       }
     },
     "settings.accounts.signin.error.api-access-forbidden": {
-      "comment": "Error message for forbidden API access status",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1835,11 +2747,17 @@
             "state": "translated",
             "value": "API Access Forbidden"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceso de API Prohibido"
+          }
         }
       }
     },
     "settings.accounts.signin.error.unknown": {
-      "comment": "Error message for unknown account sign-in failures",
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1847,11 +2765,17 @@
             "state": "translated",
             "value": "Unknown Error"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Desconocido"
+          }
         }
       }
     },
     "window-commands.view.toolbar.visibility": {
-      "comment": "Menu item title to toggle toolbar visibility",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1859,11 +2783,17 @@
             "state": "translated",
             "value": "%@ Toolbar"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ barra de herramientas"
+          }
         }
       }
     },
     "window-commands.view.visibility.show": {
-      "comment": "Verb used in visibility toggle menu labels",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1871,11 +2801,17 @@
             "state": "translated",
             "value": "Show"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
         }
       }
     },
     "window-commands.view.visibility.hide": {
-      "comment": "Verb used in visibility toggle menu labels",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1883,11 +2819,17 @@
             "state": "translated",
             "value": "Hide"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar"
+          }
         }
       }
     },
     "window-commands.view.interface.visibility": {
-      "comment": "Menu item title to toggle full interface visibility",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1895,11 +2837,17 @@
             "state": "translated",
             "value": "%@ Interface"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ interfaz"
+          }
         }
       }
     },
     "window-commands.view.navigators.menu-title": {
-      "comment": "Title of the Navigators submenu in View menu",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1907,11 +2855,17 @@
             "state": "translated",
             "value": "Navigators"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegadores"
+          }
         }
       }
     },
     "window-commands.view.show-command-palette": {
-      "comment": "Menu item title to open the command palette",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1919,11 +2873,17 @@
             "state": "translated",
             "value": "Show Command Palette"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar paleta de comandos"
+          }
         }
       }
     },
     "window-commands.view.open-search-navigator": {
-      "comment": "Menu item title to open search navigator",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1931,11 +2891,17 @@
             "state": "translated",
             "value": "Open Search Navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Navegador de Búsqueda"
+          }
         }
       }
     },
     "window-commands.view.font-size.menu-title": {
-      "comment": "Title for the font size submenu in View menu",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1943,11 +2909,17 @@
             "state": "translated",
             "value": "Font Size"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño de fuente"
+          }
         }
       }
     },
     "window-commands.view.font-size.increase": {
-      "comment": "Menu item to increase editor font size",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1955,11 +2927,17 @@
             "state": "translated",
             "value": "Increase"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aumentar"
+          }
         }
       }
     },
     "window-commands.view.font-size.decrease": {
-      "comment": "Menu item to decrease editor font size",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1967,11 +2945,17 @@
             "state": "translated",
             "value": "Decrease"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disminuir"
+          }
         }
       }
     },
     "window-commands.view.font-size.reset": {
-      "comment": "Menu item to reset editor font size",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1979,11 +2963,17 @@
             "state": "translated",
             "value": "Reset"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer"
+          }
         }
       }
     },
     "window-commands.view.customize-toolbar": {
-      "comment": "Menu item to customize window toolbar",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1991,11 +2981,17 @@
             "state": "translated",
             "value": "Customize Toolbar..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizar barra de herramientas..."
+          }
         }
       }
     },
     "window-commands.view.jump-bar.visibility": {
-      "comment": "Menu item title to toggle jump bar visibility",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2003,11 +2999,17 @@
             "state": "translated",
             "value": "%@ Jump Bar"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ barra de saltos"
+          }
         }
       }
     },
     "window-commands.view.dim-editors-without-focus": {
-      "comment": "Menu item title to toggle dimming unfocused editors",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2015,11 +3017,17 @@
             "state": "translated",
             "value": "Dim editors without focus"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atenuar editores sin foco"
+          }
         }
       }
     },
     "window-commands.view.navigator.visibility": {
-      "comment": "Menu item title to toggle navigator visibility",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2027,14 +3035,26 @@
             "state": "translated",
             "value": "%@ Navigator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Navegador"
+          }
         }
       }
     },
     "window-commands.view.inspector.visibility": {
-      "comment": "Menu item title to toggle inspector visibility",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Inspector"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ Inspector"
@@ -2043,13 +3063,19 @@
       }
     },
     "window-commands.view.utility-area.visibility": {
-      "comment": "Menu item title to toggle utility area visibility",
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ Utility Area"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ área de utilidades"
           }
         }
       }
