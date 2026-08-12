@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 13/03/2023.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ViewCommands: Commands {
     @AppSettings(\.textEditing.font.size)
@@ -69,10 +69,8 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button(String(localized: "window-commands.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "Menu item to customize window toolbar")) {
-
-            }
-            .disabled(true)
+            Button(String(localized: "window-commands.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "Menu item to customize window toolbar")) {}
+                .disabled(true)
 
             Divider()
 
@@ -80,7 +78,7 @@ struct ViewCommands: Commands {
 
             Divider()
 
-            Button(String(format: String(localized: "window-commands.view.jump-bar.visibility", defaultValue: "%@ Jump Bar", comment: "Menu item title to toggle jump bar visibility"), (showEditorJumpBar ? String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels")))) {
+            Button(String(format: String(localized: "window-commands.view.jump-bar.visibility", defaultValue: "%@ Jump Bar", comment: "Menu item title to toggle jump bar visibility"), showEditorJumpBar ? String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels"))) {
                 showEditorJumpBar.toggle()
             }
 
@@ -121,31 +119,31 @@ extension ViewCommands {
         }
 
         var body: some View {
-            Button(String(format: String(localized: "window-commands.view.navigator.visibility", defaultValue: "%@ Navigator", comment: "Menu item title to toggle navigator visibility"), (navigatorCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels")))) {
+            Button(String(format: String(localized: "window-commands.view.navigator.visibility", defaultValue: "%@ Navigator", comment: "Menu item title to toggle navigator visibility"), navigatorCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels"))) {
                 windowController?.toggleFirstPanel()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("0", modifiers: [.command])
 
-            Button(String(format: String(localized: "window-commands.view.inspector.visibility", defaultValue: "%@ Inspector", comment: "Menu item title to toggle inspector visibility"), (inspectorCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels")))) {
+            Button(String(format: String(localized: "window-commands.view.inspector.visibility", defaultValue: "%@ Inspector", comment: "Menu item title to toggle inspector visibility"), inspectorCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels"))) {
                 windowController?.toggleLastPanel()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("i", modifiers: [.control, .command])
 
-            Button(String(format: String(localized: "window-commands.view.utility-area.visibility", defaultValue: "%@ Utility Area", comment: "Menu item title to toggle utility area visibility"), (utilityAreaCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels")))) {
+            Button(String(format: String(localized: "window-commands.view.utility-area.visibility", defaultValue: "%@ Utility Area", comment: "Menu item title to toggle utility area visibility"), utilityAreaCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels"))) {
                 CommandManager.shared.executeCommand("open.drawer")
             }
             .disabled(windowController == nil)
             .keyboardShortcut("y", modifiers: [.shift, .command])
 
-            Button(String(format: String(localized: "window-commands.view.toolbar.visibility", defaultValue: "%@ Toolbar", comment: "Menu item title to toggle toolbar visibility"), (toolbarCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels")))) {
+            Button(String(format: String(localized: "window-commands.view.toolbar.visibility", defaultValue: "%@ Toolbar", comment: "Menu item title to toggle toolbar visibility"), toolbarCollapsed ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels"))) {
                 windowController?.toggleToolbar()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("t", modifiers: [.option, .command])
 
-            Button(String(format: String(localized: "window-commands.view.interface.visibility", defaultValue: "%@ Interface", comment: "Menu item title to toggle full interface visibility"), (isInterfaceHidden ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels")))) {
+            Button(String(format: String(localized: "window-commands.view.interface.visibility", defaultValue: "%@ Interface", comment: "Menu item title to toggle full interface visibility"), isInterfaceHidden ? String(localized: "window-commands.view.visibility.show", defaultValue: "Show", comment: "Verb used in visibility toggle menu labels") : String(localized: "window-commands.view.visibility.hide", defaultValue: "Hide", comment: "Verb used in visibility toggle menu labels"))) {
                 windowController?.toggleInterface(shouldHide: !isInterfaceHidden)
             }
             .disabled(windowController == nil)
