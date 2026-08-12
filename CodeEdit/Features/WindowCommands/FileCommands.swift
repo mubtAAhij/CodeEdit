@@ -32,7 +32,7 @@ struct FileCommands: Commands {
 
                 // Leave this empty, is done through a hidden API in WindowCommands/Utils/CommandsFixes.swift
                 // We set this with a custom NSMenu. See WindowCommands/Utils/RecentProjectsMenu.swift
-                Menu(String(localized: "window-commands.file.open-recent", defaultValue: "Open Recent", comment: "File menu item to open recent files submenu")) { }
+                Menu(String(localized: "window-commands.file.open-recent", defaultValue: "Open Recent", comment: "File menu item to open recent files submenu")) {}
 
                 Button(String(localized: "window-commands.file.open-quickly", defaultValue: "Open Quickly", comment: "File menu item to open file quickly")) {
                     NSApp.sendAction(#selector(CodeEditWindowController.openQuickly(_:)), to: nil, from: nil)
