@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NavigateCommands: Commands {
-
     @UpdatingWindowController var windowController: CodeEditWindowController?
     private var editor: Editor? {
         windowController?.workspace?.editorManager?.activeEditor
@@ -22,38 +21,31 @@ struct NavigateCommands: Commands {
                 }
                 .keyboardShortcut("j", modifiers: [.shift, .command])
 
-                Button(String(localized: "windowcommands.navigate.reveal-changes-in-navigator", defaultValue: "Reveal Changes in Navigator", comment: "Command title to reveal changed files in the navigator")) {
+                Button(String(localized: "windowcommands.navigate.reveal-changes-in-navigator", defaultValue: "Reveal Changes in Navigator", comment: "Command title to reveal changed files in the navigator")) {}
+                    .keyboardShortcut("m", modifiers: [.shift, .command])
+                    .disabled(true)
 
-                }
-                .keyboardShortcut("m", modifiers: [.shift, .command])
-                .disabled(true)
+                Button(String(localized: "windowcommands.navigate.open-in-next-editor", defaultValue: "Open in Next Editor", comment: "Command title to open the current item in the next editor")) {}
+                    .keyboardShortcut(",", modifiers: [.option, .command])
+                    .disabled(true)
 
-                Button(String(localized: "windowcommands.navigate.open-in-next-editor", defaultValue: "Open in Next Editor", comment: "Command title to open the current item in the next editor")) {
-
-                }
-                .keyboardShortcut(",", modifiers: [.option, .command])
-                .disabled(true)
-
-                Button(String(localized: "windowcommands.navigate.open-in", defaultValue: "Open in...", comment: "Command title to choose where to open the current item")) {
-
-                }
-                .disabled(true)
+                Button(String(localized: "windowcommands.navigate.open-in", defaultValue: "Open in...", comment: "Command title to choose where to open the current item")) {}
+                    .disabled(true)
 
                 Divider()
-
             }
             Group {
                 Button(String(localized: "windowcommands.navigate.show-previous-tab", defaultValue: "Show Previous Tab", comment: "Command title to switch to the previous tab")) {
                     editor?.selectPreviousTab()
                 }
                 .keyboardShortcut("{", modifiers: [.command])
-                .disabled(editor?.tabs.count ?? 0 <= 1)  // Disable if there's one or no tabs
+                .disabled(editor?.tabs.count ?? 0 <= 1) // Disable if there's one or no tabs
 
                 Button(String(localized: "windowcommands.navigate.show-next-tab", defaultValue: "Show Next Tab", comment: "Command title to switch to the next tab")) {
                     editor?.selectNextTab()
                 }
                 .keyboardShortcut("}", modifiers: [.command])
-                .disabled(editor?.tabs.count ?? 0 <= 1)  // Disable if there's one or no tabs
+                .disabled(editor?.tabs.count ?? 0 <= 1) // Disable if there's one or no tabs
             }
             Group {
                 Divider()
