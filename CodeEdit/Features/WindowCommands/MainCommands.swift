@@ -14,17 +14,17 @@ struct MainCommands: Commands {
 
     var body: some Commands {
         CommandGroup(replacing: .appInfo) {
-            Button("About CodeEdit") {
+            Button(String(localized: "window-commands.main.about-codeedit", defaultValue: "About CodeEdit", comment: "Main app command to open the About window")) {
                 openWindow(sceneID: .about)
             }
 
-            Button("Check for updates...") {
+            Button(String(localized: "window-commands.main.check-for-updates", defaultValue: "Check for updates...", comment: "Main app command to check for available updates")) {
                 NSApp.sendAction(#selector(SPUStandardUpdaterController.checkForUpdates(_:)), to: nil, from: nil)
             }
         }
 
         CommandGroup(replacing: .appSettings) {
-            Button("Settings...") {
+            Button(String(localized: "window-commands.main.settings", defaultValue: "Settings...", comment: "Main app command to open settings")) {
                 openWindow(sceneID: .settings)
             }
             .keyboardShortcut(",")
