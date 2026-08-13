@@ -18,7 +18,7 @@ struct AccountsSettingsSigninView: View {
 
     init(_ provider: SourceControlAccount.Provider, addAccountSheetPresented: Binding<Bool>) {
         self.provider = provider
-        self._addAccountSheetPresented = addAccountSheetPresented
+        _addAccountSheetPresented = addAccountSheetPresented
     }
 
     @State var server = ""
@@ -60,7 +60,7 @@ struct AccountsSettingsSigninView: View {
                                 .foregroundColor(.secondary)
                             SecureField("", text: $personalAccessToken)
                                 .labelsHidden()
-                         }
+                        }
                     },
                     header: {
                         VStack(alignment: .center, spacing: 10) {
@@ -76,7 +76,7 @@ struct AccountsSettingsSigninView: View {
                                     provider.name
                                 )
                             )
-                                .multilineTextAlignment(.center)
+                            .multilineTextAlignment(.center)
                         }
                         .frame(maxWidth: .infinity)
                     },
@@ -93,9 +93,9 @@ struct AccountsSettingsSigninView: View {
                                         provider.name
                                     )
                                 )
-                                    .font(.system(size: 10.5))
-                                    .foregroundColor(.secondary)
-                                    .multilineTextAlignment(.leading)
+                                .font(.system(size: 10.5))
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.leading)
                                 HStack(alignment: .center) {
                                     Spacer()
                                     VStack(alignment: .leading) {
@@ -142,7 +142,7 @@ struct AccountsSettingsSigninView: View {
                                             provider.name
                                         )
                                     )
-                                        .font(.system(size: 10.5))
+                                    .font(.system(size: 10.5))
                                 } else {
                                     Text(
                                         String(
@@ -154,7 +154,7 @@ struct AccountsSettingsSigninView: View {
                                             provider.name
                                         )
                                     )
-                                        .font(.system(size: 10.5))
+                                    .font(.system(size: 10.5))
                                 }
                             }
                             .buttonStyle(.link)
@@ -219,7 +219,7 @@ struct AccountsSettingsSigninView: View {
         if gitAccounts.contains(
             where: {
                 $0.serverURL == provider.baseURL?.absoluteString ?? server &&
-                $0.name.lowercased() == username.lowercased()
+                    $0.name.lowercased() == username.lowercased()
             }
         ) {
             // Show alert when adding a duplicated account
@@ -234,7 +234,7 @@ struct AccountsSettingsSigninView: View {
                     switch response {
                     case .success:
                         handleGitRequestSuccess()
-                    case .failure(let error):
+                    case let .failure(error):
                         handleGitRequestFailed(error)
                     }
                 }
@@ -244,7 +244,7 @@ struct AccountsSettingsSigninView: View {
                     switch response {
                     case .success:
                         handleGitRequestSuccess()
-                    case .failure(let error):
+                    case let .failure(error):
                         handleGitRequestFailed(error)
                     }
                 }
@@ -257,7 +257,7 @@ struct AccountsSettingsSigninView: View {
     private func handleGitRequestSuccess() {
         let providerLink = provider.baseURL?.absoluteString ?? server
 
-        self.gitAccounts.append(
+        gitAccounts.append(
             SourceControlAccount(
                 id: "\(providerLink)_\(username.lowercased())",
                 name: username,
