@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 13/03/2023.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ViewCommands: Commands {
     @AppSettings(\.textEditing.font.size)
@@ -69,10 +69,8 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button(String(localized: "window-commands.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "View command title for customizing the toolbar")) {
-
-            }
-            .disabled(true)
+            Button(String(localized: "window-commands.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "View command title for customizing the toolbar")) {}
+                .disabled(true)
 
             Divider()
 
@@ -82,7 +80,8 @@ struct ViewCommands: Commands {
 
             Button(showEditorJumpBar
                 ? String(localized: "window-commands.view.jump-bar.hide", defaultValue: "Hide Jump Bar", comment: "View command to hide the editor jump bar")
-                : String(localized: "window-commands.view.jump-bar.show", defaultValue: "Show Jump Bar", comment: "View command to show the editor jump bar")) {
+                : String(localized: "window-commands.view.jump-bar.show", defaultValue: "Show Jump Bar", comment: "View command to show the editor jump bar"))
+            {
                 showEditorJumpBar.toggle()
             }
 
@@ -125,7 +124,8 @@ extension ViewCommands {
         var body: some View {
             Button(navigatorCollapsed
                 ? String(localized: "window-commands.view.navigator.show", defaultValue: "Show Navigator", comment: "View command to show the navigator")
-                : String(localized: "window-commands.view.navigator.hide", defaultValue: "Hide Navigator", comment: "View command to hide the navigator")) {
+                : String(localized: "window-commands.view.navigator.hide", defaultValue: "Hide Navigator", comment: "View command to hide the navigator"))
+            {
                 windowController?.toggleFirstPanel()
             }
             .disabled(windowController == nil)
@@ -133,7 +133,8 @@ extension ViewCommands {
 
             Button(inspectorCollapsed
                 ? String(localized: "window-commands.view.inspector.show", defaultValue: "Show Inspector", comment: "View command to show the inspector")
-                : String(localized: "window-commands.view.inspector.hide", defaultValue: "Hide Inspector", comment: "View command to hide the inspector")) {
+                : String(localized: "window-commands.view.inspector.hide", defaultValue: "Hide Inspector", comment: "View command to hide the inspector"))
+            {
                 windowController?.toggleLastPanel()
             }
             .disabled(windowController == nil)
@@ -141,7 +142,8 @@ extension ViewCommands {
 
             Button(utilityAreaCollapsed
                 ? String(localized: "window-commands.view.utility-area.show", defaultValue: "Show Utility Area", comment: "View command to show the utility area")
-                : String(localized: "window-commands.view.utility-area.hide", defaultValue: "Hide Utility Area", comment: "View command to hide the utility area")) {
+                : String(localized: "window-commands.view.utility-area.hide", defaultValue: "Hide Utility Area", comment: "View command to hide the utility area"))
+            {
                 CommandManager.shared.executeCommand("open.drawer")
             }
             .disabled(windowController == nil)
@@ -149,7 +151,8 @@ extension ViewCommands {
 
             Button(toolbarCollapsed
                 ? String(localized: "window-commands.view.toolbar.show", defaultValue: "Show Toolbar", comment: "View command to show the toolbar")
-                : String(localized: "window-commands.view.toolbar.hide", defaultValue: "Hide Toolbar", comment: "View command to hide the toolbar")) {
+                : String(localized: "window-commands.view.toolbar.hide", defaultValue: "Hide Toolbar", comment: "View command to hide the toolbar"))
+            {
                 windowController?.toggleToolbar()
             }
             .disabled(windowController == nil)
@@ -157,7 +160,8 @@ extension ViewCommands {
 
             Button(isInterfaceHidden
                 ? String(localized: "window-commands.view.interface.show", defaultValue: "Show Interface", comment: "View command to show the interface")
-                : String(localized: "window-commands.view.interface.hide", defaultValue: "Hide Interface", comment: "View command to hide the interface")) {
+                : String(localized: "window-commands.view.interface.hide", defaultValue: "Hide Interface", comment: "View command to hide the interface"))
+            {
                 windowController?.toggleInterface(shouldHide: !isInterfaceHidden)
             }
             .disabled(windowController == nil)
