@@ -28,18 +28,18 @@ struct ViewCommands: Commands {
 
     var body: some Commands {
         CommandGroup(after: .toolbar) {
-            Button("Show Command Palette") {
+            Button(String(localized: "window-commands.view.show-command-palette", defaultValue: "Show Command Palette", comment: "View command to open the command palette")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openCommandPalette(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("p", modifiers: [.shift, .command])
 
-            Button("Open Search Navigator") {
+            Button(String(localized: "window-commands.view.open-search-navigator", defaultValue: "Open Search Navigator", comment: "View command to open the search navigator")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openSearchNavigator(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("f", modifiers: [.shift, .command])
 
-            Menu("Font Size") {
-                Button("Increase") {
+            Menu(String(localized: "window-commands.view.font-size", defaultValue: "Font Size", comment: "View submenu title for font size commands")) {
+                Button(String(localized: "window-commands.view.font-size.increase", defaultValue: "Increase", comment: "View command to increase font size")) {
                     if editorFontSize < 288 {
                         editorFontSize += 1
                     }
@@ -49,7 +49,7 @@ struct ViewCommands: Commands {
                 }
                 .keyboardShortcut("+")
 
-                Button("Decrease") {
+                Button(String(localized: "window-commands.view.font-size.decrease", defaultValue: "Decrease", comment: "View command to decrease font size")) {
                     if editorFontSize > 1 {
                         editorFontSize -= 1
                     }
@@ -61,7 +61,7 @@ struct ViewCommands: Commands {
 
                 Divider()
 
-                Button("Reset") {
+                Button(String(localized: "window-commands.view.font-size.reset", defaultValue: "Reset", comment: "View command to reset font size")) {
                     editorFontSize = 12
                     terminalFontSize = 12
                 }
@@ -69,7 +69,7 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button("Customize Toolbar...") {
+            Button(String(localized: "window-commands.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "View command to customize the toolbar")) {
 
             }
             .disabled(true)
@@ -84,7 +84,7 @@ struct ViewCommands: Commands {
                 showEditorJumpBar.toggle()
             }
 
-            Toggle("Dim editors without focus", isOn: $dimEditorsWithoutFocus)
+            Toggle(String(localized: "window-commands.view.dim-editors-without-focus", defaultValue: "Dim editors without focus", comment: "Toggle to dim unfocused editors"), isOn: $dimEditorsWithoutFocus)
 
             Divider()
 
@@ -159,7 +159,7 @@ extension ViewCommands {
         @ObservedObject var model: NavigatorAreaViewModel
 
         var body: some View {
-            Menu("Navigators", content: {
+            Menu(String(localized: "window-commands.view.navigators", defaultValue: "Navigators", comment: "View submenu title for navigator selection"), content: {
                 ForEach(Array(model.tabItems.prefix(9).enumerated()), id: \.element) { index, tab in
                     Button(tab.title) {
                         model.setNavigatorTab(tab: tab)
