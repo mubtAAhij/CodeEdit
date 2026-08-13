@@ -20,11 +20,21 @@ struct TasksCommands: Commands {
     @State private var statusListener: AnyCancellable?
 
     var body: some Commands {
-        CommandMenu("Tasks") {
+        CommandMenu(
+            String(
+                localized: "window-commands.tasks.menu-title",
+                defaultValue: "Tasks",
+                comment: "Tasks command menu title"
+            )
+        ) {
             let selectedTaskName: String = if let selectedTask = taskManager?.selectedTask {
                 "\"" + selectedTask.name + "\""
             } else {
-                "(No Selected Task)"
+                String(
+                    localized: "window-commands.tasks.no-selected-task",
+                    defaultValue: "(No Selected Task)",
+                    comment: "Placeholder task name when no task is selected"
+                )
             }
 
             Button("Run \(selectedTaskName)", systemImage: "play.fill") {
@@ -63,16 +73,34 @@ struct TasksCommands: Commands {
                 }
 
                 if taskManager?.availableTasks.isEmpty ?? true {
-                    Button("Create Tasks") {
+                    Button(
+                        String(
+                            localized: "window-commands.tasks.create-tasks",
+                            defaultValue: "Create Tasks",
+                            comment: "Menu item to create tasks when none are available"
+                        )
+                    ) {
                         openSettings()
                     }
                 }
             } label: {
-                Text("Choose Task...")
+                Text(
+                    String(
+                        localized: "window-commands.tasks.choose-task",
+                        defaultValue: "Choose Task...",
+                        comment: "Menu label to choose an available task"
+                    )
+                )
             }
             .disabled(taskManager?.availableTasks.isEmpty == true)
 
-            Button("Manage Tasks...") {
+            Button(
+                String(
+                    localized: "window-commands.tasks.manage-tasks",
+                    defaultValue: "Manage Tasks...",
+                    comment: "Menu item to open task management settings"
+                )
+            ) {
                 openSettings()
             }
             .disabled(windowController == nil)
