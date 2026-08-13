@@ -1,5 +1,5 @@
 //
-//  AccountSettingsView.swift
+//  AccountsSettingsView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 4/4/23.
@@ -30,17 +30,17 @@ struct AccountsSettingsView: View {
                 HStack {
                     Spacer()
                     Button(String(localized: "settings.accounts.add-account", defaultValue: "Add Account...", comment: "Button title to add a source control account")) { addAccountSheetPresented.toggle() }
-                    .sheet(isPresented: $addAccountSheetPresented, content: {
-                        AccountSelectionView(selectedProvider: $selectedProvider)
-                    })
-                    .sheet(item: $selectedProvider, content: { provider in
-                        switch provider {
-                        case .github, .githubEnterprise, .gitlab, .gitlabSelfHosted:
-                            AccountsSettingsSigninView(provider, addAccountSheetPresented: $addAccountSheetPresented)
-                        default:
-                            implementationNeeded
-                        }
-                    })
+                        .sheet(isPresented: $addAccountSheetPresented, content: {
+                            AccountSelectionView(selectedProvider: $selectedProvider)
+                        })
+                        .sheet(item: $selectedProvider, content: { provider in
+                            switch provider {
+                            case .github, .githubEnterprise, .gitlab, .gitlabSelfHosted:
+                                AccountsSettingsSigninView(provider, addAccountSheetPresented: $addAccountSheetPresented)
+                            default:
+                                implementationNeeded
+                            }
+                        })
                 }
                 .padding(.top, 10)
             }
