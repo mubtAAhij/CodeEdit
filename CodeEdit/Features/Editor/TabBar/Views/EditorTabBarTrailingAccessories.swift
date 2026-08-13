@@ -57,7 +57,7 @@ struct EditorTabBarTrailingAccessories: View {
                         String(localized: "editor.tab-bar.trailing.show-minimap", defaultValue: "Show Minimap", comment: "Toggle title to show or hide the editor minimap"),
                         isOn: $showMinimap
                     )
-                        .keyboardShortcut("M", modifiers: [.command, .shift, .control])
+                    .keyboardShortcut("M", modifiers: [.command, .shift, .control])
                     Divider()
                     Toggle(
                         String(localized: "editor.tab-bar.trailing.wrap-lines", defaultValue: "Wrap Lines", comment: "Toggle title to wrap lines in the editor"),
