@@ -54,12 +54,24 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent(String(localized: "settings.accounts.details.account", defaultValue: "Account", comment: "Label for account name field in account details")) {
+                LabeledContent(String(
+    localized: "settings.accounts.details.account",
+    defaultValue: "Account",
+    comment: "Label for account name field in account details"
+)) {
                     Text(currentAccount.name)
                 }
-                TextField(String(localized: "settings.accounts.details.description", defaultValue: "Description", comment: "Placeholder for account description field"), text: $currentAccount.description)
+                TextField(String(
+    localized: "settings.accounts.details.description",
+    defaultValue: "Description",
+    comment: "Placeholder for account description field"
+), text: $currentAccount.description)
                 if currentAccount.provider.baseURL == nil {
-                    TextField(String(localized: "settings.accounts.details.server", defaultValue: "Server", comment: "Placeholder for account server field"), text: $currentAccount.serverURL)
+                    TextField(String(
+    localized: "settings.accounts.details.server",
+    defaultValue: "Server",
+    comment: "Placeholder for account server field"
+), text: $currentAccount.serverURL)
                 }
             }
 
@@ -70,7 +82,11 @@ struct AccountsSettingsDetailsView: View {
                     Text("SSH")
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text(String(localized: "settings.accounts.details.clone-using", defaultValue: "Clone Using", comment: "Label for clone protocol picker"))
+                    Text(String(
+    localized: "settings.accounts.details.clone-using",
+    defaultValue: "Clone Using",
+    comment: "Label for clone protocol picker"
+))
                     Text(
                         String(
                             format: String(
@@ -85,8 +101,16 @@ struct AccountsSettingsDetailsView: View {
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker(String(localized: "settings.accounts.details.ssh-key", defaultValue: "SSH Key", comment: "Label for SSH key picker"), selection: $currentAccount.sshKey) {
-                        Text(String(localized: "settings.accounts.details.none", defaultValue: "None", comment: "Option indicating no SSH key selected"))
+                    Picker(String(
+    localized: "settings.accounts.details.ssh-key",
+    defaultValue: "SSH Key",
+    comment: "Label for SSH key picker"
+), selection: $currentAccount.sshKey) {
+                        Text(String(
+    localized: "settings.accounts.details.none",
+    defaultValue: "None",
+    comment: "Option indicating no SSH key selected"
+))
                             .tag("")
                         Divider()
                         if let sshPath = FileManager.default.homeDirectoryForCurrentUser.appending(
@@ -108,9 +132,17 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text(String(localized: "settings.accounts.details.create-new-ellipsis", defaultValue: "Create New...", comment: "Option to create a new SSH key"))
+                        Text(String(
+    localized: "settings.accounts.details.create-new-ellipsis",
+    defaultValue: "Create New...",
+    comment: "Option to create a new SSH key"
+))
                             .tag("CREATE_NEW")
-                        Text(String(localized: "settings.accounts.details.choose-ellipsis", defaultValue: "Choose...", comment: "Option to choose an existing SSH key"))
+                        Text(String(
+    localized: "settings.accounts.details.choose-ellipsis",
+    defaultValue: "Choose...",
+    comment: "Option to choose an existing SSH key"
+))
                             .tag("CHOOSE")
                     }
                     .onReceive([currentAccount.sshKey].publisher.first()) { value in
@@ -131,7 +163,11 @@ struct AccountsSettingsDetailsView: View {
                 }
             } footer: {
                 HStack {
-                    Button(String(localized: "settings.accounts.details.delete-account-ellipsis", defaultValue: "Delete Account...", comment: "Button title to delete the current account")) {
+                    Button(String(
+    localized: "settings.accounts.details.delete-account-ellipsis",
+    defaultValue: "Delete Account...",
+    comment: "Button title to delete the current account"
+)) {
                         deleteConfirmationIsPresented.toggle()
                     }
                     .alert(
@@ -147,17 +183,29 @@ struct AccountsSettingsDetailsView: View {
                         ),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button(String(localized: "settings.accounts.details.ok", defaultValue: "OK", comment: "Confirmation button title")) {
+                        Button(String(
+    localized: "settings.accounts.details.ok",
+    defaultValue: "OK",
+    comment: "Confirmation button title"
+)) {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()
                         }
-                        Button(String(localized: "settings.accounts.details.cancel", defaultValue: "Cancel", comment: "Cancel button title")) {
+                        Button(String(
+    localized: "settings.accounts.details.cancel",
+    defaultValue: "Cancel",
+    comment: "Cancel button title"
+)) {
                             // Handle the cancel, dismiss the alert
                             deleteConfirmationIsPresented.toggle()
                         }
                     } message: {
-                        Text(String(localized: "settings.accounts.details.delete-account-message", defaultValue: "Deleting this account will remove it from CodeEdit.", comment: "Alert message explaining account deletion consequence"))
+                        Text(String(
+    localized: "settings.accounts.details.delete-account-message",
+    defaultValue: "Deleting this account will remove it from CodeEdit.",
+    comment: "Alert message explaining account deletion consequence"
+))
                     }
 
                     Spacer()
