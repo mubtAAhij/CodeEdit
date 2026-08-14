@@ -18,34 +18,62 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu(String(localized: "window-commands.find.menu.title", defaultValue: "Find", comment: "Title of the Find commands menu")) {
+        CommandMenu(String(
+            localized: "window-commands.find.menu.title",
+            defaultValue: "Find",
+            comment: "Title of the Find commands menu"
+        )) {
             Group {
-                Button(String(localized: "window-commands.find.command.find", defaultValue: "Find...", comment: "Find command in the Find menu")) {
+                Button(String(
+                    localized: "window-commands.find.command.find",
+                    defaultValue: "Find...",
+                    comment: "Find command in the Find menu"
+                )) {
                     send(.showFindPanel)
                 }
                 .keyboardShortcut("f")
 
-                Button(String(localized: "window-commands.find.command.find-and-replace", defaultValue: "Find and Replace...", comment: "Find and Replace command in the Find menu")) {
+                Button(String(
+                    localized: "window-commands.find.command.find-and-replace",
+                    defaultValue: "Find and Replace...",
+                    comment: "Find and Replace command in the Find menu"
+                )) {
                     send(.init(rawValue: 12)!)
                 }
                 .keyboardShortcut("f", modifiers: [.option, .command])
 
-                Button(String(localized: "window-commands.find.command.find-next", defaultValue: "Find Next", comment: "Find Next command in the Find menu")) {
+                Button(String(
+                    localized: "window-commands.find.command.find-next",
+                    defaultValue: "Find Next",
+                    comment: "Find Next command in the Find menu"
+                )) {
                     send(.next)
                 }
                 .keyboardShortcut("g")
 
-                Button(String(localized: "window-commands.find.command.find-previous", defaultValue: "Find Previous", comment: "Find Previous command in the Find menu")) {
+                Button(String(
+                    localized: "window-commands.find.command.find-previous",
+                    defaultValue: "Find Previous",
+                    comment: "Find Previous command in the Find menu"
+                )) {
                     send(.previous)
                 }
                 .keyboardShortcut("g", modifiers: [.shift, .command])
 
-                Button(String(localized: "window-commands.find.command.use-selection-for-find", defaultValue: "Use Selection for Find", comment: "Use Selection for Find command in the Find menu")) {
+                Button(String(
+                    localized: "window-commands.find.command.use-selection-for-find",
+                    defaultValue: "Use Selection for Find",
+                    comment: "Use Selection for Find command in the Find menu"
+                )) {
                     send(.setFindString)
                 }
                 .keyboardShortcut("e")
 
-                Button(String(localized: "window-commands.find.command.jump-to-selection", defaultValue: "Jump to Selection", comment: "Jump to Selection command in the Find menu")) {
+                Button(String(
+                    localized: "window-commands.find.command.jump-to-selection",
+                    defaultValue: "Jump to Selection",
+                    comment: "Jump to Selection command in the Find menu"
+                )) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j")
