@@ -18,7 +18,11 @@ struct AccountsSettingsView: View {
         SettingsForm {
             Section {
                 if $gitAccounts.isEmpty {
-                    Text(String(localized: "settings.accounts.no-accounts", defaultValue: "No accounts", comment: "Message shown when no source control accounts are configured"))
+                    Text(String(
+    localized: "settings.accounts.no-accounts",
+    defaultValue: "No accounts",
+    comment: "Message shown when no source control accounts are configured"
+))
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .center)
                 } else {
@@ -29,7 +33,11 @@ struct AccountsSettingsView: View {
             } footer: {
                 HStack {
                     Spacer()
-                    Button(String(localized: "settings.accounts.add-account", defaultValue: "Add Account...", comment: "Button to add a new source control account")) { addAccountSheetPresented.toggle() }
+                    Button(String(
+    localized: "settings.accounts.add-account",
+    defaultValue: "Add Account...",
+    comment: "Button to add a new source control account"
+)) { addAccountSheetPresented.toggle() }
                     .sheet(isPresented: $addAccountSheetPresented, content: {
                         AccountSelectionView(selectedProvider: $selectedProvider)
                     })
@@ -49,9 +57,17 @@ struct AccountsSettingsView: View {
 
     private var implementationNeeded: some View {
         VStack(spacing: 20) {
-            Text(String(localized: "settings.accounts.unsupported-git-client", defaultValue: "This git client is currently not supported.", comment: "Message shown when selected git provider is not supported"))
+            Text(String(
+    localized: "settings.accounts.unsupported-git-client",
+    defaultValue: "This git client is currently not supported.",
+    comment: "Message shown when selected git provider is not supported"
+))
             HStack {
-                Button(String(localized: "settings.accounts.unsupported-git-client.close", defaultValue: "Close", comment: "Button to close unsupported git client sheet")) {
+                Button(String(
+    localized: "settings.accounts.unsupported-git-client.close",
+    defaultValue: "Close",
+    comment: "Button to close unsupported git client sheet"
+)) {
                     addAccountSheetPresented.toggle()
                     selectedProvider = nil
                 }
