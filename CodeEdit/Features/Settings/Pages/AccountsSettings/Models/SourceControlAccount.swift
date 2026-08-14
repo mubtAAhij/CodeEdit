@@ -55,15 +55,15 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
             case .bitbucketCloud:
                 return "BitBucket Cloud"
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "settings.accounts.provider.bitbucket-server", defaultValue: "BitBucket Server", comment: "Display name for the BitBucket Server account provider")
             case .github:
                 return "GitHub"
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "settings.accounts.provider.github-enterprise", defaultValue: "GitHub Enterprise", comment: "Display name for the GitHub Enterprise account provider")
             case .gitlab:
                 return "GitLab"
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "settings.accounts.provider.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "Display name for the GitLab self-hosted account provider")
             }
         }
 
