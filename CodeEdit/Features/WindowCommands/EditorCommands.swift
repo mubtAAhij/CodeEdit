@@ -5,11 +5,10 @@
 //  Created by Bogdan Belogurov on 21/05/2025.
 //
 
-import SwiftUI
 import CodeEditKit
+import SwiftUI
 
 struct EditorCommands: Commands {
-
     @UpdatingWindowController var windowController: CodeEditWindowController?
     private var editor: Editor? {
         windowController?.workspace?.editorManager?.activeEditor
