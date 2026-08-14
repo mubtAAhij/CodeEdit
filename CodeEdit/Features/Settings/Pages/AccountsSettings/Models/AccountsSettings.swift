@@ -1,5 +1,5 @@
 //
-//  AccountsPreferences.swift
+//  AccountsSettings.swift
 //  CodeEditModules/Settings
 //
 //  Created by Nanashi Li on 2022/04/08.
@@ -8,7 +8,6 @@
 import Foundation
 
 extension SettingsData {
-
     /// The global settings for source control accounts
     struct AccountsSettings: Codable, Hashable, SearchableSettingsPage {
         /// The list of git accounts the user has saved
@@ -19,7 +18,7 @@ extension SettingsData {
             [
                 String(localized: "settings.accounts.section-title", defaultValue: "Accounts", comment: "Title of the accounts settings section"),
                 String(localized: "settings.accounts.delete-account", defaultValue: "Delete Account...", comment: "Action title for deleting an account"),
-                String(localized: "settings.accounts.add-account", defaultValue: "Add Account...", comment: "Action title for adding an account")
+                String(localized: "settings.accounts.add-account", defaultValue: "Add Account...", comment: "Action title for adding an account"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -30,7 +29,7 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.sourceControlAccounts = try container.decodeIfPresent(
+            sourceControlAccounts = try container.decodeIfPresent(
                 GitAccounts.self,
                 forKey: .sourceControlAccounts
             ) ?? .init()
@@ -47,8 +46,8 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.gitAccounts = try container.decodeIfPresent([SourceControlAccount].self, forKey: .gitAccounts) ?? []
-            self.sshKey = try container.decodeIfPresent(String.self, forKey: .sshKey) ?? ""
+            gitAccounts = try container.decodeIfPresent([SourceControlAccount].self, forKey: .gitAccounts) ?? []
+            sshKey = try container.decodeIfPresent(String.self, forKey: .sshKey) ?? ""
         }
     }
 }
