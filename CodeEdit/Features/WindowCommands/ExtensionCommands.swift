@@ -15,8 +15,16 @@ struct ExtensionCommands: Commands {
     var openWindow
 
     var body: some Commands {
-        CommandMenu(String(localized: "window-commands.extensions.menu-title", defaultValue: "Extensions", comment: "Extensions command menu title")) {
-            Button(String(localized: "window-commands.extensions.open-window", defaultValue: "Open Extensions Window", comment: "Command to open the extensions window")) {
+        CommandMenu(String(
+    localized: "window-commands.extensions.menu-title",
+    defaultValue: "Extensions",
+    comment: "Extensions command menu title"
+)) {
+            Button(String(
+    localized: "window-commands.extensions.open-window",
+    defaultValue: "Open Extensions Window",
+    comment: "Command to open the extensions window"
+)) {
                 openWindow(sceneID: .extensions)
             }
         }
