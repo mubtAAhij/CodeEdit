@@ -13,7 +13,11 @@ struct ContributorsView: View {
 
     var body: some View {
         AboutDetailView(
-            title: String(localized: "about.contributors.title", defaultValue: "Contributors", comment: "Title for the contributors section in About window")
+            title: String(
+                localized: "about.contributors.title",
+                defaultValue: "Contributors",
+                comment: "Title for the contributors section in About window"
+            )
         ) {
             LazyVStack(spacing: 0) {
                 ForEach(model.contributors) { contributor in
