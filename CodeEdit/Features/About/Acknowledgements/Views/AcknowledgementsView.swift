@@ -13,7 +13,11 @@ struct AcknowledgementsView: View {
 
     var body: some View {
         AboutDetailView(
-            title: String(localized: "about.acknowledgements.title", defaultValue: "Acknowledgements", comment: "Title for the acknowledgements section in About window")
+            title: String(
+                localized: "about.acknowledgements.title",
+                defaultValue: "Acknowledgements",
+                comment: "Title for the acknowledgements section in About window"
+            )
         ) {
             LazyVStack(spacing: 0) {
                 ForEach(
