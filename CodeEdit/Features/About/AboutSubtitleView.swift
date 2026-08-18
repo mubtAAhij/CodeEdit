@@ -12,19 +12,35 @@ struct AboutSubtitleView: View {
     @State private var didCopyVersion = false
     @State private var isHoveringVersion = false
 
-    private var appVersion: String { Bundle.versionString ?? String(localized: "about.subtitle.no-version", defaultValue: "No Version", comment: "Fallback text when app version is unavailable") }
-    private var appBuild: String { Bundle.buildString ?? String(localized: "about.subtitle.no-build", defaultValue: "No Build", comment: "Fallback text when app build number is unavailable") }
+    private var appVersion: String { Bundle.versionString ?? String(
+        localized: "about.subtitle.no-version",
+        defaultValue: "No Version",
+        comment: "Fallback text when app version is unavailable"
+    ) }
+    private var appBuild: String { Bundle.buildString ?? String(
+        localized: "about.subtitle.no-build",
+        defaultValue: "No Build",
+        comment: "Fallback text when app build number is unavailable"
+    ) }
     private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
 
     var body: some View {
-        Text(String(format: String(localized: "about.subtitle.version-line", defaultValue: "Version %@%@ (%@)", comment: "About subtitle line showing app version, postfix, and build"), "\(appVersion)", "\(appVersionPostfix)", "\(appBuild)"))
+        Text(String(format: String(
+            localized: "about.subtitle.version-line",
+            defaultValue: "Version %@%@ (%@)",
+            comment: "About subtitle line showing app version, postfix, and build"
+        ), "\(appVersion)", "\(appVersionPostfix)", "\(appBuild)"))
             .textSelection(.disabled)
             .onTapGesture {
                 // Create a string suitable for pasting into a bug report
                 let macOSVersion = ProcessInfo.processInfo.operatingSystemVersion.semverString
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(
-                    String(format: String(localized: "about.subtitle.copy-system-info", defaultValue: "CodeEdit: %@ (%@)\nmacOS: %@", comment: "Clipboard text containing app and macOS version information"), "\(appVersion)", "\(appBuild)", "\(macOSVersion)"),
+                    String(format: String(
+                        localized: "about.subtitle.copy-system-info",
+                        defaultValue: "CodeEdit: %@ (%@)\nmacOS: %@",
+                        comment: "Clipboard text containing app and macOS version information"
+                    ), "\(appVersion)", "\(appBuild)", "\(macOSVersion)"),
                     forType: .string
                 )
                 didCopyVersion.toggle()
