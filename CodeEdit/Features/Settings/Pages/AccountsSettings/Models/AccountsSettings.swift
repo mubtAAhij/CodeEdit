@@ -17,9 +17,21 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                String(localized: "settings.accounts.title", defaultValue: "Accounts", comment: "Settings section title for accounts"),
-                String(localized: "settings.accounts.delete-account", defaultValue: "Delete Account...", comment: "Action title to delete an account"),
-                String(localized: "settings.accounts.add-account", defaultValue: "Add Account...", comment: "Action title to add an account")
+                String(
+                    localized: "settings.accounts.title",
+                    defaultValue: "Accounts",
+                    comment: "Settings section title for accounts"
+                ),
+                String(
+                    localized: "settings.accounts.delete-account",
+                    defaultValue: "Delete Account...",
+                    comment: "Action title to delete an account"
+                ),
+                String(
+                    localized: "settings.accounts.add-account",
+                    defaultValue: "Add Account...",
+                    comment: "Action title to add an account"
+                )
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
