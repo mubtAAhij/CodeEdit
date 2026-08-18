@@ -14,23 +14,43 @@ struct StatusBarIndentSelector: View {
     var body: some View {
         Menu {
             Button {} label: {
-                Text(String(localized: "status-bar.indent-selector.use-tabs", defaultValue: "Use Tabs", comment: "Menu action to configure indentation with tabs"))
+                Text(String(
+                    localized: "status-bar.indent-selector.use-tabs",
+                    defaultValue: "Use Tabs",
+                    comment: "Menu action to configure indentation with tabs"
+                ))
             }.disabled(true)
 
             Button {} label: {
-                Text(String(localized: "status-bar.indent-selector.use-spaces", defaultValue: "Use Spaces", comment: "Menu action to configure indentation with spaces"))
+                Text(String(
+                    localized: "status-bar.indent-selector.use-spaces",
+                    defaultValue: "Use Spaces",
+                    comment: "Menu action to configure indentation with spaces"
+                ))
             }.disabled(true)
 
             Divider()
 
-            Picker(String(localized: "status-bar.indent-selector.tab-width", defaultValue: "Tab Width", comment: "Section header for tab width selection"), selection: $defaultTabWidth) {
+            Picker(String(
+                localized: "status-bar.indent-selector.tab-width",
+                defaultValue: "Tab Width",
+                comment: "Section header for tab width selection"
+            ), selection: $defaultTabWidth) {
                 ForEach(2..<9) { index in
-                    Text(String(format: String(localized: "status-bar.indent-selector.index-spaces", defaultValue: "%d Spaces", comment: "Menu item showing a selectable space indentation width"), index))
+                    Text(String(format: String(
+                        localized: "status-bar.indent-selector.index-spaces",
+                        defaultValue: "%d Spaces",
+                        comment: "Menu item showing a selectable space indentation width"
+                    ), index))
                         .tag(index)
                 }
             }
         } label: {
-            Text(String(format: String(localized: "status-bar.indent-selector.default-spaces", defaultValue: "%d Spaces", comment: "Current default space indentation width label"), defaultTabWidth))
+            Text(String(format: String(
+                localized: "status-bar.indent-selector.default-spaces",
+                defaultValue: "%d Spaces",
+                comment: "Current default space indentation width label"
+            ), defaultTabWidth))
         }
         .menuStyle(StatusBarMenuStyle())
         .onHover { isHovering($0) }
