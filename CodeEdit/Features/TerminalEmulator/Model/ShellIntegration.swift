@@ -31,9 +31,17 @@ enum ShellIntegration {
         var localizedDescription: String {
             switch self {
             case .bashShellFileNotFound:
-                return String(localized: "terminal-emulator.shell-integration.bash-injection-not-found", defaultValue: "Failed to find bash injection file.", comment: "Error description when bash shell integration file is missing")
+                return String(
+                    localized: "terminal-emulator.shell-integration.bash-injection-not-found",
+                    defaultValue: "Failed to find bash injection file.",
+                    comment: "Error description when bash shell integration file is missing"
+                )
             case .zshShellFileNotFound:
-                return String(localized: "terminal-emulator.shell-integration.zsh-injection-not-found", defaultValue: "Failed to find zsh injection file.", comment: "Error description when zsh shell integration file is missing")
+                return String(
+                    localized: "terminal-emulator.shell-integration.zsh-injection-not-found",
+                    defaultValue: "Failed to find zsh injection file.",
+                    comment: "Error description when zsh shell integration file is missing"
+                )
             }
         }
     }
