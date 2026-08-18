@@ -47,14 +47,22 @@ struct FileInspectorView: View {
         Group {
             if file != nil {
                 Form {
-                    Section(String(localized: "inspector.file.identity-and-type.section", defaultValue: "Identity and Type", comment: "Section header for file identity and type inspector section")) {
+                    Section(String(
+                        localized: "inspector.file.identity-and-type.section",
+                        defaultValue: "Identity and Type",
+                        comment: "Section header for file identity and type inspector section"
+                    )) {
                         fileNameField
                         fileType
                     }
                     Section {
                         location
                     }
-                    Section(String(localized: "inspector.file.text-settings.section", defaultValue: "Text Settings", comment: "Section header for text settings in file inspector")) {
+                    Section(String(
+                        localized: "inspector.file.text-settings.section",
+                        defaultValue: "Text Settings",
+                        comment: "Section header for text settings in file inspector"
+                    )) {
                         indentUsing
                         widthOptions
                         wrapLinesToggle
@@ -83,7 +91,11 @@ struct FileInspectorView: View {
 
     @ViewBuilder private var fileNameField: some View {
         if let file {
-            TextField(String(localized: "inspector.file.name.label", defaultValue: "Name", comment: "Label for file name field in file inspector"), text: $fileName)
+            TextField(String(
+                localized: "inspector.file.name.label",
+                defaultValue: "Name",
+                comment: "Label for file name field in file inspector"
+            ), text: $fileName)
                 .background(
                     fileName != file.fileName() && !file.validateFileName(for: fileName) ? Color(errorRed) : Color.clear
                 )
@@ -104,7 +116,11 @@ struct FileInspectorView: View {
                                 }
                             } catch {
                                 let alert = NSAlert(error: error)
-                                alert.addButton(withTitle: String(localized: "inspector.file.name.dismiss.button", defaultValue: "Dismiss", comment: "Dismiss button title for file name edit popover"))
+                                alert.addButton(withTitle: String(
+                                    localized: "inspector.file.name.dismiss.button",
+                                    defaultValue: "Dismiss",
+                                    comment: "Dismiss button title for file name edit popover"
+                                ))
                                 alert.runModal()
                             }
                         }
@@ -117,10 +133,18 @@ struct FileInspectorView: View {
 
     @ViewBuilder private var fileType: some View {
         Picker(
-            String(localized: "inspector.file.type.label", defaultValue: "Type", comment: "Label for file type field in file inspector"),
+            String(
+                localized: "inspector.file.type.label",
+                defaultValue: "Type",
+                comment: "Label for file type field in file inspector"
+            ),
             selection: $language
         ) {
-            Text(String(localized: "inspector.file.type.default-detected.option", defaultValue: "Default - Detected", comment: "Option title indicating detected default file type")).tag(nil as CodeLanguage?)
+            Text(String(
+                localized: "inspector.file.type.default-detected.option",
+                defaultValue: "Default - Detected",
+                comment: "Option title indicating detected default file type"
+            )).tag(nil as CodeLanguage?)
             Divider()
             ForEach(CodeLanguage.allLanguages, id: \.id) { language in
                 Text(language.id.rawValue.capitalized).tag(language as CodeLanguage?)
@@ -134,8 +158,16 @@ struct FileInspectorView: View {
     private var location: some View {
         Group {
             if let file {
-                LabeledContent(String(localized: "inspector.file.location.label", defaultValue: "Location", comment: "Label for file location field in file inspector")) {
-                    Button(String(localized: "inspector.file.location.choose.button", defaultValue: "Choose...", comment: "Button title for choosing a different file location")) {
+                LabeledContent(String(
+                    localized: "inspector.file.location.label",
+                    defaultValue: "Location",
+                    comment: "Label for file location field in file inspector"
+                )) {
+                    Button(String(
+                        localized: "inspector.file.location.choose.button",
+                        defaultValue: "Choose...",
+                        comment: "Button title for choosing a different file location"
+                    )) {
                         guard let newURL = chooseNewFileLocation() else {
                             return
                         }
@@ -151,7 +183,11 @@ struct FileInspectorView: View {
                                 editorManager.openTab(item: newItem)
                             } catch {
                                 let alert = NSAlert(error: error)
-                                alert.addButton(withTitle: String(localized: "inspector.file.location.dismiss.button", defaultValue: "Dismiss", comment: "Dismiss button title for file location popover"))
+                                alert.addButton(withTitle: String(
+                                    localized: "inspector.file.location.dismiss.button",
+                                    defaultValue: "Dismiss",
+                                    comment: "Dismiss button title for file location popover"
+                                ))
                                 alert.runModal()
                             }
                         }
@@ -167,9 +203,21 @@ struct FileInspectorView: View {
     }
 
     private var indentUsing: some View {
-        Picker(String(localized: "inspector.file.text-settings.indent-using.label", defaultValue: "Indent using", comment: "Label for indentation style setting"), selection: $indentOption.indentType) {
-            Text(String(localized: "inspector.file.text-settings.indent-using.spaces.option", defaultValue: "Spaces", comment: "Option title for using spaces for indentation")).tag(SettingsData.TextEditingSettings.IndentOption.IndentType.spaces)
-            Text(String(localized: "inspector.file.text-settings.indent-using.tabs.option", defaultValue: "Tabs", comment: "Option title for using tabs for indentation")).tag(SettingsData.TextEditingSettings.IndentOption.IndentType.tab)
+        Picker(String(
+            localized: "inspector.file.text-settings.indent-using.label",
+            defaultValue: "Indent using",
+            comment: "Label for indentation style setting"
+        ), selection: $indentOption.indentType) {
+            Text(String(
+                localized: "inspector.file.text-settings.indent-using.spaces.option",
+                defaultValue: "Spaces",
+                comment: "Option title for using spaces for indentation"
+            )).tag(SettingsData.TextEditingSettings.IndentOption.IndentType.spaces)
+            Text(String(
+                localized: "inspector.file.text-settings.indent-using.tabs.option",
+                defaultValue: "Tabs",
+                comment: "Option title for using tabs for indentation"
+            )).tag(SettingsData.TextEditingSettings.IndentOption.IndentType.tab)
         }
         .onChange(of: indentOption) { _, newValue in
             file?.fileDocument?.indentOption = newValue == textEditing.indentOption ? nil : newValue
@@ -177,7 +225,11 @@ struct FileInspectorView: View {
     }
 
     private var widthOptions: some View {
-        LabeledContent(String(localized: "inspector.file.widths", defaultValue: "Widths", comment: "Section title for file inspector width information")) {
+        LabeledContent(String(
+            localized: "inspector.file.widths",
+            defaultValue: "Widths",
+            comment: "Section title for file inspector width information"
+        )) {
             HStack(spacing: 5) {
                 VStack(alignment: .center, spacing: 0) {
                     Stepper(
@@ -191,11 +243,19 @@ struct FileInspectorView: View {
                         format: .number
                     )
                     .labelsHidden()
-                    Text(String(localized: "inspector.file.text-settings.tab-width.label", defaultValue: "Tab", comment: "Label for tab width setting"))
+                    Text(String(
+                        localized: "inspector.file.text-settings.tab-width.label",
+                        defaultValue: "Tab",
+                        comment: "Label for tab width setting"
+                    ))
                         .foregroundColor(.primary)
                         .font(.footnote)
                 }
-                .help(String(localized: "inspector.file.text-settings.tab-width.description", defaultValue: "The visual width of tab characters", comment: "Description for tab width setting"))
+                .help(String(
+                    localized: "inspector.file.text-settings.tab-width.description",
+                    defaultValue: "The visual width of tab characters",
+                    comment: "Description for tab width setting"
+                ))
                 VStack(alignment: .center, spacing: 0) {
                     Stepper(
                         "",
@@ -208,11 +268,19 @@ struct FileInspectorView: View {
                         format: .number
                     )
                     .labelsHidden()
-                    Text(String(localized: "inspector.file.text-settings.indent-width.label", defaultValue: "Indent", comment: "Label for indent width setting"))
+                    Text(String(
+                        localized: "inspector.file.text-settings.indent-width.label",
+                        defaultValue: "Indent",
+                        comment: "Label for indent width setting"
+                    ))
                         .foregroundColor(.primary)
                         .font(.footnote)
                 }
-                .help(String(localized: "inspector.file.text-settings.indent-width.description", defaultValue: "The number of spaces to insert when the tab key is pressed.", comment: "Description for indent width behavior"))
+                .help(String(
+                    localized: "inspector.file.text-settings.indent-width.description",
+                    defaultValue: "The number of spaces to insert when the tab key is pressed.",
+                    comment: "Description for indent width behavior"
+                ))
             }
         }
         .onChange(of: defaultTabWidth) { _, newValue in
@@ -221,7 +289,11 @@ struct FileInspectorView: View {
     }
 
     private var wrapLinesToggle: some View {
-        Toggle(String(localized: "inspector.file.text-settings.wrap-lines.toggle", defaultValue: "Wrap lines", comment: "Toggle title for wrapping long lines in editor"), isOn: $wrapLines)
+        Toggle(String(
+            localized: "inspector.file.text-settings.wrap-lines.toggle",
+            defaultValue: "Wrap lines",
+            comment: "Toggle title for wrapping long lines in editor"
+        ), isOn: $wrapLines)
             .onChange(of: wrapLines) { _, newValue in
                 file?.fileDocument?.wrapLines = newValue == textEditing.wrapLinesToEditorWidth ? nil : newValue
             }
@@ -230,7 +302,11 @@ struct FileInspectorView: View {
     private func chooseNewFileLocation() -> URL? {
         guard let file else { return nil }
         let dialogue = NSSavePanel()
-        dialogue.title = String(localized: "inspector.file.save-file.button", defaultValue: "Save File", comment: "Button title for saving file changes")
+        dialogue.title = String(
+            localized: "inspector.file.save-file.button",
+            defaultValue: "Save File",
+            comment: "Button title for saving file changes"
+        )
         dialogue.directoryURL = file.url.deletingLastPathComponent()
         dialogue.nameFieldStringValue = file.name
         if dialogue.runModal() == .OK {
