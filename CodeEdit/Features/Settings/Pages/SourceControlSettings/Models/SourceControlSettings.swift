@@ -13,22 +13,86 @@ extension SettingsData {
 
         var searchKeys: [String] {
             [
-                String(localized: "settings.source-control.model.general", defaultValue: "General", comment: "Source control settings section title for general options"),
-                String(localized: "settings.source-control.model.enable-source-control", defaultValue: "Enable source control", comment: "Toggle label to enable source control support"),
-                String(localized: "settings.source-control.model.refresh-local-status-automatically", defaultValue: "Refresh local status automatically", comment: "Toggle label for automatic local status refresh"),
-                String(localized: "settings.source-control.model.fetch-and-refresh-server-status-automatically", defaultValue: "Fetch and refresh server status automatically", comment: "Toggle label for automatic fetch and remote status refresh"),
-                String(localized: "settings.source-control.model.add-and-remove-files-automatically", defaultValue: "Add and remove files automatically", comment: "Toggle label for automatically adding and removing files in source control"),
-                String(localized: "settings.source-control.model.select-files-to-commit-automatically", defaultValue: "Select files to commit automatically", comment: "Toggle label for automatically selecting files when committing"),
-                String(localized: "settings.source-control.model.show-source-control-changes", defaultValue: "Show source control changes", comment: "Toggle label to display source control changes in editor"),
-                String(localized: "settings.source-control.model.include-upstream-changes", defaultValue: "Include upstream changes", comment: "Toggle label to include upstream changes in comparisons"),
-                String(localized: "settings.source-control.model.comparison-view", defaultValue: "Comparison view", comment: "Section title for source control comparison view settings"),
-                String(localized: "settings.source-control.model.source-control-navigator", defaultValue: "Source control navigator", comment: "Section title for source control navigator settings"),
-                String(localized: "settings.source-control.model.default-branch-name", defaultValue: "Default branch name", comment: "Label for default git branch name setting"),
-                String(localized: "settings.source-control.model.git", defaultValue: "Git", comment: "Section title for git-specific source control settings"),
-                String(localized: "settings.source-control.model.author-name", defaultValue: "Author Name", comment: "Label for git author name setting"),
-                String(localized: "settings.source-control.model.author-email", defaultValue: "Author Email", comment: "Label for git author email setting"),
-                String(localized: "settings.source-control.model.prefer-to-rebase-when-pulling", defaultValue: "Prefer to rebase when pulling", comment: "Toggle label for pull strategy preference"),
-                String(localized: "settings.source-control.model.show-merge-commits-in-per-file-log", defaultValue: "Show merge commits in per-file log", comment: "Toggle label to include merge commits in file history log")
+                String(
+                    localized: "settings.source-control.model.general",
+                    defaultValue: "General",
+                    comment: "Source control settings section title for general options"
+                ),
+                String(
+                    localized: "settings.source-control.model.enable-source-control",
+                    defaultValue: "Enable source control",
+                    comment: "Toggle label to enable source control support"
+                ),
+                String(
+                    localized: "settings.source-control.model.refresh-local-status-automatically",
+                    defaultValue: "Refresh local status automatically",
+                    comment: "Toggle label for automatic local status refresh"
+                ),
+                String(
+                    localized: "settings.source-control.model.fetch-and-refresh-server-status-automatically",
+                    defaultValue: "Fetch and refresh server status automatically",
+                    comment: "Toggle label for automatic fetch and remote status refresh"
+                ),
+                String(
+                    localized: "settings.source-control.model.add-and-remove-files-automatically",
+                    defaultValue: "Add and remove files automatically",
+                    comment: "Toggle label for automatically adding and removing files in source control"
+                ),
+                String(
+                    localized: "settings.source-control.model.select-files-to-commit-automatically",
+                    defaultValue: "Select files to commit automatically",
+                    comment: "Toggle label for automatically selecting files when committing"
+                ),
+                String(
+                    localized: "settings.source-control.model.show-source-control-changes",
+                    defaultValue: "Show source control changes",
+                    comment: "Toggle label to display source control changes in editor"
+                ),
+                String(
+                    localized: "settings.source-control.model.include-upstream-changes",
+                    defaultValue: "Include upstream changes",
+                    comment: "Toggle label to include upstream changes in comparisons"
+                ),
+                String(
+                    localized: "settings.source-control.model.comparison-view",
+                    defaultValue: "Comparison view",
+                    comment: "Section title for source control comparison view settings"
+                ),
+                String(
+                    localized: "settings.source-control.model.source-control-navigator",
+                    defaultValue: "Source control navigator",
+                    comment: "Section title for source control navigator settings"
+                ),
+                String(
+                    localized: "settings.source-control.model.default-branch-name",
+                    defaultValue: "Default branch name",
+                    comment: "Label for default git branch name setting"
+                ),
+                String(
+                    localized: "settings.source-control.model.git",
+                    defaultValue: "Git",
+                    comment: "Section title for git-specific source control settings"
+                ),
+                String(
+                    localized: "settings.source-control.model.author-name",
+                    defaultValue: "Author Name",
+                    comment: "Label for git author name setting"
+                ),
+                String(
+                    localized: "settings.source-control.model.author-email",
+                    defaultValue: "Author Email",
+                    comment: "Label for git author email setting"
+                ),
+                String(
+                    localized: "settings.source-control.model.prefer-to-rebase-when-pulling",
+                    defaultValue: "Prefer to rebase when pulling",
+                    comment: "Toggle label for pull strategy preference"
+                ),
+                String(
+                    localized: "settings.source-control.model.show-merge-commits-in-per-file-log",
+                    defaultValue: "Show merge commits in per-file log",
+                    comment: "Toggle label to include merge commits in file history log"
+                )
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
