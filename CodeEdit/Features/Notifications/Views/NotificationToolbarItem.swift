@@ -24,7 +24,7 @@ struct NotificationToolbarItem: View {
                     Image(systemName: "bell.badge.fill")
                         .symbolRenderingMode(.palette)
                         .foregroundStyle(controlActiveState == .inactive ? .secondary : Color.accentColor, .primary)
-                    Text("\(notificationManager.unreadCount)")
+                    Text(String(format: String(localized: "notifications.toolbar.unread-count", defaultValue: "%d", comment: "Unread notifications count shown in toolbar item"), notificationManager.unreadCount))
                         .monospacedDigit()
                 }
             }
