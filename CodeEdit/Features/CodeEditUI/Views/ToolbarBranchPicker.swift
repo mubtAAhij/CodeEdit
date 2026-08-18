@@ -114,7 +114,11 @@ struct ToolbarBranchPicker: View {
             VStack(alignment: .leading) {
                 if let currentBranch = sourceControlManager.currentBranch {
                     Section {
-                        headerLabel(String(localized: "toolbar.branch-picker.current-branch", defaultValue: "Current Branch", comment: "Section header for currently checked out branch"))
+                        headerLabel(String(
+                            localized: "toolbar.branch-picker.current-branch",
+                            defaultValue: "Current Branch",
+                            comment: "Section header for currently checked out branch"
+                        ))
                         BranchCell(sourceControlManager: sourceControlManager, branch: currentBranch, active: true)
                     }
                 }
@@ -134,7 +138,11 @@ struct ToolbarBranchPicker: View {
 
                 if !branches.isEmpty {
                     Section {
-                        headerLabel(String(localized: "toolbar.branch-picker.branches", defaultValue: "Branches", comment: "Section header listing available branches"))
+                        headerLabel(String(
+                            localized: "toolbar.branch-picker.branches",
+                            defaultValue: "Branches",
+                            comment: "Section header listing available branches"
+                        ))
                         ForEach(branchesGroups.keys.sorted(), id: \.self) { branchGroupPrefix in
                             if let group = branchesGroups[branchGroupPrefix] {
                                 if !group.shouldNest {
@@ -219,7 +227,11 @@ struct ToolbarBranchPicker: View {
                     do {
                         try await sourceControlManager.checkoutBranch(branch: branch)
                     } catch {
-                        await sourceControlManager.showAlertForError(title: String(localized: "toolbar.branch-picker.failed-to-checkout", defaultValue: "Failed to checkout", comment: "Error title shown when branch checkout fails"), error: error)
+                        await sourceControlManager.showAlertForError(title: String(
+                            localized: "toolbar.branch-picker.failed-to-checkout",
+                            defaultValue: "Failed to checkout",
+                            comment: "Error title shown when branch checkout fails"
+                        ), error: error)
                     }
                 }
             }
