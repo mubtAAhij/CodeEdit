@@ -98,7 +98,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                     .padding(0)
                 HStack(spacing: 0) {
                     if options.isEmpty {
-                        Text(String(localized: "codeedit-ui.search-panel.no-matching-options", defaultValue: "No matching options", comment: "Empty state text when search panel has no matching options"))
+                        Text(String(
+                            localized: "codeedit-ui.search-panel.no-matching-options",
+                            defaultValue: "No matching options",
+                            comment: "Empty state text when search panel has no matching options"
+                        ))
                             .font(.system(size: 17))
                             .foregroundColor(.secondary)
                             .frame(maxWidth: hasPreview ? 272 : .infinity, maxHeight: .infinity)
@@ -123,7 +127,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                                     .frame(maxWidth: .infinity)
                                     .transition(.move(edge: .trailing))
                             } else {
-                                Text(String(localized: "codeedit-ui.search-panel.select-option-to-preview", defaultValue: "Select an option to preview", comment: "Prompt text to select an option for preview in search panel"))
+                                Text(String(
+                                    localized: "codeedit-ui.search-panel.select-option-to-preview",
+                                    defaultValue: "Select an option to preview",
+                                    comment: "Prompt text to select an option for preview in search panel"
+                                ))
                                     .frame(maxWidth: .infinity)
                             }
                         }
@@ -149,7 +157,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.escape, modifiers: [])
-            .accessibilityLabel(String(localized: "codeedit-ui.search-panel.close-overlay", defaultValue: "Close Overlay", comment: "Action title to close search panel overlay"))
+            .accessibilityLabel(String(
+                localized: "codeedit-ui.search-panel.close-overlay",
+                defaultValue: "Close Overlay",
+                comment: "Action title to close search panel overlay"
+            ))
         Button {
             guard selection != options.first else {
                 return
@@ -162,7 +174,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.upArrow, modifiers: [])
-            .accessibilityLabel(String(localized: "codeedit-ui.search-panel.select-up", defaultValue: "Select Up", comment: "Action title to move selection up in search panel"))
+            .accessibilityLabel(String(
+                localized: "codeedit-ui.search-panel.select-up",
+                defaultValue: "Select Up",
+                comment: "Action title to move selection up in search panel"
+            ))
         Button {
             guard selection != options.last else {
                 return
@@ -176,7 +192,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.downArrow, modifiers: [])
-            .accessibilityLabel(String(localized: "codeedit-ui.search-panel.select-down", defaultValue: "Select Down", comment: "Action title to move selection down in search panel"))
+            .accessibilityLabel(String(
+                localized: "codeedit-ui.search-panel.select-down",
+                defaultValue: "Select Down",
+                comment: "Action title to move selection down in search panel"
+            ))
     }
 }
 
