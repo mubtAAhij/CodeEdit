@@ -31,25 +31,25 @@ enum PackageManagerType: String, Codable {
     var userDescription: String {
         switch self {
         case .npm:
-            "NPM"
+            String(localized: "lsp.package-manager-type.npm", defaultValue: "NPM", comment: "Display name for NPM package manager type")
         case .cargo:
-            "Cargo"
+            String(localized: "lsp.package-manager-type.cargo", defaultValue: "Cargo", comment: "Display name for Cargo package manager type")
         case .golang:
-            "Go"
+            String(localized: "lsp.package-manager-type.go", defaultValue: "Go", comment: "Display name for Go package manager type")
         case .pip:
-            "Pip"
+            String(localized: "lsp.package-manager-type.pip", defaultValue: "Pip", comment: "Display name for Pip package manager type")
         case .gem:
-            "Gem"
+            String(localized: "lsp.package-manager-type.gem", defaultValue: "Gem", comment: "Display name for Gem package manager type")
         case .nuget:
-            "Nuget"
+            String(localized: "lsp.package-manager-type.nuget", defaultValue: "Nuget", comment: "Display name for Nuget package manager type")
         case .opam:
-            "Opam"
+            String(localized: "lsp.package-manager-type.opam", defaultValue: "Opam", comment: "Display name for Opam package manager type")
         case .composer:
-            "Composer"
+            String(localized: "lsp.package-manager-type.composer", defaultValue: "Composer", comment: "Display name for Composer package manager type")
         case .sourceBuild:
-            "Build From Source"
+            String(localized: "lsp.package-manager-type.build-from-source", defaultValue: "Build From Source", comment: "Display name for package manager installation method using source builds")
         case .github:
-            "Download From GitHub"
+            String(localized: "lsp.package-manager-type.download-from-github", defaultValue: "Download From GitHub", comment: "Display name for package manager installation method using GitHub downloads")
         }
     }
 }
