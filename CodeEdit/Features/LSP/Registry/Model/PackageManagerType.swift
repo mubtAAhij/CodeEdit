@@ -31,25 +31,65 @@ enum PackageManagerType: String, Codable {
     var userDescription: String {
         switch self {
         case .npm:
-            String(localized: "lsp.registry.package-manager-type.npm", defaultValue: "NPM", comment: "Display name for NPM package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.npm",
+                defaultValue: "NPM",
+                comment: "Display name for NPM package manager"
+            )
         case .cargo:
-            String(localized: "lsp.registry.package-manager-type.cargo", defaultValue: "Cargo", comment: "Display name for Cargo package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.cargo",
+                defaultValue: "Cargo",
+                comment: "Display name for Cargo package manager"
+            )
         case .golang:
-            String(localized: "lsp.registry.package-manager-type.go", defaultValue: "Go", comment: "Display name for Go package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.go",
+                defaultValue: "Go",
+                comment: "Display name for Go package manager"
+            )
         case .pip:
-            String(localized: "lsp.registry.package-manager-type.pip", defaultValue: "Pip", comment: "Display name for Pip package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.pip",
+                defaultValue: "Pip",
+                comment: "Display name for Pip package manager"
+            )
         case .gem:
-            String(localized: "lsp.registry.package-manager-type.gem", defaultValue: "Gem", comment: "Display name for Gem package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.gem",
+                defaultValue: "Gem",
+                comment: "Display name for Gem package manager"
+            )
         case .nuget:
-            String(localized: "lsp.registry.package-manager-type.nuget", defaultValue: "Nuget", comment: "Display name for NuGet package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.nuget",
+                defaultValue: "Nuget",
+                comment: "Display name for NuGet package manager"
+            )
         case .opam:
-            String(localized: "lsp.registry.package-manager-type.opam", defaultValue: "Opam", comment: "Display name for Opam package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.opam",
+                defaultValue: "Opam",
+                comment: "Display name for Opam package manager"
+            )
         case .composer:
-            String(localized: "lsp.registry.package-manager-type.composer", defaultValue: "Composer", comment: "Display name for Composer package manager")
+            String(
+                localized: "lsp.registry.package-manager-type.composer",
+                defaultValue: "Composer",
+                comment: "Display name for Composer package manager"
+            )
         case .sourceBuild:
-            String(localized: "lsp.registry.package-manager-type.build-from-source", defaultValue: "Build From Source", comment: "Display name for building language server from source")
+            String(
+                localized: "lsp.registry.package-manager-type.build-from-source",
+                defaultValue: "Build From Source",
+                comment: "Display name for building language server from source"
+            )
         case .github:
-            String(localized: "lsp.registry.package-manager-type.download-from-github", defaultValue: "Download From GitHub", comment: "Display name for downloading language server from GitHub")
+            String(
+                localized: "lsp.registry.package-manager-type.download-from-github",
+                defaultValue: "Download From GitHub",
+                comment: "Display name for downloading language server from GitHub"
+            )
         }
     }
 }
