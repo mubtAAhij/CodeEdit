@@ -226,7 +226,11 @@ extension ThemeModel {
                 throw NSError(
                     domain: "ThemeModel",
                     code: 1,
-                    userInfo: [NSLocalizedDescriptionKey: String(localized: "settings.theme.crud.file-url-not-found", defaultValue: "Theme file URL not found", comment: "Error message when theme file URL is missing")]
+                    userInfo: [NSLocalizedDescriptionKey: String(
+                        localized: "settings.theme.crud.file-url-not-found",
+                        defaultValue: "Theme file URL not found",
+                        comment: "Error message when theme file URL is missing"
+                    )]
                 )
             }
 
