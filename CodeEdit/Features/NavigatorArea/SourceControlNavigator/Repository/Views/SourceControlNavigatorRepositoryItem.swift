@@ -34,7 +34,7 @@ struct SourceControlNavigatorRepositoryItem: View {
                     HStack(spacing: 0) {
                         Image(systemName: "arrow.down")
                             .imageScale(.small)
-                        Text("\(behind)")
+                        Text(String(format: String(localized: "source-control-navigator.repository-item.behind-count", defaultValue: "%d", comment: "Number of commits the local branch is behind the remote"), behind))
                             .font(.system(size: 11))
                     }
                 }
@@ -42,7 +42,7 @@ struct SourceControlNavigatorRepositoryItem: View {
                     HStack(spacing: 0) {
                         Image(systemName: "arrow.up")
                             .imageScale(.small)
-                        Text("\(ahead)")
+                        Text(String(format: String(localized: "source-control-navigator.repository-item.ahead-count", defaultValue: "%d", comment: "Number of commits the local branch is ahead of the remote"), ahead))
                             .font(.system(size: 11))
                     }
                 }
