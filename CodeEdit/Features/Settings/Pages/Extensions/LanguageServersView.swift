@@ -52,7 +52,11 @@ struct LanguageServersView: View {
                     }
                 } header: {
                     Label(
-                        String(localized: "settings.extensions.language-servers.install-warning", defaultValue: "Warning: Language server installation is experimental. Use at your own risk.", comment: "Warning message about experimental language server installation"),
+                        String(
+                            localized: "settings.extensions.language-servers.install-warning",
+                            defaultValue: "Warning: Language server installation is experimental. Use at your own risk.",
+                            comment: "Warning message about experimental language server installation"
+                        ),
                         systemImage: "exclamationmark.triangle.fill"
                     )
                 }
@@ -65,11 +69,19 @@ struct LanguageServersView: View {
     }
 
     private func getInfoString() -> AttributedString {
-        let string = String(localized: "settings.extensions.language-servers.install-description", defaultValue: "CodeEdit makes use of the Mason Registry for language server installation. To install a package, CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of the language server in Application Support.\n\nLanguage server installation is still experimental, there may be bugs and expect this flow to change over time.", comment: "Detailed description of Mason-based language server installation behavior")
+        let string = String(
+            localized: "settings.extensions.language-servers.install-description",
+            defaultValue: "CodeEdit makes use of the Mason Registry for language server installation. To install a package, CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of the language server in Application Support.\n\nLanguage server installation is still experimental, there may be bugs and expect this flow to change over time.",
+            comment: "Detailed description of Mason-based language server installation behavior"
+        )
 
         var attrString = AttributedString(string)
 
-        if let linkRange = attrString.range(of: String(localized: "settings.extensions.language-servers.mason-registry", defaultValue: "Mason Registry", comment: "Label for Mason Registry link or section")) {
+        if let linkRange = attrString.range(of: String(
+            localized: "settings.extensions.language-servers.mason-registry",
+            defaultValue: "Mason Registry",
+            comment: "Label for Mason Registry link or section"
+        )) {
             attrString[linkRange].link = URL(string: "https://mason-registry.dev/")
             attrString[linkRange].foregroundColor = NSColor.linkColor
         }
