@@ -13,7 +13,11 @@ struct AboutFooterView: View {
         FooterView(
             primaryView: {
                 Link(destination: URL(string: "https://github.com/CodeEditApp/CodeEdit/blob/main/LICENSE.md")!) {
-                    Text(String(localized: "about.footer.mit-license", defaultValue: "MIT License", comment: "Label for MIT license link in about footer"))
+                    Text(String(
+                        localized: "about.footer.mit-license",
+                        defaultValue: "MIT License",
+                        comment: "Label for MIT license link in about footer"
+                    ))
                         .underline()
                 }
             },
