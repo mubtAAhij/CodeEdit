@@ -81,7 +81,11 @@ struct EditorAreaView: View {
                         }
                 }
             } else {
-                CEContentUnavailableView(String(localized: "editor.area.empty-state.title", defaultValue: "No Editor", comment: "Empty state title when no editor is open"))
+                CEContentUnavailableView(String(
+                    localized: "editor.area.empty-state.title",
+                    defaultValue: "No Editor",
+                    comment: "Empty state title when no editor is open"
+                ))
                     .padding(.top, editorInsetAmount)
                     .onTapGesture {
                         editorManager.activeEditor = editor
