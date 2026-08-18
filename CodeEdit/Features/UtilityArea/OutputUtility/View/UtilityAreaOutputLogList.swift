@@ -93,7 +93,7 @@ struct UtilityAreaOutputLogList<Source: UtilityAreaOutputSource, Toolbar: View>:
                 localized: "utility-area.output.filter",
                 defaultValue: "Filter",
                 comment: "Title for utility output filter field"
-            ), text: )
+            ), text: $source.searchTerm)
                 .frame(maxWidth: 175)
             Button {
                 output.removeAll(keepingCapacity: true)
