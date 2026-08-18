@@ -23,11 +23,31 @@ extension GitClient {
 
         var label: String {
             switch self {
-            case .initialState: String(localized: "source-control.clone.progress.cloning", defaultValue: "Cloning", comment: "Clone progress stage label for cloning step")
-            case .counting: String(localized: "source-control.clone.progress.counting", defaultValue: "Counting", comment: "Clone progress stage label for counting objects step")
-            case .compressing: String(localized: "source-control.clone.progress.compressing", defaultValue: "Compressing", comment: "Clone progress stage label for compressing objects step")
-            case .receiving: String(localized: "source-control.clone.progress.receiving", defaultValue: "Receiving", comment: "Clone progress stage label for receiving objects step")
-            case .resolving: String(localized: "source-control.clone.progress.resolving", defaultValue: "Resolving", comment: "Clone progress stage label for resolving deltas step")
+            case .initialState: String(
+                localized: "source-control.clone.progress.cloning",
+                defaultValue: "Cloning",
+                comment: "Clone progress stage label for cloning step"
+            )
+            case .counting: String(
+                localized: "source-control.clone.progress.counting",
+                defaultValue: "Counting",
+                comment: "Clone progress stage label for counting objects step"
+            )
+            case .compressing: String(
+                localized: "source-control.clone.progress.compressing",
+                defaultValue: "Compressing",
+                comment: "Clone progress stage label for compressing objects step"
+            )
+            case .receiving: String(
+                localized: "source-control.clone.progress.receiving",
+                defaultValue: "Receiving",
+                comment: "Clone progress stage label for receiving objects step"
+            )
+            case .resolving: String(
+                localized: "source-control.clone.progress.resolving",
+                defaultValue: "Resolving",
+                comment: "Clone progress stage label for resolving deltas step"
+            )
             }
         }
     }
