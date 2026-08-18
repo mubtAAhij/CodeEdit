@@ -89,12 +89,20 @@ struct UtilityAreaDebugView: View {
                         : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
                     )
                 } else {
-                    CEContentUnavailableView("No Task Selected")
+                    CEContentUnavailableView(String(
+                        localized: "utility-area.debug.no-task-selected",
+                        defaultValue: "No Task Selected",
+                        comment: "Placeholder when no debug task is selected"
+                    ))
                 }
             }
         } leadingSidebar: { _ in
             ZStack {
-                Text("No Tasks are Running")
+                Text(String(
+                    localized: "utility-area.debug.no-tasks-running",
+                    defaultValue: "No Tasks are Running",
+                    comment: "Placeholder when no debug tasks are currently running"
+                ))
                     .font(.system(size: 16))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -112,7 +120,11 @@ struct UtilityAreaDebugView: View {
                                         Button {
                                             taskManager.deleteTask(taskID: taskID)
                                         } label: {
-                                            Text("Delete")
+                                            Text(String(
+                                                localized: "utility-area.debug.delete",
+                                                defaultValue: "Delete",
+                                                comment: "Action title to delete selected debug entry"
+                                            ))
                                         }
                                     }
                                 )

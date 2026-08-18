@@ -13,10 +13,26 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Developer",
-                "Language Server Protocol",
-                "LSP Binaries",
-                "Show Internal Development Inspector"
+                String(
+                    localized: "settings.developer.title",
+                    defaultValue: "Developer",
+                    comment: "Settings section title for developer preferences"
+                ),
+                String(
+                    localized: "settings.developer.language-server-protocol",
+                    defaultValue: "Language Server Protocol",
+                    comment: "Settings row title for language server protocol preferences"
+                ),
+                String(
+                    localized: "settings.developer.lsp-binaries",
+                    defaultValue: "LSP Binaries",
+                    comment: "Settings row title for LSP binaries management"
+                ),
+                String(
+                    localized: "settings.developer.show-internal-development-inspector",
+                    defaultValue: "Show Internal Development Inspector",
+                    comment: "Toggle title to show internal development inspector"
+                )
             ]
             .map { NSLocalizedString($0, comment: "") }
         }

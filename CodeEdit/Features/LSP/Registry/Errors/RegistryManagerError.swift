@@ -18,17 +18,41 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
+            String(
+                localized: "lsp.registry-manager-error.package-already-installing",
+                defaultValue: "A package is already being installed.",
+                comment: "Error message when another package installation is already in progress"
+            )
         case .invalidResponse(let statusCode):
-            "Invalid response received: \(statusCode)"
+            String(format: String(
+                localized: "lsp.registry-manager-error.invalid-response-received",
+                defaultValue: "Invalid response received: %d",
+                comment: "Error message when registry request returns invalid HTTP status code"
+            ), statusCode)
         case .downloadFailed(let url, _):
-            "Download for \(url) error."
+            String(format: String(
+                localized: "lsp.registry-manager-error.download-error",
+                defaultValue: "Download for %@ error.",
+                comment: "Error message when download fails for a specific URL"
+            ), "\(url)")
         case .maxRetriesExceeded(let url, _):
-            "Maximum retries exceeded for url: \(url)"
+            String(format: String(
+                localized: "lsp.registry-manager-error.maximum-retries-exceeded",
+                defaultValue: "Maximum retries exceeded for url: %@",
+                comment: "Error message when download retries are exhausted for a specific URL"
+            ), "\(url)")
         case .writeFailed:
-            "Failed to write to file."
+            String(
+                localized: "lsp.registry-manager-error.failed-to-write-file",
+                defaultValue: "Failed to write to file.",
+                comment: "Error message when writing downloaded data to file fails"
+            )
         case .failedToSaveRegistryCache:
-            "Failed to write to registry cache."
+            String(
+                localized: "lsp.registry-manager-error.failed-to-write-registry-cache",
+                defaultValue: "Failed to write to registry cache.",
+                comment: "Error message when writing registry cache fails"
+            )
         }
     }
 

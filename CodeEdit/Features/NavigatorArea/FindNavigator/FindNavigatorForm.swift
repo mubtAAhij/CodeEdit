@@ -62,7 +62,11 @@ struct FindNavigatorForm: View {
                     Spacer()
                 }
                 Spacer()
-                Text("Scoped")
+                Text(String(
+                    localized: "find-navigator.form.scoped.toggle",
+                    defaultValue: "Scoped",
+                    comment: "Toggle label for scoped search in the find navigator."
+                ))
                     .controlSize(.small)
                     .foregroundStyle(Color(nsColor: scoped ? .controlAccentColor : .controlTextColor))
                     .onTapGesture {
@@ -91,7 +95,11 @@ struct FindNavigatorForm: View {
                             .foregroundStyle(caseSensitive ? Color(.controlAccentColor) : Color(.secondaryLabelColor))
                         }
                     )
-                    .help("Match Case")
+                    .help(String(
+                        localized: "find-navigator.form.match-case.toggle",
+                        defaultValue: "Match Case",
+                        comment: "Toggle label for case-sensitive search in the find navigator."
+                    ))
                     .onChange(of: caseSensitive) { _, newValue in
                         state.caseSensitive = newValue
                     }
@@ -116,7 +124,11 @@ struct FindNavigatorForm: View {
             }
             if selectedMode[0] == SearchModeModel.Replace {
                 PaneTextField(
-                    "With",
+                    String(
+                        localized: "find-navigator.form.replace.with.label",
+                        defaultValue: "With",
+                        comment: "Label for replacement text field in find and replace form."
+                    ),
                     text: $state.replaceText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -131,14 +143,22 @@ struct FindNavigatorForm: View {
                         Toggle(
                             isOn: $preserveCase,
                             label: {
-                                Text("AB")
+                                Text(String(
+                                    localized: "find-navigator.form.preserve-case.abbreviation",
+                                    defaultValue: "AB",
+                                    comment: "Abbreviation shown next to preserve case option in find and replace form."
+                                ))
                                     .font(.system(size: 12, design: .rounded))
                                     .foregroundStyle(
                                         preserveCase ? Color(.controlAccentColor) : Color(.secondaryLabelColor)
                                     )
                             }
                         )
-                        .help("Preserve Case")
+                        .help(String(
+                            localized: "find-navigator.form.preserve-case.toggle",
+                            defaultValue: "Preserve Case",
+                            comment: "Toggle label for preserving letter case during replace."
+                        ))
                     },
                     clearable: true,
                     hasValue: preserveCase
@@ -146,7 +166,11 @@ struct FindNavigatorForm: View {
             }
             if scoped {
                 PaneTextField(
-                    "Only in folders",
+                    String(
+                        localized: "find-navigator.form.only-in-folders.label",
+                        defaultValue: "Only in folders",
+                        comment: "Label for folder inclusion scope in find navigator."
+                    ),
                     text: $includesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -167,13 +191,21 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Search only in Open Editors")
+                        .help(String(
+                            localized: "find-navigator.form.open-editors-only.toggle",
+                            defaultValue: "Search only in Open Editors",
+                            comment: "Toggle label to restrict search to open editors."
+                        ))
                     },
                     clearable: true,
                     hasValue: scopedToOpenEditors
                 )
                 PaneTextField(
-                    "Excluding folders",
+                    String(
+                        localized: "find-navigator.form.excluding-folders.label",
+                        defaultValue: "Excluding folders",
+                        comment: "Label for excluded folders in find navigator."
+                    ),
                     text: $excludesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -194,7 +226,11 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help("Use Exclude Settings and Ignore Files")
+                        .help(String(
+                            localized: "find-navigator.form.use-exclude-settings.toggle",
+                            defaultValue: "Use Exclude Settings and Ignore Files",
+                            comment: "Toggle label to apply exclude settings and ignore files during search."
+                        ))
                     },
                     clearable: true,
                     hasValue: excludeSettings
@@ -208,7 +244,11 @@ struct FindNavigatorForm: View {
                         print(Date().timeIntervalSince(startTime))
                     }
                 } label: {
-                    Text("Replace All")
+                    Text(String(
+                        localized: "find-navigator.form.replace-all.button",
+                        defaultValue: "Replace All",
+                        comment: "Button title to replace all matches in find navigator."
+                    ))
                         .frame(maxWidth: .infinity)
                 }
             }

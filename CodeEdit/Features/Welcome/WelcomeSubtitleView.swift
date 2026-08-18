@@ -21,7 +21,11 @@ struct WelcomeSubtitleView: View {
               let build = dict["ProductBuildVersion"] else {
             return ProcessInfo.processInfo.operatingSystemVersionString
         }
-        return "\(version) (\(build))"
+        return String(format: String(
+            localized: "welcome.subtitle.version-build-inline",
+            defaultValue: "%@ (%@)",
+            comment: "Welcome subtitle text showing app version and build"
+        ), "\(version)", "\(build)")
     }
 
     private var xcodeVersion: String? {
@@ -35,13 +39,30 @@ struct WelcomeSubtitleView: View {
         else {
             return nil
         }
-        return "\(version) (\(build))"
+        return String(format: String(
+            localized: "welcome.subtitle.version-build-copy",
+            defaultValue: "%@ (%@)",
+            comment: "Copied system info line showing app version and build"
+        ), "\(version)", "\(build)")
     }
 
     private func copyInformation() {
         var copyString = "\(Bundle.displayName): \(appVersion)\(appVersionPostfix) (\(appBuild))\n"
-        copyString.append("macOS: \(macOSVersion)\n")
-        if let xcodeVersion { copyString.append("Xcode: \(xcodeVersion)") }
+        copyString.append(
+            String(
+                format: String(
+                    localized: "welcome.subtitle.macos-version-line",
+                    defaultValue: "macOS: %@",
+                    comment: "Copied system info line showing macOS version."
+                ),
+                macOSVersion
+            ) + "\n"
+        )
+        if let xcodeVersion { copyString.append(String(format: String(
+            localized: "welcome.subtitle.xcode-version-line",
+            defaultValue: "Xcode: %@",
+            comment: "Copied system info line showing Xcode version"
+        ), "\(xcodeVersion)")) }
 
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -50,12 +71,20 @@ struct WelcomeSubtitleView: View {
 
     var body: some View {
         Text(String(
-            format: NSLocalizedString("Version %@%@ (%@)", comment: ""),
+            format: String(
+                localized: "welcome.subtitle.version-line",
+                defaultValue: "Version %@%@ (%@)",
+                comment: "Welcome subtitle version line with optional postfix and build"
+            ),
             appVersion, appVersionPostfix, appBuild
         ))
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help("Copy System Information to Clipboard")
+        .help(String(
+            localized: "welcome.subtitle.copy-system-information",
+            defaultValue: "Copy System Information to Clipboard",
+            comment: "Button label to copy system information to clipboard"
+        ))
     }
 }

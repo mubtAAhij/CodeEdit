@@ -84,7 +84,15 @@ extension CEWorkspaceFile {
             } else {
                 // Disabling for debug line.
                 // swiftlint:disable:next line_length
-                childDetails += "\n\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "") Children Not Loaded"
+                childDetails += String(
+                    format: String(
+                        localized: "workspace.file.recursion.children-not-loaded",
+                        defaultValue: "\n%@%@ Children Not Loaded",
+                        comment: "Line for unloaded children in recursive workspace file debug description"
+                    ),
+                    String(repeating: "|  ", count: max(tabCount - 1, 0)),
+                    tabCount != 0 ? "╰--" : ""
+                )
             }
             return childDetails
         }

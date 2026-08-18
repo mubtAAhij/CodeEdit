@@ -33,9 +33,21 @@ struct InvisibleCharacterWarningList: View {
                     }
                 }
             ),
-            keyColumnName: "Unicode Character Code",
-            valueColumnName: "Notes",
-            newItemInstruction: "Add A Character As A Hexidecimal Unicode Value",
+            keyColumnName: String(
+                localized: "settings.invisible-character-warning.unicode-character-code",
+                defaultValue: "Unicode Character Code",
+                comment: "Column header for unicode character code"
+            ),
+            valueColumnName: String(
+                localized: "settings.invisible-character-warning.notes",
+                defaultValue: "Notes",
+                comment: "Column header for warning character notes"
+            ),
+            newItemInstruction: String(
+                localized: "settings.invisible-character-warning.add-character-hex-unicode-value",
+                defaultValue: "Add A Character As A Hexidecimal Unicode Value",
+                comment: "Prompt text for adding a warning character by hexadecimal unicode value"
+            ),
             actionBarTrailing: {
                 Button {
                     // Add defaults without removing user's data. We do still override notes here.
@@ -46,7 +58,11 @@ struct InvisibleCharacterWarningList: View {
                         }
                     )
                 } label: {
-                    Text("Restore Defaults")
+                    Text(String(
+                        localized: "settings.invisible-character-warning.restore-defaults",
+                        defaultValue: "Restore Defaults",
+                        comment: "Button title to restore default warning characters"
+                    ))
                 }
                 .buttonStyle(PlainButtonStyle())
                 .font(.system(size: 11, weight: .medium))
@@ -58,7 +74,11 @@ struct InvisibleCharacterWarningList: View {
         .frame(minHeight: 96, maxHeight: .infinity)
         .overlay {
             if items.isEmpty {
-                Text("No warning characters")
+                Text(String(
+                    localized: "settings.invisible-character-warning.no-warning-characters",
+                    defaultValue: "No warning characters",
+                    comment: "Empty state text when no warning characters are configured"
+                ))
                     .foregroundStyle(Color(.secondaryLabelColor))
             }
         }

@@ -89,7 +89,11 @@ final class CodeEditDocumentController: NSDocumentController {
                 if let document {
                     self.addDocument(document)
                 } else {
-                    let errorMessage = error?.localizedDescription ?? "unknown error"
+                    let errorMessage = error?.localizedDescription ?? String(
+                        localized: "document-controller.unknown-error",
+                        defaultValue: "unknown error",
+                        comment: "Fallback error message when no localized error description is available"
+                    )
                     print("Unable to open document '\(url)': \(errorMessage)")
                 }
 
@@ -146,7 +150,11 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Open Workspace or File"
+        dialog.title = String(
+            localized: "document-controller.open-workspace-or-file",
+            defaultValue: "Open Workspace or File",
+            comment: "Window title for open document dialog"
+        )
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
@@ -162,9 +170,10 @@ extension NSDocumentController {
 
                     guard let document else {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString(
-                            "Failed to get document",
-                            comment: "Failed to get document"
+                        alert.messageText = String(
+                            localized: "document-controller.failed-to-get-document",
+                            defaultValue: "Failed to get document",
+                            comment: "Error message shown when document loading fails"
                         )
                         alert.runModal()
                         return

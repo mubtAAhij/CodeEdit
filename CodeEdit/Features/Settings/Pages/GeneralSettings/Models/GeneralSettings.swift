@@ -24,29 +24,121 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                "Appearance",
-                "File Icon Style",
-                "Tab Bar Style",
-                "Show Jump Bar",
-                "Dim editors without focus",
-                "Navigator Tab Bar Position",
-                "Inspector Tab Bar Position",
-                "Show Issues",
-                "Show Live Issues",
-                "Automatically save change to disk",
-                "Automatically reveal in project navigator",
-                "Reopen Behavior",
-                "After the last window is closed",
-                "File Extensions",
-                "Project Navigator Size",
-                "Find Navigator Detail",
-                "Issue Navigator Detail",
-                "Show “Open With CodeEdit“ option in Finder",
-                "'codeedit' Shell command",
-                "Dialog Warnings",
-                "Check for updates",
-                "Automatically check for app updates",
-                "Include pre-release versions"
+                String(
+                    localized: "settings.general.appearance",
+                    defaultValue: "Appearance",
+                    comment: "General settings section title for appearance options"
+                ),
+                String(
+                    localized: "settings.general.file-icon-style",
+                    defaultValue: "File Icon Style",
+                    comment: "General settings label for file icon style option"
+                ),
+                String(
+                    localized: "settings.general.tab-bar-style",
+                    defaultValue: "Tab Bar Style",
+                    comment: "General settings label for tab bar style option"
+                ),
+                String(
+                    localized: "settings.general.show-jump-bar",
+                    defaultValue: "Show Jump Bar",
+                    comment: "General settings toggle label for showing jump bar"
+                ),
+                String(
+                    localized: "settings.general.dim-editors-without-focus",
+                    defaultValue: "Dim editors without focus",
+                    comment: "General settings toggle label for dimming unfocused editors"
+                ),
+                String(
+                    localized: "settings.general.navigator-tab-bar-position",
+                    defaultValue: "Navigator Tab Bar Position",
+                    comment: "General settings label for navigator tab bar position option"
+                ),
+                String(
+                    localized: "settings.general.inspector-tab-bar-position",
+                    defaultValue: "Inspector Tab Bar Position",
+                    comment: "General settings label for inspector tab bar position option"
+                ),
+                String(
+                    localized: "settings.general.show-issues",
+                    defaultValue: "Show Issues",
+                    comment: "General settings toggle label for showing issues"
+                ),
+                String(
+                    localized: "settings.general.show-live-issues",
+                    defaultValue: "Show Live Issues",
+                    comment: "General settings toggle label for showing live issues"
+                ),
+                String(
+                    localized: "settings.general.auto-save-changes-to-disk",
+                    defaultValue: "Automatically save change to disk",
+                    comment: "General settings toggle label for auto-saving changes to disk"
+                ),
+                String(
+                    localized: "settings.general.auto-reveal-in-project-navigator",
+                    defaultValue: "Automatically reveal in project navigator",
+                    comment: "General settings toggle label for auto-revealing files in project navigator"
+                ),
+                String(
+                    localized: "settings.general.reopen-behavior",
+                    defaultValue: "Reopen Behavior",
+                    comment: "General settings label for reopen behavior preference"
+                ),
+                String(
+                    localized: "settings.general.after-last-window-closed",
+                    defaultValue: "After the last window is closed",
+                    comment: "General settings option description for app behavior when last window closes"
+                ),
+                String(
+                    localized: "settings.general.file-extensions",
+                    defaultValue: "File Extensions",
+                    comment: "General settings label for file extensions option"
+                ),
+                String(
+                    localized: "settings.general.project-navigator-size",
+                    defaultValue: "Project Navigator Size",
+                    comment: "General settings label for project navigator size option"
+                ),
+                String(
+                    localized: "settings.general.find-navigator-detail",
+                    defaultValue: "Find Navigator Detail",
+                    comment: "General settings label for find navigator detail level option"
+                ),
+                String(
+                    localized: "settings.general.issue-navigator-detail",
+                    defaultValue: "Issue Navigator Detail",
+                    comment: "General settings label for issue navigator detail level option"
+                ),
+                String(
+                    localized: "settings.general.show-open-with-codeedit-in-finder",
+                    defaultValue: "Show “Open With CodeEdit“ option in Finder",
+                    comment: "General settings toggle label for Finder context menu integration"
+                ),
+                String(
+                    localized: "settings.general.codeedit-shell-command",
+                    defaultValue: "'codeedit' Shell command",
+                    comment: "General settings label for shell command integration option"
+                ),
+                String(
+                    localized: "settings.general.dialog-warnings",
+                    defaultValue: "Dialog Warnings",
+                    comment: "General settings section title for dialog warning preferences"
+                ),
+                String(
+                    localized: "settings.general.check-for-updates",
+                    defaultValue: "Check for updates",
+                    comment: "General settings section title for update checking options"
+                ),
+                String(
+                    localized: "settings.general.auto-check-for-updates",
+                    defaultValue: "Automatically check for app updates",
+                    comment: "General settings toggle label for automatic app update checks"
+                ),
+                String(
+                    localized: "settings.general.include-prerelease-versions",
+                    defaultValue: "Include pre-release versions",
+                    comment: "General settings toggle label to include pre-release updates"
+                )
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -309,9 +401,17 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return "One Line"
+                return String(
+                    localized: "settings.general.find-navigator-detail.one-line",
+                    defaultValue: "One Line",
+                    comment: "Option label for single-line find navigator detail mode"
+                )
             default:
-                return "Up to \(self.rawValue) lines"
+                return String(format: String(
+                    localized: "settings.general.find-navigator-detail.up-to-lines",
+                    defaultValue: "Up to %d lines",
+                    comment: "Option label for multi-line find navigator detail mode with maximum lines count"
+                ), self.rawValue)
             }
         }
     }

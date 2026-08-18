@@ -87,13 +87,21 @@ extension ProjectNavigatorMenu {
     func newFile() {
         guard let item else { return }
         do {
-            if let newFile = try workspace?.workspaceFileManager?.addFile(fileName: "untitled", toFile: item) {
+            if let newFile = try workspace?.workspaceFileManager?.addFile(fileName: String(
+                localized: "project-navigator.menu-actions.default-name.untitled",
+                defaultValue: "untitled",
+                comment: "Default placeholder name when creating a new untitled item."
+            ), toFile: item) {
                 workspace?.listenerModel.highlightedFileItem = newFile
                 workspace?.editorManager?.openTab(item: newFile)
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Button title to dismiss a project navigator prompt or alert."
+            ))
             alert.runModal()
         }
     }
@@ -124,7 +132,11 @@ extension ProjectNavigatorMenu {
             if let clipBoardContent, !clipBoardContent.isEmpty, let newFile = try workspace?
                 .workspaceFileManager?
                 .addFile(
-                    fileName: "untitled",
+                    fileName: String(
+                        localized: "project-navigator.menu-actions.default-name.untitled",
+                        defaultValue: "untitled",
+                        comment: "Default placeholder name when creating a new untitled item."
+                    ),
                     toFile: item,
                     contents: clipBoardContent
                 ) {
@@ -134,7 +146,11 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Button title to dismiss a project navigator prompt or alert."
+            ))
             alert.runModal()
         }
     }
@@ -145,12 +161,20 @@ extension ProjectNavigatorMenu {
     func newFolder() {
         guard let item else { return }
         do {
-            if let newFolder = try workspace?.workspaceFileManager?.addFolder(folderName: "untitled", toFile: item) {
+            if let newFolder = try workspace?.workspaceFileManager?.addFolder(folderName: String(
+                localized: "project-navigator.menu-actions.default-name.untitled",
+                defaultValue: "untitled",
+                comment: "Default placeholder name when creating a new untitled item."
+            ), toFile: item) {
                 workspace?.listenerModel.highlightedFileItem = newFolder
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Button title to dismiss a project navigator prompt or alert."
+            ))
             alert.runModal()
         }
     }
@@ -177,7 +201,11 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Button title to dismiss a project navigator prompt or alert."
+            ))
             alert.runModal()
         }
 
@@ -201,7 +229,11 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Button title to dismiss a project navigator prompt or alert."
+            ))
             alert.runModal()
         }
     }
@@ -228,7 +260,11 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Button title to dismiss a project navigator prompt or alert."
+            ))
             alert.runModal()
         }
     }
@@ -243,7 +279,11 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Button title to dismiss a project navigator prompt or alert."
+            ))
             alert.runModal()
         }
     }

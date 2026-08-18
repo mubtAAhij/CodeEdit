@@ -30,10 +30,18 @@ struct GitCheckoutBranchView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Checkout branch")
+                    Text(String(
+                        localized: "source-control.checkout-branch.title",
+                        defaultValue: "Checkout branch",
+                        comment: "Title for checkout branch sheet"
+                    ))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Select a branch to checkout")
+                    Text(String(
+                        localized: "source-control.checkout-branch.select-branch",
+                        defaultValue: "Select a branch to checkout",
+                        comment: "Prompt text to select branch for checkout"
+                    ))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
@@ -48,10 +56,18 @@ struct GitCheckoutBranchView: View {
                     .labelsHidden()
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(
+                            localized: "source-control.checkout-branch.cancel",
+                            defaultValue: "Cancel",
+                            comment: "Button title to cancel branch checkout"
+                        )) {
                             dismiss()
                         }
-                        Button("Checkout") {
+                        Button(String(
+                            localized: "source-control.checkout-branch.checkout",
+                            defaultValue: "Checkout",
+                            comment: "Button title to confirm branch checkout"
+                        )) {
                             Task {
                                 await viewModel.checkoutBranch()
                                 await MainActor.run {

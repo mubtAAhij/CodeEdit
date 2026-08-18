@@ -53,17 +53,41 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(
+                    localized: "settings.accounts.source-control-account.bitbucket-cloud",
+                    defaultValue: "BitBucket Cloud",
+                    comment: "Provider display name for BitBucket Cloud accounts"
+                )
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(
+                    localized: "settings.accounts.source-control-account.bitbucket-server",
+                    defaultValue: "BitBucket Server",
+                    comment: "Provider display name for BitBucket Server accounts"
+                )
             case .github:
-                return "GitHub"
+                return String(
+                    localized: "settings.accounts.source-control-account.github",
+                    defaultValue: "GitHub",
+                    comment: "Provider display name for GitHub accounts"
+                )
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(
+                    localized: "settings.accounts.source-control-account.github-enterprise",
+                    defaultValue: "GitHub Enterprise",
+                    comment: "Provider display name for GitHub Enterprise accounts"
+                )
             case .gitlab:
-                return "GitLab"
+                return String(
+                    localized: "settings.accounts.source-control-account.gitlab",
+                    defaultValue: "GitLab",
+                    comment: "Provider display name for GitLab accounts"
+                )
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(
+                    localized: "settings.accounts.source-control-account.gitlab-self-hosted",
+                    defaultValue: "GitLab Self-hosted",
+                    comment: "Provider display name for self-hosted GitLab accounts"
+                )
             }
         }
 
