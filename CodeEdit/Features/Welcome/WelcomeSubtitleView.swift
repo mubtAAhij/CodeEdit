@@ -40,8 +40,16 @@ struct WelcomeSubtitleView: View {
 
     private func copyInformation() {
         var copyString = "\(Bundle.displayName): \(appVersion)\(appVersionPostfix) (\(appBuild))\n"
-        copyString.append(String(format: String(localized: "welcome.subtitle.macos-version", defaultValue: "macOS: %@\n", comment: "System information line showing current macOS version"), "\(macOSVersion)"))
-        if let xcodeVersion { copyString.append(String(format: String(localized: "welcome.subtitle.xcode-version", defaultValue: "Xcode: %@", comment: "System information line showing installed Xcode version"), "\(xcodeVersion)")) }
+        copyString.append(String(format: String(
+            localized: "welcome.subtitle.macos-version",
+            defaultValue: "macOS: %@\n",
+            comment: "System information line showing current macOS version"
+        ), "\(macOSVersion)"))
+        if let xcodeVersion { copyString.append(String(format: String(
+            localized: "welcome.subtitle.xcode-version",
+            defaultValue: "Xcode: %@",
+            comment: "System information line showing installed Xcode version"
+        ), "\(xcodeVersion)")) }
 
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -50,12 +58,20 @@ struct WelcomeSubtitleView: View {
 
     var body: some View {
         Text(String(
-            format: String(localized: "welcome.subtitle.app-version", defaultValue: "Version %@%@ (%@)", comment: "Formatted app version, prerelease tag, and build number"),
+            format: String(
+                localized: "welcome.subtitle.app-version",
+                defaultValue: "Version %@%@ (%@)",
+                comment: "Formatted app version, prerelease tag, and build number"
+            ),
             appVersion, appVersionPostfix, appBuild
         ))
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help(String(localized: "welcome.subtitle.copy-system-information", defaultValue: "Copy System Information to Clipboard", comment: "Button title to copy system information to clipboard"))
+        .help(String(
+            localized: "welcome.subtitle.copy-system-information",
+            defaultValue: "Copy System Information to Clipboard",
+            comment: "Button title to copy system information to clipboard"
+        ))
     }
 }
