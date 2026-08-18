@@ -53,17 +53,41 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return String(localized: "settings.accounts.source-control-account.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "Provider display name for BitBucket Cloud accounts")
+                return String(
+                    localized: "settings.accounts.source-control-account.bitbucket-cloud",
+                    defaultValue: "BitBucket Cloud",
+                    comment: "Provider display name for BitBucket Cloud accounts"
+                )
             case .bitbucketServer:
-                return String(localized: "settings.accounts.source-control-account.bitbucket-server", defaultValue: "BitBucket Server", comment: "Provider display name for BitBucket Server accounts")
+                return String(
+                    localized: "settings.accounts.source-control-account.bitbucket-server",
+                    defaultValue: "BitBucket Server",
+                    comment: "Provider display name for BitBucket Server accounts"
+                )
             case .github:
-                return String(localized: "settings.accounts.source-control-account.github", defaultValue: "GitHub", comment: "Provider display name for GitHub accounts")
+                return String(
+                    localized: "settings.accounts.source-control-account.github",
+                    defaultValue: "GitHub",
+                    comment: "Provider display name for GitHub accounts"
+                )
             case .githubEnterprise:
-                return String(localized: "settings.accounts.source-control-account.github-enterprise", defaultValue: "GitHub Enterprise", comment: "Provider display name for GitHub Enterprise accounts")
+                return String(
+                    localized: "settings.accounts.source-control-account.github-enterprise",
+                    defaultValue: "GitHub Enterprise",
+                    comment: "Provider display name for GitHub Enterprise accounts"
+                )
             case .gitlab:
-                return String(localized: "settings.accounts.source-control-account.gitlab", defaultValue: "GitLab", comment: "Provider display name for GitLab accounts")
+                return String(
+                    localized: "settings.accounts.source-control-account.gitlab",
+                    defaultValue: "GitLab",
+                    comment: "Provider display name for GitLab accounts"
+                )
             case .gitlabSelfHosted:
-                return String(localized: "settings.accounts.source-control-account.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "Provider display name for self-hosted GitLab accounts")
+                return String(
+                    localized: "settings.accounts.source-control-account.gitlab-self-hosted",
+                    defaultValue: "GitLab Self-hosted",
+                    comment: "Provider display name for self-hosted GitLab accounts"
+                )
             }
         }
 
