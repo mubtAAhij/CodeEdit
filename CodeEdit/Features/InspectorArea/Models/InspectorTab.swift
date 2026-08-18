@@ -38,11 +38,23 @@ enum InspectorTab: WorkspacePanelTab {
     var title: String {
         switch self {
         case .file:
-            return String(localized: "inspector.tab.file-inspector", defaultValue: "File Inspector", comment: "Display title for file inspector tab")
+            return String(
+                localized: "inspector.tab.file-inspector",
+                defaultValue: "File Inspector",
+                comment: "Display title for file inspector tab"
+            )
         case .gitHistory:
-            return String(localized: "inspector.tab.history-inspector", defaultValue: "History Inspector", comment: "Display title for history inspector tab")
+            return String(
+                localized: "inspector.tab.history-inspector",
+                defaultValue: "History Inspector",
+                comment: "Display title for history inspector tab"
+            )
         case .internalDevelopment:
-            return String(localized: "inspector.tab.internal-development", defaultValue: "Internal Development", comment: "Display title for internal development inspector tab")
+            return String(
+                localized: "inspector.tab.internal-development",
+                defaultValue: "Internal Development",
+                comment: "Display title for internal development inspector tab"
+            )
         case .uiExtension(_, let data):
             return data.help ?? data.sceneID
         }
