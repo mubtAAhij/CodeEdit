@@ -89,7 +89,7 @@ final class CodeEditDocumentController: NSDocumentController {
                 if let document {
                     self.addDocument(document)
                 } else {
-                    let errorMessage = error?.localizedDescription ?? "unknown error"
+                    let errorMessage = error?.localizedDescription ?? String(localized: "documents.controller.unknown-error", defaultValue: "unknown error", comment: "Fallback error text when no specific error is available")
                     print("Unable to open document '\(url)': \(errorMessage)")
                 }
 
@@ -146,7 +146,7 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Open Workspace or File"
+        dialog.title = String(localized: "documents.controller.open-workspace-or-file", defaultValue: "Open Workspace or File", comment: "Title for open panel to choose a workspace or file")
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
@@ -162,10 +162,7 @@ extension NSDocumentController {
 
                     guard let document else {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString(
-                            "Failed to get document",
-                            comment: "Failed to get document"
-                        )
+                        alert.messageText = String(localized: "documents.controller.failed-to-get-document", defaultValue: "Failed to get document", comment: "Error message when document retrieval fails")
                         alert.runModal()
                         return
                     }
