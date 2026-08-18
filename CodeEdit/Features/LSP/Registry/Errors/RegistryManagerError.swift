@@ -18,17 +18,17 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
+            String(localized: "lsp.registry.registry-manager-error.package-already-installing", defaultValue: "A package is already being installed.", comment: "Error message when another package installation is already in progress")
         case .invalidResponse(let statusCode):
-            "Invalid response received: \(statusCode)"
+            String(format: String(localized: "lsp.registry.registry-manager-error.invalid-response-received", defaultValue: "Invalid response received: %d", comment: "Error message when registry HTTP response status code is invalid"), statusCode)
         case .downloadFailed(let url, _):
-            "Download for \(url) error."
+            String(format: String(localized: "lsp.registry.registry-manager-error.download-error", defaultValue: "Download for %@ error.", comment: "Error message when downloading package data fails for a URL"), "\(url)")
         case .maxRetriesExceeded(let url, _):
-            "Maximum retries exceeded for url: \(url)"
+            String(format: String(localized: "lsp.registry.registry-manager-error.maximum-retries-exceeded", defaultValue: "Maximum retries exceeded for url: %@", comment: "Error message when retry limit is exceeded for a URL"), "\(url)")
         case .writeFailed:
-            "Failed to write to file."
+            String(localized: "lsp.registry.registry-manager-error.failed-write-file", defaultValue: "Failed to write to file.", comment: "Error message when writing downloaded package data to file fails")
         case .failedToSaveRegistryCache:
-            "Failed to write to registry cache."
+            String(localized: "lsp.registry.registry-manager-error.failed-write-cache", defaultValue: "Failed to write to registry cache.", comment: "Error message when writing package metadata to registry cache fails")
         }
     }
 
