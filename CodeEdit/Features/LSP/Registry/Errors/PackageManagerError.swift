@@ -17,15 +17,15 @@ enum PackageManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unknown:
-            "Unknown error occurred"
+            String(localized: "lsp.registry.package-manager-error.unknown-error-occurred", defaultValue: "Unknown error occurred", comment: "Generic fallback package manager error message")
         case .packageManagerNotInstalled:
-            "The required package manager is not installed."
+            String(localized: "lsp.registry.package-manager-error.package-manager-not-installed", defaultValue: "The required package manager is not installed.", comment: "Error message when required package manager binary is unavailable")
         case .initializationFailed:
-            "Installation directory initialization failed."
+            String(localized: "lsp.registry.package-manager-error.install-directory-init-failed", defaultValue: "Installation directory initialization failed.", comment: "Error message when installation directory initialization fails")
         case .installationFailed:
-            "Package installation failed."
+            String(localized: "lsp.registry.package-manager-error.package-installation-failed", defaultValue: "Package installation failed.", comment: "Error message when package installation fails")
         case .invalidConfiguration:
-            "The package registry contained an invalid installation configuration."
+            String(localized: "lsp.registry.package-manager-error.invalid-installation-configuration", defaultValue: "The package registry contained an invalid installation configuration.", comment: "Error message when registry installation configuration is invalid")
         }
     }
 
