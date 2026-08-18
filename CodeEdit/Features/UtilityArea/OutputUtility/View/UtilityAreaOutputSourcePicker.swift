@@ -24,16 +24,28 @@ struct UtilityAreaOutputSourcePicker: View {
     @State private var languageServerClients: [LSPService.LanguageServerType] = []
 
     var body: some View {
-        Picker(String(localized: "utility-area.output.source-picker.output-source", defaultValue: "Output Source", comment: "Title for output source picker"), selection: $selectedSource) {
+        Picker(String(
+            localized: "utility-area.output.source-picker.output-source",
+            defaultValue: "Output Source",
+            comment: "Title for output source picker"
+        ), selection: $selectedSource) {
             if selectedSource == nil {
-                Text(String(localized: "utility-area.output.source-picker.no-selected-output-source", defaultValue: "No Selected Output Source", comment: "Message shown when no output source is selected"))
+                Text(String(
+                    localized: "utility-area.output.source-picker.no-selected-output-source",
+                    defaultValue: "No Selected Output Source",
+                    comment: "Message shown when no output source is selected"
+                ))
                     .italic()
                     .tag(Sources?.none)
                 Divider()
             }
 
             if languageServerClients.isEmpty {
-                Text(String(localized: "utility-area.output.source-picker.no-language-servers", defaultValue: "No Language Servers", comment: "Message shown when no language servers are available as output sources"))
+                Text(String(
+                    localized: "utility-area.output.source-picker.no-language-servers",
+                    defaultValue: "No Language Servers",
+                    comment: "Message shown when no language servers are available as output sources"
+                ))
             } else {
                 ForEach(languageServerClients, id: \.languageId) { server in
                     Text(Sources.languageServer(server.logContainer).title)
@@ -44,7 +56,11 @@ struct UtilityAreaOutputSourcePicker: View {
             Divider()
 
             if extensionManager.extensions.isEmpty {
-                Text(String(localized: "utility-area.output.source-picker.no-extensions", defaultValue: "No Extensions", comment: "Message shown when no extensions are available as output sources"))
+                Text(String(
+                    localized: "utility-area.output.source-picker.no-extensions",
+                    defaultValue: "No Extensions",
+                    comment: "Message shown when no extensions are available as output sources"
+                ))
             } else {
                 ForEach(extensionManager.extensions) { extensionInfo in
                     Text(Sources.extensions(.init(extensionInfo: extensionInfo)).title)
