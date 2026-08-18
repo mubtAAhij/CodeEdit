@@ -25,14 +25,22 @@ struct UtilityAreaTerminalPicker: View {
     }
 
     var body: some View {
-        Picker(String(localized: "utility-area.terminal-picker.terminal-tab", defaultValue: "Terminal Tab", comment: "Default terminal tab title in utility area picker"), selection: selectedID) {
+        Picker(String(
+            localized: "utility-area.terminal-picker.terminal-tab",
+            defaultValue: "Terminal Tab",
+            comment: "Default terminal tab title in utility area picker"
+        ), selection: selectedID) {
             ForEach(terminals, id: \.self.id) { terminal in
                 Text(terminal.title)
                     .tag(terminal.id)
             }
 
             if terminals.isEmpty {
-                Text(String(localized: "utility-area.terminal-picker.no-open-terminals", defaultValue: "No Open Terminals", comment: "Empty state text when no terminal tabs are open"))
+                Text(String(
+                    localized: "utility-area.terminal-picker.no-open-terminals",
+                    defaultValue: "No Open Terminals",
+                    comment: "Empty state text when no terminal tabs are open"
+                ))
             }
         }
         .labelsHidden()
