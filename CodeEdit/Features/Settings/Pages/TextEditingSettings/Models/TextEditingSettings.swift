@@ -299,43 +299,35 @@ extension SettingsData {
                 }
             )
 
-            mgr.addCommand(name: String(
-                localized: "settings.text-editing.toggle-minimap.title",
-                defaultValue: String(
+            mgr.addCommand(
+                name: String(
+                    localized: "settings.text-editing.toggle-minimap.title",
+                    defaultValue: "Toggle Minimap",
+                    comment: "Command title for toggling minimap"
+                ),
+                title: String(
                     localized: "settings.text-editing.toggle-minimap.action",
-                    defaultValue: String(
-                        localized: "autolocalized.texteditingsettings.toggle-minimap",
-                        defaultValue: "Toggle Minimap",
-                        comment: ""
-                    ),
+                    defaultValue: "Toggle Minimap",
                     comment: "Menu action label for toggling minimap"
                 ),
-                comment: "Command title for toggling minimap"
-            ), title: String(
-                localized: "autolocalized.texteditingsettings.toggle-minimap-2",
-                defaultValue: "Toggle Minimap",
-                comment: ""
-            ), id: "prefs.text_editing.toggle_minimap") {
+                id: "prefs.text_editing.toggle_minimap"
+            ) {
                 Settings[\.textEditing].showMinimap.toggle()
             }
 
-            mgr.addCommand(name: String(
-                localized: "settings.text-editing.toggle-gutter.title",
-                defaultValue: String(
+            mgr.addCommand(
+                name: String(
+                    localized: "settings.text-editing.toggle-gutter.title",
+                    defaultValue: "Toggle Gutter",
+                    comment: "Command title for toggling gutter visibility"
+                ),
+                title: String(
                     localized: "settings.text-editing.toggle-gutter.action",
-                    defaultValue: String(
-                        localized: "autolocalized.texteditingsettings.toggle-gutter",
-                        defaultValue: "Toggle Gutter",
-                        comment: ""
-                    ),
+                    defaultValue: "Toggle Gutter",
                     comment: "Menu action label for toggling gutter visibility"
                 ),
-                comment: "Command title for toggling gutter visibility"
-            ), title: String(
-                localized: "autolocalized.texteditingsettings.toggle-gutter-2",
-                defaultValue: "Toggle Gutter",
-                comment: ""
-            ), id: "prefs.text_editing.toggle_gutter") {
+                id: "prefs.text_editing.toggle_gutter"
+            ) {
                 Settings[\.textEditing].showGutter.toggle()
             }
 
