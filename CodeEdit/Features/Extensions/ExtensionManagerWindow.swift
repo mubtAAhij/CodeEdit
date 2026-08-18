@@ -13,17 +13,29 @@ struct ExtensionManagerWindow: Scene {
     @State var selection = Set<ExtensionInfo>()
 
     var body: some Scene {
-        Window(String(localized: "extensions.manager.window-title", defaultValue: "Extensions", comment: "Window title for extension manager"), id: SceneID.extensions.rawValue) {
+        Window(String(
+            localized: "extensions.manager.window-title",
+            defaultValue: "Extensions",
+            comment: "Window title for extension manager"
+        ), id: SceneID.extensions.rawValue) {
             NavigationSplitView {
                 ExtensionsListView(selection: $selection)
             } detail: {
                 switch selection.count {
                 case 0:
-                    Text(String(localized: "extensions.manager.select-extension", defaultValue: "Select an extension", comment: "Placeholder text when no extension is selected"))
+                    Text(String(
+                        localized: "extensions.manager.select-extension",
+                        defaultValue: "Select an extension",
+                        comment: "Placeholder text when no extension is selected"
+                    ))
                 case 1:
                     ExtensionDetailView(ext: selection.first!)
                 default:
-                    Text(String(format: String(localized: "extensions.manager.selection-count", defaultValue: "%d selected", comment: "Label showing number of selected extensions"), selection.count))
+                    Text(String(format: String(
+                        localized: "extensions.manager.selection-count",
+                        defaultValue: "%d selected",
+                        comment: "Label showing number of selected extensions"
+                    ), selection.count))
                 }
             }
             .environmentObject(manager)
