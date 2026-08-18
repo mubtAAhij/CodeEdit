@@ -33,7 +33,11 @@ struct CommitDetailsView: View {
                     Image(systemName: "chevron.backward")
                 }
                 .buttonStyle(SidebarButtonStyle())
-                Text(String(localized: "source-control-navigator.commit-details.title", defaultValue: "Commit Details", comment: "Title for commit details panel"))
+                Text(String(
+                    localized: "source-control-navigator.commit-details.title",
+                    defaultValue: "Commit Details",
+                    comment: "Title for commit details panel"
+                ))
                     .font(.system(size: 13, weight: .bold))
             }
             .padding(10)
@@ -56,7 +60,11 @@ struct CommitDetailsView: View {
                     }
                     .environment(\.defaultMinListRowHeight, 22)
                 } else {
-                    CEContentUnavailableView(String(localized: "source-control-navigator.commit-details.no-changes", defaultValue: "No Changes", comment: "Empty state text when selected commit has no file changes"))
+                    CEContentUnavailableView(String(
+                        localized: "source-control-navigator.commit-details.no-changes",
+                        defaultValue: "No Changes",
+                        comment: "Empty state text when selected commit has no file changes"
+                    ))
                 }
             } else {
                 Spacer()
