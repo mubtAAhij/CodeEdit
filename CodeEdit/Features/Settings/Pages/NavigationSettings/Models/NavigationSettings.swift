@@ -15,7 +15,11 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                String(localized: "settings.navigation.style", defaultValue: "Navigation Style", comment: "Navigation style setting title"),
+                String(
+                    localized: "settings.navigation.style",
+                    defaultValue: "Navigation Style",
+                    comment: "Navigation style setting title"
+                ),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
