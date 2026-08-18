@@ -27,7 +27,11 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "activity-viewer.scheme-dropdown.no-project-found", defaultValue: "No Project found", comment: "Placeholder title when no project is available for scheme selection"))
+        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(
+            localized: "activity-viewer.scheme-dropdown.no-project-found",
+            defaultValue: "No Project found",
+            comment: "Placeholder title when no project is available for scheme selection"
+        ))
         : workspaceName
     }
 
@@ -52,8 +56,16 @@ struct SchemeDropDownView: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("SchemeDropdown")
         .accessibilityValue(workspaceDisplayName)
-        .accessibilityLabel(String(localized: "activity-viewer.scheme-dropdown.active-scheme", defaultValue: "Active Scheme", comment: "Accessibility label for active scheme picker"))
-        .accessibilityHint(String(localized: "activity-viewer.scheme-dropdown.open-active-scheme-menu", defaultValue: "Open the active scheme menu", comment: "Accessibility help text for active scheme picker"))
+        .accessibilityLabel(String(
+            localized: "activity-viewer.scheme-dropdown.active-scheme",
+            defaultValue: "Active Scheme",
+            comment: "Accessibility label for active scheme picker"
+        ))
+        .accessibilityHint(String(
+            localized: "activity-viewer.scheme-dropdown.open-active-scheme-menu",
+            defaultValue: "Open the active scheme menu",
+            comment: "Accessibility help text for active scheme picker"
+        ))
         .accessibilityAction {
             isSchemePopOverPresented.toggle()
         }
@@ -141,12 +153,20 @@ struct SchemeDropDownView: View {
         Divider()
             .padding(.vertical, 5)
         Group {
-            OptionMenuItemView(label: String(localized: "activity-viewer.scheme-dropdown.add-folder", defaultValue: "Add Folder...", comment: "Menu action to add a folder for scheme context")) {
+            OptionMenuItemView(label: String(
+                localized: "activity-viewer.scheme-dropdown.add-folder",
+                defaultValue: "Add Folder...",
+                comment: "Menu action to add a folder for scheme context"
+            )) {
                 // TODO: Implment Add Folder
                 print("NOT IMPLEMENTED")
             }
             .disabled(true)
-            OptionMenuItemView(label: String(localized: "activity-viewer.scheme-dropdown.workspace-settings", defaultValue: "Workspace Settings...", comment: "Menu action to open workspace settings from scheme dropdown")) {
+            OptionMenuItemView(label: String(
+                localized: "activity-viewer.scheme-dropdown.workspace-settings",
+                defaultValue: "Workspace Settings...",
+                comment: "Menu action to open workspace settings from scheme dropdown"
+            )) {
                 NSApp.sendAction(
                     #selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil
                 )
