@@ -131,7 +131,7 @@ struct CommitListItemView: View {
                     }
                 }
 
-                Text("\(commit.message) \(commit.body)")
+                Text(String(format: String(localized: "source-control.history.commit-list-item.commit-message-and-body", defaultValue: "%@ %@", comment: "Combined commit message and body shown in commit list item"), "\(commit.message)", "\(commit.body)"))
                     .font(.system(size: 11))
                     .lineLimit(2)
             }
@@ -156,17 +156,17 @@ struct CommitListItemView: View {
         .contentShape(Rectangle())
         .contextMenu {
             Group {
-                Button("Copy Commit Message") {
+                Button(String(localized: "source-control.history.commit-list-item.copy-commit-message", defaultValue: "Copy Commit Message", comment: "Context menu action to copy commit message")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.message, forType: .string)
                 }
-                Button("Copy Identifier") {
+                Button(String(localized: "source-control.history.commit-list-item.copy-identifier", defaultValue: "Copy Identifier", comment: "Context menu action to copy commit identifier")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.commitHash, forType: .string)
                 }
-                Button("Email \(commit.author)...") {
+                Button(String(format: String(localized: "source-control.history.commit-list-item.email-author", defaultValue: "Email %@...", comment: "Context menu action to email commit author"), "\(commit.author)")) {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
                     service?.recipients = [commit.authorEmail]
                     service?.perform(withItems: [])
@@ -174,26 +174,26 @@ struct CommitListItemView: View {
                 Divider()
             }
             Group {
-                Button("Tag \(commit.hash)...") {}
+                Button(String(format: String(localized: "source-control.history.commit-list-item.tag-commit", defaultValue: "Tag %@...", comment: "Context menu action to create tag from commit hash"), "\(commit.hash)")) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("New Branch from \(commit.hash)...") {}
+                Button(String(format: String(localized: "source-control.history.commit-list-item.new-branch-from-commit", defaultValue: "New Branch from %@...", comment: "Context menu action to create new branch from commit hash"), "\(commit.hash)")) {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("Cherry-Pick \(commit.hash)...") {}
+                Button(String(format: String(localized: "source-control.history.commit-list-item.cherry-pick-commit", defaultValue: "Cherry-Pick %@...", comment: "Context menu action to cherry-pick commit hash"), "\(commit.hash)")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
             Group {
                 Divider()
                 if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                    Button("View on \(commit.remoteString)...") {
-                        let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
+                    Button(String(format: String(localized: "source-control.history.commit-list-item.view-on-remote", defaultValue: "View on %@...", comment: "Context menu action to view commit on remote provider"), "\(commit.remoteString)")) {
+                        let commitURL = String(format: String(localized: "source-control.history.commit-list-item.remote-commit-url", defaultValue: "%@/%@", comment: "Remote commit URL path built from base remote URL and commit hash"), "\(commitRemoteURL)", "\(commit.commitHash)")
                         openCommit(URL(string: commitURL)!)
                     }
                     Divider()
                 }
-                Button("Check Out \(commit.hash)...") {}
+                Button(String(format: String(localized: "source-control.history.commit-list-item.check-out-commit", defaultValue: "Check Out %@...", comment: "Context menu action to check out commit hash"), "\(commit.hash)")) {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
-                Button("History Editor Help") {}
+                Button(String(localized: "source-control.history.commit-list-item.history-editor-help", defaultValue: "History Editor Help", comment: "Context menu action to open help for history editor")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
         }
