@@ -93,7 +93,11 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title for project navigator menu action alert"
+            ))
             alert.runModal()
         }
     }
@@ -134,7 +138,11 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title for project navigator menu action alert"
+            ))
             alert.runModal()
         }
     }
@@ -150,7 +158,11 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title for project navigator menu action alert"
+            ))
             alert.runModal()
         }
     }
@@ -177,7 +189,11 @@ extension ProjectNavigatorMenu {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title for project navigator menu action alert"
+            ))
             alert.runModal()
         }
 
@@ -201,7 +217,11 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title for project navigator menu action alert"
+            ))
             alert.runModal()
         }
     }
@@ -228,7 +248,11 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title for project navigator menu action alert"
+            ))
             alert.runModal()
         }
     }
@@ -243,7 +267,11 @@ extension ProjectNavigatorMenu {
             reloadData()
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.menu-actions.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title for project navigator menu action alert"
+            ))
             alert.runModal()
         }
     }

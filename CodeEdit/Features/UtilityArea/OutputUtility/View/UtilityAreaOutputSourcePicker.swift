@@ -24,16 +24,28 @@ struct UtilityAreaOutputSourcePicker: View {
     @State private var languageServerClients: [LSPService.LanguageServerType] = []
 
     var body: some View {
-        Picker("Output Source", selection: $selectedSource) {
+        Picker(String(
+            localized: "utility-area.output-source-picker.output-source",
+            defaultValue: "Output Source",
+            comment: "Title for output source picker menu"
+        ), selection: $selectedSource) {
             if selectedSource == nil {
-                Text("No Selected Output Source")
+                Text(String(
+                    localized: "utility-area.output-source-picker.no-selected-output-source",
+                    defaultValue: "No Selected Output Source",
+                    comment: "Placeholder shown when no output source is selected"
+                ))
                     .italic()
                     .tag(Sources?.none)
                 Divider()
             }
 
             if languageServerClients.isEmpty {
-                Text("No Language Servers")
+                Text(String(
+                    localized: "utility-area.output-source-picker.no-language-servers",
+                    defaultValue: "No Language Servers",
+                    comment: "Placeholder shown when there are no language servers"
+                ))
             } else {
                 ForEach(languageServerClients, id: \.languageId) { server in
                     Text(Sources.languageServer(server.logContainer).title)
@@ -44,7 +56,11 @@ struct UtilityAreaOutputSourcePicker: View {
             Divider()
 
             if extensionManager.extensions.isEmpty {
-                Text("No Extensions")
+                Text(String(
+                    localized: "utility-area.output-source-picker.no-extensions",
+                    defaultValue: "No Extensions",
+                    comment: "Placeholder shown when there are no extensions producing output"
+                ))
             } else {
                 ForEach(extensionManager.extensions) { extensionInfo in
                     Text(Sources.extensions(.init(extensionInfo: extensionInfo)).title)

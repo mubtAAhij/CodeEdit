@@ -64,7 +64,11 @@ struct LanguageServerRowView: View, Equatable {
                                 .font(.footnote)
                                 .cursor(.pointingHand)
                                 if let installerName = package.installMethod?.packageManagerType?.rawValue {
-                                    Text("Install using \(installerName)")
+                                    Text(String(format: String(
+                                        localized: "settings.extensions.language-server-row.install-using",
+                                        defaultValue: "Install using %@",
+                                        comment: "Install action text indicating which installer will be used"
+                                    ), "\(installerName)"))
                                         .font(.footnote)
                                         .foregroundColor(.secondary)
                                 }
@@ -76,7 +80,15 @@ struct LanguageServerRowView: View, Equatable {
                                 Button {
                                     showMore.toggle()
                                 } label: {
-                                    Text(showMore ? "Show Less" : "Show More")
+                                    Text(showMore ? String(
+                                        localized: "settings.extensions.language-server-row.show-less",
+                                        defaultValue: "Show Less",
+                                        comment: "Button title to collapse language server details"
+                                    ) : String(
+                                        localized: "settings.extensions.language-server-row.show-more",
+                                        defaultValue: "Show More",
+                                        comment: "Button title to expand language server details"
+                                    ))
                                         .font(.footnote)
                                 }
                                 .buttonStyle(.plain)
@@ -102,18 +114,46 @@ struct LanguageServerRowView: View, Equatable {
         .onHover { hovering in
             isHovering = hovering
         }
-        .alert("Remove \(package.sanitizedName)?", isPresented: $showingRemovalConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Remove", role: .destructive) {
+        .alert(String(format: String(
+            localized: "settings.extensions.language-server-row.remove-confirm-title",
+            defaultValue: "Remove %@?",
+            comment: "Confirmation title asking to remove selected language server package"
+        ), "\(package.sanitizedName)"), isPresented: $showingRemovalConfirmation) {
+            Button(String(
+                localized: "settings.extensions.language-server-row.cancel",
+                defaultValue: "Cancel",
+                comment: "Cancel action in remove language server confirmation dialog"
+            ), role: .cancel) { }
+            Button(String(
+                localized: "settings.extensions.language-server-row.remove",
+                defaultValue: "Remove",
+                comment: "Destructive action to remove language server package"
+            ), role: .destructive) {
                 removeLanguageServer()
             }
         } message: {
-            Text("Are you sure you want to remove this language server? This action cannot be undone.")
+            Text(String(
+                localized: "settings.extensions.language-server-row.remove-confirm-message",
+                defaultValue: "Are you sure you want to remove this language server? This action cannot be undone.",
+                comment: "Warning message in remove language server confirmation dialog"
+            ))
         }
-        .alert("Removal Failed", isPresented: $showingRemovalError) {
-            Button("OK", role: .cancel) { }
+        .alert(String(
+            localized: "settings.extensions.language-server-row.removal-failed-title",
+            defaultValue: "Removal Failed",
+            comment: "Alert title when language server removal fails"
+        ), isPresented: $showingRemovalError) {
+            Button(String(
+                localized: "settings.extensions.language-server-row.ok",
+                defaultValue: "OK",
+                comment: "Confirmation button in language server error alert"
+            ), role: .cancel) { }
         } message: {
-            Text(removalError?.localizedDescription ?? "An unknown error occurred")
+            Text(removalError?.localizedDescription ?? String(
+                localized: "settings.extensions.language-server-row.unknown-error",
+                defaultValue: "An unknown error occurred",
+                comment: "Fallback error message when language server operation fails with unknown error"
+            ))
         }
     }
 
@@ -138,7 +178,11 @@ struct LanguageServerRowView: View, Equatable {
                 Button {
                     showingRemovalConfirmation = true
                 } label: {
-                    Text("Remove")
+                    Text(String(
+                        localized: "settings.extensions.language-server-row.remove",
+                        defaultValue: "Remove",
+                        comment: "Context menu action to remove language server package"
+                    ))
                 }
             }
             Toggle(
@@ -181,7 +225,11 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Retry")
+            Text(String(
+                localized: "settings.extensions.language-server-row.retry",
+                defaultValue: "Retry",
+                comment: "Action button to retry failed language server operation"
+            ))
                 .foregroundColor(.red)
         }
     }
@@ -193,7 +241,11 @@ struct LanguageServerRowView: View, Equatable {
                 await onInstall()
             }
         } label: {
-            Text("Install")
+            Text(String(
+                localized: "settings.extensions.language-server-row.install",
+                defaultValue: "Install",
+                comment: "Action button to install language server"
+            ))
         }
         .disabled(registryManager.isInstalling)
     }

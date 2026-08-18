@@ -46,7 +46,11 @@ class CETerminalView: TerminalView {
     }
 
     override open func accessibilityLabel() -> String? {
-        "Terminal Emulator"
+        String(
+            localized: "terminal.accessibility.label",
+            defaultValue: "Terminal Emulator",
+            comment: "Accessibility label for terminal view"
+        )
     }
 
     override open func accessibilityRole() -> NSAccessibility.Role? {

@@ -12,47 +12,111 @@ extension Archive.ArchiveError: @retroactive LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unreadableArchive:
-            "Unreadable archive."
+            String(
+                localized: "zip-foundation.error.unreadable-archive",
+                defaultValue: "Unreadable archive.",
+                comment: "Error description when archive cannot be read"
+            )
         case .unwritableArchive:
-            "Unwritable archive."
+            String(
+                localized: "zip-foundation.error.unwritable-archive",
+                defaultValue: "Unwritable archive.",
+                comment: "Error description when archive cannot be written"
+            )
         case .invalidEntryPath:
-            "Invalid entry path."
+            String(
+                localized: "zip-foundation.error.invalid-entry-path",
+                defaultValue: "Invalid entry path.",
+                comment: "Error description for invalid entry path in archive"
+            )
         case .invalidCompressionMethod:
-            "Invalid compression method."
+            String(
+                localized: "zip-foundation.error.invalid-compression-method",
+                defaultValue: "Invalid compression method.",
+                comment: "Error description for unsupported compression method"
+            )
         case .invalidCRC32:
-            "Invalid checksum."
+            String(
+                localized: "zip-foundation.error.invalid-checksum",
+                defaultValue: "Invalid checksum.",
+                comment: "Error description for checksum mismatch"
+            )
         case .cancelledOperation:
-            "Operation cancelled."
+            String(
+                localized: "zip-foundation.error.operation-cancelled",
+                defaultValue: "Operation cancelled.",
+                comment: "Error description when zip operation is cancelled"
+            )
         case .invalidBufferSize:
-            "Invalid buffer size."
+            String(
+                localized: "zip-foundation.error.invalid-buffer-size",
+                defaultValue: "Invalid buffer size.",
+                comment: "Error description for invalid buffer size"
+            )
         case .invalidEntrySize:
-            "Invalid entry size."
+            String(
+                localized: "zip-foundation.error.invalid-entry-size",
+                defaultValue: "Invalid entry size.",
+                comment: "Error description for invalid archive entry size"
+            )
         case .invalidLocalHeaderDataOffset,
                 .invalidLocalHeaderSize,
                 .invalidCentralDirectoryOffset,
                 .invalidCentralDirectorySize,
                 .invalidCentralDirectoryEntryCount,
                 .missingEndOfCentralDirectoryRecord:
-            "Invalid file detected."
+            String(
+                localized: "zip-foundation.error.file-system.invalid-file-detected",
+                defaultValue: "Invalid file detected.",
+                comment: "File system error description for invalid file"
+            )
         case .uncontainedSymlink:
-            "Uncontained symlink detected."
+            String(
+                localized: "zip-foundation.error.file-system.uncontained-symlink-detected",
+                defaultValue: "Uncontained symlink detected.",
+                comment: "File system error description for unsafe symlink"
+            )
         }
     }
 
     public var failureReason: String? {
         return switch self {
         case .invalidLocalHeaderDataOffset:
-            "Invalid local header data offset."
+            String(
+                localized: "zip-foundation.error.archive.invalid-local-header-data-offset",
+                defaultValue: "Invalid local header data offset.",
+                comment: "Archive structure error for invalid local header data offset"
+            )
         case .invalidLocalHeaderSize:
-            "Invalid local header size."
+            String(
+                localized: "zip-foundation.error.archive.invalid-local-header-size",
+                defaultValue: "Invalid local header size.",
+                comment: "Archive structure error for invalid local header size"
+            )
         case .invalidCentralDirectoryOffset:
-            "Invalid central directory offset."
+            String(
+                localized: "zip-foundation.error.archive.invalid-central-directory-offset",
+                defaultValue: "Invalid central directory offset.",
+                comment: "Archive structure error for invalid central directory offset"
+            )
         case .invalidCentralDirectorySize:
-            "Invalid central directory size."
+            String(
+                localized: "zip-foundation.error.archive.invalid-central-directory-size",
+                defaultValue: "Invalid central directory size.",
+                comment: "Archive structure error for invalid central directory size"
+            )
         case .invalidCentralDirectoryEntryCount:
-            "Invalid central directory entry count."
+            String(
+                localized: "zip-foundation.error.archive.invalid-central-directory-entry-count",
+                defaultValue: "Invalid central directory entry count.",
+                comment: "Archive structure error for invalid central directory entry count"
+            )
         case .missingEndOfCentralDirectoryRecord:
-            "Missing end of central directory record."
+            String(
+                localized: "zip-foundation.error.archive.missing-end-of-central-directory-record",
+                defaultValue: "Missing end of central directory record.",
+                comment: "Archive structure error for missing end of central directory record"
+            )
         default:
             nil
         }

@@ -133,9 +133,10 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
 
         if row < 0 {
             let alert = NSAlert()
-            alert.messageText = NSLocalizedString(
-                "Could not find file",
-                comment: "Could not find file"
+            alert.messageText = String(
+                localized: "navigator.project.file-not-found",
+                defaultValue: "Could not find file",
+                comment: "Alert message when selected file cannot be found"
             )
             alert.runModal()
             return

@@ -22,7 +22,13 @@ struct MonospacedFontPicker: View {
 
     var body: some View {
         Picker(selection: $selectedFontName, label: Text(title)) {
-            Text("System Font")
+            Text(
+                String(
+                    localized: "settings.font-picker.system-font",
+                    defaultValue: "System Font",
+                    comment: "Option label for selecting the system monospaced font"
+                )
+            )
                 .font(Font(NSFont.monospacedSystemFont(ofSize: 13.5, weight: .medium)))
                 .tag("SF Mono")
 
@@ -57,11 +63,17 @@ struct MonospacedFontPicker: View {
                         }
                         .tag(fontFamilyName)
                     }
-                } label: {
-                    Text("Other fonts...")
+                    } label: {
+                        Text(
+                            String(
+                                localized: "settings.font-picker.other-fonts",
+                                defaultValue: "Other fonts...",
+                                comment: "Menu title for browsing non-monospaced fonts"
+                            )
+                        )
+                    }
                 }
             }
-        }
         .onChange(of: selectedFontName) { _, _ in
             if selectedFontName != "SF Mono" {
                 pushIntoRecentFonts(selectedFontName)
