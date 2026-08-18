@@ -80,12 +80,24 @@ struct SourceControlNavigatorRepositoryView: View {
         }
         .alert(
             sourceControlManager.changedFiles.isEmpty
-            ? String(localized: "source-control.navigator.repository.apply-stash.confirmation.title", defaultValue: "Do you want to apply stashed changes?", comment: "Confirmation title asking whether to apply stashed changes")
-            : String(localized: "source-control.navigator.repository.apply-stash.uncommitted-changes.message", defaultValue: "The local repository has uncommitted changes.", comment: "Alert message indicating repository has uncommitted changes"),
+            ? String(
+                localized: "source-control.navigator.repository.apply-stash.confirmation.title",
+                defaultValue: "Do you want to apply stashed changes?",
+                comment: "Confirmation title asking whether to apply stashed changes"
+            )
+            : String(
+                localized: "source-control.navigator.repository.apply-stash.uncommitted-changes.message",
+                defaultValue: "The local repository has uncommitted changes.",
+                comment: "Alert message indicating repository has uncommitted changes"
+            ),
             isPresented: $applyStashedChangesIsPresented
         ) {
             if sourceControlManager.changedFiles.isEmpty {
-                Button(String(localized: "source-control.navigator.repository.apply-stash.apply.button", defaultValue: "Apply", comment: "Button title to apply stashed changes")) {
+                Button(String(
+                    localized: "source-control.navigator.repository.apply-stash.apply.button",
+                    defaultValue: "Apply",
+                    comment: "Button title to apply stashed changes"
+                )) {
                     if let stashEntry = stashEntryToApply {
                         Task {
                             try await sourceControlManager.applyStashEntry(stashEntry: stashEntry)
@@ -94,7 +106,11 @@ struct SourceControlNavigatorRepositoryView: View {
                         }
                     }
                 }
-                Button(String(localized: "source-control.navigator.repository.apply-stash.apply-and-delete.button", defaultValue: "Apply and Delete", comment: "Button title to apply stash and delete it")) {
+                Button(String(
+                    localized: "source-control.navigator.repository.apply-stash.apply-and-delete.button",
+                    defaultValue: "Apply and Delete",
+                    comment: "Button title to apply stash and delete it"
+                )) {
                     if let stashEntry = stashEntryToApply {
                         Task {
                             try await sourceControlManager.applyStashEntry(stashEntry: stashEntry)
@@ -104,27 +120,55 @@ struct SourceControlNavigatorRepositoryView: View {
                         }
                     }
                 }
-                Button(String(localized: "source-control.navigator.repository.apply-stash.cancel.button", defaultValue: "Cancel", comment: "Cancel button title in apply stash alert"), role: .cancel) {}
+                Button(String(
+                    localized: "source-control.navigator.repository.apply-stash.cancel.button",
+                    defaultValue: "Cancel",
+                    comment: "Cancel button title in apply stash alert"
+                ), role: .cancel) {}
             } else {
-                Button(String(localized: "source-control.navigator.repository.apply-stash.okay.button", defaultValue: "Okay", comment: "Acknowledgement button title in apply stash alert"), role: .cancel) {}
+                Button(String(
+                    localized: "source-control.navigator.repository.apply-stash.okay.button",
+                    defaultValue: "Okay",
+                    comment: "Acknowledgement button title in apply stash alert"
+                ), role: .cancel) {}
             }
         } message: {
             sourceControlManager.changedFiles.isEmpty
-            ? Text(String(localized: "source-control.navigator.repository.apply-stash.restore-modifications.message", defaultValue: "Applying the stashed changes will restore modifications to files in your local repository.", comment: "Warning message describing effect of applying stash"))
-            : Text(String(localized: "source-control.navigator.repository.apply-stash.commit-or-discard.message", defaultValue: "Try committing or discarding the changes.", comment: "Guidance message suggesting next steps for uncommitted changes"))
+            ? Text(String(
+                localized: "source-control.navigator.repository.apply-stash.restore-modifications.message",
+                defaultValue: "Applying the stashed changes will restore modifications to files in your local repository.",
+                comment: "Warning message describing effect of applying stash"
+            ))
+            : Text(String(
+                localized: "source-control.navigator.repository.apply-stash.commit-or-discard.message",
+                defaultValue: "Try committing or discarding the changes.",
+                comment: "Guidance message suggesting next steps for uncommitted changes"
+            ))
         }
         .confirmationDialog(
-            String(format: String(localized: "source-control.navigator.repository.delete-branch.confirmation.title", defaultValue: "Do you want to delete the branch “%@”?", comment: "Confirmation title for deleting a branch"), "\(branchToDelete?.name ?? "")"),
+            String(format: String(
+                localized: "source-control.navigator.repository.delete-branch.confirmation.title",
+                defaultValue: "Do you want to delete the branch “%@”?",
+                comment: "Confirmation title for deleting a branch"
+            ), "\(branchToDelete?.name ?? "")"),
             isPresented: $isPresentingConfirmDeleteBranch
         ) {
-            Button(String(localized: "source-control.navigator.repository.delete-branch.delete.button", defaultValue: "Delete", comment: "Destructive button title for deleting a branch")) {
+            Button(String(
+                localized: "source-control.navigator.repository.delete-branch.delete.button",
+                defaultValue: "Delete",
+                comment: "Destructive button title for deleting a branch"
+            )) {
                 if let branch = branchToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteBranch(branch: branch)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: String(localized: "source-control.navigator.repository.delete-branch.failed-to-delete.error", defaultValue: "Failed to delete", comment: "Error title shown when branch deletion fails"),
+                                title: String(
+                                    localized: "source-control.navigator.repository.delete-branch.failed-to-delete.error",
+                                    defaultValue: "Failed to delete",
+                                    comment: "Error title shown when branch deletion fails"
+                                ),
                                 error: error
                             )
                         }
@@ -133,20 +177,36 @@ struct SourceControlNavigatorRepositoryView: View {
                 }
             }
         } message: {
-            Text(String(localized: "source-control.navigator.repository.delete-branch.warning.message", defaultValue: "The branch will be removed from the repository. You can’t undo this action.", comment: "Warning message for branch deletion confirmation"))
+            Text(String(
+                localized: "source-control.navigator.repository.delete-branch.warning.message",
+                defaultValue: "The branch will be removed from the repository. You can’t undo this action.",
+                comment: "Warning message for branch deletion confirmation"
+            ))
         }
         .confirmationDialog(
-            String(format: String(localized: "source-control.navigator.repository.delete-stash.confirmation.title", defaultValue: "Do you want to delete the stash “%@”?", comment: "Confirmation title for deleting a stash entry"), "\(stashEntryToDelete?.message ?? "")"),
+            String(format: String(
+                localized: "source-control.navigator.repository.delete-stash.confirmation.title",
+                defaultValue: "Do you want to delete the stash “%@”?",
+                comment: "Confirmation title for deleting a stash entry"
+            ), "\(stashEntryToDelete?.message ?? "")"),
             isPresented: $isPresentingConfirmDeleteStashEntry
         ) {
-            Button(String(localized: "source-control.navigator.repository.delete-stash.delete.button", defaultValue: "Delete", comment: "Destructive button title for deleting a stash entry")) {
+            Button(String(
+                localized: "source-control.navigator.repository.delete-stash.delete.button",
+                defaultValue: "Delete",
+                comment: "Destructive button title for deleting a stash entry"
+            )) {
                 if let stashEntry = stashEntryToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteStashEntry(stashEntry: stashEntry)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: String(localized: "source-control.navigator.repository.delete-stash.failed-to-delete.error", defaultValue: "Failed to delete", comment: "Error title shown when stash deletion fails"),
+                                title: String(
+                                    localized: "source-control.navigator.repository.delete-stash.failed-to-delete.error",
+                                    defaultValue: "Failed to delete",
+                                    comment: "Error title shown when stash deletion fails"
+                                ),
                                 error: error
                             )
                         }
@@ -155,20 +215,36 @@ struct SourceControlNavigatorRepositoryView: View {
                 }
             }
         } message: {
-            Text(String(localized: "source-control.navigator.repository.delete-stash.warning.message", defaultValue: "The stash will be removed from the repository. You can’t undo this action.", comment: "Warning message for stash deletion confirmation"))
+            Text(String(
+                localized: "source-control.navigator.repository.delete-stash.warning.message",
+                defaultValue: "The stash will be removed from the repository. You can’t undo this action.",
+                comment: "Warning message for stash deletion confirmation"
+            ))
         }
         .confirmationDialog(
-            String(format: String(localized: "source-control.navigator.repository.delete-remote.confirmation.title", defaultValue: "Do you want to delete the remote “%@”?", comment: "Confirmation title for deleting a remote"), "\(remoteToDelete?.name ?? "")"),
+            String(format: String(
+                localized: "source-control.navigator.repository.delete-remote.confirmation.title",
+                defaultValue: "Do you want to delete the remote “%@”?",
+                comment: "Confirmation title for deleting a remote"
+            ), "\(remoteToDelete?.name ?? "")"),
             isPresented: $isPresentingConfirmDeleteRemote
         ) {
-            Button(String(localized: "source-control.navigator.repository.delete-remote.delete.button", defaultValue: "Delete", comment: "Destructive button title for deleting a remote")) {
+            Button(String(
+                localized: "source-control.navigator.repository.delete-remote.delete.button",
+                defaultValue: "Delete",
+                comment: "Destructive button title for deleting a remote"
+            )) {
                 if let remote = remoteToDelete {
                     Task {
                         do {
                             try await sourceControlManager.deleteRemote(remote: remote)
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: String(localized: "source-control.navigator.repository.delete-remote.failed-to-delete.error", defaultValue: "Failed to delete", comment: "Error title shown when remote deletion fails"),
+                                title: String(
+                                    localized: "source-control.navigator.repository.delete-remote.failed-to-delete.error",
+                                    defaultValue: "Failed to delete",
+                                    comment: "Error title shown when remote deletion fails"
+                                ),
                                 error: error
                             )
                         }
@@ -177,7 +253,11 @@ struct SourceControlNavigatorRepositoryView: View {
                 }
             }
         } message: {
-            Text(String(localized: "source-control.navigator.repository.delete-remote.warning.message", defaultValue: "The remote will be removed from the repository. You can’t undo this action.", comment: "Warning message for remote deletion confirmation"))
+            Text(String(
+                localized: "source-control.navigator.repository.delete-remote.warning.message",
+                defaultValue: "The remote will be removed from the repository. You can’t undo this action.",
+                comment: "Warning message for remote deletion confirmation"
+            ))
         }
         .task {
             await sourceControlManager.refreshBranches()
