@@ -46,14 +46,22 @@ struct CECircularProgressView: View {
             .padding(lineWidth/2)
             .overlay {
                 if currentTaskCount > 1 {
-                    Text(String(format: String(localized: "activity-viewer.circular-progress.current-task-count", defaultValue: "%d", comment: "Displays current task count in circular progress view"), currentTaskCount))
+                    Text(String(format: String(
+                        localized: "activity-viewer.circular-progress.current-task-count",
+                        defaultValue: "%d",
+                        comment: "Displays current task count in circular progress view"
+                    ), currentTaskCount))
                         .font(.caption)
                 }
             }
             .accessibilityElement()
             .accessibilityAddTraits(.updatesFrequently)
             .accessibilityValue(
-                progress != nil ? Text(progress!, format: .percent) : Text(String(localized: "activity-viewer.circular-progress.working-status", defaultValue: "working", comment: "Status text shown when tasks are in progress"))
+                progress != nil ? Text(progress!, format: .percent) : Text(String(
+                    localized: "activity-viewer.circular-progress.working-status",
+                    defaultValue: "working",
+                    comment: "Status text shown when tasks are in progress"
+                ))
             )
     }
 }
