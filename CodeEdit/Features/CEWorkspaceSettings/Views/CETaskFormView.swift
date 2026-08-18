@@ -16,20 +16,20 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text(String(localized: "workspace-settings.task-form.name.label", defaultValue: "Name", comment: "Label for task name field."))
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
-                    Text("My Mac")
+                .accessibilityLabel(String(localized: "workspace-settings.task-form.task-name.placeholder", defaultValue: "Task Name", comment: "Placeholder for entering task name."))
+                Picker(String(localized: "workspace-settings.task-form.target.label", defaultValue: "Target", comment: "Label for task execution target picker."), selection: $task.target) {
+                    Text(String(localized: "workspace-settings.task-form.target.my-mac", defaultValue: "My Mac", comment: "Task target option for running on local machine."))
                         .tag("My Mac")
 
-                    Text("SSH")
+                    Text(String(localized: "workspace-settings.task-form.target.ssh", defaultValue: "SSH", comment: "Task target option for SSH environment."))
                         .tag("SSH")
 
-                    Text("Docker")
+                    Text(String(localized: "workspace-settings.task-form.target.docker", defaultValue: "Docker", comment: "Task target option for Docker environment."))
                         .tag("Docker")
 
-                    Text("Docker Compose")
+                    Text(String(localized: "workspace-settings.task-form.target.docker-compose", defaultValue: "Docker Compose", comment: "Task target option for Docker Compose environment."))
                         .tag("Docker Compose")
                 }
                 .disabled(true)
@@ -37,11 +37,11 @@ struct CETaskFormView: View {
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text(String(localized: "workspace-settings.task-form.task.section-title", defaultValue: "Task", comment: "Section title for task command settings."))
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "workspace-settings.task-form.task-command.placeholder", defaultValue: "Task Command", comment: "Placeholder for task command input."))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text(String(localized: "workspace-settings.task-form.working-directory.placeholder", defaultValue: "Working Directory", comment: "Placeholder for task working directory input."))
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text(String(localized: "workspace-settings.task-form.environment-variables.empty-state", defaultValue: "No environment variables", comment: "Empty state text when no environment variables are configured."))
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text(String(localized: "workspace-settings.task-form.environment-variables.section-title", defaultValue: "Environment Variables", comment: "Section title for environment variables list."))
             }
         }
         .formStyle(.grouped)
