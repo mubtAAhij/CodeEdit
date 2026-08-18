@@ -23,11 +23,11 @@ extension GitClient {
 
         var label: String {
             switch self {
-            case .initialState: "Cloning"
-            case .counting: "Counting"
-            case .compressing: "Compressing"
-            case .receiving: "Receiving"
-            case .resolving: "Resolving"
+            case .initialState: String(localized: "source-control.git-client.clone.phase.cloning", defaultValue: "Cloning", comment: "Clone progress phase label for cloning")
+            case .counting: String(localized: "source-control.git-client.clone.phase.counting", defaultValue: "Counting", comment: "Clone progress phase label for counting objects")
+            case .compressing: String(localized: "source-control.git-client.clone.phase.compressing", defaultValue: "Compressing", comment: "Clone progress phase label for compressing objects")
+            case .receiving: String(localized: "source-control.git-client.clone.phase.receiving", defaultValue: "Receiving", comment: "Clone progress phase label for receiving objects")
+            case .resolving: String(localized: "source-control.git-client.clone.phase.resolving", defaultValue: "Resolving", comment: "Clone progress phase label for resolving deltas")
             }
         }
     }
