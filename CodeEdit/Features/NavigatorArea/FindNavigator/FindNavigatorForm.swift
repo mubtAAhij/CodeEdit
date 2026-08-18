@@ -62,7 +62,11 @@ struct FindNavigatorForm: View {
                     Spacer()
                 }
                 Spacer()
-                Text(String(localized: "find-navigator.form.scope-toggle.title", defaultValue: "Scoped", comment: "Label for enabling scoped search in find navigator"))
+                Text(String(
+                    localized: "find-navigator.form.scope-toggle.title",
+                    defaultValue: "Scoped",
+                    comment: "Label for enabling scoped search in find navigator"
+                ))
                     .controlSize(.small)
                     .foregroundStyle(Color(nsColor: scoped ? .controlAccentColor : .controlTextColor))
                     .onTapGesture {
@@ -91,7 +95,11 @@ struct FindNavigatorForm: View {
                             .foregroundStyle(caseSensitive ? Color(.controlAccentColor) : Color(.secondaryLabelColor))
                         }
                     )
-                    .help(String(localized: "find-navigator.form.match-case-toggle.title", defaultValue: "Match Case", comment: "Label for match case option in find navigator"))
+                    .help(String(
+                        localized: "find-navigator.form.match-case-toggle.title",
+                        defaultValue: "Match Case",
+                        comment: "Label for match case option in find navigator"
+                    ))
                     .onChange(of: caseSensitive) { _, newValue in
                         state.caseSensitive = newValue
                     }
@@ -116,7 +124,11 @@ struct FindNavigatorForm: View {
             }
             if selectedMode[0] == SearchModeModel.Replace {
                 PaneTextField(
-                    String(localized: "find-navigator.form.replace-with.label", defaultValue: "With", comment: "Label for replace text field in find navigator"),
+                    String(
+                        localized: "find-navigator.form.replace-with.label",
+                        defaultValue: "With",
+                        comment: "Label for replace text field in find navigator"
+                    ),
                     text: $state.replaceText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -131,14 +143,22 @@ struct FindNavigatorForm: View {
                         Toggle(
                             isOn: $preserveCase,
                             label: {
-                                Text(String(localized: "find-navigator.form.preserve-case.icon-text", defaultValue: "AB", comment: "Icon-like text shown for preserve case option"))
+                                Text(String(
+                                    localized: "find-navigator.form.preserve-case.icon-text",
+                                    defaultValue: "AB",
+                                    comment: "Icon-like text shown for preserve case option"
+                                ))
                                     .font(.system(size: 12, design: .rounded))
                                     .foregroundStyle(
                                         preserveCase ? Color(.controlAccentColor) : Color(.secondaryLabelColor)
                                     )
                             }
                         )
-                        .help(String(localized: "find-navigator.form.preserve-case-toggle.title", defaultValue: "Preserve Case", comment: "Label for preserve case option in replace mode"))
+                        .help(String(
+                            localized: "find-navigator.form.preserve-case-toggle.title",
+                            defaultValue: "Preserve Case",
+                            comment: "Label for preserve case option in replace mode"
+                        ))
                     },
                     clearable: true,
                     hasValue: preserveCase
@@ -146,7 +166,11 @@ struct FindNavigatorForm: View {
             }
             if scoped {
                 PaneTextField(
-                    String(localized: "find-navigator.form.only-in-folders.label", defaultValue: "Only in folders", comment: "Label for folder include scope option"),
+                    String(
+                        localized: "find-navigator.form.only-in-folders.label",
+                        defaultValue: "Only in folders",
+                        comment: "Label for folder include scope option"
+                    ),
                     text: $includesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -167,13 +191,21 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help(String(localized: "find-navigator.form.search-only-open-editors.toggle", defaultValue: "Search only in Open Editors", comment: "Toggle label for searching only in open editors"))
+                        .help(String(
+                            localized: "find-navigator.form.search-only-open-editors.toggle",
+                            defaultValue: "Search only in Open Editors",
+                            comment: "Toggle label for searching only in open editors"
+                        ))
                     },
                     clearable: true,
                     hasValue: scopedToOpenEditors
                 )
                 PaneTextField(
-                    String(localized: "find-navigator.form.excluding-folders.label", defaultValue: "Excluding folders", comment: "Label for excluded folders scope option"),
+                    String(
+                        localized: "find-navigator.form.excluding-folders.label",
+                        defaultValue: "Excluding folders",
+                        comment: "Label for excluded folders scope option"
+                    ),
                     text: $excludesText,
                     axis: .vertical,
                     leadingAccessories: {
@@ -194,7 +226,11 @@ struct FindNavigatorForm: View {
                                     )
                             }
                         )
-                        .help(String(localized: "find-navigator.form.use-exclude-settings.toggle", defaultValue: "Use Exclude Settings and Ignore Files", comment: "Toggle label to include global exclude settings and ignore files"))
+                        .help(String(
+                            localized: "find-navigator.form.use-exclude-settings.toggle",
+                            defaultValue: "Use Exclude Settings and Ignore Files",
+                            comment: "Toggle label to include global exclude settings and ignore files"
+                        ))
                     },
                     clearable: true,
                     hasValue: excludeSettings
@@ -208,7 +244,11 @@ struct FindNavigatorForm: View {
                         print(Date().timeIntervalSince(startTime))
                     }
                 } label: {
-                    Text(String(localized: "find-navigator.form.replace-all.button", defaultValue: "Replace All", comment: "Button title for replacing all matches"))
+                    Text(String(
+                        localized: "find-navigator.form.replace-all.button",
+                        defaultValue: "Replace All",
+                        comment: "Button title for replacing all matches"
+                    ))
                         .frame(maxWidth: .infinity)
                 }
             }
