@@ -126,7 +126,11 @@ final class PackageManagerInstallOperation: ObservableObject, Identifiable {
         progress.addChild(model.progress, withPendingUnitCount: 1)
 
         try Task.checkCancellation()
-        accumulatedOutput.append(OutputItem(isStepDivider: true, contents: String(format: String(localized: "lsp.package-manager.install.step-task", defaultValue: "Step %d: %@", comment: "Progress message for current install step and task name"), currentStepIdx + 1, "\(task.name)")))
+        accumulatedOutput.append(OutputItem(isStepDivider: true, contents: String(format: String(
+            localized: "lsp.package-manager.install.step-task",
+            defaultValue: "Step %d: %@",
+            comment: "Progress message for current install step and task name"
+        ), currentStepIdx + 1, "\(task.name)")))
 
         await withTaskGroup(of: Void.self) { group in
             group.addTask {
