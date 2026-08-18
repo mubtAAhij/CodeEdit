@@ -9,6 +9,10 @@ import SwiftUI
 
 struct NoSelectionInspectorView: View {
     var body: some View {
-        CEContentUnavailableView(String(localized: "inspector.no-selection.title", defaultValue: "No Selection", comment: "Placeholder title shown when nothing is selected in inspector"))
+        CEContentUnavailableView(String(
+            localized: "inspector.no-selection.title",
+            defaultValue: "No Selection",
+            comment: "Placeholder title shown when nothing is selected in inspector"
+        ))
     }
 }
