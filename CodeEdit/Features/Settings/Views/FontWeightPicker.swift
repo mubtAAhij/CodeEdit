@@ -24,21 +24,21 @@ struct FontWeightPicker: View {
     ]
 
     var weightNames: [NSFont.Weight: String] = [
-        .ultraLight: "Ultra Light",
-        .thin: "Thin",
-        .light: "Light",
-        .regular: "Regular",
-        .medium: "Medium",
-        .semibold: "Semi Bold",
-        .bold: "Bold",
-        .heavy: "Heavy",
-        .black: "Black"
+        .ultraLight: String(localized: "settings.font-weight.ultra-light", defaultValue: "Ultra Light", comment: "Font weight option label for ultra light."),
+        .thin: String(localized: "settings.font-weight.thin", defaultValue: "Thin", comment: "Font weight option label for thin."),
+        .light: String(localized: "settings.font-weight.light", defaultValue: "Light", comment: "Font weight option label for light."),
+        .regular: String(localized: "settings.font-weight.regular", defaultValue: "Regular", comment: "Font weight option label for regular."),
+        .medium: String(localized: "settings.font-weight.medium", defaultValue: "Medium", comment: "Font weight option label for medium."),
+        .semibold: String(localized: "settings.font-weight.semi-bold", defaultValue: "Semi Bold", comment: "Font weight option label for semi bold."),
+        .bold: String(localized: "settings.font-weight.bold", defaultValue: "Bold", comment: "Font weight option label for bold."),
+        .heavy: String(localized: "settings.font-weight.heavy", defaultValue: "Heavy", comment: "Font weight option label for heavy."),
+        .black: String(localized: "settings.font-weight.black", defaultValue: "Black", comment: "Font weight option label for black.")
     ]
 
     var body: some View {
-        Picker(label ?? "Font Weight", selection: $selection) {
+        Picker(label ?? String(localized: "settings.font-weight.picker.title", defaultValue: "Font Weight", comment: "Title label for the font weight picker."), selection: $selection) {
             ForEach(fontWeights, id: \.self) { weight in
-                Text(weightNames[weight] ?? "Unknown")
+                Text(weightNames[weight] ?? String(localized: "settings.font-weight.unknown", defaultValue: "Unknown", comment: "Fallback label for unknown font weight."))
                     .tag(weight)
             }
         }
