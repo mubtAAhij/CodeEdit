@@ -60,7 +60,11 @@ struct EditorJumpBarView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     if file == nil {
-                        Text(String(localized: "editor.jump-bar.no-selection", defaultValue: "No Selection", comment: "Placeholder shown when no symbol is selected in the editor jump bar"))
+                        Text(String(
+                            localized: "editor.jump-bar.no-selection",
+                            defaultValue: "No Selection",
+                            comment: "Placeholder shown when no symbol is selected in the editor jump bar"
+                        ))
                             .font(.system(size: 11, weight: .regular))
                             .foregroundColor(
                                 activeState != .inactive
