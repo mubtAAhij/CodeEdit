@@ -72,12 +72,20 @@ enum InstallationMethod: Equatable {
     }
 
     var installerDescription: String {
-        guard let packageManagerType else { return String(localized: "lsp.installation-method.unknown", defaultValue: "Unknown", comment: "Fallback installation method label when method is unknown") }
+        guard let packageManagerType else { return String(
+            localized: "lsp.installation-method.unknown",
+            defaultValue: "Unknown",
+            comment: "Fallback installation method label when method is unknown"
+        ) }
         switch packageManagerType {
         case .npm, .cargo, .golang, .pip, .sourceBuild, .github:
             return packageManagerType.userDescription
         case .nuget, .opam, .gem, .composer:
-            return String(format: String(localized: "lsp.installation-method.unsupported-package-manager", defaultValue: "(Unsupported) %@", comment: "Label for unsupported installation method with package manager description"), "\(packageManagerType.userDescription)")
+            return String(format: String(
+                localized: "lsp.installation-method.unsupported-package-manager",
+                defaultValue: "(Unsupported) %@",
+                comment: "Label for unsupported installation method with package manager description"
+            ), "\(packageManagerType.userDescription)")
         }
     }
 
