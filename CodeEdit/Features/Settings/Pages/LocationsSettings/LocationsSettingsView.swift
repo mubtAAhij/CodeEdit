@@ -24,7 +24,11 @@ struct LocationsSettingsView: View {
 private extension LocationsSettingsView {
     @ViewBuilder private var applicationSupportLocation: some View {
         ExternalLink(destination: Settings.shared.baseURL) {
-            Text(String(localized: "settings.locations.view.application-support", defaultValue: "Application Support", comment: "Label showing the application support directory section"))
+            Text(String(
+                localized: "settings.locations.view.application-support",
+                defaultValue: "Application Support",
+                comment: "Label showing the application support directory section"
+            ))
             Text(Settings.shared.baseURL.path)
                 .font(.footnote)
                 .foregroundColor(.secondary)
@@ -33,7 +37,11 @@ private extension LocationsSettingsView {
 
     private var settingsLocation: some View {
         ExternalLink(destination: ThemeModel.shared.settingsURL) {
-            Text(String(localized: "settings.locations.view.settings", defaultValue: "Settings", comment: "Label for settings location row"))
+            Text(String(
+                localized: "settings.locations.view.settings",
+                defaultValue: "Settings",
+                comment: "Label for settings location row"
+            ))
             Text(ThemeModel.shared.settingsURL.path)
                 .font(.footnote)
                 .foregroundColor(.secondary)
@@ -42,7 +50,11 @@ private extension LocationsSettingsView {
 
     private var themesLocation: some View {
         ExternalLink(destination: ThemeModel.shared.themesURL) {
-            Text(String(localized: "settings.locations.view.themes", defaultValue: "Themes", comment: "Label for themes location row"))
+            Text(String(
+                localized: "settings.locations.view.themes",
+                defaultValue: "Themes",
+                comment: "Label for themes location row"
+            ))
             Text(ThemeModel.shared.themesURL.path)
                 .font(.footnote)
                 .foregroundColor(.secondary)
@@ -51,7 +63,11 @@ private extension LocationsSettingsView {
 
     private var extensionsLocation: some View {
         ExternalLink(destination: ThemeModel.shared.extensionsURL) {
-            Text(String(localized: "settings.locations.view.extensions", defaultValue: "Extensions", comment: "Label for extensions location row"))
+            Text(String(
+                localized: "settings.locations.view.extensions",
+                defaultValue: "Extensions",
+                comment: "Label for extensions location row"
+            ))
             Text(ThemeModel.shared.extensionsURL.path())
                 .font(.footnote)
                 .foregroundColor(.secondary)
