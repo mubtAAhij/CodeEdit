@@ -39,9 +39,21 @@ struct TaskDropDownView: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("TaskDropdown")
-        .accessibilityValue(taskManager.selectedTask?.name ?? String(localized: "activity-viewer.task-dropdown.create-tasks", defaultValue: "Create Tasks", comment: "Menu item title to create workspace tasks"))
-        .accessibilityLabel(String(localized: "activity-viewer.task-dropdown.active-task", defaultValue: "Active Task", comment: "Accessibility label for active task picker"))
-        .accessibilityHint(String(localized: "activity-viewer.task-dropdown.open-active-task-menu", defaultValue: "Open the active task menu", comment: "Accessibility hint for active task picker"))
+        .accessibilityValue(taskManager.selectedTask?.name ?? String(
+            localized: "activity-viewer.task-dropdown.create-tasks",
+            defaultValue: "Create Tasks",
+            comment: "Menu item title to create workspace tasks"
+        ))
+        .accessibilityLabel(String(
+            localized: "activity-viewer.task-dropdown.active-task",
+            defaultValue: "Active Task",
+            comment: "Accessibility label for active task picker"
+        ))
+        .accessibilityHint(String(
+            localized: "activity-viewer.task-dropdown.open-active-task-menu",
+            defaultValue: "Open the active task menu",
+            comment: "Accessibility hint for active task picker"
+        ))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
@@ -82,7 +94,11 @@ struct TaskDropDownView: View {
                         .fixedSize()
                 }
             } else {
-                Text(String(localized: "activity-viewer.task-dropdown.create-tasks", defaultValue: "Create Tasks", comment: "Placeholder button title when no tasks are configured"))
+                Text(String(
+                    localized: "activity-viewer.task-dropdown.create-tasks",
+                    defaultValue: "Create Tasks",
+                    comment: "Placeholder button title when no tasks are configured"
+                ))
                     .frame(minWidth: 0)
             }
         }
@@ -120,10 +136,18 @@ struct TaskDropDownView: View {
             Divider()
                 .padding(.vertical, 5)
         }
-        OptionMenuItemView(label: String(localized: "activity-viewer.task-dropdown.add-task", defaultValue: "Add Task...", comment: "Menu item title to add a new task")) {
+        OptionMenuItemView(label: String(
+            localized: "activity-viewer.task-dropdown.add-task",
+            defaultValue: "Add Task...",
+            comment: "Menu item title to add a new task"
+        )) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
-        OptionMenuItemView(label: String(localized: "activity-viewer.task-dropdown.manage-tasks", defaultValue: "Manage Tasks...", comment: "Menu item title to open task management")) {
+        OptionMenuItemView(label: String(
+            localized: "activity-viewer.task-dropdown.manage-tasks",
+            defaultValue: "Manage Tasks...",
+            comment: "Menu item title to open task management"
+        )) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
     }
