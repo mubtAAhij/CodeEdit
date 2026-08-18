@@ -26,7 +26,7 @@ struct TaskOutputActionsView: View {
                     .foregroundStyle(.green)
             }
             .buttonStyle(.icon)
-            .help("Run Task")
+            .help(String(localized: "utility-area.debug.task-output-actions.run-task", defaultValue: "Run Task", comment: "Button title to run the selected task"))
 
             Button {
                 taskManager.terminateTask(taskID: activeTask.task.id)
@@ -38,7 +38,7 @@ struct TaskOutputActionsView: View {
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
-            .help("Stop Task")
+            .help(String(localized: "utility-area.debug.task-output-actions.stop-task", defaultValue: "Stop Task", comment: "Button title to stop the running task"))
 
             Button {
                 if activeTask.status == .stopped {
@@ -56,7 +56,7 @@ struct TaskOutputActionsView: View {
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
             .opacity(activeTask.status == .running || activeTask.status == .stopped ? 1 : 0.5)
-            .help(activeTask.status == .stopped ? "Resume Task" : "Suspend Task")
+            .help(activeTask.status == .stopped ? String(localized: "utility-area.debug.task-output-actions.resume-task", defaultValue: "Resume Task", comment: "Button title to resume a suspended task") : String(localized: "utility-area.debug.task-output-actions.suspend-task", defaultValue: "Suspend Task", comment: "Button title to suspend a running task"))
 
             Divider()
 
@@ -68,7 +68,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "text.append")
             }
             .buttonStyle(.icon)
-            .help("Scroll down to the bottom")
+            .help(String(localized: "utility-area.debug.task-output-actions.scroll-to-bottom", defaultValue: "Scroll down to the bottom", comment: "Accessibility label for scrolling output to bottom"))
 
             Button {
                 activeTask.clearOutput()
@@ -76,7 +76,7 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "trash")
             }
             .buttonStyle(.icon)
-            .help("Clear Output")
+            .help(String(localized: "utility-area.debug.task-output-actions.clear-output", defaultValue: "Clear Output", comment: "Button title to clear task output"))
         }
     }
 }
