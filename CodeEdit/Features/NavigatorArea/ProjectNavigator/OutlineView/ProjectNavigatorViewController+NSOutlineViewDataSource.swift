@@ -146,10 +146,22 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
             ),
             fileName
         )
-        alert.informativeText = String(localized: "project-navigator.file-conflict.irreversible-warning", defaultValue: "This action is irreversible!", comment: "Warning message for irreversible replace action")
+        alert.informativeText = String(
+            localized: "project-navigator.file-conflict.irreversible-warning",
+            defaultValue: "This action is irreversible!",
+            comment: "Warning message for irreversible replace action"
+        )
         alert.alertStyle = .warning
-        alert.addButton(withTitle: String(localized: "project-navigator.file-conflict.replace", defaultValue: "Replace", comment: "Button title to confirm replacing existing file or folder"))
-        alert.addButton(withTitle: String(localized: "project-navigator.file-conflict.cancel", defaultValue: "Cancel", comment: "Button title to cancel replace action"))
+        alert.addButton(withTitle: String(
+            localized: "project-navigator.file-conflict.replace",
+            defaultValue: "Replace",
+            comment: "Button title to confirm replacing existing file or folder"
+        ))
+        alert.addButton(withTitle: String(
+            localized: "project-navigator.file-conflict.cancel",
+            defaultValue: "Cancel",
+            comment: "Button title to cancel replace action"
+        ))
         return alert.runModal() == .alertFirstButtonReturn
     }
 }
