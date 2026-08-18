@@ -12,14 +12,14 @@ extension SourceControlNavigatorRepositoryView {
         [
             .init(
                 id: "BranchesGroup",
-                label: "Branches",
+                label: String(localized: "source-control.navigator.repository.branches", defaultValue: "Branches", comment: "Outline group title for repository branches"),
                 image: .system(name: "externaldrive.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.orderedLocalBranches.map { branch in
                         .init(
                             id: "Branch\(branch.name)",
                             label: branch.name,
-                            description: branch == sourceControlManager.currentBranch ? "(current)" : nil,
+                            description: branch == sourceControlManager.currentBranch ? String(localized: "source-control.navigator.repository.current-branch-suffix", defaultValue: "(current)", comment: "Suffix shown next to the currently checked out branch") : nil,
                             image: .symbol(name: "branch"),
                             imageColor: .blue,
                             branch: branch
@@ -28,7 +28,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "StashedChangesGroup",
-                label: "Stashed Changes",
+                label: String(localized: "source-control.navigator.repository.stashed-changes", defaultValue: "Stashed Changes", comment: "Outline group title for stashed changes"),
                 image: .system(name: "tray.2.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.stashEntries.map { stashEntry in
@@ -51,7 +51,7 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "RemotesGroup",
-                label: "Remotes",
+                label: String(localized: "source-control.navigator.repository.remotes", defaultValue: "Remotes", comment: "Outline group title for git remotes"),
                 image: .system(name: "network"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.remotes.map { remote in
