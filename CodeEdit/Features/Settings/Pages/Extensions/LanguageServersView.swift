@@ -52,7 +52,7 @@ struct LanguageServersView: View {
                     }
                 } header: {
                     Label(
-                        "Warning: Language server installation is experimental. Use at your own risk.",
+                        String(localized: "settings.extensions.language-servers.experimental-warning", defaultValue: "Warning: Language server installation is experimental. Use at your own risk.", comment: "Warning shown above language server installation controls"),
                         systemImage: "exclamationmark.triangle.fill"
                     )
                 }
@@ -65,15 +65,11 @@ struct LanguageServersView: View {
     }
 
     private func getInfoString() -> AttributedString {
-        let string = "CodeEdit makes use of the Mason Registry for language server installation. To install a package, "
-        + "CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of "
-        + "the language server in Application Support.\n\n"
-        + "Language server installation is still experimental, there may be bugs and expect this flow "
-        + "to change over time."
+        let string = String(localized: "settings.extensions.language-servers.mason-description", defaultValue: "CodeEdit makes use of the Mason Registry for language server installation. To install a package, CodeEdit uses the package manager directed by the Mason Registry, and installs a copy of the language server in Application Support.\n\nLanguage server installation is still experimental, there may be bugs and expect this flow to change over time.", comment: "Informational description about Mason Registry based language server installation")
 
         var attrString = AttributedString(string)
 
-        if let linkRange = attrString.range(of: "Mason Registry") {
+        if let linkRange = attrString.range(of: String(localized: "settings.extensions.language-servers.mason-registry", defaultValue: "Mason Registry", comment: "Link label for Mason Registry website")) {
             attrString[linkRange].link = URL(string: "https://mason-registry.dev/")
             attrString[linkRange].foregroundColor = NSColor.linkColor
         }
