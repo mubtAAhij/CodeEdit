@@ -47,5 +47,9 @@ struct SearchField: NSViewRepresentable {
 }
 
 #Preview {
-    SearchField(String(localized: "codeeditui.search-field.prompt", defaultValue: "Search", comment: "Prompt text for a search field"), text: .constant("Test"))
+    SearchField(String(
+        localized: "codeeditui.search-field.prompt",
+        defaultValue: "Search",
+        comment: "Prompt text for a search field"
+    ), text: .constant("Test"))
 }
