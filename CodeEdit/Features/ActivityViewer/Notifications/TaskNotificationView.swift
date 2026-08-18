@@ -71,7 +71,7 @@ struct TaskNotificationView: View {
             .frame(height: 16)
         } else {
             if taskNotificationHandler.notifications.count > 1 {
-                Text("\(taskNotificationHandler.notifications.count)")
+                Text(String(format: String(localized: "activity-viewer.notifications.count", defaultValue: "%d", comment: "Unread activity notification count"), taskNotificationHandler.notifications.count))
                     .font(.caption)
                     .padding(5)
                     .background(
