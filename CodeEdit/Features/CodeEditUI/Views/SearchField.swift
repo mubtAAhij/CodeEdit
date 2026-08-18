@@ -47,5 +47,9 @@ struct SearchField: NSViewRepresentable {
 }
 
 #Preview {
-    SearchField(String(localized: "codeedit-ui.search-field.placeholder", defaultValue: "Search", comment: "Placeholder text for generic search field"), text: .constant("Test"))
+    SearchField(String(
+        localized: "codeedit-ui.search-field.placeholder",
+        defaultValue: "Search",
+        comment: "Placeholder text for generic search field"
+    ), text: .constant("Test"))
 }
