@@ -12,14 +12,22 @@ extension SourceControlNavigatorRepositoryView {
         [
             .init(
                 id: "BranchesGroup",
-                label: String(localized: "source-control-navigator.repository.outline.branches", defaultValue: "Branches", comment: "Outline group title for repository branches"),
+                label: String(
+                    localized: "source-control-navigator.repository.outline.branches",
+                    defaultValue: "Branches",
+                    comment: "Outline group title for repository branches"
+                ),
                 image: .system(name: "externaldrive.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.orderedLocalBranches.map { branch in
                         .init(
                             id: "Branch\(branch.name)",
                             label: branch.name,
-                            description: branch == sourceControlManager.currentBranch ? String(localized: "source-control-navigator.repository.outline.current-branch-suffix", defaultValue: "(current)", comment: "Suffix indicating the currently checked out branch") : nil,
+                            description: branch == sourceControlManager.currentBranch ? String(
+                                localized: "source-control-navigator.repository.outline.current-branch-suffix",
+                                defaultValue: "(current)",
+                                comment: "Suffix indicating the currently checked out branch"
+                            ) : nil,
                             image: .symbol(name: "branch"),
                             imageColor: .blue,
                             branch: branch
@@ -28,7 +36,11 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "StashedChangesGroup",
-                label: String(localized: "source-control-navigator.repository.outline.stashed-changes", defaultValue: "Stashed Changes", comment: "Outline group title for stashed changes"),
+                label: String(
+                    localized: "source-control-navigator.repository.outline.stashed-changes",
+                    defaultValue: "Stashed Changes",
+                    comment: "Outline group title for stashed changes"
+                ),
                 image: .system(name: "tray.2.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.stashEntries.map { stashEntry in
@@ -51,7 +63,11 @@ extension SourceControlNavigatorRepositoryView {
             ),
             .init(
                 id: "RemotesGroup",
-                label: String(localized: "source-control-navigator.repository.outline.remotes", defaultValue: "Remotes", comment: "Outline group title for remote repositories"),
+                label: String(
+                    localized: "source-control-navigator.repository.outline.remotes",
+                    defaultValue: "Remotes",
+                    comment: "Outline group title for remote repositories"
+                ),
                 image: .system(name: "network"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.remotes.map { remote in
