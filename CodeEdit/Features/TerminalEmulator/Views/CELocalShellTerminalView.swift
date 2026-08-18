@@ -114,7 +114,11 @@ class CELocalShellTerminalView: CETerminalView, TerminalViewDelegate, LocalProce
                 currentDirectory: url?.absolutePath
             )
         } catch {
-            terminal.feed(text: String(format: String(localized: "terminal-emulator.failed-to-start-session", defaultValue: "Failed to start a terminal session: %@", comment: "Error shown when local terminal session fails to start"), "\(error.localizedDescription)"))
+            terminal.feed(text: String(format: String(
+                localized: "terminal-emulator.failed-to-start-session",
+                defaultValue: "Failed to start a terminal session: %@",
+                comment: "Error shown when local terminal session fails to start"
+            ), "\(error.localizedDescription)"))
         }
     }
 
