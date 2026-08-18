@@ -13,8 +13,16 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                String(localized: "settings.search.ignore-glob-patterns", defaultValue: "Ignore Glob Patterns", comment: "Search settings label for glob patterns to ignore"),
-                String(localized: "settings.search.ignore-patterns", defaultValue: "Ignore Patterns", comment: "Search settings label for patterns to ignore")
+                String(
+                    localized: "settings.search.ignore-glob-patterns",
+                    defaultValue: "Ignore Glob Patterns",
+                    comment: "Search settings label for glob patterns to ignore"
+                ),
+                String(
+                    localized: "settings.search.ignore-patterns",
+                    defaultValue: "Ignore Patterns",
+                    comment: "Search settings label for patterns to ignore"
+                )
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
