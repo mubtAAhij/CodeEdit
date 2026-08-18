@@ -114,19 +114,11 @@ struct ViewCommands: Commands {
                 comment: "View menu item title for toggling editor jump bar visibility"
             ), (showEditorJumpBar ? String(
                 localized: "window-commands.view.toggle.hide",
-                defaultValue: String(
-                    localized: "window-commands.view.visibility.hide",
-                    defaultValue: "Hide",
-                    comment: "Verb used for hidden state in visibility toggle menu items"
-                ),
+                defaultValue: "Hide",
                 comment: "Verb used in view menu toggle items when an element is currently visible"
             ) : String(
                 localized: "window-commands.view.toggle.show",
-                defaultValue: String(
-                    localized: "window-commands.view.visibility.show",
-                    defaultValue: "Show",
-                    comment: "Verb used for shown state in visibility toggle menu items"
-                ),
+                defaultValue: "Show",
                 comment: "Verb used in view menu toggle items when an element is currently hidden"
             )))) {
                 showEditorJumpBar.toggle()
@@ -179,19 +171,11 @@ extension ViewCommands {
                 comment: "View menu item title for toggling navigator visibility"
             ), (navigatorCollapsed ? String(
                 localized: "window-commands.view.toggle.show",
-                defaultValue: String(
-                    localized: "window-commands.view.navigator.show",
-                    defaultValue: "Show",
-                    comment: "Verb for showing navigator in toggle menu item"
-                ),
+                defaultValue: "Show",
                 comment: "Verb used in view menu toggle items when an element is currently hidden"
             ) : String(
                 localized: "window-commands.view.toggle.hide",
-                defaultValue: String(
-                    localized: "window-commands.view.navigator.hide",
-                    defaultValue: "Hide",
-                    comment: "Verb for hiding navigator in toggle menu item"
-                ),
+                defaultValue: "Hide",
                 comment: "Verb used in view menu toggle items when an element is currently visible"
             )))) {
                 windowController?.toggleFirstPanel()
@@ -205,19 +189,11 @@ extension ViewCommands {
                 comment: "View menu item title for toggling inspector visibility"
             ), (inspectorCollapsed ? String(
                 localized: "window-commands.view.toggle.show",
-                defaultValue: String(
-                    localized: "window-commands.view.inspector.show",
-                    defaultValue: "Show",
-                    comment: "Verb for showing inspector in toggle menu item"
-                ),
+                defaultValue: "Show",
                 comment: "Verb used in view menu toggle items when an element is currently hidden"
             ) : String(
                 localized: "window-commands.view.toggle.hide",
-                defaultValue: String(
-                    localized: "window-commands.view.inspector.hide",
-                    defaultValue: "Hide",
-                    comment: "Verb for hiding inspector in toggle menu item"
-                ),
+                defaultValue: "Hide",
                 comment: "Verb used in view menu toggle items when an element is currently visible"
             )))) {
                 windowController?.toggleLastPanel()
@@ -231,19 +207,11 @@ extension ViewCommands {
                 comment: "View menu item title for toggling utility area visibility"
             ), (utilityAreaCollapsed ? String(
                 localized: "window-commands.view.toggle.show",
-                defaultValue: String(
-                    localized: "window-commands.view.utility-area.show",
-                    defaultValue: "Show",
-                    comment: "Verb for showing utility area in toggle menu item"
-                ),
+                defaultValue: "Show",
                 comment: "Verb used in view menu toggle items when an element is currently hidden"
             ) : String(
                 localized: "window-commands.view.toggle.hide",
-                defaultValue: String(
-                    localized: "window-commands.view.utility-area.hide",
-                    defaultValue: "Hide",
-                    comment: "Verb for hiding utility area in toggle menu item"
-                ),
+                defaultValue: "Hide",
                 comment: "Verb used in view menu toggle items when an element is currently visible"
             )))) {
                 CommandManager.shared.executeCommand("open.drawer")
@@ -257,19 +225,11 @@ extension ViewCommands {
                 comment: "View menu item title for toggling toolbar visibility"
             ), (toolbarCollapsed ? String(
                 localized: "window-commands.view.toggle.show",
-                defaultValue: String(
-                    localized: "window-commands.view.toolbar.show",
-                    defaultValue: "Show",
-                    comment: "Verb for showing toolbar in toggle menu item"
-                ),
+                defaultValue: "Show",
                 comment: "Verb used in view menu toggle items when an element is currently hidden"
             ) : String(
                 localized: "window-commands.view.toggle.hide",
-                defaultValue: String(
-                    localized: "window-commands.view.toolbar.hide",
-                    defaultValue: "Hide",
-                    comment: "Verb for hiding toolbar in toggle menu item"
-                ),
+                defaultValue: "Hide",
                 comment: "Verb used in view menu toggle items when an element is currently visible"
             )))) {
                 windowController?.toggleToolbar()
@@ -283,19 +243,11 @@ extension ViewCommands {
                 comment: "View menu item title for toggling full interface visibility"
             ), (isInterfaceHidden ? String(
                 localized: "window-commands.view.toggle.show",
-                defaultValue: String(
-                    localized: "window-commands.view.interface.show",
-                    defaultValue: "Show",
-                    comment: "Verb for showing interface in toggle menu item"
-                ),
+                defaultValue: "Show",
                 comment: "Verb used in view menu toggle items when an element is currently hidden"
             ) : String(
                 localized: "window-commands.view.toggle.hide",
-                defaultValue: String(
-                    localized: "window-commands.view.interface.hide",
-                    defaultValue: "Hide",
-                    comment: "Verb for hiding interface in toggle menu item"
-                ),
+                defaultValue: "Hide",
                 comment: "Verb used in view menu toggle items when an element is currently visible"
             )))) {
                 windowController?.toggleInterface(shouldHide: !isInterfaceHidden)
