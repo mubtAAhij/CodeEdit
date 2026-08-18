@@ -59,19 +59,31 @@ extension WorkspaceDocument.SearchState {
         // Display the replacing results to the user
         if updatedFilesCount == 0 && errorCount == 0 {
             // No results where found
-            await setStatus(.failed(errorMessage: String(format: String(localized: "workspace-document.find-and-replace.no-files-matched", defaultValue: "No files in the workspace matched: %@", comment: "Message shown when no files match find query"), "\(query)")))
+            await setStatus(.failed(errorMessage: String(format: String(
+                localized: "workspace-document.find-and-replace.no-files-matched",
+                defaultValue: "No files in the workspace matched: %@",
+                comment: "Message shown when no files match find query"
+            ), "\(query)")))
         } else if updatedFilesCount == 0 && errorCount > 0 {
             // All files failed to updated
             await setStatus(
                 .failed(
-                    errorMessage: String(format: String(localized: "workspace-document.find-and-replace.all-files-failed", defaultValue: "All files failed to update. (%d) errors occurred. Check logs for more information", comment: "Message shown when all file updates fail during replace operation"), errorCount)
+                    errorMessage: String(format: String(
+                        localized: "workspace-document.find-and-replace.all-files-failed",
+                        defaultValue: "All files failed to update. (%d) errors occurred. Check logs for more information",
+                        comment: "Message shown when all file updates fail during replace operation"
+                    ), errorCount)
                 )
             )
         } else if updatedFilesCount > 0 && errorCount > 0 {
             // Some files updated successfully, some failed
             await setStatus(
                 .failed(
-                    errorMessage: String(format: String(localized: "workspace-document.find-and-replace.partial-success", defaultValue: "%d successfully updated, %d errors occurred. Please check logs for more information.", comment: "Message shown when some files update successfully and some fail during replace operation"), updatedFilesCount, errorCount)
+                    errorMessage: String(format: String(
+                        localized: "workspace-document.find-and-replace.partial-success",
+                        defaultValue: "%d successfully updated, %d errors occurred. Please check logs for more information.",
+                        comment: "Message shown when some files update successfully and some fail during replace operation"
+                    ), updatedFilesCount, errorCount)
                 )
             )
         } else {
@@ -126,10 +138,22 @@ extension WorkspaceDocument.SearchState {
     ) {
         guard let fileContent = try? String(contentsOf: file, encoding: .utf8) else {
             let alert = NSAlert()
-            alert.messageText = String(localized: "workspace-document.find-and-replace.read-error.alert-title", defaultValue: "Error", comment: "Alert title for file read error during find and replace")
-            alert.informativeText = String(format: String(localized: "workspace-document.find-and-replace.read-error.alert-message", defaultValue: "An error occurred while reading file contents of: %@", comment: "Alert message for file read error during find and replace"), "\(file)")
+            alert.messageText = String(
+                localized: "workspace-document.find-and-replace.read-error.alert-title",
+                defaultValue: "Error",
+                comment: "Alert title for file read error during find and replace"
+            )
+            alert.informativeText = String(format: String(
+                localized: "workspace-document.find-and-replace.read-error.alert-message",
+                defaultValue: "An error occurred while reading file contents of: %@",
+                comment: "Alert message for file read error during find and replace"
+            ), "\(file)")
             alert.alertStyle = .critical
-            alert.addButton(withTitle: String(localized: "workspace-document.find-and-replace.read-error.alert-ok", defaultValue: "OK", comment: "OK button title for file read error alert"))
+            alert.addButton(withTitle: String(
+                localized: "workspace-document.find-and-replace.read-error.alert-ok",
+                defaultValue: "OK",
+                comment: "OK button title for file read error alert"
+            ))
             alert.runModal()
 
             return
@@ -154,10 +178,22 @@ extension WorkspaceDocument.SearchState {
             try updatedContent.write(to: file, atomically: true, encoding: .utf8)
         } catch {
             let alert = NSAlert()
-            alert.messageText = String(localized: "workspace-document.find-and-replace.write-error.alert-title", defaultValue: "Error", comment: "Alert title for file write error during find and replace")
-            alert.informativeText = String(format: String(localized: "workspace-document.find-and-replace.write-error.alert-message", defaultValue: "An error occurred while writing to: %@", comment: "Alert message for file write error during find and replace"), "\(error.localizedDescription)")
+            alert.messageText = String(
+                localized: "workspace-document.find-and-replace.write-error.alert-title",
+                defaultValue: "Error",
+                comment: "Alert title for file write error during find and replace"
+            )
+            alert.informativeText = String(format: String(
+                localized: "workspace-document.find-and-replace.write-error.alert-message",
+                defaultValue: "An error occurred while writing to: %@",
+                comment: "Alert message for file write error during find and replace"
+            ), "\(error.localizedDescription)")
             alert.alertStyle = .critical
-            alert.addButton(withTitle: String(localized: "workspace-document.find-and-replace.write-error.alert-ok", defaultValue: "OK", comment: "OK button title for file write error alert"))
+            alert.addButton(withTitle: String(
+                localized: "workspace-document.find-and-replace.write-error.alert-ok",
+                defaultValue: "OK",
+                comment: "OK button title for file write error alert"
+            ))
             alert.runModal()
         }
     }
