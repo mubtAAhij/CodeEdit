@@ -18,7 +18,11 @@ struct CEWorkspaceSettingsTaskListView: View {
 
     var body: some View {
         if settings.tasks.isEmpty {
-            Text(String(localized: "ce-workspace-settings.task-list.no-tasks", defaultValue: "No tasks", comment: "Empty state text shown when no tasks exist"))
+            Text(String(
+                localized: "ce-workspace-settings.task-list.no-tasks",
+                defaultValue: "No tasks",
+                comment: "Empty state text shown when no tasks exist"
+            ))
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         } else {
@@ -34,14 +38,22 @@ struct CEWorkspaceSettingsTaskListView: View {
                             self.selectedTaskID = task.id
                             self.showAddTaskSheet = true
                         } label: {
-                            Text(String(localized: "ce-workspace-settings.task-list.edit", defaultValue: "Edit", comment: "Action title to edit selected workspace task"))
+                            Text(String(
+                                localized: "ce-workspace-settings.task-list.edit",
+                                defaultValue: "Edit",
+                                comment: "Action title to edit selected workspace task"
+                            ))
                         }
                         Button {
                             settings.tasks.removeAll { $0.id == task.id }
                             try? workspaceSettingsManager.savePreferences()
                             taskManager.deleteTask(taskID: task.id)
                         } label: {
-                            Text(String(localized: "ce-workspace-settings.task-list.delete", defaultValue: "Delete", comment: "Action title to delete selected workspace task"))
+                            Text(String(
+                                localized: "ce-workspace-settings.task-list.delete",
+                                defaultValue: "Delete",
+                                comment: "Action title to delete selected workspace task"
+                            ))
                         }
                     }
             }
