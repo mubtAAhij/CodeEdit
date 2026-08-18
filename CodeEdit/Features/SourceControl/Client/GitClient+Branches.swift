@@ -114,11 +114,12 @@ extension GitClient {
                error.description.contains("already exists") {
                 try await checkoutBranch(branch, forceLocal: true)
             } else {
-                logger.error(String(format: String(
+                let message = String(
                     localized: "source-control.git.checkout-branch.failed",
                     defaultValue: "Failed to checkout branch: %@",
                     comment: "Error message when branch checkout fails"
-                ), "\(error)"))
+                )
+                logger.error("\(message, privacy: .public) \(String(describing: error), privacy: .public)")
             }
         }
     }
