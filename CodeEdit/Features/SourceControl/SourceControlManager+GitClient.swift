@@ -103,7 +103,11 @@ extension SourceControlManager {
                 // requires CodeEditSourceEditor changes
             } catch {
                 logger.error("Failed to discard changes for file (\(file.lastPathComponent): \(error)")
-                await showAlertForError(title: String(localized: "source-control.git-client.discard-changes.failed.alert-title", defaultValue: "Failed to discard changes", comment: "Alert title when discarding changes fails"), error: error)
+                await showAlertForError(title: String(
+                    localized: "source-control.git-client.discard-changes.failed.alert-title",
+                    defaultValue: "Failed to discard changes",
+                    comment: "Alert title when discarding changes fails"
+                ), error: error)
             }
         }
     }
@@ -117,7 +121,11 @@ extension SourceControlManager {
                 // requires CodeEditSourceEditor changes
             } catch {
                 logger.error("Failed to discard changes: \(error)")
-                await showAlertForError(title: String(localized: "source-control.git-client.discard-changes.failed.message", defaultValue: "Failed to discard changes", comment: "Alert message when discarding changes fails"), error: error)
+                await showAlertForError(title: String(
+                    localized: "source-control.git-client.discard-changes.failed.message",
+                    defaultValue: "Failed to discard changes",
+                    comment: "Alert message when discarding changes fails"
+                ), error: error)
             }
         }
     }
