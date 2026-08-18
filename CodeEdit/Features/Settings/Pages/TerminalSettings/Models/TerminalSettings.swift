@@ -16,13 +16,41 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                String(localized: "settings.terminal.shell", defaultValue: "Shell", comment: "Search key label for terminal shell setting"),
-                String(localized: "settings.terminal.use-option-key-as-meta", defaultValue: "Use \"Option\" key as \"Meta\"", comment: "Search key label for using Option key as Meta in terminal"),
-                String(localized: "settings.terminal.use-text-editor-font", defaultValue: "Use text editor font", comment: "Search key label for terminal font inheritance setting"),
-                String(localized: "settings.terminal.font", defaultValue: "Font", comment: "Search key label for terminal font setting"),
-                String(localized: "settings.terminal.font-size", defaultValue: "Font Size", comment: "Search key label for terminal font size setting"),
-                String(localized: "settings.terminal.cursor-style", defaultValue: "Terminal Cursor Style", comment: "Search key label for terminal cursor style setting"),
-                String(localized: "settings.terminal.blink-cursor", defaultValue: "Blink Cursor", comment: "Search key label for terminal cursor blinking setting")
+                String(
+                    localized: "settings.terminal.shell",
+                    defaultValue: "Shell",
+                    comment: "Search key label for terminal shell setting"
+                ),
+                String(
+                    localized: "settings.terminal.use-option-key-as-meta",
+                    defaultValue: "Use \"Option\" key as \"Meta\"",
+                    comment: "Search key label for using Option key as Meta in terminal"
+                ),
+                String(
+                    localized: "settings.terminal.use-text-editor-font",
+                    defaultValue: "Use text editor font",
+                    comment: "Search key label for terminal font inheritance setting"
+                ),
+                String(
+                    localized: "settings.terminal.font",
+                    defaultValue: "Font",
+                    comment: "Search key label for terminal font setting"
+                ),
+                String(
+                    localized: "settings.terminal.font-size",
+                    defaultValue: "Font Size",
+                    comment: "Search key label for terminal font size setting"
+                ),
+                String(
+                    localized: "settings.terminal.cursor-style",
+                    defaultValue: "Terminal Cursor Style",
+                    comment: "Search key label for terminal cursor style setting"
+                ),
+                String(
+                    localized: "settings.terminal.blink-cursor",
+                    defaultValue: "Blink Cursor",
+                    comment: "Search key label for terminal cursor blinking setting"
+                )
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
