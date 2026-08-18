@@ -40,11 +40,11 @@ final class PackageManagerProgressModel: ObservableObject {
     func createDirectoryStructure(for packagePath: URL) throws {
         let decodedPath = packagePath.path(percentEncoded: false)
         if FileManager.default.fileExists(atPath: decodedPath) {
-            status("Removing existing installation.")
+            status(String(localized: "lsp.registry.package-manager-progress.removing-existing-installation", defaultValue: "Removing existing installation.", comment: "Status shown when removing existing language server installation"))
             try FileManager.default.removeItem(at: packagePath)
         }
 
-        status("Creating directory: \(decodedPath)")
+        status(String(format: String(localized: "lsp.registry.package-manager-progress.creating-directory", defaultValue: "Creating directory: %@", comment: "Status shown when creating installation directory"), decodedPath))
         try FileManager.default.createDirectory(
             at: packagePath,
             withIntermediateDirectories: true,
