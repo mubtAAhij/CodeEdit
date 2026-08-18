@@ -55,13 +55,21 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     ProgressView {
-                        Text(String(localized: "source-control.navigator.history.loading-history", defaultValue: "Loading History", comment: "Placeholder title while source control history is loading"))
+                        Text(String(
+                            localized: "source-control.navigator.history.loading-history",
+                            defaultValue: "Loading History",
+                            comment: "Placeholder title while source control history is loading"
+                        ))
                     }
                     Spacer()
                 }
             case .ready:
                 if commitHistory.isEmpty {
-                    CEContentUnavailableView(String(localized: "source-control.navigator.history.no-history", defaultValue: "No History", comment: "Empty state title when no source control history is available"))
+                    CEContentUnavailableView(String(
+                        localized: "source-control.navigator.history.no-history",
+                        defaultValue: "No History",
+                        comment: "Empty state title when no source control history is available"
+                    ))
                 } else {
                     GeometryReader { geometry in
                         ZStack {
@@ -89,7 +97,11 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     CEContentUnavailableView(
-                        String(localized: "source-control.navigator.history.error-loading-history", defaultValue: "Error Loading History", comment: "Error title shown when loading source control history fails"),
+                        String(
+                            localized: "source-control.navigator.history.error-loading-history",
+                            defaultValue: "Error Loading History",
+                            comment: "Error title shown when loading source control history fails"
+                        ),
                         description: error.localizedDescription,
                         systemImage: "exclamationmark.triangle"
                     ) {
@@ -98,7 +110,11 @@ struct SourceControlNavigatorHistoryView: View {
                                 await updateCommitHistory()
                             }
                         } label: {
-                            Text(String(localized: "source-control.navigator.history.retry", defaultValue: "Retry", comment: "Button title to retry loading source control history"))
+                            Text(String(
+                                localized: "source-control.navigator.history.retry",
+                                defaultValue: "Retry",
+                                comment: "Button title to retry loading source control history"
+                            ))
                         }
                     }
                     Spacer()
