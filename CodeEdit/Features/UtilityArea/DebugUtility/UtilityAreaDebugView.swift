@@ -89,12 +89,20 @@ struct UtilityAreaDebugView: View {
                         : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
                     )
                 } else {
-                    CEContentUnavailableView(String(localized: "utility-area.debug.no-task-selected", defaultValue: "No Task Selected", comment: "Empty state message when no task is selected in debug utility"))
+                    CEContentUnavailableView(String(
+                        localized: "utility-area.debug.no-task-selected",
+                        defaultValue: "No Task Selected",
+                        comment: "Empty state message when no task is selected in debug utility"
+                    ))
                 }
             }
         } leadingSidebar: { _ in
             ZStack {
-                Text(String(localized: "utility-area.debug.no-tasks-running", defaultValue: "No Tasks are Running", comment: "Empty state message when no tasks are currently running"))
+                Text(String(
+                    localized: "utility-area.debug.no-tasks-running",
+                    defaultValue: "No Tasks are Running",
+                    comment: "Empty state message when no tasks are currently running"
+                ))
                     .font(.system(size: 16))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -112,7 +120,11 @@ struct UtilityAreaDebugView: View {
                                         Button {
                                             taskManager.deleteTask(taskID: taskID)
                                         } label: {
-                                            Text(String(localized: "utility-area.debug.delete", defaultValue: "Delete", comment: "Button title to delete selected debug task entry"))
+                                            Text(String(
+                                                localized: "utility-area.debug.delete",
+                                                defaultValue: "Delete",
+                                                comment: "Button title to delete selected debug task entry"
+                                            ))
                                         }
                                     }
                                 )
