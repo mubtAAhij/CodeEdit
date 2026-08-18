@@ -497,6 +497,12 @@
             "state": "translated",
             "value": "Step %d: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paso %d: %@"
+          }
         }
       }
     },
@@ -2848,6 +2854,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%d selected"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d seleccionados"
           }
         }
       }
@@ -6730,6 +6742,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invalid response received: %d"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Respuesta inválida recibida: %d"
           }
         }
       }
