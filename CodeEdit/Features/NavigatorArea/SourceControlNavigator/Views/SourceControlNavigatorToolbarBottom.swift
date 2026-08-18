@@ -17,7 +17,11 @@ struct SourceControlNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             sourceControlMenu
             PaneTextField(
-                String(localized: "source-control-navigator.toolbar.filter", defaultValue: "Filter", comment: "Filter label in source control navigator toolbar"),
+                String(
+                    localized: "source-control-navigator.toolbar.filter",
+                    defaultValue: "Filter",
+                    comment: "Filter label in source control navigator toolbar"
+                ),
                 text: $text,
                 leadingAccessories: {
                     Image(
@@ -31,7 +35,11 @@ struct SourceControlNavigatorToolbarBottom: View {
                         : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help(String(localized: "source-control-navigator.toolbar.filter-changes-navigator", defaultValue: "Filter Changes Navigator", comment: "Accessibility label for filtering source control changes"))
+                    .help(String(
+                        localized: "source-control-navigator.toolbar.filter-changes-navigator",
+                        defaultValue: "Filter Changes Navigator",
+                        comment: "Accessibility label for filtering source control changes"
+                    ))
                 },
                 clearable: true
             )
@@ -47,14 +55,22 @@ struct SourceControlNavigatorToolbarBottom: View {
 
     private var sourceControlMenu: some View {
         Menu {
-            Button(String(localized: "source-control-navigator.toolbar.discard-all-changes", defaultValue: "Discard All Changes...", comment: "Menu action title to discard all source control changes")) {
+            Button(String(
+                localized: "source-control-navigator.toolbar.discard-all-changes",
+                defaultValue: "Discard All Changes...",
+                comment: "Menu action title to discard all source control changes"
+            )) {
                 if sourceControlManager.changedFiles.isEmpty {
                     sourceControlManager.noChangesToDiscardAlertIsPresented = true
                 } else {
                     sourceControlManager.discardAllAlertIsPresented = true
                 }
             }
-            Button(String(localized: "source-control-navigator.toolbar.stash-changes", defaultValue: "Stash Changes...", comment: "Menu action title to stash source control changes")) {
+            Button(String(
+                localized: "source-control-navigator.toolbar.stash-changes",
+                defaultValue: "Stash Changes...",
+                comment: "Menu action title to stash source control changes"
+            )) {
                 if sourceControlManager.changedFiles.isEmpty {
                     sourceControlManager.noChangesToStashAlertIsPresented = true
                 } else {
