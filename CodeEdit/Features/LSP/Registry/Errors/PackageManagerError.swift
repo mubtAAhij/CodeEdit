@@ -17,15 +17,35 @@ enum PackageManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unknown:
-            String(localized: "lsp.registry.package-manager-error.unknown-error-occurred", defaultValue: "Unknown error occurred", comment: "Generic fallback package manager error message")
+            String(
+                localized: "lsp.registry.package-manager-error.unknown-error-occurred",
+                defaultValue: "Unknown error occurred",
+                comment: "Generic fallback package manager error message"
+            )
         case .packageManagerNotInstalled:
-            String(localized: "lsp.registry.package-manager-error.package-manager-not-installed", defaultValue: "The required package manager is not installed.", comment: "Error message when required package manager binary is unavailable")
+            String(
+                localized: "lsp.registry.package-manager-error.package-manager-not-installed",
+                defaultValue: "The required package manager is not installed.",
+                comment: "Error message when required package manager binary is unavailable"
+            )
         case .initializationFailed:
-            String(localized: "lsp.registry.package-manager-error.install-directory-init-failed", defaultValue: "Installation directory initialization failed.", comment: "Error message when installation directory initialization fails")
+            String(
+                localized: "lsp.registry.package-manager-error.install-directory-init-failed",
+                defaultValue: "Installation directory initialization failed.",
+                comment: "Error message when installation directory initialization fails"
+            )
         case .installationFailed:
-            String(localized: "lsp.registry.package-manager-error.package-installation-failed", defaultValue: "Package installation failed.", comment: "Error message when package installation fails")
+            String(
+                localized: "lsp.registry.package-manager-error.package-installation-failed",
+                defaultValue: "Package installation failed.",
+                comment: "Error message when package installation fails"
+            )
         case .invalidConfiguration:
-            String(localized: "lsp.registry.package-manager-error.invalid-installation-configuration", defaultValue: "The package registry contained an invalid installation configuration.", comment: "Error message when registry installation configuration is invalid")
+            String(
+                localized: "lsp.registry.package-manager-error.invalid-installation-configuration",
+                defaultValue: "The package registry contained an invalid installation configuration.",
+                comment: "Error message when registry installation configuration is invalid"
+            )
         }
     }
 
