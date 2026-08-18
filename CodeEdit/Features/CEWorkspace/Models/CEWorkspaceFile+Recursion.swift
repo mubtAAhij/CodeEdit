@@ -84,7 +84,11 @@ extension CEWorkspaceFile {
             } else {
                 // Disabling for debug line.
                 // swiftlint:disable:next line_length
-                childDetails += String(format: String(localized: "ceworkspace.file.recursion.children-not-loaded", defaultValue: "\n%@%@ Children Not Loaded", comment: "Tree output line indicating child files are not loaded yet"), String(repeating: "|  ", count: max(tabCount - 1, 0)), (tabCount != 0 ? "╰--" : ""))
+                childDetails += String(format: String(
+                    localized: "ceworkspace.file.recursion.children-not-loaded",
+                    defaultValue: "\n%@%@ Children Not Loaded",
+                    comment: "Tree output line indicating child files are not loaded yet"
+                ), String(repeating: "|  ", count: max(tabCount - 1, 0)), (tabCount != 0 ? "╰--" : ""))
             }
             return childDetails
         }
