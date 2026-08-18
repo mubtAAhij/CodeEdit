@@ -12,22 +12,46 @@ extension CodeEditWindowController {
     /// These are example items that added as commands to command palette
     func registerCommands() {
         CommandManager.shared.addCommand(
-            name: String(localized: "window-controller.extensions.quick-open.title", defaultValue: "Quick Open", comment: "Toolbar or command title for quick open panel"),
-            title: String(localized: "window-controller.extensions.quick-open.accessibility-label", defaultValue: "Quick Open", comment: "Accessibility label for quick open control"),
+            name: String(
+                localized: "window-controller.extensions.quick-open.title",
+                defaultValue: "Quick Open",
+                comment: "Toolbar or command title for quick open panel"
+            ),
+            title: String(
+                localized: "window-controller.extensions.quick-open.accessibility-label",
+                defaultValue: "Quick Open",
+                comment: "Accessibility label for quick open control"
+            ),
             id: "quick_open",
             command: { [weak self] in self?.openQuickly(nil) }
         )
 
         CommandManager.shared.addCommand(
-            name: String(localized: "window-controller.extensions.toggle-navigator.title", defaultValue: "Toggle Navigator", comment: "Toolbar or command title for toggling navigator sidebar"),
-            title: String(localized: "window-controller.extensions.toggle-navigator.accessibility-label", defaultValue: "Toggle Navigator", comment: "Accessibility label for navigator toggle control"),
+            name: String(
+                localized: "window-controller.extensions.toggle-navigator.title",
+                defaultValue: "Toggle Navigator",
+                comment: "Toolbar or command title for toggling navigator sidebar"
+            ),
+            title: String(
+                localized: "window-controller.extensions.toggle-navigator.accessibility-label",
+                defaultValue: "Toggle Navigator",
+                comment: "Accessibility label for navigator toggle control"
+            ),
             id: "toggle_left_sidebar",
             command: { [weak self] in self?.toggleFirstPanel() }
         )
 
         CommandManager.shared.addCommand(
-            name: String(localized: "window-controller.extensions.toggle-inspector.title", defaultValue: "Toggle Inspector", comment: "Toolbar or command title for toggling inspector sidebar"),
-            title: String(localized: "window-controller.extensions.toggle-inspector.accessibility-label", defaultValue: "Toggle Inspector", comment: "Accessibility label for inspector toggle control"),
+            name: String(
+                localized: "window-controller.extensions.toggle-inspector.title",
+                defaultValue: "Toggle Inspector",
+                comment: "Toolbar or command title for toggling inspector sidebar"
+            ),
+            title: String(
+                localized: "window-controller.extensions.toggle-inspector.accessibility-label",
+                defaultValue: "Toggle Inspector",
+                comment: "Accessibility label for inspector toggle control"
+            ),
             id: "toggle_right_sidebar",
             command: { [weak self] in self?.toggleLastPanel() }
         )
@@ -105,7 +129,11 @@ extension CodeEditWindowController {
             settingsWindow.contentView = NSHostingView(rootView: contentView)
             settingsWindow.titlebarAppearsTransparent = true
             settingsWindow.setContentSize(NSSize(width: 515, height: 515))
-            settingsWindow.setAccessibilityTitle(String(localized: "window-controller.extensions.workspace-settings", defaultValue: "Workspace Settings", comment: "Menu item title to open workspace settings"))
+            settingsWindow.setAccessibilityTitle(String(
+                localized: "window-controller.extensions.workspace-settings",
+                defaultValue: "Workspace Settings",
+                comment: "Menu item title to open workspace settings"
+            ))
 
             window.beginSheet(settingsWindow, completionHandler: nil)
         }
