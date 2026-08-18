@@ -93,7 +93,7 @@ struct WorkspaceView: View {
                             try await sourceControlManager.refreshStashEntries()
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Error refreshing Git data",
+                                title: String(localized: "workspace.git.error-refreshing-data", defaultValue: "Error refreshing Git data", comment: "Error message shown when refreshing git data fails"),
                                 error: error
                             )
                         }
@@ -127,7 +127,7 @@ struct WorkspaceView: View {
                 return true
             }
             .accessibilityElement(children: .contain)
-            .accessibilityLabel("workspace area")
+            .accessibilityLabel(String(localized: "workspace.area.accessibility-label", defaultValue: "workspace area", comment: "Accessibility label for workspace area"))
         }
     }
 
