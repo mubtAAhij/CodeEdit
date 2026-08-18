@@ -18,17 +18,41 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            String(localized: "lsp.registry.registry-manager-error.package-already-installing", defaultValue: "A package is already being installed.", comment: "Error message when another package installation is already in progress")
+            String(
+                localized: "lsp.registry.registry-manager-error.package-already-installing",
+                defaultValue: "A package is already being installed.",
+                comment: "Error message when another package installation is already in progress"
+            )
         case .invalidResponse(let statusCode):
-            String(format: String(localized: "lsp.registry.registry-manager-error.invalid-response-received", defaultValue: "Invalid response received: %d", comment: "Error message when registry HTTP response status code is invalid"), statusCode)
+            String(format: String(
+                localized: "lsp.registry.registry-manager-error.invalid-response-received",
+                defaultValue: "Invalid response received: %d",
+                comment: "Error message when registry HTTP response status code is invalid"
+            ), statusCode)
         case .downloadFailed(let url, _):
-            String(format: String(localized: "lsp.registry.registry-manager-error.download-error", defaultValue: "Download for %@ error.", comment: "Error message when downloading package data fails for a URL"), "\(url)")
+            String(format: String(
+                localized: "lsp.registry.registry-manager-error.download-error",
+                defaultValue: "Download for %@ error.",
+                comment: "Error message when downloading package data fails for a URL"
+            ), "\(url)")
         case .maxRetriesExceeded(let url, _):
-            String(format: String(localized: "lsp.registry.registry-manager-error.maximum-retries-exceeded", defaultValue: "Maximum retries exceeded for url: %@", comment: "Error message when retry limit is exceeded for a URL"), "\(url)")
+            String(format: String(
+                localized: "lsp.registry.registry-manager-error.maximum-retries-exceeded",
+                defaultValue: "Maximum retries exceeded for url: %@",
+                comment: "Error message when retry limit is exceeded for a URL"
+            ), "\(url)")
         case .writeFailed:
-            String(localized: "lsp.registry.registry-manager-error.failed-write-file", defaultValue: "Failed to write to file.", comment: "Error message when writing downloaded package data to file fails")
+            String(
+                localized: "lsp.registry.registry-manager-error.failed-write-file",
+                defaultValue: "Failed to write to file.",
+                comment: "Error message when writing downloaded package data to file fails"
+            )
         case .failedToSaveRegistryCache:
-            String(localized: "lsp.registry.registry-manager-error.failed-write-cache", defaultValue: "Failed to write to registry cache.", comment: "Error message when writing package metadata to registry cache fails")
+            String(
+                localized: "lsp.registry.registry-manager-error.failed-write-cache",
+                defaultValue: "Failed to write to registry cache.",
+                comment: "Error message when writing package metadata to registry cache fails"
+            )
         }
     }
 
