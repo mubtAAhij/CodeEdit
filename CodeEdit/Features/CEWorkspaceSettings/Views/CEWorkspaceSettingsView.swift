@@ -21,12 +21,12 @@ struct CEWorkspaceSettingsView: View {
             Form {
                 Section {
                     TextField(
-                        "Name",
+                        String(localized: "ce-workspace-settings.view.name-label", defaultValue: "Name", comment: "Label for workspace name field"),
                         text: $workspaceSettingsManager.settings.project.projectName
                     )
-                    .accessibilityLabel("Workspace Name")
+                    .accessibilityLabel(String(localized: "ce-workspace-settings.view.workspace-name-placeholder", defaultValue: "Workspace Name", comment: "Placeholder text for workspace name input"))
                 } header: {
-                    Text("Workspace")
+                    Text(String(localized: "ce-workspace-settings.view.workspace-section", defaultValue: "Workspace", comment: "Section title for workspace settings"))
                         .accessibilityHidden(true)
                 }
 
@@ -37,7 +37,7 @@ struct CEWorkspaceSettingsView: View {
                         showAddTaskSheet: $showAddTaskSheet
                     )
                 } header: {
-                    Text("Tasks")
+                    Text(String(localized: "ce-workspace-settings.view.tasks-section", defaultValue: "Tasks", comment: "Section title for workspace tasks settings"))
                 } footer: {
                     HStack {
                         Spacer()
@@ -45,7 +45,7 @@ struct CEWorkspaceSettingsView: View {
                             selectedTaskID = nil
                             showAddTaskSheet = true
                         } label: {
-                            Text("Add Task...")
+                            Text(String(localized: "ce-workspace-settings.view.add-task", defaultValue: "Add Task...", comment: "Button title to add a task in workspace settings"))
                         }
                     }
                 }
@@ -59,7 +59,7 @@ struct CEWorkspaceSettingsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text(String(localized: "ce-workspace-settings.view.done", defaultValue: "Done", comment: "Button title to close workspace settings"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
