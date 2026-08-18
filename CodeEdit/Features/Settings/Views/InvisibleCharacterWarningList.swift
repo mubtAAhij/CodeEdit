@@ -33,9 +33,21 @@ struct InvisibleCharacterWarningList: View {
                     }
                 }
             ),
-            keyColumnName: String(localized: "settings.invisible-character-warning-list.unicode-character-code", defaultValue: "Unicode Character Code", comment: "Column header for unicode character code"),
-            valueColumnName: String(localized: "settings.invisible-character-warning-list.notes", defaultValue: "Notes", comment: "Column header for warning character notes"),
-            newItemInstruction: String(localized: "settings.invisible-character-warning-list.add-character-as-hexidecimal-unicode-value", defaultValue: "Add A Character As A Hexidecimal Unicode Value", comment: "Button title to add warning character by hexadecimal unicode value"),
+            keyColumnName: String(
+                localized: "settings.invisible-character-warning-list.unicode-character-code",
+                defaultValue: "Unicode Character Code",
+                comment: "Column header for unicode character code"
+            ),
+            valueColumnName: String(
+                localized: "settings.invisible-character-warning-list.notes",
+                defaultValue: "Notes",
+                comment: "Column header for warning character notes"
+            ),
+            newItemInstruction: String(
+                localized: "settings.invisible-character-warning-list.add-character-as-hexidecimal-unicode-value",
+                defaultValue: "Add A Character As A Hexidecimal Unicode Value",
+                comment: "Button title to add warning character by hexadecimal unicode value"
+            ),
             actionBarTrailing: {
                 Button {
                     // Add defaults without removing user's data. We do still override notes here.
@@ -46,7 +58,11 @@ struct InvisibleCharacterWarningList: View {
                         }
                     )
                 } label: {
-                    Text(String(localized: "settings.invisible-character-warning-list.restore-defaults", defaultValue: "Restore Defaults", comment: "Action to restore default invisible warning characters"))
+                    Text(String(
+                        localized: "settings.invisible-character-warning-list.restore-defaults",
+                        defaultValue: "Restore Defaults",
+                        comment: "Action to restore default invisible warning characters"
+                    ))
                 }
                 .buttonStyle(PlainButtonStyle())
                 .font(.system(size: 11, weight: .medium))
@@ -58,7 +74,11 @@ struct InvisibleCharacterWarningList: View {
         .frame(minHeight: 96, maxHeight: .infinity)
         .overlay {
             if items.isEmpty {
-                Text(String(localized: "settings.invisible-character-warning-list.no-warning-characters", defaultValue: "No warning characters", comment: "Empty state text when no warning characters are configured"))
+                Text(String(
+                    localized: "settings.invisible-character-warning-list.no-warning-characters",
+                    defaultValue: "No warning characters",
+                    comment: "Empty state text when no warning characters are configured"
+                ))
                     .foregroundStyle(Color(.secondaryLabelColor))
             }
         }
