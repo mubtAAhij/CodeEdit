@@ -26,11 +26,19 @@ struct StopTaskToolbarButton: View {
                     Button {
                         taskManager.terminateActiveTask()
                     } label: {
-                        Label(String(localized: "tasks.toolbar-button.stop.title", defaultValue: "Stop", comment: "Button title to stop a selected task"), systemImage: "stop.fill")
+                        Label(String(
+                            localized: "tasks.toolbar-button.stop.title",
+                            defaultValue: "Stop",
+                            comment: "Button title to stop a selected task"
+                        ), systemImage: "stop.fill")
                             .labelStyle(.iconOnly)
                             .opacity(activeState == .inactive ? 0.5 : 1.0)
                             .font(.system(size: 15, weight: .regular))
-                            .help(String(localized: "tasks.toolbar-button.stop.accessibility-label", defaultValue: "Stop selected task", comment: "Accessibility label for stop task toolbar button"))
+                            .help(String(
+                                localized: "tasks.toolbar-button.stop.accessibility-label",
+                                defaultValue: "Stop selected task",
+                                comment: "Accessibility label for stop task toolbar button"
+                            ))
                             .frame(width: 28)
                             .offset(y: 1.5)
                     }
