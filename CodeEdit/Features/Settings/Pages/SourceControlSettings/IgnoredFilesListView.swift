@@ -16,7 +16,7 @@ struct IgnoredFilesListView: View {
             selection: $model.selection,
             addPattern: model.addPattern,
             removePatterns: model.removePatterns,
-            emptyMessage: "No ignored files"
+            emptyMessage: String(localized: "settings.source-control.ignored-files.none", defaultValue: "No ignored files", comment: "Empty state text for ignored files list")
         )
     }
 }
