@@ -48,7 +48,11 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
         menu.addItem(.separator())
 
         let clearMenuItem = NSMenuItem(
-            title: String(localized: "window-commands.recent-projects.clear-menu", defaultValue: "Clear Menu", comment: "Menu item to clear recent projects"),
+            title: String(
+                localized: "window-commands.recent-projects.clear-menu",
+                defaultValue: "Clear Menu",
+                comment: "Menu item to clear recent projects"
+            ),
             action: #selector(clearMenuItemClicked(_:)),
             keyEquivalent: ""
         )
