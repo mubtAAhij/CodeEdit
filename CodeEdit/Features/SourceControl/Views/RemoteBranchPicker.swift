@@ -34,15 +34,27 @@ struct RemoteBranchPicker: View {
                     .tag(remote as GitRemote?)
                 }
                 Divider()
-                Text(String(localized: "source-control.remote-branch-picker.add-existing-remote", defaultValue: "Add Existing Remote...", comment: "Button label to add an existing remote repository"))
+                Text(String(
+                    localized: "source-control.remote-branch-picker.add-existing-remote",
+                    defaultValue: "Add Existing Remote...",
+                    comment: "Button label to add an existing remote repository"
+                ))
                     .tag(GitRemote?(nil))
             } label: {
-                Text(String(localized: "source-control.remote-branch-picker.remote", defaultValue: "Remote", comment: "Section header for remote selection in branch picker"))
+                Text(String(
+                    localized: "source-control.remote-branch-picker.remote",
+                    defaultValue: "Remote",
+                    comment: "Section header for remote selection in branch picker"
+                ))
             }
             Picker(selection: $branch) {
                 if shouldCreateBranch {
                     Label {
-                        Text(String(format: String(localized: "source-control.remote-branch-picker.create-branch", defaultValue: "%@ (Create)", comment: "Menu option to create a new branch from current branch name"), "\(sourceControlManager.currentBranch?.name ?? "")"))
+                        Text(String(format: String(
+                            localized: "source-control.remote-branch-picker.create-branch",
+                            defaultValue: "%@ (Create)",
+                            comment: "Menu option to create a new branch from current branch name"
+                        ), "\(sourceControlManager.currentBranch?.name ?? "")"))
                     } icon: {
                         Image(symbol: "branch")
                     }
@@ -59,7 +71,11 @@ struct RemoteBranchPicker: View {
                     }
                 }
             } label: {
-                Text(String(localized: "source-control.remote-branch-picker.branch", defaultValue: "Branch", comment: "Section header for branch selection in remote branch picker"))
+                Text(String(
+                    localized: "source-control.remote-branch-picker.branch",
+                    defaultValue: "Branch",
+                    comment: "Section header for branch selection in remote branch picker"
+                ))
             }
         }
         .onAppear {
