@@ -25,7 +25,11 @@ extension ProjectNavigatorViewController: OutlineTableViewCellDelegate {
             workspace?.editorManager?.openTab(item: newFile)
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: String(localized: "project-navigator.outline-cell.dismiss.action", defaultValue: "Dismiss", comment: "Dismiss action title in project navigator outline cell delegate"))
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.outline-cell.dismiss.action",
+                defaultValue: "Dismiss",
+                comment: "Dismiss action title in project navigator outline cell delegate"
+            ))
             alert.runModal()
         }
     }
@@ -35,7 +39,11 @@ extension ProjectNavigatorViewController: OutlineTableViewCellDelegate {
             try workspace?.workspaceFileManager?.copy(file: file, to: destination)
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: String(localized: "project-navigator.outline-cell.dismiss.button", defaultValue: "Dismiss", comment: "Dismiss button label in project navigator outline cell delegate"))
+            alert.addButton(withTitle: String(
+                localized: "project-navigator.outline-cell.dismiss.button",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button label in project navigator outline cell delegate"
+            ))
             alert.runModal()
         }
     }
