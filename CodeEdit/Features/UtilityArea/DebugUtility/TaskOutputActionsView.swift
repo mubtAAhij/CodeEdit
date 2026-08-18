@@ -26,7 +26,11 @@ struct TaskOutputActionsView: View {
                     .foregroundStyle(.green)
             }
             .buttonStyle(.icon)
-            .help(String(localized: "utility-area.debug.task-output-actions.run-task", defaultValue: "Run Task", comment: "Tooltip for running selected task"))
+            .help(String(
+                localized: "utility-area.debug.task-output-actions.run-task",
+                defaultValue: "Run Task",
+                comment: "Tooltip for running selected task"
+            ))
 
             Button {
                 taskManager.terminateTask(taskID: activeTask.task.id)
@@ -38,7 +42,11 @@ struct TaskOutputActionsView: View {
             }
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
-            .help(String(localized: "utility-area.debug.task-output-actions.stop-task", defaultValue: "Stop Task", comment: "Tooltip for stopping running task"))
+            .help(String(
+                localized: "utility-area.debug.task-output-actions.stop-task",
+                defaultValue: "Stop Task",
+                comment: "Tooltip for stopping running task"
+            ))
 
             Button {
                 if activeTask.status == .stopped {
@@ -56,7 +64,15 @@ struct TaskOutputActionsView: View {
             .buttonStyle(.icon)
             .disabled(!(activeTask.status == .running || activeTask.status == .stopped))
             .opacity(activeTask.status == .running || activeTask.status == .stopped ? 1 : 0.5)
-            .help(activeTask.status == .stopped ? String(localized: "utility-area.debug.task-output-actions.resume-task", defaultValue: "Resume Task", comment: "Tooltip for resuming suspended task") : String(localized: "utility-area.debug.task-output-actions.suspend-task", defaultValue: "Suspend Task", comment: "Tooltip for suspending running task"))
+            .help(activeTask.status == .stopped ? String(
+                localized: "utility-area.debug.task-output-actions.resume-task",
+                defaultValue: "Resume Task",
+                comment: "Tooltip for resuming suspended task"
+            ) : String(
+                localized: "utility-area.debug.task-output-actions.suspend-task",
+                defaultValue: "Suspend Task",
+                comment: "Tooltip for suspending running task"
+            ))
 
             Divider()
 
@@ -68,7 +84,11 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "text.append")
             }
             .buttonStyle(.icon)
-            .help(String(localized: "utility-area.debug.task-output-actions.scroll-to-bottom", defaultValue: "Scroll down to the bottom", comment: "Tooltip for scrolling task output to latest line"))
+            .help(String(
+                localized: "utility-area.debug.task-output-actions.scroll-to-bottom",
+                defaultValue: "Scroll down to the bottom",
+                comment: "Tooltip for scrolling task output to latest line"
+            ))
 
             Button {
                 activeTask.clearOutput()
@@ -76,7 +96,11 @@ struct TaskOutputActionsView: View {
                 Image(systemName: "trash")
             }
             .buttonStyle(.icon)
-            .help(String(localized: "utility-area.debug.task-output-actions.clear-output", defaultValue: "Clear Output", comment: "Tooltip for clearing task output"))
+            .help(String(
+                localized: "utility-area.debug.task-output-actions.clear-output",
+                defaultValue: "Clear Output",
+                comment: "Tooltip for clearing task output"
+            ))
         }
     }
 }
