@@ -60,7 +60,11 @@ private struct NewListTableItemView<HeaderView: View>: View {
                                 Text(key).tag(key)
                             }
                             Divider()
-                            Text(String(localized: "code-edit-ui.key-value-table.no-selection", defaultValue: "No Selection", comment: "Empty state title when no key-value item is selected")).tag("")
+                            Text(String(
+                                localized: "code-edit-ui.key-value-table.no-selection",
+                                defaultValue: "No Selection",
+                                comment: "Empty state title when no key-value item is selected"
+                            )).tag("")
                         }
                     }
                     TextField(valueColumnName, text: $value)
@@ -84,10 +88,18 @@ private struct NewListTableItemView<HeaderView: View>: View {
 
             HStack {
                 Spacer()
-                Button(String(localized: "code-edit-ui.key-value-table.cancel", defaultValue: "Cancel", comment: "Button title to cancel key-value item editing")) {
+                Button(String(
+                    localized: "code-edit-ui.key-value-table.cancel",
+                    defaultValue: "Cancel",
+                    comment: "Button title to cancel key-value item editing"
+                )) {
                     dismiss()
                 }
-                Button(String(localized: "code-edit-ui.key-value-table.add", defaultValue: "Add", comment: "Button title to add key-value item")) {
+                Button(String(
+                    localized: "code-edit-ui.key-value-table.add",
+                    defaultValue: "Add",
+                    comment: "Button title to add key-value item"
+                )) {
                     if !key.isEmpty && !value.isEmpty {
                         completion(key, value)
                     }
@@ -146,10 +158,18 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         .contextMenu(
             forSelectionType: UUID.self,
             menu: { selectedItems in
-                Button(String(localized: "code-edit-ui.key-value-table.edit", defaultValue: "Edit", comment: "Context menu action to edit a key-value item")) {
+                Button(String(
+                    localized: "code-edit-ui.key-value-table.edit",
+                    defaultValue: "Edit",
+                    comment: "Context menu action to edit a key-value item"
+                )) {
                     editItem(id: selectedItems.first)
                 }
-                Button(String(localized: "code-edit-ui.key-value-table.remove", defaultValue: "Remove", comment: "Context menu action to remove a key-value item")) {
+                Button(String(
+                    localized: "code-edit-ui.key-value-table.remove",
+                    defaultValue: "Remove",
+                    comment: "Context menu action to remove a key-value item"
+                )) {
                     removeItem(selectedItems)
                 }
             },
