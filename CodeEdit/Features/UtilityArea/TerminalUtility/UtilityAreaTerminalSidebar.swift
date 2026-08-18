@@ -33,11 +33,23 @@ struct UtilityAreaTerminalSidebar: View {
         .listStyle(.automatic)
         .accentColor(.secondary)
         .contextMenu {
-            Button(String(localized: "utility-area.terminal.sidebar.new-terminal", defaultValue: "New Terminal", comment: "Menu action to create a new terminal")) {
+            Button(String(
+                localized: "utility-area.terminal.sidebar.new-terminal",
+                defaultValue: "New Terminal",
+                comment: "Menu action to create a new terminal"
+            )) {
                 utilityAreaViewModel.addTerminal(rootURL: workspace.fileURL)
             }
-            Menu(String(localized: "utility-area.terminal.sidebar.new-terminal-with-profile", defaultValue: "New Terminal With Profile", comment: "Menu action to create a new terminal using a profile")) {
-                Button(String(localized: "utility-area.terminal.sidebar.default-profile", defaultValue: "Default", comment: "Default terminal profile label")) {
+            Menu(String(
+                localized: "utility-area.terminal.sidebar.new-terminal-with-profile",
+                defaultValue: "New Terminal With Profile",
+                comment: "Menu action to create a new terminal using a profile"
+            )) {
+                Button(String(
+                    localized: "utility-area.terminal.sidebar.default-profile",
+                    defaultValue: "Default",
+                    comment: "Default terminal profile label"
+                )) {
                     utilityAreaViewModel.addTerminal(rootURL: workspace.fileURL)
                 }
                 Divider()
@@ -71,7 +83,11 @@ struct UtilityAreaTerminalSidebar: View {
             Spacer()
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "utility-area.terminal.sidebar.terminals", defaultValue: "Terminals", comment: "Section title for terminal list in sidebar"))
+        .accessibilityLabel(String(
+            localized: "utility-area.terminal.sidebar.terminals",
+            defaultValue: "Terminals",
+            comment: "Section title for terminal list in sidebar"
+        ))
         .accessibilityIdentifier("terminalsList")
     }
 }
