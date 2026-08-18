@@ -13,41 +13,77 @@ struct SearchModeModel: Hashable {
     let children: [SearchModeModel]
     let needSelectionHighlight: Bool
 
-    static let Containing = SearchModeModel(title: String(localized: "search.mode.containing", defaultValue: "Containing", comment: "Search mode label for matching text containing query"), children: [], needSelectionHighlight: false)
+    static let Containing = SearchModeModel(title: String(
+        localized: "search.mode.containing",
+        defaultValue: "Containing",
+        comment: "Search mode label for matching text containing query"
+    ), children: [], needSelectionHighlight: false)
     static let MatchingWord = SearchModeModel(
-        title: String(localized: "search.mode.matching-word", defaultValue: "Matching Word", comment: "Search mode label for matching whole words"),
+        title: String(
+            localized: "search.mode.matching-word",
+            defaultValue: "Matching Word",
+            comment: "Search mode label for matching whole words"
+        ),
         children: [],
         needSelectionHighlight: true
     )
     static let StartingWith = SearchModeModel(
-        title: String(localized: "search.mode.starting-with", defaultValue: "Starting With", comment: "Search mode label for matching text starting with query"),
+        title: String(
+            localized: "search.mode.starting-with",
+            defaultValue: "Starting With",
+            comment: "Search mode label for matching text starting with query"
+        ),
         children: [],
         needSelectionHighlight: true
     )
-    static let EndingWith = SearchModeModel(title: String(localized: "search.mode.ending-with", defaultValue: "Ending With", comment: "Search mode label for matching text ending with query"), children: [], needSelectionHighlight: true)
+    static let EndingWith = SearchModeModel(title: String(
+        localized: "search.mode.ending-with",
+        defaultValue: "Ending With",
+        comment: "Search mode label for matching text ending with query"
+    ), children: [], needSelectionHighlight: true)
 
     static let Text = SearchModeModel(
-        title: String(localized: "search.mode.text", defaultValue: "Text", comment: "Search mode label for plain text search"),
+        title: String(
+            localized: "search.mode.text",
+            defaultValue: "Text",
+            comment: "Search mode label for plain text search"
+        ),
         children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
         needSelectionHighlight: false
     )
     static let References = SearchModeModel(
-        title: String(localized: "search.mode.references", defaultValue: "References", comment: "Search mode label for finding symbol references"),
+        title: String(
+            localized: "search.mode.references",
+            defaultValue: "References",
+            comment: "Search mode label for finding symbol references"
+        ),
         children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
         needSelectionHighlight: true
     )
     static let Definitions = SearchModeModel(
-        title: String(localized: "search.mode.definitions", defaultValue: "Definitions", comment: "Search mode label for finding symbol definitions"),
+        title: String(
+            localized: "search.mode.definitions",
+            defaultValue: "Definitions",
+            comment: "Search mode label for finding symbol definitions"
+        ),
         children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
         needSelectionHighlight: true
     )
     static let RegularExpression = SearchModeModel(
-        title: String(localized: "search.mode.regular-expression", defaultValue: "Regular Expression", comment: "Search mode label for regex search"),
+        title: String(
+            localized: "search.mode.regular-expression",
+            defaultValue: "Regular Expression",
+            comment: "Search mode label for regex search"
+        ),
         children: [],
         needSelectionHighlight: true
     )
     static let CallHierarchy = SearchModeModel(
-        title: String(localized: "search.mode.call-hierarchy", defaultValue: "Call Hierarchy", comment: "Search mode label for call hierarchy lookup"),
+        title: String(
+            localized: "search.mode.call-hierarchy",
+            defaultValue: "Call Hierarchy",
+            comment: "Search mode label for call hierarchy lookup"
+        ),
         children: [],
         needSelectionHighlight: true
     )
