@@ -26,11 +26,23 @@ struct SourceControlPushView: View {
                         canCreateBranch: true
                     )
                 } header: {
-                    Text(String(localized: "source-control.push.push-local-changes-to", defaultValue: "Push local changes to", comment: "Label for selecting remote destination when pushing changes"))
+                    Text(String(
+                        localized: "source-control.push.push-local-changes-to",
+                        defaultValue: "Push local changes to",
+                        comment: "Label for selecting remote destination when pushing changes"
+                    ))
                 }
                 Section {
-                    Toggle(String(localized: "source-control.push.force", defaultValue: "Force", comment: "Toggle label to force push changes"), isOn: $sourceControlManager.operationForce)
-                    Toggle(String(localized: "source-control.push.include-tags", defaultValue: "Include Tags", comment: "Toggle label to include tags during push"), isOn: $sourceControlManager.operationIncludeTags)
+                    Toggle(String(
+                        localized: "source-control.push.force",
+                        defaultValue: "Force",
+                        comment: "Toggle label to force push changes"
+                    ), isOn: $sourceControlManager.operationForce)
+                    Toggle(String(
+                        localized: "source-control.push.include-tags",
+                        defaultValue: "Include Tags",
+                        comment: "Toggle label to include tags during push"
+                    ), isOn: $sourceControlManager.operationIncludeTags)
                 }
             }
             .formStyle(.grouped)
@@ -42,7 +54,11 @@ struct SourceControlPushView: View {
                         ProgressView()
                             .progressViewStyle(.circular)
                             .controlSize(.small)
-                        Text(String(localized: "source-control.push.pushing-changes", defaultValue: "Pushing changes...", comment: "Progress text shown while pushing changes"))
+                        Text(String(
+                            localized: "source-control.push.pushing-changes",
+                            defaultValue: "Pushing changes...",
+                            comment: "Progress text shown while pushing changes"
+                        ))
                             .font(.subheadline)
                     }
                 }
@@ -50,12 +66,20 @@ struct SourceControlPushView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text(String(localized: "source-control.push.cancel", defaultValue: "Cancel", comment: "Button title to cancel push operation"))
+                    Text(String(
+                        localized: "source-control.push.cancel",
+                        defaultValue: "Cancel",
+                        comment: "Button title to cancel push operation"
+                    ))
                         .frame(minWidth: 56)
                 }
                 .disabled(loading)
                 Button(action: submit) {
-                    Text(String(localized: "source-control.push.push", defaultValue: "Push", comment: "Button title to start push operation"))
+                    Text(String(
+                        localized: "source-control.push.push",
+                        defaultValue: "Push",
+                        comment: "Button title to start push operation"
+                    ))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -83,7 +107,11 @@ struct SourceControlPushView: View {
                 dismiss()
             } catch {
                 self.loading = false
-                await sourceControlManager.showAlertForError(title: String(localized: "source-control.push.failed-to-push", defaultValue: "Failed to push", comment: "Error title shown when push operation fails"), error: error)
+                await sourceControlManager.showAlertForError(title: String(
+                    localized: "source-control.push.failed-to-push",
+                    defaultValue: "Failed to push",
+                    comment: "Error title shown when push operation fails"
+                ), error: error)
             }
         }
     }
