@@ -15,7 +15,11 @@ struct SourceControlFetchView: View {
     @EnvironmentObject var workspace: WorkspaceDocument
 
     var projectName: String {
-        workspace.workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "source-control.fetch.empty", defaultValue: "Empty", comment: "Fallback title when no project name is available in fetch view")
+        workspace.workspaceFileManager?.folderUrl.lastPathComponent ?? String(
+            localized: "source-control.fetch.empty",
+            defaultValue: "Empty",
+            comment: "Fallback title when no project name is available in fetch view"
+        )
     }
 
     var body: some View {
@@ -25,9 +29,17 @@ struct SourceControlFetchView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(String(format: String(localized: "source-control.fetch.fetching-changes-for-project", defaultValue: "Fetching changes for “%@”...", comment: "Status title while fetching changes for selected project"), "\(projectName)"))
+                    Text(String(format: String(
+                        localized: "source-control.fetch.fetching-changes-for-project",
+                        defaultValue: "Fetching changes for “%@”...",
+                        comment: "Status title while fetching changes for selected project"
+                    ), "\(projectName)"))
                         .font(.headline)
-                    Text(String(localized: "source-control.fetch.description", defaultValue: "CodeEdit is fetching changes and updating the status of files in the local repository.", comment: "Description text explaining fetch operation"))
+                    Text(String(
+                        localized: "source-control.fetch.description",
+                        defaultValue: "CodeEdit is fetching changes and updating the status of files in the local repository.",
+                        comment: "Description text explaining fetch operation"
+                    ))
                         .font(.subheadline)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -40,14 +52,22 @@ struct SourceControlFetchView: View {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .controlSize(.small)
-                    Text(String(localized: "source-control.fetch.fetching-changes", defaultValue: "Fetching changes...", comment: "Progress label shown while fetching changes"))
+                    Text(String(
+                        localized: "source-control.fetch.fetching-changes",
+                        defaultValue: "Fetching changes...",
+                        comment: "Progress label shown while fetching changes"
+                    ))
                         .font(.subheadline)
                 }
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
-                    Text(String(localized: "source-control.fetch.cancel", defaultValue: "Cancel", comment: "Button title to cancel fetch operation"))
+                    Text(String(
+                        localized: "source-control.fetch.cancel",
+                        defaultValue: "Cancel",
+                        comment: "Button title to cancel fetch operation"
+                    ))
                         .frame(minWidth: 48)
                 }
             }
@@ -60,7 +80,11 @@ struct SourceControlFetchView: View {
                 try await sourceControlManager.fetch()
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: String(localized: "source-control.fetch.failed-to-fetch-changes", defaultValue: "Failed to fetch changes", comment: "Error title when fetch operation fails"), error: error)
+                await sourceControlManager.showAlertForError(title: String(
+                    localized: "source-control.fetch.failed-to-fetch-changes",
+                    defaultValue: "Failed to fetch changes",
+                    comment: "Error title when fetch operation fails"
+                ), error: error)
             }
         }
     }
