@@ -28,24 +28,44 @@ struct SourceControlNavigatorChangesList: View {
                 if selectedFiles.count == 1,
                    let file = selectedFiles.first {
                     Group {
-                        Button(String(localized: "source-control-navigator.changes-list.view-in-finder", defaultValue: "View in Finder", comment: "Context menu action to reveal file in Finder")) {
+                        Button(String(
+                            localized: "source-control-navigator.changes-list.view-in-finder",
+                            defaultValue: "View in Finder",
+                            comment: "Context menu action to reveal file in Finder"
+                        )) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button(String(localized: "source-control-navigator.changes-list.reveal-in-project-navigator", defaultValue: "Reveal in Project Navigator", comment: "Context menu action to reveal file in project navigator")) {}
+                        Button(String(
+                            localized: "source-control-navigator.changes-list.reveal-in-project-navigator",
+                            defaultValue: "Reveal in Project Navigator",
+                            comment: "Context menu action to reveal file in project navigator"
+                        )) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button(String(localized: "source-control-navigator.changes-list.open-in-new-tab", defaultValue: "Open in New Tab", comment: "Context menu action to open file in new tab")) {
+                        Button(String(
+                            localized: "source-control-navigator.changes-list.open-in-new-tab",
+                            defaultValue: "Open in New Tab",
+                            comment: "Context menu action to open file in new tab"
+                        )) {
                             openGitFile(file)
                         }
-                        Button(String(localized: "source-control-navigator.changes-list.open-in-new-window", defaultValue: "Open in New Window", comment: "Context menu action to open file in new window")) {}
+                        Button(String(
+                            localized: "source-control-navigator.changes-list.open-in-new-window",
+                            defaultValue: "Open in New Window",
+                            comment: "Context menu action to open file in new window"
+                        )) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
                         Group {
                             Divider()
-                            Button(String(format: String(localized: "source-control-navigator.changes-list.discard-changes-in-file", defaultValue: "Discard Changes in %@...", comment: "Context menu action to discard changes in selected file"), "\(file.fileURL.lastPathComponent)")) {
+                            Button(String(format: String(
+                                localized: "source-control-navigator.changes-list.discard-changes-in-file",
+                                defaultValue: "Discard Changes in %@...",
+                                comment: "Context menu action to discard changes in selected file"
+                            ), "\(file.fileURL.lastPathComponent)")) {
                                 sourceControlManager.discardChanges(for: file.fileURL)
                             }
                             Divider()
