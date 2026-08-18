@@ -21,7 +21,11 @@ struct WelcomeSubtitleView: View {
               let build = dict["ProductBuildVersion"] else {
             return ProcessInfo.processInfo.operatingSystemVersionString
         }
-        return String(format: String(localized: "welcome.subtitle.version-build.short", defaultValue: "%@ (%@)", comment: "Short version and build string shown in welcome subtitle"), "\(version)", "\(build)")
+        return String(format: String(
+            localized: "welcome.subtitle.version-build.short",
+            defaultValue: "%@ (%@)",
+            comment: "Short version and build string shown in welcome subtitle"
+        ), "\(version)", "\(build)")
     }
 
     private var xcodeVersion: String? {
@@ -35,13 +39,25 @@ struct WelcomeSubtitleView: View {
         else {
             return nil
         }
-        return String(format: String(localized: "welcome.subtitle.version-build.copy", defaultValue: "%@ (%@)", comment: "Version and build string used in copyable system info block"), "\(version)", "\(build)")
+        return String(format: String(
+            localized: "welcome.subtitle.version-build.copy",
+            defaultValue: "%@ (%@)",
+            comment: "Version and build string used in copyable system info block"
+        ), "\(version)", "\(build)")
     }
 
     private func copyInformation() {
         var copyString = "\(Bundle.displayName): \(appVersion)\(appVersionPostfix) (\(appBuild))\n"
-        copyString.append(String(format: String(localized: "welcome.subtitle.macos-version-line", defaultValue: "macOS: %@\n", comment: "Line showing macOS version in copyable system info"), "\(macOSVersion)"))
-        if let xcodeVersion { copyString.append(String(format: String(localized: "welcome.subtitle.xcode-version-line", defaultValue: "Xcode: %@", comment: "Line showing Xcode version in copyable system info"), "\(xcodeVersion)")) }
+        copyString.append(String(format: String(
+            localized: "welcome.subtitle.macos-version-line",
+            defaultValue: "macOS: %@\n",
+            comment: "Line showing macOS version in copyable system info"
+        ), "\(macOSVersion)"))
+        if let xcodeVersion { copyString.append(String(format: String(
+            localized: "welcome.subtitle.xcode-version-line",
+            defaultValue: "Xcode: %@",
+            comment: "Line showing Xcode version in copyable system info"
+        ), "\(xcodeVersion)")) }
 
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
@@ -50,12 +66,20 @@ struct WelcomeSubtitleView: View {
 
     var body: some View {
         Text(String(
-            format: String(localized: "welcome.subtitle.version-label-with-postfix", defaultValue: "Version %@%@ (%@)", comment: "Formatted version label including postfix and build"),
+            format: String(
+                localized: "welcome.subtitle.version-label-with-postfix",
+                defaultValue: "Version %@%@ (%@)",
+                comment: "Formatted version label including postfix and build"
+            ),
             appVersion, appVersionPostfix, appBuild
         ))
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help(String(localized: "welcome.subtitle.copy-system-information", defaultValue: "Copy System Information to Clipboard", comment: "Button title to copy system information"))
+        .help(String(
+            localized: "welcome.subtitle.copy-system-information",
+            defaultValue: "Copy System Information to Clipboard",
+            comment: "Button title to copy system information"
+        ))
     }
 }
