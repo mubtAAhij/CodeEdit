@@ -37,14 +37,22 @@ struct EditorTabBarContextMenu: ViewModifier {
     func body(content: Content) -> some View {
         content.contextMenu(menuItems: {
             Group {
-                Button(String(localized: "editor.tab-bar.context-menu.close-tab", defaultValue: "Close Tab", comment: "Context menu action to close current tab")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.close-tab",
+                    defaultValue: "Close Tab",
+                    comment: "Context menu action to close current tab"
+                )) {
                     withAnimation {
                         tabs.closeTab(file: item)
                     }
                 }
                 .keyboardShortcut("w", modifiers: [.command])
 
-                Button(String(localized: "editor.tab-bar.context-menu.close-other-tabs", defaultValue: "Close Other Tabs", comment: "Context menu action to close all other tabs")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.close-other-tabs",
+                    defaultValue: "Close Other Tabs",
+                    comment: "Context menu action to close all other tabs"
+                )) {
                     withAnimation {
                         tabs.tabs.map({ $0.file }).forEach { file in
                             if file != item {
@@ -54,7 +62,11 @@ struct EditorTabBarContextMenu: ViewModifier {
                     }
                 }
 
-                Button(String(localized: "editor.tab-bar.context-menu.close-tabs-to-the-right", defaultValue: "Close Tabs to the Right", comment: "Context menu action to close tabs on the right side")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.close-tabs-to-the-right",
+                    defaultValue: "Close Tabs to the Right",
+                    comment: "Context menu action to close tabs on the right side"
+                )) {
                     withAnimation {
                         if let index = tabs.tabs.firstIndex(where: { $0.file == item }), index + 1 < tabs.tabs.count {
                             tabs.tabs[(index + 1)...].forEach {
@@ -66,7 +78,11 @@ struct EditorTabBarContextMenu: ViewModifier {
                 // Disable this option when current tab is the last one.
                 .disabled(tabs.tabs.last?.file == item)
 
-                Button(String(localized: "editor.tab-bar.context-menu.close-all", defaultValue: "Close All", comment: "Context menu action to close all tabs")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.close-all",
+                    defaultValue: "Close All",
+                    comment: "Context menu action to close all tabs"
+                )) {
                     withAnimation {
                         tabs.tabs.forEach {
                             tabs.closeTab(file: $0.file)
@@ -75,7 +91,11 @@ struct EditorTabBarContextMenu: ViewModifier {
                 }
 
                 if isTemporary {
-                    Button(String(localized: "editor.tab-bar.context-menu.keep-open", defaultValue: "Keep Open", comment: "Context menu action to pin tab and keep it open")) {
+                    Button(String(
+                        localized: "editor.tab-bar.context-menu.keep-open",
+                        defaultValue: "Keep Open",
+                        comment: "Context menu action to pin tab and keep it open"
+                    )) {
                         tabs.temporaryTab = nil
                     }
                 }
@@ -84,11 +104,19 @@ struct EditorTabBarContextMenu: ViewModifier {
             Divider()
 
             Group {
-                Button(String(localized: "editor.tab-bar.context-menu.copy-path", defaultValue: "Copy Path", comment: "Context menu action to copy absolute file path")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.copy-path",
+                    defaultValue: "Copy Path",
+                    comment: "Context menu action to copy absolute file path"
+                )) {
                     copyPath(item: item)
                 }
 
-                Button(String(localized: "editor.tab-bar.context-menu.copy-relative-path", defaultValue: "Copy Relative Path", comment: "Context menu action to copy relative file path")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.copy-relative-path",
+                    defaultValue: "Copy Relative Path",
+                    comment: "Context menu action to copy relative file path"
+                )) {
                     copyRelativePath(item: item)
                 }
             }
@@ -96,15 +124,27 @@ struct EditorTabBarContextMenu: ViewModifier {
             Divider()
 
             Group {
-                Button(String(localized: "editor.tab-bar.context-menu.show-in-finder", defaultValue: "Show in Finder", comment: "Context menu action to reveal file in Finder")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.show-in-finder",
+                    defaultValue: "Show in Finder",
+                    comment: "Context menu action to reveal file in Finder"
+                )) {
                     item.showInFinder()
                 }
 
-                Button(String(localized: "editor.tab-bar.context-menu.reveal-in-project-navigator", defaultValue: "Reveal in Project Navigator", comment: "Context menu action to reveal file in project navigator")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.reveal-in-project-navigator",
+                    defaultValue: "Reveal in Project Navigator",
+                    comment: "Context menu action to reveal file in project navigator"
+                )) {
                     workspace.listenerModel.highlightedFileItem = item
                 }
 
-                Button(String(localized: "editor.tab-bar.context-menu.open-in-new-window", defaultValue: "Open in New Window", comment: "Context menu action to open file in a new window")) {
+                Button(String(
+                    localized: "editor.tab-bar.context-menu.open-in-new-window",
+                    defaultValue: "Open in New Window",
+                    comment: "Context menu action to open file in a new window"
+                )) {
 
                 }
                 .disabled(true)
@@ -112,16 +152,32 @@ struct EditorTabBarContextMenu: ViewModifier {
 
             Divider()
 
-            Button(String(localized: "editor.tab-bar.context-menu.split-up", defaultValue: "Split Up", comment: "Context menu action to split editor upwards")) {
+            Button(String(
+                localized: "editor.tab-bar.context-menu.split-up",
+                defaultValue: "Split Up",
+                comment: "Context menu action to split editor upwards"
+            )) {
                 moveToNewSplit(.top)
             }
-            Button(String(localized: "editor.tab-bar.context-menu.split-down", defaultValue: "Split Down", comment: "Context menu action to split editor downwards")) {
+            Button(String(
+                localized: "editor.tab-bar.context-menu.split-down",
+                defaultValue: "Split Down",
+                comment: "Context menu action to split editor downwards"
+            )) {
                 moveToNewSplit(.bottom)
             }
-            Button(String(localized: "editor.tab-bar.context-menu.split-left", defaultValue: "Split Left", comment: "Context menu action to split editor to the left")) {
+            Button(String(
+                localized: "editor.tab-bar.context-menu.split-left",
+                defaultValue: "Split Left",
+                comment: "Context menu action to split editor to the left"
+            )) {
                 moveToNewSplit(.leading)
             }
-            Button(String(localized: "editor.tab-bar.context-menu.split-right", defaultValue: "Split Right", comment: "Context menu action to split editor to the right")) {
+            Button(String(
+                localized: "editor.tab-bar.context-menu.split-right",
+                defaultValue: "Split Right",
+                comment: "Context menu action to split editor to the right"
+            )) {
                 moveToNewSplit(.trailing)
             }
         })
