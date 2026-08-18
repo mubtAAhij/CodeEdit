@@ -9,17 +9,37 @@ import SwiftUI
 
 struct InternalDevelopmentOutputView: View {
     var body: some View {
-        Section(String(localized: "inspector.internal-development.output.output-utility", defaultValue: "Output Utility", comment: "Inspector tab label for output utility logs")) {
-            Button(String(localized: "inspector.internal-development.output.error-log", defaultValue: "Error Log", comment: "Inspector tab label for error log")) {
+        Section(String(
+            localized: "inspector.internal-development.output.output-utility",
+            defaultValue: "Output Utility",
+            comment: "Inspector tab label for output utility logs"
+        )) {
+            Button(String(
+                localized: "inspector.internal-development.output.error-log",
+                defaultValue: "Error Log",
+                comment: "Inspector tab label for error log"
+            )) {
                 pushLog(.error)
             }
-            Button(String(localized: "inspector.internal-development.output.warning-log", defaultValue: "Warning Log", comment: "Inspector tab label for warning log")) {
+            Button(String(
+                localized: "inspector.internal-development.output.warning-log",
+                defaultValue: "Warning Log",
+                comment: "Inspector tab label for warning log"
+            )) {
                 pushLog(.warning)
             }
-            Button(String(localized: "inspector.internal-development.output.info-log", defaultValue: "Info Log", comment: "Inspector tab label for info log")) {
+            Button(String(
+                localized: "inspector.internal-development.output.info-log",
+                defaultValue: "Info Log",
+                comment: "Inspector tab label for info log"
+            )) {
                 pushLog(.info)
             }
-            Button(String(localized: "inspector.internal-development.output.debug-log", defaultValue: "Debug Log", comment: "Inspector tab label for debug log")) {
+            Button(String(
+                localized: "inspector.internal-development.output.debug-log",
+                defaultValue: "Debug Log",
+                comment: "Inspector tab label for debug log"
+            )) {
                 pushLog(.debug)
             }
         }
@@ -31,7 +51,11 @@ struct InternalDevelopmentOutputView: View {
             .init(
                 message: randomString(),
                 subsystem: "internal.development",
-                category: String(localized: "inspector.internal-development.output.logs", defaultValue: "Logs", comment: "Section title for internal development logs"),
+                category: String(
+                    localized: "inspector.internal-development.output.logs",
+                    defaultValue: "Logs",
+                    comment: "Section title for internal development logs"
+                ),
                 level: level
             )
         )
