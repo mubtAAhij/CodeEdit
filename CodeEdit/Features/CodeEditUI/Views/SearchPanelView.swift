@@ -98,7 +98,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                     .padding(0)
                 HStack(spacing: 0) {
                     if options.isEmpty {
-                        Text(String(localized: "codeedit-ui.search-panel.no-matching-options", defaultValue: "No matching options", comment: "Placeholder text when search panel has no matching options"))
+                        Text(String(
+                            localized: "codeedit-ui.search-panel.no-matching-options",
+                            defaultValue: "No matching options",
+                            comment: "Placeholder text when search panel has no matching options"
+                        ))
                             .font(.system(size: 17))
                             .foregroundColor(.secondary)
                             .frame(maxWidth: hasPreview ? 272 : .infinity, maxHeight: .infinity)
@@ -123,7 +127,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
                                     .frame(maxWidth: .infinity)
                                     .transition(.move(edge: .trailing))
                             } else {
-                                Text(String(localized: "codeedit-ui.search-panel.select-option-to-preview", defaultValue: "Select an option to preview", comment: "Placeholder text prompting selection for preview in search panel"))
+                                Text(String(
+                                    localized: "codeedit-ui.search-panel.select-option-to-preview",
+                                    defaultValue: "Select an option to preview",
+                                    comment: "Placeholder text prompting selection for preview in search panel"
+                                ))
                                     .frame(maxWidth: .infinity)
                             }
                         }
@@ -149,7 +157,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.escape, modifiers: [])
-            .accessibilityLabel(String(localized: "codeedit-ui.search-panel.close-overlay", defaultValue: "Close Overlay", comment: "Keyboard shortcut help text for closing search overlay"))
+            .accessibilityLabel(String(
+                localized: "codeedit-ui.search-panel.close-overlay",
+                defaultValue: "Close Overlay",
+                comment: "Keyboard shortcut help text for closing search overlay"
+            ))
         Button {
             guard selection != options.first else {
                 return
@@ -162,7 +174,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.upArrow, modifiers: [])
-            .accessibilityLabel(String(localized: "codeedit-ui.search-panel.select-up", defaultValue: "Select Up", comment: "Keyboard shortcut help text for selecting previous option"))
+            .accessibilityLabel(String(
+                localized: "codeedit-ui.search-panel.select-up",
+                defaultValue: "Select Up",
+                comment: "Keyboard shortcut help text for selecting previous option"
+            ))
         Button {
             guard selection != options.last else {
                 return
@@ -176,7 +192,11 @@ struct SearchPanelView<RowView: View, PreviewView: View, Option: Identifiable & 
         } label: { EmptyView() }
             .opacity(0)
             .keyboardShortcut(.downArrow, modifiers: [])
-            .accessibilityLabel(String(localized: "codeedit-ui.search-panel.select-down", defaultValue: "Select Down", comment: "Keyboard shortcut help text for selecting next option"))
+            .accessibilityLabel(String(
+                localized: "codeedit-ui.search-panel.select-down",
+                defaultValue: "Select Down",
+                comment: "Keyboard shortcut help text for selecting next option"
+            ))
     }
 }
 
