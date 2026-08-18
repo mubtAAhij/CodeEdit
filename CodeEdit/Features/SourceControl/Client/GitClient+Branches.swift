@@ -114,7 +114,7 @@ extension GitClient {
                error.description.contains("already exists") {
                 try await checkoutBranch(branch, forceLocal: true)
             } else {
-                logger.error("Failed to checkout branch: \(error)")
+                logger.error(String(format: String(localized: "source-control.git.failed-to-checkout-branch", defaultValue: "Failed to checkout branch: %@", comment: "Error message when Git branch checkout fails"), "\(error)"))
             }
         }
     }
