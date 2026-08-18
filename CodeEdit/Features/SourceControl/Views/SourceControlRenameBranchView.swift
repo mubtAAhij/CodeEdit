@@ -22,11 +22,27 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent(String(localized: "source-control.rename-branch.from", defaultValue: "From", comment: "Label for current branch name in rename branch sheet"), value: branch.name)
-                        TextField(String(localized: "source-control.rename-branch.to", defaultValue: "To", comment: "Label for new branch name input in rename branch sheet"), text: $name)
+                        LabeledContent(String(
+                            localized: "source-control.rename-branch.from",
+                            defaultValue: "From",
+                            comment: "Label for current branch name in rename branch sheet"
+                        ), value: branch.name)
+                        TextField(String(
+                            localized: "source-control.rename-branch.to",
+                            defaultValue: "To",
+                            comment: "Label for new branch name input in rename branch sheet"
+                        ), text: $name)
                     } header: {
-                        Text(String(localized: "source-control.rename-branch.title", defaultValue: "Rename branch", comment: "Title for rename branch sheet"))
-                        Text(String(localized: "source-control.rename-branch.message", defaultValue: "All uncommited changes will be preserved on the renamed branch.", comment: "Informational text about preserving uncommitted changes when renaming branch"))
+                        Text(String(
+                            localized: "source-control.rename-branch.title",
+                            defaultValue: "Rename branch",
+                            comment: "Title for rename branch sheet"
+                        ))
+                        Text(String(
+                            localized: "source-control.rename-branch.message",
+                            defaultValue: "All uncommited changes will be preserved on the renamed branch.",
+                            comment: "Informational text about preserving uncommitted changes when renaming branch"
+                        ))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +54,21 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text(String(localized: "source-control.rename-branch.cancel", defaultValue: "Cancel", comment: "Button title to cancel branch rename"))
+                        Text(String(
+                            localized: "source-control.rename-branch.cancel",
+                            defaultValue: "Cancel",
+                            comment: "Button title to cancel branch rename"
+                        ))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text(String(localized: "source-control.rename-branch.rename", defaultValue: "Rename", comment: "Button title to confirm branch rename"))
+                        Text(String(
+                            localized: "source-control.rename-branch.rename",
+                            defaultValue: "Rename",
+                            comment: "Button title to confirm branch rename"
+                        ))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +91,11 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: String(localized: "source-control.rename-branch.failed-to-create-branch", defaultValue: "Failed to create branch", comment: "Error title shown when branch rename operation fails"),
+                    title: String(
+                        localized: "source-control.rename-branch.failed-to-create-branch",
+                        defaultValue: "Failed to create branch",
+                        comment: "Error title shown when branch rename operation fails"
+                    ),
                     error: error
                 )
             }
