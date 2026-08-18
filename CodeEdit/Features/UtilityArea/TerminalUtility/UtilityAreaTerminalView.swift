@@ -121,7 +121,11 @@ struct UtilityAreaTerminalView: View {
                         }
                     }
                 } else {
-                    CEContentUnavailableView(String(localized: "utility-area.terminal.no-selection", defaultValue: "No Selection", comment: "Placeholder text when no terminal session is selected"))
+                    CEContentUnavailableView(String(
+                        localized: "utility-area.terminal.no-selection",
+                        defaultValue: "No Selection",
+                        comment: "Placeholder text when no terminal session is selected"
+                    ))
                 }
             }
             .padding(.horizontal, 10)
@@ -143,14 +147,22 @@ struct UtilityAreaTerminalView: View {
                     } label: {
                         Image(systemName: "trash")
                     }
-                    .help(String(localized: "utility-area.terminal.reset-terminal", defaultValue: "Reset the terminal", comment: "Action title for resetting terminal session"))
+                    .help(String(
+                        localized: "utility-area.terminal.reset-terminal",
+                        defaultValue: "Reset the terminal",
+                        comment: "Action title for resetting terminal session"
+                    ))
                     .disabled(getSelectedTerminal() == nil)
                     Button {
                         // split terminal
                     } label: {
                         Image(systemName: "square.split.2x1")
                     }
-                    .help(String(localized: "utility-area.terminal.implementation-needed", defaultValue: "Implementation Needed", comment: "Placeholder text indicating unfinished terminal feature"))
+                    .help(String(
+                        localized: "utility-area.terminal.implementation-needed",
+                        defaultValue: "Implementation Needed",
+                        comment: "Placeholder text indicating unfinished terminal feature"
+                    ))
                     .disabled(true)
                 }
             }
