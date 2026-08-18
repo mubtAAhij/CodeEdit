@@ -47,7 +47,19 @@ struct SourceControlNavigatorTabs: View {
         if sourceControlManager.isGitRepository {
             SegmentedControl(
                 $selectedSection,
-                options: [String(localized: "source-control.navigator.tab.changes", defaultValue: "Changes", comment: "Tab title for source control changes view"), String(localized: "source-control.navigator.tab.history", defaultValue: "History", comment: "Tab title for source control history view"), String(localized: "source-control.navigator.tab.repository", defaultValue: "Repository", comment: "Tab title for source control repository view")],
+                options: [String(
+                    localized: "source-control.navigator.tab.changes",
+                    defaultValue: "Changes",
+                    comment: "Tab title for source control changes view"
+                ), String(
+                    localized: "source-control.navigator.tab.history",
+                    defaultValue: "History",
+                    comment: "Tab title for source control history view"
+                ), String(
+                    localized: "source-control.navigator.tab.repository",
+                    defaultValue: "Repository",
+                    comment: "Tab title for source control repository view"
+                )],
                 prominent: true
             )
             .frame(maxWidth: .infinity)
@@ -65,11 +77,23 @@ struct SourceControlNavigatorTabs: View {
             }
         } else {
             CEContentUnavailableView(
-                String(localized: "source-control.navigator.no-repository.title", defaultValue: "No Repository", comment: "Empty state title shown when project is not a git repository"),
-                 description: String(localized: "source-control.navigator.no-repository.message", defaultValue: "This project is not a git repository.", comment: "Empty state message shown when project is not a git repository"),
+                String(
+                    localized: "source-control.navigator.no-repository.title",
+                    defaultValue: "No Repository",
+                    comment: "Empty state title shown when project is not a git repository"
+                ),
+                 description: String(
+                     localized: "source-control.navigator.no-repository.message",
+                     defaultValue: "This project is not a git repository.",
+                     comment: "Empty state message shown when project is not a git repository"
+                 ),
                  systemImage: "externaldrive.fill",
                  actions: {
-                    Button(String(localized: "source-control.navigator.no-repository.initialize", defaultValue: "Initialize", comment: "Button title to initialize git repository")) {
+                    Button(String(
+                        localized: "source-control.navigator.no-repository.initialize",
+                        defaultValue: "Initialize",
+                        comment: "Button title to initialize git repository"
+                    )) {
                         Task {
                             try await sourceControlManager.initiate()
                         }
