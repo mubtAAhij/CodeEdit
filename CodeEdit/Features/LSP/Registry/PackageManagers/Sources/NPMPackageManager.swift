@@ -38,7 +38,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: String(localized: "lsp.npm.install.permission.message", defaultValue: "This package requires npm to install. Allow CodeEdit to run npm commands?", comment: "Permission prompt asking whether npm commands may be executed.")
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -65,7 +65,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "lsp.npm.install.initialize-directory-structure", defaultValue: "Initialize Directory Structure", comment: "Progress step title for initializing npm package directory structure."), confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -94,7 +94,7 @@ final class NPMPackageManager: PackageManagerProtocol {
     func runNpmInstall(_ source: PackageSource, installDir installationDirectory: URL) -> PackageManagerInstallStep {
         let qualifiedSourceName = "\(source.pkgName)@\(source.version)"
         let otherPackages = source.options["extraPackages"]?
-            .split(separator: ",")
+            .split(separator: String(localized: "lsp_npm_list_separator", defaultValue: ",", comment: "Separator used while building package list text."))
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? []
 
         var packageList = ([qualifiedSourceName] + otherPackages)
@@ -103,19 +103,21 @@ final class NPMPackageManager: PackageManagerProtocol {
         let plural = packageList.count > 1
         if plural, var last = packageList.last {
             // Oxford comma
-            last = "and " + last
+            last = String(localized: "lsp_npm_conjunction_and", defaultValue: "and", comment: "Conjunction used while building package list text.") + " " + last
             packageList[packageList.count - 1] = last
         }
         let packagesDescription = packageList.joined(separator: ", ")
 
-        let sSuffix = packageList.count > 1 ? "s" : ""
-        let suffix = plural ? "these packages" : "this package"
+        let suffix = plural ? String(localized: "lsp_npm_suffix_these_packages", defaultValue: "these packages", comment: "Plural noun phrase for npm package confirmation prompt.") : String(localized: "lsp_npm_suffix_this_package", defaultValue: "this package", comment: "Singular noun phrase for npm package confirmation prompt.")
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: String(localized: "lsp.npm.install.confirmation.title", defaultValue: "Install Package Using npm", comment: "Alert title for npm package installation confirmation."),
             confirmation: .required(
-                message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                message: String(format: String(
+                    localized: "lsp.npm.install.confirmation.message",
+                    defaultValue: "This requires %#@package_noun@ %@.\nAllow CodeEdit to install ?",
+                    comment: "Confirmation message for installing npm package dependencies."
+                ), packagesDescription, suffix)
             )
         ) { model in
             do {
@@ -150,7 +152,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "lsp.npm.install.verify-installation", defaultValue: "Verify Installation", comment: "Progress step title for verifying npm package installation."),
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path
@@ -161,7 +163,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                   let packageDict = packageJson as? [String: Any],
                   let dependencies = packageDict["dependencies"] as? [String: String],
                   let installedVersion = dependencies[package] else {
-                throw PackageManagerError.installationFailed("Package not found in package.json")
+                throw PackageManagerError.installationFailed(String(localized: "lsp.npm.install.error.package-not-found-package-json", defaultValue: "Package not found in package.json", comment: "Error message when package entry is missing in package.json."))
             }
 
             // Verify installed version matches requested version
@@ -170,7 +172,7 @@ final class NPMPackageManager: PackageManagerProtocol {
             if normalizedInstalledVersion != normalizedRequestedVersion &&
                 !installedVersion.contains(normalizedRequestedVersion) {
                 throw PackageManagerError.installationFailed(
-                    "Version mismatch: Expected \(version), but found \(installedVersion)"
+                    String(format: String(localized: "lsp.npm.install.error.version-mismatch", defaultValue: "Version mismatch: Expected %@, but found %@", comment: "Error message when installed npm package version differs from expected version."), "\(version)", "\(installedVersion)")
                 )
             }
 
@@ -179,7 +181,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                 .appending(path: "node_modules")
                 .appending(path: package)
             guard FileManager.default.fileExists(atPath: packageDirectory.path) else {
-                throw PackageManagerError.installationFailed("Package not found in node_modules")
+                throw PackageManagerError.installationFailed(String(localized: "lsp.npm.install.error.package-not-found-node-modules", defaultValue: "Package not found in node_modules", comment: "Error message when package is missing from node_modules directory."))
             }
         }
     }
