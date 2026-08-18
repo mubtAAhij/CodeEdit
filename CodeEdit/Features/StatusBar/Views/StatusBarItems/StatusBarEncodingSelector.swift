@@ -13,7 +13,11 @@ struct StatusBarEncodingSelector: View {
         Menu {
             // UTF 8, ASCII, ...
         } label: {
-            Text(String(localized: "status-bar.encoding.utf8", defaultValue: "UTF 8", comment: "Status bar encoding label"))
+            Text(String(
+                localized: "status-bar.encoding.utf8",
+                defaultValue: "UTF 8",
+                comment: "Status bar encoding label"
+            ))
         }
         .menuStyle(StatusBarMenuStyle())
         .onHover { isHovering($0) }
