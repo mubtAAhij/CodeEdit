@@ -121,7 +121,11 @@ struct UtilityAreaTerminalView: View {
                         }
                     }
                 } else {
-                    CEContentUnavailableView(String(localized: "utility-area.terminal.no-selection", defaultValue: "No Selection", comment: "Empty state text when no terminal tab is selected"))
+                    CEContentUnavailableView(String(
+                        localized: "utility-area.terminal.no-selection",
+                        defaultValue: "No Selection",
+                        comment: "Empty state text when no terminal tab is selected"
+                    ))
                 }
             }
             .padding(.horizontal, 10)
@@ -143,14 +147,22 @@ struct UtilityAreaTerminalView: View {
                     } label: {
                         Image(systemName: "trash")
                     }
-                    .help(String(localized: "utility-area.terminal.reset-terminal", defaultValue: "Reset the terminal", comment: "Tooltip or action title to reset terminal state"))
+                    .help(String(
+                        localized: "utility-area.terminal.reset-terminal",
+                        defaultValue: "Reset the terminal",
+                        comment: "Tooltip or action title to reset terminal state"
+                    ))
                     .disabled(getSelectedTerminal() == nil)
                     Button {
                         // split terminal
                     } label: {
                         Image(systemName: "square.split.2x1")
                     }
-                    .help(String(localized: "utility-area.terminal.implementation-needed", defaultValue: "Implementation Needed", comment: "Placeholder text for terminal utility features pending implementation"))
+                    .help(String(
+                        localized: "utility-area.terminal.implementation-needed",
+                        defaultValue: "Implementation Needed",
+                        comment: "Placeholder text for terminal utility features pending implementation"
+                    ))
                     .disabled(true)
                 }
             }
