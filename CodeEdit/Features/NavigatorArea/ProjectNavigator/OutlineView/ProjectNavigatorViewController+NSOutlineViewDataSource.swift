@@ -148,10 +148,22 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
             fileName
         )
         """
-        alert.informativeText = String(localized: "project-navigator.replace-confirmation.irreversible-warning", defaultValue: "This action is irreversible!", comment: "Warning text in replace confirmation alert")
+        alert.informativeText = String(
+            localized: "project-navigator.replace-confirmation.irreversible-warning",
+            defaultValue: "This action is irreversible!",
+            comment: "Warning text in replace confirmation alert"
+        )
         alert.alertStyle = .warning
-        alert.addButton(withTitle: String(localized: "project-navigator.replace-confirmation.replace", defaultValue: "Replace", comment: "Replace button title in overwrite confirmation alert"))
-        alert.addButton(withTitle: String(localized: "project-navigator.replace-confirmation.cancel", defaultValue: "Cancel", comment: "Cancel button title in overwrite confirmation alert"))
+        alert.addButton(withTitle: String(
+            localized: "project-navigator.replace-confirmation.replace",
+            defaultValue: "Replace",
+            comment: "Replace button title in overwrite confirmation alert"
+        ))
+        alert.addButton(withTitle: String(
+            localized: "project-navigator.replace-confirmation.cancel",
+            defaultValue: "Cancel",
+            comment: "Cancel button title in overwrite confirmation alert"
+        ))
         return alert.runModal() == .alertFirstButtonReturn
     }
 }
