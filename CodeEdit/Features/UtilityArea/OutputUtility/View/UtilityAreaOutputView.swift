@@ -17,11 +17,23 @@ struct UtilityAreaOutputView: View {
         var title: String {
             switch self {
             case .extensions(let source):
-                "Extension - \(source.extensionInfo.name)"
+                String(format: String(
+                    localized: "utility-area.output.view.source-extension",
+                    defaultValue: "Extension - %@",
+                    comment: "Output source label for extension output streams"
+                ), "\(source.extensionInfo.name)")
             case .languageServer(let source):
-                "Language Server - \(source.id)"
+                String(format: String(
+                    localized: "utility-area.output.view.source-language-server",
+                    defaultValue: "Language Server - %@",
+                    comment: "Output source label for language server output streams"
+                ), "\(source.id)")
             case .devOutput:
-                "Internal Development Output"
+                String(
+                    localized: "utility-area.output.view.internal-development-output",
+                    defaultValue: "Internal Development Output",
+                    comment: "Output source label for internal development output"
+                )
             }
         }
 
@@ -79,14 +91,22 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text("No output")
+                    Text(String(
+                        localized: "utility-area.output.view.no-output",
+                        defaultValue: "No output",
+                        comment: "Empty state text when no output is available"
+                    ))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)
                         .paneToolbar {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                             Spacer()
-                            UtilityAreaFilterTextField(title: "Filter", text: $filterText)
+                            UtilityAreaFilterTextField(title: String(
+                                localized: "utility-area.output.view.filter",
+                                defaultValue: "Filter",
+                                comment: "Filter field label in utility area output view"
+                            ), text: $filterText)
                                 .frame(maxWidth: 175)
                             Button { } label: {
                                 Image(systemName: "trash")

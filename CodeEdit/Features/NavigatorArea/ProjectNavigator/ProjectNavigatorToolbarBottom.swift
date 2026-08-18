@@ -23,11 +23,23 @@ struct ProjectNavigatorToolbarBottom: View {
         HStack(spacing: 5) {
             addNewFileButton
             PaneTextField(
-                "Filter",
+                String(
+                    localized: "project-navigator.toolbar-bottom.filter",
+                    defaultValue: "Filter",
+                    comment: "Menu title for project navigator filter options"
+                ),
                 text: $workspace.navigatorFilter,
                 leadingAccessories: {
                     FilterDropDownIconButton(menu: {
-                        ForEach([(true, "Folders on top"), (false, "Alphabetically")], id: \.0) { value, title in
+                        ForEach([(true, String(
+                            localized: "project-navigator.toolbar-bottom.sort.folders-on-top",
+                            defaultValue: "Folders on top",
+                            comment: "Option to keep folders listed before files"
+                        )), (false, String(
+                            localized: "project-navigator.toolbar-bottom.sort.alphabetically",
+                            defaultValue: "Alphabetically",
+                            comment: "Option to sort project navigator entries alphabetically"
+                        ))], id: \.0) { value, title in
                             Toggle(title, isOn: Binding(get: {
                                 workspace.sortFoldersOnTop == value
                             }, set: { _ in
@@ -44,18 +56,30 @@ struct ProjectNavigatorToolbarBottom: View {
                         ? Color(nsColor: .secondaryLabelColor)
                         : Color(nsColor: .controlAccentColor)
                     )
-                    .help("Show files with matching name")
+                    .help(String(
+                        localized: "project-navigator.toolbar-bottom.filter.matching-name",
+                        defaultValue: "Show files with matching name",
+                        comment: "Filter option to show files with names matching query"
+                    ))
                 },
                 trailingAccessories: {
                     HStack(spacing: 0) {
                         Toggle(isOn: $recentsFilter) {
                             Image(systemName: "clock")
                         }
-                        .help("Show only recent files")
+                        .help(String(
+                            localized: "project-navigator.toolbar-bottom.filter.recent-files",
+                            defaultValue: "Show only recent files",
+                            comment: "Filter option to show only recently opened files"
+                        ))
                         Toggle(isOn: $workspace.sourceControlFilter) {
                             Image(systemName: "plusminus.circle")
                         }
-                        .help("Show only files with source-control status")
+                        .help(String(
+                            localized: "project-navigator.toolbar-bottom.filter.source-control-status",
+                            defaultValue: "Show only files with source-control status",
+                            comment: "Filter option to show only files with source control changes"
+                        ))
                     }
                     .toggleStyle(.icon(font: .system(size: 14), size: CGSize(width: 18, height: 20)))
                     .padding(.trailing, 2.5)
@@ -98,7 +122,11 @@ struct ProjectNavigatorToolbarBottom: View {
 
     private var addNewFileButton: some View {
         Menu {
-            Button("Add File") {
+            Button(String(
+                localized: "project-navigator.toolbar-bottom.add-file",
+                defaultValue: "Add File",
+                comment: "Action title for adding a new file"
+            )) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
@@ -111,12 +139,20 @@ struct ProjectNavigatorToolbarBottom: View {
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(
+                        localized: "project-navigator.toolbar-bottom.add-file.dismiss",
+                        defaultValue: "Dismiss",
+                        comment: "Dismiss action for add file dialog"
+                    ))
                     alert.runModal()
                 }
             }
 
-            Button("Add Folder") {
+            Button(String(
+                localized: "project-navigator.toolbar-bottom.add-folder",
+                defaultValue: "Add Folder",
+                comment: "Action title for adding a new folder"
+            )) {
                 let filePathURL = activeTabURL()
                 guard let rootFile = workspace.workspaceFileManager?.getFile(filePathURL.path) else { return }
                 do {
@@ -128,7 +164,11 @@ struct ProjectNavigatorToolbarBottom: View {
                     }
                 } catch {
                     let alert = NSAlert(error: error)
-                    alert.addButton(withTitle: "Dismiss")
+                    alert.addButton(withTitle: String(
+                        localized: "project-navigator.toolbar-bottom.add-folder.dismiss",
+                        defaultValue: "Dismiss",
+                        comment: "Dismiss action for add folder dialog"
+                    ))
                     alert.runModal()
                 }
             }
@@ -141,7 +181,11 @@ struct ProjectNavigatorToolbarBottom: View {
         .menuIndicator(.hidden)
         .frame(maxWidth: 18, alignment: .center)
         .opacity(activeState == .inactive ? 0.45 : 1)
-        .accessibilityLabel("Add Folder or File")
+        .accessibilityLabel(String(
+            localized: "project-navigator.toolbar-bottom.add-folder-or-file",
+            defaultValue: "Add Folder or File",
+            comment: "Action title for adding either a folder or a file"
+        ))
         .accessibilityIdentifier("addButton")
     }
 

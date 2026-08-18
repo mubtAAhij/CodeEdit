@@ -57,7 +57,11 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? "Broken"
+                    .preferences.theme.selectedLightTheme = self.selectedLightTheme?.name ?? String(
+                        localized: "settings.theme.model.broken.preview",
+                        defaultValue: "Broken",
+                        comment: "Fallback text when theme preview data is invalid"
+                    )
             }
         }
     }
@@ -68,7 +72,11 @@ final class ThemeModel: ObservableObject {
         didSet {
             DispatchQueue.main.async {
                 Settings.shared
-                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? "Broken"
+                    .preferences.theme.selectedDarkTheme = self.selectedDarkTheme?.name ?? String(
+                        localized: "settings.theme.model.broken.name",
+                        defaultValue: "Broken",
+                        comment: "Fallback text when theme name data is invalid"
+                    )
             }
         }
     }
@@ -164,7 +172,11 @@ final class ThemeModel: ObservableObject {
         let savePanel = NSSavePanel()
         savePanel.allowedContentTypes = [UTType(filenameExtension: "cetheme")!]
         savePanel.nameFieldStringValue = theme.displayName
-        savePanel.prompt = "Export"
+        savePanel.prompt = String(
+            localized: "settings.theme.model.export-menu-item",
+            defaultValue: "Export",
+            comment: "Menu item title for exporting selected theme"
+        )
         savePanel.canCreateDirectories = true
 
         savePanel.begin { response in
@@ -181,7 +193,11 @@ final class ThemeModel: ObservableObject {
 
     func exportAllCustomThemes() {
             let openPanel = NSOpenPanel()
-            openPanel.prompt = "Export"
+            openPanel.prompt = String(
+                localized: "settings.theme.model.export-button",
+                defaultValue: "Export",
+                comment: "Button title for exporting theme file"
+            )
             openPanel.canChooseFiles = false
             openPanel.canChooseDirectories = true
             openPanel.allowsMultipleSelection = false

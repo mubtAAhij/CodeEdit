@@ -30,10 +30,18 @@ struct GitCheckoutBranchView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Checkout branch")
+                    Text(String(
+                        localized: "source-control.clone.checkout-branch.title",
+                        defaultValue: "Checkout branch",
+                        comment: "Title for checkout branch dialog"
+                    ))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Select a branch to checkout")
+                    Text(String(
+                        localized: "source-control.clone.checkout-branch.select-branch",
+                        defaultValue: "Select a branch to checkout",
+                        comment: "Instruction to choose a branch before checkout"
+                    ))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
@@ -48,10 +56,18 @@ struct GitCheckoutBranchView: View {
                     .labelsHidden()
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(
+                            localized: "source-control.clone.checkout-branch.cancel",
+                            defaultValue: "Cancel",
+                            comment: "Cancel button title in checkout branch dialog"
+                        )) {
                             dismiss()
                         }
-                        Button("Checkout") {
+                        Button(String(
+                            localized: "source-control.clone.checkout-branch.checkout",
+                            defaultValue: "Checkout",
+                            comment: "Confirm button title in checkout branch dialog"
+                        )) {
                             Task {
                                 await viewModel.checkoutBranch()
                                 await MainActor.run {

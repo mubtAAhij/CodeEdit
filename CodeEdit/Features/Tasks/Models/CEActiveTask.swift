@@ -68,23 +68,39 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         switch terminationStatus {
         case 0:
             output?.newline()
-            output?.sendOutputMessage("Finished running \(task.name).")
+            output?.sendOutputMessage(String(format: String(
+                localized: "tasks.active-task.notification.finished-running.message",
+                defaultValue: "Finished running %@.",
+                comment: "Notification message when a task finishes running."
+            ), "\(task.name)"))
             output?.newline()
 
             updateTaskStatus(to: .finished)
             updateTaskNotification(
-                title: "Finished Running \(task.name)",
+                title: String(format: String(
+                    localized: "tasks.active-task.notification.finished-running.title",
+                    defaultValue: "Finished Running %@",
+                    comment: "Notification title when a task finishes running."
+                ), "\(task.name)"),
                 message: "",
                 isLoading: false
             )
         case 2, 15: // SIGINT or SIGTERM
             output?.newline()
-            output?.sendOutputMessage("\(task.name) cancelled.")
+            output?.sendOutputMessage(String(format: String(
+                localized: "tasks.active-task.notification.cancelled.message",
+                defaultValue: "%@ cancelled.",
+                comment: "Notification message when a task is cancelled."
+            ), "\(task.name)"))
             output?.newline()
 
             updateTaskStatus(to: .notRunning)
             updateTaskNotification(
-                title: "\(task.name) cancelled",
+                title: String(format: String(
+                    localized: "tasks.active-task.notification.cancelled.title",
+                    defaultValue: "%@ cancelled",
+                    comment: "Notification title when a task is cancelled."
+                ), "\(task.name)"),
                 message: "",
                 isLoading: false
             )
@@ -92,12 +108,20 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
             updateTaskStatus(to: .stopped)
         default:
             output?.newline()
-            output?.sendOutputMessage("Failed to run \(task.name)")
+            output?.sendOutputMessage(String(format: String(
+                localized: "tasks.active-task.notification.failed-to-run.message",
+                defaultValue: "Failed to run %@",
+                comment: "Notification message when task execution fails."
+            ), "\(task.name)"))
             output?.newline()
 
             updateTaskStatus(to: .failed)
             updateTaskNotification(
-                title: "Failed Running \(task.name)",
+                title: String(format: String(
+                    localized: "tasks.active-task.notification.failed-running.title",
+                    defaultValue: "Failed Running %@",
+                    comment: "Notification title when task execution fails."
+                ), "\(task.name)"),
                 message: "",
                 isLoading: false
             )
@@ -150,8 +174,16 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         let userInfo: [String: Any] = [
             "id": taskId,
             "action": "createWithPriority",
-            "title": "Running \(self.task.name)",
-            "message": "Running your task: \(self.task.name).",
+            "title": String(format: String(
+                localized: "tasks.active-task.running.status-title",
+                defaultValue: "Running %@",
+                comment: "Status title while a task is running."
+            ), "\(self.task.name)"),
+            "message": String(format: String(
+                localized: "tasks.active-task.running.status-message",
+                defaultValue: "Running your task: %@.",
+                comment: "Status message while a task is running."
+            ), "\(self.task.name)"),
             "isLoading": true,
             "workspace": workspaceURL as Any
         ]

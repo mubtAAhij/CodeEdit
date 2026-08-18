@@ -12,19 +12,35 @@ struct AboutSubtitleView: View {
     @State private var didCopyVersion = false
     @State private var isHoveringVersion = false
 
-    private var appVersion: String { Bundle.versionString ?? "No Version" }
-    private var appBuild: String { Bundle.buildString ?? "No Build" }
+    private var appVersion: String { Bundle.versionString ?? String(
+        localized: "about.subtitle.no-version",
+        defaultValue: "No Version",
+        comment: "Fallback text when app version is unavailable"
+    ) }
+    private var appBuild: String { Bundle.buildString ?? String(
+        localized: "about.subtitle.no-build",
+        defaultValue: "No Build",
+        comment: "Fallback text when app build number is unavailable"
+    ) }
     private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
 
     var body: some View {
-        Text("Version \(appVersion)\(appVersionPostfix) (\(appBuild))")
+        Text(String(format: String(
+            localized: "about.subtitle.version-build",
+            defaultValue: "Version %@%@ (%@)",
+            comment: "Subtitle showing app version, optional postfix, and build number"
+        ), "\(appVersion)", "\(appVersionPostfix)", "\(appBuild)"))
             .textSelection(.disabled)
             .onTapGesture {
                 // Create a string suitable for pasting into a bug report
                 let macOSVersion = ProcessInfo.processInfo.operatingSystemVersion.semverString
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(
-                    "CodeEdit: \(appVersion) (\(appBuild))\nmacOS: \(macOSVersion)",
+                    String(format: String(
+                        localized: "about.subtitle.copy-info",
+                        defaultValue: "CodeEdit: %@ (%@)\nmacOS: %@",
+                        comment: "Multiline about text with CodeEdit and macOS version information"
+                    ), "\(appVersion)", "\(appBuild)", "\(macOSVersion)"),
                     forType: .string
                 )
                 didCopyVersion.toggle()

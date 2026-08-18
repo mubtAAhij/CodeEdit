@@ -60,7 +60,11 @@ private struct NewListTableItemView<HeaderView: View>: View {
                                 Text(key).tag(key)
                             }
                             Divider()
-                            Text("No Selection").tag("")
+                            Text(String(
+                                localized: "codeedit-ui.key-value-table.no-selection",
+                                defaultValue: "No Selection",
+                                comment: "Placeholder text shown when no key-value row is selected"
+                            )).tag("")
                         }
                     }
                     TextField(valueColumnName, text: $value)
@@ -84,10 +88,18 @@ private struct NewListTableItemView<HeaderView: View>: View {
 
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(
+                    localized: "codeedit-ui.key-value-table.cancel",
+                    defaultValue: "Cancel",
+                    comment: "Button title to cancel key-value edit action"
+                )) {
                     dismiss()
                 }
-                Button("Add") {
+                Button(String(
+                    localized: "codeedit-ui.key-value-table.add",
+                    defaultValue: "Add",
+                    comment: "Button title to add a key-value entry"
+                )) {
                     if !key.isEmpty && !value.isEmpty {
                         completion(key, value)
                     }
@@ -146,10 +158,18 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         .contextMenu(
             forSelectionType: UUID.self,
             menu: { selectedItems in
-                Button("Edit") {
+                Button(String(
+                    localized: "codeedit-ui.key-value-table.edit",
+                    defaultValue: "Edit",
+                    comment: "Button title to edit selected key-value entry"
+                )) {
                     editItem(id: selectedItems.first)
                 }
-                Button("Remove") {
+                Button(String(
+                    localized: "codeedit-ui.key-value-table.remove",
+                    defaultValue: "Remove",
+                    comment: "Button title to remove selected key-value entry"
+                )) {
                     removeItem(selectedItems)
                 }
             },

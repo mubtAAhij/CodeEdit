@@ -11,7 +11,11 @@ struct SettingsWindow: Scene {
     private let updater = SoftwareUpdater()
 
     var body: some Scene {
-        Window("Settings", id: SceneID.settings.rawValue) {
+        Window(String(
+            localized: "settings.window.title",
+            defaultValue: "Settings",
+            comment: "Title of settings window"
+        ), id: SceneID.settings.rawValue) {
             SettingsView(updater: updater)
                 .frame(minWidth: 715, maxWidth: 715)
                 .task {

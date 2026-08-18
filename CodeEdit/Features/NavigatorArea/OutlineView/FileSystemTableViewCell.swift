@@ -171,7 +171,11 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(
+                localized: "navigator.file-system.dismiss",
+                defaultValue: "Dismiss",
+                comment: "Dismiss button title in file system table view cell"
+            ))
             alert.runModal()
         }
     }

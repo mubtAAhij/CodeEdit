@@ -22,11 +22,27 @@ struct SourceControlRenameBranchView: View {
             VStack(spacing: 0) {
                 Form {
                     Section {
-                        LabeledContent("From", value: branch.name)
-                        TextField("To", text: $name)
+                        LabeledContent(String(
+                            localized: "source-control.rename-branch.from",
+                            defaultValue: "From",
+                            comment: "Label for source branch name in rename branch view"
+                        ), value: branch.name)
+                        TextField(String(
+                            localized: "source-control.rename-branch.to",
+                            defaultValue: "To",
+                            comment: "Label for destination branch name in rename branch view"
+                        ), text: $name)
                     } header: {
-                        Text("Rename branch")
-                        Text("All uncommited changes will be preserved on the renamed branch.")
+                        Text(String(
+                            localized: "source-control.rename-branch.title",
+                            defaultValue: "Rename branch",
+                            comment: "Title for rename branch confirmation view"
+                        ))
+                        Text(String(
+                            localized: "source-control.rename-branch.preserve-uncommitted-changes",
+                            defaultValue: "All uncommited changes will be preserved on the renamed branch.",
+                            comment: "Informational message about preserving uncommitted changes during branch rename"
+                        ))
                     }
                 }
                 .formStyle(.grouped)
@@ -38,13 +54,21 @@ struct SourceControlRenameBranchView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(String(
+                            localized: "source-control.rename-branch.cancel",
+                            defaultValue: "Cancel",
+                            comment: "Button title to cancel branch rename"
+                        ))
                             .frame(minWidth: 56)
                     }
                     Button {
                         submit(branch)
                     } label: {
-                        Text("Rename")
+                        Text(String(
+                            localized: "source-control.rename-branch.rename",
+                            defaultValue: "Rename",
+                            comment: "Button title to confirm branch rename"
+                        ))
                             .frame(minWidth: 56)
                     }
                     .buttonStyle(.borderedProminent)
@@ -67,7 +91,11 @@ struct SourceControlRenameBranchView: View {
                 }
             } catch {
                 await sourceControlManager.showAlertForError(
-                    title: "Failed to create branch",
+                    title: String(
+                        localized: "source-control.rename-branch.failed-to-create-branch",
+                        defaultValue: "Failed to create branch",
+                        comment: "Error title shown when branch rename/create operation fails"
+                    ),
                     error: error
                 )
             }
