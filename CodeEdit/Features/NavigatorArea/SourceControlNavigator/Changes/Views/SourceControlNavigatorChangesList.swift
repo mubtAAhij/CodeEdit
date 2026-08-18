@@ -28,24 +28,24 @@ struct SourceControlNavigatorChangesList: View {
                 if selectedFiles.count == 1,
                    let file = selectedFiles.first {
                     Group {
-                        Button("View in Finder") {
+                        Button(String(localized: "source-control.navigator.changes.view-in-finder", defaultValue: "View in Finder", comment: "Context menu action to reveal changed file in Finder")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button("Reveal in Project Navigator") {}
+                        Button(String(localized: "source-control.navigator.changes.reveal-in-project-navigator", defaultValue: "Reveal in Project Navigator", comment: "Context menu action to reveal changed file in project navigator")) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button("Open in New Tab") {
+                        Button(String(localized: "source-control.navigator.changes.open-in-new-tab", defaultValue: "Open in New Tab", comment: "Context menu action to open changed file in a new tab")) {
                             openGitFile(file)
                         }
-                        Button("Open in New Window") {}
+                        Button(String(localized: "source-control.navigator.changes.open-in-new-window", defaultValue: "Open in New Window", comment: "Context menu action to open changed file in a new window")) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
                         Group {
                             Divider()
-                            Button("Discard Changes in \(file.fileURL.lastPathComponent)...") {
+                            Button(String(format: String(localized: "source-control.navigator.changes.discard-changes-in-file", defaultValue: "Discard Changes in %@...", comment: "Context menu action to discard changes in a specific file"), "\(file.fileURL.lastPathComponent)")) {
                                 sourceControlManager.discardChanges(for: file.fileURL)
                             }
                             Divider()
