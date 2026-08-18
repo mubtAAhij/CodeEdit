@@ -89,7 +89,11 @@ final class CodeEditDocumentController: NSDocumentController {
                 if let document {
                     self.addDocument(document)
                 } else {
-                    let errorMessage = error?.localizedDescription ?? String(localized: "documents.controller.unknown-error", defaultValue: "unknown error", comment: "Fallback message when an error has no localized description")
+                    let errorMessage = error?.localizedDescription ?? String(
+                        localized: "documents.controller.unknown-error",
+                        defaultValue: "unknown error",
+                        comment: "Fallback message when an error has no localized description"
+                    )
                     print("Unable to open document '\(url)': \(errorMessage)")
                 }
 
@@ -146,7 +150,11 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = String(localized: "documents.controller.open-workspace-or-file", defaultValue: "Open Workspace or File", comment: "Dialog title for choosing a workspace or file to open")
+        dialog.title = String(
+            localized: "documents.controller.open-workspace-or-file",
+            defaultValue: "Open Workspace or File",
+            comment: "Dialog title for choosing a workspace or file to open"
+        )
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
@@ -162,7 +170,11 @@ extension NSDocumentController {
 
                     guard let document else {
                         let alert = NSAlert()
-                        alert.messageText = String(localized: "documents.controller.failed-to-get-document", defaultValue: "Failed to get document", comment: "Error message shown when opening a document fails")
+                        alert.messageText = String(
+                            localized: "documents.controller.failed-to-get-document",
+                            defaultValue: "Failed to get document",
+                            comment: "Error message shown when opening a document fails"
+                        )
                         alert.runModal()
                         return
                     }
