@@ -20,8 +20,16 @@ struct SourceControlSettingsView: View {
             } footer: {
                 if settings.sourceControlIsEnabled {
                     Picker("", selection: $selectedTab) {
-                        Text(String(localized: "settings.source-control.view.general-title", defaultValue: "General", comment: "Section title for source control general settings")).tag("general")
-                        Text(String(localized: "settings.source-control.view.git-title", defaultValue: "Git", comment: "Section title for git-specific source control settings")).tag("git")
+                        Text(String(
+                            localized: "settings.source-control.view.general-title",
+                            defaultValue: "General",
+                            comment: "Section title for source control general settings"
+                        )).tag("general")
+                        Text(String(
+                            localized: "settings.source-control.view.git-title",
+                            defaultValue: "Git",
+                            comment: "Section title for git-specific source control settings"
+                        )).tag("git")
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
@@ -46,8 +54,16 @@ struct SourceControlSettingsView: View {
             isOn: $settings.sourceControlIsEnabled
         ) {
             Label {
-                Text(String(localized: "settings.source-control.view.title", defaultValue: "Source Control", comment: "Navigation title for source control settings page"))
-                Text(String(localized: "settings.source-control.view.description", defaultValue: "Back up your files, collaborate with others, and tag your releases. [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)", comment: "Description for source control settings overview with learn more link"))
+                Text(String(
+                    localized: "settings.source-control.view.title",
+                    defaultValue: "Source Control",
+                    comment: "Navigation title for source control settings page"
+                ))
+                Text(String(
+                    localized: "settings.source-control.view.description",
+                    defaultValue: "Back up your files, collaborate with others, and tag your releases. [Learn more...](https://developer.apple.com/documentation/xcode/source-control-management)",
+                    comment: "Description for source control settings overview with learn more link"
+                ))
                 .font(.callout)
              } icon: {
                 FeatureIcon(symbol: "vault", color: Color(.systemBlue), size: 26)
