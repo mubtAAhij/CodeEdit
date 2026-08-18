@@ -13,7 +13,7 @@ struct FindNavigatorToolbarBottom: View {
     var body: some View {
         HStack(spacing: 2) {
             PaneTextField(
-                "Filter",
+                String(localized: "find-navigator.toolbar-bottom.filter-label", defaultValue: "Filter", comment: "Label for find navigator results filter field"),
                 text: $text,
                 leadingAccessories: {
                     Image(
@@ -27,7 +27,7 @@ struct FindNavigatorToolbarBottom: View {
                         : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help("Show results with matching text")
+                    .help(String(localized: "find-navigator.toolbar-bottom.matching-text-toggle", defaultValue: "Show results with matching text", comment: "Toggle option to show only results with matching text"))
                 },
                 clearable: true
             )
