@@ -34,8 +34,8 @@ struct InspectorField<Content: View>: View {
 
 struct InspectorField_Previews: PreviewProvider {
     static var previews: some View {
-        InspectorField("Section Label") {
-            Text("Preview")
+        InspectorField(String(localized: "inspector.field.section-label", defaultValue: "Section Label", comment: "Accessibility label for inspector section label field")) {
+            Text(String(localized: "inspector.field.preview", defaultValue: "Preview", comment: "Preview text shown in inspector field"))
         }
     }
 }
