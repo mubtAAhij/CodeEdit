@@ -33,25 +33,45 @@ struct GitCloneView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading) {
-                    Text(String(localized: "source-control.clone-view.title", defaultValue: "Clone a Repository", comment: "Title for clone repository sheet"))
+                    Text(String(
+                        localized: "source-control.clone-view.title",
+                        defaultValue: "Clone a Repository",
+                        comment: "Title for clone repository sheet"
+                    ))
                         .bold()
                         .padding(.bottom, 2)
-                    Text(String(localized: "source-control.clone-view.enter-repository-url", defaultValue: "Enter a git repository URL:", comment: "Prompt text asking user to enter repository URL"))
+                    Text(String(
+                        localized: "source-control.clone-view.enter-repository-url",
+                        defaultValue: "Enter a git repository URL:",
+                        comment: "Prompt text asking user to enter repository URL"
+                    ))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                             context[.trailing]
                         }
-                    TextField(String(localized: "source-control.clone-view.repository-url-label", defaultValue: "Git Repository URL", comment: "Label for git repository URL input field"), text: $viewModel.repoUrlStr)
+                    TextField(String(
+                        localized: "source-control.clone-view.repository-url-label",
+                        defaultValue: "Git Repository URL",
+                        comment: "Label for git repository URL input field"
+                    ), text: $viewModel.repoUrlStr)
                         .lineLimit(1)
                         .padding(.bottom, 15)
 
                     HStack {
                         Spacer()
-                        Button(String(localized: "source-control.clone-view.cancel", defaultValue: "Cancel", comment: "Button title to cancel cloning workflow")) {
+                        Button(String(
+                            localized: "source-control.clone-view.cancel",
+                            defaultValue: "Cancel",
+                            comment: "Button title to cancel cloning workflow"
+                        )) {
                             dismiss()
                         }
-                        Button(String(localized: "source-control.clone-view.clone", defaultValue: "Clone", comment: "Button title to start clone operation")) {
+                        Button(String(
+                            localized: "source-control.clone-view.clone",
+                            defaultValue: "Clone",
+                            comment: "Button title to start clone operation"
+                        )) {
                             cloneRepository()
                         }
                         .keyboardShortcut(.defaultAction)
@@ -84,7 +104,11 @@ struct GitCloneView: View {
         }
         .toolbar {
             ToolbarItem {
-                Button(String(localized: "source-control.clone-view.cancel-cloning", defaultValue: "Cancel Cloning", comment: "Button title to cancel ongoing clone operation")) {
+                Button(String(
+                    localized: "source-control.clone-view.cancel-cloning",
+                    defaultValue: "Cancel Cloning",
+                    comment: "Button title to cancel ongoing clone operation"
+                )) {
                     viewModel.cloningTask?.cancel()
                     viewModel.cloningTask = nil
                     viewModel.isCloning = false
