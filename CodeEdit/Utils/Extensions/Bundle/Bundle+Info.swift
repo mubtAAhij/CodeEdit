@@ -11,13 +11,21 @@ extension Bundle {
 
     static var appName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
-            ?? String(localized: "bundle.info.unknown-app", defaultValue: "Unknown App", comment: "Fallback app name when bundle name is unavailable")
+            ?? String(
+                localized: "bundle.info.unknown-app",
+                defaultValue: "Unknown App",
+                comment: "Fallback app name when bundle name is unavailable"
+            )
     }
 
     static var displayName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
         ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
-        ?? String(localized: "bundle.info.unknown-app", defaultValue: "Unknown App", comment: "Fallback app name when display name is unavailable")
+        ?? String(
+            localized: "bundle.info.unknown-app",
+            defaultValue: "Unknown App",
+            comment: "Fallback app name when display name is unavailable"
+        )
     }
 
     static var copyrightString: String? {
