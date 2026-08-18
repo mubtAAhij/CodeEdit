@@ -154,7 +154,11 @@ struct SettingsView: View {
             /// Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
             if #unavailable(macOS 26.0) {
                 List { }
-                    .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.search.field-title", defaultValue: "Search", comment: "Title for settings search field"))
+                    .searchable(text: $searchText, placement: .sidebar, prompt: String(
+                        localized: "settings.search.field-title",
+                        defaultValue: "Search",
+                        comment: "Title for settings search field"
+                    ))
                     .scrollDisabled(true)
                     .frame(height: 30)
                 List(selection: $selectedPage) {
@@ -174,7 +178,11 @@ struct SettingsView: View {
                     }
                 }
                 .toolbar(removing: .sidebarToggle)
-                .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.search.placeholder", defaultValue: "Search", comment: "Placeholder text for settings search input"))
+                .searchable(text: $searchText, placement: .sidebar, prompt: String(
+                    localized: "settings.search.placeholder",
+                    defaultValue: "Search",
+                    comment: "Placeholder text for settings search input"
+                ))
                 .navigationSplitViewColumnWidth(215)
             }
         } detail: {
@@ -203,7 +211,11 @@ struct SettingsView: View {
                 case .developer:
                     DeveloperSettingsView()
                 default:
-                    Text(String(localized: "settings.implementation-needed", defaultValue: "Implementation Needed", comment: "Placeholder text for unimplemented settings section")).frame(alignment: .center)
+                    Text(String(
+                        localized: "settings.implementation-needed",
+                        defaultValue: "Implementation Needed",
+                        comment: "Placeholder text for unimplemented settings section"
+                    )).frame(alignment: .center)
                 }
             }
             .navigationSplitViewColumnWidth(500)
