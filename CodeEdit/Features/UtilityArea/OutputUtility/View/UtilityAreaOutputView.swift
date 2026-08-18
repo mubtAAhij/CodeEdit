@@ -17,11 +17,23 @@ struct UtilityAreaOutputView: View {
         var title: String {
             switch self {
             case .extensions(let source):
-                String(format: String(localized: "utility-area.output.source-title.extension", defaultValue: "Extension - %@", comment: "Output source title for extension output"), "\(source.extensionInfo.name)")
+                String(format: String(
+                    localized: "utility-area.output.source-title.extension",
+                    defaultValue: "Extension - %@",
+                    comment: "Output source title for extension output"
+                ), "\(source.extensionInfo.name)")
             case .languageServer(let source):
-                String(format: String(localized: "utility-area.output.source-title.language-server", defaultValue: "Language Server - %@", comment: "Output source title for language server output"), "\(source.id)")
+                String(format: String(
+                    localized: "utility-area.output.source-title.language-server",
+                    defaultValue: "Language Server - %@",
+                    comment: "Output source title for language server output"
+                ), "\(source.id)")
             case .devOutput:
-                String(localized: "utility-area.output.source-title.internal-development", defaultValue: "Internal Development Output", comment: "Output source title for internal development output")
+                String(
+                    localized: "utility-area.output.source-title.internal-development",
+                    defaultValue: "Internal Development Output",
+                    comment: "Output source title for internal development output"
+                )
             }
         }
 
@@ -79,14 +91,22 @@ struct UtilityAreaOutputView: View {
                         }
                     }
                 } else {
-                    Text(String(localized: "utility-area.output.empty-state.no-output", defaultValue: "No output", comment: "Empty state text when selected output source has no content"))
+                    Text(String(
+                        localized: "utility-area.output.empty-state.no-output",
+                        defaultValue: "No output",
+                        comment: "Empty state text when selected output source has no content"
+                    ))
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .frame(maxHeight: .infinity)
                         .paneToolbar {
                             UtilityAreaOutputSourcePicker(selectedSource: $selectedSource)
                             Spacer()
-                            UtilityAreaFilterTextField(title: String(localized: "utility-area.output.filter", defaultValue: "Filter", comment: "Label for output filter control"), text: $filterText)
+                            UtilityAreaFilterTextField(title: String(
+                                localized: "utility-area.output.filter",
+                                defaultValue: "Filter",
+                                comment: "Label for output filter control"
+                            ), text: $filterText)
                                 .frame(maxWidth: 175)
                             Button { } label: {
                                 Image(systemName: "trash")
