@@ -18,7 +18,7 @@ struct AccountsSettingsView: View {
         SettingsForm {
             Section {
                 if $gitAccounts.isEmpty {
-                    Text("No accounts")
+                    Text(String(localized: "settings.accounts.view.no-accounts", defaultValue: "No accounts", comment: "Empty state message when no accounts are configured"))
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .center)
                 } else {
@@ -29,7 +29,7 @@ struct AccountsSettingsView: View {
             } footer: {
                 HStack {
                     Spacer()
-                    Button("Add Account...") { addAccountSheetPresented.toggle() }
+                    Button(String(localized: "settings.accounts.view.add-account", defaultValue: "Add Account...", comment: "Button title to add a new account")) { addAccountSheetPresented.toggle() }
                     .sheet(isPresented: $addAccountSheetPresented, content: {
                         AccountSelectionView(selectedProvider: $selectedProvider)
                     })
@@ -49,9 +49,9 @@ struct AccountsSettingsView: View {
 
     private var implementationNeeded: some View {
         VStack(spacing: 20) {
-            Text("This git client is currently not supported.")
+            Text(String(localized: "settings.accounts.view.unsupported-git-client", defaultValue: "This git client is currently not supported.", comment: "Warning message for unsupported git client in accounts settings"))
             HStack {
-                Button("Close") {
+                Button(String(localized: "settings.accounts.view.close", defaultValue: "Close", comment: "Button title to close unsupported client warning")) {
                     addAccountSheetPresented.toggle()
                     selectedProvider = nil
                 }
