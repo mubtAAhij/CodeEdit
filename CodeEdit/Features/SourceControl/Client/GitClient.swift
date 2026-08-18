@@ -23,12 +23,36 @@ class GitClient {
         var description: String {
             switch self {
             case .outputError(let string): string
-            case .notGitRepository: String(localized: "source-control.git-client.error.not-a-git-repository", defaultValue: "Not a git repository", comment: "Error message when command runs outside a git repository")
-            case .failedToDecodeURL: String(localized: "source-control.git-client.error.failed-to-decode-url", defaultValue: "Failed to decode URL", comment: "Error message when remote URL cannot be decoded")
-            case .noRemoteConfigured: String(localized: "source-control.git-client.error.no-remote-configured", defaultValue: "No remote configured", comment: "Error message when repository has no configured remote")
-            case .statusParseEarlyEnd: String(localized: "source-control.git-client.error.invalid-status-end-of-string", defaultValue: "Invalid status, found end of string too early", comment: "Error message when parsing git status output fails due to premature end")
-            case let .invalidStatus(char): String(format: String(localized: "source-control.git-client.error.invalid-status-received", defaultValue: "Invalid status received: %@", comment: "Error message when parser receives unsupported status character"), "\(char)")
-            case let .statusInvalidChangeType(char): String(format: String(localized: "source-control.git-client.error.invalid-change-type", defaultValue: "Status invalid change type: %@", comment: "Error message when parser receives invalid change type character"), "\(char)")
+            case .notGitRepository: String(
+                localized: "source-control.git-client.error.not-a-git-repository",
+                defaultValue: "Not a git repository",
+                comment: "Error message when command runs outside a git repository"
+            )
+            case .failedToDecodeURL: String(
+                localized: "source-control.git-client.error.failed-to-decode-url",
+                defaultValue: "Failed to decode URL",
+                comment: "Error message when remote URL cannot be decoded"
+            )
+            case .noRemoteConfigured: String(
+                localized: "source-control.git-client.error.no-remote-configured",
+                defaultValue: "No remote configured",
+                comment: "Error message when repository has no configured remote"
+            )
+            case .statusParseEarlyEnd: String(
+                localized: "source-control.git-client.error.invalid-status-end-of-string",
+                defaultValue: "Invalid status, found end of string too early",
+                comment: "Error message when parsing git status output fails due to premature end"
+            )
+            case let .invalidStatus(char): String(format: String(
+                localized: "source-control.git-client.error.invalid-status-received",
+                defaultValue: "Invalid status received: %@",
+                comment: "Error message when parser receives unsupported status character"
+            ), "\(char)")
+            case let .statusInvalidChangeType(char): String(format: String(
+                localized: "source-control.git-client.error.invalid-change-type",
+                defaultValue: "Status invalid change type: %@",
+                comment: "Error message when parser receives invalid change type character"
+            ), "\(char)")
             }
         }
     }
