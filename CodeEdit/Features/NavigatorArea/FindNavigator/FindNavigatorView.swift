@@ -57,7 +57,11 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text(String(localized: "find-navigator.searching-status", defaultValue: "Searching", comment: "Status message shown while searching in find navigator"))
+                    Text(String(
+                        localized: "find-navigator.searching-status",
+                        defaultValue: "Searching",
+                        comment: "Status message shown while searching in find navigator"
+                    ))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -67,7 +71,11 @@ struct FindNavigatorView: View {
                     ProgressView()
                         .padding()
 
-                    Text(String(localized: "find-navigator.replacing-status", defaultValue: "Replacing", comment: "Status message shown while replacing in find navigator"))
+                    Text(String(
+                        localized: "find-navigator.replacing-status",
+                        defaultValue: "Replacing",
+                        comment: "Status message shown while replacing in find navigator"
+                    ))
                         .foregroundStyle(.tertiary)
                         .font(.title3)
                 }
@@ -75,8 +83,16 @@ struct FindNavigatorView: View {
             case .found:
                 if self.searchResultCount == 0 {
                     CEContentUnavailableView(
-                        String(localized: "find-navigator.no-results-title", defaultValue: "No Results", comment: "Title shown when no find results are available"),
-                        description: String(format: String(localized: "find-navigator.no-results-query-message", defaultValue: "No Results for \"%@\" in Project", comment: "Message shown when no results are found for the current query"), "\(state.searchQuery)"),
+                        String(
+                            localized: "find-navigator.no-results-title",
+                            defaultValue: "No Results",
+                            comment: "Title shown when no find results are available"
+                        ),
+                        description: String(format: String(
+                            localized: "find-navigator.no-results-query-message",
+                            defaultValue: "No Results for \"%@\" in Project",
+                            comment: "Message shown when no results are found for the current query"
+                        ), "\(state.searchQuery)"),
                         systemImage: "exclamationmark.magnifyingglass"
                     )
                 } else {
@@ -84,14 +100,30 @@ struct FindNavigatorView: View {
                 }
             case .replaced(let updatedFiles):
                 CEContentUnavailableView(
-                    String(localized: "find-navigator.replaced-title", defaultValue: "Replaced", comment: "Title shown after replacement finishes"),
-                    description: String(format: String(localized: "find-navigator.replaced-summary", defaultValue: "Successfully replaced terms across %d files", comment: "Summary shown after replacing terms across files"), updatedFiles),
+                    String(
+                        localized: "find-navigator.replaced-title",
+                        defaultValue: "Replaced",
+                        comment: "Title shown after replacement finishes"
+                    ),
+                    description: String(format: String(
+                        localized: "find-navigator.replaced-summary",
+                        defaultValue: "Successfully replaced terms across %d files",
+                        comment: "Summary shown after replacing terms across files"
+                    ), updatedFiles),
                     systemImage: "checkmark.circle.fill"
                 )
             case .failed(let errorMessage):
                 CEContentUnavailableView(
-                    String(localized: "find-navigator.error-title", defaultValue: "An Error Occurred", comment: "Title shown when an error occurs in find navigator"),
-                    description: String(format: String(localized: "find-navigator.error-message-detail", defaultValue: "%@", comment: "Detailed error message shown in find navigator error state"), "\(errorMessage)"),
+                    String(
+                        localized: "find-navigator.error-title",
+                        defaultValue: "An Error Occurred",
+                        comment: "Title shown when an error occurs in find navigator"
+                    ),
+                    description: String(format: String(
+                        localized: "find-navigator.error-message-detail",
+                        defaultValue: "%@",
+                        comment: "Detailed error message shown in find navigator error state"
+                    ), "\(errorMessage)"),
                     systemImage: "xmark.octagon.fill"
                 )
             }
