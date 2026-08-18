@@ -48,7 +48,11 @@ final class CargoPackageManager: PackageManagerProtocol {
     }
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: String(localized: "lsp.registry.cargo.initialize-directory-structure", defaultValue: "Initialize Directory Structure", comment: "Title for permission prompt action before cargo installation"), confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(
+            localized: "lsp.registry.cargo.initialize-directory-structure",
+            defaultValue: "Initialize Directory Structure",
+            comment: "Title for permission prompt action before cargo installation"
+        ), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
         }
     }
@@ -57,9 +61,17 @@ final class CargoPackageManager: PackageManagerProtocol {
         let qualifiedPackageName = "\(source.pkgName)@\(source.version)"
 
         return PackageManagerInstallStep(
-            name: String(localized: "lsp.registry.cargo.install-package-using-cargo", defaultValue: "Install Package Using cargo", comment: "Title for cargo package installation confirmation prompt"),
+            name: String(
+                localized: "lsp.registry.cargo.install-package-using-cargo",
+                defaultValue: "Install Package Using cargo",
+                comment: "Title for cargo package installation confirmation prompt"
+            ),
             confirmation: .required(
-                message: String(format: String(localized: "lsp.registry.cargo.install-package-confirmation", defaultValue: "This requires the cargo package %@.\nAllow CodeEdit to install this package?", comment: "Confirmation message asking user to allow installing a cargo package"), "\(qualifiedPackageName)")
+                message: String(format: String(
+                    localized: "lsp.registry.cargo.install-package-confirmation",
+                    defaultValue: "This requires the cargo package %@.\nAllow CodeEdit to install this package?",
+                    comment: "Confirmation message asking user to allow installing a cargo package"
+                ), "\(qualifiedPackageName)")
             )
         ) { model in
             var cargoArgs = ["cargo", "install", "--root", "."]
