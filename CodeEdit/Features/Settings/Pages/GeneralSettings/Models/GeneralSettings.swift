@@ -24,29 +24,121 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                String(localized: "settings.general.search.appearance", defaultValue: "Appearance", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.file-icon-style", defaultValue: "File Icon Style", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.tab-bar-style", defaultValue: "Tab Bar Style", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.show-jump-bar", defaultValue: "Show Jump Bar", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.dim-editors-without-focus", defaultValue: "Dim editors without focus", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.navigator-tab-bar-position", defaultValue: "Navigator Tab Bar Position", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.inspector-tab-bar-position", defaultValue: "Inspector Tab Bar Position", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.show-issues", defaultValue: "Show Issues", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.show-live-issues", defaultValue: "Show Live Issues", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.auto-save-change-to-disk", defaultValue: "Automatically save change to disk", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.auto-reveal-in-project-navigator", defaultValue: "Automatically reveal in project navigator", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.reopen-behavior", defaultValue: "Reopen Behavior", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.after-last-window-closed", defaultValue: "After the last window is closed", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.file-extensions", defaultValue: "File Extensions", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.project-navigator-size", defaultValue: "Project Navigator Size", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.find-navigator-detail", defaultValue: "Find Navigator Detail", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.issue-navigator-detail", defaultValue: "Issue Navigator Detail", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.show-open-with-codeedit-in-finder", defaultValue: "Show “Open With CodeEdit“ option in Finder", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.codeedit-shell-command", defaultValue: "'codeedit' Shell command", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.dialog-warnings", defaultValue: "Dialog Warnings", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.check-for-updates", defaultValue: "Check for updates", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.auto-check-for-app-updates", defaultValue: "Automatically check for app updates", comment: "General settings search keyword"),
-                String(localized: "settings.general.search.include-pre-release-versions", defaultValue: "Include pre-release versions", comment: "General settings search keyword")
+                String(
+                    localized: "settings.general.search.appearance",
+                    defaultValue: "Appearance",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.file-icon-style",
+                    defaultValue: "File Icon Style",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.tab-bar-style",
+                    defaultValue: "Tab Bar Style",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.show-jump-bar",
+                    defaultValue: "Show Jump Bar",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.dim-editors-without-focus",
+                    defaultValue: "Dim editors without focus",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.navigator-tab-bar-position",
+                    defaultValue: "Navigator Tab Bar Position",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.inspector-tab-bar-position",
+                    defaultValue: "Inspector Tab Bar Position",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.show-issues",
+                    defaultValue: "Show Issues",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.show-live-issues",
+                    defaultValue: "Show Live Issues",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.auto-save-change-to-disk",
+                    defaultValue: "Automatically save change to disk",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.auto-reveal-in-project-navigator",
+                    defaultValue: "Automatically reveal in project navigator",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.reopen-behavior",
+                    defaultValue: "Reopen Behavior",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.after-last-window-closed",
+                    defaultValue: "After the last window is closed",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.file-extensions",
+                    defaultValue: "File Extensions",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.project-navigator-size",
+                    defaultValue: "Project Navigator Size",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.find-navigator-detail",
+                    defaultValue: "Find Navigator Detail",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.issue-navigator-detail",
+                    defaultValue: "Issue Navigator Detail",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.show-open-with-codeedit-in-finder",
+                    defaultValue: "Show “Open With CodeEdit“ option in Finder",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.codeedit-shell-command",
+                    defaultValue: "'codeedit' Shell command",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.dialog-warnings",
+                    defaultValue: "Dialog Warnings",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.check-for-updates",
+                    defaultValue: "Check for updates",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.auto-check-for-app-updates",
+                    defaultValue: "Automatically check for app updates",
+                    comment: "General settings search keyword"
+                ),
+                String(
+                    localized: "settings.general.search.include-pre-release-versions",
+                    defaultValue: "Include pre-release versions",
+                    comment: "General settings search keyword"
+                )
             ]
         }
 
@@ -308,9 +400,17 @@ extension SettingsData {
         var label: String {
             switch self {
             case .upTo1:
-                return String(localized: "settings.general.navigator-detail.one-line", defaultValue: "One Line", comment: "Find or issue navigator detail option for a single line")
+                return String(
+                    localized: "settings.general.navigator-detail.one-line",
+                    defaultValue: "One Line",
+                    comment: "Find or issue navigator detail option for a single line"
+                )
             default:
-                return String(format: String(localized: "settings.general.navigator-detail.up-to-lines", defaultValue: "Up to %d lines", comment: "Find or issue navigator detail option with maximum line count"), self.rawValue)
+                return String(format: String(
+                    localized: "settings.general.navigator-detail.up-to-lines",
+                    defaultValue: "Up to %d lines",
+                    comment: "Find or issue navigator detail option with maximum line count"
+                ), self.rawValue)
             }
         }
     }
