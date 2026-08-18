@@ -15,7 +15,11 @@ extension SettingsData {
         /// The search keys
         var searchKeys: [String] {
             [
-                String(localized: "settings.navigation.search-key.navigation-style", defaultValue: "Navigation Style", comment: "Search key for navigation style setting"),
+                String(
+                    localized: "settings.navigation.search-key.navigation-style",
+                    defaultValue: "Navigation Style",
+                    comment: "Search key for navigation style setting"
+                ),
             ]
             
         }
