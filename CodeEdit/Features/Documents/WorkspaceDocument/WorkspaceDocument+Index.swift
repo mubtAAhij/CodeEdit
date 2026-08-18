@@ -19,8 +19,16 @@ extension WorkspaceDocument.SearchState {
         let createInfo: [String: Any] = [
             "id": uuidString,
             "action": "create",
-            "title": String(localized: "workspace-document.index.indexing-processing-files", defaultValue: "Indexing | Processing files", comment: "Progress title shown while indexing files"),
-            "message": String(localized: "workspace-document.index.creating-index-description", defaultValue: "Creating an index to enable fast and accurate searches within your codebase.", comment: "Description shown while creating workspace search index"),
+            "title": String(
+                localized: "workspace-document.index.indexing-processing-files",
+                defaultValue: "Indexing | Processing files",
+                comment: "Progress title shown while indexing files"
+            ),
+            "message": String(
+                localized: "workspace-document.index.creating-index-description",
+                defaultValue: "Creating an index to enable fast and accurate searches within your codebase.",
+                comment: "Description shown while creating workspace search index"
+            ),
             "isLoading": true
         ]
         NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: createInfo)
@@ -57,7 +65,11 @@ extension WorkspaceDocument.SearchState {
             let updateInfo: [String: Any] = [
                 "id": uuidString,
                 "action": "update",
-                "title": String(localized: "workspace-document.index.finished-indexing", defaultValue: "Finished indexing", comment: "Status message shown when indexing is complete"),
+                "title": String(
+                    localized: "workspace-document.index.finished-indexing",
+                    defaultValue: "Finished indexing",
+                    comment: "Status message shown when indexing is complete"
+                ),
                 "isLoading": false
             ]
             NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: updateInfo)
