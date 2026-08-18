@@ -99,7 +99,7 @@ extension WorkspaceDocument.SearchState {
         let regexPattern = getRegexPattern(query)
 
         guard let indexer = indexer else {
-            await setStatus(.failed(errorMessage: "No index found. Try rebuilding the index."))
+            await setStatus(.failed(errorMessage: String(localized: "workspace.find.no-index-found", defaultValue: "No index found. Try rebuilding the index.", comment: "Error message shown when search index is unavailable")))
             return
         }
 
@@ -191,7 +191,7 @@ extension WorkspaceDocument.SearchState {
             return
         }
         guard let fileContent = String(bytes: data, encoding: .utf8) else {
-            await setStatus(.failed(errorMessage: "Failed to decode file content."))
+            await setStatus(.failed(errorMessage: String(localized: "workspace.find.failed-to-decode-file-content", defaultValue: "Failed to decode file content.", comment: "Error message shown when indexed file content cannot be decoded")))
             return
         }
 
@@ -200,7 +200,7 @@ extension WorkspaceDocument.SearchState {
             pattern: query,
             options: caseSensitive ? [] : .caseInsensitive
         ) else {
-            await setStatus(.failed(errorMessage: "Invalid regular expression."))
+            await setStatus(.failed(errorMessage: String(localized: "workspace.find.invalid-regular-expression", defaultValue: "Invalid regular expression.", comment: "Error message shown when search regex is invalid")))
             return
         }
 
