@@ -31,25 +31,25 @@ enum PackageManagerType: String, Codable {
     var userDescription: String {
         switch self {
         case .npm:
-            "NPM"
+            String(localized: "lsp.registry.package-manager-type.npm", defaultValue: "NPM", comment: "Display name for NPM package manager")
         case .cargo:
-            "Cargo"
+            String(localized: "lsp.registry.package-manager-type.cargo", defaultValue: "Cargo", comment: "Display name for Cargo package manager")
         case .golang:
-            "Go"
+            String(localized: "lsp.registry.package-manager-type.go", defaultValue: "Go", comment: "Display name for Go package manager")
         case .pip:
-            "Pip"
+            String(localized: "lsp.registry.package-manager-type.pip", defaultValue: "Pip", comment: "Display name for Pip package manager")
         case .gem:
-            "Gem"
+            String(localized: "lsp.registry.package-manager-type.gem", defaultValue: "Gem", comment: "Display name for Gem package manager")
         case .nuget:
-            "Nuget"
+            String(localized: "lsp.registry.package-manager-type.nuget", defaultValue: "Nuget", comment: "Display name for NuGet package manager")
         case .opam:
-            "Opam"
+            String(localized: "lsp.registry.package-manager-type.opam", defaultValue: "Opam", comment: "Display name for Opam package manager")
         case .composer:
-            "Composer"
+            String(localized: "lsp.registry.package-manager-type.composer", defaultValue: "Composer", comment: "Display name for Composer package manager")
         case .sourceBuild:
-            "Build From Source"
+            String(localized: "lsp.registry.package-manager-type.build-from-source", defaultValue: "Build From Source", comment: "Display name for building language server from source")
         case .github:
-            "Download From GitHub"
+            String(localized: "lsp.registry.package-manager-type.download-from-github", defaultValue: "Download From GitHub", comment: "Display name for downloading language server from GitHub")
         }
     }
 }
