@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FindCommands: Commands {
-
     @FirstResponder var responder
 
     static let selector = #selector(NSTextView.performFindPanelAction(_:))
@@ -18,34 +17,34 @@ struct FindCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Find") {
+        CommandMenu(String(localized: "windowcommands.find.title", defaultValue: "Find", comment: "Top-level title for the Find commands menu")) {
             Group {
-                Button("Find...") {
+                Button(String(localized: "windowcommands.find.find", defaultValue: "Find...", comment: "Menu item title to open the find panel")) {
                     send(.showFindPanel)
                 }
                 .keyboardShortcut("f")
 
-                Button("Find and Replace...") {
+                Button(String(localized: "windowcommands.find.find-and-replace", defaultValue: "Find and Replace...", comment: "Menu item title to open find and replace")) {
                     send(.init(rawValue: 12)!)
                 }
                 .keyboardShortcut("f", modifiers: [.option, .command])
 
-                Button("Find Next") {
+                Button(String(localized: "windowcommands.find.find-next", defaultValue: "Find Next", comment: "Menu item title to jump to the next find match")) {
                     send(.next)
                 }
                 .keyboardShortcut("g")
 
-                Button("Find Previous") {
+                Button(String(localized: "windowcommands.find.find-previous", defaultValue: "Find Previous", comment: "Menu item title to jump to the previous find match")) {
                     send(.previous)
                 }
                 .keyboardShortcut("g", modifiers: [.shift, .command])
 
-                Button("Use Selection for Find") {
+                Button(String(localized: "windowcommands.find.use-selection-for-find", defaultValue: "Use Selection for Find", comment: "Menu item title to use selected text as the find query")) {
                     send(.setFindString)
                 }
                 .keyboardShortcut("e")
 
-                Button("Jump to Selection") {
+                Button(String(localized: "windowcommands.find.jump-to-selection", defaultValue: "Jump to Selection", comment: "Menu item title to jump to the currently selected text")) {
                     NSApp.sendAction(#selector(NSTextView.centerSelectionInVisibleArea(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j")
