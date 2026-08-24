@@ -16,32 +16,32 @@ struct CETaskFormView: View {
         Form {
             Section {
                 TextField(text: $task.name) {
-                    Text("Name")
+                    Text(String(localized: "ce-workspace.task-form.name", defaultValue: "Name", comment: "Label for task name field"))
                 }
-                .accessibilityLabel("Task Name")
-                Picker("Target", selection: $task.target) {
-                    Text("My Mac")
-                        .tag("My Mac")
+                .accessibilityLabel(String(localized: "ce-workspace.task-form.task-name-placeholder", defaultValue: "Task Name", comment: "Placeholder for task name input"))
+                Picker(String(localized: "ce-workspace.task-form.target", defaultValue: "Target", comment: "Label for task execution target selection"), selection: $task.target) {
+                    Text(String(localized: "ce-workspace.task-form.target.my-mac.title", defaultValue: "My Mac", comment: "Target option title for running task on local machine"))
+                        .tag(String(localized: "ce-workspace.task-form.target.my-mac.value", defaultValue: "My Mac", comment: "Target option value text for local machine target"))
 
-                    Text("SSH")
-                        .tag("SSH")
+                    Text(String(localized: "ce-workspace.task-form.target.ssh.title", defaultValue: "SSH", comment: "Target option title for SSH execution target"))
+                        .tag(String(localized: "ce-workspace.task-form.target.ssh.value", defaultValue: "SSH", comment: "Target option value text for SSH target"))
 
-                    Text("Docker")
-                        .tag("Docker")
+                    Text(String(localized: "ce-workspace.task-form.target.docker.title", defaultValue: "Docker", comment: "Target option title for Docker execution target"))
+                        .tag(String(localized: "ce-workspace.task-form.target.docker.value", defaultValue: "Docker", comment: "Target option value text for Docker target"))
 
-                    Text("Docker Compose")
-                        .tag("Docker Compose")
+                    Text(String(localized: "ce-workspace.task-form.target.docker-compose", defaultValue: "Docker Compose", comment: "Target option label for Docker Compose execution target"))
+                        .tag(String(localized: "ce-workspace.task-form.target.docker-compose.value", defaultValue: "Docker Compose", comment: "Target option value text for Docker Compose target"))
                 }
                 .disabled(true)
             }
 
             Section {
                 TextField(text: $task.command) {
-                    Text("Task")
+                    Text(String(localized: "ce-workspace.task-form.task", defaultValue: "Task", comment: "Section title for task configuration fields"))
                 }
-                .accessibilityLabel("Task Command")
+                .accessibilityLabel(String(localized: "ce-workspace.task-form.task-command", defaultValue: "Task Command", comment: "Label for command to execute in task"))
                 TextField(text: $task.workingDirectory) {
-                    Text("Working Directory")
+                    Text(String(localized: "ce-workspace.task-form.working-directory", defaultValue: "Working Directory", comment: "Label for task working directory field"))
                 }
             }
 
@@ -58,7 +58,7 @@ struct CETaskFormView: View {
                 .frame(minHeight: 56)
                 .overlay {
                     if task.environmentVariables.isEmpty {
-                        Text("No environment variables")
+                        Text(String(localized: "ce-workspace.task-form.no-environment-variables", defaultValue: "No environment variables", comment: "Placeholder text shown when no environment variables are configured"))
                             .foregroundStyle(Color(.secondaryLabelColor))
                     }
                 }
@@ -80,7 +80,7 @@ struct CETaskFormView: View {
                     removeSelectedEnv()
                 }
             } header: {
-                Text("Environment Variables")
+                Text(String(localized: "ce-workspace.task-form.environment-variables", defaultValue: "Environment Variables", comment: "Section title for environment variables list"))
             }
         }
         .formStyle(.grouped)

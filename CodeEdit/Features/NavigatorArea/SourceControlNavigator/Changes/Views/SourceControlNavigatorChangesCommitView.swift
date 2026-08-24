@@ -27,7 +27,7 @@ struct SourceControlNavigatorChangesCommitView: View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
                 PaneTextField(
-                    "Commit message (required)",
+                    String(localized: "source-control.commit.message.required", defaultValue: "Commit message (required)", comment: "Placeholder text for required commit message field"),
                     text: $message,
                     axis: .vertical
                 )
@@ -36,7 +36,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                     if showDetails {
                         VStack {
                             TextField(
-                                "Detailed description",
+                                String(localized: "source-control.commit.description.detailed", defaultValue: "Detailed description", comment: "Placeholder text for optional detailed commit description"),
                                 text: $details,
                                 axis: .vertical
                             )
@@ -58,7 +58,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                 VStack(spacing: 0) {
                     if showDetails {
                         Toggle(isOn: $ammend) {
-                            Text("Amend")
+                            Text(String(localized: "source-control.commit.option.amend", defaultValue: "Amend", comment: "Toggle label for amending previous commit"))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .toggleStyle(.switch)
@@ -79,11 +79,11 @@ struct SourceControlNavigatorChangesCommitView: View {
                             }
                         }
                     } label: {
-                        Text(allFilesStaged ? "Unstage All" : "Stage All")
+                        Text(allFilesStaged ? String(localized: "source-control.commit.action.unstage-all", defaultValue: "Unstage All", comment: "Button title to unstage all changes") : String(localized: "source-control.commit.action.stage-all", defaultValue: "Stage All", comment: "Button title to stage all changes"))
                             .frame(maxWidth: .infinity)
                     }
-                    Menu(isCommiting ? "Committing..." : "Commit") {
-                        Button("Commit and Push...") {
+                    Menu(isCommiting ? String(localized: "source-control.commit.action.committing", defaultValue: "Committing...", comment: "Progress button title while commit is running") : String(localized: "source-control.commit.action.commit", defaultValue: "Commit", comment: "Primary button title to create commit")) {
+                        Button(String(localized: "source-control.commit.action.commit-and-push", defaultValue: "Commit and Push...", comment: "Button title to commit and push changes")) {
                             Task {
                                 self.isCommiting = true
                                 do {
@@ -92,14 +92,14 @@ struct SourceControlNavigatorChangesCommitView: View {
                                     self.details = ""
                                 } catch {
                                     await sourceControlManager.showAlertForError(
-                                        title: "Failed to commit",
+                                        title: String(localized: "source-control.commit.error.failed-to-commit", defaultValue: "Failed to commit", comment: "Error title shown when commit operation fails"),
                                         error: error
                                     )
                                 }
                                 do {
                                     try await sourceControlManager.push()
                                 } catch {
-                                    await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                                    await sourceControlManager.showAlertForError(title: String(localized: "source-control.commit.error.failed-to-push", defaultValue: "Failed to push", comment: "Error title shown when push operation fails"), error: error)
                                 }
                                 self.isCommiting = false
                             }
@@ -112,7 +112,7 @@ struct SourceControlNavigatorChangesCommitView: View {
                                 self.message = ""
                                 self.details = ""
                             } catch {
-                                await sourceControlManager.showAlertForError(title: "Failed to commit", error: error)
+                                await sourceControlManager.showAlertForError(title: String(localized: "source-control.commit.error.failed-to-commit", defaultValue: "Failed to commit", comment: "Error title shown when commit operation fails"), error: error)
                             }
                             self.isCommiting = false
                         }

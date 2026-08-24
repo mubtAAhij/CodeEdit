@@ -40,7 +40,7 @@ struct AccountsSettingsSigninView: View {
                     content: {
                         if provider.baseURL == nil {
                             VStack(alignment: .leading, spacing: 5) {
-                                Text("Server")
+                                Text(String(localized: "settings.accounts.signin.server", defaultValue: "Server", comment: "Field label for git server URL in account sign-in form"))
                                     .font(.caption3)
                                     .foregroundColor(.secondary)
                                 TextField("", text: $server, prompt: Text("https://git.example.com"))
@@ -55,7 +55,7 @@ struct AccountsSettingsSigninView: View {
                                 .labelsHidden()
                         }
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Personal Access Token")
+                            Text(String(localized: "settings.accounts.signin.personal-access-token", defaultValue: "Personal Access Token", comment: "Field label for personal access token in account sign-in form"))
                                 .font(.caption3)
                                 .foregroundColor(.secondary)
                             SecureField("", text: $personalAccessToken)
@@ -138,7 +138,7 @@ struct AccountsSettingsSigninView: View {
                     addAccountSheetPresented.toggle()
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "settings.accounts.signin.actions.cancel", defaultValue: "Cancel", comment: "Cancel button title in account sign-in sheet"))
                         .frame(maxWidth: .infinity)
                 }
                 .controlSize(.large)
@@ -147,7 +147,7 @@ struct AccountsSettingsSigninView: View {
                 Button {
                     signin()
                 } label: {
-                    Text("Sign In")
+                    Text(String(localized: "settings.accounts.signin.actions.sign-in", defaultValue: "Sign In", comment: "Primary button title to sign in to account provider"))
                         .frame(maxWidth: .infinity)
                 }
                 .disabled(username.isEmpty || personalAccessToken.isEmpty)
@@ -157,7 +157,7 @@ struct AccountsSettingsSigninView: View {
                     Text("Unable to add account “\(username)”"),
                     isPresented: $signinErrorAlertIsPresented
                 ) {
-                    Button("OK") {
+                    Button(String(localized: "settings.accounts.signin.alert.ok", defaultValue: "OK", comment: "Default confirmation button title in account sign-in alerts")) {
                         signinErrorAlertIsPresented.toggle()
                     }
                 } message: {
@@ -178,7 +178,7 @@ struct AccountsSettingsSigninView: View {
             }
         ) {
             // Show alert when adding a duplicated account
-            signinErrorDetail = "Account with the same username and provider already exists!"
+            signinErrorDetail = String(localized: "settings.accounts.signin.error.duplicate-account", defaultValue: "Account with the same username and provider already exists!", comment: "Error message shown when duplicate account is detected")
             signinErrorAlertIsPresented.toggle()
         } else {
             let configURL = provider.apiURL?.absoluteString ?? server
@@ -236,11 +236,11 @@ struct AccountsSettingsSigninView: View {
         case -1009:
             signinErrorDetail = error.localizedDescription
         case 401:
-            signinErrorDetail = "Authentication Failed"
+            signinErrorDetail = String(localized: "settings.accounts.signin.error.authentication-failed", defaultValue: "Authentication Failed", comment: "Error title shown when provider authentication fails")
         case 403:
-            signinErrorDetail = "API Access Forbidden"
+            signinErrorDetail = String(localized: "settings.accounts.signin.error.api-access-forbidden", defaultValue: "API Access Forbidden", comment: "Error title shown when API token lacks required permissions")
         default:
-            signinErrorDetail = "Unknown Error"
+            signinErrorDetail = String(localized: "settings.accounts.signin.error.unknown", defaultValue: "Unknown Error", comment: "Fallback error title for unknown account sign-in failures")
         }
         signinErrorAlertIsPresented.toggle()
     }

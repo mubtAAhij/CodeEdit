@@ -27,7 +27,7 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? "No Project found")
+        ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "scheme_dropdown.no_project_found", defaultValue: "No Project found", comment: "Message shown when no project is available in scheme dropdown."))
         : workspaceName
     }
 
@@ -52,8 +52,8 @@ struct SchemeDropDownView: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("SchemeDropdown")
         .accessibilityValue(workspaceDisplayName)
-        .accessibilityLabel("Active Scheme")
-        .accessibilityHint("Open the active scheme menu")
+        .accessibilityLabel(String(localized: "scheme_dropdown.active_scheme", defaultValue: "Active Scheme", comment: "Accessibility label for active scheme selector."))
+        .accessibilityHint(String(localized: "scheme_dropdown.active_scheme.open-menu", defaultValue: "Open the active scheme menu", comment: "Accessibility hint for opening the active scheme menu."))
         .accessibilityAction {
             isSchemePopOverPresented.toggle()
         }
@@ -141,12 +141,12 @@ struct SchemeDropDownView: View {
         Divider()
             .padding(.vertical, 5)
         Group {
-            OptionMenuItemView(label: "Add Folder...") {
+            OptionMenuItemView(label: String(localized: "scheme_dropdown.add_folder", defaultValue: "Add Folder...", comment: "Menu action to add a folder from scheme dropdown.")) {
                 // TODO: Implment Add Folder
                 print("NOT IMPLEMENTED")
             }
             .disabled(true)
-            OptionMenuItemView(label: "Workspace Settings...") {
+            OptionMenuItemView(label: String(localized: "scheme_dropdown.workspace_settings", defaultValue: "Workspace Settings...", comment: "Menu action to open workspace settings from scheme dropdown.")) {
                 NSApp.sendAction(
                     #selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil
                 )

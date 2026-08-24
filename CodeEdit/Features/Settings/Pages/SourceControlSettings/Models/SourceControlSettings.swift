@@ -13,22 +13,22 @@ extension SettingsData {
 
         var searchKeys: [String] {
             [
-                "General",
-                "Enable source control",
-                "Refresh local status automatically",
-                "Fetch and refresh server status automatically",
-                "Add and remove files automatically",
-                "Select files to commit automatically",
-                "Show source control changes",
-                "Include upstream changes",
-                "Comparison view",
-                "Source control navigator",
-                "Default branch name",
-                "Git",
-                "Author Name",
-                "Author Email",
-                "Prefer to rebase when pulling",
-                "Show merge commits in per-file log"
+                String(localized: "source-control.settings.general", defaultValue: "General", comment: "Section title for general source control settings"),
+                String(localized: "source-control.settings.enable-source-control", defaultValue: "Enable source control", comment: "Toggle label to enable source control integration"),
+                String(localized: "source-control.settings.refresh-local-status-automatically", defaultValue: "Refresh local status automatically", comment: "Toggle label for automatically refreshing local repository status"),
+                String(localized: "source-control.settings.fetch-and-refresh-server-status-automatically", defaultValue: "Fetch and refresh server status automatically", comment: "Toggle label for automatically fetching and refreshing remote status"),
+                String(localized: "source-control.settings.add-and-remove-files-automatically", defaultValue: "Add and remove files automatically", comment: "Toggle label for automatically adding and removing files in source control"),
+                String(localized: "source-control.settings.select-files-to-commit-automatically", defaultValue: "Select files to commit automatically", comment: "Toggle label for automatically selecting files for commit"),
+                String(localized: "source-control.settings.show-source-control-changes", defaultValue: "Show source control changes", comment: "Toggle label for showing source control changes in editor"),
+                String(localized: "source-control.settings.include-upstream-changes", defaultValue: "Include upstream changes", comment: "Toggle label for including upstream changes in comparisons"),
+                String(localized: "source-control.settings.comparison-view", defaultValue: "Comparison view", comment: "Label for source control comparison view setting"),
+                String(localized: "source-control.settings.source-control-navigator", defaultValue: "Source control navigator", comment: "Label for source control navigator setting"),
+                String(localized: "source-control.settings.default-branch-name", defaultValue: "Default branch name", comment: "Label for default branch name setting"),
+                String(localized: "source-control.settings.git", defaultValue: "Git", comment: "Section title for Git-specific settings"),
+                String(localized: "source-control.settings.author-name", defaultValue: "Author Name", comment: "Label for Git author name setting"),
+                String(localized: "source-control.settings.author-email", defaultValue: "Author Email", comment: "Label for Git author email setting"),
+                String(localized: "source-control.settings.prefer-rebase-when-pulling", defaultValue: "Prefer to rebase when pulling", comment: "Toggle label for preferring rebase during pull operations"),
+                String(localized: "source-control.settings.show-merge-commits-in-per-file-log", defaultValue: "Show merge commits in per-file log", comment: "Toggle label for showing merge commits in file history log")
             ]
             .map { NSLocalizedString($0, comment: "") }
         }

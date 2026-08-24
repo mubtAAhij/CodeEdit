@@ -33,9 +33,9 @@ struct InvisibleCharacterWarningList: View {
                     }
                 }
             ),
-            keyColumnName: "Unicode Character Code",
-            valueColumnName: "Notes",
-            newItemInstruction: "Add A Character As A Hexidecimal Unicode Value",
+            keyColumnName: String(localized: "settings.warning-characters.unicode-character-code", defaultValue: "Unicode Character Code", comment: "Column title for unicode character code in invisible character warning list."),
+            valueColumnName: String(localized: "settings.warning-characters.notes", defaultValue: "Notes", comment: "Column title for notes in invisible character warning list."),
+            newItemInstruction: String(localized: "settings.warning-characters.add-character-hex-unicode", defaultValue: "Add A Character As A Hexidecimal Unicode Value", comment: "Help text describing adding a warning character as hexadecimal unicode value."),
             actionBarTrailing: {
                 Button {
                     // Add defaults without removing user's data. We do still override notes here.
@@ -46,7 +46,7 @@ struct InvisibleCharacterWarningList: View {
                         }
                     )
                 } label: {
-                    Text("Restore Defaults")
+                    Text(String(localized: "settings.warning-characters.restore-defaults", defaultValue: "Restore Defaults", comment: "Button title to restore default warning characters list."))
                 }
                 .buttonStyle(PlainButtonStyle())
                 .font(.system(size: 11, weight: .medium))
@@ -58,7 +58,7 @@ struct InvisibleCharacterWarningList: View {
         .frame(minHeight: 96, maxHeight: .infinity)
         .overlay {
             if items.isEmpty {
-                Text("No warning characters")
+                Text(String(localized: "settings.warning-characters.empty", defaultValue: "No warning characters", comment: "Empty state text when no warning characters are configured."))
                     .foregroundStyle(Color(.secondaryLabelColor))
             }
         }

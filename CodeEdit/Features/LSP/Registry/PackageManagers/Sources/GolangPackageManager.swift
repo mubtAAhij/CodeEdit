@@ -41,7 +41,7 @@ final class GolangPackageManager: PackageManagerProtocol {
     func isInstalled(method installationMethod: InstallationMethod) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: "",
-            confirmation: .required(message: "This package requires go to install. Allow CodeEdit to run go commands?")
+            confirmation: .required(message: String(localized: "lsp.golang-package-manager.permission.run-go-commands", defaultValue: "This package requires go to install. Allow CodeEdit to run go commands?", comment: "Prompt asking permission to run go commands for package installation."))
         ) { model in
             let versionOutput = try await model.runCommand("go version")
             let versionPattern = #"go version go\d+\.\d+"#
@@ -69,7 +69,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "lsp.golang-package-manager.initialize-directory-structure", defaultValue: "Initialize Directory Structure", comment: "Action title to initialize package directory structure for Go package manager."),
             confirmation: .none
         ) { model in
             try await model.createDirectoryStructure(for: packagePath)
@@ -90,7 +90,7 @@ final class GolangPackageManager: PackageManagerProtocol {
     func runGoInstall(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         let installCommand = getGoInstallCommand(source)
         return PackageManagerInstallStep(
-            name: "Install Package Using go",
+            name: String(localized: "lsp.golang-package-manager.install-package-using-go", defaultValue: "Install Package Using go", comment: "Action title to install package using go command."),
             confirmation: .required(
                 message: "This requires installing the go package \(installCommand)."
                 + "\nAllow CodeEdit to install this package?"
@@ -108,7 +108,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func buildBinary(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Build From Source",
+            name: String(localized: "lsp.golang-package-manager.build-from-source", defaultValue: "Build From Source", comment: "Action title to build package manager dependency from source."),
             confirmation: .none
         ) { model in
             // If there's a subpath, build the binary

@@ -25,8 +25,8 @@ struct CreateSSHKeyView: View {
     var body: some View {
         VStack {
             Form {
-                Section("Create SSH key") {
-                    Picker("Key Type", selection: $selectedKeyType) {
+                Section(String(localized: "settings.accounts.ssh.create-key.title", defaultValue: "Create SSH key", comment: "Title for the create SSH key sheet")) {
+                    Picker(String(localized: "settings.accounts.ssh.create-key.key-type", defaultValue: "Key Type", comment: "Label for SSH key type selection"), selection: $selectedKeyType) {
                         Text(KeyType.ed25519.rawValue)
                             .tag(KeyType.ed25519)
                         Text(KeyType.ecdsa.rawValue)
@@ -41,9 +41,9 @@ struct CreateSSHKeyView: View {
                         }
                         .tag(KeyType.dsa)
                     }
-                    SecureField("Passphrase", text: $passphrase)
+                    SecureField(String(localized: "settings.accounts.ssh.create-key.passphrase", defaultValue: "Passphrase", comment: "Label for SSH key passphrase field"), text: $passphrase)
                     if !passphrase.isEmpty {
-                        SecureField("Confirm Passphrase", text: $confirmPassphrase)
+                        SecureField(String(localized: "settings.accounts.ssh.create-key.confirm-passphrase", defaultValue: "Confirm Passphrase", comment: "Label for SSH key passphrase confirmation field"), text: $confirmPassphrase)
                     }
                 }
             }
@@ -52,10 +52,10 @@ struct CreateSSHKeyView: View {
             .scrollDisabled(true)
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "settings.accounts.ssh.create-key.cancel", defaultValue: "Cancel", comment: "Cancel button in create SSH key sheet")) {
                     dismiss()
                 }
-                Button("Create") {
+                Button(String(localized: "settings.accounts.ssh.create-key.create", defaultValue: "Create", comment: "Create button in create SSH key sheet")) {
                     // create the ssh key
                     dismiss()
                 }

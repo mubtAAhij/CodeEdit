@@ -54,30 +54,30 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent("Account") {
+                LabeledContent(String(localized: "accounts.settings.details.account", defaultValue: "Account", comment: "Section title for account details")) {
                     Text(currentAccount.name)
                 }
-                TextField("Description", text: $currentAccount.description)
+                TextField(String(localized: "accounts.settings.details.description", defaultValue: "Description", comment: "Label for account description field"), text: $currentAccount.description)
                 if currentAccount.provider.baseURL == nil {
-                    TextField("Server", text: $currentAccount.serverURL)
+                    TextField(String(localized: "accounts.settings.details.server", defaultValue: "Server", comment: "Label for account server field"), text: $currentAccount.serverURL)
                 }
             }
 
             Section {
                 Picker(selection: $currentAccount.urlProtocol) {
-                    Text("HTTPS")
+                    Text(String(localized: "accounts.settings.details.clone-protocol.https", defaultValue: "HTTPS", comment: "Option label for HTTPS clone protocol"))
                         .tag(SourceControlAccount.URLProtocol.https)
-                    Text("SSH")
+                    Text(String(localized: "accounts.settings.details.clone-protocol.ssh", defaultValue: "SSH", comment: "Option label for SSH clone protocol"))
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text("Clone Using")
+                    Text(String(localized: "accounts.settings.details.clone-using", defaultValue: "Clone Using", comment: "Label for repository clone protocol setting"))
                     Text("New repositories will be cloned from \(currentAccount.provider.name)"
                          + " using \(currentAccount.urlProtocol.rawValue).")
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker("SSH Key", selection: $currentAccount.sshKey) {
-                        Text("None")
+                    Picker(String(localized: "accounts.settings.details.ssh-key", defaultValue: "SSH Key", comment: "Label for SSH key selection"), selection: $currentAccount.sshKey) {
+                        Text(String(localized: "accounts.settings.details.ssh-key.none", defaultValue: "None", comment: "Option label indicating no SSH key is selected"))
                             .tag("")
                         Divider()
                         if let sshPath = FileManager.default.homeDirectoryForCurrentUser.appending(
@@ -99,7 +99,7 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text("Create New...")
+                        Text(String(localized: "accounts.settings.details.ssh-key.create-new", defaultValue: "Create New...", comment: "Button title to create a new SSH key"))
                             .tag("CREATE_NEW")
                         Text("Choose...")
                             .tag("CHOOSE")

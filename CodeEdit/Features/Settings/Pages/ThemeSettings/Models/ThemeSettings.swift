@@ -34,10 +34,10 @@ extension SettingsData {
 
         var searchKeys: [String] {
             [
-                "Automatically Change theme based on system appearance",
-                "Always use dark terminal appearance",
-                "Use theme background",
-                "Light Appearance",
+                String(localized: "settings.theme.automatically-change-theme-based-on-system-appearance", defaultValue: "Automatically Change theme based on system appearance", comment: "Toggle label for automatically switching theme based on system appearance."),
+                String(localized: "settings.theme.always-use-dark-terminal-appearance", defaultValue: "Always use dark terminal appearance", comment: "Toggle label for forcing dark terminal appearance."),
+                String(localized: "settings.theme.use-theme-background", defaultValue: "Use theme background", comment: "Toggle label for using theme background colors."),
+                String(localized: "settings.theme.light-appearance", defaultValue: "Light Appearance", comment: "Label for selecting light appearance theme."),
                 "GitHub Light",
                 "Xcode Light",
                 "Solarized Light",
@@ -50,10 +50,10 @@ extension SettingsData {
         }
 
         /// The name of the currently selected dark theme
-        var selectedDarkTheme: String = "Default (Dark)"
+        var selectedDarkTheme: String = String(localized: "settings.theme.default-dark", defaultValue: "Default (Dark)", comment: "Theme option label for default dark appearance.")
 
         /// The name of the currently selected light theme
-        var selectedLightTheme: String = "Default (Light)"
+        var selectedLightTheme: String = String(localized: "settings.theme.default-light", defaultValue: "Default (Light)", comment: "Theme option label for default light appearance.")
 
         /// The name of the currently selected theme
         var selectedTheme: String?

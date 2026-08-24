@@ -25,14 +25,14 @@ extension SourceControlNavigatorRepositoryView {
 
     @ViewBuilder
     func contextMenu(for item: RepoOutlineGroupItem, branch: GitBranch) -> some View {
-        Button("Switch...") {
+        Button(String(localized: "source_control.context_menu.switch", defaultValue: "Switch...", comment: "Context menu item to switch source control branch or reference")) {
             sourceControlManager.switchToBranch = branch
         }
         .disabled(item.branch == nil || sourceControlManager.currentBranch == item.branch)
         Divider()
         Button(
-            item.branch == nil && item.id != "BranchesGroup"
-            ? "New Branch..."
+            item.branch == nil && item.id != String(localized: "source_control.context_menu.branches_group", defaultValue: "BranchesGroup", comment: "Identifier label shown in source control context menu")
+            ? String(localized: "source_control.context_menu.new_branch", defaultValue: "New Branch...", comment: "Context menu action to create a new branch")
             : "New Branch from \"\(branch.name)\"..."
         ) {
             showNewBranch = true
@@ -41,7 +41,7 @@ extension SourceControlNavigatorRepositoryView {
         .disabled(item.branch == nil && item.id != "BranchesGroup")
         Button(
             item.branch == nil
-            ? "Rename Branch..."
+            ? String(localized: "source_control.context_menu.rename_branch", defaultValue: "Rename Branch...", comment: "Context menu action to rename a branch")
             : "Rename \"\(branch.name)\"..."
         ) {
             showRenameBranch = true
@@ -49,18 +49,18 @@ extension SourceControlNavigatorRepositoryView {
         }
         .disabled(item.branch == nil || item.branch?.isRemote == true)
         Divider()
-        Button("Add Existing Remote...") {
+        Button(String(localized: "source_control.context_menu.add_existing_remote", defaultValue: "Add Existing Remote...", comment: "Context menu action to add an existing remote repository")) {
             sourceControlManager.addExistingRemoteSheetIsPresented = true
         }
         .disabled(item.id != "RemotesGroup")
         Divider()
-        Button("Apply Stashed Changes...") {
+        Button(String(localized: "source_control.context_menu.apply_stashed_changes", defaultValue: "Apply Stashed Changes...", comment: "Context menu action to apply stashed changes")) {
             applyStashedChangesIsPresented = true
             stashEntryToApply = item.stashEntry
         }
         .disabled(item.stashEntry == nil)
         Divider()
-        Button("Delete...") {
+        Button(String(localized: "source_control.context_menu.delete", defaultValue: "Delete...", comment: "Context menu action to delete selected source control item")) {
             handleDelete(item)
         }
         .disabled(

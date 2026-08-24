@@ -23,14 +23,14 @@ struct LanguageServerInstallView: View {
         }
         .constrainHeightToWindow()
         .alert(
-            "Confirm Step",
+            String(localized: "extensions.language-server-install.confirm-step", defaultValue: "Confirm Step", comment: "Title for confirmation step in language server install flow"),
             isPresented: Binding(get: { operation.waitingForConfirmation != nil }, set: { _ in }),
             presenting: operation.waitingForConfirmation
         ) { _ in
-            Button("Cancel") {
+            Button(String(localized: "extensions.language-server-install.cancel-confirm-step", defaultValue: "Cancel", comment: "Button title to cancel at confirmation step")) {
                 registryManager.cancelInstallation()
             }
-            Button("Continue") {
+            Button(String(localized: "extensions.language-server-install.continue-confirm-step", defaultValue: "Continue", comment: "Button title to continue from confirmation step")) {
                 operation.confirmCurrentStep()
             }
         } message: { confirmationMessage in
@@ -60,7 +60,7 @@ struct LanguageServerInstallView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "extensions.language-server-install.cancel-download-step", defaultValue: "Cancel", comment: "Button title to cancel at download step"))
                 }
                 .buttonStyle(.bordered)
                 Button {
@@ -71,7 +71,7 @@ struct LanguageServerInstallView: View {
                         NSAlert(error: error).runModal()
                     }
                 } label: {
-                    Text("Install")
+                    Text(String(localized: "extensions.language-server-install.install", defaultValue: "Install", comment: "Button title to start installing language server package"))
                 }
                 .buttonStyle(.borderedProminent)
             case .running:
@@ -79,7 +79,7 @@ struct LanguageServerInstallView: View {
                     registryManager.cancelInstallation()
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "extensions.language-server-install.cancel-install-step", defaultValue: "Cancel", comment: "Button title to cancel at install step"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.bordered)
@@ -87,7 +87,7 @@ struct LanguageServerInstallView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Continue")
+                    Text(String(localized: "extensions.language-server-install.continue-install-step", defaultValue: "Continue", comment: "Button title to continue from install step"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -98,12 +98,12 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var packageInfoSection: some View {
         Section {
-            LabeledContent("Installing Package", value: operation.package.sanitizedName)
-            LabeledContent("Homepage") {
+            LabeledContent(String(localized: "extensions.language-server-install.installing-package", defaultValue: "Installing Package", comment: "Status title shown while installing package"), value: operation.package.sanitizedName)
+            LabeledContent(String(localized: "extensions.language-server-install.homepage", defaultValue: "Homepage", comment: "Label for package homepage link")) {
                 sourceButton.cursor(.pointingHand)
             }
             VStack(alignment: .leading, spacing: 6) {
-                Text("Description")
+                Text(String(localized: "extensions.language-server-install.description", defaultValue: "Description", comment: "Label for package description field"))
                 Text(operation.package.sanitizedDescription)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.secondary)
@@ -118,7 +118,7 @@ struct LanguageServerInstallView: View {
             Section {
                 HStack(spacing: 4) {
                     Image(systemName: "exclamationmark.octagon.fill").foregroundColor(.red)
-                    Text("Error Occurred")
+                    Text(String(localized: "extensions.language-server-install.error-occurred-status", defaultValue: "Error Occurred", comment: "Status title shown when an error occurs during install flow"))
                 }
                 .font(.title3)
                 ErrorDescriptionLabel(error: error)
@@ -147,16 +147,16 @@ struct LanguageServerInstallView: View {
 
     @ViewBuilder private var progressSection: some View {
         Section {
-            LabeledContent("Step") {
+            LabeledContent(String(localized: "extensions.language-server-install.step", defaultValue: "Step", comment: "Label for current step indicator in install flow")) {
                 if registryManager.installedLanguageServers[operation.package.name] != nil {
                     HStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(.green)
-                        Text("Successfully Installed")
+                        Text(String(localized: "extensions.language-server-install.successfully-installed", defaultValue: "Successfully Installed", comment: "Title shown when language server installation succeeds"))
                             .foregroundStyle(.primary)
                     }
                 } else if operation.error != nil {
-                    Text("Error Occurred")
+                    Text(String(localized: "extensions.language-server-install.error-occurred-result", defaultValue: "Error Occurred", comment: "Title shown in final result view when installation fails"))
                 } else {
                     Text(operation.currentStep?.name ?? "")
                 }
@@ -215,14 +215,14 @@ struct LanguageServerInstallView: View {
     @ViewBuilder private var notInstalledSection: some View {
         Section {
             if let method = operation.package.installMethod {
-                LabeledContent("Install Method", value: method.installerDescription)
+                LabeledContent(String(localized: "extensions.language-server-install.install-method", defaultValue: "Install Method", comment: "Label for installation method field"), value: method.installerDescription)
                     .textSelection(.enabled)
                 if let packageDescription = method.packageDescription {
-                    LabeledContent("Package", value: packageDescription)
+                    LabeledContent(String(localized: "extensions.language-server-install.install-method.package", defaultValue: "Package", comment: "Install method option label for package-based install"), value: packageDescription)
                         .textSelection(.enabled)
                 }
             } else {
-                LabeledContent("Installer", value: "Unknown")
+                LabeledContent(String(localized: "extensions.language-server-install.install-method.installer", defaultValue: "Installer", comment: "Install method option label for installer-based install"), value: String(localized: "extensions.language-server-install.install-method.unknown", defaultValue: "Unknown", comment: "Install method fallback label when method cannot be determined"))
             }
         }
     }

@@ -53,17 +53,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "settings.accounts.source-control.provider.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "Provider name for BitBucket Cloud account type")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "settings.accounts.source-control.provider.bitbucket-server", defaultValue: "BitBucket Server", comment: "Provider name for BitBucket Server account type")
             case .github:
-                return "GitHub"
+                return String(localized: "settings.accounts.source-control.provider.github", defaultValue: "GitHub", comment: "Provider name for GitHub account type")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "settings.accounts.source-control.provider.github-enterprise", defaultValue: "GitHub Enterprise", comment: "Provider name for GitHub Enterprise account type")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "settings.accounts.source-control.provider.gitlab", defaultValue: "GitLab", comment: "Provider name for GitLab account type")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "settings.accounts.source-control.provider.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "Provider name for self-hosted GitLab account type")
             }
         }
 
