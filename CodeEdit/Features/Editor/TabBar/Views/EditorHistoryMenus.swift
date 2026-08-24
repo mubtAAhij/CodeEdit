@@ -15,7 +15,7 @@ struct EditorHistoryMenus: View {
         Group {
             Menu {
                 ForEach(
-                    Array(editor.history.dropFirst(editor.historyOffset+1).enumerated()),
+                    Array(editor.history.dropFirst(editor.historyOffset + 1).enumerated()),
                     id: \.offset
                 ) { index, file in
                     Button {
@@ -38,7 +38,9 @@ struct EditorHistoryMenus: View {
                 editor.goBackInHistory()
             }
             .disabled(editor.historyOffset == editor.history.count - 1 || editor.history.isEmpty)
-            .help("Navigate back")
+            .help(
+                String(localized: "editor.history.navigate-back.help", defaultValue: "Navigate back", comment: "Help text for navigate back button")
+            )
 
             Menu {
                 ForEach(
@@ -65,7 +67,9 @@ struct EditorHistoryMenus: View {
                 editor.goForwardInHistory()
             }
             .disabled(editor.historyOffset == 0)
-            .help("Navigate forward")
+            .help(
+                String(localized: "editor.history.navigate-forward.help", defaultValue: "Navigate forward", comment: "Help text for navigate forward button")
+            )
         }
         .buttonStyle(.icon)
         .controlSize(.small)
