@@ -38,82 +38,82 @@ struct ThemeSettingsThemeDetails: View {
             Form {
                 Group {
                     Section {
-                        TextField("Name", text: $theme.displayName)
-                        TextField("Author", text: $theme.author)
-                        Picker("Type", selection: $theme.appearance) {
-                            Text("Light")
+                        TextField(String(localized: "settings.theme.details.name", defaultValue: "Name", comment: "Label for theme name in theme details"), text: $theme.displayName)
+                        TextField(String(localized: "settings.theme.details.author", defaultValue: "Author", comment: "Label for theme author in theme details"), text: $theme.author)
+                        Picker(String(localized: "settings.theme.details.type", defaultValue: "Type", comment: "Label for theme appearance type in theme details"), selection: $theme.appearance) {
+                            Text(String(localized: "settings.theme.details.appearance.light", defaultValue: "Light", comment: "Display value for light appearance type"))
                                 .tag(Theme.ThemeType.light)
-                            Text("Dark")
+                            Text(String(localized: "settings.theme.details.appearance.dark", defaultValue: "Dark", comment: "Display value for dark appearance type"))
                                 .tag(Theme.ThemeType.dark)
                         }
                     }
-                    Section("Text") {
+                    Section(String(localized: "settings.theme.details.editor.text", defaultValue: "Text", comment: "Editor color row label for text")) {
                         SettingsColorPicker(
-                            "Text",
+                            String(localized: "settings.theme.details.terminal.text", defaultValue: "Text", comment: "Terminal color row label for text"),
                             color: $theme.editor.text.swiftColor
                         )
                         SettingsColorPicker(
-                            "Cursor",
+                            String(localized: "settings.theme.details.editor.cursor", defaultValue: "Cursor", comment: "Editor color row label for cursor"),
                             color: $theme.editor.insertionPoint.swiftColor
                         )
                         SettingsColorPicker(
-                            "Invisibles",
+                            String(localized: "settings.theme.details.editor.invisibles", defaultValue: "Invisibles", comment: "Editor color row label for invisible characters"),
                             color: $theme.editor.invisibles.swiftColor
                         )
                     }
-                    Section("Background") {
+                    Section(String(localized: "settings.theme.details.editor.background", defaultValue: "Background", comment: "Editor color row label for background")) {
                         SettingsColorPicker(
-                            "Background",
+                            String(localized: "settings.theme.details.terminal.background", defaultValue: "Background", comment: "Terminal color row label for background"),
                             color: $theme.editor.background.swiftColor
                         )
                         SettingsColorPicker(
-                            "Current Line",
+                            String(localized: "settings.theme.details.editor.current-line", defaultValue: "Current Line", comment: "Editor color row label for current line highlight"),
                             color: $theme.editor.lineHighlight.swiftColor
                         )
                         SettingsColorPicker(
-                            "Selection",
+                            String(localized: "settings.theme.details.editor.selection", defaultValue: "Selection", comment: "Editor color row label for selection"),
                             color: $theme.editor.selection.swiftColor
                         )
                     }
-                    Section("Tokens") {
+                    Section(String(localized: "settings.theme.details.tokens.section", defaultValue: "Tokens", comment: "Section header for syntax token colors")) {
                         VStack(spacing: 0) {
                             ThemeSettingsThemeToken(
-                                "Keywords",
+                                String(localized: "settings.theme.details.tokens.keywords", defaultValue: "Keywords", comment: "Syntax token label for keywords"),
                                 color: $theme.editor.keywords.swiftColor,
                                 bold: $theme.editor.keywords.bold,
                                 italic: $theme.editor.keywords.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Commands",
+                                String(localized: "settings.theme.details.tokens.commands", defaultValue: "Commands", comment: "Syntax token label for commands"),
                                 color: $theme.editor.commands.swiftColor,
                                 bold: $theme.editor.commands.bold,
                                 italic: $theme.editor.commands.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Types",
+                                String(localized: "settings.theme.details.tokens.types", defaultValue: "Types", comment: "Syntax token label for types"),
                                 color: $theme.editor.types.swiftColor,
                                 bold: $theme.editor.types.bold,
                                 italic: $theme.editor.types.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Attributes",
+                                String(localized: "settings.theme.details.tokens.attributes", defaultValue: "Attributes", comment: "Syntax token label for attributes"),
                                 color: $theme.editor.attributes.swiftColor,
                                 bold: $theme.editor.attributes.bold,
                                 italic: $theme.editor.attributes.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Variables",
+                                String(localized: "settings.theme.details.tokens.variables", defaultValue: "Variables", comment: "Syntax token label for variables"),
                                 color: $theme.editor.variables.swiftColor,
                                 bold: $theme.editor.variables.bold,
                                 italic: $theme.editor.variables.italic
                             )
                             Divider().padding(.horizontal, 10)
                             ThemeSettingsThemeToken(
-                                "Values",
+                                String(localized: "settings.theme.details.tokens.values", defaultValue: "Values", comment: "Syntax token label for values"),
                                 color: $theme.editor.values.swiftColor,
                                 bold: $theme.editor.values.bold,
                                 italic: $theme.editor.values.italic
