@@ -18,7 +18,7 @@ struct AccountsSettingsSigninView: View {
 
     init(_ provider: SourceControlAccount.Provider, addAccountSheetPresented: Binding<Bool>) {
         self.provider = provider
-        self._addAccountSheetPresented = addAccountSheetPresented
+        _addAccountSheetPresented = addAccountSheetPresented
     }
 
     @State var server = ""
@@ -40,33 +40,33 @@ struct AccountsSettingsSigninView: View {
                     content: {
                         if provider.baseURL == nil {
                             VStack(alignment: .leading, spacing: 5) {
-                                Text("Server")
+                                Text(String(localized: "settings.accounts.signin.server", defaultValue: "Server", comment: "Label for server field in account sign-in form"))
                                     .font(.caption3)
                                     .foregroundColor(.secondary)
-                                TextField("", text: $server, prompt: Text("https://git.example.com"))
+                                TextField("", text: $server, prompt: Text(String(localized: "settings.accounts.signin.server.placeholder", defaultValue: "https://git.example.com", comment: "Placeholder URL shown in server text field for account sign-in")))
                                     .labelsHidden()
                             }
                         }
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Username")
+                            Text(String(localized: "settings.accounts.signin.username", defaultValue: "Username", comment: "Label for username field in account sign-in form"))
                                 .font(.caption3)
                                 .foregroundColor(.secondary)
                             TextField("", text: $username)
                                 .labelsHidden()
                         }
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Personal Access Token")
+                            Text(String(localized: "settings.accounts.signin.personal-access-token", defaultValue: "Personal Access Token", comment: "Label for personal access token field in account sign-in form"))
                                 .font(.caption3)
                                 .foregroundColor(.secondary)
                             SecureField("", text: $personalAccessToken)
                                 .labelsHidden()
-                         }
+                        }
                     },
                     header: {
                         VStack(alignment: .center, spacing: 10) {
                             FeatureIcon(image: Image(provider.iconResource), size: 52)
                                 .padding(.top, 5)
-                            Text("Sign in to \(provider.name)")
+                            Text(String(format: String(localized: "settings.accounts.signin.title", defaultValue: "Sign in to %@", comment: "Title shown in account sign-in sheet for selected provider"), "\(provider.name)"))
                                 .multilineTextAlignment(.center)
                         }
                         .frame(maxWidth: .infinity)
@@ -74,7 +74,7 @@ struct AccountsSettingsSigninView: View {
                     footer: {
                         VStack(alignment: .leading, spacing: 5) {
                             if provider == .github {
-                                Text("\(provider.name) personal access tokens must have these scopes set:")
+                                Text(String(format: String(localized: "settings.accounts.signin.scopes-required", defaultValue: "%@ personal access tokens must have these scopes set:", comment: "Instruction text listing required token scopes for selected provider"), "\(provider.name)"))
                                     .font(.system(size: 10.5))
                                     .foregroundColor(.secondary)
                                     .multilineTextAlignment(.leading)
@@ -84,25 +84,25 @@ struct AccountsSettingsSigninView: View {
                                         HStack(spacing: 2.5) {
                                             Image(systemName: "checkmark")
                                                 .font(.system(size: 10.5, weight: .semibold))
-                                            Text("admin:public _key")
+                                            Text(String(localized: "settings.accounts.signin.scope.admin-public-key", defaultValue: "admin:public _key", comment: "Required provider scope text shown in token scope checklist"))
                                                 .font(.system(size: 10.5))
                                         }
                                         HStack(spacing: 2.5) {
                                             Image(systemName: "checkmark")
                                                 .font(.system(size: 10.5, weight: .semibold))
-                                            Text("write:discussion")
+                                            Text(String(localized: "settings.accounts.signin.scope.write-discussion", defaultValue: "write:discussion", comment: "Required provider scope text shown in token scope checklist"))
                                                 .font(.system(size: 10.5))
                                         }
                                         HStack(spacing: 2.5) {
                                             Image(systemName: "checkmark")
                                                 .font(.system(size: 10.5, weight: .semibold))
-                                            Text("repo")
+                                            Text(String(localized: "settings.accounts.signin.scope.repo", defaultValue: "repo", comment: "Required provider scope text shown in token scope checklist"))
                                                 .font(.system(size: 10.5))
                                         }
                                         HStack(spacing: 2.5) {
                                             Image(systemName: "checkmark")
                                                 .font(.system(size: 10.5, weight: .semibold))
-                                            Text("user")
+                                            Text(String(localized: "settings.accounts.signin.scope.user", defaultValue: "user", comment: "Required provider scope text shown in token scope checklist"))
                                                 .font(.system(size: 10.5))
                                         }
                                     }
@@ -114,10 +114,10 @@ struct AccountsSettingsSigninView: View {
                                 createToken(provider.authHelpURL)
                             } label: {
                                 if provider.authType == .password {
-                                    Text("Create a Password on \(provider.name)")
+                                    Text(String(format: String(localized: "settings.accounts.signin.create-password-on-provider", defaultValue: "Create a Password on %@", comment: "Button title linking to provider page for password creation"), "\(provider.name)"))
                                         .font(.system(size: 10.5))
                                 } else {
-                                    Text("Create a Token on \(provider.name)")
+                                    Text(String(format: String(localized: "settings.accounts.signin.create-token-on-provider", defaultValue: "Create a Token on %@", comment: "Button title linking to provider page for token creation"), "\(provider.name)"))
                                         .font(.system(size: 10.5))
                                 }
                             }
@@ -138,7 +138,7 @@ struct AccountsSettingsSigninView: View {
                     addAccountSheetPresented.toggle()
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "settings.accounts.signin.cancel", defaultValue: "Cancel", comment: "Cancel button title for account sign-in sheet"))
                         .frame(maxWidth: .infinity)
                 }
                 .controlSize(.large)
@@ -147,17 +147,17 @@ struct AccountsSettingsSigninView: View {
                 Button {
                     signin()
                 } label: {
-                    Text("Sign In")
+                    Text(String(localized: "settings.accounts.signin.submit", defaultValue: "Sign In", comment: "Submit button title for account sign-in sheet"))
                         .frame(maxWidth: .infinity)
                 }
                 .disabled(username.isEmpty || personalAccessToken.isEmpty)
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .alert(
-                    Text("Unable to add account “\(username)”"),
+                    Text(String(format: String(localized: "settings.accounts.signin.unable-to-add-account", defaultValue: "Unable to add account “%@”", comment: "Alert title shown when account creation fails for the specified username"), "\(username)")),
                     isPresented: $signinErrorAlertIsPresented
                 ) {
-                    Button("OK") {
+                    Button(String(localized: "settings.accounts.signin.error.ok", defaultValue: "OK", comment: "Dismiss button title for sign-in error alert")) {
                         signinErrorAlertIsPresented.toggle()
                     }
                 } message: {
@@ -174,11 +174,11 @@ struct AccountsSettingsSigninView: View {
         if gitAccounts.contains(
             where: {
                 $0.serverURL == provider.baseURL?.absoluteString ?? server &&
-                $0.name.lowercased() == username.lowercased()
+                    $0.name.lowercased() == username.lowercased()
             }
         ) {
             // Show alert when adding a duplicated account
-            signinErrorDetail = "Account with the same username and provider already exists!"
+            signinErrorDetail = String(localized: "settings.accounts.signin.duplicate-account-error", defaultValue: "Account with the same username and provider already exists!", comment: "Error message shown when adding a duplicate provider account")
             signinErrorAlertIsPresented.toggle()
         } else {
             let configURL = provider.apiURL?.absoluteString ?? server
@@ -189,7 +189,7 @@ struct AccountsSettingsSigninView: View {
                     switch response {
                     case .success:
                         handleGitRequestSuccess()
-                    case .failure(let error):
+                    case let .failure(error):
                         handleGitRequestFailed(error)
                     }
                 }
@@ -199,7 +199,7 @@ struct AccountsSettingsSigninView: View {
                     switch response {
                     case .success:
                         handleGitRequestSuccess()
-                    case .failure(let error):
+                    case let .failure(error):
                         handleGitRequestFailed(error)
                     }
                 }
@@ -212,7 +212,7 @@ struct AccountsSettingsSigninView: View {
     private func handleGitRequestSuccess() {
         let providerLink = provider.baseURL?.absoluteString ?? server
 
-        self.gitAccounts.append(
+        gitAccounts.append(
             SourceControlAccount(
                 id: "\(providerLink)_\(username.lowercased())",
                 name: username,
@@ -236,11 +236,11 @@ struct AccountsSettingsSigninView: View {
         case -1009:
             signinErrorDetail = error.localizedDescription
         case 401:
-            signinErrorDetail = "Authentication Failed"
+            signinErrorDetail = String(localized: "settings.accounts.signin.error.authentication-failed", defaultValue: "Authentication Failed", comment: "Error title for authentication failure during account sign-in")
         case 403:
-            signinErrorDetail = "API Access Forbidden"
+            signinErrorDetail = String(localized: "settings.accounts.signin.error.api-access-forbidden", defaultValue: "API Access Forbidden", comment: "Error title for forbidden API access during account sign-in")
         default:
-            signinErrorDetail = "Unknown Error"
+            signinErrorDetail = String(localized: "settings.accounts.signin.error.unknown", defaultValue: "Unknown Error", comment: "Error title for unknown account sign-in failure")
         }
         signinErrorAlertIsPresented.toggle()
     }

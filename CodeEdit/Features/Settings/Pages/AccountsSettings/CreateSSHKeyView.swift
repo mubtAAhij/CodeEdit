@@ -25,25 +25,25 @@ struct CreateSSHKeyView: View {
     var body: some View {
         VStack {
             Form {
-                Section("Create SSH key") {
-                    Picker("Key Type", selection: $selectedKeyType) {
+                Section(String(localized: "settings.accounts.create-ssh-key.title", defaultValue: "Create SSH key", comment: "Title for create SSH key sheet")) {
+                    Picker(String(localized: "settings.accounts.create-ssh-key.key-type", defaultValue: "Key Type", comment: "Label for SSH key type picker"), selection: $selectedKeyType) {
                         Text(KeyType.ed25519.rawValue)
                             .tag(KeyType.ed25519)
                         Text(KeyType.ecdsa.rawValue)
                             .tag(KeyType.ecdsa)
                         Divider()
                         Group {
-                            Text(KeyType.rsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.rsa.rawValue) + Text(" " + String(localized: "settings.accounts.create-ssh-key.less-secure-suffix", defaultValue: "(less secure)", comment: "Suffix appended to deprecated SSH key types")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.rsa)
                         Group {
-                            Text(KeyType.dsa.rawValue) + Text(" (less secure)").foregroundColor(.secondary)
+                            Text(KeyType.dsa.rawValue) + Text(" " + String(localized: "settings.accounts.create-ssh-key.less-secure-suffix", defaultValue: "(less secure)", comment: "Suffix appended to deprecated SSH key types")).foregroundColor(.secondary)
                         }
                         .tag(KeyType.dsa)
                     }
-                    SecureField("Passphrase", text: $passphrase)
+                    SecureField(String(localized: "settings.accounts.create-ssh-key.passphrase", defaultValue: "Passphrase", comment: "Label for SSH key passphrase field"), text: $passphrase)
                     if !passphrase.isEmpty {
-                        SecureField("Confirm Passphrase", text: $confirmPassphrase)
+                        SecureField(String(localized: "settings.accounts.create-ssh-key.confirm-passphrase", defaultValue: "Confirm Passphrase", comment: "Label for SSH key passphrase confirmation field"), text: $confirmPassphrase)
                     }
                 }
             }
@@ -52,10 +52,10 @@ struct CreateSSHKeyView: View {
             .scrollDisabled(true)
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "settings.accounts.create-ssh-key.cancel", defaultValue: "Cancel", comment: "Button title to cancel SSH key creation")) {
                     dismiss()
                 }
-                Button("Create") {
+                Button(String(localized: "settings.accounts.create-ssh-key.create", defaultValue: "Create", comment: "Button title to create SSH key")) {
                     // create the ssh key
                     dismiss()
                 }

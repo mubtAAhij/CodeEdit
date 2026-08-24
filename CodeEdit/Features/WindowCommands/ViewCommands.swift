@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 13/03/2023.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ViewCommands: Commands {
     @AppSettings(\.textEditing.font.size)
@@ -28,18 +28,18 @@ struct ViewCommands: Commands {
 
     var body: some Commands {
         CommandGroup(after: .toolbar) {
-            Button("Show Command Palette") {
+            Button(String(localized: "window-commands.view.show-command-palette", defaultValue: "Show Command Palette", comment: "Menu command title for opening the command palette")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openCommandPalette(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("p", modifiers: [.shift, .command])
 
-            Button("Open Search Navigator") {
+            Button(String(localized: "window-commands.view.open-search-navigator", defaultValue: "Open Search Navigator", comment: "Menu command title for opening the search navigator")) {
                 NSApp.sendAction(#selector(CodeEditWindowController.openSearchNavigator(_:)), to: nil, from: nil)
             }
             .keyboardShortcut("f", modifiers: [.shift, .command])
 
-            Menu("Font Size") {
-                Button("Increase") {
+            Menu(String(localized: "window-commands.view.font-size.menu-title", defaultValue: "Font Size", comment: "Submenu title for editor font size actions")) {
+                Button(String(localized: "window-commands.view.font-size.increase", defaultValue: "Increase", comment: "Menu command title for increasing editor font size")) {
                     if editorFontSize < 288 {
                         editorFontSize += 1
                     }
@@ -49,7 +49,7 @@ struct ViewCommands: Commands {
                 }
                 .keyboardShortcut("+")
 
-                Button("Decrease") {
+                Button(String(localized: "window-commands.view.font-size.decrease", defaultValue: "Decrease", comment: "Menu command title for decreasing editor font size")) {
                     if editorFontSize > 1 {
                         editorFontSize -= 1
                     }
@@ -61,7 +61,7 @@ struct ViewCommands: Commands {
 
                 Divider()
 
-                Button("Reset") {
+                Button(String(localized: "window-commands.view.font-size.reset", defaultValue: "Reset", comment: "Menu command title for resetting editor font size")) {
                     editorFontSize = 12
                     terminalFontSize = 12
                 }
@@ -69,10 +69,8 @@ struct ViewCommands: Commands {
             }
             .disabled(windowController == nil)
 
-            Button("Customize Toolbar...") {
-
-            }
-            .disabled(true)
+            Button(String(localized: "window-commands.view.customize-toolbar", defaultValue: "Customize Toolbar...", comment: "Menu command title for customizing the app toolbar")) {}
+                .disabled(true)
 
             Divider()
 
@@ -80,11 +78,11 @@ struct ViewCommands: Commands {
 
             Divider()
 
-            Button("\(showEditorJumpBar ? "Hide" : "Show") Jump Bar") {
+            Button(String(format: String(localized: "window-commands.view.toggle-jump-bar", defaultValue: "%@ Jump Bar", comment: "Menu command title for showing or hiding the editor jump bar"), showEditorJumpBar ? String(localized: "window-commands.view.action.hide", defaultValue: "Hide", comment: "Action word used for view toggle menu items") : String(localized: "window-commands.view.action.show", defaultValue: "Show", comment: "Action word used for view toggle menu items"))) {
                 showEditorJumpBar.toggle()
             }
 
-            Toggle("Dim editors without focus", isOn: $dimEditorsWithoutFocus)
+            Toggle(String(localized: "window-commands.view.dim-editors-without-focus", defaultValue: "Dim editors without focus", comment: "Menu command title for dimming unfocused editors"), isOn: $dimEditorsWithoutFocus)
 
             Divider()
 
@@ -121,31 +119,31 @@ extension ViewCommands {
         }
 
         var body: some View {
-            Button("\(navigatorCollapsed ? "Show" : "Hide") Navigator") {
+            Button(String(format: String(localized: "window-commands.view.toggle-navigator", defaultValue: "%@ Navigator", comment: "Menu command title for showing or hiding the project navigator"), navigatorCollapsed ? String(localized: "window-commands.view.action.show", defaultValue: "Show", comment: "Action word used for view toggle menu items") : String(localized: "window-commands.view.action.hide", defaultValue: "Hide", comment: "Action word used for view toggle menu items"))) {
                 windowController?.toggleFirstPanel()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("0", modifiers: [.command])
 
-            Button("\(inspectorCollapsed ? "Show" : "Hide") Inspector") {
+            Button(String(format: String(localized: "window-commands.view.toggle-inspector", defaultValue: "%@ Inspector", comment: "Menu command title for showing or hiding the inspector"), inspectorCollapsed ? String(localized: "window-commands.view.action.show", defaultValue: "Show", comment: "Action word used for view toggle menu items") : String(localized: "window-commands.view.action.hide", defaultValue: "Hide", comment: "Action word used for view toggle menu items"))) {
                 windowController?.toggleLastPanel()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("i", modifiers: [.control, .command])
 
-            Button("\(utilityAreaCollapsed ? "Show" : "Hide") Utility Area") {
+            Button(String(format: String(localized: "window-commands.view.toggle-utility-area", defaultValue: "%@ Utility Area", comment: "Menu command title for showing or hiding the utility area"), utilityAreaCollapsed ? String(localized: "window-commands.view.action.show", defaultValue: "Show", comment: "Action word used for view toggle menu items") : String(localized: "window-commands.view.action.hide", defaultValue: "Hide", comment: "Action word used for view toggle menu items"))) {
                 CommandManager.shared.executeCommand("open.drawer")
             }
             .disabled(windowController == nil)
             .keyboardShortcut("y", modifiers: [.shift, .command])
 
-            Button("\(toolbarCollapsed ? "Show" : "Hide") Toolbar") {
+            Button(String(format: String(localized: "window-commands.view.toggle-toolbar", defaultValue: "%@ Toolbar", comment: "Menu command title for showing or hiding the toolbar"), toolbarCollapsed ? String(localized: "window-commands.view.action.show", defaultValue: "Show", comment: "Action word used for view toggle menu items") : String(localized: "window-commands.view.action.hide", defaultValue: "Hide", comment: "Action word used for view toggle menu items"))) {
                 windowController?.toggleToolbar()
             }
             .disabled(windowController == nil)
             .keyboardShortcut("t", modifiers: [.option, .command])
 
-            Button("\(isInterfaceHidden ? "Show" : "Hide") Interface") {
+            Button(String(format: String(localized: "window-commands.view.toggle-interface", defaultValue: "%@ Interface", comment: "Menu command title for showing or hiding the interface"), isInterfaceHidden ? String(localized: "window-commands.view.action.show", defaultValue: "Show", comment: "Action word used for view toggle menu items") : String(localized: "window-commands.view.action.hide", defaultValue: "Hide", comment: "Action word used for view toggle menu items"))) {
                 windowController?.toggleInterface(shouldHide: !isInterfaceHidden)
             }
             .disabled(windowController == nil)
@@ -159,7 +157,7 @@ extension ViewCommands {
         @ObservedObject var model: NavigatorAreaViewModel
 
         var body: some View {
-            Menu("Navigators", content: {
+            Menu(String(localized: "window-commands.view.navigators", defaultValue: "Navigators", comment: "Submenu title for navigator-related view actions"), content: {
                 ForEach(Array(model.tabItems.prefix(9).enumerated()), id: \.element) { index, tab in
                     Button(tab.title) {
                         model.setNavigatorTab(tab: tab)
