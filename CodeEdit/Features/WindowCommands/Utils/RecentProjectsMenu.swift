@@ -10,17 +10,16 @@ import WelcomeWindow
 
 @MainActor
 final class RecentProjectsMenu: NSObject, NSMenuDelegate {
-
     // MARK: - Menu construction
 
     private let menuTitle = NSLocalizedString(
-        "Open Recent",
-        comment: "Open Recent menu title"
+        String(localized: "window-commands.recent-projects.open-recent", defaultValue: "Open Recent", comment: "Menu title for opening recent projects"),
+        comment: String(localized: "window-commands.recent-projects.open-recent.comment", defaultValue: "Open Recent menu title", comment: "Developer-facing comment text stored as a literal in source")
     )
 
     private lazy var menu: NSMenu = {
         let menu = NSMenu(title: menuTitle)
-        menu.delegate = self           // <- make the menu ask us for updates
+        menu.delegate = self // <- make the menu ask us for updates
         return menu
     }()
 
@@ -31,11 +30,11 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
     }
 
     /// Called automatically right before the menu gets displayed.
-    func menuNeedsUpdate(_ menu: NSMenu) {
+    func menuNeedsUpdate(_: NSMenu) {
         rebuildMenu()
     }
 
-    // Rebuilds the whole “Open Recent” menu.
+    /// Rebuilds the whole “Open Recent” menu.
     private func rebuildMenu() {
         menu.removeAllItems()
 
@@ -52,8 +51,8 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
 
         let clearMenuItem = NSMenuItem(
             title: NSLocalizedString(
-                "Clear Menu",
-                comment: "Recent project menu clear button"
+                String(localized: "window-commands.recent-projects.clear-menu", defaultValue: "Clear Menu", comment: "Menu item title to clear the recent projects menu"),
+                comment: String(localized: "window-commands.recent-projects.clear-menu.comment", defaultValue: "Recent project menu clear button", comment: "Developer-facing comment text for the clear menu item")
             ),
             action: #selector(clearMenuItemClicked(_:)),
             keyEquivalent: ""
@@ -134,7 +133,7 @@ final class RecentProjectsMenu: NSObject, NSMenuDelegate {
     }
 
     @objc
-    private func clearMenuItemClicked(_ sender: NSMenuItem) {
+    private func clearMenuItemClicked(_: NSMenuItem) {
         RecentsStore.clearList()
         rebuildMenu()
     }
