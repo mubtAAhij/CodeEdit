@@ -38,7 +38,7 @@ struct EditorHistoryMenus: View {
                 editor.goBackInHistory()
             }
             .disabled(editor.historyOffset == editor.history.count - 1 || editor.history.isEmpty)
-            .help("Navigate back")
+            .help(String(localized: "editor.history.navigate-back.help", defaultValue: "Navigate back", comment: "Tooltip for navigating to previous editor location"))
 
             Menu {
                 ForEach(
@@ -65,7 +65,7 @@ struct EditorHistoryMenus: View {
                 editor.goForwardInHistory()
             }
             .disabled(editor.historyOffset == 0)
-            .help("Navigate forward")
+            .help(String(localized: "editor.history.navigate-forward.help", defaultValue: "Navigate forward", comment: "Tooltip for navigating to next editor location"))
         }
         .buttonStyle(.icon)
         .controlSize(.small)
