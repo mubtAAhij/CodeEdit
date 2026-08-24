@@ -27,7 +27,7 @@ struct FindNavigatorToolbarBottom: View {
                         : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help("Show results with matching text")
+                    .help(String(localized: "navigator.find.toolbar.show-matching-text", defaultValue: "Show results with matching text", comment: "Tooltip for toggling find results with matching text"))
                 },
                 clearable: true
             )

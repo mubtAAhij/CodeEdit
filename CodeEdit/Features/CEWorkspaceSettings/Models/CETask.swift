@@ -96,7 +96,7 @@ class CETask: ObservableObject, Identifiable, Hashable, Codable {
         if !name.isEmpty {
             try container.encode(name, forKey: .name)
         }
-        if !target.isEmpty && target != "My Mac" {
+        if !target.isEmpty && target != String(localized: "workspace-settings.task.my-mac", defaultValue: "My Mac", comment: "Default machine target name for workspace task") {
             try container.encode(target, forKey: .target)
         }
 
