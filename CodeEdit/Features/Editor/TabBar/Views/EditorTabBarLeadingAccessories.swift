@@ -26,7 +26,13 @@ struct EditorTabBarLeadingAccessories: View {
                         editorManager.closeEditor(editor)
                     }
                 )
-                .help("Close this Editor")
+                .help(
+                    String(
+                        localized: "editor.tab-bar.leading-accessories.close-this-editor",
+                        defaultValue: "Close this Editor",
+                        comment: "Help tooltip for button to close this editor"
+                    )
+                )
                 .disabled(editorManager.isFocusingActiveEditor)
                 .opacity(editorManager.isFocusingActiveEditor ? 0.5 : 1)
 
@@ -43,8 +49,16 @@ struct EditorTabBarLeadingAccessories: View {
                 )
                 .help(
                     editorManager.isFocusingActiveEditor
-                    ? "Unfocus this Editor"
-                    : "Focus this Editor"
+                    ? String(
+                        localized: "editor.tab-bar.leading-accessories.unfocus-this-editor",
+                        defaultValue: "Unfocus this Editor",
+                        comment: "Help tooltip for button to unfocus this editor"
+                    )
+                    : String(
+                        localized: "editor.tab-bar.leading-accessories.focus-this-editor",
+                        defaultValue: "Focus this Editor",
+                        comment: "Help tooltip for button to focus this editor"
+                    )
                 )
 
                 Divider()

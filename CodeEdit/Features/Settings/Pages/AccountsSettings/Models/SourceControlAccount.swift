@@ -53,17 +53,41 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(
+                    localized: "settings.accounts.provider.bitbucket-cloud",
+                    defaultValue: "BitBucket Cloud",
+                    comment: "Source control provider display name"
+                )
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(
+                    localized: "settings.accounts.provider.bitbucket-server",
+                    defaultValue: "BitBucket Server",
+                    comment: "Source control provider display name"
+                )
             case .github:
-                return "GitHub"
+                return String(
+                    localized: "settings.accounts.provider.github",
+                    defaultValue: "GitHub",
+                    comment: "Source control provider display name"
+                )
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(
+                    localized: "settings.accounts.provider.github-enterprise",
+                    defaultValue: "GitHub Enterprise",
+                    comment: "Source control provider display name"
+                )
             case .gitlab:
-                return "GitLab"
+                return String(
+                    localized: "settings.accounts.provider.gitlab",
+                    defaultValue: "GitLab",
+                    comment: "Source control provider display name"
+                )
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(
+                    localized: "settings.accounts.provider.gitlab-self-hosted",
+                    defaultValue: "GitLab Self-hosted",
+                    comment: "Source control provider display name"
+                )
             }
         }
 
