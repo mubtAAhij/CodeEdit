@@ -1,12 +1,12 @@
 //
-//  UtilityAreaTerminal.swift
+//  UtilityAreaTerminalView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 5/25/23.
 //
 
-import SwiftUI
 import Cocoa
+import SwiftUI
 
 struct UtilityAreaTerminalView: View {
     @AppSettings(\.theme.matchAppearance)
@@ -46,7 +46,8 @@ struct UtilityAreaTerminalView: View {
         if let selectedTheme = matchAppearance && darkAppearance
             ? themeModel.selectedDarkTheme
             : themeModel.selectedTheme,
-           let index = themeModel.themes.firstIndex(of: selectedTheme) {
+            let index = themeModel.themes.firstIndex(of: selectedTheme)
+        {
             return NSColor(themeModel.themes[index].terminal.background.swiftColor)
         }
         return .windowBackgroundColor
@@ -121,7 +122,7 @@ struct UtilityAreaTerminalView: View {
                         }
                     }
                 } else {
-                    CEContentUnavailableView("No Selection")
+                    CEContentUnavailableView(String(localized: "utility-area.terminal.no-selection", defaultValue: "No Selection", comment: "Placeholder text when no terminal tab is selected"))
                 }
             }
             .padding(.horizontal, 10)
@@ -143,14 +144,14 @@ struct UtilityAreaTerminalView: View {
                     } label: {
                         Image(systemName: "trash")
                     }
-                    .help("Reset the terminal")
+                    .help(String(localized: "utility-area.terminal.reset", defaultValue: "Reset the terminal", comment: "Action title to reset terminal session"))
                     .disabled(getSelectedTerminal() == nil)
                     Button {
                         // split terminal
                     } label: {
                         Image(systemName: "square.split.2x1")
                     }
-                    .help("Implementation Needed")
+                    .help(String(localized: "utility-area.terminal.implementation-needed", defaultValue: "Implementation Needed", comment: "Fallback label for terminal feature not yet implemented"))
                     .disabled(true)
                 }
             }

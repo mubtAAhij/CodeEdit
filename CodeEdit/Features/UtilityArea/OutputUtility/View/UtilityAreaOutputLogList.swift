@@ -16,7 +16,7 @@ struct UtilityAreaOutputLogList<Source: UtilityAreaOutputSource, Toolbar: View>:
 
     init(source: Source, filterText: Binding<String>, @ViewBuilder toolbar: @escaping () -> Toolbar) {
         self.source = source
-        self._filterText = filterText
+        _filterText = filterText
         self.toolbar = toolbar
     }
 
@@ -25,7 +25,7 @@ struct UtilityAreaOutputLogList<Source: UtilityAreaOutputSource, Toolbar: View>:
             return output
         }
         return output.filter { item in
-            return filterText == "" ? true : item.message.contains(filterText)
+            filterText == "" ? true : item.message.contains(filterText)
         }
     }
 
@@ -89,7 +89,7 @@ struct UtilityAreaOutputLogList<Source: UtilityAreaOutputSource, Toolbar: View>:
         .paneToolbar {
             toolbar()
             Spacer()
-            UtilityAreaFilterTextField(title: "Filter", text: $filterText)
+            UtilityAreaFilterTextField(title: String(localized: "utility-area.output-log.filter", defaultValue: "Filter", comment: "Label for output log filter field"), text: $filterText)
                 .frame(maxWidth: 175)
             Button {
                 output.removeAll(keepingCapacity: true)

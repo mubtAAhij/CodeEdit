@@ -47,9 +47,9 @@ enum PackageManagerType: String, Codable {
         case .composer:
             "Composer"
         case .sourceBuild:
-            "Build From Source"
+            String(localized: "package_manager.build_from_source", defaultValue: "Build From Source", comment: "Display name for package manager type that builds from source")
         case .github:
-            "Download From GitHub"
+            String(localized: "package_manager.download_from_github", defaultValue: "Download From GitHub", comment: "Display name for package manager type that downloads from GitHub")
         }
     }
 }

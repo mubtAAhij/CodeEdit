@@ -39,7 +39,7 @@ struct EditorJumpBarView: View {
     ) {
         self.file = file ?? nil
         self.shouldShowTabBar = shouldShowTabBar
-        self._codeFile = codeFile
+        _codeFile = codeFile
         self.tappedOpenFile = tappedOpenFile
     }
 
@@ -60,12 +60,12 @@ struct EditorJumpBarView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     if file == nil {
-                        Text("No Selection")
+                        Text(String(localized: "editor.jump-bar.no-selection", defaultValue: "No Selection", comment: "Jump bar text when no symbol or file is selected"))
                             .font(.system(size: 11, weight: .regular))
                             .foregroundColor(
                                 activeState != .inactive
-                                ? isActiveEditor ? .primary : .secondary
-                                : Color(nsColor: .tertiaryLabelColor)
+                                    ? isActiveEditor ? .primary : .secondary
+                                    : Color(nsColor: .tertiaryLabelColor)
                             )
                             .frame(maxHeight: .infinity)
                     } else {
@@ -77,7 +77,6 @@ struct EditorJumpBarView: View {
                                 isTruncated: fileItems.first == fileItem ? $firstCrumbWidth : $crumbWidth
                             )
                         }
-
                     }
                 }
                 .background(
@@ -138,7 +137,7 @@ struct EditorJumpBarView: View {
 
         if textWidth >= containerWidth {
             let scale = max(0, min(1, containerWidth / textWidth))
-            betweenWidth = floor((minWidth + (maxWidth - minWidth) * pow(scale, exponent)))
+            betweenWidth = floor(minWidth + (maxWidth - minWidth) * pow(scale, exponent))
             if betweenWidth < snapThreshold {
                 betweenWidth = minWidth
             }

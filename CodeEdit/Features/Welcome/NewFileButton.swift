@@ -9,13 +9,12 @@ import SwiftUI
 import WelcomeWindow
 
 struct NewFileButton: View {
-
     var dismissWindow: () -> Void
 
     var body: some View {
         WelcomeButton(
             iconName: "plus.square",
-            title: "Create New File...",
+            title: String(localized: "welcome.create-new-file-button", defaultValue: "Create New File...", comment: "Welcome screen button title to create a new file"),
             action: {
                 let documentController = CodeEditDocumentController()
                 documentController.createAndOpenNewDocument(onCompletion: { dismissWindow() })

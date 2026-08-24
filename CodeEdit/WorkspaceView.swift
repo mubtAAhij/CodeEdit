@@ -37,7 +37,7 @@ struct WorkspaceView: View {
 
     private let statusbarHeight: CGFloat = 29
 
-    private var keybindings: KeybindingManager =  .shared
+    private var keybindings: KeybindingManager = .shared
 
     var body: some View {
         if workspace.workspaceFileManager != nil, let sourceControlManager = workspace.sourceControlManager {
@@ -62,7 +62,7 @@ struct WorkspaceView: View {
                         focusedEditor = newValue
                     }
                     .onChange(of: focusedEditor) { _, newValue in
-                        /// Update active tab group only if the new one is not the same with it.
+                        // Update active tab group only if the new one is not the same with it.
                         if let newValue, editorManager.activeEditor != newValue {
                             editorManager.activeEditor = newValue
                         }
@@ -77,8 +77,8 @@ struct WorkspaceView: View {
                         themeModel.colorScheme = newValue
                         if matchAppearance {
                             themeModel.selectedTheme = newValue == .dark
-                            ? themeModel.selectedDarkTheme
-                            : themeModel.selectedLightTheme
+                                ? themeModel.selectedDarkTheme
+                                : themeModel.selectedLightTheme
                         }
                     }
 
@@ -87,13 +87,13 @@ struct WorkspaceView: View {
                     .task {
                         // Only refresh git data if source control is enabled
                         guard sourceControlIsEnabled else { return }
-                        
+
                         do {
                             try await sourceControlManager.refreshRemotes()
                             try await sourceControlManager.refreshStashEntries()
                         } catch {
                             await sourceControlManager.showAlertForError(
-                                title: "Error refreshing Git data",
+                                title: String(localized: "workspace.error.refreshing-git-data", defaultValue: "Error refreshing Git data", comment: "Error message shown when workspace fails to refresh Git data"),
                                 error: error
                             )
                         }
@@ -127,19 +127,19 @@ struct WorkspaceView: View {
                 return true
             }
             .accessibilityElement(children: .contain)
-            .accessibilityLabel("workspace area")
+            .accessibilityLabel(String(localized: "workspace.accessibility.identifier.workspace-area", defaultValue: "workspace area", comment: "Accessibility identifier for workspace area"))
         }
     }
 
     // MARK: - Editor Area
 
-    @ViewBuilder private var editorArea: some View {
+    private var editorArea: some View {
         ZStack {
             GeometryReader { geo in
                 EditorLayoutView(
                     layout: editorManager.isFocusingActiveEditor
-                    ? editorManager.activeEditor.getEditorLayout() ?? editorManager.editorLayout
-                    : editorManager.editorLayout,
+                        ? editorManager.activeEditor.getEditorLayout() ?? editorManager.editorLayout
+                        : editorManager.editorLayout,
                     focus: $focusedEditor
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -159,7 +159,6 @@ struct WorkspaceView: View {
 
     // MARK: - Utility Area
 
-    @ViewBuilder
     private func utilityArea(proxy: SplitViewProxy) -> some View {
         ZStack(alignment: .top) {
             UtilityAreaView()
@@ -178,7 +177,7 @@ struct WorkspaceView: View {
         .accessibilityElement(children: .contain)
     }
 
-    @ViewBuilder private var utilityAreaPlaceholder: some View {
+    private var utilityAreaPlaceholder: some View {
         Rectangle()
             .collapsable()
             .collapsed($utilityAreaViewModel.isCollapsed)
@@ -205,7 +204,8 @@ struct WorkspaceView: View {
         for provider in providers {
             provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, _ in
                 guard let data = item as? Data,
-                      let url = URL(dataRepresentation: data, relativeTo: nil) else {
+                      let url = URL(dataRepresentation: data, relativeTo: nil)
+                else {
                     return
                 }
 

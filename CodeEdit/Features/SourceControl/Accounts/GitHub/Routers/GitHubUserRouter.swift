@@ -29,7 +29,7 @@ enum GitHubUserRouter: GitRouter {
     var path: String {
         switch self {
         case .readAuthenticatedUser:
-            return "user"
+            return String(localized: "source-control.accounts.github.user-endpoint", defaultValue: "user", comment: "GitHub API path component for current user endpoint")
         case let .readUser(username, _):
             return "users/\(username)"
         }

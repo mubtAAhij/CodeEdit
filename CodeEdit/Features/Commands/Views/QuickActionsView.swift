@@ -1,5 +1,5 @@
 //
-//  CommandPaletteView.swift
+//  QuickActionsView.swift
 //  CodeEdit
 //
 //  Created by Alex Sinelnikov on 24.05.2022.
@@ -9,7 +9,6 @@ import SwiftUI
 
 /// Quick actions view
 struct QuickActionsView: View {
-
     @Environment(\.colorScheme)
     private var colorScheme: ColorScheme
 
@@ -44,7 +43,7 @@ struct QuickActionsView: View {
 
     var body: some View {
         SearchPanelView<QuickSearchResultLabel, EmptyView, Command>(
-            title: "Commands",
+            title: String(localized: "commands.quick-actions.title", defaultValue: "Commands", comment: "Title for quick actions commands list"),
             image: Image(systemName: "magnifyingglass"),
             options: $state.filteredCommands,
             text: $state.commandQuery,

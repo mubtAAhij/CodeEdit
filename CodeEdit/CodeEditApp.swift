@@ -5,16 +5,16 @@
 //  Created by Wouter Hennen on 11/03/2023.
 //
 
+import AboutWindow
 import SwiftUI
 import WelcomeWindow
-import AboutWindow
 
 @main
 struct CodeEditApp: App {
     @NSApplicationDelegateAdaptor var appdelegate: AppDelegate
     @ObservedObject var settings = Settings.shared
 
-    let updater: SoftwareUpdater = SoftwareUpdater()
+    let updater: SoftwareUpdater = .init()
 
     init() {
         // Register singleton services before anything else
@@ -48,10 +48,10 @@ struct CodeEditApp: App {
             AboutWindow(
                 subtitleView: { AboutSubtitleView() },
                 actions: {
-                    AboutButton(title: "Contributors", destination: {
+                    AboutButton(title: String(localized: "app.menu.about.contributors", defaultValue: "Contributors", comment: "Menu item title to open contributors view"), destination: {
                         ContributorsView()
                     })
-                    AboutButton(title: "Acknowledgements", destination: {
+                    AboutButton(title: String(localized: "app.menu.about.acknowledgements", defaultValue: "Acknowledgements", comment: "Menu item title to open acknowledgements view"), destination: {
                         AcknowledgementsView()
                     })
                 },

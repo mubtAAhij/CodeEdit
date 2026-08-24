@@ -16,7 +16,7 @@ struct SourceControlNavigatorChangesView: View {
 
     var hasUnsyncedCommits: Bool {
         sourceControlManager.numberOfUnsyncedCommits.ahead > 0
-        || sourceControlManager.numberOfUnsyncedCommits.behind > 0
+            || sourceControlManager.numberOfUnsyncedCommits.behind > 0
     }
 
     var hasCurrentBranch: Bool {
@@ -50,7 +50,7 @@ struct SourceControlNavigatorChangesView: View {
             if hasChanges {
                 SourceControlNavigatorChangesList()
             } else {
-                CEContentUnavailableView("No Changes")
+                CEContentUnavailableView(String(localized: "navigator-area.source-control.changes.empty-state", defaultValue: "No Changes", comment: "Empty state message when there are no source control changes"))
             }
         }
         .frame(maxHeight: .infinity)

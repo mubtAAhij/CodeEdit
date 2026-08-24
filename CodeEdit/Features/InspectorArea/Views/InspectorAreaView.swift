@@ -11,7 +11,7 @@ struct InspectorAreaView: View {
     @EnvironmentObject private var workspace: WorkspaceDocument
     @EnvironmentObject private var editorManager: EditorManager
     @ObservedObject private var extensionManager = ExtensionManager.shared
-    @ObservedObject public var viewModel: InspectorAreaViewModel
+    @ObservedObject var viewModel: InspectorAreaViewModel
 
     @AppSettings(\.general.inspectorTabBarPosition)
     var sidebarPosition: SettingsData.SidebarTabBarPosition
@@ -35,7 +35,7 @@ struct InspectorAreaView: View {
             .extensions
             .map { ext in
                 ext.availableFeatures.compactMap {
-                    if case .sidebarItem(let data) = $0, data.kind == .inspector {
+                    if case let .sidebarItem(data) = $0, data.kind == .inspector {
                         return InspectorTab.uiExtension(endpoint: ext.endpoint, data: data)
                     }
                     return nil
@@ -53,7 +53,7 @@ struct InspectorAreaView: View {
         )
         .formStyle(.grouped)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("inspector")
+        .accessibilityLabel(String(localized: "inspector-area.accessibility.identifier.inspector", defaultValue: "inspector", comment: "Accessibility identifier string for inspector area"))
         .onChange(of: showInternalDevelopmentInspector) { _, _ in
             updateTabs()
         }

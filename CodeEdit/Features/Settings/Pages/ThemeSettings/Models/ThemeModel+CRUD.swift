@@ -17,8 +17,7 @@ extension ThemeModel {
             // get the data from the provided file
             let json = try Data(contentsOf: url)
             // decode the json into ``Theme``
-            let theme = try JSONDecoder().decode(Theme.self, from: json)
-            return theme
+            return try JSONDecoder().decode(Theme.self, from: json)
         } catch {
             print(error)
             return nil
@@ -69,7 +68,6 @@ extension ThemeModel {
             // load each theme from disk and store in memory
             try themeURLs.forEach { fileURL in
                 if var theme = try load(from: fileURL) {
-
                     // get all properties of terminal and editor colors
                     guard let terminalColors = try theme.terminal.allProperties() as? [String: Theme.Attributes],
                           let editorColors = try theme.editor.allProperties() as? [String: Theme.Attributes]
@@ -81,7 +79,7 @@ extension ThemeModel {
 
                     // check if there are any overrides in `settings.json`
                     if let overrides = prefs.theme.overrides[theme.name]?["terminal"] {
-                        terminalColors.forEach { (key, _) in
+                        for (key, _) in terminalColors {
                             if let attributes = overrides[key] {
                                 theme.terminal[key] = attributes
                             }
@@ -89,7 +87,7 @@ extension ThemeModel {
                     }
 
                     if let overrides = prefs.theme.overrides[theme.name]?["editor"] {
-                        editorColors.forEach { (key, _) in
+                        for (key, _) in editorColors {
                             if let attributes = overrides[key] {
                                 theme.editor[key] = attributes
                             }
@@ -135,7 +133,7 @@ extension ThemeModel {
         let openPanel = NSOpenPanel()
         let allowedTypes = [UTType(filenameExtension: "cetheme")!]
 
-        openPanel.prompt = "Import"
+        openPanel.prompt = String(localized: "settings.theme.crud.import", defaultValue: "Import", comment: "Button title to import a theme file")
         openPanel.allowedContentTypes = allowedTypes
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = false
@@ -152,9 +150,9 @@ extension ThemeModel {
 
     func duplicate(_ url: URL) {
         do {
-            self.isAdding = true
+            isAdding = true
             // Construct the destination file URL
-            var destinationFileURL = self.themesURL.appending(path: url.lastPathComponent)
+            var destinationFileURL = themesURL.appending(path: url.lastPathComponent)
 
             // Extract the base filename and extension
             let fileExtension = destinationFileURL.pathExtension
@@ -167,11 +165,11 @@ extension ThemeModel {
             let isBundled = url.absoluteString.hasPrefix(bundledThemesURL?.absoluteString ?? "")
             let isImporting =
                 !url.absoluteString.hasPrefix(bundledThemesURL?.absoluteString ?? "")
-                && !url.absoluteString.hasPrefix(themesURL.absoluteString)
+                    && !url.absoluteString.hasPrefix(themesURL.absoluteString)
 
             if isBundled {
                 newFileName = "\(fileName) \(iterator)"
-                destinationFileURL = self.themesURL
+                destinationFileURL = themesURL
                     .appending(path: newFileName)
                     .appendingPathExtension(fileExtension)
             }
@@ -187,7 +185,7 @@ extension ThemeModel {
 
                 // Generate a new filename with an iterator
                 newFileName = "\(fileName) \(iterator)"
-                destinationFileURL = self.themesURL
+                destinationFileURL = themesURL
                     .appending(path: newFileName)
                     .appendingPathExtension(fileExtension)
 
@@ -197,23 +195,23 @@ extension ThemeModel {
             // Copy the file from selected URL to the destination
             try FileManager.default.copyItem(at: url, to: destinationFileURL)
 
-            try self.loadThemes()
+            try loadThemes()
 
-            if let index = self.themes.firstIndex(where: { $0.fileURL == destinationFileURL }) {
-                self.themes[index].displayName = newFileName
-                self.themes[index].name = newFileName.lowercased().replacingOccurrences(of: " ", with: "-")
+            if let index = themes.firstIndex(where: { $0.fileURL == destinationFileURL }) {
+                themes[index].displayName = newFileName
+                themes[index].name = newFileName.lowercased().replacingOccurrences(of: " ", with: "-")
 
                 if isImporting != true {
-                    self.themes[index].author = NSFullUserName()
-                    self.save(self.themes[index])
+                    themes[index].author = NSFullUserName()
+                    save(themes[index])
                 }
 
-                self.previousTheme = self.selectedTheme
+                previousTheme = selectedTheme
 
-                activateTheme(self.themes[index])
+                activateTheme(themes[index])
 
-                self.detailsTheme = self.themes[index]
-                self.detailsIsPresented = true
+                detailsTheme = themes[index]
+                detailsIsPresented = true
             }
         } catch {
             print("Error adding theme: \(error.localizedDescription)")
@@ -226,7 +224,7 @@ extension ThemeModel {
                 throw NSError(
                     domain: "ThemeModel",
                     code: 1,
-                    userInfo: [NSLocalizedDescriptionKey: "Theme file URL not found"]
+                    userInfo: [NSLocalizedDescriptionKey: String(localized: "settings.theme.crud.file-url-not-found", defaultValue: "Theme file URL not found", comment: "Error message shown when selected theme file URL is unavailable")]
                 )
             }
 
@@ -241,11 +239,11 @@ extension ThemeModel {
                 iterator += 1
             }
 
-            _ = self.getThemeActive(theme)
+            _ = getThemeActive(theme)
 
             try filemanager.moveItem(at: oldURL, to: finalURL)
 
-            try self.loadThemes()
+            try loadThemes()
         } catch {
             print("Error renaming theme: \(error.localizedDescription)")
         }
@@ -281,7 +279,7 @@ extension ThemeModel {
 
                 Settings.shared.preferences.theme.overrides.removeValue(forKey: theme.name)
 
-                try self.loadThemes()
+                try loadThemes()
             } catch {
                 print(error)
             }

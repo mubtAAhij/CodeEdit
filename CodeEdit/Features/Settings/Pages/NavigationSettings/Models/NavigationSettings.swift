@@ -8,14 +8,12 @@
 import Foundation
 
 extension SettingsData {
-
     /// The global settings for the terminal emulator
     struct NavigationSettings: Codable, Hashable, SearchableSettingsPage {
-
         /// The search keys
         var searchKeys: [String] {
             [
-                "Navigation Style",
+                String(localized: "settings.navigation.style", defaultValue: "Navigation Style", comment: "Settings label for selecting navigation style"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -29,7 +27,7 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.navigationStyle = try container.decodeIfPresent(
+            navigationStyle = try container.decodeIfPresent(
                 NavigationStyle.self, forKey: .navigationStyle
             ) ?? .openInTabs
         }

@@ -19,9 +19,9 @@ extension WorkspaceDocument.SearchState {
         let createInfo: [String: Any] = [
             "id": uuidString,
             "action": "create",
-            "title": "Indexing | Processing files",
-            "message": "Creating an index to enable fast and accurate searches within your codebase.",
-            "isLoading": true
+            "title": String(localized: "workspace_document.indexing.processing_files", defaultValue: "Indexing | Processing files", comment: "Indexing progress title shown while processing workspace files"),
+            "message": String(localized: "workspace_document.indexing.create_index_message", defaultValue: "Creating an index to enable fast and accurate searches within your codebase.", comment: "Message explaining why workspace index creation is in progress"),
+            "isLoading": true,
         ]
         NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: createInfo)
 
@@ -44,7 +44,7 @@ extension WorkspaceDocument.SearchState {
                     let updateInfo: [String: Any] = [
                         "id": uuidString,
                         "action": "update",
-                        "percentage": progress
+                        "percentage": progress,
                     ]
                     NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: updateInfo)
                 }
@@ -57,15 +57,15 @@ extension WorkspaceDocument.SearchState {
             let updateInfo: [String: Any] = [
                 "id": uuidString,
                 "action": "update",
-                "title": "Finished indexing",
-                "isLoading": false
+                "title": String(localized: "workspace_document.indexing.finished", defaultValue: "Finished indexing", comment: "Status message shown when workspace indexing has completed"),
+                "isLoading": false,
             ]
             NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: updateInfo)
 
             let deleteInfo = [
                 "id": uuidString,
                 "action": "deleteWithDelay",
-                "delay": 4.0
+                "delay": 4.0,
             ]
             NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: deleteInfo)
         }
