@@ -5,8 +5,8 @@
 //  Created by Austin Condiff on 12/27/2023.
 //
 
-import SwiftUI
 import CodeEditSymbols
+import SwiftUI
 
 struct SourceControlNavigatorHistoryView: View {
     enum Status {
@@ -24,7 +24,7 @@ struct SourceControlNavigatorHistoryView: View {
     @State var commitHistory: [GitCommit] = []
 
     @State var selection: GitCommit?
-    @State private var width: CGFloat = CGFloat.zero
+    @State private var width: CGFloat = .zero
 
     func updateCommitHistory() async {
         do {
@@ -55,13 +55,13 @@ struct SourceControlNavigatorHistoryView: View {
                 VStack {
                     Spacer()
                     ProgressView {
-                        Text("Loading History")
+                        Text(String(localized: "source-control.navigator.history.loading-history", defaultValue: "Loading History", comment: "Status text while source control history is loading"))
                     }
                     Spacer()
                 }
             case .ready:
                 if commitHistory.isEmpty {
-                    CEContentUnavailableView("No History")
+                    CEContentUnavailableView(String(localized: "source-control.navigator.history.no-history", defaultValue: "No History", comment: "Empty state text when no source control history is available"))
                 } else {
                     GeometryReader { geometry in
                         ZStack {
@@ -85,11 +85,11 @@ struct SourceControlNavigatorHistoryView: View {
                         }
                     }
                 }
-            case .error(let error):
+            case let .error(error):
                 VStack {
                     Spacer()
                     CEContentUnavailableView(
-                        "Error Loading History",
+                        String(localized: "source-control.navigator.history.error-loading-history", defaultValue: "Error Loading History", comment: "Error state title when source control history fails to load"),
                         description: error.localizedDescription,
                         systemImage: "exclamationmark.triangle"
                     ) {
@@ -98,7 +98,7 @@ struct SourceControlNavigatorHistoryView: View {
                                 await updateCommitHistory()
                             }
                         } label: {
-                            Text("Retry")
+                            Text(String(localized: "source-control.navigator.history.retry", defaultValue: "Retry", comment: "Retry button title after history loading error"))
                         }
                     }
                     Spacer()

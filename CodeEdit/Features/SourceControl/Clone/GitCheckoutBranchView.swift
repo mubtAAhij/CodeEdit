@@ -22,6 +22,7 @@ struct GitCheckoutBranchView: View {
         _viewModel = .init(wrappedValue: GitCheckoutBranchViewModel(repoPath: repoLocalPath))
         self.openDocument = openDocument
     }
+
     var body: some View {
         VStack(spacing: 8) {
             HStack {
@@ -30,15 +31,15 @@ struct GitCheckoutBranchView: View {
                     .frame(width: 64, height: 64)
                     .padding(.bottom, 50)
                 VStack(alignment: .leading) {
-                    Text("Checkout branch")
+                    Text(String(localized: "source-control.clone.checkout-branch.title", defaultValue: "Checkout branch", comment: "Title for branch checkout dialog"))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Select a branch to checkout")
+                    Text(String(localized: "source-control.clone.checkout-branch.select-prompt", defaultValue: "Select a branch to checkout", comment: "Prompt to choose a branch in checkout dialog"))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
-                        context[.trailing]
-                    }
+                            context[.trailing]
+                        }
                     Picker("", selection: $viewModel.selectedBranch, content: {
                         ForEach(viewModel.branches, id: \.self) { branch in
                             Text(branch.name.replacingOccurrences(of: "origin/", with: ""))
@@ -48,10 +49,10 @@ struct GitCheckoutBranchView: View {
                     .labelsHidden()
 
                     HStack {
-                        Button("Cancel") {
+                        Button(String(localized: "source-control.clone.checkout-branch.cancel", defaultValue: "Cancel", comment: "Cancel button in checkout branch dialog")) {
                             dismiss()
                         }
-                        Button("Checkout") {
+                        Button(String(localized: "source-control.clone.checkout-branch.confirm", defaultValue: "Checkout", comment: "Confirm button to checkout selected branch")) {
                             Task {
                                 await viewModel.checkoutBranch()
                                 await MainActor.run {

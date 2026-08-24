@@ -18,17 +18,17 @@ enum RegistryManagerError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .installationRunning:
-            "A package is already being installed."
-        case .invalidResponse(let statusCode):
+            String(localized: "lsp.registry.error.package-already-being-installed", defaultValue: "A package is already being installed.", comment: "Error message shown when another package installation is already running")
+        case let .invalidResponse(statusCode):
             "Invalid response received: \(statusCode)"
-        case .downloadFailed(let url, _):
+        case let .downloadFailed(url, _):
             "Download for \(url) error."
-        case .maxRetriesExceeded(let url, _):
+        case let .maxRetriesExceeded(url, _):
             "Maximum retries exceeded for url: \(url)"
         case .writeFailed:
-            "Failed to write to file."
+            String(localized: "lsp.registry.error.failed-to-write-file", defaultValue: "Failed to write to file.", comment: "Error message shown when writing downloaded data to disk fails")
         case .failedToSaveRegistryCache:
-            "Failed to write to registry cache."
+            String(localized: "lsp.registry.error.failed-to-write-registry-cache", defaultValue: "Failed to write to registry cache.", comment: "Error message shown when persisting registry cache fails")
         }
     }
 
@@ -36,7 +36,7 @@ enum RegistryManagerError: Error, LocalizedError {
         switch self {
         case .installationRunning, .invalidResponse, .failedToSaveRegistryCache:
             return nil
-        case .downloadFailed(_, let error), .maxRetriesExceeded(_, let error), .writeFailed(let error):
+        case let .downloadFailed(_, error), let .maxRetriesExceeded(_, error), let .writeFailed(error):
             return if let error = error as? LocalizedError {
                 error.errorDescription
             } else {

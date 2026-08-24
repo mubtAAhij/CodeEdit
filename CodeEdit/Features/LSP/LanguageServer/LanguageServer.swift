@@ -5,8 +5,8 @@
 //  Created by Abe Malla on 2/7/24.
 //
 
-import JSONRPC
 import Foundation
+import JSONRPC
 import LanguageClient
 import LanguageServerProtocol
 import OSLog
@@ -16,6 +16,7 @@ class LanguageServer<DocumentType: LanguageServerDocument> {
     static var logger: Logger { // types with associated types cannot have constant static properties
         Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "LanguageServer")
     }
+
     let logger: Logger
 
     /// Identifies which language the server belongs to
@@ -57,19 +58,19 @@ class LanguageServer<DocumentType: LanguageServerDocument> {
         self.languageId = languageId
         self.binary = binary
         self.lspInstance = lspInstance
-        self.pid = lspPid
+        pid = lspPid
         self.serverCapabilities = serverCapabilities
         self.rootPath = rootPath
-        self.openFiles = LanguageServerFileMap()
+        openFiles = LanguageServerFileMap()
         self.logContainer = logContainer
-        self.logger = Logger(
+        logger = Logger(
             subsystem: Bundle.main.bundleIdentifier ?? "",
             category: "LanguageServer.\(languageId.rawValue)"
         )
         if let semanticTokensProvider = serverCapabilities.semanticTokensProvider {
-            self.highlightMap = SemanticTokenMap(semanticCapability: semanticTokensProvider)
+            highlightMap = SemanticTokenMap(semanticCapability: semanticTokensProvider)
         } else {
-            self.highlightMap = nil // Server doesn't support semantic highlights
+            highlightMap = nil // Server doesn't support semantic highlights
         }
     }
 
@@ -131,7 +132,7 @@ class LanguageServer<DocumentType: LanguageServerDocument> {
                 terminationHandler: { [weak logContainer] in
                     logger.debug("Terminated data channel for \(languageId.rawValue)")
                     logContainer?.appendLog(
-                        LogMessageParams(type: .error, message: "Data Channel Terminated Unexpectedly")
+                        LogMessageParams(type: .error, message: String(localized: "lsp.data_channel_terminated_unexpectedly", defaultValue: "Data Channel Terminated Unexpectedly", comment: "Error message when language server data channel terminates unexpectedly"))
                     )
                 }
             )
@@ -146,7 +147,7 @@ class LanguageServer<DocumentType: LanguageServerDocument> {
 
     // swiftlint:disable function_body_length
     static func getInitParams(workspacePath: String) -> InitializingServer.InitializeParamsProvider {
-        let provider: InitializingServer.InitializeParamsProvider = {
+        return {
             // Text Document Capabilities
             let textDocumentCapabilities = TextDocumentClientCapabilities(
                 completion: CompletionClientCapabilities(
@@ -238,7 +239,7 @@ class LanguageServer<DocumentType: LanguageServerDocument> {
                 general: nil,
                 experimental: nil
             )
-             return InitializeParams(
+            return InitializeParams(
                 processId: nil,
                 locale: nil,
                 rootPath: nil,
@@ -247,18 +248,17 @@ class LanguageServer<DocumentType: LanguageServerDocument> {
                 capabilities: capabilities,
                 trace: nil,
                 workspaceFolders: nil
-             )
+            )
         }
-        return provider
         // swiftlint:enable function_body_length
     }
 
     // MARK: - Shutdown
 
     /// Shuts down the language server and exits it.
-    public func shutdown() async throws {
-        self.logger.info("Shutting down language server")
-        try await self.lspInstance.shutdownAndExit()
+    func shutdown() async throws {
+        logger.info("Shutting down language server")
+        try await lspInstance.shutdownAndExit()
     }
 }
 

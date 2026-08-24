@@ -31,16 +31,17 @@ struct ActivityViewer: View {
         self.taskNotificationHandler = taskNotificationHandler
         self.taskManager = taskManager
     }
+
     var body: some View {
         Group {
             if #available(macOS 26, *) {
                 content
                     .fixedSize(horizontal: false, vertical: false)
                     .padding(5)
-                // TaskNotificationView doesn't have it's own padding
-                // Also this padding seems weird. However, we want the spinning circle to be padded with the same
-                // amount from both the top and bottom, as well as the trailing edge. So despite it not being exactly
-                // the same it *looks* correctly padded
+                    // TaskNotificationView doesn't have it's own padding
+                    // Also this padding seems weird. However, we want the spinning circle to be padded with the same
+                    // amount from both the top and bottom, as well as the trailing edge. So despite it not being exactly
+                    // the same it *looks* correctly padded
                     .padding(.trailing, 5)
                     .clipShape(Capsule())
                     .frame(minWidth: 200)
@@ -63,10 +64,10 @@ struct ActivityViewer: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Activity Viewer")
+        .accessibilityLabel(String(localized: "activity-viewer.title", defaultValue: "Activity Viewer", comment: "Title of the activity viewer panel"))
     }
 
-    @ViewBuilder private var content: some View {
+    private var content: some View {
         HStack(spacing: 0) {
             SchemeDropDownView(
                 workspaceSettingsManager: workspaceSettingsManager,

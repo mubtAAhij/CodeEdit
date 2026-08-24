@@ -1,5 +1,5 @@
 //
-//  TerminalPreferences.swift
+//  TerminalSettings.swift
 //  CodeEditModules/Settings
 //
 //  Created by Nanashi Li on 2022/04/08.
@@ -9,20 +9,18 @@ import AppKit
 import Foundation
 
 extension SettingsData {
-
     /// The global settings for the terminal emulator
     struct TerminalSettings: Codable, Hashable, SearchableSettingsPage {
-
         /// The search keys
         var searchKeys: [String] {
             [
-                "Shell",
+                String(localized: "settings.terminal.shell", defaultValue: "Shell", comment: "Terminal settings item title for selecting shell"),
                 "Use \"Option\" key as \"Meta\"",
-                "Use text editor font",
-                "Font",
-                "Font Size",
-                "Terminal Cursor Style",
-                "Blink Cursor"
+                String(localized: "settings.terminal.use-text-editor-font", defaultValue: "Use text editor font", comment: "Terminal settings toggle to use the editor font"),
+                String(localized: "settings.terminal.font", defaultValue: "Font", comment: "Terminal settings item title for terminal font selection"),
+                String(localized: "settings.terminal.font-size", defaultValue: "Font Size", comment: "Terminal settings item title for terminal font size"),
+                String(localized: "settings.terminal.cursor-style", defaultValue: "Terminal Cursor Style", comment: "Terminal settings item title for cursor style"),
+                String(localized: "settings.terminal.blink-cursor", defaultValue: "Blink Cursor", comment: "Terminal settings toggle for cursor blinking"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -45,13 +43,13 @@ extension SettingsData {
         /// The font to use in terminal.
         var font: TerminalFont = .init()
 
-        // The cursor style to use in terminal
+        /// The cursor style to use in terminal
         var cursorStyle: TerminalCursorStyle = .block
 
-        // Toggle for blinking cursor or not
+        /// Toggle for blinking cursor or not
         var cursorBlink: Bool = false
 
-        // Use font settings from Text Editing
+        /// Use font settings from Text Editing
         var useTextEditorFont: Bool = true
 
         /// If `true`, use injection scripts for terminal features like automatic tab title.
@@ -66,18 +64,18 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.darkAppearance = try container.decodeIfPresent(Bool.self, forKey: .darkAppearance) ?? false
-            self.optionAsMeta = try container.decodeIfPresent(Bool.self, forKey: .optionAsMeta) ?? false
-            self.shell = try container.decodeIfPresent(TerminalShell.self, forKey: .shell) ?? .system
-            self.font = try container.decodeIfPresent(TerminalFont.self, forKey: .font) ?? .init()
-            self.cursorStyle = try container.decodeIfPresent(
+            darkAppearance = try container.decodeIfPresent(Bool.self, forKey: .darkAppearance) ?? false
+            optionAsMeta = try container.decodeIfPresent(Bool.self, forKey: .optionAsMeta) ?? false
+            shell = try container.decodeIfPresent(TerminalShell.self, forKey: .shell) ?? .system
+            font = try container.decodeIfPresent(TerminalFont.self, forKey: .font) ?? .init()
+            cursorStyle = try container.decodeIfPresent(
                 TerminalCursorStyle.self,
                 forKey: .cursorStyle
             ) ?? .block
-            self.cursorBlink = try container.decodeIfPresent(Bool.self, forKey: .cursorBlink) ?? false
-            self.useTextEditorFont = try container.decodeIfPresent(Bool.self, forKey: .useTextEditorFont) ?? true
-            self.useShellIntegration = try container.decodeIfPresent(Bool.self, forKey: .useShellIntegration) ?? true
-            self.useLoginShell = try container.decodeIfPresent(Bool.self, forKey: .useLoginShell) ?? true
+            cursorBlink = try container.decodeIfPresent(Bool.self, forKey: .cursorBlink) ?? false
+            useTextEditorFont = try container.decodeIfPresent(Bool.self, forKey: .useTextEditorFont) ?? true
+            useShellIntegration = try container.decodeIfPresent(Bool.self, forKey: .useShellIntegration) ?? true
+            useLoginShell = try container.decodeIfPresent(Bool.self, forKey: .useLoginShell) ?? true
         }
     }
 
@@ -113,9 +111,9 @@ extension SettingsData {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.size = try container.decodeIfPresent(Double.self, forKey: .size) ?? size
-            self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? name
-            self.weight = try container.decodeIfPresent(NSFont.Weight.self, forKey: .weight) ?? weight
+            size = try container.decodeIfPresent(Double.self, forKey: .size) ?? size
+            name = try container.decodeIfPresent(String.self, forKey: .name) ?? name
+            weight = try container.decodeIfPresent(NSFont.Weight.self, forKey: .weight) ?? weight
         }
 
         /// Returns an NSFont representation of the current configuration.

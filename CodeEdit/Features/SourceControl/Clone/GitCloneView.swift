@@ -5,9 +5,9 @@
 //  Created by Aleksi Puttonen on 23.3.2022.
 //
 
-import SwiftUI
-import Foundation
 import Combine
+import Foundation
+import SwiftUI
 
 struct GitCloneView: View {
     @Environment(\.dismiss)
@@ -33,25 +33,25 @@ struct GitCloneView: View {
                     .resizable()
                     .frame(width: 64, height: 64)
                 VStack(alignment: .leading) {
-                    Text("Clone a Repository")
+                    Text(String(localized: "source-control.clone.title", defaultValue: "Clone a Repository", comment: "Title for clone repository sheet"))
                         .bold()
                         .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
+                    Text(String(localized: "source-control.clone.enter-repository-url", defaultValue: "Enter a git repository URL:", comment: "Prompt text requesting repository URL for clone operation"))
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                             context[.trailing]
                         }
-                    TextField("Git Repository URL", text: $viewModel.repoUrlStr)
+                    TextField(String(localized: "source-control.clone.repository-url-field", defaultValue: "Git Repository URL", comment: "Placeholder or label for git repository URL input field"), text: $viewModel.repoUrlStr)
                         .lineLimit(1)
                         .padding(.bottom, 15)
 
                     HStack {
                         Spacer()
-                        Button("Cancel") {
+                        Button(String(localized: "source-control.clone.cancel", defaultValue: "Cancel", comment: "Cancel button title in clone repository sheet")) {
                             dismiss()
                         }
-                        Button("Clone") {
+                        Button(String(localized: "source-control.clone.clone", defaultValue: "Clone", comment: "Confirm button title to start clone operation")) {
                             cloneRepository()
                         }
                         .keyboardShortcut(.defaultAction)
@@ -72,7 +72,7 @@ struct GitCloneView: View {
         }
     }
 
-    @ViewBuilder private var cloningSheet: some View {
+    private var cloningSheet: some View {
         NavigationStack {
             VStack {
                 ProgressView(
@@ -84,7 +84,7 @@ struct GitCloneView: View {
         }
         .toolbar {
             ToolbarItem {
-                Button("Cancel Cloning") {
+                Button(String(localized: "source-control.clone.cancel-cloning", defaultValue: "Cancel Cloning", comment: "Button title to cancel ongoing clone operation")) {
                     viewModel.cloningTask?.cancel()
                     viewModel.cloningTask = nil
                     viewModel.isCloning = false
@@ -102,8 +102,8 @@ struct GitCloneView: View {
             guard let gitClient = viewModel.gitClient else { return }
 
             Task {
-                let branches = ((try? await  gitClient.getBranches()) ?? [])
-                    .filter({ $0.isRemote })
+                let branches = ((try? await gitClient.getBranches()) ?? [])
+                    .filter { $0.isRemote }
                 if branches.count > 1 {
                     openBranchView(localPath)
                     return

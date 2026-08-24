@@ -26,7 +26,7 @@ struct SourceControlGitView: View {
                 gitAuthorName
                 gitEmail
             } header: {
-                Text("Git Configuration")
+                Text(String(localized: "settings.source_control.git.configuration.title", defaultValue: "Git Configuration", comment: "Section title for global Git configuration settings"))
                 Text("""
                 Applied globally to all repositories on your Mac. \
                 [Learn more...](https://git-scm.com/docs/git-config)
@@ -43,7 +43,7 @@ struct SourceControlGitView: View {
             Section {
                 IgnoredFilesListView()
             } header: {
-                Text("Ignored Files")
+                Text(String(localized: "settings.source_control.git.ignored-files.title", defaultValue: "Ignored Files", comment: "Section title for global Git ignored files settings"))
                 Text("""
                 Patterns for files and folders that Git should ignore and not track. \
                 Applied globally to all repositories on your Mac. \
@@ -71,7 +71,7 @@ struct SourceControlGitView: View {
 
 private extension SourceControlGitView {
     private var gitAuthorName: some View {
-        TextField("Author Name", text: $authorName)
+        TextField(String(localized: "settings.source_control.git.author-name.label", defaultValue: "Author Name", comment: "Label for Git author name setting"), text: $authorName)
             .onChange(of: authorName) { _, newValue in
                 if hasAppeared {
                     Limiter.debounce(id: "authorNameDebouncer", duration: 0.5) {
@@ -84,7 +84,7 @@ private extension SourceControlGitView {
     }
 
     private var gitEmail: some View {
-        TextField("Author Email", text: $authorEmail)
+        TextField(String(localized: "settings.source_control.git.author-email.label", defaultValue: "Author Email", comment: "Label for Git author email setting"), text: $authorEmail)
             .onChange(of: authorEmail) { _, newValue in
                 if hasAppeared {
                     Limiter.debounce(id: "authorEmailDebouncer", duration: 0.5) {
@@ -98,8 +98,8 @@ private extension SourceControlGitView {
 
     private var defaultBranchName: some View {
         TextField(text: $defaultBranch) {
-            Text("Default branch name")
-            Text("Cannot contain spaces, backslashes, or other symbols")
+            Text(String(localized: "settings.source_control.git.default-branch.label", defaultValue: "Default branch name", comment: "Label for Git default branch name setting"))
+            Text(String(localized: "settings.source_control.git.default-branch.validation", defaultValue: "Cannot contain spaces, backslashes, or other symbols", comment: "Validation help text for Git default branch name field"))
         }
         .onChange(of: defaultBranch) { _, newValue in
             if hasAppeared {
@@ -114,7 +114,7 @@ private extension SourceControlGitView {
 
     private var preferToRebaseWhenPulling: some View {
         Toggle(
-            "Prefer to rebase when pulling",
+            String(localized: "settings.source_control.git.prefer-rebase.label", defaultValue: "Prefer to rebase when pulling", comment: "Toggle label for preferring rebase during pull"),
             isOn: $preferRebaseWhenPulling
         )
         .onChange(of: preferRebaseWhenPulling) { _, newValue in
@@ -130,7 +130,7 @@ private extension SourceControlGitView {
 
     private var showMergeCommitsInPerFileLog: some View {
         Toggle(
-            "Show merge commits in per-file log",
+            String(localized: "settings.source_control.git.show-merge-commits.label", defaultValue: "Show merge commits in per-file log", comment: "Toggle label for showing merge commits in per-file log"),
             isOn: $git.showMergeCommitsPerFileLog
         )
     }
@@ -141,7 +141,7 @@ private extension SourceControlGitView {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitConfigFile)
+            Button(String(localized: "settings.source_control.git.config-location.open-in-editor", defaultValue: "Open in Editor...", comment: "Action label to open Git configuration file in editor"), action: openGitConfigFile)
         }
         .frame(maxWidth: .infinity)
     }
@@ -152,7 +152,7 @@ private extension SourceControlGitView {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("Open in Editor...", action: openGitIgnoreFile)
+            Button(String(localized: "settings.source_control.git.ignore-location.open-in-editor", defaultValue: "Open in Editor...", comment: "Action label to open global Git ignore file in editor"), action: openGitIgnoreFile)
         }
         .frame(maxWidth: .infinity)
         .onAppear {

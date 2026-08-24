@@ -5,9 +5,9 @@
 //  Created by Lukas Pistrol on 21.04.22.
 //
 
-import SwiftUI
 import CodeEditSymbols
 import Combine
+import SwiftUI
 
 /// A view that pops up a branch picker.
 struct ToolbarBranchPicker: View {
@@ -27,7 +27,7 @@ struct ToolbarBranchPicker: View {
         workspaceFileManager: CEWorkspaceFileManager?
     ) {
         self.workspaceFileManager = workspaceFileManager
-        self.sourceControlManager = workspaceFileManager?.sourceControlManager
+        sourceControlManager = workspaceFileManager?.sourceControlManager
     }
 
     var body: some View {
@@ -70,7 +70,7 @@ struct ToolbarBranchPicker: View {
         .onHover { active in
             isHovering = active
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { (_) in
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
             if self.currentBranch != nil {
                 Task {
                     await sourceControlManager?.refreshCurrentBranch()
@@ -78,8 +78,8 @@ struct ToolbarBranchPicker: View {
             }
         }
         .onReceive(
-            self.sourceControlManager?.$currentBranch.eraseToAnyPublisher() ??
-            Empty().eraseToAnyPublisher()
+            sourceControlManager?.$currentBranch.eraseToAnyPublisher() ??
+                Empty().eraseToAnyPublisher()
         ) { branch in
             self.currentBranch = branch
         }
@@ -99,7 +99,7 @@ struct ToolbarBranchPicker: View {
     }
 
     private var title: String {
-        workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+        workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "branch_picker.empty_state", defaultValue: "Empty", comment: "Branch picker empty state label")
     }
 
     // MARK: Popover View
@@ -114,13 +114,13 @@ struct ToolbarBranchPicker: View {
             VStack(alignment: .leading) {
                 if let currentBranch = sourceControlManager.currentBranch {
                     Section {
-                        headerLabel("Current Branch")
+                        headerLabel(String(localized: "branch_picker.current_branch_header", defaultValue: "Current Branch", comment: "Header label for current branch section in branch picker"))
                         BranchCell(sourceControlManager: sourceControlManager, branch: currentBranch, active: true)
                     }
                 }
 
                 let branches = sourceControlManager.orderedLocalBranches
-                    .filter({ $0 != sourceControlManager.currentBranch })
+                    .filter { $0 != sourceControlManager.currentBranch }
                 let branchesGroups = branches.reduce(into: [String: GitBranchesGroup]()) { result, branch in
                     guard let branchPrefix = branch.name.components(separatedBy: "/").first else {
                         return
@@ -134,7 +134,7 @@ struct ToolbarBranchPicker: View {
 
                 if !branches.isEmpty {
                     Section {
-                        headerLabel("Branches")
+                        headerLabel(String(localized: "branch_picker.branches_header", defaultValue: "Branches", comment: "Header label for branches section in branch picker"))
                         ForEach(branchesGroups.keys.sorted(), id: \.self) { branchGroupPrefix in
                             if let group = branchesGroups[branchGroupPrefix] {
                                 if !group.shouldNest {
@@ -219,7 +219,7 @@ struct ToolbarBranchPicker: View {
                     do {
                         try await sourceControlManager.checkoutBranch(branch: branch)
                     } catch {
-                        await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                        await sourceControlManager.showAlertForError(title: String(localized: "branch_picker.checkout_failed", defaultValue: "Failed to checkout", comment: "Error message when checkout action fails in branch picker"), error: error)
                     }
                 }
             }

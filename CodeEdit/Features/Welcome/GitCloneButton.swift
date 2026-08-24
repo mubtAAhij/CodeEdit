@@ -9,7 +9,6 @@ import SwiftUI
 import WelcomeWindow
 
 struct GitCloneButton: View {
-
     @State private var showGitClone = false
     @State private var showCheckoutBranchItem: URL?
 
@@ -18,7 +17,7 @@ struct GitCloneButton: View {
     var body: some View {
         WelcomeButton(
             iconName: "square.and.arrow.down.on.square",
-            title: "Clone Git Repository...",
+            title: String(localized: "welcome.button.clone-git-repository", defaultValue: "Clone Git Repository...", comment: "Welcome screen button title to clone a git repository"),
             action: {
                 showGitClone = true
             }

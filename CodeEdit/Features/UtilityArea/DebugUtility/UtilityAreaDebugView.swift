@@ -44,7 +44,8 @@ struct UtilityAreaDebugView: View {
                 HStack { Spacer() }
 
                 if let taskShowingOutput = taskManager.taskShowingOutput,
-                   let activeTask = taskManager.activeTasks[taskShowingOutput] {
+                   let activeTask = taskManager.activeTasks[taskShowingOutput]
+                {
                     GeometryReader { geometry in
                         let containerHeight = geometry.size.height
                         let totalFontHeight = fontTotalHeight(nsFont: font).rounded(.up)
@@ -83,18 +84,18 @@ struct UtilityAreaDebugView: View {
                     }
                     .colorScheme(
                         utilityAreaViewModel.selectedTerminals.isEmpty
-                        ? colorScheme
-                        : matchAppearance && darkAppearance
-                        ? themeModel.selectedDarkTheme?.appearance == .dark ? .dark : .light
-                        : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
+                            ? colorScheme
+                            : matchAppearance && darkAppearance
+                            ? themeModel.selectedDarkTheme?.appearance == .dark ? .dark : .light
+                            : themeModel.selectedTheme?.appearance == .dark ? .dark : .light
                     )
                 } else {
-                    CEContentUnavailableView("No Task Selected")
+                    CEContentUnavailableView(String(localized: "utility-area.debug.no-task-selected", defaultValue: "No Task Selected", comment: "Placeholder text when no debug task is selected"))
                 }
             }
         } leadingSidebar: { _ in
             ZStack {
-                Text("No Tasks are Running")
+                Text(String(localized: "utility-area.debug.no-tasks-running", defaultValue: "No Tasks are Running", comment: "Placeholder text when no tasks are currently running"))
                     .font(.system(size: 16))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -112,7 +113,7 @@ struct UtilityAreaDebugView: View {
                                         Button {
                                             taskManager.deleteTask(taskID: taskID)
                                         } label: {
-                                            Text("Delete")
+                                            Text(String(localized: "utility-area.debug.delete", defaultValue: "Delete", comment: "Delete button title in debug utility view"))
                                         }
                                     }
                                 )
@@ -135,7 +136,8 @@ struct UtilityAreaDebugView: View {
         if let selectedTheme = matchAppearance && darkAppearance
             ? themeModel.selectedDarkTheme
             : themeModel.selectedTheme,
-           let index = themeModel.themes.firstIndex(of: selectedTheme) {
+            let index = themeModel.themes.firstIndex(of: selectedTheme)
+        {
             return NSColor(themeModel.themes[index].terminal.background.swiftColor)
         }
         return .windowBackgroundColor

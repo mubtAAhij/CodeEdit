@@ -14,21 +14,21 @@ final class CargoPackageManager: PackageManagerProtocol {
 
     init(installationDirectory: URL) {
         self.installationDirectory = installationDirectory
-        self.shellClient = .live()
+        shellClient = .live()
     }
 
     func install(method installationMethod: InstallationMethod) throws -> [PackageManagerInstallStep] {
-        guard case .standardPackage(let source) = installationMethod else {
+        guard case let .standardPackage(source) = installationMethod else {
             throw PackageManagerError.invalidConfiguration
         }
         let packagePath = installationDirectory.appending(path: source.entryName)
         return [
             initialize(in: packagePath),
-            runCargoInstall(source, in: packagePath)
+            runCargoInstall(source, in: packagePath),
         ]
     }
 
-    func isInstalled(method installationMethod: InstallationMethod) -> PackageManagerInstallStep {
+    func isInstalled(method _: InstallationMethod) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: "",
             confirmation: .none
@@ -48,7 +48,7 @@ final class CargoPackageManager: PackageManagerProtocol {
     }
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "lsp.registry.cargo.initialize-directory-structure", defaultValue: "Initialize Directory Structure", comment: "Progress step title for preparing cargo package installation directory"), confirmation: .none) { model in
             try await model.createDirectoryStructure(for: packagePath)
         }
     }
@@ -57,10 +57,10 @@ final class CargoPackageManager: PackageManagerProtocol {
         let qualifiedPackageName = "\(source.pkgName)@\(source.version)"
 
         return PackageManagerInstallStep(
-            name: "Install Package Using cargo",
+            name: String(localized: "lsp.registry.cargo.install-package-using-cargo", defaultValue: "Install Package Using cargo", comment: "Progress step title for installing a package via cargo"),
             confirmation: .required(
                 message: "This requires the cargo package \(qualifiedPackageName)."
-                + "\nAllow CodeEdit to install this package?"
+                    + "\nAllow CodeEdit to install this package?"
             )
         ) { model in
             var cargoArgs = ["cargo", "install", "--root", "."]
@@ -69,9 +69,9 @@ final class CargoPackageManager: PackageManagerProtocol {
             if let gitRef = source.gitReference, let repoUrl = source.repositoryUrl {
                 cargoArgs.append(contentsOf: ["--git", repoUrl])
                 switch gitRef {
-                case .tag(let tag):
+                case let .tag(tag):
                     cargoArgs.append(contentsOf: ["--tag", tag])
-                case .revision(let rev):
+                case let .revision(rev):
                     cargoArgs.append(contentsOf: ["--rev", rev])
                 }
             } else {

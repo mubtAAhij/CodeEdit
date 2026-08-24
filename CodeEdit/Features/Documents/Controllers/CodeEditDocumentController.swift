@@ -19,9 +19,9 @@ final class CodeEditDocumentController: NSDocumentController {
 
     @MainActor
     func createAndOpenNewDocument(onCompletion: @escaping () -> Void) {
-        guard let newDocumentUrl = self.newDocumentUrl else { return }
+        guard let newDocumentUrl = newDocumentUrl else { return }
 
-        let createdFile = self.fileManager.createFile(
+        let createdFile = fileManager.createFile(
             atPath: newDocumentUrl.path,
             contents: nil,
             attributes: [FileAttributeKey.creationDate: Date()]
@@ -32,15 +32,15 @@ final class CodeEditDocumentController: NSDocumentController {
             return
         }
 
-        self.openDocument(withContentsOf: newDocumentUrl, display: true) { _, _, _ in
+        openDocument(withContentsOf: newDocumentUrl, display: true) { _, _, _ in
             onCompletion()
         }
     }
 
-    override func newDocument(_ sender: Any?) {
-        guard let newDocumentUrl = self.newDocumentUrl else { return }
+    override func newDocument(_: Any?) {
+        guard let newDocumentUrl = newDocumentUrl else { return }
 
-        let createdFile = self.fileManager.createFile(
+        let createdFile = fileManager.createFile(
             atPath: newDocumentUrl.path,
             contents: nil,
             attributes: [FileAttributeKey.creationDate: Date()]
@@ -50,7 +50,7 @@ final class CodeEditDocumentController: NSDocumentController {
             return
         }
 
-        self.openDocument(withContentsOf: newDocumentUrl, display: true) { _, _, _ in }
+        openDocument(withContentsOf: newDocumentUrl, display: true) { _, _, _ in }
     }
 
     private var newDocumentUrl: URL? {
@@ -62,8 +62,8 @@ final class CodeEditDocumentController: NSDocumentController {
         return panel.url
     }
 
-    override func openDocument(_ sender: Any?) {
-        self.openDocument(onCompletion: { document, documentWasAlreadyOpen in
+    override func openDocument(_: Any?) {
+        openDocument(onCompletion: { document, documentWasAlreadyOpen in
             // TODO: handle errors
 
             guard let document else {
@@ -104,7 +104,7 @@ final class CodeEditDocumentController: NSDocumentController {
     /// - Returns: True, if the document was opened in a workspace.
     private func openFileInExistingWorkspace(url: URL) -> Bool {
         guard !url.isFolder else { return false }
-        let workspaces = documents.compactMap({ $0 as? WorkspaceDocument })
+        let workspaces = documents.compactMap { $0 as? WorkspaceDocument }
 
         // Check open workspaces for the file being opened. Sorted by shared components with the url so we
         // open the nearest workspace possible.
@@ -146,14 +146,14 @@ extension NSDocumentController {
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Open Workspace or File"
+        dialog.title = String(localized: "documents.open-workspace-or-file", defaultValue: "Open Workspace or File", comment: "Open panel title for choosing a workspace or file")
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.canChooseFiles = true
         dialog.canChooseDirectories = true
 
         dialog.begin { result in
-            if result ==  NSApplication.ModalResponse.OK, let url = dialog.url {
+            if result == NSApplication.ModalResponse.OK, let url = dialog.url {
                 self.openDocument(withContentsOf: url, display: true) { document, documentWasAlreadyOpen, error in
                     if let error {
                         NSAlert(error: error).runModal()

@@ -1,5 +1,5 @@
 //
-//  SourceControlNavigatorRepositoriesView+outlineGroupData.swift
+//  SourceControlNavigatorRepositoryView+outlineGroupData.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 11/29/23.
@@ -12,67 +12,67 @@ extension SourceControlNavigatorRepositoryView {
         [
             .init(
                 id: "BranchesGroup",
-                label: "Branches",
+                label: String(localized: "source-control.navigator.repository.branches", defaultValue: "Branches", comment: "Outline group title for local and remote branches"),
                 image: .system(name: "externaldrive.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.orderedLocalBranches.map { branch in
-                        .init(
-                            id: "Branch\(branch.name)",
-                            label: branch.name,
-                            description: branch == sourceControlManager.currentBranch ? "(current)" : nil,
-                            image: .symbol(name: "branch"),
-                            imageColor: .blue,
-                            branch: branch
-                        )
+                    .init(
+                        id: "Branch\(branch.name)",
+                        label: branch.name,
+                        description: branch == sourceControlManager.currentBranch ? String(localized: "source-control.navigator.repository.current-branch-indicator", defaultValue: "(current)", comment: "Suffix indicating the currently checked out branch") : nil,
+                        image: .symbol(name: "branch"),
+                        imageColor: .blue,
+                        branch: branch
+                    )
                 }
             ),
             .init(
                 id: "StashedChangesGroup",
-                label: "Stashed Changes",
+                label: String(localized: "source-control.navigator.repository.stashed-changes", defaultValue: "Stashed Changes", comment: "Outline group title for stashed changes"),
                 image: .system(name: "tray.2.fill"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.stashEntries.map { stashEntry in
-                        .init(
-                            id: "StashEntry\(stashEntry.hashValue)",
-                            label: stashEntry.message,
-                            description: stashEntry.date.formatted(
-                                Date.FormatStyle()
-                                    .year(.defaultDigits)
-                                    .month(.abbreviated)
-                                    .day(.twoDigits)
-                                    .hour(.defaultDigits(amPM: .abbreviated))
-                                    .minute(.twoDigits)
-                            ),
-                            image: .system(name: "tray"),
-                            imageColor: .orange,
-                            stashEntry: stashEntry
-                        )
+                    .init(
+                        id: "StashEntry\(stashEntry.hashValue)",
+                        label: stashEntry.message,
+                        description: stashEntry.date.formatted(
+                            Date.FormatStyle()
+                                .year(.defaultDigits)
+                                .month(.abbreviated)
+                                .day(.twoDigits)
+                                .hour(.defaultDigits(amPM: .abbreviated))
+                                .minute(.twoDigits)
+                        ),
+                        image: .system(name: "tray"),
+                        imageColor: .orange,
+                        stashEntry: stashEntry
+                    )
                 }
             ),
             .init(
                 id: "RemotesGroup",
-                label: "Remotes",
+                label: String(localized: "source-control.navigator.repository.remotes", defaultValue: "Remotes", comment: "Outline group title for remote repositories"),
                 image: .system(name: "network"),
                 imageColor: Color(nsColor: .secondaryLabelColor),
                 children: sourceControlManager.remotes.map { remote in
-                        .init(
-                            id: "Remote\(remote.hashValue)",
-                            label: remote.name,
-                            image: .symbol(name: "vault"),
-                            imageColor: .teal,
-                            children: remote.branches.map { branch in
-                                .init(
-                                    id: "Remote\(remote.name)-Branch\(branch.name)",
-                                    label: branch.name,
-                                    image: .symbol(name: "branch"),
-                                    imageColor: .blue,
-                                    branch: branch
-                                )
-                            },
-                            remote: remote
-                        )
+                    .init(
+                        id: "Remote\(remote.hashValue)",
+                        label: remote.name,
+                        image: .symbol(name: "vault"),
+                        imageColor: .teal,
+                        children: remote.branches.map { branch in
+                            .init(
+                                id: "Remote\(remote.name)-Branch\(branch.name)",
+                                label: branch.name,
+                                image: .symbol(name: "branch"),
+                                imageColor: .blue,
+                                branch: branch
+                            )
+                        },
+                        remote: remote
+                    )
                 }
-            )
+            ),
         ]
     }
 }

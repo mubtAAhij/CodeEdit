@@ -27,8 +27,8 @@ struct SchemeDropDownView: View {
     /// Resolves the name one step further than `workspaceName`.
     var workspaceDisplayName: String {
         workspaceName.isEmpty
-        ? (workspaceFileManager?.workspaceItem.fileName() ?? "No Project found")
-        : workspaceName
+            ? (workspaceFileManager?.workspaceItem.fileName() ?? String(localized: "scheme_dropdown.no_project_found", defaultValue: "No Project found", comment: "Empty state text shown when no project is available for scheme dropdown"))
+            : workspaceName
     }
 
     var body: some View {
@@ -52,15 +52,15 @@ struct SchemeDropDownView: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("SchemeDropdown")
         .accessibilityValue(workspaceDisplayName)
-        .accessibilityLabel("Active Scheme")
-        .accessibilityHint("Open the active scheme menu")
+        .accessibilityLabel(String(localized: "activity-viewer.scheme-dropdown.active-scheme", defaultValue: "Active Scheme", comment: "Label for active scheme section in scheme dropdown"))
+        .accessibilityHint(String(localized: "activity-viewer.scheme-dropdown.open-active-scheme-menu", defaultValue: "Open the active scheme menu", comment: "Accessibility hint for opening active scheme menu"))
         .accessibilityAction {
             isSchemePopOverPresented.toggle()
         }
     }
 
     @available(macOS 26, *)
-    @ViewBuilder private var tahoe: some View {
+    private var tahoe: some View {
         HStack(spacing: 4) {
             label
             chevron
@@ -84,7 +84,7 @@ struct SchemeDropDownView: View {
         }
     }
 
-    @ViewBuilder private var seqouia: some View {
+    private var seqouia: some View {
         label
             .padding(.trailing, 11.5)
             .padding(.horizontal, 2.5)
@@ -106,7 +106,7 @@ struct SchemeDropDownView: View {
             }
     }
 
-    @ViewBuilder private var label: some View {
+    private var label: some View {
         HStack(spacing: 6) {
             Image(systemName: "folder.badge.gearshape")
                 .imageScale(.medium)
@@ -117,7 +117,7 @@ struct SchemeDropDownView: View {
         .font(.subheadline)
     }
 
-    @ViewBuilder private var chevron: some View {
+    private var chevron: some View {
         Image(systemName: "chevron.compact.right")
             .font(.system(size: 9, weight: .medium, design: .default))
             .foregroundStyle(.secondary)
@@ -125,7 +125,7 @@ struct SchemeDropDownView: View {
             .imageScale(.large)
     }
 
-    @ViewBuilder private var chevronDown: some View {
+    private var chevronDown: some View {
         VStack(spacing: 1) {
             Image(systemName: "chevron.down")
         }
@@ -141,12 +141,12 @@ struct SchemeDropDownView: View {
         Divider()
             .padding(.vertical, 5)
         Group {
-            OptionMenuItemView(label: "Add Folder...") {
+            OptionMenuItemView(label: String(localized: "scheme_dropdown.add_folder", defaultValue: "Add Folder...", comment: "Action title to add a folder from scheme dropdown")) {
                 // TODO: Implment Add Folder
                 print("NOT IMPLEMENTED")
             }
             .disabled(true)
-            OptionMenuItemView(label: "Workspace Settings...") {
+            OptionMenuItemView(label: String(localized: "scheme_dropdown.workspace_settings", defaultValue: "Workspace Settings...", comment: "Action title to open workspace settings from scheme dropdown")) {
                 NSApp.sendAction(
                     #selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil
                 )

@@ -5,8 +5,8 @@
 //  Created by Khan Winter on 8/8/25.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 /// This model is injected into each ``PackageManagerInstallStep`` when executing a ``PackageManagerInstallOperation``.
 /// A single model is used for each step. Output is collected by the ``PackageManagerInstallOperation``.
@@ -28,7 +28,7 @@ final class PackageManagerProgressModel: ObservableObject {
 
     init(shellClient: ShellClient) {
         self.shellClient = shellClient
-        self.progress = Progress(totalUnitCount: 1)
+        progress = Progress(totalUnitCount: 1)
         (outputStream, outputContinuation) = AsyncStream<OutputItem>.makeStream()
     }
 
@@ -40,7 +40,7 @@ final class PackageManagerProgressModel: ObservableObject {
     func createDirectoryStructure(for packagePath: URL) throws {
         let decodedPath = packagePath.path(percentEncoded: false)
         if FileManager.default.fileExists(atPath: decodedPath) {
-            status("Removing existing installation.")
+            status(String(localized: "lsp.registry.install-progress.removing-existing-installation", defaultValue: "Removing existing installation.", comment: "Progress message while removing previous language server installation"))
             try FileManager.default.removeItem(at: packagePath)
         }
 

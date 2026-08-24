@@ -1,5 +1,5 @@
 //
-//  SourceControlAddRemoteView.swift
+//  SourceControlStashView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 11/17/23.
@@ -19,30 +19,32 @@ struct SourceControlStashView: View {
         VStack(spacing: 0) {
             Form {
                 Section {
-                    TextField("", text: $message, prompt: Text("Message (optional)"), axis: .vertical)
+                    TextField("", text: $message, prompt: Text(String(localized: "source_control.stash.message.optional", defaultValue: "Message (optional)", comment: "Placeholder label for optional stash message input")), axis: .vertical)
                         .labelsHidden()
-                        .lineLimit(3...3)
+                        .lineLimit(3 ... 3)
                         .contentShape(Rectangle())
                         .frame(height: 48)
                 } header: {
-                    Text("Stash Changes")
+                    Text(String(localized: "source_control.stash.title", defaultValue: "Stash Changes", comment: "Title for stash changes view"))
                     Group {
                         if sourceControlManager.pullSheetIsPresented
-                            || sourceControlManager.switchToBranch != nil {
+                            || sourceControlManager.switchToBranch != nil
+                        {
                             Text("Your local repository has uncommitted changes that need to be stashed " +
-                                 "before you can continue. Enter a description for your changes.")
+                                "before you can continue. Enter a description for your changes.")
                         } else {
                             Text("Enter a description for your stashed changes so you can reference them later. " +
-                                 "Stashes will appear in the Source Control navigator for your repository.")
+                                "Stashes will appear in the Source Control navigator for your repository.")
                         }
                     }
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                 }
                 if sourceControlManager.pullSheetIsPresented
-                    || sourceControlManager.switchToBranch != nil {
+                    || sourceControlManager.switchToBranch != nil
+                {
                     Section {
-                        Toggle("Apply stash after operation", isOn: $applyStashAfterOperation)
+                        Toggle(String(localized: "source_control.stash.apply-after-operation", defaultValue: "Apply stash after operation", comment: "Toggle label to reapply stash after selected operation"), isOn: $applyStashAfterOperation)
                     }
                 }
             }
@@ -56,21 +58,21 @@ struct SourceControlStashView: View {
                     message = ""
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "source_control.stash.cancel", defaultValue: "Cancel", comment: "Button title to cancel stash operation"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                        Text(
-                            sourceControlManager.pullSheetIsPresented
-                            ? "Stash and Pull"
+                    Text(
+                        sourceControlManager.pullSheetIsPresented
+                            ? String(localized: "source_control.stash.and-pull", defaultValue: "Stash and Pull", comment: "Primary action button to stash changes and then pull")
                             : sourceControlManager.switchToBranch != nil
-                            ? "Stash and Switch"
-                            : "Stash"
-                        )
-                        .frame(minWidth: 56)
-                    }
+                            ? String(localized: "source_control.stash.and-switch", defaultValue: "Stash and Switch", comment: "Primary action button to stash changes and then switch branch")
+                            : String(localized: "source_control.stash.action", defaultValue: "Stash", comment: "Primary action button to stash changes")
+                    )
+                    .frame(minWidth: 56)
+                }
                 .buttonStyle(.borderedProminent)
             }
             .padding(.horizontal, 20)
@@ -86,7 +88,8 @@ struct SourceControlStashView: View {
                 message = ""
 
                 if sourceControlManager.pullSheetIsPresented
-                    || sourceControlManager.switchToBranch != nil {
+                    || sourceControlManager.switchToBranch != nil
+                {
                     if sourceControlManager.pullSheetIsPresented {
                         try await sourceControlManager.pull(
                             remote: sourceControlManager.operationRemote?.name,
@@ -104,7 +107,7 @@ struct SourceControlStashView: View {
                             throw NSError(
                                 domain: "SourceControl",
                                 code: 1,
-                                userInfo: [NSLocalizedDescriptionKey: "Could not find last stash"]
+                                userInfo: [NSLocalizedDescriptionKey: String(localized: "source_control.stash.error.last-stash-not-found", defaultValue: "Could not find last stash", comment: "Error message when latest stash entry cannot be found")]
                             )
                         }
                         try await sourceControlManager.applyStashEntry(stashEntry: lastStashEntry)
@@ -118,7 +121,7 @@ struct SourceControlStashView: View {
 
                 dismiss()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to stash changes", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source_control.stash.failed", defaultValue: "Failed to stash changes", comment: "Error title shown when stashing source control changes fails"), error: error)
             }
         }
     }

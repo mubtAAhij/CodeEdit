@@ -35,8 +35,8 @@ struct EditorTabCloseButton: View {
                 )
                 .foregroundColor(
                     isActive
-                    ? colorScheme == .dark ? .primary : Color(.controlAccentColor)
-                    : .secondary
+                        ? colorScheme == .dark ? .primary : Color(.controlAccentColor)
+                        : .secondary
                 )
         }
         .frame(width: buttonSize, height: buttonSize)
@@ -50,28 +50,29 @@ struct EditorTabCloseButton: View {
         .contentShape(Rectangle())
         .gesture(
             DragGesture(minimumDistance: 0)
-                .onChanged({ _ in
+                .onChanged { _ in
                     isPressingClose = true
                     closeButtonGestureActive = true
-                })
-                .onEnded({ value in
+                }
+                .onEnded { value in
                     // If the final position of the mouse is within the bounds of the
                     // close button then close the tab
-                    if value.location.x > 0
-                        && value.location.x < buttonSize
-                        && value.location.y > 0
-                        && value.location.y < buttonSize {
+                    if value.location.x > 0,
+                       value.location.x < buttonSize,
+                       value.location.y > 0,
+                       value.location.y < buttonSize
+                    {
                         closeAction()
                     }
                     isPressingClose = false
                     closeButtonGestureActive = false
-                })
+                }
         )
         .onHover { hover in
             isHoveringClose = hover
         }
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("Close"))
+        .accessibilityLabel(Text(String(localized: "editor.tab.close", defaultValue: "Close", comment: "Close button tooltip for editor tab")))
         // Only show when the mouse is hovering and there is no tab dragging.
         .opacity((isHoveringTab || isDocumentEdited == true) && !isDragging ? 1 : 0)
         .animation(.easeInOut(duration: 0.08), value: isHoveringTab)
@@ -91,7 +92,7 @@ struct EditorTabCloseButton: View {
             Color(nsColor: .white)
                 .opacity(opacity)
         } else {
-            let opacity: Double = if isPressingClose {
+            let opacity = if isPressingClose {
                 0.25
             } else if isHoveringClose {
                 if isActive {
@@ -111,8 +112,8 @@ struct EditorTabCloseButton: View {
 
 @available(macOS 14.0, *)
 #Preview {
-    @Previewable @State var closeButtonGestureActive: Bool = false
-    @Previewable @State var isHoveringClose: Bool = false
+    @Previewable @State var closeButtonGestureActive = false
+    @Previewable @State var isHoveringClose = false
 
     return EditorTabCloseButton(
         isActive: false,

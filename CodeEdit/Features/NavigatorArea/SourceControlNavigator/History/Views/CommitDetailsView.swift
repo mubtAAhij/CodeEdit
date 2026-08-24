@@ -33,7 +33,7 @@ struct CommitDetailsView: View {
                     Image(systemName: "chevron.backward")
                 }
                 .buttonStyle(SidebarButtonStyle())
-                Text("Commit Details")
+                Text(String(localized: "source-control.commit-details.title", defaultValue: "Commit Details", comment: "Title of commit details view"))
                     .font(.system(size: 13, weight: .bold))
             }
             .padding(10)
@@ -52,11 +52,10 @@ struct CommitDetailsView: View {
                                 .listRowSeparator(.hidden)
                                 .padding(.vertical, -1)
                         }
-
                     }
                     .environment(\.defaultMinListRowHeight, 22)
                 } else {
-                    CEContentUnavailableView("No Changes")
+                    CEContentUnavailableView(String(localized: "source-control.commit-details.no-changes", defaultValue: "No Changes", comment: "Message when selected commit has no file changes"))
                 }
             } else {
                 Spacer()
@@ -104,7 +103,6 @@ struct SidebarButtonStyle: ButtonStyle {
                             .padding(1)
                     )
                     .opacity(activeState != .inactive ? 1 : 0.3)
-
             )
             .onHover { hover in
                 isHovering = hover

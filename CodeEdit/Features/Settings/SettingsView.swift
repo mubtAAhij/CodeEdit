@@ -151,10 +151,10 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationSplitView {
-            /// Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
+            // Remove the extra List workaround; macOS 26's sidebar .searchable now matches System Settings
             if #unavailable(macOS 26.0) {
-                List { }
-                    .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                List {}
+                    .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.sidebar.search", defaultValue: "Search", comment: "Settings sidebar item title for Search page"))
                     .scrollDisabled(true)
                     .frame(height: 30)
                 List(selection: $selectedPage) {
@@ -174,7 +174,7 @@ struct SettingsView: View {
                     }
                 }
                 .toolbar(removing: .sidebarToggle)
-                .searchable(text: $searchText, placement: .sidebar, prompt: "Search")
+                .searchable(text: $searchText, placement: .sidebar, prompt: String(localized: "settings.navigation.search", defaultValue: "Search", comment: "Navigation title for Search settings page"))
                 .navigationSplitViewColumnWidth(215)
             }
         } detail: {
@@ -203,7 +203,7 @@ struct SettingsView: View {
                 case .developer:
                     DeveloperSettingsView()
                 default:
-                    Text("Implementation Needed").frame(alignment: .center)
+                    Text(String(localized: "settings.implementation-needed", defaultValue: "Implementation Needed", comment: "Placeholder text for settings pages not yet implemented")).frame(alignment: .center)
                 }
             }
             .navigationSplitViewColumnWidth(500)
@@ -214,15 +214,13 @@ struct SettingsView: View {
         .hideSidebarToggle()
         .navigationTitle(selectedPage.name.rawValue)
         .toolbar {
-            /// macOS 26 automatically adjusts the leading padding for navigationTitle
+            // macOS 26 automatically adjusts the leading padding for navigationTitle
             if #unavailable(macOS 26.0) {
                 ToolbarItem(placement: .navigation) {
                     if !model.backButtonVisible {
                         Rectangle()
                             .frame(width: 10)
                             .opacity(0)
-                    } else {
-                        EmptyView()
                     }
                 }
             }
@@ -263,7 +261,7 @@ class SettingsViewModel: ObservableObject {
     func removeKeyDownMonitor() {
         if let eventMonitor = keyDownEventMonitor {
             NSEvent.removeMonitor(eventMonitor)
-            self.keyDownEventMonitor = nil
+            keyDownEventMonitor = nil
         }
     }
 

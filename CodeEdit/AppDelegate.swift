@@ -5,10 +5,10 @@
 //  Created by Pavel Kasila on 12.03.22.
 //
 
-import SwiftUI
-import CodeEditSymbols
 import CodeEditSourceEditor
+import CodeEditSymbols
 import OSLog
+import SwiftUI
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
@@ -20,7 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     @LazyService var lspService: LSPService
 
-    func applicationDidFinishLaunching(_ notification: Notification) {
+    func applicationDidFinishLaunching(_: Notification) {
         enableWindowSizeSaveOnQuit()
         Settings.shared.preferences.general.appAppearance.applyAppearance()
         checkForFilesToOpen()
@@ -37,9 +37,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 needToHandleOpen = false
             }
 
-            for index in 0..<CommandLine.arguments.count {
-                if CommandLine.arguments[index] == "--open" && (index + 1) < CommandLine.arguments.count {
-                    let path = CommandLine.arguments[index+1]
+            for index in 0 ..< CommandLine.arguments.count {
+                if CommandLine.arguments[index] == "--open", (index + 1) < CommandLine.arguments.count {
+                    let path = CommandLine.arguments[index + 1]
                     let url = URL(fileURLWithPath: path)
 
                     CodeEditDocumentController.shared.reopenDocument(
@@ -60,11 +60,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         }
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
+    func applicationWillTerminate(_: Notification) {}
 
-    }
-
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+    func applicationSupportsSecureRestorableState(_: NSApplication) -> Bool {
         true
     }
 
@@ -74,14 +72,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             return false
         }
 
-        /// Check if all windows are either miniaturized or not visible.
-        /// If so, attempt to find the first miniaturized window and deminiaturize it.
+        // Check if all windows are either miniaturized or not visible.
+        // If so, attempt to find the first miniaturized window and deminiaturize it.
         guard sender.windows.allSatisfy({ $0.isMiniaturized || !$0.isVisible }) else { return false }
         sender.windows.first(where: { $0.isMiniaturized })?.deminiaturize(sender)
         return false
     }
 
-    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+    func applicationShouldOpenUntitledFile(_: NSApplication) -> Bool {
         false
     }
 
@@ -100,7 +98,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Handle urls with the form `codeedit://file/{filepath}:{line}:{column}`
-    func application(_ application: NSApplication, open urls: [URL]) {
+    func application(_: NSApplication, open urls: [URL]) {
         for url in urls {
             let file = URL(fileURLWithPath: url.path).path.split(separator: ":")
             let filePath = URL(fileURLWithPath: String(file[0]))
@@ -138,7 +136,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// ``documentController(_:didCloseAll:contextInfo:)`` if there are documents we need to defer for.
     ///
     /// See ``terminateLanguageServers()`` and ``documentController(_:didCloseAll:contextInfo:)`` for deferring tasks.
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+    func applicationShouldTerminate(_: NSApplication) -> NSApplication.TerminateReply {
         let projects: [String] = CodeEditDocumentController.shared.documents
             .compactMap { ($0 as? WorkspaceDocument)?.fileURL?.path }
 
@@ -160,34 +158,34 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         return .terminateLater
     }
 
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
         false
     }
 
     // MARK: - Open windows
 
-    @IBAction private func openWelcome(_ sender: Any) {
+    @IBAction private func openWelcome(_: Any) {
         openWindow(sceneID: .welcome)
     }
 
-    @IBAction private func openAbout(_ sender: Any) {
+    @IBAction private func openAbout(_: Any) {
         openWindow(sceneID: .about)
     }
 
-    @IBAction func openFeedback(_ sender: Any) {
+    @IBAction func openFeedback(_: Any) {
         if tryFocusWindow(of: FeedbackView.self) { return }
 
         FeedbackView().showWindow()
     }
 
-    @IBAction private func checkForUpdates(_ sender: Any) {
+    @IBAction private func checkForUpdates(_: Any) {
         updater.checkForUpdates()
     }
 
     /// Tries to focus a window with specified view content type.
     /// - Parameter type: The type of viewContent which hosted in a window to be focused.
     /// - Returns: `true` if window exist and focused, otherwise - `false`
-    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
+    private func tryFocusWindow<T: View>(of _: T.Type) -> Bool {
         guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
         else { return false }
 
@@ -207,8 +205,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     // MARK: - Open With CodeEdit (Extension) functions
+
     private func checkForFilesToOpen() {
-        guard let defaults = UserDefaults.init(
+        guard let defaults = UserDefaults(
             suiteName: "app.codeedit.CodeEdit.shared"
         ) else {
             print("Failed to get/init shared defaults")
@@ -249,7 +248,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     // MARK: NSDocumentController delegate
 
     @objc
-    func documentController(_ docController: NSDocumentController, didCloseAll: Bool, contextInfo: Any) {
+    func documentController(_: NSDocumentController, didCloseAll: Bool, contextInfo _: Any) {
         if didCloseAll {
             terminateTasks()
             terminateLanguageServers()
@@ -261,8 +260,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         Task { @MainActor in
             let task = TaskNotificationModel(
                 id: "appdelegate.terminate_language_servers",
-                title: "Stopping Language Servers",
-                message: "Stopping running language server processes...",
+                title: String(localized: "app.quit.stopping-language-servers.title", defaultValue: "Stopping Language Servers", comment: "Progress title shown while quitting and stopping language servers"),
+                message: String(localized: "app.quit.stopping-language-servers.message", defaultValue: "Stopping running language server processes...", comment: "Progress message shown while stopping language server processes"),
                 isLoading: true
             )
 
@@ -290,20 +289,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private func terminateTasks() {
         let task = TaskNotificationModel(
             id: "appdelegate.terminate_tasks",
-            title: "Terminating Tasks",
-            message: "Interrupting all running tasks before quitting...",
+            title: String(localized: "app.quit.terminating-tasks.title", defaultValue: "Terminating Tasks", comment: "Progress title shown while quitting and terminating tasks"),
+            message: String(localized: "app.quit.terminating-tasks.message", defaultValue: "Interrupting all running tasks before quitting...", comment: "Progress message shown while interrupting running tasks before quit"),
             isLoading: true
         )
 
         let taskManagers = CodeEditDocumentController.shared.documents
-            .compactMap({ $0 as? WorkspaceDocument })
-            .compactMap({ $0.taskManager })
+            .compactMap { $0 as? WorkspaceDocument }
+            .compactMap { $0.taskManager }
 
         if taskManagers.reduce(0, { $0 + $1.activeTasks.count }) > 0 {
             TaskNotificationHandler.postTask(action: .create, model: task)
         }
 
-        taskManagers.forEach { manager in
+        for manager in taskManagers {
             manager.stopAllTasks()
         }
 

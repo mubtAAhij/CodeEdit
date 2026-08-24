@@ -40,15 +40,16 @@ struct SourceControlNavigatorSyncView: View {
                     Button {
                         sourceControlManager.pullSheetIsPresented = true
                     } label: {
-                        Text("Pull...")
+                        Text(String(localized: "source-control.sync.pull", defaultValue: "Pull...", comment: "Action label to pull remote changes from sync view"))
                     }
                     .disabled(isLoading)
                 } else if sourceControlManager.numberOfUnsyncedCommits.ahead > 0
-                    || currentBranch.upstream == nil {
+                    || currentBranch.upstream == nil
+                {
                     Button {
                         sourceControlManager.pushSheetIsPresented = true
                     } label: {
-                        Text("Push...")
+                        Text(String(localized: "source-control.sync.push", defaultValue: "Push...", comment: "Action label to push local changes from sync view"))
                     }
                     .disabled(isLoading)
                 }
@@ -62,7 +63,7 @@ struct SourceControlNavigatorSyncView: View {
             do {
                 try await sourceControlManager.pull()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to pull", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.sync.failed-to-pull", defaultValue: "Failed to pull", comment: "Error message shown when pull operation fails from sync view"), error: error)
             }
             self.isLoading = false
         }
@@ -74,7 +75,7 @@ struct SourceControlNavigatorSyncView: View {
             do {
                 try await sourceControlManager.push()
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to push", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.sync.failed-to-push", defaultValue: "Failed to push", comment: "Error message shown when push operation fails from sync view"), error: error)
             }
             self.isLoading = false
         }

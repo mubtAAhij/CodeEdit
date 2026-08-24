@@ -1,5 +1,5 @@
 //
-//  SourceControlToolbarBottom.swift
+//  FindNavigatorToolbarBottom.swift
 //  CodeEdit
 //
 //  Created by Nanashi Li on 2022/05/20.
@@ -13,21 +13,21 @@ struct FindNavigatorToolbarBottom: View {
     var body: some View {
         HStack(spacing: 2) {
             PaneTextField(
-                "Filter",
+                String(localized: "find-navigator.toolbar.filter", defaultValue: "Filter", comment: "Filter field label in find navigator toolbar"),
                 text: $text,
                 leadingAccessories: {
                     Image(
                         systemName: text.isEmpty
-                        ? "line.3.horizontal.decrease.circle"
-                        : "line.3.horizontal.decrease.circle.fill"
+                            ? "line.3.horizontal.decrease.circle"
+                            : "line.3.horizontal.decrease.circle.fill"
                     )
                     .foregroundStyle(
                         text.isEmpty
-                        ? Color(nsColor: .secondaryLabelColor)
-                        : Color(nsColor: .controlAccentColor)
+                            ? Color(nsColor: .secondaryLabelColor)
+                            : Color(nsColor: .controlAccentColor)
                     )
                     .padding(.leading, 4)
-                    .help("Show results with matching text")
+                    .help(String(localized: "find-navigator.toolbar.show-results-with-matching-text", defaultValue: "Show results with matching text", comment: "Toggle label to show only matching text results in find navigator"))
                 },
                 clearable: true
             )

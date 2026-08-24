@@ -5,9 +5,9 @@
 //  Created by Lukas Pistrol on 22.03.22.
 //
 
-import SwiftUI
-import Combine
 import CodeEditSourceEditor
+import Combine
+import SwiftUI
 
 struct StatusBarCursorPositionLabel: View {
     @EnvironmentObject private var utilityAreaViewModel: UtilityAreaViewModel
@@ -25,7 +25,7 @@ struct StatusBarCursorPositionLabel: View {
             if let currentTab = tab {
                 LineLabel(editorInstance: currentTab)
             } else {
-                Text("").accessibilityLabel("No Selection")
+                Text("").accessibilityLabel(String(localized: "status-bar.cursor.no-selection", defaultValue: "No Selection", comment: "Status bar text when there is no editor selection"))
             }
         }
         .fixedSize()

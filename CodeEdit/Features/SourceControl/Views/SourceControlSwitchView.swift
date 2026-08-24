@@ -1,5 +1,5 @@
 //
-//  SourceControlFetchView.swift
+//  SourceControlSwitchView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 7/9/24.
@@ -27,7 +27,7 @@ struct SourceControlSwitchView: View {
                         .font(.headline)
                     Text(
                         "All files in the local repository will switch from the current branch " +
-                        "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
+                            "(“\(sourceControlManager.currentBranch?.name ?? "")”) to “\(branch.name)”."
                     )
                     .font(.subheadline)
                     .fixedSize(horizontal: false, vertical: true)
@@ -42,13 +42,13 @@ struct SourceControlSwitchView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "source-control.switch.cancel", defaultValue: "Cancel", comment: "Cancel button title in switch branch confirmation view"))
                         .frame(minWidth: 56)
                 }
                 Button {
                     submit()
                 } label: {
-                    Text("Switch")
+                    Text(String(localized: "source-control.switch.switch", defaultValue: "Switch", comment: "Confirm button title in switch branch confirmation view"))
                         .frame(minWidth: 56)
                 }
                 .buttonStyle(.borderedProminent)
@@ -70,7 +70,7 @@ struct SourceControlSwitchView: View {
                     dismiss()
                 }
             } catch {
-                await sourceControlManager.showAlertForError(title: "Failed to checkout", error: error)
+                await sourceControlManager.showAlertForError(title: String(localized: "source-control.switch.failed-to-checkout", defaultValue: "Failed to checkout", comment: "Error message when branch checkout fails during switch"), error: error)
             }
         }
     }

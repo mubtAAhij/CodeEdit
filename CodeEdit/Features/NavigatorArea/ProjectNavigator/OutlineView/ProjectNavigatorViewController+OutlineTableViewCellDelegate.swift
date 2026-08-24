@@ -1,12 +1,12 @@
 //
-//  OutlintViewController+OutlineTableViewCellDelegate.swift
+//  ProjectNavigatorViewController+OutlineTableViewCellDelegate.swift
 //  CodeEdit
 //
 //  Created by Ziyuan Zhao on 2023/2/5.
 //
 
-import Foundation
 import AppKit
+import Foundation
 
 // MARK: - OutlineTableViewCellDelegate
 
@@ -14,7 +14,8 @@ extension ProjectNavigatorViewController: OutlineTableViewCellDelegate {
     func moveFile(file: CEWorkspaceFile, to destination: URL) {
         do {
             guard let newFile = try workspace?.workspaceFileManager?.move(file: file, to: destination),
-                  !newFile.isFolder else {
+                  !newFile.isFolder
+            else {
                 return
             }
             outlineView.reloadItem(file.parent, reloadChildren: true)
@@ -25,7 +26,7 @@ extension ProjectNavigatorViewController: OutlineTableViewCellDelegate {
             workspace?.editorManager?.openTab(item: newFile)
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.context-menu.dismiss-filter-alert", defaultValue: "Dismiss", comment: "Dismiss button title for project navigator filter alert"))
             alert.runModal()
         }
     }
@@ -35,7 +36,7 @@ extension ProjectNavigatorViewController: OutlineTableViewCellDelegate {
             try workspace?.workspaceFileManager?.copy(file: file, to: destination)
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "project-navigator.context-menu.dismiss-rename-alert", defaultValue: "Dismiss", comment: "Dismiss button title for project navigator rename alert"))
             alert.runModal()
         }
     }

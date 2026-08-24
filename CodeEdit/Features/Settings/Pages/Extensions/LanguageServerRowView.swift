@@ -11,12 +11,13 @@ private let iconSize: CGFloat = 26
 
 struct LanguageServerRowView: View, Equatable {
     let package: RegistryItem
-    let onCancel: (() -> Void)
-    let onInstall: (() async -> Void)
+    let onCancel: () -> Void
+    let onInstall: () async -> Void
 
     private var isInstalled: Bool {
         registryManager.installedLanguageServers[package.name] != nil
     }
+
     private var isEnabled: Bool {
         registryManager.installedLanguageServers[package.name]?.isEnabled ?? false
     }
@@ -76,7 +77,7 @@ struct LanguageServerRowView: View, Equatable {
                                 Button {
                                     showMore.toggle()
                                 } label: {
-                                    Text(showMore ? "Show Less" : "Show More")
+                                    Text(showMore ? String(localized: "settings.extensions.language-server.show-less", defaultValue: "Show Less", comment: "Button label to collapse language server details") : String(localized: "settings.extensions.language-server.show-more", defaultValue: "Show More", comment: "Button label to expand language server details"))
                                         .font(.footnote)
                                 }
                                 .buttonStyle(.plain)
@@ -103,17 +104,17 @@ struct LanguageServerRowView: View, Equatable {
             isHovering = hovering
         }
         .alert("Remove \(package.sanitizedName)?", isPresented: $showingRemovalConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Remove", role: .destructive) {
+            Button(String(localized: "settings.extensions.language-server.remove.cancel", defaultValue: "Cancel", comment: "Cancel button title in remove language server confirmation dialog"), role: .cancel) {}
+            Button(String(localized: "settings.extensions.language-server.remove.confirm", defaultValue: "Remove", comment: "Confirmation button title to remove a language server package"), role: .destructive) {
                 removeLanguageServer()
             }
         } message: {
-            Text("Are you sure you want to remove this language server? This action cannot be undone.")
+            Text(String(localized: "settings.extensions.language-server.remove.confirmation-message", defaultValue: "Are you sure you want to remove this language server? This action cannot be undone.", comment: "Confirmation dialog message warning before removing a language server"))
         }
-        .alert("Removal Failed", isPresented: $showingRemovalError) {
-            Button("OK", role: .cancel) { }
+        .alert(String(localized: "settings.extensions.language-server.remove.failed-title", defaultValue: "Removal Failed", comment: "Alert title shown when removing a language server fails"), isPresented: $showingRemovalError) {
+            Button(String(localized: "settings.extensions.language-server.remove.failed.ok", defaultValue: "OK", comment: "Acknowledgement button title in remove failure alert"), role: .cancel) {}
         } message: {
-            Text(removalError?.localizedDescription ?? "An unknown error occurred")
+            Text(removalError?.localizedDescription ?? String(localized: "settings.extensions.language-server.remove.failed.unknown-error", defaultValue: "An unknown error occurred", comment: "Fallback error message shown when language server removal fails with unknown error"))
         }
     }
 
@@ -128,7 +129,6 @@ struct LanguageServerRowView: View, Equatable {
         }
     }
 
-    @ViewBuilder
     private func installedRow() -> some View {
         HStack {
             if isRemoving {
@@ -138,7 +138,7 @@ struct LanguageServerRowView: View, Equatable {
                 Button {
                     showingRemovalConfirmation = true
                 } label: {
-                    Text("Remove")
+                    Text(String(localized: "settings.extensions.language_server.remove.button", defaultValue: "Remove", comment: "Button title to remove a language server package"))
                 }
             }
             Toggle(
@@ -154,7 +154,6 @@ struct LanguageServerRowView: View, Equatable {
         }
     }
 
-    @ViewBuilder
     private func isInstallingRow() -> some View {
         HStack {
             ZStack {
@@ -174,31 +173,28 @@ struct LanguageServerRowView: View, Equatable {
         }
     }
 
-    @ViewBuilder
     private func failedRow() -> some View {
         Button {
             Task {
                 await onInstall()
             }
         } label: {
-            Text("Retry")
+            Text(String(localized: "settings.extensions.language_server.retry.button", defaultValue: "Retry", comment: "Button title to retry language server installation or action"))
                 .foregroundColor(.red)
         }
     }
 
-    @ViewBuilder
     private func isHoveringRow() -> some View {
         Button {
             Task {
                 await onInstall()
             }
         } label: {
-            Text("Install")
+            Text(String(localized: "settings.extensions.language_server.install.button", defaultValue: "Install", comment: "Button title to install a language server package"))
         }
         .disabled(registryManager.isInstalling)
     }
 
-    @ViewBuilder
     private func letterIcon() -> some View {
         RoundedRectangle(cornerRadius: iconSize / 4, style: .continuous)
             .fill(background)
@@ -236,7 +232,7 @@ struct LanguageServerRowView: View, Equatable {
 
     private var background: AnyShapeStyle {
         let colors: [Color] = [
-            .blue, .green, .orange, .red, .purple, .pink, .teal, .yellow, .indigo, .cyan
+            .blue, .green, .orange, .red, .purple, .pink, .teal, .yellow, .indigo, .cyan,
         ]
         let hashValue = abs(package.sanitizedName.hash) % colors.count
         return AnyShapeStyle(colors[hashValue].gradient)

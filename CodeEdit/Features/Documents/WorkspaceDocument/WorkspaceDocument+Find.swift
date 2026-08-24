@@ -16,7 +16,7 @@ extension WorkspaceDocument.SearchState {
     ///
     /// - Returns: A modified search term according to the specified search mode.
     func getSearchTerm(_ query: String) -> String {
-        let newQuery = stripSpecialCharacters(from: (caseSensitive ? query : query.lowercased()))
+        let newQuery = stripSpecialCharacters(from: caseSensitive ? query : query.lowercased())
         guard let mode = selectedMode.third else {
             return newQuery
         }
@@ -99,7 +99,7 @@ extension WorkspaceDocument.SearchState {
         let regexPattern = getRegexPattern(query)
 
         guard let indexer = indexer else {
-            await setStatus(.failed(errorMessage: "No index found. Try rebuilding the index."))
+            await setStatus(.failed(errorMessage: String(localized: "workspace_document.find.no_index_error", defaultValue: "No index found. Try rebuilding the index.", comment: "Error shown when search index is missing")))
             return
         }
 
@@ -150,7 +150,7 @@ extension WorkspaceDocument.SearchState {
     ///   - newResult: The `SearchResultModel` to be appended to the temporary search results.
     @MainActor
     func appendNewResultsToTempResults(newResult: SearchResultModel) {
-        self.tempSearchResults.append(newResult)
+        tempSearchResults.append(newResult)
     }
 
     /// Sets the search results by updating various properties on the main thread.
@@ -160,11 +160,11 @@ extension WorkspaceDocument.SearchState {
     /// display or use the final search results.
     @MainActor
     func setSearchResults() {
-        self.searchResult = self.tempSearchResults.sorted { $0.score > $1.score }
-        self.searchResultsCount = self.tempSearchResults.map { $0.lineMatches.count }.reduce(0, +)
-        self.searchResultsFileCount = self.tempSearchResults.count
-        self.findNavigatorStatus = .found
-        self.tempSearchResults = []
+        searchResult = tempSearchResults.sorted { $0.score > $1.score }
+        searchResultsCount = tempSearchResults.map { $0.lineMatches.count }.reduce(0, +)
+        searchResultsFileCount = tempSearchResults.count
+        findNavigatorStatus = .found
+        tempSearchResults = []
     }
 
     /// Evaluates a search query within the content of a file and updates
@@ -191,7 +191,7 @@ extension WorkspaceDocument.SearchState {
             return
         }
         guard let fileContent = String(bytes: data, encoding: .utf8) else {
-            await setStatus(.failed(errorMessage: "Failed to decode file content."))
+            await setStatus(.failed(errorMessage: String(localized: "workspace_document.find.decode_error", defaultValue: "Failed to decode file content.", comment: "Error shown when file content cannot be decoded during search")))
             return
         }
 
@@ -200,7 +200,7 @@ extension WorkspaceDocument.SearchState {
             pattern: query,
             options: caseSensitive ? [] : .caseInsensitive
         ) else {
-            await setStatus(.failed(errorMessage: "Invalid regular expression."))
+            await setStatus(.failed(errorMessage: String(localized: "workspace_document.find.invalid_regex_error", defaultValue: "Invalid regular expression.", comment: "Error shown when user provides an invalid regular expression")))
             return
         }
 
@@ -284,7 +284,7 @@ extension WorkspaceDocument.SearchState {
         ) ?? fileContent.startIndex
 
         let preRangeEnd = matchRange.upperBound
-        let preRange = preRangeStart..<preRangeEnd
+        let preRange = preRangeStart ..< preRangeEnd
 
         let preLineWithNewLines = fileContent[preRange]
         // Clip the range of the preview to the last occurrence of a new line
@@ -314,7 +314,7 @@ extension WorkspaceDocument.SearchState {
         ) ?? preLine.endIndex
         let keywordUpperBound = preLine.endIndex
 
-        return keywordLowerBound..<keywordUpperBound
+        return keywordLowerBound ..< keywordUpperBound
     }
 
     /// Extracts the line following a matching occurrence within a file.
@@ -337,7 +337,7 @@ extension WorkspaceDocument.SearchState {
             limitedBy: fileContent.endIndex
         ) ?? fileContent.endIndex
 
-        let postRange = postRangeStart..<postRangeEnd
+        let postRange = postRangeStart ..< postRangeEnd
         let postLineWithNewLines = fileContent[postRange]
 
         let firstNewLineIndexInPostLine = postLineWithNewLines.firstIndex(of: "\n") ?? postLineWithNewLines.endIndex

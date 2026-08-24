@@ -26,20 +26,21 @@ struct SourceControlNavigatorChangesList: View {
             forSelectionType: GitChangedFile.self,
             menu: { selectedFiles in
                 if selectedFiles.count == 1,
-                   let file = selectedFiles.first {
+                   let file = selectedFiles.first
+                {
                     Group {
-                        Button("View in Finder") {
+                        Button(String(localized: "source-control.changes-list.view-in-finder", defaultValue: "View in Finder", comment: "Context menu action to reveal selected file in Finder")) {
                             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL.absoluteURL])
                         }
-                        Button("Reveal in Project Navigator") {}
+                        Button(String(localized: "source-control.changes-list.reveal-in-project-navigator", defaultValue: "Reveal in Project Navigator", comment: "Context menu action to reveal selected file in project navigator")) {}
                             .disabled(true) // TODO: Implementation Needed
                         Divider()
                     }
                     Group {
-                        Button("Open in New Tab") {
+                        Button(String(localized: "source-control.changes-list.open-in-new-tab", defaultValue: "Open in New Tab", comment: "Context menu action to open selected file in a new tab")) {
                             openGitFile(file)
                         }
-                        Button("Open in New Window") {}
+                        Button(String(localized: "source-control.changes-list.open-in-new-window", defaultValue: "Open in New Window", comment: "Context menu action to open selected file in a new window")) {}
                             .disabled(true) // TODO: Implementation Needed
                     }
                     if file.anyStatus() != .none {
@@ -58,14 +59,16 @@ struct SourceControlNavigatorChangesList: View {
             // double-click action
             primaryAction: { selectedFiles in
                 if selectedFiles.count == 1,
-                   let file = selectedFiles.first {
+                   let file = selectedFiles.first
+                {
                     openGitFile(file)
                 }
             }
         )
         .onChange(of: selection) { _, newSelection in
             if newSelection.count == 1,
-               let file = newSelection.first {
+               let file = newSelection.first
+            {
                 openGitFile(file)
             }
         }

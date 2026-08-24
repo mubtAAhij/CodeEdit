@@ -9,14 +9,13 @@ import Foundation
 
 extension SettingsData {
     struct DeveloperSettings: Codable, Hashable, SearchableSettingsPage {
-
         /// The search keys
         var searchKeys: [String] {
             [
-                "Developer",
-                "Language Server Protocol",
-                "LSP Binaries",
-                "Show Internal Development Inspector"
+                String(localized: "settings.developer.title", defaultValue: "Developer", comment: "Title for developer settings section"),
+                String(localized: "settings.developer.language-server-protocol", defaultValue: "Language Server Protocol", comment: "Title for language server protocol settings"),
+                String(localized: "settings.developer.lsp-binaries", defaultValue: "LSP Binaries", comment: "Title for language server binary paths settings"),
+                String(localized: "settings.developer.show-internal-development-inspector", defaultValue: "Show Internal Development Inspector", comment: "Toggle title for showing internal development inspector"),
             ]
             .map { NSLocalizedString($0, comment: "") }
         }
@@ -34,12 +33,12 @@ extension SettingsData {
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.lspBinaries = try container.decodeIfPresent(
+            lspBinaries = try container.decodeIfPresent(
                 [String: String].self,
                 forKey: .lspBinaries
             ) ?? [:]
 
-            self.showInternalDevelopmentInspector = try container.decodeIfPresent(
+            showInternalDevelopmentInspector = try container.decodeIfPresent(
                 Bool.self,
                 forKey: .showInternalDevelopmentInspector
             ) ?? false

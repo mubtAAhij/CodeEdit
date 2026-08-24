@@ -1,25 +1,25 @@
 //
-//  CEWorkspaceFileManager+FileSystem.swift
+//  CEWorkspaceFileManager+FileManagement.swift
 //  CodeEdit
 //
 //  Created by Khan Winter on 9/30/23.
 //
 
-import Foundation
 import AppKit
+import Foundation
 
-extension CEWorkspaceFileManager {
+public extension CEWorkspaceFileManager {
     /// This function allows creation of folders in the main directory or sub-folders
     /// - Parameters:
     ///   - folderName: The name of the new folder
     ///   - file: The file to add the new folder to.
     /// - Returns: The ``CEWorkspaceFile`` representing the folder in the file manager's cache.
     /// - Authors: Mattijs Eikelenboom, KaiTheRedNinja. *Moved from 7c27b1e*
-    func addFolder(folderName: String, toFile file: CEWorkspaceFile) throws -> CEWorkspaceFile {
+    internal func addFolder(folderName: String, toFile file: CEWorkspaceFile) throws -> CEWorkspaceFile {
         // Check if folder, if it is create folder under self, else create on same level.
         var folderUrl = (
             file.isFolder ? file.url.appending(path: folderName)
-            : file.url.deletingLastPathComponent().appending(path: folderName)
+                : file.url.deletingLastPathComponent().appending(path: folderName)
         )
 
         // If a file/folder with the same name exists, add a number to the end.
@@ -59,7 +59,7 @@ extension CEWorkspaceFileManager {
     /// - Throws: Throws a `CocoaError.fileWriteUnknown` with the file url if creating the file fails, and calls
     ///           ``rebuildFiles(fromItem:deep:)`` which throws other `FileManager` errors.
     /// - Returns: The ``CEWorkspaceFile`` representing the new file in the file manager's cache.
-    func addFile(
+    internal func addFile(
         fileName: String,
         toFile file: CEWorkspaceFile,
         useExtension: String? = nil,
@@ -122,13 +122,14 @@ extension CEWorkspaceFileManager {
     /// - Parameter file: The file to use to determine a common extension.
     /// - Returns: The suggested file extension.
     private func findCommonFileExtension(for file: CEWorkspaceFile) -> String {
-        var fileExtensions: [String: Int] = ["": 0]
+        var fileExtensions = ["": 0]
 
         for child in (
             file.isFolder ? file.flattenedSiblings(withHeight: 2, ignoringFolders: true, using: self)
-            : file.parent?.flattenedSiblings(withHeight: 2, ignoringFolders: true, using: self)
+                : file.parent?.flattenedSiblings(withHeight: 2, ignoringFolders: true, using: self)
         ) ?? []
-        where !child.isFolder {
+            where !child.isFolder
+        {
             // if the file extension was present before, add it now
             let childFileName = child.fileName(typeHidden: false)
             if let index = childFileName.lastIndex(of: ".") {
@@ -146,7 +147,7 @@ extension CEWorkspaceFileManager {
     /// - Parameters:
     ///   - file: The file or folder to delete
     /// - Authors: Paul Ebose
-    public func trash(file: CEWorkspaceFile) throws {
+    func trash(file: CEWorkspaceFile) throws {
         do {
             guard fileManager.fileExists(atPath: file.url.path) else {
                 throw FileManagerError.fileNotFound
@@ -163,18 +164,18 @@ extension CEWorkspaceFileManager {
     ///   - file: The file to delete
     ///   - confirmDelete: True to present an alert to confirm the delete.
     /// - Authors: Mattijs Eikelenboom, KaiTheRedNinja., Paul Ebose *Moved from 7c27b1e*
-    public func delete(file: CEWorkspaceFile, confirmDelete: Bool = true) throws {
+    func delete(file: CEWorkspaceFile, confirmDelete: Bool = true) throws {
         // This function also has to account for how the
         // - file system can change outside of the editor
         let fileName = file.name
 
         let deleteConfirmation = NSAlert()
         deleteConfirmation.messageText = "Do you want to delete “\(fileName)”?"
-        deleteConfirmation.informativeText = "This item will be deleted immediately. You can't undo this action."
+        deleteConfirmation.informativeText = String(localized: "file_management.delete.warning_message", defaultValue: "This item will be deleted immediately. You can't undo this action.", comment: "Warning message for immediate single-item deletion")
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.delete.confirmation-button", defaultValue: "Delete", comment: "Delete button title in single-item deletion confirmation alert"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.delete.cancel-button", defaultValue: "Cancel", comment: "Cancel button title in single-item deletion confirmation alert"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
             if fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -186,15 +187,15 @@ extension CEWorkspaceFileManager {
     /// - Parameters:
     ///   - files: The files to delete
     ///   - confirmDelete: True to present an alert to confirm the delete.
-    public func batchDelete(files: Set<CEWorkspaceFile>, confirmDelete: Bool = true) throws {
+    func batchDelete(files: Set<CEWorkspaceFile>, confirmDelete: Bool = true) throws {
         let deleteConfirmation = NSAlert()
         deleteConfirmation.messageText = "Are you sure you want to delete the \(files.count) selected items?"
         // swiftlint:disable:next line_length
         deleteConfirmation.informativeText = "\(files.count) items will be deleted immediately. You cannot undo this action."
         deleteConfirmation.alertStyle = .critical
-        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.batch-delete.confirmation-button", defaultValue: "Delete", comment: "Delete button title in batch deletion confirmation alert"))
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
-        deleteConfirmation.addButton(withTitle: "Cancel")
+        deleteConfirmation.addButton(withTitle: String(localized: "file-management.batch-delete.cancel-button", defaultValue: "Cancel", comment: "Cancel button title in batch deletion confirmation alert"))
         if !confirmDelete || deleteConfirmation.runModal() == .alertFirstButtonReturn {
             for file in files where fileManager.fileExists(atPath: file.url.path) {
                 try deleteFile(at: file.url)
@@ -220,14 +221,14 @@ extension CEWorkspaceFileManager {
     /// This function duplicates the item or folder
     /// - Parameter file: The file to duplicate
     /// - Authors: Mattijs Eikelenboom, KaiTheRedNinja. *Moved from 7c27b1e*
-    public func duplicate(file: CEWorkspaceFile) throws {
+    func duplicate(file: CEWorkspaceFile) throws {
         // If a file/folder with the same name exists, add "copy" to the end
         var fileUrl = file.url
         while fileManager.fileExists(atPath: fileUrl.path) {
             let previousName = fileUrl.lastPathComponent
             let fileExtension = fileUrl.pathExtension.isEmpty ? "" : ".\(fileUrl.pathExtension)"
             let fileName = fileExtension.isEmpty ? previousName :
-            previousName.replacingOccurrences(of: fileExtension, with: "")
+                previousName.replacingOccurrences(of: fileExtension, with: "")
             fileUrl = fileUrl.deletingLastPathComponent().appending(path: "\(fileName) copy\(fileExtension)")
         }
 
@@ -250,7 +251,7 @@ extension CEWorkspaceFileManager {
     ///            been revealed to save memory. This may move a file deeper into the tree than is indexed. In that
     ///            case, it is correct to return nothing. This is intentionally different than `addFile`.
     @discardableResult
-    public func move(file: CEWorkspaceFile, to newLocation: URL) throws -> CEWorkspaceFile? {
+    func move(file: CEWorkspaceFile, to newLocation: URL) throws -> CEWorkspaceFile? {
         do {
             guard fileManager.fileExists(atPath: file.url.path(percentEncoded: false)) else {
                 throw FileManagerError.originFileNotFound
@@ -264,15 +265,15 @@ extension CEWorkspaceFileManager {
 
             try fileManager.moveItem(at: file.url, to: newLocation)
 
-            // This function recursively creates missing directories if the file is moved to a directory that does
-            // not exist
+            /// This function recursively creates missing directories if the file is moved to a directory that does
+            /// not exist
             func createMissingParentDirectory(for url: URL, createSelf: Bool = true) throws {
                 // if the folder's parent folder doesn't exist, create it.
                 if !fileManager.fileExists(atPath: url.deletingLastPathComponent().path) {
                     try createMissingParentDirectory(for: url.deletingLastPathComponent())
                 }
                 // if the folder doesn't exist and the function was ordered to create it, create it.
-                if createSelf && !fileManager.fileExists(atPath: url.path) {
+                if createSelf, !fileManager.fileExists(atPath: url.path) {
                     // Create the folder
                     try fileManager.createDirectory(
                         at: url,
@@ -304,9 +305,9 @@ extension CEWorkspaceFileManager {
     /// - Parameters:
     ///   - file: The file to copy.
     ///   - newLocation: The location to copy to.
-    public func copy(file: CEWorkspaceFile, to newLocation: URL) throws {
+    func copy(file: CEWorkspaceFile, to newLocation: URL) throws {
         do {
-            guard file.url != newLocation && !fileManager.fileExists(
+            guard file.url != newLocation, !fileManager.fileExists(
                 atPath: newLocation.absoluteURL.path(percentEncoded: false)
             ) else {
                 throw FileManagerError.originFileNotFound

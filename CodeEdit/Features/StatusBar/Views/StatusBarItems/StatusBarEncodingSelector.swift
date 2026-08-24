@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct StatusBarEncodingSelector: View {
-
     var body: some View {
         Menu {
             // UTF 8, ASCII, ...
         } label: {
-            Text("UTF 8")
+            Text(String(localized: "status-bar.encoding.utf-8", defaultValue: "UTF 8", comment: "Text encoding selector label for UTF-8"))
         }
         .menuStyle(StatusBarMenuStyle())
         .onHover { isHovering($0) }

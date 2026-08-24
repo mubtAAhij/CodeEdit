@@ -13,10 +13,10 @@ struct SearchSettingsView: View {
             Section {
                 ExcludedGlobPatternList()
             } header: {
-                Text("Exclude")
+                Text(String(localized: "settings.search.exclude.title", defaultValue: "Exclude", comment: "Title for exclude patterns section in search settings"))
                 Text(
                     "Add glob patterns to exclude matching files and folders from searches and open quickly. " +
-                    "This will inherit glob patterns from the Exclude from Project setting."
+                        "This will inherit glob patterns from the Exclude from Project setting."
                 )
             }
         }
@@ -32,7 +32,7 @@ struct ExcludedGlobPatternList: View {
             selection: $model.selection,
             addPattern: model.addPattern,
             removePatterns: model.removePatterns,
-            emptyMessage: "No excluded glob patterns"
+            emptyMessage: String(localized: "settings.search.exclude.empty", defaultValue: "No excluded glob patterns", comment: "Empty state text when no excluded glob patterns are configured")
         )
     }
 }

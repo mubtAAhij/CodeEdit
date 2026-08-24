@@ -13,14 +13,12 @@ import SwiftUI
 /// NonTextFileView(fileDocument)
 /// ```
 struct NonTextFileView: View {
-
     /// The file document you wish to open.
     let fileDocument: CodeFileDocument
 
     var body: some View {
         Group {
             if let fileURL = fileDocument.fileURL {
-
                 if let utType = fileDocument.utType {
                     if utType.conforms(to: .image) {
                         ImageFileView(fileURL)
@@ -34,7 +32,7 @@ struct NonTextFileView: View {
                 }
             } else {
                 ZStack {
-                    Text("Cannot retrieve URL to the file you opened.")
+                    Text(String(localized: "editor.non-text-file.cannot-retrieve-url", defaultValue: "Cannot retrieve URL to the file you opened.", comment: "Error message when URL for opened non-text file is unavailable"))
                 }
             }
         }

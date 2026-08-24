@@ -40,21 +40,21 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         return []
     }
 
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+    func outlineView(_: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if let item = item as? CEWorkspaceFile {
             return getOutlineViewItems(for: item).count
         }
         return content.count
     }
 
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+    func outlineView(_: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let item = item as? CEWorkspaceFile {
             return getOutlineViewItems(for: item)[index]
         }
         return content[index]
     }
 
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+    func outlineView(_: NSOutlineView, isItemExpandable item: Any) -> Bool {
         if let item = item as? CEWorkspaceFile {
             return item.isFolder
         }
@@ -62,7 +62,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
     }
 
     /// Write dragged file(s) to pasteboard
-    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+    func outlineView(_: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
         guard let fileItem = item as? CEWorkspaceFile else { return nil }
         return fileItem.url as NSURL
     }
@@ -87,10 +87,10 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
 
     /// Handle successful or unsuccessful drop
     func outlineView(
-        _ outlineView: NSOutlineView,
+        _: NSOutlineView,
         acceptDrop info: NSDraggingInfo,
         item: Any?,
-        childIndex index: Int
+        childIndex _: Int
     ) -> Bool {
         guard let pasteboardItems = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) else { return false }
         let fileItemURLS = pasteboardItems.compactMap { $0 as? URL }
@@ -128,9 +128,9 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
                 }
             }
             if info.draggingSourceOperationMask == .copy {
-                self.copyFile(file: srcFileItem, to: destURL)
+                copyFile(file: srcFileItem, to: destURL)
             } else {
-                self.moveFile(file: srcFileItem, to: destURL)
+                moveFile(file: srcFileItem, to: destURL)
             }
         }
         return true
@@ -141,10 +141,10 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         alert.messageText = """
         A file or folder with the name \(fileName) already exists in the destination folder. Do you want to replace it?
         """
-        alert.informativeText = "This action is irreversible!"
+        alert.informativeText = String(localized: "project-navigator.replace-existing-file.irreversible", defaultValue: "This action is irreversible!", comment: "Warning text in replace confirmation dialog")
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "Replace")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: String(localized: "project-navigator.replace-existing-file.replace", defaultValue: "Replace", comment: "Primary action button title to replace existing item"))
+        alert.addButton(withTitle: String(localized: "project-navigator.replace-existing-file.cancel", defaultValue: "Cancel", comment: "Cancel button title in replace confirmation dialog"))
         return alert.runModal() == .alertFirstButtonReturn
     }
 }

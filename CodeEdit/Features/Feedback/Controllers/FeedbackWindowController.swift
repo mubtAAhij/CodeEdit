@@ -12,7 +12,7 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         let hostingController = NSHostingController(rootView: SettingsInjector { view })
         let window = NSWindow(contentViewController: hostingController)
         self.init(window: window)
-        window.title = "Feedback for CodeEdit"
+        window.title = String(localized: "feedback.window.title", defaultValue: "Feedback for CodeEdit", comment: "Title of feedback window")
         window.setContentSize(size)
         window.styleMask.insert(.fullSizeContentView)
         window.styleMask.remove(.resizable)
@@ -36,8 +36,8 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
         toolbar.displayMode = .labelOnly
-        self.window?.toolbarStyle = .unifiedCompact
-        self.window?.toolbar = toolbar
+        window?.toolbarStyle = .unifiedCompact
+        window?.toolbar = toolbar
     }
 
     func closeAnimated() {

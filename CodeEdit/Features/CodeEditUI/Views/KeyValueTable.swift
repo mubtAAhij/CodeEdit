@@ -60,7 +60,7 @@ private struct NewListTableItemView<HeaderView: View>: View {
                                 Text(key).tag(key)
                             }
                             Divider()
-                            Text("No Selection").tag("")
+                            Text(String(localized: "codeedit-ui.key-value-table.no-selection", defaultValue: "No Selection", comment: "Empty state label when no key-value entry is selected")).tag("")
                         }
                     }
                     TextField(valueColumnName, text: $value)
@@ -84,10 +84,10 @@ private struct NewListTableItemView<HeaderView: View>: View {
 
             HStack {
                 Spacer()
-                Button("Cancel") {
+                Button(String(localized: "codeedit-ui.key-value-table.cancel", defaultValue: "Cancel", comment: "Cancel button title in key-value table editor")) {
                     dismiss()
                 }
-                Button("Add") {
+                Button(String(localized: "codeedit-ui.key-value-table.add", defaultValue: "Add", comment: "Add button title in key-value table editor")) {
                     if !key.isEmpty && !value.isEmpty {
                         completion(key, value)
                     }
@@ -125,7 +125,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         @ViewBuilder newItemHeader: @escaping () -> Header = { EmptyView() },
         @ViewBuilder actionBarTrailing: @escaping () -> ActionBarView = { EmptyView() }
     ) {
-        self._items = items
+        _items = items
         self.validKeys = validKeys
         self.keyColumnName = keyColumnName
         self.valueColumnName = valueColumnName
@@ -146,10 +146,10 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         .contextMenu(
             forSelectionType: UUID.self,
             menu: { selectedItems in
-                Button("Edit") {
+                Button(String(localized: "codeedit_ui.key_value_table.edit", defaultValue: "Edit", comment: "Button title to edit a key-value table row")) {
                     editItem(id: selectedItems.first)
                 }
-                Button("Remove") {
+                Button(String(localized: "codeedit-ui.key-value-table.remove", defaultValue: "Remove", comment: "Remove action title for key-value row")) {
                     removeItem(selectedItems)
                 }
             },
@@ -208,7 +208,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
         }
     }
 
-    private func updateTableItems(_ newValue: [String: String]) {
+    private func updateTableItems(_: [String: String]) {
         tableItems = items
             .sorted { $0.key < $1.key }
             .map { KeyValueItem(key: $0.key, value: $0.value) }
@@ -216,7 +216,7 @@ struct KeyValueTable<Header: View, ActionBarView: View>: View {
 
     private func removeItem() {
         removeItem(selection)
-        self.selection.removeAll()
+        selection.removeAll()
     }
 
     private func removeItem(_ selection: Set<UUID>) {

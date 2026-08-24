@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CommitListItemView: View {
-
     var commit: GitCommit
     var showRef: Bool
     var width: CGFloat
@@ -51,7 +50,7 @@ struct CommitListItemView: View {
     init(commit: GitCommit, showRef: Bool) {
         self.commit = commit
         self.showRef = showRef
-        self.width = 0
+        width = 0
     }
 
     init(commit: GitCommit, showRef: Bool, width: CGFloat) {
@@ -156,12 +155,12 @@ struct CommitListItemView: View {
         .contentShape(Rectangle())
         .contextMenu {
             Group {
-                Button("Copy Commit Message") {
+                Button(String(localized: "source_control.history.commit_list_item.copy_commit_message", defaultValue: "Copy Commit Message", comment: "Context menu action to copy commit message")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.message, forType: .string)
                 }
-                Button("Copy Identifier") {
+                Button(String(localized: "source_control.history.commit_list_item.copy_identifier", defaultValue: "Copy Identifier", comment: "Context menu action to copy commit identifier")) {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(commit.commitHash, forType: .string)
@@ -193,7 +192,7 @@ struct CommitListItemView: View {
                 Button("Check Out \(commit.hash)...") {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
-                Button("History Editor Help") {}
+                Button(String(localized: "source_control.navigator.history.editor_help", defaultValue: "History Editor Help", comment: "Menu item title to open help for history editor")) {}
                     .disabled(true) // TODO: Implementation Needed
             }
         }

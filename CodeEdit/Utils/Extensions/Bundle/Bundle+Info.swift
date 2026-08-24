@@ -8,15 +8,14 @@
 import Foundation
 
 extension Bundle {
-
     static var appName: String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Unknown App"
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? String(localized: "bundle.info.unknown-app.short-name", defaultValue: "Unknown App", comment: "Fallback app short name when bundle info is unavailable")
     }
 
     static var displayName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
-        ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
-        ?? "Unknown App"
+            ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+            ?? String(localized: "bundle.info.unknown-app.display-name", defaultValue: "Unknown App", comment: "Fallback app display name when bundle info is unavailable")
     }
 
     static var copyrightString: String? {

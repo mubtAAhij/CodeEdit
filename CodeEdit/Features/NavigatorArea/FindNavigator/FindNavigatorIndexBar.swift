@@ -30,7 +30,7 @@ struct FindNavigatorIndexBar: View {
                         }
                     }
                     // swiftlint:disable:next line_length
-                    .help("Indexing current workspace files for search. Searches performed while indexing may return incomplete results.")
+                    .help(String(localized: "find-navigator.indexing.description", defaultValue: "Indexing current workspace files for search. Searches performed while indexing may return incomplete results.", comment: "Description shown while find navigator is indexing workspace"))
                 }
                 .transition(.asymmetric(insertion: .identity, removal: .move(edge: .top).combined(with: .opacity)))
             }
@@ -48,9 +48,9 @@ struct FindNavigatorIndexBar: View {
     private func updateWithNewStatus(_ status: WorkspaceDocument.SearchState.IndexStatus) {
         switch status {
         case .none:
-            self.progress = 0.0
+            progress = 0.0
             shouldShow = false
-        case .indexing(let progress):
+        case let .indexing(progress):
             if shouldShow {
                 withAnimation {
                     self.progress = progress
@@ -60,7 +60,7 @@ struct FindNavigatorIndexBar: View {
                 self.progress = progress
             }
         case .done:
-            self.progress = 1.0
+            progress = 1.0
             withAnimation(.default.delay(0.75)) {
                 shouldShow = false
             }

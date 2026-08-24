@@ -1,13 +1,13 @@
 //
-//  OutlineViewController.swift
+//  ProjectNavigatorViewController.swift
 //  CodeEdit
 //
 //  Created by Lukas Pistrol on 07.04.22.
 //
 
 import AppKit
-import SwiftUI
 import OSLog
+import SwiftUI
 
 /// A `NSViewController` that handles the **ProjectNavigatorView** in the **NavigatorArea**.
 ///
@@ -72,23 +72,23 @@ final class ProjectNavigatorViewController: NSViewController {
 
     /// Setup the ``scrollView`` and ``outlineView``
     override func loadView() {
-        self.scrollView = NSScrollView()
-        self.scrollView.hasVerticalScroller = true
-        self.view = scrollView
+        scrollView = NSScrollView()
+        scrollView.hasVerticalScroller = true
+        view = scrollView
 
-        self.outlineView = ProjectNavigatorNSOutlineView()
-        self.outlineView.dataSource = self
-        self.outlineView.delegate = self
-        self.outlineView.autosaveExpandedItems = true
-        self.outlineView.autosaveName = workspace?.workspaceFileManager?.folderUrl.path ?? ""
-        self.outlineView.headerView = nil
-        self.outlineView.menu = ProjectNavigatorMenu(self)
-        self.outlineView.menu?.delegate = self
-        self.outlineView.doubleAction = #selector(onItemDoubleClicked)
-        self.outlineView.allowsMultipleSelection = true
+        outlineView = ProjectNavigatorNSOutlineView()
+        outlineView.dataSource = self
+        outlineView.delegate = self
+        outlineView.autosaveExpandedItems = true
+        outlineView.autosaveName = workspace?.workspaceFileManager?.folderUrl.path ?? ""
+        outlineView.headerView = nil
+        outlineView.menu = ProjectNavigatorMenu(self)
+        outlineView.menu?.delegate = self
+        outlineView.doubleAction = #selector(onItemDoubleClicked)
+        outlineView.allowsMultipleSelection = true
 
-        self.outlineView.setAccessibilityIdentifier("ProjectNavigator")
-        self.outlineView.setAccessibilityLabel("Project Navigator")
+        outlineView.setAccessibilityIdentifier("ProjectNavigator")
+        outlineView.setAccessibilityLabel(String(localized: "project-navigator.title", defaultValue: "Project Navigator", comment: "Title for project navigator view"))
 
         let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
         column.title = "Cell"
@@ -107,8 +107,8 @@ final class ProjectNavigatorViewController: NSViewController {
 
         outlineView.expandItem(outlineView.item(atRow: 0))
 
-        /// Get autosave expanded items.
-        for row in 0..<outlineView.numberOfRows {
+        // Get autosave expanded items.
+        for row in 0 ..< outlineView.numberOfRows {
             if let item = outlineView.item(atRow: row) as? CEWorkspaceFile {
                 if outlineView.isItemExpanded(item) {
                     expandedItems.insert(item)
@@ -116,8 +116,8 @@ final class ProjectNavigatorViewController: NSViewController {
             }
         }
 
-        /// "No Filter Results" label.
-        noResultsLabel = NSTextField(labelWithString: "No Filter Results")
+        // "No Filter Results" label.
+        noResultsLabel = NSTextField(labelWithString: String(localized: "project-navigator.no-filter-results", defaultValue: "No Filter Results", comment: "Message shown when project navigator filter returns no matches"))
         noResultsLabel.isHidden = true
         noResultsLabel.font = NSFont.systemFont(ofSize: 16)
         noResultsLabel.textColor = NSColor.secondaryLabelColor
@@ -125,7 +125,7 @@ final class ProjectNavigatorViewController: NSViewController {
         noResultsLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             noResultsLabel.centerXAnchor.constraint(equalTo: outlineView.centerXAnchor),
-            noResultsLabel.centerYAnchor.constraint(equalTo: outlineView.centerYAnchor)
+            noResultsLabel.centerYAnchor.constraint(equalTo: outlineView.centerYAnchor),
         ])
     }
 
@@ -139,13 +139,14 @@ final class ProjectNavigatorViewController: NSViewController {
         noResultsLabel?.removeFromSuperview()
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError()
     }
 
     /// Forces to reveal the selected file through the command regardless of the auto reveal setting
     @objc
-    func revealFile(_ sender: Any) {
+    func revealFile(_: Any) {
         updateSelection(itemID: workspace?.editorManager?.activeEditor.selectedTab?.file.id, forcesReveal: true)
     }
 
@@ -159,13 +160,13 @@ final class ProjectNavigatorViewController: NSViewController {
             outlineView.deselectRow(outlineView.selectedRow)
             return
         }
-        self.select(by: .codeEditor(itemID), forcesReveal: forcesReveal)
+        select(by: .codeEditor(itemID), forcesReveal: forcesReveal)
     }
 
     /// Expand or collapse the folder on double click
     @objc
     private func onItemDoubleClicked() {
-        /// If there are multiples items selected, don't do anything, just like in Xcode.
+        // If there are multiples items selected, don't do anything, just like in Xcode.
         guard outlineView.selectedRowIndexes.count == 1 else { return }
 
         guard let item = outlineView.item(atRow: outlineView.clickedRow) as? CEWorkspaceFile else { return }
@@ -198,10 +199,10 @@ final class ProjectNavigatorViewController: NSViewController {
 
         guard let workspace else { return }
 
-        /// If the filter is empty, show all items and restore the expanded state.
+        // If the filter is empty, show all items and restore the expanded state.
         if workspace.sourceControlFilter || !filterIsEmpty {
             outlineView.autosaveExpandedItems = false
-            /// Expand all items for search.
+            // Expand all items for search.
             outlineView.expandItem(outlineView.item(atRow: 0), expandChildren: true)
         } else {
             restoreExpandedState()
@@ -226,7 +227,8 @@ final class ProjectNavigatorViewController: NSViewController {
 
         if sourceControlFilter {
             if item.gitStatus != nil && item.gitStatus != GitStatus.none &&
-                (filterIsEmpty || item.name.localizedCaseInsensitiveContains(filter)) {
+                (filterIsEmpty || item.name.localizedCaseInsensitiveContains(filter))
+            {
                 saveAllContentChildren(for: item)
                 return true
             }

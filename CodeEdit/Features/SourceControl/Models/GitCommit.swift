@@ -45,7 +45,7 @@ struct GitCommit: Equatable, Hashable, Identifiable {
         var formattedRemote = remote
         if formattedRemote.absoluteString.starts(with: "git@") {
             let parts = formattedRemote.absoluteString.components(separatedBy: ":")
-            formattedRemote = URL.init(fileURLWithPath: "\(domain)/\(parts[parts.count - 1])")
+            formattedRemote = URL(fileURLWithPath: "\(domain)/\(parts[parts.count - 1])")
         }
 
         return formattedRemote.deletingPathExtension().appending(path: "commit")
@@ -63,6 +63,6 @@ struct GitCommit: Equatable, Hashable, Identifiable {
                 return "GitLab"
             }
         }
-        return "Remote"
+        return String(localized: "source-control.commit.remote", defaultValue: "Remote", comment: "Label indicating remote commit source")
     }
 }

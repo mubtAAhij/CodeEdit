@@ -14,20 +14,20 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     init(installationDirectory: URL) {
         self.installationDirectory = installationDirectory
-        self.shellClient = .live()
+        shellClient = .live()
     }
 
     // MARK: - PackageManagerProtocol
 
     func install(method installationMethod: InstallationMethod) throws -> [PackageManagerInstallStep] {
-        guard case .standardPackage(let source) = installationMethod else {
+        guard case let .standardPackage(source) = installationMethod else {
             throw PackageManagerError.invalidConfiguration
         }
 
         let packagePath = installationDirectory.appending(path: source.entryName)
         var steps = [
             initialize(in: packagePath),
-            runGoInstall(source, packagePath: packagePath)
+            runGoInstall(source, packagePath: packagePath),
         ]
 
         if source.options["subpath"] != nil {
@@ -38,10 +38,10 @@ final class GolangPackageManager: PackageManagerProtocol {
     }
 
     /// Check if go is installed
-    func isInstalled(method installationMethod: InstallationMethod) -> PackageManagerInstallStep {
+    func isInstalled(method _: InstallationMethod) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: "",
-            confirmation: .required(message: "This package requires go to install. Allow CodeEdit to run go commands?")
+            confirmation: .required(message: String(localized: "lsp.registry.golang.allow-go-commands", defaultValue: "This package requires go to install. Allow CodeEdit to run go commands?", comment: "Permission prompt asking to run go commands for package installation"))
         ) { model in
             let versionOutput = try await model.runCommand("go version")
             let versionPattern = #"go version go\d+\.\d+"#
@@ -69,7 +69,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Initialize Directory Structure",
+            name: String(localized: "lsp.registry.golang.initialize-directory-structure", defaultValue: "Initialize Directory Structure", comment: "Progress step title for initializing golang package installation directory"),
             confirmation: .none
         ) { model in
             try await model.createDirectoryStructure(for: packagePath)
@@ -90,10 +90,10 @@ final class GolangPackageManager: PackageManagerProtocol {
     func runGoInstall(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         let installCommand = getGoInstallCommand(source)
         return PackageManagerInstallStep(
-            name: "Install Package Using go",
+            name: String(localized: "lsp.registry.golang.install-package-using-go", defaultValue: "Install Package Using go", comment: "Progress step title for installing package using go"),
             confirmation: .required(
                 message: "This requires installing the go package \(installCommand)."
-                + "\nAllow CodeEdit to install this package?"
+                    + "\nAllow CodeEdit to install this package?"
             )
         ) { model in
             let gobinPath = packagePath.appending(path: "bin", directoryHint: .isDirectory).path
@@ -108,7 +108,7 @@ final class GolangPackageManager: PackageManagerProtocol {
 
     func buildBinary(_ source: PackageSource, packagePath: URL) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
-            name: "Build From Source",
+            name: String(localized: "lsp.registry.golang.build-from-source", defaultValue: "Build From Source", comment: "Progress step title for building go package from source"),
             confirmation: .none
         ) { model in
             // If there's a subpath, build the binary
@@ -119,7 +119,7 @@ final class GolangPackageManager: PackageManagerProtocol {
                 }
 
                 let binaryName = subpath.components(separatedBy: "/").last ??
-                source.pkgName.components(separatedBy: "/").last ?? source.pkgName
+                    source.pkgName.components(separatedBy: "/").last ?? source.pkgName
                 let buildArgs = ["go", "build", "-o", "bin/\(binaryName)"]
 
                 // If source.pkgName includes the full import path (like github.com/owner/repo)
@@ -158,9 +158,9 @@ final class GolangPackageManager: PackageManagerProtocol {
 
             var gitVersion: String
             switch gitRef {
-            case .tag(let tag):
+            case let .tag(tag):
                 gitVersion = tag
-            case .revision(let rev):
+            case let .revision(rev):
                 gitVersion = rev
             }
 

@@ -5,8 +5,8 @@
 //  Created by Khan Winter on 7/8/25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct TasksCommands: Commands {
     @UpdatingWindowController var windowController: CodeEditWindowController?
@@ -20,11 +20,11 @@ struct TasksCommands: Commands {
     @State private var statusListener: AnyCancellable?
 
     var body: some Commands {
-        CommandMenu("Tasks") {
-            let selectedTaskName: String = if let selectedTask = taskManager?.selectedTask {
+        CommandMenu(String(localized: "window-commands.tasks.menu-title", defaultValue: "Tasks", comment: "Top-level Tasks command menu title")) {
+            let selectedTaskName = if let selectedTask = taskManager?.selectedTask {
                 "\"" + selectedTask.name + "\""
             } else {
-                "(No Selected Task)"
+                String(localized: "window-commands.tasks.no-selected-task", defaultValue: "(No Selected Task)", comment: "Menu item shown when no task is selected")
             }
 
             Button("Run \(selectedTaskName)", systemImage: "play.fill") {
@@ -63,16 +63,16 @@ struct TasksCommands: Commands {
                 }
 
                 if taskManager?.availableTasks.isEmpty ?? true {
-                    Button("Create Tasks") {
+                    Button(String(localized: "window-commands.tasks.create-tasks", defaultValue: "Create Tasks", comment: "Command title to create tasks when none exist")) {
                         openSettings()
                     }
                 }
             } label: {
-                Text("Choose Task...")
+                Text(String(localized: "window-commands.tasks.choose-task", defaultValue: "Choose Task...", comment: "Command title to choose an active task"))
             }
             .disabled(taskManager?.availableTasks.isEmpty == true)
 
-            Button("Manage Tasks...") {
+            Button(String(localized: "window-commands.tasks.manage-tasks", defaultValue: "Manage Tasks...", comment: "Command title to open task management settings")) {
                 openSettings()
             }
             .disabled(windowController == nil)

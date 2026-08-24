@@ -18,7 +18,7 @@ struct AccountsSettingsSigninView: View {
 
     init(_ provider: SourceControlAccount.Provider, addAccountSheetPresented: Binding<Bool>) {
         self.provider = provider
-        self._addAccountSheetPresented = addAccountSheetPresented
+        _addAccountSheetPresented = addAccountSheetPresented
     }
 
     @State var server = ""
@@ -40,7 +40,7 @@ struct AccountsSettingsSigninView: View {
                     content: {
                         if provider.baseURL == nil {
                             VStack(alignment: .leading, spacing: 5) {
-                                Text("Server")
+                                Text(String(localized: "accounts.settings.signin.server", defaultValue: "Server", comment: "Label for server input field"))
                                     .font(.caption3)
                                     .foregroundColor(.secondary)
                                 TextField("", text: $server, prompt: Text("https://git.example.com"))
@@ -48,19 +48,19 @@ struct AccountsSettingsSigninView: View {
                             }
                         }
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Username")
+                            Text(String(localized: "accounts.settings.signin.username", defaultValue: "Username", comment: "Label for username input field"))
                                 .font(.caption3)
                                 .foregroundColor(.secondary)
                             TextField("", text: $username)
                                 .labelsHidden()
                         }
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Personal Access Token")
+                            Text(String(localized: "accounts.settings.signin.personal-access-token", defaultValue: "Personal Access Token", comment: "Label for personal access token input field"))
                                 .font(.caption3)
                                 .foregroundColor(.secondary)
                             SecureField("", text: $personalAccessToken)
                                 .labelsHidden()
-                         }
+                        }
                     },
                     header: {
                         VStack(alignment: .center, spacing: 10) {
@@ -138,7 +138,7 @@ struct AccountsSettingsSigninView: View {
                     addAccountSheetPresented.toggle()
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(String(localized: "accounts.settings.signin.cancel", defaultValue: "Cancel", comment: "Cancel button title in sign-in sheet"))
                         .frame(maxWidth: .infinity)
                 }
                 .controlSize(.large)
@@ -147,7 +147,7 @@ struct AccountsSettingsSigninView: View {
                 Button {
                     signin()
                 } label: {
-                    Text("Sign In")
+                    Text(String(localized: "accounts.settings.signin.submit", defaultValue: "Sign In", comment: "Primary action button title to sign in"))
                         .frame(maxWidth: .infinity)
                 }
                 .disabled(username.isEmpty || personalAccessToken.isEmpty)
@@ -157,7 +157,7 @@ struct AccountsSettingsSigninView: View {
                     Text("Unable to add account “\(username)”"),
                     isPresented: $signinErrorAlertIsPresented
                 ) {
-                    Button("OK") {
+                    Button(String(localized: "accounts.settings.signin.ok", defaultValue: "OK", comment: "Confirmation button title in sign-in alert")) {
                         signinErrorAlertIsPresented.toggle()
                     }
                 } message: {
@@ -174,11 +174,11 @@ struct AccountsSettingsSigninView: View {
         if gitAccounts.contains(
             where: {
                 $0.serverURL == provider.baseURL?.absoluteString ?? server &&
-                $0.name.lowercased() == username.lowercased()
+                    $0.name.lowercased() == username.lowercased()
             }
         ) {
             // Show alert when adding a duplicated account
-            signinErrorDetail = "Account with the same username and provider already exists!"
+            signinErrorDetail = String(localized: "accounts.settings.signin.error.duplicate-account", defaultValue: "Account with the same username and provider already exists!", comment: "Error text when duplicate account exists")
             signinErrorAlertIsPresented.toggle()
         } else {
             let configURL = provider.apiURL?.absoluteString ?? server
@@ -189,7 +189,7 @@ struct AccountsSettingsSigninView: View {
                     switch response {
                     case .success:
                         handleGitRequestSuccess()
-                    case .failure(let error):
+                    case let .failure(error):
                         handleGitRequestFailed(error)
                     }
                 }
@@ -199,7 +199,7 @@ struct AccountsSettingsSigninView: View {
                     switch response {
                     case .success:
                         handleGitRequestSuccess()
-                    case .failure(let error):
+                    case let .failure(error):
                         handleGitRequestFailed(error)
                     }
                 }
@@ -212,7 +212,7 @@ struct AccountsSettingsSigninView: View {
     private func handleGitRequestSuccess() {
         let providerLink = provider.baseURL?.absoluteString ?? server
 
-        self.gitAccounts.append(
+        gitAccounts.append(
             SourceControlAccount(
                 id: "\(providerLink)_\(username.lowercased())",
                 name: username,
@@ -236,11 +236,11 @@ struct AccountsSettingsSigninView: View {
         case -1009:
             signinErrorDetail = error.localizedDescription
         case 401:
-            signinErrorDetail = "Authentication Failed"
+            signinErrorDetail = String(localized: "accounts.settings.signin.error.authentication-failed", defaultValue: "Authentication Failed", comment: "Error title for failed authentication")
         case 403:
-            signinErrorDetail = "API Access Forbidden"
+            signinErrorDetail = String(localized: "accounts.settings.signin.error.api-access-forbidden", defaultValue: "API Access Forbidden", comment: "Error title for forbidden API access")
         default:
-            signinErrorDetail = "Unknown Error"
+            signinErrorDetail = String(localized: "accounts.settings.signin.error.unknown", defaultValue: "Unknown Error", comment: "Fallback error title for unknown sign-in error")
         }
         signinErrorAlertIsPresented.toggle()
     }

@@ -39,16 +39,16 @@ struct TaskDropDownView: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("TaskDropdown")
-        .accessibilityValue(taskManager.selectedTask?.name ?? "Create Tasks")
-        .accessibilityLabel("Active Task")
-        .accessibilityHint("Open the active task menu")
+        .accessibilityValue(taskManager.selectedTask?.name ?? String(localized: "activity-viewer.task-dropdown.create-tasks", defaultValue: "Create Tasks", comment: "Action title shown in task dropdown when no tasks exist"))
+        .accessibilityLabel(String(localized: "activity-viewer.task-dropdown.active-task", defaultValue: "Active Task", comment: "Label for active task section in task dropdown"))
+        .accessibilityHint(String(localized: "activity-viewer.task-dropdown.open-active-task-menu", defaultValue: "Open the active task menu", comment: "Accessibility label for opening the active task menu"))
         .accessibilityAction {
             isTaskPopOverPresented = true
         }
     }
 
     @available(macOS 26, *)
-    @ViewBuilder private var tahoe: some View {
+    private var tahoe: some View {
         HStack(spacing: 4) {
             label
             chevronIcon
@@ -62,7 +62,7 @@ struct TaskDropDownView: View {
         }
     }
 
-    @ViewBuilder private var seqouia: some View {
+    private var seqouia: some View {
         label
             .opacity(activeState == .inactive ? 0.4 : 1.0)
             .padding(.trailing, 11.5)
@@ -71,7 +71,7 @@ struct TaskDropDownView: View {
             .background(backgroundColor)
     }
 
-    @ViewBuilder private var label: some View {
+    private var label: some View {
         Group {
             if let selectedTask = taskManager.selectedTask {
                 if let selectedActiveTask = taskManager.activeTasks[selectedTask.id] {
@@ -82,14 +82,14 @@ struct TaskDropDownView: View {
                         .fixedSize()
                 }
             } else {
-                Text("Create Tasks")
+                Text(String(localized: "activity-viewer.task-dropdown.create-tasks", defaultValue: "Create Tasks", comment: "Menu action title to create tasks from task dropdown"))
                     .frame(minWidth: 0)
             }
         }
         .font(.subheadline)
     }
 
-    @ViewBuilder private var backgroundColor: some View {
+    private var backgroundColor: some View {
         Color(nsColor: colorScheme == .dark ? .white : .black)
             .opacity(isHoveringTasks || isTaskPopOverPresented ? 0.05 : 0)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
@@ -103,7 +103,7 @@ struct TaskDropDownView: View {
             )
     }
 
-    @ViewBuilder private var chevronIcon: some View {
+    private var chevronIcon: some View {
         Image(systemName: "chevron.down")
             .font(.system(size: 8, weight: .bold, design: .default))
             .padding(.top, 0.5)
@@ -120,10 +120,10 @@ struct TaskDropDownView: View {
             Divider()
                 .padding(.vertical, 5)
         }
-        OptionMenuItemView(label: "Add Task...") {
+        OptionMenuItemView(label: String(localized: "activity-viewer.task-dropdown.add-task", defaultValue: "Add Task...", comment: "Menu action title to add a task")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
-        OptionMenuItemView(label: "Manage Tasks...") {
+        OptionMenuItemView(label: String(localized: "activity-viewer.task-dropdown.manage-tasks", defaultValue: "Manage Tasks...", comment: "Menu action title to open task management settings")) {
             NSApp.sendAction(#selector(CodeEditWindowController.openWorkspaceSettings(_:)), to: nil, from: nil)
         }
     }

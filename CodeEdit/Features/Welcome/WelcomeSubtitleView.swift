@@ -9,16 +9,24 @@ import SwiftUI
 import WelcomeWindow
 
 struct WelcomeSubtitleView: View {
+    private var appVersion: String {
+        Bundle.versionString ?? ""
+    }
 
-    private var appVersion: String { Bundle.versionString ?? "" }
-    private var appBuild: String { Bundle.buildString ?? "" }
-    private var appVersionPostfix: String { Bundle.versionPostfix ?? "" }
+    private var appBuild: String {
+        Bundle.buildString ?? ""
+    }
+
+    private var appVersionPostfix: String {
+        Bundle.versionPostfix ?? ""
+    }
 
     private var macOSVersion: String {
         let url = URL(fileURLWithPath: "/System/Library/CoreServices/SystemVersion.plist")
         guard let dict = NSDictionary(contentsOf: url),
               let version = dict["ProductUserVisibleVersion"],
-              let build = dict["ProductBuildVersion"] else {
+              let build = dict["ProductBuildVersion"]
+        else {
             return ProcessInfo.processInfo.operatingSystemVersionString
         }
         return "\(version) (\(build))"
@@ -56,6 +64,6 @@ struct WelcomeSubtitleView: View {
         .textSelection(.enabled)
         .onHover { $0 ? NSCursor.pointingHand.push() : NSCursor.pop() }
         .onTapGesture { copyInformation() }
-        .help("Copy System Information to Clipboard")
+        .help(String(localized: "welcome.system-info.copy-to-clipboard", defaultValue: "Copy System Information to Clipboard", comment: "Action title to copy system information to clipboard"))
     }
 }

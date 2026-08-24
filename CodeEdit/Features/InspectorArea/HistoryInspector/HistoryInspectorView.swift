@@ -21,7 +21,7 @@ struct HistoryInspectorView: View {
     /// Initialize with GitClient
     /// - Parameter gitClient: a GitClient
     init() {
-        self.model = .init()
+        model = .init()
     }
 
     var body: some View {
@@ -29,7 +29,7 @@ struct HistoryInspectorView: View {
             if model.sourceControlManager != nil {
                 VStack {
                     if model.commitHistory.isEmpty {
-                        CEContentUnavailableView("No History")
+                        CEContentUnavailableView(String(localized: "inspector.history.empty", defaultValue: "No History", comment: "Empty state title when no file history is available"))
                     } else {
                         List(selection: $selection) {
                             ForEach(model.commitHistory) { commit in

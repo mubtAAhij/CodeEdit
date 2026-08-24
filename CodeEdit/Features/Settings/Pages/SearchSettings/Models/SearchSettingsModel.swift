@@ -19,7 +19,7 @@ final class SearchSettingsModel: ObservableObject {
     /// correspondingly
     private init() {
         let value = Settings[\.search].ignoreGlobPatterns
-        self.ignoreGlobPatterns = value
+        ignoreGlobPatterns = value
     }
 
     static let shared: SearchSettingsModel = .init()
@@ -33,17 +33,17 @@ final class SearchSettingsModel: ObservableObject {
     }
 
     /// The URL of the `search` folder
-    internal var searchURL: URL {
+    var searchURL: URL {
         baseURL.appending(path: "search", directoryHint: .isDirectory)
     }
 
     /// The URL of the `Extensions` folder
-    internal var extensionsURL: URL {
-        baseURL.appending(path: "Extensions", directoryHint: .isDirectory)
+    var extensionsURL: URL {
+        baseURL.appending(path: String(localized: "settings.search.extensions", defaultValue: "Extensions", comment: "Search settings label for file extensions"), directoryHint: .isDirectory)
     }
 
     /// The URL of the `settings.json` file
-    internal var settingsURL: URL {
+    var settingsURL: URL {
         baseURL.appending(path: "settings.json", directoryHint: .isDirectory)
     }
 

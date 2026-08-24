@@ -1,5 +1,5 @@
 //
-//  FileSystemOutlineView.swift
+//  FileSystemTableViewCell.swift
 //  CodeEdit
 //
 //  Created by TAY KAI QUAN on 14/8/22.
@@ -8,7 +8,6 @@
 import SwiftUI
 
 class FileSystemTableViewCell: StandardTableViewCell {
-
     weak var fileItem: CEWorkspaceFile?
 
     var changeLabelLargeWidth: NSLayoutConstraint!
@@ -56,27 +55,27 @@ class FileSystemTableViewCell: StandardTableViewCell {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
 
-        /// Initialize default attributes
+        // Initialize default attributes
         let attributedString = NSMutableAttributedString(string: fileName, attributes: [
             .paragraphStyle: paragraphStyle,
             .font: NSFont.systemFont(ofSize: fontSize),
-            .foregroundColor: NSColor.secondaryLabelColor
+            .foregroundColor: NSColor.secondaryLabelColor,
         ])
 
-        /// Check if the filename contains the filter text
+        // Check if the filename contains the filter text
         let range = (fileName as NSString).range(of: filter, options: .caseInsensitive)
         if range.location != NSNotFound {
-            /// If the filter text matches, bold the matching text and set primary label color
+            // If the filter text matches, bold the matching text and set primary label color
             attributedString.addAttributes(
                 [
                     .font: NSFont.boldSystemFont(ofSize: fontSize),
-                    .foregroundColor: NSColor.labelColor
+                    .foregroundColor: NSColor.labelColor,
                 ],
                 range: range
             )
         } else {
-            /// If no match, apply primary label color for parent folder,
-            /// or secondary label color for a non-matching file
+            // If no match, apply primary label color for parent folder,
+            // or secondary label color for a non-matching file
             attributedString.addAttribute(
                 .foregroundColor,
                 value: item.isFolder ? NSColor.labelColor : NSColor.secondaryLabelColor,
@@ -98,7 +97,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
             return
         }
 
-        if gitStatus == "?" { secondaryLabel.stringValue += "A" } else {
+        if gitStatus == String(localized: "navigator.file-system.status.unknown", defaultValue: "?", comment: "Status marker for unknown source control state") { secondaryLabel.stringValue += String(localized: "navigator.file-system.status.added", defaultValue: "A", comment: "Status marker for added file in source control") } else {
             secondaryLabel.stringValue += gitStatus
         }
     }
@@ -107,22 +106,23 @@ class FileSystemTableViewCell: StandardTableViewCell {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         fatalError("""
-            init(frame: ) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        init(frame: ) isn't implemented on `OutlineTableViewCell`.
+        Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
+        """)
     }
 
     /// *Not Implemented*
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("""
-            init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
-            """)
+        init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
+        Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
+        """)
     }
 
     /// Returns the font size for the current row height. Defaults to `13.0`
     private var fontSize: Double {
-        switch self.frame.height {
+        switch frame.height {
         case 20: return 11
         case 22: return 13
         case 24: return 14
@@ -152,12 +152,12 @@ class FileSystemTableViewCell: StandardTableViewCell {
 
 let errorRed = NSColor(red: 1, green: 0, blue: 0, alpha: 0.2)
 extension FileSystemTableViewCell: NSTextFieldDelegate {
-    func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_: Notification) {
         guard let fileItem else { return }
         textField?.backgroundColor = fileItem.validateFileName(for: textField?.stringValue ?? "") ? .none : errorRed
     }
 
-    func controlTextDidEndEditing(_ obj: Notification) {
+    func controlTextDidEndEditing(_: Notification) {
         guard let fileItem else { return }
         do {
             textField?.backgroundColor = fileItem.validateFileName(for: textField?.stringValue ?? "") ? .none : errorRed
@@ -171,7 +171,7 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
             }
         } catch {
             let alert = NSAlert(error: error)
-            alert.addButton(withTitle: "Dismiss")
+            alert.addButton(withTitle: String(localized: "navigator.file-system.dismiss", defaultValue: "Dismiss", comment: "Dismiss button title in file system table view alert"))
             alert.runModal()
         }
     }

@@ -20,20 +20,20 @@ struct UtilityAreaOutputSourcePicker: View {
     @ObservedObject var extensionManager = ExtensionManager.shared
 
     @Service var lspService: LSPService
-    @State private var updater: UUID = UUID()
+    @State private var updater: UUID = .init()
     @State private var languageServerClients: [LSPService.LanguageServerType] = []
 
     var body: some View {
-        Picker("Output Source", selection: $selectedSource) {
+        Picker(String(localized: "utility-area.output-source-picker.title", defaultValue: "Output Source", comment: "Title for output source picker in utility area"), selection: $selectedSource) {
             if selectedSource == nil {
-                Text("No Selected Output Source")
+                Text(String(localized: "utility-area.output-source-picker.no-selected-source", defaultValue: "No Selected Output Source", comment: "Message shown when no output source is selected"))
                     .italic()
                     .tag(Sources?.none)
                 Divider()
             }
 
             if languageServerClients.isEmpty {
-                Text("No Language Servers")
+                Text(String(localized: "utility-area.output-source-picker.no-language-servers", defaultValue: "No Language Servers", comment: "Message shown when there are no language servers"))
             } else {
                 ForEach(languageServerClients, id: \.languageId) { server in
                     Text(Sources.languageServer(server.logContainer).title)
@@ -44,7 +44,7 @@ struct UtilityAreaOutputSourcePicker: View {
             Divider()
 
             if extensionManager.extensions.isEmpty {
-                Text("No Extensions")
+                Text(String(localized: "utility-area.output-source-picker.no-extensions", defaultValue: "No Extensions", comment: "Message shown when there are no extensions"))
             } else {
                 ForEach(extensionManager.extensions) { extensionInfo in
                     Text(Sources.extensions(.init(extensionInfo: extensionInfo)).title)
@@ -75,7 +75,7 @@ struct UtilityAreaOutputSourcePicker: View {
 
     func updateLanguageServers(_ clients: [LSPService.ClientKey: LSPService.LanguageServerType]) {
         languageServerClients = clients
-            .compactMap { (key, value) in
+            .compactMap { key, value in
                 if key.workspacePath == workspace.fileURL?.absolutePath {
                     return value
                 }

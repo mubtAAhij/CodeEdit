@@ -6,29 +6,29 @@
 //
 
 import AppKit
-import SwiftUI
 import Combine
+import SwiftUI
 
 extension CodeEditWindowController {
-    internal func setupToolbar() {
+    func setupToolbar() {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
         toolbar.showsBaselineSeparator = false
-        self.window?.titleVisibility = toolbarCollapsed ? .visible : .hidden
+        window?.titleVisibility = toolbarCollapsed ? .visible : .hidden
         if #available(macOS 26, *) {
-            self.window?.toolbarStyle = .automatic
+            window?.toolbarStyle = .automatic
             toolbar.centeredItemIdentifiers = [.activityViewer, .notificationItem]
             toolbar.displayMode = .iconOnly
-            self.window?.titlebarAppearsTransparent = true
+            window?.titlebarAppearsTransparent = true
         } else {
-            self.window?.toolbarStyle = .unifiedCompact
+            window?.toolbarStyle = .unifiedCompact
             toolbar.displayMode = .labelOnly
         }
-        self.window?.titlebarSeparatorStyle = .automatic
-        self.window?.toolbar = toolbar
+        window?.titlebarSeparatorStyle = .automatic
+        window?.toolbar = toolbar
     }
 
-    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = [
             .toggleFirstSidebarItem,
             .flexibleSpace,
@@ -67,13 +67,13 @@ extension CodeEditWindowController {
             .flexibleSpace,
             .itemListTrackingSeparator,
             .flexibleSpace,
-            .toggleLastSidebarItem
+            .toggleLastSidebarItem,
         ]
 
         return items
     }
 
-    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = [
             .toggleFirstSidebarItem,
             .sidebarTrackingSeparator,
@@ -87,12 +87,12 @@ extension CodeEditWindowController {
 
         if #available(macOS 26, *) {
             items += [
-                .taskSidebarItem
+                .taskSidebarItem,
             ]
         } else {
             items += [
                 .startTaskSidebarItem,
-                .stopTaskSidebarItem
+                .stopTaskSidebarItem,
             ]
         }
 
@@ -108,7 +108,7 @@ extension CodeEditWindowController {
     func updateToolbarVisibility() {
         if toolbarCollapsed {
             window?.titleVisibility = .visible
-            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? "Empty"
+            window?.title = workspace?.workspaceFileManager?.folderUrl.lastPathComponent ?? String(localized: "toolbar.empty_state", defaultValue: "Empty", comment: "Toolbar fallback title when there is no active branch or selection")
             window?.toolbar = nil
         } else {
             window?.titleVisibility = .hidden
@@ -118,9 +118,9 @@ extension CodeEditWindowController {
 
     // swiftlint:disable:next function_body_length cyclomatic_complexity
     func toolbar(
-        _ toolbar: NSToolbar,
+        _: NSToolbar,
         itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
-        willBeInsertedIntoToolbar flag: Bool
+        willBeInsertedIntoToolbar _: Bool
     ) -> NSToolbarItem? {
         switch itemIdentifier {
         case .itemListTrackingSeparator:
@@ -134,10 +134,10 @@ extension CodeEditWindowController {
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
             toolbarItem.paletteLabel = " Navigator Sidebar"
-            toolbarItem.toolTip = "Hide or show the Navigator"
+            toolbarItem.toolTip = String(localized: "toolbar.navigator_tooltip", defaultValue: "Hide or show the Navigator", comment: "Tooltip for navigator sidebar toolbar item")
             toolbarItem.isBordered = true
             toolbarItem.target = self
-            toolbarItem.action = #selector(self.objcToggleFirstPanel)
+            toolbarItem.action = #selector(objcToggleFirstPanel)
             toolbarItem.image = NSImage(
                 systemSymbolName: "sidebar.leading",
                 accessibilityDescription: nil
@@ -146,11 +146,11 @@ extension CodeEditWindowController {
             return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
-            toolbarItem.paletteLabel = "Inspector Sidebar"
-            toolbarItem.toolTip = "Hide or show the Inspectors"
+            toolbarItem.paletteLabel = String(localized: "toolbar.inspector_sidebar", defaultValue: "Inspector Sidebar", comment: "Toolbar item label for inspector sidebar toggle")
+            toolbarItem.toolTip = String(localized: "toolbar.inspector_tooltip", defaultValue: "Hide or show the Inspectors", comment: "Tooltip for inspector sidebar toolbar item")
             toolbarItem.isBordered = true
             toolbarItem.target = self
-            toolbarItem.action = #selector(self.objcToggleLastPanel)
+            toolbarItem.action = #selector(objcToggleLastPanel)
             toolbarItem.image = NSImage(
                 systemSymbolName: "sidebar.trailing",
                 accessibilityDescription: nil
@@ -180,7 +180,8 @@ extension CodeEditWindowController {
                 fatalError("Unified task sidebar item used on pre-tahoe platform.")
             }
             guard let workspace,
-                    let stop = StopTaskToolbarItem(workspace: workspace) else {
+                  let stop = StopTaskToolbarItem(workspace: workspace)
+            else {
                 return nil
             }
             let start = StartTaskToolbarItem(workspace: workspace)
@@ -257,7 +258,7 @@ extension CodeEditWindowController {
 
         NSLayoutConstraint.activate([
             weakWidth,
-            strongWidth
+            strongWidth,
         ])
 
         toolbarItem.view = view

@@ -9,7 +9,6 @@ import SwiftUI
 import WelcomeWindow
 
 struct OpenFileOrFolderButton: View {
-
     @Environment(\.openWindow)
     private var openWindow
 
@@ -18,7 +17,7 @@ struct OpenFileOrFolderButton: View {
     var body: some View {
         WelcomeButton(
             iconName: "folder",
-            title: "Open File or Folder...",
+            title: String(localized: "welcome.button.open-file-or-folder", defaultValue: "Open File or Folder...", comment: "Welcome screen button title to open a file or folder"),
             action: {
                 CodeEditDocumentController.shared.openDocumentWithDialog(
                     configuration: .init(canChooseFiles: true, canChooseDirectories: true),

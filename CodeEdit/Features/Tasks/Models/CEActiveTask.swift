@@ -5,9 +5,9 @@
 //  Created by Tommy Ludwig on 24.06.24.
 //
 
-import SwiftUI
 import Combine
 import SwiftTerm
+import SwiftUI
 
 /// Stores the state of a task once it's executed
 class CEActiveTask: ObservableObject, Identifiable, Hashable {
@@ -25,7 +25,7 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
     /// Prevents tasks overwriting each other.
     /// Say a user cancels one task, then runs it immediately, the cancel message should show and then the
     /// starting message should show. If we don't add this modifier the starting message will be deleted.
-    var activeTaskID: UUID = UUID()
+    var activeTaskID: UUID = .init()
 
     var taskId: String {
         task.id.uuidString + "-" + activeTaskID.uuidString
@@ -46,7 +46,7 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
     @MainActor
     func run(workspaceURL: URL?, shell: Shell? = nil) {
         self.workspaceURL = workspaceURL
-        self.activeTaskID = UUID() // generate a new ID for this run
+        activeTaskID = UUID() // generate a new ID for this run
 
         createStatusTaskNotification()
         updateTaskStatus(to: .running)
@@ -68,23 +68,55 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         switch terminationStatus {
         case 0:
             output?.newline()
-            output?.sendOutputMessage("Finished running \(task.name).")
+            output?.sendOutputMessage(
+                String(
+                    format: String(
+                        localized: "tasks.active-task.output.finished-running",
+                        defaultValue: "Finished running %@.",
+                        comment: "Terminal output when a task finishes successfully"
+                    ),
+                    task.name
+                )
+            )
             output?.newline()
 
             updateTaskStatus(to: .finished)
             updateTaskNotification(
-                title: "Finished Running \(task.name)",
+                title: String(
+                    format: String(
+                        localized: "tasks.active-task.notification.title.finished-running",
+                        defaultValue: "Finished Running %@",
+                        comment: "Task notification title when a task finishes successfully"
+                    ),
+                    task.name
+                ),
                 message: "",
                 isLoading: false
             )
         case 2, 15: // SIGINT or SIGTERM
             output?.newline()
-            output?.sendOutputMessage("\(task.name) cancelled.")
+            output?.sendOutputMessage(
+                String(
+                    format: String(
+                        localized: "tasks.active-task.output.cancelled",
+                        defaultValue: "%@ cancelled.",
+                        comment: "Terminal output when a task is cancelled"
+                    ),
+                    task.name
+                )
+            )
             output?.newline()
 
             updateTaskStatus(to: .notRunning)
             updateTaskNotification(
-                title: "\(task.name) cancelled",
+                title: String(
+                    format: String(
+                        localized: "tasks.active-task.notification.title.cancelled",
+                        defaultValue: "%@ cancelled",
+                        comment: "Task notification title when a task is cancelled"
+                    ),
+                    task.name
+                ),
                 message: "",
                 isLoading: false
             )
@@ -92,12 +124,28 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
             updateTaskStatus(to: .stopped)
         default:
             output?.newline()
-            output?.sendOutputMessage("Failed to run \(task.name)")
+            output?.sendOutputMessage(
+                String(
+                    format: String(
+                        localized: "tasks.active-task.output.failed-to-run",
+                        defaultValue: "Failed to run %@",
+                        comment: "Terminal output when a task fails to run"
+                    ),
+                    task.name
+                )
+            )
             output?.newline()
 
             updateTaskStatus(to: .failed)
             updateTaskNotification(
-                title: "Failed Running \(task.name)",
+                title: String(
+                    format: String(
+                        localized: "tasks.active-task.notification.title.failed-running",
+                        defaultValue: "Failed Running %@",
+                        comment: "Task notification title when a task fails"
+                    ),
+                    task.name
+                ),
                 message: "",
                 isLoading: false
             )
@@ -150,10 +198,24 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         let userInfo: [String: Any] = [
             "id": taskId,
             "action": "createWithPriority",
-            "title": "Running \(self.task.name)",
-            "message": "Running your task: \(self.task.name).",
+            "title": String(
+                format: String(
+                    localized: "tasks.active-task.notification.title.running",
+                    defaultValue: "Running %@",
+                    comment: "Task notification title while a task is running"
+                ),
+                task.name
+            ),
+            "message": String(
+                format: String(
+                    localized: "tasks.active-task.notification.message.running",
+                    defaultValue: "Running your task: %@.",
+                    comment: "Task notification message while a task is running"
+                ),
+                task.name
+            ),
             "isLoading": true,
-            "workspace": workspaceURL as Any
+            "workspace": workspaceURL as Any,
         ]
 
         NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: userInfo)
@@ -164,7 +226,7 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
             "id": taskId,
             "action": "deleteWithDelay",
             "delay": 3.0,
-            "workspace": workspaceURL as Any
+            "workspace": workspaceURL as Any,
         ]
 
         NotificationCenter.default.post(name: .taskNotification, object: nil, userInfo: deleteInfo)
@@ -174,7 +236,7 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
         var userInfo: [String: Any] = [
             "id": taskId,
             "action": "update",
-            "workspace": workspaceURL as Any
+            "workspace": workspaceURL as Any,
         ]
         if let title {
             userInfo["title"] = title
@@ -191,14 +253,14 @@ class CEActiveTask: ObservableObject, Identifiable, Hashable {
 
     @MainActor
     func updateTaskStatus(to taskStatus: CETaskStatus) {
-        self.status = taskStatus
+        status = taskStatus
     }
 
     static func == (lhs: CEActiveTask, rhs: CEActiveTask) -> Bool {
         return lhs.output == rhs.output &&
-        lhs.status == rhs.status &&
-        lhs.output?.process.shellPid == rhs.output?.process.shellPid &&
-        lhs.task == rhs.task
+            lhs.status == rhs.status &&
+            lhs.output?.process.shellPid == rhs.output?.process.shellPid &&
+            lhs.task == rhs.task
     }
 
     func hash(into hasher: inout Hasher) {

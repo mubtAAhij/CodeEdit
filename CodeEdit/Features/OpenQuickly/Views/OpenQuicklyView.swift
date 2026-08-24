@@ -22,14 +22,14 @@ struct OpenQuicklyView: View {
         onClose: @escaping () -> Void,
         openFile: @escaping (CEWorkspaceFile) -> Void
     ) {
-        self.openQuicklyViewModel = state
+        openQuicklyViewModel = state
         self.onClose = onClose
         self.openFile = openFile
     }
 
     var body: some View {
         SearchPanelView(
-            title: "Open Quickly",
+            title: String(localized: "open-quickly.title", defaultValue: "Open Quickly", comment: "Title for the Open Quickly view"),
             image: Image(systemName: "magnifyingglass"),
             options: $openQuicklyViewModel.searchResults,
             text: $openQuicklyViewModel.query,

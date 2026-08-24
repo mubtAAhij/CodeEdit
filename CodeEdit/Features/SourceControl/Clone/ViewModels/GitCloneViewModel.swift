@@ -5,8 +5,8 @@
 //  Created by Albert Vinizhanau on 10/17/23.
 //
 
-import Foundation
 import AppKit
+import Foundation
 
 class GitCloneViewModel: ObservableObject {
     @Published var repoUrlStr = ""
@@ -31,6 +31,7 @@ class GitCloneViewModel: ObservableObject {
         }
         return false
     }
+
     /// Check if Git is installed
     /// - Returns: True if Git is found by running "which git" command
     func isGitInstalled() -> Bool {
@@ -52,7 +53,7 @@ class GitCloneViewModel: ObservableObject {
     func checkClipboard() {
         if let url = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) {
             if isValidUrl(url: url) {
-                self.repoUrlStr = url
+                repoUrlStr = url
             }
         }
     }
@@ -61,15 +62,15 @@ class GitCloneViewModel: ObservableObject {
     func cloneRepository(completionHandler: @escaping (URL) -> Void) {
         if !isGitInstalled() {
             showAlert(
-                alertMsg: "Git installation not found.",
-                infoText: "Ensure Git is installed on your system and try again."
+                alertMsg: String(localized: "source_control.clone.git-not-installed.title", defaultValue: "Git installation not found.", comment: "Title for clone alert when Git is unavailable"),
+                infoText: String(localized: "source_control.clone.git-not-installed.message", defaultValue: "Ensure Git is installed on your system and try again.", comment: "Message for clone alert when Git is unavailable")
             )
             return
         }
         if repoUrlStr == "" {
             showAlert(
-                alertMsg: "Url cannot be empty",
-                infoText: "You must specify a repository to clone"
+                alertMsg: String(localized: "source_control.clone.empty-url.title", defaultValue: "Url cannot be empty", comment: "Title for clone alert when repository URL is missing"),
+                infoText: String(localized: "source_control.clone.empty-url.message", defaultValue: "You must specify a repository to clone", comment: "Message for clone alert when repository URL is missing")
             )
             return
         }
@@ -93,7 +94,7 @@ class GitCloneViewModel: ObservableObject {
 
         var isDir: ObjCBool = true
         if FileManager.default.fileExists(atPath: localPath.relativePath, isDirectory: &isDir) {
-            showAlert(alertMsg: "Error", infoText: "Directory already exists")
+            showAlert(alertMsg: String(localized: "source_control.clone.directory-exists.title", defaultValue: "Error", comment: "Title for clone alert when destination directory already exists"), infoText: String(localized: "source_control.clone.directory-exists.message", defaultValue: "Directory already exists", comment: "Message for clone alert when destination directory already exists"))
             return
         }
 
@@ -104,13 +105,13 @@ class GitCloneViewModel: ObservableObject {
                 attributes: nil
             )
         } catch {
-            showAlert(alertMsg: "Failed to create folder", infoText: "\(error)")
+            showAlert(alertMsg: String(localized: "source_control.clone.create-folder-failed.title", defaultValue: "Failed to create folder", comment: "Title for clone alert when destination folder creation fails"), infoText: "\(error)")
             return
         }
 
         gitClient = GitClient(directoryURL: localPath, shellClient: .live())
 
-        self.cloningTask = Task(priority: .background) {
+        cloningTask = Task(priority: .background) {
             await processCloning(
                 remoteUrl: remoteUrl,
                 localPath: localPath,
@@ -151,9 +152,9 @@ class GitCloneViewModel: ObservableObject {
         } catch {
             await MainActor.run {
                 if let error = error as? GitClient.GitClientError {
-                    showAlert(alertMsg: "Failed to clone", infoText: error.description)
+                    showAlert(alertMsg: String(localized: "source_control.clone.failed.title", defaultValue: "Failed to clone", comment: "Title for clone alert when repository cloning fails"), infoText: error.description)
                 } else {
-                    showAlert(alertMsg: "Failed to clone", infoText: error.localizedDescription)
+                    showAlert(alertMsg: String(localized: "source_control.clone.failed.title", defaultValue: "Failed to clone", comment: "Title for clone alert when repository cloning fails"), infoText: error.localizedDescription)
                 }
                 deleteTemporaryFolder(localPath: localPath)
             }
@@ -166,14 +167,14 @@ class GitCloneViewModel: ObservableObject {
         do {
             try FileManager.default.removeItem(atPath: localPath.relativePath)
         } catch {
-            showAlert(alertMsg: "Failed to delete folder", infoText: "\(error)")
+            showAlert(alertMsg: String(localized: "source_control.clone.delete-folder-failed.title", defaultValue: "Failed to delete folder", comment: "Title for clone alert when cleanup folder deletion fails"), infoText: "\(error)")
             return
         }
     }
 
     @MainActor
     private func setIsCloning(_ newValue: Bool) {
-        self.isCloning = newValue
+        isCloning = newValue
     }
 
     private func getPath(saveName: String) -> URL? {
@@ -187,7 +188,8 @@ class GitCloneViewModel: ObservableObject {
         dialog.title = "Clone a Repository"
 
         guard dialog.runModal() == NSApplication.ModalResponse.OK,
-              let result = dialog.url else {
+              let result = dialog.url
+        else {
             return nil
         }
 

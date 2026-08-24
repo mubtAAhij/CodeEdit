@@ -14,13 +14,13 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     init(installationDirectory: URL) {
         self.installationDirectory = installationDirectory
-        self.shellClient = .live()
+        shellClient = .live()
     }
 
     // MARK: - PackageManagerProtocol
 
     func install(method installationMethod: InstallationMethod) throws -> [PackageManagerInstallStep] {
-        guard case .standardPackage(let source) = installationMethod else {
+        guard case let .standardPackage(source) = installationMethod else {
             throw PackageManagerError.invalidConfiguration
         }
 
@@ -28,17 +28,16 @@ final class NPMPackageManager: PackageManagerProtocol {
         return [
             initialize(in: packagePath),
             runNpmInstall(source, installDir: packagePath),
-            verifyInstallation(source, installDir: packagePath)
+            verifyInstallation(source, installDir: packagePath),
         ]
-
     }
 
     /// Checks if npm is installed
-    func isInstalled(method installationMethod: InstallationMethod) -> PackageManagerInstallStep {
+    func isInstalled(method _: InstallationMethod) -> PackageManagerInstallStep {
         PackageManagerInstallStep(
             name: "",
             confirmation: .required(
-                message: "This package requires npm to install. Allow CodeEdit to run npm commands?"
+                message: String(localized: "lsp.package-managers.npm.permission.message", defaultValue: "This package requires npm to install. Allow CodeEdit to run npm commands?", comment: "Permission prompt asking whether CodeEdit may execute npm commands")
             )
         ) { model in
             let versionOutput = try await model.runCommand("npm --version")
@@ -65,7 +64,7 @@ final class NPMPackageManager: PackageManagerProtocol {
 
     /// Initializes the npm project if not already initialized
     func initialize(in packagePath: URL) -> PackageManagerInstallStep {
-        PackageManagerInstallStep(name: "Initialize Directory Structure", confirmation: .none) { model in
+        PackageManagerInstallStep(name: String(localized: "lsp.package-managers.npm.initialize-directory-structure", defaultValue: "Initialize Directory Structure", comment: "Progress or action title for initializing npm package directory structure"), confirmation: .none) { model in
             // Clean existing files
             let pkgJson = packagePath.appending(path: "package.json")
             if FileManager.default.fileExists(atPath: pkgJson.path) {
@@ -112,10 +111,10 @@ final class NPMPackageManager: PackageManagerProtocol {
         let suffix = plural ? "these packages" : "this package"
 
         return PackageManagerInstallStep(
-            name: "Install Package Using npm",
+            name: String(localized: "lsp.package-managers.npm.install-package.title", defaultValue: "Install Package Using npm", comment: "Confirmation dialog title for installing language server packages with npm"),
             confirmation: .required(
                 message: "This requires the npm package\(sSuffix) \(packagesDescription)."
-                + "\nAllow CodeEdit to install \(suffix)?"
+                    + "\nAllow CodeEdit to install \(suffix)?"
             )
         ) { model in
             do {
@@ -150,7 +149,7 @@ final class NPMPackageManager: PackageManagerProtocol {
         let version = source.version
 
         return PackageManagerInstallStep(
-            name: "Verify Installation",
+            name: String(localized: "lsp.package-managers.npm.verify-installation", defaultValue: "Verify Installation", comment: "Progress or action title for verifying npm package installation"),
             confirmation: .none
         ) { _ in
             let packageJsonPath = packagePath.appending(path: "package.json").path
@@ -160,15 +159,17 @@ final class NPMPackageManager: PackageManagerProtocol {
                   let packageJson = try? JSONSerialization.jsonObject(with: packageJsonData, options: []),
                   let packageDict = packageJson as? [String: Any],
                   let dependencies = packageDict["dependencies"] as? [String: String],
-                  let installedVersion = dependencies[package] else {
-                throw PackageManagerError.installationFailed("Package not found in package.json")
+                  let installedVersion = dependencies[package]
+            else {
+                throw PackageManagerError.installationFailed(String(localized: "lsp.package-managers.npm.package-not-found", defaultValue: "Package not found in package.json", comment: "Error message when required npm package entry is missing from package.json"))
             }
 
             // Verify installed version matches requested version
             let normalizedInstalledVersion = installedVersion.trimmingCharacters(in: CharacterSet(charactersIn: "^~"))
             let normalizedRequestedVersion = version.trimmingCharacters(in: CharacterSet(charactersIn: "^~"))
             if normalizedInstalledVersion != normalizedRequestedVersion &&
-                !installedVersion.contains(normalizedRequestedVersion) {
+                !installedVersion.contains(normalizedRequestedVersion)
+            {
                 throw PackageManagerError.installationFailed(
                     "Version mismatch: Expected \(version), but found \(installedVersion)"
                 )
@@ -179,7 +180,7 @@ final class NPMPackageManager: PackageManagerProtocol {
                 .appending(path: "node_modules")
                 .appending(path: package)
             guard FileManager.default.fileExists(atPath: packageDirectory.path) else {
-                throw PackageManagerError.installationFailed("Package not found in node_modules")
+                throw PackageManagerError.installationFailed(String(localized: "lsp.package_managers.npm.package_not_found_node_modules", defaultValue: "Package not found in node_modules", comment: "Error message shown when package is missing from node_modules"))
             }
         }
     }

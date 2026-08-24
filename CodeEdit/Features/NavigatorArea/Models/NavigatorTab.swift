@@ -5,9 +5,9 @@
 //  Created by Wouter Hennen on 02/06/2023.
 //
 
-import SwiftUI
 import CodeEditKit
 import ExtensionFoundation
+import SwiftUI
 
 enum NavigatorTab: WorkspacePanelTab {
     case project
@@ -23,13 +23,13 @@ enum NavigatorTab: WorkspacePanelTab {
             return "vault"
         case .search:
             return "magnifyingglass"
-        case .uiExtension(_, let data):
+        case let .uiExtension(_, data):
             return data.icon ?? "e.square"
         }
     }
 
     var id: String {
-        if case .uiExtension(let endpoint, let data) = self {
+        if case let .uiExtension(endpoint, data) = self {
             return endpoint.bundleIdentifier + data.sceneID
         }
         return title
@@ -38,12 +38,12 @@ enum NavigatorTab: WorkspacePanelTab {
     var title: String {
         switch self {
         case .project:
-            return "Project"
+            return String(localized: "navigator.tab.project", defaultValue: "Project", comment: "Navigator tab title for project files")
         case .sourceControl:
-            return "Source Control"
+            return String(localized: "navigator.tab.source-control", defaultValue: "Source Control", comment: "Navigator tab title for source control")
         case .search:
-            return "Search"
-        case .uiExtension(_, let data):
+            return String(localized: "navigator.tab.search", defaultValue: "Search", comment: "Navigator tab title for search")
+        case let .uiExtension(_, data):
             return data.help ?? data.sceneID
         }
     }

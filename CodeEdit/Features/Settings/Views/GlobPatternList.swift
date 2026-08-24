@@ -38,20 +38,20 @@ struct GlobPatternList: View {
             }
             .onDelete { indexSet in
                 let patternIDs = indexSet.compactMap { patterns[$0].id }
-                    removePatterns(Set(patternIDs))
+                removePatterns(Set(patternIDs))
             }
         }
         .frame(minHeight: 96)
         .contextMenu(forSelectionType: UUID.self, menu: { selection in
             if let patternID = selection.first, let pattern = patterns.first(where: { $0.id == patternID }) {
-                Button("Edit") {
+                Button(String(localized: "settings.glob-pattern-list.edit", defaultValue: "Edit", comment: "Button title to edit a glob pattern")) {
                     focusedField = pattern.id.uuidString
                 }
-                Button("Add") {
+                Button(String(localized: "settings.glob-pattern-list.add", defaultValue: "Add", comment: "Button title to add a glob pattern")) {
                     addPattern()
                 }
                 Divider()
-                Button("Remove") {
+                Button(String(localized: "settings.glob-pattern-list.remove", defaultValue: "Remove", comment: "Button title to remove a glob pattern")) {
                     removePatterns(selection)
                 }
             }
