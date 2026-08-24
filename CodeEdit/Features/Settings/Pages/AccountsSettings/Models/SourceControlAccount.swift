@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SourceControlAccount: Codable, Identifiable, Hashable {
-
     var id: String
     var name: String
     var description: String
@@ -36,114 +35,114 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var id: String {
             switch self {
             case .bitbucketCloud:
-                return "bitbucketCloud"
+                "bitbucketCloud"
             case .bitbucketServer:
-                return "bitbucketServer"
+                "bitbucketServer"
             case .github:
-                return "github"
+                "github"
             case .githubEnterprise:
-                return "githubEnterprise"
+                "githubEnterprise"
             case .gitlab:
-                return "gitlab"
+                "gitlab"
             case .gitlabSelfHosted:
-                return "gitlabSelfHosted"
+                "gitlabSelfHosted"
             }
         }
 
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                String(localized: "settings.accounts.source-control.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "Display name for BitBucket Cloud source control provider")
             case .bitbucketServer:
-                return "BitBucket Server"
+                String(localized: "settings.accounts.source-control.bitbucket-server", defaultValue: "BitBucket Server", comment: "Display name for BitBucket Server source control provider")
             case .github:
-                return "GitHub"
+                String(localized: "settings.accounts.source-control.github", defaultValue: "GitHub", comment: "Display name for GitHub source control provider")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                String(localized: "settings.accounts.source-control.github-enterprise", defaultValue: "GitHub Enterprise", comment: "Display name for GitHub Enterprise source control provider")
             case .gitlab:
-                return "GitLab"
+                String(localized: "settings.accounts.source-control.gitlab", defaultValue: "GitLab", comment: "Display name for GitLab source control provider")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                String(localized: "settings.accounts.source-control.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "Display name for self-hosted GitLab source control provider")
             }
         }
 
         var baseURL: URL? {
             switch self {
             case .bitbucketCloud:
-                return URL(string: "https://www.bitbucket.com/")!
+                URL(string: "https://www.bitbucket.com/")!
             case .bitbucketServer:
-                return nil
+                nil
             case .github:
-                return URL(string: "https://www.github.com/")!
+                URL(string: "https://www.github.com/")!
             case .githubEnterprise:
-                return nil
+                nil
             case .gitlab:
-                return URL(string: "https://www.gitlab.com/")!
+                URL(string: "https://www.gitlab.com/")!
             case .gitlabSelfHosted:
-                return nil
+                nil
             }
         }
 
         var apiURL: URL? {
             switch self {
             case .bitbucketCloud:
-                return URL(string: "https://api.bitbucket.org/2.0/")!
+                URL(string: "https://api.bitbucket.org/2.0/")!
             case .bitbucketServer:
-                return nil
+                nil
             case .github:
-                return URL(string: "https://api.github.com/")!
+                URL(string: "https://api.github.com/")!
             case .githubEnterprise:
-                return nil
+                nil
             case .gitlab:
-                return URL(string: "https://gitlab.com/api/v4/")!
+                URL(string: "https://gitlab.com/api/v4/")!
             case .gitlabSelfHosted:
-                return nil
+                nil
             }
         }
 
         var iconResource: ImageResource {
             switch self {
             case .bitbucketCloud, .bitbucketServer:
-                return .bitBucketIcon
+                .bitBucketIcon
             case .github, .githubEnterprise:
-                return .gitHubIcon
+                .gitHubIcon
             case .gitlab, .gitlabSelfHosted:
-                return .gitLabIcon
+                .gitLabIcon
             }
         }
 
         var authHelpURL: URL {
             switch self {
             case .bitbucketCloud:
-                return URL(string: "https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/")!
+                URL(string: "https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/")!
             case .bitbucketServer:
-                return URL(string:
+                URL(string:
                     "https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html")!
             case .github:
-                return URL(string: "https://github.com/settings/tokens/new")!
+                URL(string: "https://github.com/settings/tokens/new")!
             case .githubEnterprise:
-                return URL(string: "https://github.com/settings/tokens/new")!
+                URL(string: "https://github.com/settings/tokens/new")!
             case .gitlab:
-                return URL(string: "https://gitlab.com/-/profile/personal_access_tokens")!
+                URL(string: "https://gitlab.com/-/profile/personal_access_tokens")!
             case .gitlabSelfHosted:
-                return URL(string: "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html")!
+                URL(string: "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html")!
             }
         }
 
         var authType: AuthType {
             switch self {
             case .bitbucketCloud:
-                return .password
+                .password
             case .bitbucketServer:
-                return .token
+                .token
             case .github:
-                return .token
+                .token
             case .githubEnterprise:
-                return .token
+                .token
             case .gitlab:
-                return .token
+                .token
             case .gitlabSelfHosted:
-                return .token
+                .token
             }
         }
     }

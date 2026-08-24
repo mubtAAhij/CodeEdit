@@ -17,39 +17,39 @@ struct SourceControlCommands: Commands {
     }
 
     var body: some Commands {
-        CommandMenu("Source Control") {
+        CommandMenu(String(localized: "window.source-control.title", defaultValue: "Source Control", comment: "Top-level source control command menu title")) {
             Group {
-                Button("Commit...") {
+                Button(String(localized: "window.source-control.commit", defaultValue: "Commit...", comment: "Command title to open commit flow")) {
                     // TODO: Open Source Control Navigator to Changes tab
                 }
                 .disabled(true)
 
-                Button("Push...") {
+                Button(String(localized: "window.source-control.push", defaultValue: "Push...", comment: "Command title to push changes")) {
                     sourceControlManager?.pushSheetIsPresented = true
                 }
 
-                Button("Pull...") {
+                Button(String(localized: "window.source-control.pull", defaultValue: "Pull...", comment: "Command title to pull changes")) {
                     sourceControlManager?.pullSheetIsPresented = true
                 }
                 .keyboardShortcut("x", modifiers: [.command, .option])
 
-                Button("Fetch Changes") {
+                Button(String(localized: "window.source-control.fetch-changes", defaultValue: "Fetch Changes", comment: "Command title to fetch repository changes")) {
                     sourceControlManager?.fetchSheetIsPresented = true
                 }
 
                 Divider()
 
-                Button("Stage All Changes") {
+                Button(String(localized: "window.source-control.stage-all-changes", defaultValue: "Stage All Changes", comment: "Command title to stage all modified files")) {
                     guard let sourceControlManager else { return }
                     if sourceControlManager.changedFiles.isEmpty {
                         sourceControlManager.noChangesToStageAlertIsPresented = true
                     } else {
                         Task {
                             do {
-                                try await sourceControlManager.add(sourceControlManager.changedFiles.map { $0.fileURL })
+                                try await sourceControlManager.add(sourceControlManager.changedFiles.map(\.fileURL))
                             } catch {
                                 await sourceControlManager.showAlertForError(
-                                    title: "Failed To Stage Changes",
+                                    title: String(localized: "window.source-control.failed-to-stage-changes", defaultValue: "Failed To Stage Changes", comment: "Error alert title when staging changes fails"),
                                     error: error
                                 )
                             }
@@ -57,7 +57,7 @@ struct SourceControlCommands: Commands {
                     }
                 }
 
-                Button("Unstage All Changes") {
+                Button(String(localized: "window.source-control.unstage-all-changes", defaultValue: "Unstage All Changes", comment: "Command title to unstage all currently staged changes")) {
                     guard let sourceControlManager else { return }
                     if sourceControlManager.changedFiles.isEmpty {
                         sourceControlManager.noChangesToUnstageAlertIsPresented = true
@@ -65,11 +65,11 @@ struct SourceControlCommands: Commands {
                         Task {
                             do {
                                 try await sourceControlManager.reset(
-                                    sourceControlManager.changedFiles.map { $0.fileURL }
+                                    sourceControlManager.changedFiles.map(\.fileURL)
                                 )
                             } catch {
                                 await sourceControlManager.showAlertForError(
-                                    title: "Failed To Unstage Changes",
+                                    title: String(localized: "window.source-control.failed-to-unstage-changes", defaultValue: "Failed To Unstage Changes", comment: "Error alert title when unstaging changes fails"),
                                     error: error
                                 )
                             }
@@ -79,12 +79,12 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Cherry-Pick...") {
+                Button(String(localized: "window.source-control.cherry-pick", defaultValue: "Cherry-Pick...", comment: "Command title to start cherry-pick action")) {
                     // TODO: Implementation Needed
                 }
                 .disabled(true)
 
-                Button("Stash Changes...") {
+                Button(String(localized: "window.source-control.stash-changes", defaultValue: "Stash Changes...", comment: "Command title to stash current repository changes")) {
                     if sourceControlManager?.changedFiles.isEmpty ?? false {
                         sourceControlManager?.noChangesToStashAlertIsPresented = true
                     } else {
@@ -94,7 +94,7 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Discard All Changes...") {
+                Button(String(localized: "window.source-control.discard-all-changes", defaultValue: "Discard All Changes...", comment: "Command title to discard all working tree changes")) {
                     if sourceControlManager?.changedFiles.isEmpty ?? false {
                         sourceControlManager?.noChangesToDiscardAlertIsPresented = true
                     } else {
@@ -104,7 +104,7 @@ struct SourceControlCommands: Commands {
 
                 Divider()
 
-                Button("Add Exisiting Remote...") {
+                Button(String(localized: "window.source-control.add-existing-remote", defaultValue: "Add Existing Remote...", comment: "Command title to add an existing remote repository")) {
                     sourceControlManager?.addExistingRemoteSheetIsPresented = true
                 }
             }

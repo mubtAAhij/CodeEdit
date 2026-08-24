@@ -53,11 +53,11 @@ struct EditorTabBarTrailingAccessories: View {
         Button(action: {}, label: { Image(systemName: "slider.horizontal.3") })
             .overlay {
                 Menu {
-                    Toggle("Show Minimap", isOn: $showMinimap)
+                    Toggle(String(localized: "editor.tab-bar.show-minimap", defaultValue: "Show Minimap", comment: "Menu action to show the minimap"), isOn: $showMinimap)
                         .keyboardShortcut("M", modifiers: [.command, .shift, .control])
                     Divider()
                     Toggle(
-                        "Wrap Lines",
+                        String(localized: "editor.tab-bar.wrap-lines", defaultValue: "Wrap Lines", comment: "Menu action to wrap editor lines"),
                         isOn: Binding(
                             get: { [weak codeFile] in codeFile?.wrapLines ?? wrapLinesToEditorWidth },
                             set: { [weak codeFile] in
@@ -80,7 +80,7 @@ struct EditorTabBarTrailingAccessories: View {
                 } label: {
                     Image(symbol: "square.split.horizontal.plus")
                 }
-                .help("Split Vertically")
+                .help(String(localized: "editor.tab-bar.split-vertically", defaultValue: "Split Vertically", comment: "Menu action to split editor vertically"))
 
             case (.vertical, true), (.horizontal, false):
                 Button {
@@ -88,7 +88,7 @@ struct EditorTabBarTrailingAccessories: View {
                 } label: {
                     Image(symbol: "square.split.vertical.plus")
                 }
-                .help("Split Horizontally")
+                .help(String(localized: "editor.tab-bar.split-horizontally", defaultValue: "Split Horizontally", comment: "Menu action to split editor horizontally"))
 
             default:
                 EmptyView()
@@ -97,11 +97,10 @@ struct EditorTabBarTrailingAccessories: View {
     }
 
     func split(edge: Edge) {
-        let newEditor: Editor
-        if let tab = editor.selectedTab {
-            newEditor = .init(files: [tab], temporaryTab: tab, workspace: workspace)
+        let newEditor: Editor = if let tab = editor.selectedTab {
+            .init(files: [tab], temporaryTab: tab, workspace: workspace)
         } else {
-            newEditor = .init()
+            .init()
         }
         splitEditor(edge, newEditor)
         editorManager.updateCachedFlattenedEditors = true
