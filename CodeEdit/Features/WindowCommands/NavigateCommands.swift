@@ -8,62 +8,54 @@
 import SwiftUI
 
 struct NavigateCommands: Commands {
-
     @UpdatingWindowController var windowController: CodeEditWindowController?
     private var editor: Editor? {
         windowController?.workspace?.editorManager?.activeEditor
     }
 
     var body: some Commands {
-        CommandMenu("Navigate") {
+        CommandMenu(String(localized: "window-commands.navigate.menu-title", defaultValue: "Navigate", comment: "Title of the Navigate command menu")) {
             Group {
-                Button("Reveal in Project Navigator") {
+                Button(String(localized: "window-commands.navigate.reveal-in-project-navigator", defaultValue: "Reveal in Project Navigator", comment: "Menu item to reveal current file in project navigator")) {
                     NSApp.sendAction(#selector(ProjectNavigatorViewController.revealFile(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("j", modifiers: [.shift, .command])
 
-                Button("Reveal Changes in Navigator") {
+                Button(String(localized: "window-commands.navigate.reveal-changes-in-navigator", defaultValue: "Reveal Changes in Navigator", comment: "Menu item to reveal changed files in navigator")) {}
+                    .keyboardShortcut("m", modifiers: [.shift, .command])
+                    .disabled(true)
 
-                }
-                .keyboardShortcut("m", modifiers: [.shift, .command])
-                .disabled(true)
+                Button(String(localized: "window-commands.navigate.open-in-next-editor", defaultValue: "Open in Next Editor", comment: "Menu item to open current file in next editor")) {}
+                    .keyboardShortcut(",", modifiers: [.option, .command])
+                    .disabled(true)
 
-                Button("Open in Next Editor") {
-
-                }
-                .keyboardShortcut(",", modifiers: [.option, .command])
-                .disabled(true)
-
-                Button("Open in...") {
-
-                }
-                .disabled(true)
+                Button(String(localized: "window-commands.navigate.open-in", defaultValue: "Open in...", comment: "Menu item to choose where to open current file")) {}
+                    .disabled(true)
 
                 Divider()
-
             }
             Group {
-                Button("Show Previous Tab") {
+                Button(String(localized: "window-commands.navigate.show-previous-tab", defaultValue: "Show Previous Tab", comment: "Menu item to switch to previous tab")) {
                     editor?.selectPreviousTab()
                 }
                 .keyboardShortcut("{", modifiers: [.command])
-                .disabled(editor?.tabs.count ?? 0 <= 1)  // Disable if there's one or no tabs
+                .disabled(editor?.tabs.count ?? 0 <= 1) // Disable if there's one or no tabs
 
-                Button("Show Next Tab") {
+                Button(String(localized: "window-commands.navigate.show-next-tab", defaultValue: "Show Next Tab", comment: "Menu item to switch to next tab")) {
                     editor?.selectNextTab()
                 }
                 .keyboardShortcut("}", modifiers: [.command])
-                .disabled(editor?.tabs.count ?? 0 <= 1)  // Disable if there's one or no tabs
+                .disabled(editor?.tabs.count ?? 0 <= 1) // Disable if there's one or no tabs
             }
             Group {
                 Divider()
 
-                Button("Go Forward") {
+                Button(String(localized: "window-commands.navigate.go-forward", defaultValue: "Go Forward", comment: "Menu item to navigate forward in history")) {
                     editor?.goForwardInHistory()
                 }
                 .disabled(!(editor?.canGoForwardInHistory ?? false))
 
-                Button("Go Back") {
+                Button(String(localized: "window-commands.navigate.go-back", defaultValue: "Go Back", comment: "Menu item to navigate backward in history")) {
                     editor?.goBackInHistory()
                 }
                 .disabled(!(editor?.canGoBackInHistory ?? false))

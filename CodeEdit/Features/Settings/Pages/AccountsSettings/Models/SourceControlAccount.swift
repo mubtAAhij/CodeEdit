@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SourceControlAccount: Codable, Identifiable, Hashable {
-
     var id: String
     var name: String
     var description: String
@@ -53,17 +52,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "settings.accounts.source-control-account.provider.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "Display name for BitBucket Cloud provider in source control account settings")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "settings.accounts.source-control-account.provider.bitbucket-server", defaultValue: "BitBucket Server", comment: "Display name for BitBucket Server provider in source control account settings")
             case .github:
-                return "GitHub"
+                return String(localized: "settings.accounts.source-control-account.provider.github", defaultValue: "GitHub", comment: "Display name for GitHub provider in source control account settings")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "settings.accounts.source-control-account.provider.github-enterprise", defaultValue: "GitHub Enterprise", comment: "Display name for GitHub Enterprise provider in source control account settings")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "settings.accounts.source-control-account.provider.gitlab", defaultValue: "GitLab", comment: "Display name for GitLab provider in source control account settings")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "settings.accounts.source-control-account.provider.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "Display name for self-hosted GitLab provider in source control account settings")
             }
         }
 

@@ -1,5 +1,5 @@
 //
-//  AccoundSelectionView.swift
+//  AccountSelectionView.swift
 //  CodeEdit
 //
 //  Created by Austin Condiff on 4/5/23.
@@ -39,8 +39,14 @@ struct AccountSelectionView: View {
                         Button {
                             dismiss()
                         } label: {
-                            Text("Cancel")
-                                .padding(.horizontal)
+                            Text(
+                                String(
+                                    localized: "settings.accounts.account-selection.cancel",
+                                    defaultValue: "Cancel",
+                                    comment: "Button title to dismiss account provider selection"
+                                )
+                            )
+                            .padding(.horizontal)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
