@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SourceControlAccount: Codable, Identifiable, Hashable {
-
     var id: String
     var name: String
     var description: String
@@ -21,8 +20,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
     var isTokenValid: Bool
 
     enum URLProtocol: String, Codable, CaseIterable {
-        case https = "HTTPS"
-        case ssh = "SSH"
+        case https
+        case ssh
+
+        var name: String {
+            switch self {
+            case .https:
+                return String(localized: "settings.accounts.source-control-account.git-auth-type.https", defaultValue: "HTTPS", comment: "Authentication protocol label for HTTPS")
+            case .ssh:
+                return String(localized: "settings.accounts.source-control-account.git-auth-type.ssh", defaultValue: "SSH", comment: "Authentication protocol label for SSH")
+            }
+        }
     }
 
     enum Provider: Codable, CaseIterable, Identifiable {
@@ -53,17 +61,17 @@ struct SourceControlAccount: Codable, Identifiable, Hashable {
         var name: String {
             switch self {
             case .bitbucketCloud:
-                return "BitBucket Cloud"
+                return String(localized: "settings.accounts.source-control-account.provider.bitbucket-cloud", defaultValue: "BitBucket Cloud", comment: "Source control account provider name for BitBucket Cloud")
             case .bitbucketServer:
-                return "BitBucket Server"
+                return String(localized: "settings.accounts.source-control-account.provider.bitbucket-server", defaultValue: "BitBucket Server", comment: "Source control account provider name for BitBucket Server")
             case .github:
-                return "GitHub"
+                return String(localized: "settings.accounts.source-control-account.provider.github", defaultValue: "GitHub", comment: "Source control account provider name for GitHub")
             case .githubEnterprise:
-                return "GitHub Enterprise"
+                return String(localized: "settings.accounts.source-control-account.provider.github-enterprise", defaultValue: "GitHub Enterprise", comment: "Source control account provider name for GitHub Enterprise")
             case .gitlab:
-                return "GitLab"
+                return String(localized: "settings.accounts.source-control-account.provider.gitlab", defaultValue: "GitLab", comment: "Source control account provider name for GitLab")
             case .gitlabSelfHosted:
-                return "GitLab Self-hosted"
+                return String(localized: "settings.accounts.source-control-account.provider.gitlab-self-hosted", defaultValue: "GitLab Self-hosted", comment: "Source control account provider name for self-hosted GitLab")
             }
         }
 

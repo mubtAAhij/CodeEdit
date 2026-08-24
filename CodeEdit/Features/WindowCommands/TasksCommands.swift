@@ -5,8 +5,8 @@
 //  Created by Khan Winter on 7/8/25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct TasksCommands: Commands {
     @UpdatingWindowController var windowController: CodeEditWindowController?
@@ -20,21 +20,21 @@ struct TasksCommands: Commands {
     @State private var statusListener: AnyCancellable?
 
     var body: some Commands {
-        CommandMenu("Tasks") {
-            let selectedTaskName: String = if let selectedTask = taskManager?.selectedTask {
+        CommandMenu(String(localized: "window-commands.tasks.title", defaultValue: "Tasks", comment: "Top-level Tasks menu title in window commands")) {
+            let selectedTaskName = if let selectedTask = taskManager?.selectedTask {
                 "\"" + selectedTask.name + "\""
             } else {
-                "(No Selected Task)"
+                String(localized: "window-commands.tasks.no-selected-task", defaultValue: "(No Selected Task)", comment: "Menu item title shown when no task is selected")
             }
 
-            Button("Run \(selectedTaskName)", systemImage: "play.fill") {
+            Button(String(format: String(localized: "window-commands.tasks.run-selected-task", defaultValue: "Run %@", comment: "Menu command to run the selected task"), "\(selectedTaskName)"), systemImage: "play.fill") {
                 taskManager?.executeActiveTask()
                 showOutput()
             }
             .keyboardShortcut("R")
             .disabled(taskManager?.selectedTaskID == nil)
 
-            Button("Stop \(selectedTaskName)", systemImage: "stop.fill") {
+            Button(String(format: String(localized: "window-commands.tasks.stop-selected-task", defaultValue: "Stop %@", comment: "Menu command to stop the selected task"), "\(selectedTaskName)"), systemImage: "stop.fill") {
                 taskManager?.terminateActiveTask()
             }
             .keyboardShortcut(".")
@@ -45,7 +45,7 @@ struct TasksCommands: Commands {
             }
             .disabled(activeTaskStatus != .running)
 
-            Button("Show \(selectedTaskName) Output") {
+            Button(String(format: String(localized: "window-commands.tasks.show-selected-task-output", defaultValue: "Show %@ Output", comment: "Menu command to show output for the selected task"), "\(selectedTaskName)")) {
                 showOutput()
             }
             // Disable when there's no output yet
@@ -63,16 +63,16 @@ struct TasksCommands: Commands {
                 }
 
                 if taskManager?.availableTasks.isEmpty ?? true {
-                    Button("Create Tasks") {
+                    Button(String(localized: "window-commands.tasks.create-tasks", defaultValue: "Create Tasks", comment: "Menu command to create tasks configuration")) {
                         openSettings()
                     }
                 }
             } label: {
-                Text("Choose Task...")
+                Text(String(localized: "window-commands.tasks.choose-task", defaultValue: "Choose Task...", comment: "Menu command to choose a task"))
             }
             .disabled(taskManager?.availableTasks.isEmpty == true)
 
-            Button("Manage Tasks...") {
+            Button(String(localized: "window-commands.tasks.manage-tasks", defaultValue: "Manage Tasks...", comment: "Menu command to manage tasks")) {
                 openSettings()
             }
             .disabled(windowController == nil)
