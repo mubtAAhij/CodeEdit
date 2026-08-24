@@ -106,7 +106,7 @@ class GitLabCommitStatus: Codable {
         case name
         case allowFailure = "allow_failure"
         case author
-        case statusDescription = "description"
+        case statusDescription = String(localized: "source-control.gitlab.commit.coding-key.description", defaultValue: "description", comment: "JSON coding key for GitLab commit description field")
         case sha
         case targetURL = "target_url"
         case finishedAt = "finished_at"

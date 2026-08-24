@@ -30,7 +30,7 @@ class ShellClient {
         task.standardOutput = pipe
         task.standardError = pipe
         task.arguments = arguments
-        task.executableURL = URL(fileURLWithPath: "/bin/zsh")
+        task.executableURL = URL(fileURLWithPath: String(localized: "utils.shell-client.default-shell-path", defaultValue: "/bin/zsh", comment: "Default shell executable path used for launching shell client"))
         return (task, pipe)
     }
 

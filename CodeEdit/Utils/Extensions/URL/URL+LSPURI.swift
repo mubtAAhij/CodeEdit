@@ -13,6 +13,6 @@ extension URL {
     ///
     /// Use this whenever possible when using USLs in LSP processing if not using the ``LanguageServerDocument`` type.
     var lspURI: String {
-        return "file://" + absolutePath
+        return String(localized: "utils.url.lsp-uri.file-scheme-prefix", defaultValue: "file://", comment: "URI scheme prefix for file URLs in LSP conversion") + absolutePath
     }
 }

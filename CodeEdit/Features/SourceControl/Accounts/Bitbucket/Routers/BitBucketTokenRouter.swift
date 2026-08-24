@@ -37,7 +37,7 @@ enum BitBucketTokenRouter: GitRouter {
     var path: String {
         switch self {
         case .refreshToken:
-            return "site/oauth2/access_token"
+            return String(localized: "source-control.bitbucket.router.oauth-token-endpoint", defaultValue: "site/oauth2/access_token", comment: "Bitbucket OAuth token endpoint path")
         default: return ""
         }
     }

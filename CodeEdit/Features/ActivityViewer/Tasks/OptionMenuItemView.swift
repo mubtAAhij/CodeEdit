@@ -30,7 +30,7 @@ struct OptionMenuItemView: View {
 }
 
 #Preview {
-    OptionMenuItemView(label: "Test") {
+    OptionMenuItemView(label: String(localized: "activity-viewer.tasks.option-menu-item.test-title", defaultValue: "Test", comment: "Title of the test option in activity viewer task options menu")) {
         print("test")
     }
 }

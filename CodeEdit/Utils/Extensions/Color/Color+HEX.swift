@@ -46,7 +46,7 @@ extension Color {
     var hexString: String {
         let color = self.hex
 
-        return "#" + String(format: "%06x", color)
+        return "#" + String(format: String(localized: "utils.color.hex.format.lowercase-six-digit", defaultValue: "%06x", comment: "Hex format specifier for six-digit lowercase color values"), color)
     }
 
     /// The alpha (opacity) component of the Color (0.0 - 1.0)
@@ -94,6 +94,6 @@ extension NSColor {
     var hexString: String {
         let color = self.hex
 
-        return "#" + String(format: "%06x", color)
+        return "#" + String(format: String(localized: "utils.color.hex.cgcolor.format.lowercase-six-digit", defaultValue: "%06x", comment: "Hex format specifier for six-digit lowercase CGColor values"), color)
     }
 }

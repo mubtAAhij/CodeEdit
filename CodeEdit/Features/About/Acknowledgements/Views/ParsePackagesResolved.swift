@@ -28,7 +28,7 @@ struct AcknowledgementPin: Codable {
     let state: AcknowledgementPackageState
 
     var name: String {
-        location.split(separator: "/").last?.replacingOccurrences(of: ".git", with: "") ?? identity
+        location.split(separator: "/").last?.replacingOccurrences(of: String(localized: "about.acknowledgements.parse-packages-resolved.git-suffix", defaultValue: ".git", comment: "Git repository suffix used when normalizing package URLs"), with: "") ?? identity
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 extension String {
     /// Escapes the string so it's an always-valid directory
     func escapedDirectory() -> String {
-        "\"\(self.escapedQuotes())\""
+        String(localized: "utils.string.escaped.wrap-in-quotes", defaultValue: "\"%@\"", comment: "Format wrapping escaped string content in double quotes")\(self.escapedQuotes())\""
     }
 
     /// Returns a new string, replacing all occurrences of ` ` with `\ ` if they aren't already escaped.

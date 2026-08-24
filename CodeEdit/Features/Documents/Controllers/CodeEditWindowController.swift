@@ -90,7 +90,7 @@ final class CodeEditWindowController: NSWindowController, NSToolbarDelegate, Obs
 
     private func setupSplitView(with workspace: WorkspaceDocument) -> CodeEditSplitViewController? {
         guard let window else {
-            assertionFailure("No window found for this controller. Cannot set up content.")
+            assertionFailure(String(localized: "documents.codeedit-window-controller.no-window-found-error", defaultValue: "No window found for this controller. Cannot set up content.", comment: "Error message when no window is available for controller content setup"))
             return nil
         }
 
