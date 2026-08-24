@@ -1,0 +1,3156 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "about.footer.mit-license": {
+      "comment": "CodeEdit/Features/About/AboutFooterView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT License"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT License"
+          }
+        }
+      }
+    },
+    "about.acknowledgements.title": {
+      "comment": "CodeEdit/Features/About/Acknowledgements/Views/AcknowledgementsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledgements"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconocimientos"
+          }
+        }
+      }
+    },
+    "about.contributors.title": {
+      "comment": "CodeEdit/Features/About/Contributors/ContributorsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contributors"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colaboradores"
+          }
+        }
+      }
+    },
+    "editor.tab.close-button.accessibility-label": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Tabs/Tab/EditorTabCloseButton.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        }
+      }
+    },
+    "settings.accounts.selection.cancel": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountSelectionView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.accessibility-label": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab Bar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra de pestañas"
+          }
+        }
+      }
+    },
+    "window-commands.recent-projects-menu.open-recent": {
+      "comment": "CodeEdit/Features/WindowCommands/Utils/RecentProjectsMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Recientes"
+          }
+        }
+      }
+    },
+    "window-commands.recent-projects-menu.clear-menu": {
+      "comment": "CodeEdit/Features/WindowCommands/Utils/RecentProjectsMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Menu"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar menú"
+          }
+        }
+      }
+    },
+    "window-commands.extensions.title": {
+      "comment": "CodeEdit/Features/WindowCommands/ExtensionCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensions"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extensiones"
+          }
+        }
+      }
+    },
+    "window-commands.extensions.open-window": {
+      "comment": "CodeEdit/Features/WindowCommands/ExtensionCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Extensions Window"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Ventana de Extensiones"
+          }
+        }
+      }
+    },
+    "editor.history.navigate-back": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorHistoryMenus.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate back"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retroceder"
+          }
+        }
+      }
+    },
+    "editor.history.navigate-forward": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorHistoryMenus.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate forward"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegar hacia adelante"
+          }
+        }
+      }
+    },
+    "window-commands.window.welcome": {
+      "comment": "CodeEdit/Features/WindowCommands/WindowCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to CodeEdit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienvenido a CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.window.about-codeedit": {
+      "comment": "CodeEdit/Features/WindowCommands/WindowCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About CodeEdit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.window.manage-extensions": {
+      "comment": "CodeEdit/Features/WindowCommands/WindowCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Extensions"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Administrar extensiones"
+          }
+        }
+      }
+    },
+    "window-commands.main.about-codeedit": {
+      "comment": "CodeEdit/Features/WindowCommands/WindowCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About CodeEdit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.main.check-for-updates": {
+      "comment": "CodeEdit/Features/WindowCommands/MainCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for updates..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones..."
+          }
+        }
+      }
+    },
+    "window-commands.main.settings": {
+      "comment": "CodeEdit/Features/WindowCommands/MainCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración..."
+          }
+        }
+      }
+    },
+    "window-commands.help.whats-new-in-codeedit": {
+      "comment": "CodeEdit/Features/WindowCommands/HelpCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What's New in CodeEdit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novedades de CodeEdit"
+          }
+        }
+      }
+    },
+    "window-commands.help.release-notes": {
+      "comment": "CodeEdit/Features/WindowCommands/HelpCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Release Notes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notas de la versión"
+          }
+        }
+      }
+    },
+    "window-commands.help.report-an-issue": {
+      "comment": "CodeEdit/Features/WindowCommands/HelpCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report an Issue"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar un problema"
+          }
+        }
+      }
+    },
+    "settings.accounts.title": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/AccountsSettings.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accounts"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuentas"
+          }
+        }
+      }
+    },
+    "settings.accounts.delete-account": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Account..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta..."
+          }
+        }
+      }
+    },
+    "settings.accounts.add-account": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/AccountsSettings.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar cuenta..."
+          }
+        }
+      }
+    },
+    "editor.tab-bar.leading-accessories.close-this-editor": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarLeadingAccessories.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close this Editor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar este Editor"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.leading-accessories.unfocus-this-editor": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarLeadingAccessories.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unfocus this Editor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desenfocar este editor"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.leading-accessories.focus-this-editor": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarLeadingAccessories.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus this Editor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enfocar este editor"
+          }
+        }
+      }
+    },
+    "window-commands.editor.title": {
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editor"
+          }
+        }
+      }
+    },
+    "window-commands.editor.structure": {
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Structure"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estructura"
+          }
+        }
+      }
+    },
+    "window-commands.editor.move-line-up": {
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move line up"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover línea arriba"
+          }
+        }
+      }
+    },
+    "window-commands.editor.move-line-down": {
+      "comment": "CodeEdit/Features/WindowCommands/EditorCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move line down"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mover línea abajo"
+          }
+        }
+      }
+    },
+    "settings.accounts.no-accounts": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No accounts"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin cuentas"
+          }
+        }
+      }
+    },
+    "settings.accounts.add-account.button": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/AccountsSettings.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar cuenta..."
+          }
+        }
+      }
+    },
+    "settings.accounts.unsupported-git-client-message": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This git client is currently not supported."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este cliente de Git actualmente no es compatible."
+          }
+        }
+      }
+    },
+    "settings.accounts.unsupported-git-client.close": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Tabs/Tab/EditorTabCloseButton.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.show-minimap": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Minimap"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Minimapa"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.wrap-lines": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wrap Lines"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustar líneas"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.split-vertically": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Vertically"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir verticalmente"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.trailing-accessories.split-horizontally": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarTrailingAccessories.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Horizontally"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir horizontalmente"
+          }
+        }
+      }
+    },
+    "about.subtitle.no-version": {
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Version"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin versión"
+          }
+        }
+      }
+    },
+    "about.subtitle.no-build": {
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Build"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin compilación"
+          }
+        }
+      }
+    },
+    "about.subtitle.version-build": {
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@%@ (%@)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %@%@ (%@)"
+          }
+        }
+      }
+    },
+    "about.subtitle.debug-information": {
+      "comment": "CodeEdit/Features/About/AboutSubtitleView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit: %@ (%@)\nmacOS: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CodeEdit: %@ (%@)\nmacOS: %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.bitbucket-cloud": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Cloud"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Cloud"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.bitbucket-server": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Server"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BitBucket Server"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.github": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.github-enterprise": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Enterprise"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Enterprise"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.gitlab": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab"
+          }
+        }
+      }
+    },
+    "settings.accounts.source-control-account.gitlab-self-hosted": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/Models/SourceControlAccount.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab Self-hosted"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitLab autohospedado"
+          }
+        }
+      }
+    },
+    "window-commands.find.title": {
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar"
+          }
+        }
+      }
+    },
+    "window-commands.find.find": {
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar..."
+          }
+        }
+      }
+    },
+    "window-commands.find.find-and-replace": {
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find and Replace..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar y reemplazar..."
+          }
+        }
+      }
+    },
+    "window-commands.find.find-next": {
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Next"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar siguiente"
+          }
+        }
+      }
+    },
+    "window-commands.find.find-previous": {
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Previous"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar anterior"
+          }
+        }
+      }
+    },
+    "window-commands.find.use-selection-for-find": {
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Selection for Find"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar selección para buscar"
+          }
+        }
+      }
+    },
+    "window-commands.find.jump-to-selection": {
+      "comment": "CodeEdit/Features/WindowCommands/FindCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jump to Selection"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ir a selección"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.title": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasks"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tareas"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.no-selected-task": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(No Selected Task)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Ninguna tarea seleccionada)"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.run-task": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecutar %@"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.stop-task": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener %@"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.show-task-output": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show %@ Output"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar salida de %@"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.create-tasks": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Tasks"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear tareas"
+          }
+        }
+      }
+    },
+    "window-commands.tasks.choose-task": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Task..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir tarea..."
+          }
+        }
+      }
+    },
+    "window-commands.tasks.manage-tasks": {
+      "comment": "CodeEdit/Features/WindowCommands/TasksCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Tasks..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Administrar tareas..."
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.title": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create SSH key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear clave SSH"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.key-type": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key Type"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de clave"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.less-secure-suffix.ed25519-sk": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(less secure)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(menos seguro)"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.less-secure-suffix.rsa": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(less secure)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(menos seguro)"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.passphrase": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passphrase"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase de paso"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.confirm-passphrase": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm Passphrase"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmar frase de contraseña"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.cancel": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "settings.accounts.create-ssh-key.create": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/CreateSSHKeyView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.title": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigate"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegar"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.reveal-in-project-navigator": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal in Project Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Navegador de Proyectos"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.reveal-changes-in-navigator": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal Changes in Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Cambios en el Navegador"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.open-in-next-editor": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Next Editor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en el Siguiente Editor"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.open-in": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en..."
+          }
+        }
+      }
+    },
+    "window-commands.navigate.show-previous-tab": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Previous Tab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar pestaña anterior"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.show-next-tab": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Next Tab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar siguiente pestaña"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.go-forward": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go Forward"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ir adelante"
+          }
+        }
+      }
+    },
+    "window-commands.navigate.go-back": {
+      "comment": "CodeEdit/Features/WindowCommands/NavigateCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go Back"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regresar"
+          }
+        }
+      }
+    },
+    "window-commands.file.new": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo"
+          }
+        }
+      }
+    },
+    "window-commands.file.open": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir..."
+          }
+        }
+      }
+    },
+    "window-commands.file.open-recent": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Recientes"
+          }
+        }
+      }
+    },
+    "window-commands.file.open-quickly": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Quickly"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Rápidamente"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-tab": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Tab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar pestaña"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-editor": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Editor"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar editor"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-window": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Window"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar ventana"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-workspace": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Workspace"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar espacio de trabajo"
+          }
+        }
+      }
+    },
+    "window-commands.file.close-terminal": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Terminal"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar Terminal"
+          }
+        }
+      }
+    },
+    "window-commands.file.workspace-settings": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workspace Settings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración del espacio de trabajo"
+          }
+        }
+      }
+    },
+    "window-commands.file.save": {
+      "comment": "CodeEdit/Features/WindowCommands/FileCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.title": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source Control"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control de código fuente"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.commit": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commit..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.push": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Push..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subir..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.pull": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pull..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traer..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.fetch-changes": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fetch Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recuperar cambios"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.stage-all-changes": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stage All Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparar todos los cambios"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.failed-to-stage-changes": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed To Stage Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al Preparar Cambios"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.unstage-all-changes": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unstage All Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar Todos los Cambios del Área de Preparación"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.failed-to-unstage-changes": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed To Unstage Changes"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al Quitar Cambios del Stage"
+          }
+        }
+      }
+    },
+    "window-commands.source-control.cherry-pick": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cherry-Pick..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cherry-Pick..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.stash-changes": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stash Changes..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar en Stash..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.discard-all-changes": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard All Changes..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descartar todos los cambios..."
+          }
+        }
+      }
+    },
+    "window-commands.source-control.add-existing-remote": {
+      "comment": "CodeEdit/Features/WindowCommands/SourceControlCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Exisiting Remote..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar Remoto Existente..."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.account": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.description": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descripción"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.server": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.clone-using": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clone Using"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clonar usando"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.clone-using.description": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New repositories will be cloned from %@ using %@."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los repositorios nuevos se clonarán desde %@ usando %@."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH Key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave SSH"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key.none": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguno"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key.create-new": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create New..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear nuevo..."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.ssh-key.choose": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir..."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Account..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta..."
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.confirmation": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to delete the account “%@”?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar la cuenta \"%@\"?"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.ok": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.cancel": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "settings.accounts.details.delete-account.informative-text": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleting this account will remove it from CodeEdit."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al eliminar esta cuenta, se quitará de CodeEdit."
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-tab": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Tab"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar pestaña"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-other-tabs": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Other Tabs"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar otras pestañas"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-tabs-to-the-right": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Tabs to the Right"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar pestañas a la derecha"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.close-all": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close All"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar todo"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.keep-open": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep Open"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantener Abierto"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.copy-path": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Path"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar ruta"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.copy-relative-path": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Relative Path"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar ruta relativa"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.show-in-finder": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show in Finder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Finder"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.reveal-in-project-navigator": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal in Project Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en el Navegador de Proyectos"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.open-in-new-window": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in New Window"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Nueva Ventana"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-up": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Up"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir arriba"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-down": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Down"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir abajo"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-left": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Left"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir a la izquierda"
+          }
+        }
+      }
+    },
+    "editor.tab-bar.context-menu.split-right": {
+      "comment": "CodeEdit/Features/Editor/TabBar/Views/EditorTabBarContextMenu.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Right"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dividir a la derecha"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.server": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.username": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Username"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuario"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.personal-access-token": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personal Access Token"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Token de acceso personal"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.title": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in to %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión en %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.scopes-required": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ personal access tokens must have these scopes set:"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los tokens de acceso personal de %@ deben tener estos alcances configurados:"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.create-password-on-provider": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a Password on %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear una contraseña en %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.create-token-on-provider": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create a Token on %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear un token en %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.cancel": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountSelectionView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.submit": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign In"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio de sesión"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.unable-to-add-account": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to add account “%@”"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo agregar la cuenta \"%@\""
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.error.ok": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsDetailsView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.duplicate-account-error": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account with the same username and provider already exists!"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Ya existe una cuenta con el mismo nombre de usuario y proveedor!"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.authentication-failed": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication Failed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de autenticación"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.api-access-forbidden": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API Access Forbidden"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceso a la API prohibido"
+          }
+        }
+      }
+    },
+    "settings.accounts.signin.unknown-error": {
+      "comment": "CodeEdit/Features/Settings/Pages/AccountsSettings/AccountsSettingsSigninView.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown Error"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Desconocido"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-command-palette": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Command Palette"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Paleta de Comandos"
+          }
+        }
+      }
+    },
+    "window-commands.view.open-search-navigator": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Search Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Navegador de Búsqueda"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamaño de fuente"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size.increase": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Increase"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aumentar"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size.decrease": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decrease"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disminuir"
+          }
+        }
+      }
+    },
+    "window-commands.view.font-size.reset": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer"
+          }
+        }
+      }
+    },
+    "window-commands.view.customize-toolbar": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize Toolbar..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizar barra de herramientas..."
+          }
+        }
+      }
+    },
+    "window-commands.view.show-jump-bar": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Jump Bar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar barra de navegación"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-jump-bar.verb": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        }
+      }
+    },
+    "window-commands.view.hide-jump-bar": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Jump Bar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar barra de navegación"
+          }
+        }
+      }
+    },
+    "window-commands.view.dim-editors-without-focus": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dim editors without focus"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atenuar editores sin foco"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-navigator": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Navegador"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-navigator.verb": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        }
+      }
+    },
+    "window-commands.view.hide-navigator": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Navigator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar Navegador"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-inspector": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar Inspector"
+          }
+        }
+      }
+    },
+    "window-commands.view.hide-inspector": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Inspector"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar Inspector"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-inspector.verb": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-utility-area": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Utility Area"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar área de utilidades"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-utility-area.verb": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        }
+      }
+    },
+    "window-commands.view.hide-utility-area": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Utility Area"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar área de utilidades"
+          }
+        }
+      }
+    },
+    "window-commands.view.hide-toolbar": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Toolbar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar barra de herramientas"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-toolbar": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Toolbar"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar barra de herramientas"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-toolbar.verb": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-interface": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Interface"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar interfaz"
+          }
+        }
+      }
+    },
+    "window-commands.view.hide-interface": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Interface"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar interfaz"
+          }
+        }
+      }
+    },
+    "window-commands.view.show-interface.verb": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        }
+      }
+    },
+    "window-commands.view.navigators": {
+      "comment": "CodeEdit/Features/WindowCommands/ViewCommands.swift",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navigators"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegadores"
+          }
+        }
+      }
+    }
+  }
+}

@@ -54,12 +54,24 @@ struct AccountsSettingsDetailsView: View {
     var body: some View {
         SettingsForm {
             Section {
-                LabeledContent("Account") {
+                LabeledContent(String(
+                    localized: "settings.accounts.details.account",
+                    defaultValue: "Account",
+                    comment: "Section title for selected account details"
+                )) {
                     Text(currentAccount.name)
                 }
-                TextField("Description", text: $currentAccount.description)
+                TextField(String(
+                    localized: "settings.accounts.details.description",
+                    defaultValue: "Description",
+                    comment: "Label for account description field"
+                ), text: $currentAccount.description)
                 if currentAccount.provider.baseURL == nil {
-                    TextField("Server", text: $currentAccount.serverURL)
+                    TextField(String(
+                        localized: "settings.accounts.details.server",
+                        defaultValue: "Server",
+                        comment: "Label for account server field"
+                    ), text: $currentAccount.serverURL)
                 }
             }
 
@@ -70,14 +82,29 @@ struct AccountsSettingsDetailsView: View {
                     Text("SSH")
                         .tag(SourceControlAccount.URLProtocol.ssh)
                 } label: {
-                    Text("Clone Using")
-                    Text("New repositories will be cloned from \(currentAccount.provider.name)"
-                         + " using \(currentAccount.urlProtocol.rawValue).")
+                    Text(String(
+                        localized: "settings.accounts.details.clone-using",
+                        defaultValue: "Clone Using",
+                        comment: "Label for clone protocol selection"
+                    ))
+                    Text(String(format: String(
+                        localized: "settings.accounts.details.clone-using.description",
+                        defaultValue: "New repositories will be cloned from %@ using %@.",
+                        comment: "Description for selected clone provider and protocol"
+                    ), "\(currentAccount.provider.name)", "\(currentAccount.urlProtocol.rawValue)"))
                 }
                 .pickerStyle(.radioGroup)
                 if currentAccount.urlProtocol == .ssh {
-                    Picker("SSH Key", selection: $currentAccount.sshKey) {
-                        Text("None")
+                    Picker(String(
+                        localized: "settings.accounts.details.ssh-key",
+                        defaultValue: "SSH Key",
+                        comment: "Label for SSH key selection control"
+                    ), selection: $currentAccount.sshKey) {
+                        Text(String(
+                            localized: "settings.accounts.details.ssh-key.none",
+                            defaultValue: "None",
+                            comment: "Option title indicating no SSH key is selected"
+                        ))
                             .tag("")
                         Divider()
                         if let sshPath = FileManager.default.homeDirectoryForCurrentUser.appending(
@@ -99,9 +126,17 @@ struct AccountsSettingsDetailsView: View {
                                 Divider()
                             }
                         }
-                        Text("Create New...")
+                        Text(String(
+                            localized: "settings.accounts.details.ssh-key.create-new",
+                            defaultValue: "Create New...",
+                            comment: "Menu item title to create a new SSH key"
+                        ))
                             .tag("CREATE_NEW")
-                        Text("Choose...")
+                        Text(String(
+                            localized: "settings.accounts.details.ssh-key.choose",
+                            defaultValue: "Choose...",
+                            comment: "Menu item title to choose an existing SSH key"
+                        ))
                             .tag("CHOOSE")
                     }
                     .onReceive([currentAccount.sshKey].publisher.first()) { value in
@@ -122,24 +157,44 @@ struct AccountsSettingsDetailsView: View {
                 }
             } footer: {
                 HStack {
-                    Button("Delete Account...") {
+                    Button(String(
+                        localized: "settings.accounts.details.delete-account",
+                        defaultValue: "Delete Account...",
+                        comment: "Button title to delete selected account"
+                    )) {
                         deleteConfirmationIsPresented.toggle()
                     }
                     .alert(
-                        Text("Are you sure you want to delete the account “\(account.description)”?"),
+                        Text(String(format: String(
+                            localized: "settings.accounts.details.delete-account.confirmation",
+                            defaultValue: "Are you sure you want to delete the account “%@”?",
+                            comment: "Confirmation message before deleting an account"
+                        ), "\(account.description)")),
                         isPresented: $deleteConfirmationIsPresented
                     ) {
-                        Button("OK") {
+                        Button(String(
+                            localized: "settings.accounts.details.delete-account.ok",
+                            defaultValue: "OK",
+                            comment: "Confirmation button title for deleting an account"
+                        )) {
                             // Handle the account delete
                             handleAccountDelete()
                             dismiss()
                         }
-                        Button("Cancel") {
+                        Button(String(
+                            localized: "settings.accounts.details.delete-account.cancel",
+                            defaultValue: "Cancel",
+                            comment: "Cancel button title for delete account alert"
+                        )) {
                             // Handle the cancel, dismiss the alert
                             deleteConfirmationIsPresented.toggle()
                         }
                     } message: {
-                        Text("Deleting this account will remove it from CodeEdit.")
+                        Text(String(
+                            localized: "settings.accounts.details.delete-account.informative-text",
+                            defaultValue: "Deleting this account will remove it from CodeEdit.",
+                            comment: "Informative text in delete account confirmation alert"
+                        ))
                     }
 
                     Spacer()
