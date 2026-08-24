@@ -47,7 +47,7 @@ extension ThemeModel {
 
             // get all URLs in users themes folder that end with `.cetheme`
             let userDefinedThemeFilenames = try filemanager.contentsOfDirectory(atPath: themesURL.path).filter {
-                $0.contains(".cetheme")
+                $0.contains(String(localized: "settings.theme.file-extension.dot-cetheme", defaultValue: ".cetheme", comment: "Theme file extension including leading dot"))
             }
             let userDefinedThemeURLs = userDefinedThemeFilenames.map {
                 themesURL.appending(path: $0)
@@ -55,7 +55,7 @@ extension ThemeModel {
 
             // get all bundled theme URLs
             let bundledThemeFilenames = try filemanager.contentsOfDirectory(atPath: bundledThemesURL.path).filter {
-                $0.contains(".cetheme")
+                $0.contains(String(localized: "settings.theme.file-extension.dot-cetheme", defaultValue: ".cetheme", comment: "Theme file extension including leading dot"))
             }
             let bundledThemeURLs = bundledThemeFilenames.map {
                 bundledThemesURL.appending(path: $0)
@@ -133,9 +133,9 @@ extension ThemeModel {
 
     func importTheme() {
         let openPanel = NSOpenPanel()
-        let allowedTypes = [UTType(filenameExtension: "cetheme")!]
+        let allowedTypes = [UTType(filenameExtension: String(localized: "settings.theme.file-extension.cetheme", defaultValue: "cetheme", comment: "Theme file extension without leading dot"))!]
 
-        openPanel.prompt = "Import"
+        openPanel.prompt = String(localized: "settings.theme.import.button-title", defaultValue: "Import", comment: "Import panel confirm button title")
         openPanel.allowedContentTypes = allowedTypes
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = false
@@ -226,18 +226,18 @@ extension ThemeModel {
                 throw NSError(
                     domain: "ThemeModel",
                     code: 1,
-                    userInfo: [NSLocalizedDescriptionKey: "Theme file URL not found"]
+                    userInfo: [NSLocalizedDescriptionKey: String(localized: "settings.theme.crud.error.theme-file-url-not-found", defaultValue: "Theme file URL not found", comment: "Error message when a theme file URL cannot be resolved")]
                 )
             }
 
             var finalName = newName
-            var finalURL = themesURL.appending(path: finalName).appendingPathExtension("cetheme")
+            var finalURL = themesURL.appending(path: finalName).appendingPathExtension(String(localized: "settings.theme.file-extension.cetheme", defaultValue: "cetheme", comment: "Theme file extension without leading dot"))
             var iterator = 1
 
             // Check for existing display names in themes
             while themes.contains(where: { theme != $0 && $0.displayName == finalName }) {
                 finalName = "\(newName) \(iterator)"
-                finalURL = themesURL.appending(path: finalName).appendingPathExtension("cetheme")
+                finalURL = themesURL.appending(path: finalName).appendingPathExtension(String(localized: "settings.theme.file-extension.cetheme", defaultValue: "cetheme", comment: "Theme file extension without leading dot"))
                 iterator += 1
             }
 
