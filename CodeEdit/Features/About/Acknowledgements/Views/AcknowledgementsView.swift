@@ -5,19 +5,19 @@
 //  Created by Shivesh M M on 4/4/22.
 //
 
-import SwiftUI
 import AboutWindow
+import SwiftUI
 
 struct AcknowledgementsView: View {
     @StateObject var model = AcknowledgementsViewModel()
 
     var body: some View {
-        AboutDetailView(title: "Acknowledgements") {
+        AboutDetailView(title: String(localized: "about.acknowledgements.title", defaultValue: "Acknowledgements", comment: "Title for the acknowledgements about page")) {
             LazyVStack(spacing: 0) {
                 ForEach(
                     model.indexedAcknowledgements,
                     id: \.acknowledgement.name
-                ) { (index, acknowledgement) in
+                ) { index, acknowledgement in
                     if index != 0 {
                         Divider()
                             .frame(height: 0.5)
