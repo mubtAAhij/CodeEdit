@@ -22,13 +22,13 @@ extension NSMenuItem {
 
         fixAlternate(newValue)
 
-        if self.title == "Open Recent" {
-            self.submenu = FileCommands.recentProjectsMenu.makeMenu()
+        if title == String(localized: "window-commands.recent-projects.menu-title", defaultValue: "Open Recent", comment: "Recent projects submenu title") {
+            submenu = FileCommands.recentProjectsMenu.makeMenu()
         }
 
-        if self.title == "OpenWindowAction" || self.title.isEmpty {
-            self.isHidden = true
-            self.allowsKeyEquivalentWhenHidden = true
+        if title == "OpenWindowAction" || title.isEmpty {
+            isHidden = true
+            allowsKeyEquivalentWhenHidden = true
         }
     }
 

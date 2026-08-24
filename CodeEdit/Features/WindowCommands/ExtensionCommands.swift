@@ -5,8 +5,8 @@
 //  Created by Wouter Hennen on 24/03/2023.
 //
 
-import SwiftUI
 import CodeEditKit
+import SwiftUI
 
 struct ExtensionCommands: Commands {
     @FocusedObject var manager: ExtensionManager?
@@ -15,8 +15,8 @@ struct ExtensionCommands: Commands {
     var openWindow
 
     var body: some Commands {
-        CommandMenu("Extensions") {
-            Button("Open Extensions Window") {
+        CommandMenu(String(localized: "window-commands.extensions.menu-title", defaultValue: "Extensions", comment: "Window menu title for extensions commands")) {
+            Button(String(localized: "window-commands.extensions.open-window", defaultValue: "Open Extensions Window", comment: "Menu item to open the extensions window")) {
                 openWindow(sceneID: .extensions)
             }
         }
