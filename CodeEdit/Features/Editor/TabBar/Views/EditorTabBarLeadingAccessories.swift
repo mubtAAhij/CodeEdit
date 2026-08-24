@@ -26,15 +26,15 @@ struct EditorTabBarLeadingAccessories: View {
                         editorManager.closeEditor(editor)
                     }
                 )
-                .help("Close this Editor")
+                .help(String(localized: "editor.tab-bar.leading-accessories.close-editor", defaultValue: "Close this Editor", comment: "Tooltip for closing current editor from leading accessories"))
                 .disabled(editorManager.isFocusingActiveEditor)
                 .opacity(editorManager.isFocusingActiveEditor ? 0.5 : 1)
 
                 EditorTabBarAccessoryIcon(
                     icon: .init(
                         systemName: editorManager.isFocusingActiveEditor
-                        ? "arrow.down.forward.and.arrow.up.backward"
-                        : "arrow.up.left.and.arrow.down.right"
+                            ? "arrow.down.forward.and.arrow.up.backward"
+                            : "arrow.up.left.and.arrow.down.right"
                     ),
                     isActive: editorManager.isFocusingActiveEditor,
                     action: {
@@ -43,8 +43,8 @@ struct EditorTabBarLeadingAccessories: View {
                 )
                 .help(
                     editorManager.isFocusingActiveEditor
-                    ? "Unfocus this Editor"
-                    : "Focus this Editor"
+                        ? String(localized: "editor.tab-bar.leading-accessories.unfocus-editor", defaultValue: "Unfocus this Editor", comment: "Tooltip for unfocusing current editor")
+                        : String(localized: "editor.tab-bar.leading-accessories.focus-editor", defaultValue: "Focus this Editor", comment: "Tooltip for focusing current editor")
                 )
 
                 Divider()
