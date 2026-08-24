@@ -5,14 +5,14 @@
 //  Created by Lukas Pistrol on 19.01.23.
 //
 
-import SwiftUI
 import AboutWindow
+import SwiftUI
 
 struct ContributorsView: View {
     @StateObject var model = ContributorsViewModel()
 
     var body: some View {
-        AboutDetailView(title: "Contributors") {
+        AboutDetailView(title: String(localized: "about.contributors.title", defaultValue: "Contributors", comment: "Title for the contributors section in the About window")) {
             LazyVStack(spacing: 0) {
                 ForEach(model.contributors) { contributor in
                     ContributorRowView(contributor: contributor)
@@ -36,7 +36,7 @@ class ContributorsViewModel: ObservableObject {
         do {
             let data = try Data(contentsOf: url)
             let root = try JSONDecoder().decode(ContributorsRoot.self, from: data)
-            self.contributors = root.contributors
+            contributors = root.contributors
         } catch {
             print(error)
         }
